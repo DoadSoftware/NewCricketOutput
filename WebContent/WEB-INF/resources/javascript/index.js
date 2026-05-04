@@ -13944,7 +13944,7 @@ function processCricketProcedures(whatToProcess) {
 					//('Hello');
 					addItemsToList('MULTI_PARTNERSHIP-OPTIONS', data);
 					addItemsToList('POPULATE-PARTNER', data);
-					match_data = data;
+					session_match = data;
 					break;
 				case 'TICKER_BOWLER_GRAPHICS-OPTIONS':
 					//alert('hello')
@@ -15861,27 +15861,18 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 			document.getElementById('select_graphic_options_div').style.display = '';
 			break;
-		break;
 		case 'POPULATE-PARTNER':
 			$('#selectpartnership').empty();
-			session_match.match.inning.forEach(function(inn, index, arr) {
-				//console.log(inn.partnerships)
+			dataToProcess.match.inning.forEach(function(inn, index, arr) {
 				if (inn.inningNumber == document.getElementById('which_keypress').value) {
-					/*inn.partnerships.sort(function(a, b) {
-				      if (b.totalRuns === a.totalRuns) {
-				        // If totalRuns are equal, sort by totalBalls (ascending)
-				        return a.totalBalls - b.totalBalls;
-				      }
-				      // Otherwise, sort by totalRuns (descending)
-				      return b.totalRuns - a.totalRuns;
-				    });*/
+					console.log(inn.partnerships);
 					for (var i = 1; i <= inn.partnerships.length; i++) {
 						//alert('Par' + i);
 						$('#selectpartnership').append(
 							$(document.createElement('option')).prop({
 								value: inn.partnerships[i-1].partnershipNumber,
 								text: inn.partnerships[i-1].partnershipNumber
-										 +" "+ inn.partnerships[i-1].firstPlayer.ticker_name+"-"+inn.partnerships[i-1].secondPlayer.ticker_name
+										 //+" "+ inn.partnerships[i-1].firstPlayer.ticker_name+"-"+inn.partnerships[i-1].secondPlayer.ticker_name
 							}))
 					}
 				}
@@ -24252,7 +24243,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 		break;
 		case 'HIGHEST_RUNS_GRAPHICS_OPTIONS': case 'BEST_FIG_GRAPHICS_OPTIONS': 
 		case 'IMPACT_PLAYER-OPTIONS': case 'BATSMAN_VS_ALLBOWLERS-OPTIONS': case 'BOWLER_VS_ALLBATSMAN-OPTIONS': case 'SCHEDULAR-OPTIONS': case 'PERFORMANCE_BUG_DB-OPTIONS':
-		case 'NAMESUPER-OPTIONS': case 'CAPTAIN-OPTIONS': case 'NAMESUPER_PLAYER-OPTIONS': case 'NAMESUPER_PLAYER_AWAY-OPTIONS': case 'PLAYERPROFILEEVEREST-OPTIONS': case 'PLAYERPROFILE-OPTIONS': case 'L3PLAYERPROFILE-OPTIONS': case 'BUG_DB-OPTIONS':
+		case 'NAMESUPER-OPTIONS': case 'CAPTAIN-OPTIONS': case 'NAMESUPER_PLAYER-OPTIONS': case 'NAMESUPER_PLAYER_AWAY-OPTIONS': case 'PLAYERPROFILEEVEREST-OPTIONS': case 'PLAYERPROFILE-OPTIONS': 
+		case 'L3PLAYERPROFILE-OPTIONS': case 'BUG_DB-OPTIONS':
 		case 'PREVIOUS_SUMMARY-OPTIONS': case 'LT_POINTERS-OPTIONS': case 'FF_POINTERS-OPTIONS': case 'LT-TIEID-DOUBLE-OPTIONS': case 'SPLIT_DB-OPTIONS':
 		case 'THISSERIES-STATS-OPTIONS': case 'THISSERIES_BALL-STATS-OPTIONS': case 'FF_THISSERIES-STATS-OPTIONS': case 'FF_THISSERIES_BALL-STATS-OPTIONS':
 		case 'LEADERBOARD-OPTIONS': case 'FF_STATS-OPTIONS': case 'L3PLAYERPROFILEBAT-OPTIONS': case 'POINTER-OPTIONS': case 'DOUBLEEPLAYERPROFILEEVEREST-OPTIONS':

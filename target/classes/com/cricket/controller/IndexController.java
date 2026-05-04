@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import com.cricket.archive.Archive;
+import com.cricket.broadcaster.EVEREST_LEGENDS_90;
+import com.cricket.containers.Infobar;
 import com.cricket.containers.Scene;
 import com.cricket.model.BattingCard;
 import com.cricket.model.BowlingCard;
@@ -36,14 +38,17 @@ import com.cricket.model.DuckWorthLewis;
 import com.cricket.model.EventFile;
 import com.cricket.model.FieldersData;
 import com.cricket.model.ForeignLanguageData;
+import com.cricket.model.Ground;
 import com.cricket.model.HeadToHead;
 import com.cricket.model.Inning;
 import com.cricket.model.Match;
 import com.cricket.model.MatchAllData;
 import com.cricket.model.MatchStats;
 import com.cricket.model.MultiLanguageDatabase;
+import com.cricket.model.Player;
 import com.cricket.model.Setup;
 import com.cricket.model.Statistics;
+import com.cricket.model.Team;
 import com.cricket.model.Tournament;
 import com.cricket.service.CricketService;
 import com.cricket.util.CricketFunctions;
@@ -94,7 +99,7 @@ public class IndexController
 //	public static EVEREST_BENGAL_T20 bengal_t20;
 //	public static ICPL_AR this_icpl_ar;
 //	public static EVEREST_NEPAL_T20 everest_nepal_t20;
-//	public static EVEREST_LEGENDS_90 everest_legends_90;
+	public static EVEREST_LEGENDS_90 everest_legends_90;
 //	public static EVEREST_PUNJAB_T20 everest_punjab_t20;
 //	public static EVEREST_APL_T20 everest_apl_t20;
 //	public static EVEREST_KCL everest_KCL;
@@ -110,7 +115,8 @@ public class IndexController
 	public static long last_setup_time_stamp = 0;
 	public static long last_match_time_stamp_third_Party = 0;
 	public static long last_match_time_stamp = 0;
-	public static long plotter_match_time_stamp1=0,plotter_match_time_stamp2=0, plotter_match_time_stamp3=0,plotter_match_time_stamp4=0,plotter_match_time_stamp=0,speed_match_time_stamp=0;
+	public static long plotter_match_time_stamp1=0,plotter_match_time_stamp2=0, plotter_match_time_stamp3=0,plotter_match_time_stamp4=0,
+			plotter_match_time_stamp=0,speed_match_time_stamp=0;
 	public static String plotterData;
 	public boolean Plotter_file_change = false;
 	public boolean match_file_change_third_party=false;
@@ -124,6 +130,10 @@ public class IndexController
 	public static HeadToHead headToHead = new HeadToHead ();
 	List<DuckWorthLewis> session_dls = new ArrayList<DuckWorthLewis>();
 	FieldersData fielderFormation = new FieldersData();
+	
+	public static List<Team> session_team = new ArrayList<>();
+	public static List<Ground> session_ground = new ArrayList<>();
+	public static List<Player> session_players = new ArrayList<>();
 	
 	@RequestMapping(value = {"/help"}, method={RequestMethod.GET,RequestMethod.POST}) 
 	public String HelpPage()  
@@ -611,8 +621,8 @@ public class IndexController
 					session_selected_scenes.get(0).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_broadcaster);
 					break;
 				case "EVEREST_LEGENDS_90":
-//					everest_legends_90 = new EVEREST_LEGENDS_90();
-//					everest_legends_90.infobar = new Infobar();
+					everest_legends_90 = new EVEREST_LEGENDS_90();
+					everest_legends_90.infobar = new Infobar();
 					session_selected_scenes.get(0).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_broadcaster);
 					break;
 				case "SPL":
@@ -775,8 +785,15 @@ public class IndexController
 						selectedMatch), EventFile.class));
 			}
 			session_match.getMatch().setMatchFileName(selectedMatch);
-//			session_match = CricketFunctions.populateMatchVariables(cricketService, CricketFunctions.readOrSaveMatchFile(CricketUtil.READ,CricketUtil.SETUP + "," + 
-//					CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match,true));			
+			
+			session_team =  cricketService.getTeams();
+			session_ground =  cricketService.getGrounds();
+			session_players = cricketService.getAllPlayer();
+			
+			session_match = CricketFunctions.populateMatchVariables(CricketFunctions.readOrSaveMatchFile(CricketUtil.READ, 
+					CricketUtil.SETUP + "," + CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match, session_configuration), 
+					session_players, session_team, session_ground);			
+			
 			session_match.getSetup().setMatchFileTimeStamp(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()));
 			
 			if(new File(CricketUtil.CRICKET_DIRECTORY + "ParScores BB.html").exists()) {
@@ -867,7 +884,7 @@ public class IndexController
 		}
 	}
 
-	@RequestMapping(value = {"/processCricketProcedures"}, method={RequestMethod.GET,RequestMethod.POST})    
+	@RequestMapping(value = {"/processCricketProcedures.html"}, method={RequestMethod.GET,RequestMethod.POST})    
 	public @ResponseBody String processCricketProcedures(
 //		@ModelAttribute("session_llc_big_screen") LLC_BigScreen session_llc_big_screen, 
 //		@ModelAttribute("session_Icc_big_screen") ICC_BIG_SCREEN session_Icc_big_screen,
@@ -930,8 +947,8 @@ public class IndexController
 //			cricket_matches = CricketFunctions.getTournamentMatches(files, cricketService);
 			headToHead = CricketFunctions.extractHeadToHead(session_match, cricketService);
 			session_statistics = cricketService.getAllStats();
-			past_tournament_stats = CricketFunctions.extractTournamentData("PAST_MATCHES_DATA", false, headToHead.getH2hPlayer(), cricketService, session_match, null);
-			
+			past_tournament_stats = CricketFunctions.extractTournamentData("PAST_MATCHES_DATA", false, headToHead.getH2hPlayer(), 
+					cricketService, session_match, null);
 			matchstats = CricketFunctions.getAllEvents(session_match ,session_selected_broadcaster, session_match.getEventFile().getEvents());
 			 
 			if(new File(CricketUtil.CRICKET_DIRECTORY + "ParScores BB.html").exists()) {
@@ -1004,37 +1021,31 @@ public class IndexController
 		case "HOWOUT_GRAPHICS-OPTIONS": case "BATTER-ICC_GRAPHICS-OPTIONS": case "PLAYERPROFILE-ICC_GRAPHICS-OPTIONS": case "LINEUP-ICC_GRAPHICS-OPTIONS":
 		case "PLAYERPROFILEBALL-ICC_GRAPHICS-OPTIONS": case "MILESTONE_GRAPHICS-OPTIONS": case "PLAYERFREETEXT_GRAPHICS-OPTIONS": case "LINEUPIMAGE-ICC_GRAPHICS-OPTIONS":
 		case "PLAYERNAME-ICC_GRAPHICS-OPTIONS":	case "WAGON-ICC_GRAPHICS-OPTIONS": case "PLAYERVIDEO-ICC_GRAPHICS-OPTIONS": case "BATSMANSTATS-ICC_GRAPHICS-OPTIONS":
-		case "PLAYERINTRO-ICC_GRAPHICS-OPTIONS":
-			System.out.println("hi");
+		case "PLAYERINTRO-ICC_GRAPHICS-OPTIONS": case "MULTI_GRAPHICS-OPTIONS":
 			return new ObjectMapper().writeValueAsString(session_match).toString();
-		case "BOWLERSTATS-ICC_GRAPHICS-OPTIONS": case "TEAMNAME-ICC_GRAPHICS-OPTIONS":case "PLAYERH2H-ICC_GRAPHICS-OPTIONS":
-		case "BOWLERFIG-ICC_GRAPHICS-OPTIONS": case "LINEUPLONG-ICC_GRAPHICS-OPTIONS":
-		case "LONGLINEUP-ICC_GRAPHICS-OPTIONS":	 case "IMG_FREETEXT2LINE_GRAPHIC-OPTIONS":
+		case "BOWLERSTATS-ICC_GRAPHICS-OPTIONS": case "TEAMNAME-ICC_GRAPHICS-OPTIONS":case "PLAYERH2H-ICC_GRAPHICS-OPTIONS": case "BOWLERFIG-ICC_GRAPHICS-OPTIONS": 
+		case "LINEUPLONG-ICC_GRAPHICS-OPTIONS": case "LONGLINEUP-ICC_GRAPHICS-OPTIONS":	 case "IMG_FREETEXT2LINE_GRAPHIC-OPTIONS":
 			switch (session_selected_broadcaster) {
 			case "ICC_BIG_SCREEN":
 //				return new ObjectMapper().writeValueAsString(third_party_session_match).toString();
 			case "ICC_BIGSCREEN_DOAD_SCORING": case "ICC_BIGSCREEN_DOAD_VIZ_SCORING":
 				return new ObjectMapper().writeValueAsString(session_match).toString();
 			}
-		case "SCOREBUG_CHANGEON_GRAPHICS-OPTIONS":case "IMAGEDROPDOWN-ICC_GRAPHICS-OPTIONS":	
-		case "FANTASYDROPDOWN-ICC_GRAPHICS-OPTIONS":
+		case "SCOREBUG_CHANGEON_GRAPHICS-OPTIONS": case "IMAGEDROPDOWN-ICC_GRAPHICS-OPTIONS": case "FANTASYDROPDOWN-ICC_GRAPHICS-OPTIONS":
 //			return (String) session_Icc_big_screen.ProcessGraphicOption(whatToProcess, session_match,cricketService, cricket_matches,third_party_session_match, 
 //					CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,third_party_last_ball_speed,session_dls);
 		case "FREETEXT_GRAPHICS-OPTIONS":
 			return new ObjectMapper().writeValueAsString(cricketService.getNameSupers()).toString();
 
-		case "PERFORMANCE_BUG_DB_GRAPHICS-OPTIONS": case "HIGHEST_RUNS_OPTIONS": case "BEST_FIG_OPTIONS":case "LEADERBOARD_TEAM_GRAPHICS-OPTIONS":
-		case "NAMESUPER_GRAPHICS-OPTIONS": case "L3_MATCH-PROMO_GRAPHICS-OPTIONS": case "BUG_DB_GRAPHICS-OPTIONS": case "MOST_GRAPHICS-OPTIONS": 
-		case "MOST1_GRAPHICS-OPTIONS": case "MOST1_WICKETS_GRAPHICS-OPTIONS": case "MOST_LEADERBOARD_GRAPHICS-OPTIONS":
-		case "LEADERBOARD_GRAPHICS-OPTIONS": case "FF-LEADERBOARD-FANTASY-OPTIONS": case "WICKETS_GRAPHICS-OPTIONS": case "FOURS_GRAPHICS-OPTIONS": case "SIXES_GRAPHICS-OPTIONS":
-		case "HIGHEST_SCORE_GRAPHICS-OPTIONS": case "BEST_FIG_GRAPHICS-OPTIONS": case "SPLIT_GRAPHICS-OPTIONS":
-		case "BUG_DB2_GRAPHICS-OPTIONS": case "POPULATE-LASTX": case "HOWOUT_BOTH_GRAPHICS-OPTIONS": case "BATSMANSTATS_BOTH_GRAPHICS-OPTIONS":
-		case "THIS_SESSION_GRAPHICS-OPTIONS": case "LT_POINTERS_GRAPHICS-OPTIONS": case "FF_POINTERS_GRAPHICS-OPTIONS": case "POINTER_GRAPHICS-OPTIONS":
-		case "MATCH_GRAPHICS-OPTIONS": case "TICKER_BOWLER_GRAPHICS-OPTIONS": case "L3PLAYERPROFILEBUKHATIR_GRAPHICS-OPTIONS":
-		case "PLAYERPROFILEBUKHATIR_GRAPHICS-OPTIONS":	case "NAMESUPER_GRAPHICS_SINGLELINE-OPTIONS": case "POSITION_LANDMARK-OPTIONS":
-		case "EXCEL_FF_GRAPHICS_OPTION":case "EXCEL_LT_GRAPHICS_OPTION": case "EXCEL_FF_SUMMARY_GRAPHICS_OPTION": case "MOST_TOP5_TEAM_GRAPHICS-OPTIONS":
-		case "EXCEL_FF_KEY_PLAYER_GRAPHICS_OPTION":case "HEIGHEST_INDIVIDUAL_SCORE_GRAPHICS-OPTIONS":case "TEAM_WICKETS_GRAPHICS-OPTIONS": case "TEAM_LEADERBOARD_GRAPHICS-OPTIONS": 
-		case "TEAM_FOURS_GRAPHICS-OPTIONS": case "TEAM_SIXES_GRAPHICS-OPTIONS": case "BEST_FIGURES_GRAPHICS-OPTIONS":
+		case "PERFORMANCE_BUG_DB_GRAPHICS-OPTIONS": case "HIGHEST_RUNS_OPTIONS": case "BEST_FIG_OPTIONS":case "LEADERBOARD_TEAM_GRAPHICS-OPTIONS": case "NAMESUPER_GRAPHICS-OPTIONS": 
+		case "L3_MATCH-PROMO_GRAPHICS-OPTIONS": case "BUG_DB_GRAPHICS-OPTIONS": case "MOST_GRAPHICS-OPTIONS": case "MOST1_GRAPHICS-OPTIONS": case "MOST1_WICKETS_GRAPHICS-OPTIONS": 
+		case "MOST_LEADERBOARD_GRAPHICS-OPTIONS": case "LEADERBOARD_GRAPHICS-OPTIONS": case "FF-LEADERBOARD-FANTASY-OPTIONS": case "WICKETS_GRAPHICS-OPTIONS": case "FOURS_GRAPHICS-OPTIONS": 
+		case "SIXES_GRAPHICS-OPTIONS": case "HIGHEST_SCORE_GRAPHICS-OPTIONS": case "BEST_FIG_GRAPHICS-OPTIONS": case "SPLIT_GRAPHICS-OPTIONS": case "BUG_DB2_GRAPHICS-OPTIONS": 
+		case "POPULATE-LASTX": case "HOWOUT_BOTH_GRAPHICS-OPTIONS": case "BATSMANSTATS_BOTH_GRAPHICS-OPTIONS": case "THIS_SESSION_GRAPHICS-OPTIONS": case "LT_POINTERS_GRAPHICS-OPTIONS": 
+		case "FF_POINTERS_GRAPHICS-OPTIONS": case "POINTER_GRAPHICS-OPTIONS": case "MATCH_GRAPHICS-OPTIONS": case "TICKER_BOWLER_GRAPHICS-OPTIONS": case "L3PLAYERPROFILEBUKHATIR_GRAPHICS-OPTIONS":
+		case "PLAYERPROFILEBUKHATIR_GRAPHICS-OPTIONS":	case "NAMESUPER_GRAPHICS_SINGLELINE-OPTIONS": case "POSITION_LANDMARK-OPTIONS": case "EXCEL_FF_GRAPHICS_OPTION": case "EXCEL_LT_GRAPHICS_OPTION": 
+		case "EXCEL_FF_SUMMARY_GRAPHICS_OPTION": case "MOST_TOP5_TEAM_GRAPHICS-OPTIONS": case "EXCEL_FF_KEY_PLAYER_GRAPHICS_OPTION": case "HEIGHEST_INDIVIDUAL_SCORE_GRAPHICS-OPTIONS": 
+		case "TEAM_WICKETS_GRAPHICS-OPTIONS": case "TEAM_LEADERBOARD_GRAPHICS-OPTIONS": case "TEAM_FOURS_GRAPHICS-OPTIONS": case "TEAM_SIXES_GRAPHICS-OPTIONS": case "BEST_FIGURES_GRAPHICS-OPTIONS":
 //			switch (session_selected_broadcaster.toUpperCase()) {
 //			case "ICC_BIG_SCREEN":
 //				return (String) session_Icc_big_screen.ProcessGraphicOption(whatToProcess, session_match,cricketService, cricket_matches,third_party_session_match, 
@@ -1088,9 +1099,9 @@ public class IndexController
 //			case "EVEREST_NEPAL_T20":
 //				return (String) everest_nepal_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
 //						session_selected_scenes, valueToProcess, session_statistics);
-//			case "EVEREST_LEGENDS_90":
-//				return (String) everest_legends_90.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
-//						session_selected_scenes, valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
+			case "EVEREST_LEGENDS_90":
+				return (String) everest_legends_90.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
+						session_selected_scenes, valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
 //			case "SPL":
 //				return (String) this_spl.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
 //						session_selected_scenes, valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
@@ -1159,8 +1170,8 @@ public class IndexController
 //				return (String) this_nepal_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
 //						session_selected_scenes, valueToProcess, session_statistics,session_configuration);	
 //			}
-//		case "PROMPT_GRAPHICS-OPTIONS": case "TEAM_FIXTURES_GRAPHICS-OPTIONS": case "TEAM_SQUAD_GRAPHICS-OPTIONS":
-//			switch (session_selected_broadcaster) {
+		case "PROMPT_GRAPHICS-OPTIONS": case "TEAM_FIXTURES_GRAPHICS-OPTIONS": case "TEAM_SQUAD_GRAPHICS-OPTIONS":
+			switch (session_selected_broadcaster) {
 //			case "BUKHATIR":
 //				return (String) this_bukhatir.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
 //						session_selected_scenes, valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
@@ -1243,9 +1254,9 @@ public class IndexController
 //			case "ICPL_AR":
 //				return (String) this_icpl_ar.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
 //						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics);		
-//			}
-		case "MATCH-PROMO_GRAPHICS-OPTIONS": case "PREVIOUS_SUMMARY_GRAPHICS-OPTIONS": case "LT-TIEID-DOUBLE_GRAPHICS-OPTIONS": 
-		case "LTMATCH-PROMO_GRAPHICS-OPTIONS": case "PLAYOFF_GRAPHICS-OPTIONS": case "MATCH-PROMO_ANIMATION_GRAPHICS-OPTIONS":
+			}
+		case "MATCH-PROMO_GRAPHICS-OPTIONS": case "PREVIOUS_SUMMARY_GRAPHICS-OPTIONS": case "LT-TIEID-DOUBLE_GRAPHICS-OPTIONS": case "LTMATCH-PROMO_GRAPHICS-OPTIONS": 
+		case "PLAYOFF_GRAPHICS-OPTIONS": case "MATCH-PROMO_ANIMATION_GRAPHICS-OPTIONS":
 			return new ObjectMapper().writeValueAsString(CricketFunctions.processAllFixtures(cricketService)).toString();
 		case "READ-MATCH-AND-POPULATE":
 			if(show_speed == true ) {
@@ -1334,7 +1345,7 @@ public class IndexController
 			}
 			
 			match_file_change = false;
-//			switch(session_selected_broadcaster) {
+			switch(session_selected_broadcaster) {
 //			case "ICC_BIG_SCREEN":
 //				if(last_match_time_stamp_third_Party != new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.Cricket_THIRDPARTY).lastModified()) {					
 //					third_party_session_match = CricketFunctions.getDataFromThirdParty(CricketUtil.CRICKET_DIRECTORY + 
@@ -1352,189 +1363,189 @@ public class IndexController
 //					match_file_change_third_party = false;
 //				}
 //				return new ObjectMapper().writeValueAsString(third_party_session_match).toString();
-//				
-//			default:
-//				if(last_match_time_stamp != new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.MATCHES_DIRECTORY 
-//						+ session_match.getMatch().getMatchFileName()).lastModified()) {
-////					session_match = CricketFunctions.populateMatchVariables(cricketService, CricketFunctions.readOrSaveMatchFile(CricketUtil.READ,
-////							CricketUtil.SETUP + "," + CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match,true));
-//					last_match_time_stamp = new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.MATCHES_DIRECTORY 
-//							+ session_match.getMatch().getMatchFileName()).lastModified();
-//					matchstats = CricketFunctions.getAllEvents(session_match ,session_selected_broadcaster, session_match.getEventFile().getEvents());
-//
-//					match_file_change = true;
-//				}
-//				
-//				switch (session_selected_broadcaster) {
-//				case "EUROPE_LEAGUE":
-//					if(last_match_time_stamp == new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.MATCHES_DIRECTORY 
-//							+ session_match.getMatch().getMatchFileName()).lastModified()) {
+				
+			default:
+				if(last_match_time_stamp != new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.MATCHES_DIRECTORY 
+						+ session_match.getMatch().getMatchFileName()).lastModified()) {
+//					session_match = CricketFunctions.populateMatchVariables(cricketService, CricketFunctions.readOrSaveMatchFile(CricketUtil.READ,
+//							CricketUtil.SETUP + "," + CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match,true));
+					last_match_time_stamp = new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.MATCHES_DIRECTORY 
+							+ session_match.getMatch().getMatchFileName()).lastModified();
+					matchstats = CricketFunctions.getAllEvents(session_match ,session_selected_broadcaster, session_match.getEventFile().getEvents());
+
+					match_file_change = true;
+				}
+				
+				switch (session_selected_broadcaster) {
+				case "EUROPE_LEAGUE":
+					if(last_match_time_stamp == new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.MATCHES_DIRECTORY 
+							+ session_match.getMatch().getMatchFileName()).lastModified()) {
 //						LocalTime time = LocalTime.now();
-//						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
-//
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
+
 //				        String currentTime = time.format(formatter);
-//				        
+				        
 //				        CricketFunctions.processPrintWriter(session_configuration).get(0).println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Clock " + currentTime + ";");
-//					}
-//					break;
-//				}
-//			}
-//			//-----------------------------------------------
-//
-//			if(Plotter_file_change == true) {
-//				switch (session_selected_broadcaster) {
-//				case "DOAD_LLC":
+					}
+					break;
+				}
+			}
+			//-----------------------------------------------
+
+			if(Plotter_file_change == true) {
+				switch (session_selected_broadcaster) {
+				case "DOAD_LLC":
 //					session_llc.updateFieldPlotter(session_selected_scenes, session_match,cricket_matches,show_speed, 
 //							CricketFunctions.processPrintWriter(session_configuration),plotterData);
-//					Plotter_file_change = false;
-//					break;
-//				case "KERALA_T20":
+					Plotter_file_change = false;
+					break;
+				case "KERALA_T20":
 //					session_kerala.updateFieldPlotter(session_selected_scenes, session_match,cricket_matches,show_speed, 
 //							CricketFunctions.processPrintWriter(session_configuration),plotterData);
-//					Plotter_file_change = false;
-//					break;	
-//				case "MAHARAJA_T20":
+					Plotter_file_change = false;
+					break;	
+				case "MAHARAJA_T20":
 //					this_maharaja_t20.updateFieldPlotter(session_selected_scenes, session_match,cricket_matches,show_speed, 
 //							CricketFunctions.processPrintWriter(session_configuration),plotterData);
-//					Plotter_file_change = false;
-//					break;	
-//				}
-//			}
-//			//-----------------------------------------------
-//			
-////			session_match = CricketFunctions.populateMatchVariables(cricketService, CricketFunctions.readOrSaveMatchFile(CricketUtil.READ,
-////					CricketUtil.SETUP + "," + CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match));
-////			match_file_change = true;
-//			if(match_file_change == true) {
-////				session_match = CricketFunctions.populateMatchVariables(cricketService, CricketFunctions.readOrSaveMatchFile(CricketUtil.READ,
-////						CricketUtil.SETUP + "," + CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match,true));
-//				matchstats = CricketFunctions.getAllEvents(session_match ,session_selected_broadcaster, session_match.getEventFile().getEvents());
-//				 
-//				switch (session_selected_broadcaster) {
-//				case "EVEREST_KCL":
+					Plotter_file_change = false;
+					break;	
+				}
+			}
+			//-----------------------------------------------
+			
+			session_match = CricketFunctions.populateMatchVariables(CricketFunctions.readOrSaveMatchFile(CricketUtil.READ, CricketUtil.SETUP + "," 
+					+ CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match, session_configuration), session_players, session_team, session_ground);
+			match_file_change = true;
+			if(match_file_change == true) {
+				session_match = CricketFunctions.populateMatchVariables(CricketFunctions.readOrSaveMatchFile(CricketUtil.READ, CricketUtil.SETUP + "," 
+						+ CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match, session_configuration), session_players, session_team, session_ground);
+				matchstats = CricketFunctions.getAllEvents(session_match ,session_selected_broadcaster, session_match.getEventFile().getEvents());
+				 
+				switch (session_selected_broadcaster) {
+				case "EVEREST_KCL":
 //					everest_KCL.updateInfobar(session_selected_scenes, session_match, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "BIG_SCREEN":
+					break;
+				case "BIG_SCREEN":
 //					session_llc_big_screen.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "ICC_BIGSCREEN_DOAD_SCORING":
+					break;
+				case "ICC_BIGSCREEN_DOAD_SCORING":
 //					session_icc_big_screen_doad_scoring.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, 
 //							CricketFunctions.processPrintWriter(session_configuration).get(0),cricketService,session_configuration);
-//					break;
-//				case "ICC_BIGSCREEN_DOAD_VIZ_SCORING":
+					break;
+				case "ICC_BIGSCREEN_DOAD_VIZ_SCORING":
 //					icc_bigscreen_viz_doad.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, 
 //							CricketFunctions.processPrintWriter(session_configuration),cricketService,session_configuration,session_dls);
-//					break;
-////				case "ICC_BIG_SCREEN":
-////					session_Icc_big_screen.updateInfobar(session_selected_scenes.get(0), third_party_session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
-////					break;	
-//				case "FAIR_BREAK_AR":
+					break;
+//				case "ICC_BIG_SCREEN":
+//					session_Icc_big_screen.updateInfobar(session_selected_scenes.get(0), third_party_session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
+//					break;	
+				case "FAIR_BREAK_AR":
 //					this_fairbreak_ar.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "T20_MUMBAI_AR":
+					break;
+				case "T20_MUMBAI_AR":
 //					this_ar_t20Mumbai.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "EVEREST_AR_VR":
+					break;
+				case "EVEREST_AR_VR":
 //					this_Everest_AR_VR.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0),session_configuration,cricketService);
-//					break;
-//				
-//				case "DOAD_AR":
+					break;
+				
+				case "DOAD_AR":
 //					session_llc_ar.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "ICPL_AR":
+					break;
+				case "ICPL_AR":
 //					this_icpl_ar.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;	
-//				case "BUKHATIR":
+					break;	
+				case "BUKHATIR":
 //					this_bukhatir.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "ARUNACHAL":
+					break;
+				case "ARUNACHAL":
 //					this_arunachal.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;	
-//				case "THAILAND":
+					break;	
+				case "THAILAND":
 //					this_thailand.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "RSWS":
+					break;
+				case "RSWS":
 //					this_rsws.updateInfobar(session_selected_scenes, session_match,cricket_matches,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;	
-//				case "USPL":
+					break;	
+				case "USPL":
 //					this_uspl.updateInfobar(session_selected_scenes, session_match,cricket_matches,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "ACC_NEPAL":
+					break;
+				case "ACC_NEPAL":
 //					this_acc_nepal.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "ASSAM":
+					break;
+				case "ASSAM":
 //					this_assam.updateInfobar(session_selected_scenes.get(0), session_match, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;	
-////				case "DOAD_EVEREST":
-////					this_doad.updateInfobar(session_selected_scenes.get(0), session_match, CricketFunctions.processPrintWriter(session_configuration).get(0));
-////					break;
-//				case "GPCL":
+					break;	
+//				case "DOAD_EVEREST":
+//					this_doad.updateInfobar(session_selected_scenes.get(0), session_match, CricketFunctions.processPrintWriter(session_configuration).get(0));
+//					break;
+				case "GPCL":
 //					this_gpcl.updateInfobar(session_selected_scenes, session_match, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "APL":
+					break;
+				case "APL":
 //					this_apl.updateInfobar(session_selected_scenes,cricket_matches,session_match, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "PPL":
+					break;
+				case "PPL":
 //					this_ppl.updateInfobar(session_selected_scenes,cricket_matches,session_match, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "PUNJAB_T20":
+					break;
+				case "PUNJAB_T20":
 //					this_punjab_t20.updateInfobar(session_selected_scenes,cricket_matches, session_match, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "FAIR_BREAK":
+					break;
+				case "FAIR_BREAK":
 //					this_fairbreak.updateInfobar(session_selected_scenes, session_match,cricket_matches,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "MPL":
+					break;
+				case "MPL":
 //					this_mpl.updateInfobar(session_selected_scenes, session_match,cricket_matches,show_speed, CricketFunctions.processPrintWriter(session_configuration));
-//					break;
-//				case "RPL":
+					break;
+				case "RPL":
 //					this_rpl.updateInfobar(session_selected_scenes, session_match,cricket_matches,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;	
-////				case "DOAD-VIZ-MULTI":
-////					this_multi.updateInfobar(session_selected_scenes, session_match, CricketFunctions.processPrintWriter(session_configuration),session_configuration,multiLanguage,foreignLanguage);
-////					break;
-//				case "MAHARAJA_T20":
+					break;	
+//				case "DOAD-VIZ-MULTI":
+//					this_multi.updateInfobar(session_selected_scenes, session_match, CricketFunctions.processPrintWriter(session_configuration),session_configuration,multiLanguage,foreignLanguage);
+//					break;
+				case "MAHARAJA_T20":
 //					this_maharaja_t20.updateInfobar(session_selected_scenes, session_match, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "ACC":
+					break;
+				case "ACC":
 //					this_acc.updateInfobar(session_selected_scenes, session_match, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "ICPL":
+					break;
+				case "ICPL":
 //					this_icpl.updateInfobar(session_selected_scenes, session_match, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "LCT":
+					break;
+				case "LCT":
 //					this_lct.updateInfobar(session_selected_scenes, session_match, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;	
-//				case "NEPAL_T20":
+					break;	
+				case "NEPAL_T20":
 //					this_nepal_t20.updateInfobar(session_selected_scenes, session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
-//					break;
-//				case "DOAD_LLC":
+					break;
+				case "DOAD_LLC":
 //					session_llc.updateInfobar(session_selected_scenes, session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration));
-//					break;
-//				case "EUROPE_LEAGUE":
+					break;
+				case "EUROPE_LEAGUE":
 //					session_europe.updateInfobar(session_selected_scenes, session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration));
-//					break;
-//				case "KERALA_T20":
+					break;
+				case "KERALA_T20":
 //					session_kerala.updateInfobar(session_selected_scenes, session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration));
-//					break;	
-//				case "KOLKATA_T20":
+					break;	
+				case "KOLKATA_T20":
 //					session_kolkata.updateInfobar(session_selected_scenes, session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration),1);
-//					break;	
-//				}
-//				last_match_time_stamp = new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.MATCHES_DIRECTORY 
-//						+ session_match.getMatch().getMatchFileName()).lastModified();
-//				last_setup_time_stamp = new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.SETUP_DIRECTORY 
-//						+ session_match.getMatch().getMatchFileName()).lastModified();
-//				match_file_change = false;
-//				return new ObjectMapper().writeValueAsString(session_match).toString();
-//				
-//			} else {
-//				
-//				return new ObjectMapper().writeValueAsString(session_match).toString();
-//			
-//			}
+					break;	
+				}
+				last_match_time_stamp = new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.MATCHES_DIRECTORY 
+						+ session_match.getMatch().getMatchFileName()).lastModified();
+				last_setup_time_stamp = new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.SETUP_DIRECTORY 
+						+ session_match.getMatch().getMatchFileName()).lastModified();
+				match_file_change = false;
+				return new ObjectMapper().writeValueAsString(session_match).toString();
+				
+			} else {
+				
+				return new ObjectMapper().writeValueAsString(session_match).toString();
+			
+			}
 			
 		default:
-//			switch (session_selected_broadcaster) {
+			switch (session_selected_broadcaster) {
 //			case "PLOTTER":
 //				this_plotter.ProcessGraphicOption(whatToProcess, session_match,CricketFunctions.processPrintWriter(session_configuration).get(0), valueToProcess, 
 //						session_configuration, session_selected_scenes);
@@ -1618,10 +1629,10 @@ public class IndexController
 //						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, 
 //						valueToProcess, session_statistics);
 //				return new ObjectMapper().writeValueAsString(everest_nepal_t20).toString();
-//			case "EVEREST_LEGENDS_90":
-//				everest_legends_90.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
-//						session_selected_scenes, valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
-//				return new ObjectMapper().writeValueAsString(everest_legends_90).toString();
+			case "EVEREST_LEGENDS_90":
+				everest_legends_90.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
+						session_selected_scenes, valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
+				return new ObjectMapper().writeValueAsString(everest_legends_90).toString();
 //			case "SPL":
 //				this_spl.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
 //						session_selected_scenes, valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
@@ -1728,7 +1739,7 @@ public class IndexController
 //				session_kolkata.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration), 
 //						session_selected_scenes, valueToProcess, session_statistics,plotterData, session_configuration);
 //				return new ObjectMapper().writeValueAsString(session_kolkata).toString();	
-//			}
+			}
 			return new ObjectMapper().writeValueAsString(session_match).toString();
 		}
 	}

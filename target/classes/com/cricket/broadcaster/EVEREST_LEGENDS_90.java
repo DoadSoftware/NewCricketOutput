@@ -70,207 +70,26 @@ public class EVEREST_LEGENDS_90 extends Scene{
 		this.status = status;
 	}
 
-	public Object ProcessGraphicOption(String whatToProcess, MatchAllData match, CricketService cricketService, List<MatchAllData> tournament_matches,
-			PrintWriter print_writer, List<Scene> scenes, String valueToProcess, List<Statistics> statistics, Configuration config, 
-			List<HeadToHeadPlayer> headToHead, List<Tournament> past_tournament_stats) throws NumberFormatException, Exception
+	public Object ProcessGraphicOption(String whatToProcess, MatchAllData match, CricketService cricketService, List<MatchAllData> tournament_matches, PrintWriter print_writer, 
+			List<Scene> scenes, String valueToProcess, List<Statistics> statistics, Configuration config, List<HeadToHeadPlayer> headToHead, List<Tournament> past_tournament_stats) throws NumberFormatException, Exception
 	{
-	System.out.println(whatToProcess);
-	//CricketFunctions.readExcelToMap().toString()
 		switch (whatToProcess) {
-		 case "ANIMATE-IN-BugTARGET": case"ANIMATE-IN-BUG-RESULT":case "ANIMATE-IN-LTMATCH_IDENT":case "ANIMATE-IN-L3MATCH_PROMO":
-		 case "ANIMATE-IN-LEADERBOARD":case "ANIMATE-IN-HIGHEST_SCORE":case "ANIMATE-IN-BEST_FIGURES":case "ANIMATE-IN-POWERPLAY_LT_RULES":
-			 if(infobar.isInfobar_on_screen() == true && which_graphic_on_screen == "SCOREBUG") {
-				AnimateInGraphics(print_writer, "FF_IN");
-				TimeUnit.MILLISECONDS.sleep(200);
-			}else if(infobar.isInfobar_on_screen() == true && which_graphic_on_screen == "IDENT") {
-				AnimateOutGraphics(print_writer, "IDENT");
-				AnimateInGraphics(print_writer, "FF_IN");
-			}
-			 processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
-			 which_graphic_on_screen = "BugTARGET";
-			 break;
-		case "ANIMATE-IN-BUG_POWERPLAY": case "ANIMATE-IN-BUG_PARTNERSHIP": case "ANIMATE-IN-BUG_HIGHLIGHT": case "ANIMATE-IN-MULTI_PARTNERSHIP":
-		case "ANIMATE-IN-INFOBAR": case "ANIMATE-IN-SCORECARD": case "ANIMATE-IN-BOWLINGCARD": case "ANIMATE-IN-PARTNERSHIP": case "ANIMATE-IN-MATCHSUMARRY": case "ANIMATE-IN-BUG": case "ANIMATE-IN-HOWOUT": 
-		case "ANIMATE-IN-BATSMANSTATS":	case "ANIMATE-IN-NAMESUPER": case "ANIMATE-IN-NAMESUPER-PLAYER": case "ANIMATE-IN-PLAYERPROFILE": case "ANIMATE-IN-DOUBLETEAMS": 
-		case "ANIMATE-IN-MATCHID": case "ANIMATE-IN-PLAYINGXI": case "ANIMATE-IN-PROJECTED": case "ANIMATE-IN-TARGET": case "ANIMATE-IN-TEAMSUMMARY":
-		case "ANIMATE-IN-PLAYERSUMMARY": case "ANIMATE-IN-L3PLAYERPROFILE": case "ANIMATE-IN-FALLOFWICKET": case "ANIMATE-IN-COMPARISION": case "ANIMATE-IN-L3MATCHID": case "ANIMATE-IN-IDENT":
-		case "ANIMATE-IN-BOWLERSTATS": case "ANIMATE-IN-SPLIT": case "ANIMATE-IN-BUG-DB":  case "ANIMATE-IN-BUG-DISMISSAL": case "ANIMATE-OUT": case "CLEAR-ALL": case "ANIMATE-IN-BUG-BOWLER":
-		case "ANIMATE-IN-LTPARTNERSHIP": case "ANIMATE-IN-BOWLERSUMMARY": case "ANIMATE-IN-NEXT_TO_BAT": case "ANIMATE-IN-BOWLERDETAILS": case "ANIMATE-IN-LTPOWERPLAY":
-		case "ANIMATE-IN-LANDMARK":	case "ANIMATE-IN-EQUATION": case "ANIMATE-IN-POSITION_LANDMARK": case "ANIMATE-IN-BATSMAN_THIS_MATCH": case "ANIMATE-IN-BOWLER_THIS_MATCH":
-		case "ANIMATE-IN-POINTSTABLE": case "ANIMATE-IN-LTPOINTSTABLE":	case "ANIMATE-IN-BOWLER_STYLE": case "ANIMATE-IN-MANHATTAN": case "ANIMATE-IN-HOWOUT_WITHOUT_FIELDER": case "ANIMATE-OUT-DIRECTOR":
-		case "ANIMATE-IN-BATSMAN_STYLE": case "ANIMATE-IN-MATCH_PROMO": case "ANIMATE-IN-TEAMS_LOGO": case "ANIMATE-IN-PREVIOUS_SUMMARY": case "ANIMATE-IN-TIEID-DOUBLE": case "ANIMATE-IN-GENERIC":
-		case "ANIMATE-IN-MOSTRUNS": case "ANIMATE-IN-MOSTWICKETS": case "ANIMATE-IN-MOSTFOURS": case "ANIMATE-IN-MOSTSIXES": case "ANIMATE-IN-HIGHESTSCORE": case "ANIMATE-IN-WORM": case "ANIMATE-OUT-SECTION2":
-		case "ANIMATE-OUT-SECTION4_N_5": case "ANIMATE-IN-HOWOUT_QUICK": case "ANIMATE-IN-SCHEDULE": case "ANIMATE-MINI-BATTINGCARD": case "ANIMATE-MINI-BOWLINGCARD": case "ANIMATE-IN-THISSERIES":
-		case "ANIMATE-IN-FFTHISSERIES": case "ANIMATE-IN-FF_STATS": case "ANIMATE-IN-PLAYERPROFILEBAT": case "ANIMATE-IN-PLAYERPROFILEBALL": case "ANIMATE-IN-BAT-PERFORMER": case "ANIMATE-IN-LINEUP":
-		case "ANIMATE-IN-BUGPARTNERSHIP": case "ANIMATE-IN-LTMANHATTAN": case "ANIMATE-OUT-POWERPLAY": case "ANIMATE-IN-INNING_SUMMARY": case "ANIMATE-IN-PLAYOFFS": case "ANIMATE-IN-BATGRIFF":
-		case "ANIMATE-IN-BALLGRIFF": case "ANIMATE-IN-BALL_PERFORMER": case "TICKER_LT_OUT": case "TICKER_LT_IN": case "ANIMATE-IN-MOST": case "ANIMATE-IN-INN_BUILDER":
-	    case "ANIMATE-IN-NAMESUPER_SINGLE":case "ANIMATE-FF_KEYPLAYER_GRAPHICS":case "ANIMATE-IN-BUG-TOSS":case "ANIMATE-IN-LT_RESULT": case "ANIMATE-IN-SUPER_OVER":case "ANIMATE-IN-TOURNAMENT_RULES":
-		case "ANIMATE-IN-TIMEOUT_LT_RULES":
+		case "ANIMATE-OUT": case "CLEAR-ALL":
+		case "ANIMATE-IN-BUG-DISMISSAL": case "ANIMATE-IN-BUG": case "ANIMATE-IN-BUG-BOWLER": case "ANIMATE-IN-BUG-DB": case "ANIMATE-IN-BUG_POWERPLAY": case "ANIMATE-IN-BUG_PARTNERSHIP":
+		case "ANIMATE-IN-MULTI_PARTNERSHIP": case "ANIMATE-IN-BUG_HIGHLIGHT": case "ANIMATE-IN-BUG-TOSS": case "ANIMATE-IN-NAMESUPER": case "ANIMATE-IN-NAMESUPER-PLAYER": 
+		case "ANIMATE-IN-NAMESUPER_SINGLE": case "ANIMATE-IN-TARGET": case "ANIMATE-IN-LT_RESULT": case "ANIMATE-IN-MATCHID": case "ANIMATE-IN-MATCH_PROMO":
+		case "ANIMATE-IN-BugTARGET": case"ANIMATE-IN-BUG-RESULT":case "ANIMATE-IN-LTMATCH_IDENT":case "ANIMATE-IN-L3MATCH_PROMO": case "ANIMATE-IN-LEADERBOARD":
+		case "ANIMATE-IN-HIGHEST_SCORE": case "ANIMATE-IN-BEST_FIGURES":
 			switch (whatToProcess.toUpperCase()) {
-			case "ANIMATE-IN-BUG_POWERPLAY": case "ANIMATE-IN-BUG_PARTNERSHIP": case "ANIMATE-IN-BUG_HIGHLIGHT": case "ANIMATE-IN-MULTI_PARTNERSHIP":
-			case "ANIMATE-IN-SCORECARD": case "ANIMATE-IN-BOWLINGCARD": case "ANIMATE-IN-PARTNERSHIP": case "ANIMATE-IN-MATCHSUMARRY": case "ANIMATE-IN-PLAYERPROFILE": 
-			case "ANIMATE-IN-DOUBLETEAMS": case "ANIMATE-IN-MATCHID": case "ANIMATE-IN-PLAYINGXI":  case "ANIMATE-IN-LANDMARK": case "ANIMATE-IN-POSITION_LANDMARK": 
-			case "ANIMATE-IN-POINTSTABLE": case "ANIMATE-IN-MANHATTAN": case "ANIMATE-IN-MATCH_PROMO": case "ANIMATE-IN-TEAMS_LOGO": case "ANIMATE-IN-PREVIOUS_SUMMARY": case "ANIMATE-IN-TIEID-DOUBLE":
-			case "ANIMATE-IN-MOSTRUNS": case "ANIMATE-IN-MOSTWICKETS": case "ANIMATE-IN-MOSTFOURS": case "ANIMATE-IN-MOSTSIXES": case "ANIMATE-IN-HIGHESTSCORE": case "ANIMATE-IN-WORM":
-			case "ANIMATE-IN-LTPARTNERSHIP": case "ANIMATE-IN-BUG": case "ANIMATE-IN-BUG-DB": case "ANIMATE-IN-BUG-DISMISSAL": case "ANIMATE-IN-BUG-BOWLER":
-			case "ANIMATE-IN-SCHEDULE": case "ANIMATE-IN-FFTHISSERIES": case "ANIMATE-IN-FF_STATS": case "ANIMATE-IN-PLAYERPROFILEBALL": case "ANIMATE-IN-BAT-PERFORMER": case "ANIMATE-IN-BUGPARTNERSHIP":
-			case "ANIMATE-IN-INNING_SUMMARY": case "ANIMATE-IN-PLAYOFFS": case "ANIMATE-IN-BATGRIFF": case "ANIMATE-IN-BALLGRIFF": case "ANIMATE-IN-BALL_PERFORMER": case "ANIMATE-IN-MOST":
-			case "ANIMATE-FF_KEYPLAYER_GRAPHICS":	case "ANIMATE-IN-BUG-TOSS":case "ANIMATE-IN-LT_RESULT": case "ANIMATE-IN-SUPER_OVER":case "ANIMATE-IN-TOURNAMENT_RULES":case "ANIMATE-IN-TIMEOUT_LT_RULES":
-				if(infobar.isInfobar_on_screen() == true && which_graphic_on_screen == "SCOREBUG") {
-					AnimateInGraphics(print_writer, "FF_IN");
-					TimeUnit.MILLISECONDS.sleep(200);
-				}else if(infobar.isInfobar_on_screen() == true && which_graphic_on_screen == "IDENT") {
-					AnimateOutGraphics(print_writer, "IDENT");
-					AnimateInGraphics(print_writer, "FF_IN");
-				}
-				break;
-			
-			case "ANIMATE-IN-HOWOUT": case "ANIMATE-IN-BATSMANSTATS": case "ANIMATE-IN-NAMESUPER": case "ANIMATE-IN-NAMESUPER-PLAYER": case "ANIMATE-IN-PROJECTED": 
-			case "ANIMATE-IN-TARGET": case "ANIMATE-IN-TEAMSUMMARY": case "ANIMATE-IN-PLAYERSUMMARY": case "ANIMATE-IN-L3PLAYERPROFILE": case "ANIMATE-IN-FALLOFWICKET": 
-			case "ANIMATE-IN-COMPARISION": case "ANIMATE-IN-L3MATCHID": case "ANIMATE-IN-BOWLERSTATS": case "ANIMATE-IN-SPLIT":   case "ANIMATE-IN-BOWLERSUMMARY": 
-			case "ANIMATE-IN-NEXT_TO_BAT": case "ANIMATE-IN-BOWLERDETAILS": case "ANIMATE-IN-LTPOWERPLAY": case "ANIMATE-IN-EQUATION": case "ANIMATE-IN-BATSMAN_THIS_MATCH": 
-			case "ANIMATE-IN-BOWLER_THIS_MATCH": case "ANIMATE-IN-L3MATCH_PROMO": case "ANIMATE-IN-LTPOINTSTABLE":	case "ANIMATE-IN-BOWLER_STYLE": case "ANIMATE-IN-HOWOUT_WITHOUT_FIELDER": 
-			case "ANIMATE-IN-BATSMAN_STYLE": case "ANIMATE-IN-GENERIC": case "ANIMATE-IN-HOWOUT_QUICK": case "ANIMATE-MINI-BATTINGCARD": case "ANIMATE-MINI-BOWLINGCARD": case "ANIMATE-IN-THISSERIES":
-			case "ANIMATE-IN-PLAYERPROFILEBAT": case "ANIMATE-IN-LINEUP": case "ANIMATE-IN-LTMANHATTAN": case "ANIMATE-IN-INN_BUILDER": case "ANIMATE-IN-NAMESUPER_SINGLE":
-				if(infobar.isInfobar_on_screen() == true && which_graphic_on_screen == "SCOREBUG") {
-					if(infobar.getLast_top_section() != null && !infobar.getLast_top_section().trim().isEmpty()) {
-						switch(infobar.getLast_top_section().toUpperCase()) {
-						case CricketUtil.TOSS:
-							processAnimation(print_writer, "Section2$TossOut", "START", broadcaster);
-							break;
-						case "CRR":
-							processAnimation(print_writer, "Section2$CurRunRateOut", "START", broadcaster);
-							break;
-						case "CRR_RRR":
-							processAnimation(print_writer, "Section2$CRR_RRROut", "START", broadcaster);
-							break;
-						case "FIRST_INNING_SCORE":
-							processAnimation(print_writer, "Section2$FistInnScoreOut", "START", broadcaster);
-							break;
-						case CricketUtil.BOUNDARY:
-							processAnimation(print_writer, "Section2$BallsSinceLastBoundaryOut", "START", broadcaster);
-							break;
-						case "TARGET":
-							processAnimation(print_writer, "Section2$DLSTargetOut", "START", broadcaster);
-							break;
-						case "EXTRAS":
-							processAnimation(print_writer, "Section2$ExtrasOut", "START", broadcaster);
-							break;
-						case "EQUATION":
-							processAnimation(print_writer, "Section2$EquationOut", "START", broadcaster);
-							break;
-						case "PROJECTED":
-							processAnimation(print_writer, "Section2$ProjectedOut", "START", broadcaster);
-							break;
-						case "BOUNDARIES":
-							processAnimation(print_writer, "Section2$BoundariesOut", "START", broadcaster);
-							break;
-						case "PARTNERSHIP":
-							processAnimation(print_writer, "Section2$PartnershipOut", "START", broadcaster);
-							break;
-						case "LAST_WICKET":
-							processAnimation(print_writer, "Section2$LastWicketOut", "START", broadcaster);
-							break;
-						case CricketUtil.TIMELINE:
-							processAnimation(print_writer, "Section2$TimelineOut", "START", broadcaster);
-							break;
-						case "STATISTICS":
-							processAnimation(print_writer, "Section2$FreeTextSmallOut", "START", broadcaster);
-							break;
-						}
-						processAnimation(print_writer, "ALL_SECTION$Section2$Section2BaseOut", "START", broadcaster);
-					}
-					infobar.setLast_top_section("");infobar.setTop_section("");
-					AnimateInGraphics(print_writer, "LT_IN");
-					TimeUnit.MILLISECONDS.sleep(200);
-				}else if(infobar.isInfobar_on_screen() == true && which_graphic_on_screen == "IDENT") {
-					AnimateOutGraphics(print_writer, "IDENT");
-					AnimateInGraphics(print_writer, "LT_IN");
-				}
-				break;
-			}
-			switch (whatToProcess.toUpperCase()) {
-			case "ANIMATE-IN-BUG":
-				processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
-				which_graphic_on_screen = "BUG";
-				break;
-			 case "ANIMATE-IN-BUG-DISMISSAL":
-				processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
-				which_graphic_on_screen = "BUG-DISMISSAL";
-				break;
-			 case "ANIMATE-IN-SUPER_OVER":
-				 processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
-				which_graphic_on_screen = "SUPER_OVER";
-				break;
-			 case "ANIMATE-IN-TOURNAMENT_RULES":case "ANIMATE-IN-TIMEOUT_LT_RULES":
-				 processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
-				which_graphic_on_screen = "TOURNAMENT_RULES";
-				break;
-			case "ANIMATE-FF_KEYPLAYER_GRAPHICS":
-				processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
-				which_graphic_on_screen = "FF_KEYPLAYER";
-				break;
-			case "ANIMATE-IN-TEAMS_LOGO":
-				processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
-				which_graphic_on_screen = "TEAMS_LOGO";
-				break;
-			case "ANIMATE-IN-BUG-TOSS": case "ANIMATE-IN-LT_RESULT":
-				 processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
-					which_graphic_on_screen = "BUG-TOSS";
-				 break;
-			 case "ANIMATE-IN-TARGET":
-				 processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
-					which_graphic_on_screen = "TARGET";
-				 break;
-			case "ANIMATE-IN-BUG_POWERPLAY":
-				processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
-				which_graphic_on_screen = "BUG_POWERPLAY";
-				break;
-			case "ANIMATE-IN-BUG_PARTNERSHIP":
-				processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
-				which_graphic_on_screen = "BUG_PARTNERSHIP";
-				break;
-			case "ANIMATE-IN-BUG_HIGHLIGHT":
-				processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
-				which_graphic_on_screen = "BUG_HIGHLIGHT";
-				break;
-			case "ANIMATE-IN-BUG-BOWLER":
-				processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
-				which_graphic_on_screen = "BUG-BOWLER";
-				break;
-			case "ANIMATE-IN-MULTI_PARTNERSHIP":
-				processAnimation(print_writer, "In","START", "EVEREST_LEGENDS_90");
-//				AnimateInGraphics(print_writer, "MULTI-PARTNERSHIP");
-				which_graphic_on_screen = "MULTI-PARTNERSHIP";
-				break;
-			case "ANIMATE-IN-MOST":
-				processAnimation(print_writer, "In","START", "EVEREST_LEGENDS_90");
-				which_graphic_on_screen = "MOST";
-				break;
-			case "ANIMATE-IN-BUG-DB":
-				processAnimation(print_writer, "In","START", "EVEREST_LEGENDS_90");
-				which_graphic_on_screen = "BUG-DB";
-				break;
-			case "ANIMATE-IN-MATCHID": case "ANIMATE-IN-MATCH_PROMO":
-				processAnimation(print_writer, "In","START", "EVEREST_LEGENDS_90");
-				which_graphic_on_screen = "MATCHID";
-				break;
-			case "ANIMATE-IN-WORM":
-				processAnimation(print_writer, "In","START", "EVEREST_LEGENDS_90");
-				which_graphic_on_screen = "WORM";
-				break;
-			case "ANIMATE-IN-NAMESUPER":
-				processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
-				which_graphic_on_screen = "NAMESUPER";
-				break;
-			 case "ANIMATE-IN-NAMESUPER_SINGLE":
-				 processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
-				 which_graphic_on_screen = "NAMESUPER_SINGLE";
-				 break;
-			case "ANIMATE-IN-NAMESUPER-PLAYER":
-				processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
-				which_graphic_on_screen = "NAMESUPER-PLAYER";
-				break;
+			case "ANIMATE-IN-BUG": case "ANIMATE-IN-BUG-DISMISSAL": case "ANIMATE-IN-BUG-TOSS": case "ANIMATE-IN-LT_RESULT": case "ANIMATE-IN-TARGET": case "ANIMATE-IN-BUG_POWERPLAY":
+			case "ANIMATE-IN-BUG_PARTNERSHIP": case "ANIMATE-IN-BUG_HIGHLIGHT": case "ANIMATE-IN-BUG-BOWLER": case "ANIMATE-IN-MULTI_PARTNERSHIP": case "ANIMATE-IN-BUG-DB": 
+			case "ANIMATE-IN-MATCHID": case "ANIMATE-IN-MATCH_PROMO": case "ANIMATE-IN-NAMESUPER": case "ANIMATE-IN-NAMESUPER_SINGLE": case "ANIMATE-IN-NAMESUPER-PLAYER":
+			case "ANIMATE-IN-BugTARGET": case"ANIMATE-IN-BUG-RESULT":case "ANIMATE-IN-LTMATCH_IDENT":case "ANIMATE-IN-L3MATCH_PROMO": case "ANIMATE-IN-LEADERBOARD":
+			case "ANIMATE-IN-HIGHEST_SCORE": case "ANIMATE-IN-BEST_FIGURES":
+
+			    processAnimation(print_writer, "In", "START", "EVEREST_LEGENDS_90");
+			    which_graphic_on_screen = whatToProcess.toUpperCase().replace("ANIMATE-IN-", "");
+			    break;
 			case "CLEAR-ALL":
 				   print_writer.println("LAYER1*EVEREST*SINGLE_SCENE CLEAR;");
 	               print_writer.println("LAYER2*EVEREST*SINGLE_SCENE CLEAR;");
@@ -281,113 +100,16 @@ public class EVEREST_LEGENDS_90 extends Scene{
 	               which_graphic_on_screen = "";
 					break;
 			case "ANIMATE-OUT":
-				if(infobar.getLast_bottom_right_section() != null && !infobar.getLast_bottom_right_section().isEmpty()) {
-					processAnimation(print_writer, "Section5$ThisOverOut", "START", broadcaster);
-					processAnimation(print_writer, "Section5$EconomyOut", "START", broadcaster);
-					processAnimation(print_writer, "Section5$BowlingEndOut", "START", broadcaster);
-				}
-				//System.out.println(which_graphic_on_screen);
+				System.out.println(which_graphic_on_screen);
 				switch(which_graphic_on_screen) {
-				case "MULTI-PARTNERSHIP":
-					AnimateOutGraphics(print_writer, "MULTI-PARTNERSHIP");
+				case "BUG": case "BUG-DISMISSAL": case "BUG-TOSS": case "LT_RESULT": case "TARGET": case "BUG_POWERPLAY": case "BUG_PARTNERSHIP": case "BUG_HIGHLIGHT": 
+				case "BUG-BOWLER": case "MULTI_PARTNERSHIP": case "BUG-DB": case "MATCHID": case "MATCH_PROMO": case "NAMESUPER": case "NAMESUPER_SINGLE": case "NAMESUPER-PLAYER":
+				case "BugTARGET": case "BUG-RESULT": case "LTMATCH_IDENT": case "L3MATCH_PROMO": case "LEADERBOARD": case "HIGHEST_SCORE": case "BEST_FIGURES":
+					processAnimation(print_writer, "Out", "START", broadcaster);
 					TimeUnit.SECONDS.sleep(1);
-					which_graphic_on_screen = "";
-					break;
-				case "NAMESUPER-PLAYER":
-					AnimateOutGraphics(print_writer, "NAMESUPER-PLAYER");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					break;
-				case "BUG-DISMISSAL":
-					AnimateOutGraphics(print_writer, "BUG-DISMISSAL");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					break;
-				case "FF_KEYPLAYER":
-					AnimateOutGraphics(print_writer, "FF_KEYPLAYER");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					break;
-				case "TEAMS_LOGO":case"BUG-TOSS":case"TARGET":case "BugTARGET":
-				case "SUPER_OVER": case "TOURNAMENT_RULES":
-					AnimateOutGraphics(print_writer, "TEAMS_LOGO");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					break;
-				case "BUG":
-					AnimateOutGraphics(print_writer, "BUG");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					break;
-				case "BUG-BOWLER":
-					AnimateOutGraphics(print_writer, "BUG-BOWLER");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					break;
-				case "BUG-DB":
-					AnimateOutGraphics(print_writer, "BUG-DB");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					break;
-				case "NAMESUPER":
-					AnimateOutGraphics(print_writer, "NAMESUPER");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					break;
-				case "NAMESUPER_SINGLE":
-					AnimateOutGraphics(print_writer, "NAMESUPER_SINGLE");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					break;
-				case "WORM":
-					AnimateOutGraphics(print_writer, "WORM");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					break;
-				case "MOST":
-					AnimateOutGraphics(print_writer, "MOST");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					break;
-				case "MATCHID":
-					AnimateOutGraphics(print_writer, "MATCHID");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					break;
-				case "BUG_HIGHLIGHT":
-					AnimateOutGraphics(print_writer, "BUG_HIGHLIGHT");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					break;
-				case "BUG_PARTNERSHIP":
-					AnimateOutGraphics(print_writer, "BUG_PARTNERSHIP");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					break;
-				case "BUG_POWERPLAY":
-					AnimateOutGraphics(print_writer, "BUG_POWERPLAY");
-					TimeUnit.SECONDS.sleep(1);
-					
 					which_graphic_on_screen = "";
 					break;
 				}
-				break;
-			case "ANIMATE-OUT-DIRECTOR":
-				AnimateOutGraphics(print_writer, "DIRECTOR");
 				break;
 			}
 			break;
@@ -455,22 +177,13 @@ public class EVEREST_LEGENDS_90 extends Scene{
 			}
 			return new ObjectMapper().writeValueAsString(tourn_stats).toString();
 		
-		case "POPULATE-BUG_POWERPLAY": case "POPULATE-LT-BUG_HIGHLIGHT": case "POPULATE-BUG_PARTNERSHIP": case "POPULATE-MULTI_PARTNERSHIP":
-		case "POPULATE-WORM": case "POPULATE-MOST_RUNS": case "POPULATE-L3-BUG-DISMISSAL": case "POPULATE-L3-BUG": case "POPULATE-L3-BUG-BOWLER":
-		case "POPULATE-L3-BUG-DB": case "POPULATE-L3-NAMESUPER": case "POPULATE-L3-NAMESUPER-PLAYER": case "POPULATE-FF-MATCHID":
-		case "POPULATE-L3-NAMESUPER-SINGLE":case "POPULATE-FF_KEYPLAYER_GRAPHICS":	case "POPULATE-FF-TEAMS_LOGO":case "POPULATE-L3-BUG-TOSS":
-		case "POPULATE-L3-TARGET":case "POPULATE-L3-Result":case "POPULATE-MATCH_PROMO":case "POPULATE-SUPER_OVER": case "POPULATE-TOURNAMENT_RULES":
-		case "POPULATE-BUG-TARGET":case "POPULATE-L3-BUG-RESULT":case "POPULATE-LTMATCH_IDENT":case "POPULATE-TIMEOUT_LT_RULES":case "POPULATE-L3MATCH_PROMO":
-		case "POPULATE-FF-LEADERBOARD":case "POPULATE-HIGHEST_SCORE":case "POPULATE-BEST_FIGURES":case "POPULATE-POWERPLAY_LT_RULES":
-			if(which_graphic_on_screen == "SCOREBUG" || which_graphic_on_screen == "IDENT") {
-			}else if(which_graphic_on_screen != "") {
-				AnimateOutGraphics(print_writer, which_graphic_on_screen.toUpperCase());
-				  print_writer.println("LAYER1*EVEREST*SINGLE_SCENE CLEAR;");	
-			}
+		case "POPULATE-L3-BUG-DISMISSAL": case "POPULATE-L3-BUG": case "POPULATE-L3-BUG-BOWLER": case "POPULATE-L3-BUG-DB": case "POPULATE-BUG_POWERPLAY": 
+		case "POPULATE-BUG_PARTNERSHIP": case "POPULATE-MULTI_PARTNERSHIP": case "POPULATE-LT-BUG_HIGHLIGHT": case "POPULATE-L3-BUG-TOSS": case "POPULATE-BUG-TARGET":
+		case "POPULATE-L3-BUG-RESULT": case "POPULATE-L3-NAMESUPER": case "POPULATE-L3-NAMESUPER-PLAYER": case "POPULATE-L3-NAMESUPER-SINGLE": case "POPULATE-LTMATCH_IDENT": 
+		case "POPULATE-L3MATCH_PROMO": case "POPULATE-L3-TARGET": case "POPULATE-L3-Result": case "POPULATE-FF-MATCHID": case "POPULATE-MATCH_PROMO": case "POPULATE-FF-LEADERBOARD":
+		case "POPULATE-HIGHEST_SCORE":case "POPULATE-BEST_FIGURES":
+			
 			switch(whatToProcess.toUpperCase()) {
-			case "POPULATE-INFOBAR-TOP": case "POPULATE-INFOBAR-BOTTOMRIGHT": case "POPULATE-DIRECTOR": 
-			case "POPULATE-INFOBAR-PROMPT": case "POPULATE-INFOBAR-RIGHT": case "POPULATE-BT-POWERPLAY":
-				break;
 			case "POPULATE-L3-BUG-RESULT":
 				scenes.get(0).setScene_path("D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Result_Bug.sum");
 				scenes.get(0).scene_load(print_writer,broadcaster);
@@ -479,17 +192,9 @@ public class EVEREST_LEGENDS_90 extends Scene{
 				 scenes.get(0).setScene_path("D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Bug_SingleLine.sum");
 		         scenes.get(0).scene_load(print_writer,broadcaster);
 				break;
-			case "POPULATE-L3-INFOBAR": case "POPULATE-INFOBAR-IDENT":
-				if(infobar.isInfobar_on_screen() == true) {
-					break;
-				}else {
-					scenes.get(0).scene_load(print_writer, broadcaster);
-				}
-				break;
 			default:
 					scenes.get(0).setScene_path(valueToProcess.split(",")[0]);
 					scenes.get(0).scene_load(print_writer,broadcaster);
-//					print_writer.println("-1 RENDERER*STAGE SHOW 0.0 \0");
 				break;
 			}
 			switch (whatToProcess.toUpperCase()) {
@@ -508,9 +213,6 @@ public class EVEREST_LEGENDS_90 extends Scene{
 			case "POPULATE-L3-BUG-DISMISSAL":
 				populateBugDismissal(print_writer, valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]), 
 						valueToProcess.split(",")[2],Integer.valueOf(valueToProcess.split(",")[3]), match, broadcaster);
-				break;
-			case "POPULATE-FF_KEYPLAYER_GRAPHICS":	
-				populateKeyPlayerDismissal(print_writer, valueToProcess, match, broadcaster,cricketService);
 				break;
 			case "POPULATE-L3-BUG":
 				populateBug(print_writer, valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]), 
@@ -543,7 +245,6 @@ public class EVEREST_LEGENDS_90 extends Scene{
 			case "POPULATE-L3-RESULT":case "POPULATE-L3-BUG-RESULT":
 				if (whatToProcess.toUpperCase().equalsIgnoreCase("POPULATE-L3-RESULT")) {
 					populateResult(print_writer,valueToProcess.split(",")[0], match, broadcaster,"");
-
 				}else {
 					populateResult(print_writer,valueToProcess.split(",")[0], match, broadcaster,"BUG-RESULT");
 				}
@@ -577,14 +278,6 @@ public class EVEREST_LEGENDS_90 extends Scene{
 			break;
 			case "POPULATE-LTMATCH_IDENT":
 				populateLtMatchId(print_writer,valueToProcess.split(",")[0], match, broadcaster,cricketService.getVariousTexts());
-				break;
-			case "POPULATE-TIMEOUT_LT_RULES":
-				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeamLogo " + logo_path + "TLogo" + 
-						CricketUtil.PNG_EXTENSION + ";");
-				preview(print_writer);
-				break;
-			case "POPULATE-SUPER_OVER": case "POPULATE-TOURNAMENT_RULES":case "POPULATE-FF-TEAMS_LOGO":case "POPULATE-POWERPLAY_LT_RULES":
-				preview(print_writer);
 				break;
 			case "POPULATE-FF-LEADERBOARD":
 				populateLeaderBoard(print_writer, valueToProcess.split(",")[0], valueToProcess.split(",")[1], Integer.valueOf(valueToProcess.split(",")[2]),
@@ -691,7 +384,6 @@ public class EVEREST_LEGENDS_90 extends Scene{
 		}
 	}
 	
-
 	public void populateLeaderBoard(PrintWriter print_writer,String viz_scene,String StatType,int playerid,List<Tournament> tournament,List<Team> team,MatchAllData match, String broadcaster, Configuration config) throws InterruptedException 
 	{
 		if (match == null) {
@@ -925,7 +617,7 @@ public class EVEREST_LEGENDS_90 extends Scene{
 			this.status = "ERROR: MatchPromo's inning is null";
 		} else {
 			
-			String match_name="";
+			//String match_name="";
 			for(Team TM : team) {
 				if(fix.get(match_number - 1).getHometeamid() == TM.getTeamId()) {
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgHomeLogo " + logo_path
@@ -946,11 +638,11 @@ public class EVEREST_LEGENDS_90 extends Scene{
 				}
 			}
 			
-			if(match_number < 10) {
-				match_name = "MATCH " + match_number;
-			}else {
-				match_name = fix.get(match_number - 1).getMatchfilename().toUpperCase();
-			}
+//			if(match_number < 10) {
+//				match_name = "MATCH " + match_number;
+//			}else {
+//				match_name = fix.get(match_number - 1).getMatchfilename().toUpperCase();
+//			}
 			
 			Calendar cal = Calendar.getInstance();
 			cal.add(Calendar.DATE, +1);
@@ -1161,152 +853,6 @@ public class EVEREST_LEGENDS_90 extends Scene{
 		
 	}
 
-	private void populateKeyPlayerDismissal(PrintWriter print_writer, String valueToProcess, MatchAllData match,
-			String session_selected_broadcaster, CricketService cricketService) throws InterruptedException {
-		switch (session_selected_broadcaster.toUpperCase()) {
-		case "EVEREST_LEGENDS_90":
-			if (match == null) {
-				this.status = "ERROR: Match is null";
-			} else if (match.getMatch().getInning() == null) {
-				this.status = "ERROR: MatchId's inning is null";
-			} else {
-				int homeID=0,awayID=0;
-				String homeTeam="",awayTeam="";
-				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader "
-						+ KeyPlayer.get(Integer.valueOf(valueToProcess.split(",")[1])).get("Header")+ ";");
-				for(Team tm: cricketService.getTeams()) {
-					if(tm.getTeamName1().equalsIgnoreCase(KeyPlayer.get(Integer.valueOf(valueToProcess.split(",")[1])).get("HomeTeam"))) {
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgHomeLogo " + logo_path
-								+ (tm.getTeamBadge().equalsIgnoreCase("GS") ? "GSA" : tm.getTeamBadge().toUpperCase()) + CricketUtil.PNG_EXTENSION + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgHomeBase " + base_path
-								+ (tm.getTeamBadge().equalsIgnoreCase("GS") ? "GSA" : tm.getTeamBadge().toUpperCase()) + CricketUtil.PNG_EXTENSION + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgHomeLogoBW " + Logo_BW_path
-								+ (tm.getTeamBadge().equalsIgnoreCase("GS") ? "GSA" : tm.getTeamBadge().toUpperCase()) + CricketUtil.PNG_EXTENSION + ";");
-						homeID=tm.getTeamId();
-						homeTeam = tm.getTeamBadge();
-					}else if(tm.getTeamName1().equalsIgnoreCase(KeyPlayer.get(Integer.valueOf(valueToProcess.split(",")[1])).get("AwayTeam"))) {
-						
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgAwayLogo " + logo_path
-								+ (tm.getTeamBadge().equalsIgnoreCase("GS") ? "GSA" : tm.getTeamBadge().toUpperCase()) + CricketUtil.PNG_EXTENSION + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgAwayBase " + base_path
-								+ (tm.getTeamBadge().equalsIgnoreCase("GS") ? "GSA" : tm.getTeamBadge().toUpperCase()) + CricketUtil.PNG_EXTENSION + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgAwayLogoBW " + Logo_BW_path
-								+ (tm.getTeamBadge().equalsIgnoreCase("GS") ? "GSA" : tm.getTeamBadge().toUpperCase()) + CricketUtil.PNG_EXTENSION + ";");
-						awayID=tm.getTeamId();
-						awayTeam =tm.getTeamBadge();
-					}
-				}
-				for(Player tm: cricketService.getAllPlayer()) {
-					if(tm.getFull_name().equalsIgnoreCase(KeyPlayer.get(Integer.valueOf(valueToProcess.split(",")[1])).get("HomePlayer1"))&&
-							homeID == tm.getTeamId()) {
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHomePlayerName01 "
-										+ tm.getTicker_name().toUpperCase() + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHomePlayerDesig01 "
-								+KeyPlayer.get(Integer.valueOf(valueToProcess.split(",")[1])).get("HomePlayer1Stat") + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgHomePlayer01 " + photo_path + 
-								homeTeam +"\\\\"+ tm.getPhoto() + CricketUtil.PNG_EXTENSION + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgHomePlayerRole01 " + icons_path + 
-								getPlayerIconName(tm) + CricketUtil.PNG_EXTENSION + ";");
-					}
-					if(tm.getFull_name().equalsIgnoreCase(KeyPlayer.get(Integer.valueOf(valueToProcess.split(",")[1])).get("HomePlayer2"))&&
-							homeID == tm.getTeamId()) {
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHomePlayerName02 "
-										+ tm.getTicker_name().toUpperCase() + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHomePlayerDesig02 "
-								+KeyPlayer.get(Integer.valueOf(valueToProcess.split(",")[1])).get("HomePlayer2Stat") + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgHomePlayer02 " + photo_path + 
-								homeTeam +"\\\\"+ tm.getPhoto() + CricketUtil.PNG_EXTENSION + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgHomePlayerRole02 " + icons_path + 
-								getPlayerIconName(tm) + CricketUtil.PNG_EXTENSION + ";");
-					}
-					if(tm.getFull_name().equalsIgnoreCase(KeyPlayer.get(Integer.valueOf(valueToProcess.split(",")[1])).get("HomePlayer3"))&&
-							homeID == tm.getTeamId()) {
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHomePlayerName03 "
-								+ tm.getTicker_name().toUpperCase() + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHomePlayerDesig03 "
-								+KeyPlayer.get(Integer.valueOf(valueToProcess.split(",")[1])).get("HomePlayer3Stat") + ";");
-				
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgHomePlayer03 " + photo_path + 
-								homeTeam +"\\\\"+ tm.getPhoto() + CricketUtil.PNG_EXTENSION + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgHomePlayerRole03 " + icons_path + 
-								getPlayerIconName(tm) + CricketUtil.PNG_EXTENSION + ";");
-					}
-					if(tm.getFull_name().equalsIgnoreCase(KeyPlayer.get(Integer.valueOf(valueToProcess.split(",")[1])).get("AwayPlayer1"))&&
-							awayID == tm.getTeamId()) {
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tAwayPlayerName01 "
-										+ tm.getTicker_name().toUpperCase() + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tAwayPlayerDesig01 "
-								+KeyPlayer.get(Integer.valueOf(valueToProcess.split(",")[1])).get("AwayPlayer1Stat") + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgAwayPlayer01 " + photo_path + 
-								awayTeam +"\\\\"+ tm.getPhoto() + CricketUtil.PNG_EXTENSION + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgAwayPlayerRole01 " + icons_path + 
-								getPlayerIconName(tm) + CricketUtil.PNG_EXTENSION + ";");
-					}
-					if(tm.getFull_name().equalsIgnoreCase(KeyPlayer.get(Integer.valueOf(valueToProcess.split(",")[1])).get("AwayPlayer2"))&&
-							awayID == tm.getTeamId()) {
-						print_writer.println(
-								"LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tAwayPlayerName02 "
-										+ tm.getTicker_name().toUpperCase() + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tAwayPlayerDesig02 "
-								+KeyPlayer.get(Integer.valueOf(valueToProcess.split(",")[1])).get("AwayPlayer2Stat") + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgAwayPlayer02 " + photo_path + 
-								awayTeam +"\\\\"+ tm.getPhoto() + CricketUtil.PNG_EXTENSION + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgAwayPlayerRole02 " + icons_path + 
-								getPlayerIconName(tm) + CricketUtil.PNG_EXTENSION + ";");
-					}
-					if(tm.getFull_name().equalsIgnoreCase(KeyPlayer.get(Integer.valueOf(valueToProcess.split(",")[1])).get("AwayPlayer3"))&&
-							awayID == tm.getTeamId()) {
-						print_writer.println(
-								"LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tAwayPlayerName03 "
-										+ tm.getTicker_name().toUpperCase() + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tAwayPlayerDesig03 "
-								+KeyPlayer.get(Integer.valueOf(valueToProcess.split(",")[1])).get("AwayPlayer3Stat") + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgAwayPlayer03 " + photo_path + 
-								awayTeam +"\\\\"+ tm.getPhoto() + CricketUtil.PNG_EXTENSION + ";");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgAwayPlayerRole03 " + icons_path + 
-								getPlayerIconName(tm) + CricketUtil.PNG_EXTENSION + ";");
-					}
-				}
-				
-				  print_writer.println("LAYER1*EVEREST*GLOBAL PREVIEW ON;");
-				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In STOP;");
-				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*Out STOP;");
-				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In SHOW 250.0;");
-				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*Out SHOW 0.0;");
-				  print_writer.
-				  println("LAYER1*EVEREST*GLOBAL SNAPSHOT_PATH C:/Temp/Preview.png;");
-				  print_writer.println("LAYER1*EVEREST*GLOBAL SNAPSHOT 1920 1080;");
-				  TimeUnit.SECONDS.sleep(1);
-				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*Out SHOW 0.0;");
-				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In SHOW 0.0;");
-				  print_writer.println("LAYER1*EVEREST*GLOBAL PREVIEW OFF;");
-				 
-
-				this.status = CricketUtil.SUCCESSFUL;
-			}
-			break;
-		}
-	}
-
-	public void AnimateInGraphics(PrintWriter print_writer, String whichGraphic)
-	{
-		switch(whichGraphic) {
-		case "FF_IN":
-			print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*" + "FF_In" + " " + "START" + ";");
-			break;
-		}	
-	}	
-	public void AnimateOutGraphics(PrintWriter print_writer, String whichGraphic) throws InterruptedException
-	{
-		switch(whichGraphic) {
-		case "MULTI-PARTNERSHIP": case "NAMESUPER-PLAYER": case "BUG-DISMISSAL": case "BUG": case "BUG-BOWLER": case "BUG-DB": case "NAMESUPER": case "WORM": 
-		case "BUG_HIGHLIGHT": case "BUG_PARTNERSHIP": case "BUG_POWERPLAY": case "MATCHID": case "MOST": case "NAMESUPER_SINGLE":case "FF_KEYPLAYER":
-		case "TEAMS_LOGO":
-			processAnimation(print_writer, "Out", "START", broadcaster);
-			TimeUnit.SECONDS.sleep(1);
-			break;
-		}	
-	}
 	public void processAnimation(PrintWriter print_writer, String animationName,String animationCommand, String which_broadcaster)
 	{
 		switch(which_broadcaster.toUpperCase()) {
@@ -1317,79 +863,6 @@ public class EVEREST_LEGENDS_90 extends Scene{
 		}
 		
 	}
-	public String resetInfobarAnimation(PrintWriter print_writer,String which_frame) throws InterruptedException {
-		
-			switch(which_frame.toUpperCase()) {
-			case "FF_FRAME":
-				if(infobar.isInfobar_on_screen() == true) {
-					AnimateOutGraphics(print_writer, "FF_OUT");
-					which_graphic_on_screen = "SCOREBUG";
-				}
-				break;
-			case "LT_FRAME":
-				if(infobar.isInfobar_on_screen() == true) {
-					AnimateOutGraphics(print_writer, "LT_OUT");
-					which_graphic_on_screen = "SCOREBUG";
-				}
-				break;
-			}
-		return "";
-	}
-	public String batBowlSummaryPointsTableLogoAnim(PrintWriter print_writer,String which_scene) throws InterruptedException {
-		
-		switch(which_scene.toUpperCase()) {
-		case "BATTING":
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$Left$LeaftBaseGrp$AllLeftTeamLogos$BatLeftLogoGrp$BatLeftLogo*ACTIVE SET 1 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$Left$LeaftBaseGrp$AllLeftTeamLogos$BallLeftLogoGrp$BallLeftLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$Left$LeaftBaseGrp$AllLeftTeamLogos$SummaryLeftLogoGrp$SummaryLeftLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$Left$LeaftBaseGrp$AllLeftTeamLogos$PointsLeftLogoGrp$PointsLeftLogo*ACTIVE SET 0 \0");
-			
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$RightGrp$RightTeamLogos$BatRightLogoGrp$BatRightLogo*ACTIVE SET 1 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$RightGrp$RightTeamLogos$BallRightLogoGrp$BallRightLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$RightGrp$RightTeamLogos$SummaryLeftLogoGrp$SummaryLeftLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$RightGrp$RightTeamLogos$PointsLeftLogoGrp$PointsLeftLogo*ACTIVE SET 0 \0");
-			
-			break;
-		case "BOWLING":
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$Left$LeaftBaseGrp$AllLeftTeamLogos$BatLeftLogoGrp$BatLeftLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$Left$LeaftBaseGrp$AllLeftTeamLogos$BallLeftLogoGrp$BallLeftLogo*ACTIVE SET 1 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$Left$LeaftBaseGrp$AllLeftTeamLogos$SummaryLeftLogoGrp$SummaryLeftLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$Left$LeaftBaseGrp$AllLeftTeamLogos$PointsLeftLogoGrp$PointsLeftLogo*ACTIVE SET 0 \0");
-			
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$RightGrp$RightTeamLogos$BatRightLogoGrp$BatRightLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$RightGrp$RightTeamLogos$BallRightLogoGrp$BallRightLogo*ACTIVE SET 1 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$RightGrp$RightTeamLogos$SummaryLeftLogoGrp$SummaryLeftLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$RightGrp$RightTeamLogos$PointsLeftLogoGrp$PointsLeftLogo*ACTIVE SET 0 \0");
-			
-			break;
-		case "SUMMARY":
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$Left$LeaftBaseGrp$AllLeftTeamLogos$BatLeftLogoGrp$BatLeftLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$Left$LeaftBaseGrp$AllLeftTeamLogos$BallLeftLogoGrp$BallLeftLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$Left$LeaftBaseGrp$AllLeftTeamLogos$SummaryLeftLogoGrp$SummaryLeftLogo*ACTIVE SET 1 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$Left$LeaftBaseGrp$AllLeftTeamLogos$PointsLeftLogoGrp$PointsLeftLogo*ACTIVE SET 0 \0");
-			
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$RightGrp$RightTeamLogos$BatRightLogoGrp$BatRightLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$RightGrp$RightTeamLogos$BallRightLogoGrp$BallRightLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$RightGrp$RightTeamLogos$SummaryLeftLogoGrp$SummaryLeftLogo*ACTIVE SET 1 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$RightGrp$RightTeamLogos$PointsLeftLogoGrp$PointsLeftLogo*ACTIVE SET 0 \0");
-			
-			break;
-		case "POINTS_TABLE":
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$Left$LeaftBaseGrp$AllLeftTeamLogos$BatLeftLogoGrp$BatLeftLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$Left$LeaftBaseGrp$AllLeftTeamLogos$BallLeftLogoGrp$BallLeftLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$Left$LeaftBaseGrp$AllLeftTeamLogos$SummaryLeftLogoGrp$SummaryLeftLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$Left$LeaftBaseGrp$AllLeftTeamLogos$PointsLeftLogoGrp$PointsLeftLogo*ACTIVE SET 1 \0");
-			
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$RightGrp$RightTeamLogos$BatRightLogoGrp$BatRightLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$RightGrp$RightTeamLogos$BallRightLogoGrp$BallRightLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$RightGrp$RightTeamLogos$SummaryLeftLogoGrp$SummaryLeftLogo*ACTIVE SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$RightGrp$RightTeamLogos$PointsLeftLogoGrp$PointsLeftLogo*ACTIVE SET 1 \0");
-			
-			break;
-		}
-	return "";
-}
-	
 	
 	public String toString() {
 		return "Doad [status=" + status + ", slashOrDash=" + slashOrDash + "]";
@@ -1689,6 +1162,7 @@ public class EVEREST_LEGENDS_90 extends Scene{
 								Right_Batsman = hs.getPlayer().getTicker_name();
 							}
 						}
+						
 						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tPlayerName01 " + Left_Batsman + " & " + Right_Batsman + ";");
 						if(part.get(partnership - 1).getPartnershipNumber() == 0) {
 							print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1A " + "PARTNERSHIP" + ";");
@@ -1918,8 +1392,8 @@ public class EVEREST_LEGENDS_90 extends Scene{
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFirstName "
 							+ ns.getFirstname() +" "+ns.getSurname() + ";");
 				}
-				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tBottomInfo "
-						+ ns.getSubLine().toUpperCase() + ";");
+				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tBottomInfo " + (ns.getSubLine() != null && !ns.getSubLine().isEmpty()
+						? ns.getSubLine().toUpperCase() : "") + ";");
 
 				  print_writer.println("LAYER1*EVEREST*GLOBAL PREVIEW ON;");
 				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In STOP;");
@@ -1990,7 +1464,7 @@ public class EVEREST_LEGENDS_90 extends Scene{
 				this.status = "ERROR: Target's inning is null";
 			} else {
 				String result = "";
-				String badge = "";
+				//String badge = "";
 				if (match.getSetup().getTargetType() == null || match.getSetup().getTargetType().trim().isEmpty()) {
 
 				    if (CricketFunctions.GetTargetData(match).getTargetOvers().equalsIgnoreCase("1")) {
@@ -2006,12 +1480,12 @@ public class EVEREST_LEGENDS_90 extends Scene{
 			                match.getSetup().getTargetType().toUpperCase() + ")";
 				}
 				if(result.contains(match.getMatch().getInning().get(0).getBatting_team().getTeamName4())) {
-					 badge = match.getMatch().getInning().get(0).getBatting_team().getTeamBadge().toUpperCase();
+					 //badge = match.getMatch().getInning().get(0).getBatting_team().getTeamBadge().toUpperCase();
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeamLogo " + logo_path
 							+ (match.getMatch().getInning().get(0).getBatting_team().getTeamBadge().toUpperCase().equals("GS") ? "GSA" : 
 								match.getMatch().getInning().get(0).getBatting_team().getTeamBadge().toUpperCase()) + CricketUtil.PNG_EXTENSION + ";");
 				}else {
-					 badge = match.getMatch().getInning().get(1).getBatting_team().getTeamBadge().toUpperCase();
+					 //badge = match.getMatch().getInning().get(1).getBatting_team().getTeamBadge().toUpperCase();
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeamLogo " + logo_path
 							+ (match.getMatch().getInning().get(1).getBatting_team().getTeamBadge().toUpperCase().equals("GS") ? "GSA" : 
 								match.getMatch().getInning().get(1).getBatting_team().getTeamBadge().toUpperCase()) + CricketUtil.PNG_EXTENSION + ";");

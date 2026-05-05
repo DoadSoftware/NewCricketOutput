@@ -637,6 +637,7 @@ public class EVEREST_APL_T20 extends Scene{
 				}
 				break;
 			case "POPULATE-L3-NAMESUPER-PLAYER":
+				System.out.println("valuetoprocess" + valueToProcess);
 				populateNameSuperPlayer(print_writer, valueToProcess.split(",")[0], Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2], Integer.valueOf(valueToProcess.split(",")[3]), match, broadcaster);
 				break;
 			case "POPULATE-FF-LEADERBOARD":

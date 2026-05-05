@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import com.cricket.archive.Archive;
+import com.cricket.broadcaster.EVEREST_APL_T20;
 import com.cricket.broadcaster.EVEREST_LEGENDS_90;
 import com.cricket.containers.Infobar;
 import com.cricket.containers.Scene;
@@ -101,7 +102,7 @@ public class IndexController
 //	public static EVEREST_NEPAL_T20 everest_nepal_t20;
 	public static EVEREST_LEGENDS_90 everest_legends_90;
 //	public static EVEREST_PUNJAB_T20 everest_punjab_t20;
-//	public static EVEREST_APL_T20 everest_apl_t20;
+	public static EVEREST_APL_T20 everest_apl_t20;
 //	public static EVEREST_KCL everest_KCL;
 //	public static EVEREST_PPL_T20 everest_ppl_t20;
 //	public static EVEREST_KCL_T20 everest_kcl_t20;
@@ -645,8 +646,8 @@ public class IndexController
 					session_selected_scenes.get(0).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_broadcaster);
 					break;
 				case "EVEREST_APL_T20":
-//					everest_apl_t20 = new EVEREST_APL_T20();
-//					everest_apl_t20.infobar = new Infobar();
+					everest_apl_t20 = new EVEREST_APL_T20();
+					everest_apl_t20.infobar = new Infobar();
 					session_selected_scenes.get(0).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_broadcaster);
 					break;
 				case "EVEREST_KCL":
@@ -1115,9 +1116,9 @@ public class IndexController
 //			case "EVEREST_PUNJAB_T20":
 //				return (String) everest_punjab_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
 //						session_selected_scenes, valueToProcess, session_statistics, session_configuration);
-//			case "EVEREST_APL_T20":
-//				return (String) everest_apl_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
-//						session_selected_scenes, valueToProcess, session_statistics, session_configuration);
+			case "EVEREST_APL_T20":
+				return (String) everest_apl_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
+						session_selected_scenes, valueToProcess, session_statistics, session_configuration);
 //			case "EVEREST_KCL":
 //				return (String) everest_KCL.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
 //						session_selected_scenes, valueToProcess, session_statistics, session_configuration);
@@ -1653,11 +1654,11 @@ public class IndexController
 //						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, 
 //						valueToProcess, session_statistics, session_configuration);
 //				return new ObjectMapper().writeValueAsString(everest_punjab_t20).toString();
-//			case "EVEREST_APL_T20":
-//				everest_apl_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
-//						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, 
-//						valueToProcess, session_statistics, session_configuration);
-//				break;
+			case "EVEREST_APL_T20":
+				everest_apl_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
+						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, 
+						valueToProcess, session_statistics, session_configuration);
+				break;
 //			case "EVEREST_KCL":
 //				everest_KCL.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
 //						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, 

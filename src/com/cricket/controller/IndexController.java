@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.cricket.archive.Archive;
 import com.cricket.broadcaster.EVEREST_APL_T20;
 import com.cricket.broadcaster.EVEREST_LEGENDS_90;
+import com.cricket.broadcaster.KERALA_T20;
 import com.cricket.containers.Infobar;
 import com.cricket.containers.Scene;
 import com.cricket.model.BattingCard;
@@ -101,6 +102,7 @@ public class IndexController
 //	public static ICPL_AR this_icpl_ar;
 //	public static EVEREST_NEPAL_T20 everest_nepal_t20;
 	public static EVEREST_LEGENDS_90 everest_legends_90;
+	public static KERALA_T20 this_kerala_t20;
 //	public static EVEREST_PUNJAB_T20 everest_punjab_t20;
 	public static EVEREST_APL_T20 everest_apl_t20;
 //	public static EVEREST_KCL everest_KCL;
@@ -733,6 +735,9 @@ public class IndexController
 				case "KERALA_T20":
 //					session_kerala = new KERALA_T20();
 //					session_kerala.infobar = new Infobar();
+					
+					this_kerala_t20 = new KERALA_T20();
+					this_kerala_t20.infobar = new Infobar();
 					session_selected_scenes.get(0).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_broadcaster);
 					session_selected_scenes.get(1).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_broadcaster);
 					session_selected_scenes.get(2).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_broadcaster);
@@ -960,8 +965,8 @@ public class IndexController
 //				return (String) session_llc.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration), 
 //						session_selected_scenes, valueToProcess, session_statistics,plotterData, session_configuration, past_tournament_stats, headToHead.getH2hPlayer());
 			case "KERALA_T20":
-//				return (String) session_kerala.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, past_tournament_stats, CricketFunctions.processPrintWriter(session_configuration), 
-//						session_selected_scenes, valueToProcess, session_statistics,plotterData, headToHead.getH2hPlayer(), session_configuration);	
+				return (String) this_kerala_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, past_tournament_stats, CricketFunctions.processPrintWriter(session_configuration), 
+						session_selected_scenes, valueToProcess, session_statistics,plotterData, headToHead.getH2hPlayer(), session_configuration);	
 			case "KOLKATA_T20":
 //				return (String) session_kolkata.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration), 
 //						session_selected_scenes, valueToProcess, session_statistics,plotterData, session_configuration);	
@@ -1047,7 +1052,7 @@ public class IndexController
 		case "PLAYERPROFILEBUKHATIR_GRAPHICS-OPTIONS":	case "NAMESUPER_GRAPHICS_SINGLELINE-OPTIONS": case "POSITION_LANDMARK-OPTIONS": case "EXCEL_FF_GRAPHICS_OPTION": case "EXCEL_LT_GRAPHICS_OPTION": 
 		case "EXCEL_FF_SUMMARY_GRAPHICS_OPTION": case "MOST_TOP5_TEAM_GRAPHICS-OPTIONS": case "EXCEL_FF_KEY_PLAYER_GRAPHICS_OPTION": case "HEIGHEST_INDIVIDUAL_SCORE_GRAPHICS-OPTIONS": 
 		case "TEAM_WICKETS_GRAPHICS-OPTIONS": case "TEAM_LEADERBOARD_GRAPHICS-OPTIONS": case "TEAM_FOURS_GRAPHICS-OPTIONS": case "TEAM_SIXES_GRAPHICS-OPTIONS": case "BEST_FIGURES_GRAPHICS-OPTIONS":
-//			switch (session_selected_broadcaster.toUpperCase()) {
+			switch (session_selected_broadcaster.toUpperCase()) {
 //			case "ICC_BIG_SCREEN":
 //				return (String) session_Icc_big_screen.ProcessGraphicOption(whatToProcess, session_match,cricketService, cricket_matches,third_party_session_match, 
 //						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,third_party_last_ball_speed,session_dls);
@@ -1070,9 +1075,9 @@ public class IndexController
 //			case "DOAD_LLC":
 //				return (String) session_llc.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches,
 //						CricketFunctions.processPrintWriter(session_configuration), session_selected_scenes, valueToProcess, session_statistics,plotterData, session_configuration, past_tournament_stats, headToHead.getH2hPlayer());
-//			case "KERALA_T20":
-//				return (String) session_kerala.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, past_tournament_stats,
-//						CricketFunctions.processPrintWriter(session_configuration), session_selected_scenes, valueToProcess, session_statistics,plotterData, headToHead.getH2hPlayer(), session_configuration);	
+			case "KERALA_T20":
+				return (String) this_kerala_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, past_tournament_stats,
+						CricketFunctions.processPrintWriter(session_configuration), session_selected_scenes, valueToProcess, session_statistics,plotterData, headToHead.getH2hPlayer(), session_configuration);	
 //			case "KOLKATA_T20":
 //				return (String) session_kolkata.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
 //						CricketFunctions.processPrintWriter(session_configuration), session_selected_scenes, valueToProcess, session_statistics,plotterData, session_configuration);	
@@ -1170,7 +1175,7 @@ public class IndexController
 //			case "NEPAL_T20":
 //				return (String) this_nepal_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
 //						session_selected_scenes, valueToProcess, session_statistics,session_configuration);	
-//			}
+			}
 		case "PROMPT_GRAPHICS-OPTIONS": case "TEAM_FIXTURES_GRAPHICS-OPTIONS": case "TEAM_SQUAD_GRAPHICS-OPTIONS":
 			switch (session_selected_broadcaster) {
 //			case "BUKHATIR":
@@ -1233,9 +1238,9 @@ public class IndexController
 //			case "DOAD_LLC":
 //				return (String) session_llc.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches,
 //						CricketFunctions.processPrintWriter(session_configuration),session_selected_scenes, valueToProcess, session_statistics,plotterData, session_configuration, past_tournament_stats, headToHead.getH2hPlayer());
-//			case "KERALA_T20":
-//				return (String) session_kerala.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, past_tournament_stats,
-//						CricketFunctions.processPrintWriter(session_configuration),session_selected_scenes, valueToProcess, session_statistics,plotterData, headToHead.getH2hPlayer(), session_configuration);	
+			case "KERALA_T20":
+				return (String) this_kerala_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, past_tournament_stats,
+						CricketFunctions.processPrintWriter(session_configuration),session_selected_scenes, valueToProcess, session_statistics,plotterData, headToHead.getH2hPlayer(), session_configuration);	
 //			case "KOLKATA_T20":
 //				return (String) session_kolkata.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches,
 //						CricketFunctions.processPrintWriter(session_configuration),session_selected_scenes, valueToProcess, session_statistics,plotterData, session_configuration);	
@@ -1368,8 +1373,8 @@ public class IndexController
 			default:
 				if(last_match_time_stamp != new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.MATCHES_DIRECTORY 
 						+ session_match.getMatch().getMatchFileName()).lastModified()) {
-//					session_match = CricketFunctions.populateMatchVariables(cricketService, CricketFunctions.readOrSaveMatchFile(CricketUtil.READ,
-//							CricketUtil.SETUP + "," + CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match,true));
+					session_match = CricketFunctions.populateMatchVariables(CricketFunctions.readOrSaveMatchFile(CricketUtil.READ, CricketUtil.SETUP + "," 
+							+ CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match, session_configuration), session_players, session_team, session_ground);
 					last_match_time_stamp = new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.MATCHES_DIRECTORY 
 							+ session_match.getMatch().getMatchFileName()).lastModified();
 					matchstats = CricketFunctions.getAllEvents(session_match ,session_selected_broadcaster, session_match.getEventFile().getEvents());
@@ -1401,8 +1406,8 @@ public class IndexController
 					Plotter_file_change = false;
 					break;
 				case "KERALA_T20":
-//					session_kerala.updateFieldPlotter(session_selected_scenes, session_match,cricket_matches,show_speed, 
-//							CricketFunctions.processPrintWriter(session_configuration),plotterData);
+					this_kerala_t20.updateFieldPlotter(session_selected_scenes, session_match,cricket_matches,show_speed, 
+							CricketFunctions.processPrintWriter(session_configuration),plotterData);
 					Plotter_file_change = false;
 					break;	
 				case "MAHARAJA_T20":
@@ -1526,7 +1531,7 @@ public class IndexController
 //					session_europe.updateInfobar(session_selected_scenes, session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration));
 					break;
 				case "KERALA_T20":
-//					session_kerala.updateInfobar(session_selected_scenes, session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration));
+					this_kerala_t20.updateInfobar(session_selected_scenes, session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration));
 					break;	
 				case "KOLKATA_T20":
 //					session_kolkata.updateInfobar(session_selected_scenes, session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration),1);
@@ -1728,10 +1733,10 @@ public class IndexController
 //				session_llc.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration),
 //						session_selected_scenes, valueToProcess, session_statistics,plotterData, session_configuration, past_tournament_stats, headToHead.getH2hPlayer());
 //				return new ObjectMapper().writeValueAsString(session_llc).toString();
-//			case "KERALA_T20":
-//				session_kerala.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches,past_tournament_stats, CricketFunctions.processPrintWriter(session_configuration), 
-//						session_selected_scenes, valueToProcess, session_statistics,plotterData, headToHead.getH2hPlayer(), session_configuration);
-//				return new ObjectMapper().writeValueAsString(session_kerala).toString();
+			case "KERALA_T20":
+				this_kerala_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches,past_tournament_stats, CricketFunctions.processPrintWriter(session_configuration), 
+						session_selected_scenes, valueToProcess, session_statistics,plotterData, headToHead.getH2hPlayer(), session_configuration);
+				return new ObjectMapper().writeValueAsString(this_kerala_t20).toString();
 //			case "EUROPE_LEAGUE":
 //				session_europe.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches,past_tournament_stats, CricketFunctions.processPrintWriter(session_configuration), 
 //						session_selected_scenes, valueToProcess, session_statistics,plotterData, headToHead.getH2hPlayer(), session_configuration);

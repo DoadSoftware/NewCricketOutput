@@ -143,16 +143,31 @@ public class EVEREST_LEGENDS_90 extends Scene{
 	        for(Tournament tourn : tournaments) {
 				switch (whatToProcess) {
 				case "HEIGHEST_INDIVIDUAL_SCORE_GRAPHICS-OPTIONS":
-		            for(BestStats bs : tourn.getBatsman_best_Stats()) {
-		            	top_ten_beststat.add(CricketFunctions.getProcessedBatsmanBestStats(bs));
+					for (BestStats bs : tourn.getBatsman_best_Stats()) {
+		                BestStats processed = CricketFunctions.getProcessedBatsmanBestStats(bs);
+		                if (bs.getPlayer() != null) {
+		                    processed.setPlayerName(bs.getPlayer().getFull_name());
+		                }
+		                top_ten_beststat.add(processed);
 		            }
+					
+//		            for(BestStats bs : tourn.getBatsman_best_Stats()) {
+//		            	top_ten_beststat.add(CricketFunctions.getProcessedBatsmanBestStats(bs));	
+//		            }
 					Collections.sort(top_ten_beststat,new CricketFunctions.BatsmanBestStatsComparator());
 					break;
 				case "BEST_FIGURES_GRAPHICS-OPTIONS":
-					
-		            for(BestStats bs : tourn.getBowler_best_Stats()) {
-		            	top_ten_beststat.add(CricketFunctions.getProcessedBowlerBestStats(bs));
+					for (BestStats bs : tourn.getBowler_best_Stats()) {
+		                BestStats processed = CricketFunctions.getProcessedBowlerBestStats(bs);
+		                if (bs.getPlayer() != null) {
+		                    processed.setPlayerName(bs.getPlayer().getFull_name());
+		                }
+		                top_ten_beststat.add(processed);
 		            }
+
+//		            for(BestStats bs : tourn.getBowler_best_Stats()) {
+//		            	top_ten_beststat.add(CricketFunctions.getProcessedBowlerBestStats(bs));
+//		            }
 					Collections.sort(top_ten_beststat,new CricketFunctions.BowlerBestStatsComparator());
 					break;
 				}

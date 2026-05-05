@@ -24284,11 +24284,12 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						select.id = 'selectPlayerName';
 						select.name = select.id;
 						num = 0;
+						console.log(dataToProcess);
 						for(i=0;i<dataToProcess.length;i++){
 							if(num<5){
 								option = document.createElement('option');
 					            option.value =  dataToProcess[i].playerId;
-					            option.text = dataToProcess[i].player.full_name;
+					            option.text = dataToProcess[i].playerName;
 					            select.appendChild(option);
 					            num++;
 							}

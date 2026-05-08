@@ -13873,7 +13873,7 @@ function processCricketProcedures(whatToProcess) {
 		data: 'whatToProcess=' + encodeURIComponent(whatToProcess) + '&valueToProcess=' + encodeURIComponent(valueToProcess),
 		dataType: 'json',
 		success: function(data) {
-			//console.log(whatToProcess);
+			
 			switch (whatToProcess) {
 				case 'HEAD_TO_HEAD_FILE':
 					alert(data.match.matchFileName + ' H2H FILE IS CREATED');
@@ -15786,9 +15786,16 @@ function processCricketProcedures(whatToProcess) {
 			}
 			processWaitingButtonSpinner('END_WAIT_TIMER');
 		},
-		error: function(e) {
+		error: function(xhr, status, error) {
+
+				console.log("AJAX ERROR");
+				console.log("status = " + status);
+				console.log("error = " + error);
+				console.log("response = " + xhr.responseText);
+			}
+		/*error: function(e) {
 			console.log('Error occured in ' + whatToProcess + ' with error description = ' + e);
-		}
+		}*/
 	});
 }
 function addItemsToList(whatToProcess, dataToProcess) {
@@ -24254,7 +24261,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 		case 'L3SEASONPROFILE-OPTIONS': case 'MOST_LEADERBOARD-OPTIONS': case 'TEAMNAME-OPTIONS': case 'PLAYERNAME-OPTIONS': case 'LINEUP-ICC-OPTIONS':
 		case 'LINEUPIMAGE-ICC-OPTIONS': case 'ICCBOWLERFIG-OPTIONS': case 'LINEUPLONG-ICC-OPTIONS': case 'IMAGEDROPDOWN-OPTIONS': case 'PLAYERVIDEO-OPTIONS':
 		case 'LONGLINEUP-ICC-OPTIONS': case 'BOWLINGCARD-ICC-OPTIONS': case 'FANTASYDROPDOWN-OPTIONS':case 'LEADERBOARD_TEAM-OPTIONS':
-		case 'L3SEASONPROFILE-OPTIONS': case 'MOST_LEADERBOARD-OPTIONS': case 'TICKERBOWLERPROFILE-OPTIONS': case 'NAMESUPER_SINGLELINE-OPTIONS':
+		case 'L3SEASONPROFILE-OPTIONS': case 'TICKERBOWLERPROFILE-OPTIONS': case 'NAMESUPER_SINGLELINE-OPTIONS':
 		case 'MOST_RUNS-LEADERBOARD-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'EVEREST_NEPAL_T20': case 'THAILAND': case 'DOAD_LLC': case 'KERALA_T20':

@@ -445,7 +445,11 @@ public class KERALA_T20 extends Scene {
 
 		this.head_to_head = headToHead;
 		
-		allGraphicOption(whatToProcess, match,headToHead,past_tournament_stats, cricketService);
+		Object graphicOption = allGraphicOption(whatToProcess, match,headToHead,past_tournament_stats,tournament_matches,cricketService);
+
+		if(graphicOption != null && !"".equals(graphicOption)) {
+		    return graphicOption;
+		}
 		
 		switch (whatToProcess) {
 		case "ANIMATE-IN-INFOBAR": case "ANIMATE-IN-IDENT": case "ANIMATE-OUT-DIRECTOR": case "ANIMATE-OUT-SPONSOR": case "TICKER_LT_OUT":
@@ -34306,7 +34310,7 @@ public class KERALA_T20 extends Scene {
 		}
 	}
 	public Object allGraphicOption(String whatToProcess,MatchAllData match,List<HeadToHeadPlayer> headToHead,
-			List<Tournament> past_tournament_stats,CricketService cricketService) throws InterruptedException, IOException {
+			List<Tournament> past_tournament_stats,List<MatchAllData> tournament_matches,CricketService cricketService) throws InterruptedException, IOException {
 		switch (whatToProcess) {
 		case "EXCEL_FF_SUMMARY_GRAPHICS_OPTION":
 			return new ObjectMapper().writeValueAsString(CricketFunctions.ReadExcel("C:\\Sports\\Cricket\\Summary.xlsx").keySet()).toString();	
@@ -34386,7 +34390,7 @@ public class KERALA_T20 extends Scene {
 			}
 			return new ObjectMapper().writeValueAsString(tourna_stats).toString();
 		}
-		return null;
+		return "";
 	}
 	public Object handlePopulateGraphicsCommand(List<PrintWriter> print_writer,List<Scene> scenes,
 			String valueToProcess,String whatToProcess) throws InterruptedException{

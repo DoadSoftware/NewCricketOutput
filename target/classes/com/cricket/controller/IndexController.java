@@ -1077,7 +1077,8 @@ public class IndexController
 //						CricketFunctions.processPrintWriter(session_configuration), session_selected_scenes, valueToProcess, session_statistics,plotterData, session_configuration, past_tournament_stats, headToHead.getH2hPlayer());
 			case "KERALA_T20":
 				return (String) this_kerala_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, past_tournament_stats,
-						CricketFunctions.processPrintWriter(session_configuration), session_selected_scenes, valueToProcess, session_statistics,plotterData, headToHead.getH2hPlayer(), session_configuration);	
+						CricketFunctions.processPrintWriter(session_configuration), session_selected_scenes, valueToProcess, session_statistics,plotterData, 
+						headToHead.getH2hPlayer(), session_configuration);
 //			case "KOLKATA_T20":
 //				return (String) session_kolkata.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
 //						CricketFunctions.processPrintWriter(session_configuration), session_selected_scenes, valueToProcess, session_statistics,plotterData, session_configuration);	

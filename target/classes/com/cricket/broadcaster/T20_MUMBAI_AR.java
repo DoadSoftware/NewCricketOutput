@@ -37,7 +37,7 @@ public class T20_MUMBAI_AR extends Scene{
 	private String status;
 	private String slashOrDash = "-",category = "";
 	public Infobar infobar = new Infobar();
-	public String session_selected_broadcaster = "T20_MUMBAI_AR";
+	//public String session_selected_broadcaster = "T20_MUMBAI_AR";
 	public String which_graphics_onscreen = "";
 	private String logo_path2 = "C:\\Images\\TRI_SERIES\\Logos\\";
 	private String logo_path = "C:\\Images\\TRI_SERIES\\Logos\\";
@@ -90,13 +90,14 @@ public class T20_MUMBAI_AR extends Scene{
 	public Object ProcessGraphicOption(String whatToProcess, MatchAllData match, CricketService cricketService, List<MatchAllData> tournament_matches,
 			PrintWriter print_writer, List<Scene> scenes, String valueToProcess, List<Statistics> statistics,Configuration config) throws InterruptedException, ParseException, JAXBException, NumberFormatException, IOException, IllegalAccessException, InvocationTargetException{
 		
-		//valueToProcess = valueToProcess.replace("Everest_MT20/Scenes", "Everest_Barodaleague_2025/AR_Matt_Scene")
-									   
+		//valueToProcess = valueToProcess.replace("Everest_MT20/Scenes", "Everest_Barodaleague_2025/AR_Matt_Scene");
+		
+		System.out.println("valueToProcess - " + valueToProcess + " whatToProcess - " + whatToProcess);
 		
 		switch (whatToProcess.toUpperCase()) {
 		case "NAMESUPER_GRAPHICS-OPTIONS": 
-			switch (session_selected_broadcaster.toUpperCase()) {
-			case "T20_MUMBAI_AR":
+			switch (config.getBroadcaster().toUpperCase()) {
+			case "T20_MUMBAI_AR": case "BARODA_AR":
 				return new ObjectMapper().writeValueAsString(cricketService.getNameSupers()).toString();
 			}
 		
@@ -105,19 +106,19 @@ public class T20_MUMBAI_AR extends Scene{
 		case "POPULATE-TEAMCELEB_AR": case "POPULATE-PLAYERCELEB": case "POPULATE-MATCH_PROMO_ANIMATION": case "POPULATE-L3-BATMILEDETAILS": case "POPULATE-L3-BOWLERDETAILS":
 		case "POPULATE-COUNT_AR": case "POPULATE-FF-POSITION_LANDMARK": case "POPULATE-TOSS_AR": case "POPULATE-RUNRATE":
 			
-			switch (session_selected_broadcaster.toUpperCase()) {
-			case "T20_MUMBAI_AR":
+			switch (config.getBroadcaster().toUpperCase()) {
+			case "T20_MUMBAI_AR": case "BARODA_AR":
 				switch(whatToProcess.toUpperCase()) {
 				case"POPULATE-INFOBAR-PROMPT": case "POPULATE-INFOBAR-BOTTOM":
 					break;
 				case "POPULATE-L3-INFOBAR":
 					scenes.get(0).setScene_path(valueToProcess.split(",")[0]);
-					scenes.get(0).scene_load(print_writer,session_selected_broadcaster);
+					scenes.get(0).scene_load(print_writer,config.getBroadcaster());
 					break;
 				default:
 					scenes.get(1).setWhich_layer(String.valueOf("1"));
 					scenes.get(1).setScene_path(valueToProcess.split(",")[0]);
-					scenes.get(1).scene_load(print_writer,session_selected_broadcaster);
+					scenes.get(1).scene_load(print_writer,config.getBroadcaster());
 					break;
 				}
 				switch (whatToProcess.toUpperCase()) {
@@ -130,7 +131,7 @@ public class T20_MUMBAI_AR extends Scene{
 					}
 					
 					populateBatMile(false,print_writer ,Integer.valueOf(valueToProcess.split(",")[1]),Integer.valueOf(valueToProcess.split(",")[2]),
-							cricketService.getAllPlayer(),match , session_selected_broadcaster);
+							cricketService.getAllPlayer(),match , config.getBroadcaster());
 					break;
 				case "POPULATE-L3-BOWLERDETAILS":
 					
@@ -141,21 +142,21 @@ public class T20_MUMBAI_AR extends Scene{
 					}
 					
 					populateBallMile(false,print_writer ,Integer.valueOf(valueToProcess.split(",")[1]),Integer.valueOf(valueToProcess.split(",")[2]),
-							cricketService.getAllPlayer(),match , session_selected_broadcaster);
+							cricketService.getAllPlayer(),match , config.getBroadcaster());
 					break;	
 				case "POPULATE-MATCH_PROMO":
 					populateMatchPromo(false,print_writer, valueToProcess.split(",")[0] ,Integer.valueOf(valueToProcess.split(",")[1]),cricketService.getTeams(),
-							cricketService.getFixtures(),match , session_selected_broadcaster);
+							cricketService.getFixtures(),match , config.getBroadcaster());
 					break;
 				case "POPULATE-THISOVER_AR":
-					populateThisOver(false,print_writer,match,session_selected_broadcaster);
+					populateThisOver(false,print_writer,match,config.getBroadcaster());
 					break;
 				case "POPULATE-MATCH_ANIMATION_AR":
-					populateMatchIdAnimationAR(false,print_writer, match, session_selected_broadcaster);
+					populateMatchIdAnimationAR(false,print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-MATCH_PROMO_ANIMATION":
 					populateMatchPromoAnimationAR(false,print_writer,valueToProcess.split(",")[0] ,Integer.valueOf(valueToProcess.split(",")[1]),cricketService.getTeams(),
-							cricketService.getFixtures(), match, session_selected_broadcaster);
+							cricketService.getFixtures(), match, config.getBroadcaster());
 					break;
 				case "POPULATE-EQUATION_AR":
 					
@@ -165,7 +166,7 @@ public class T20_MUMBAI_AR extends Scene{
 						category = "W";
 					}
 					
-					populateEquationAR(false,print_writer, match, session_selected_broadcaster);
+					populateEquationAR(false,print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-FF-POSITION_LANDMARK":
 					
@@ -176,24 +177,24 @@ public class T20_MUMBAI_AR extends Scene{
 					}
 					
 					populatePlayerInAt(print_writer, match,Integer.valueOf(valueToProcess.split(",")[1]),Integer.valueOf(valueToProcess.split(",")[2]),cricketService.getAllPlayer(),cricketService.getTeams(), 
-							session_selected_broadcaster,config);
+							config.getBroadcaster(),config);
 					break;
 				case "POPULATE-PLAYERCELEB":
 					populatePlayerCelebAR(print_writer, match,valueToProcess.split(",")[1],valueToProcess.split(",")[3],valueToProcess.split(",")[2],cricketService.getAllPlayer(),cricketService.getTeams(), 
-							session_selected_broadcaster);
+							config.getBroadcaster());
 					break;
 				case "POPULATE-TEAMCELEB_AR":
 					System.out.println(valueToProcess);
-					populateTeamCelebAR(print_writer, match,valueToProcess.split(",")[1],valueToProcess.split(",")[2],cricketService.getTeams(), session_selected_broadcaster);
+					populateTeamCelebAR(print_writer, match,valueToProcess.split(",")[1],valueToProcess.split(",")[2],cricketService.getTeams(), config.getBroadcaster());
 					break;
 				case "POPULATE-FREE_TEXT_AR":
-					populateFreeTextAR(print_writer, match,valueToProcess.split(",")[1], session_selected_broadcaster);
+					populateFreeTextAR(print_writer, match,valueToProcess.split(",")[1], config.getBroadcaster());
 					break;
 				case "POPULATE-BOUNDARIES_AR":
-					populateBoundariesAR(false,print_writer, match, session_selected_broadcaster);
+					populateBoundariesAR(false,print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-COMPARISON_AR":
-					populateComparisonAR(false,print_writer, match, session_selected_broadcaster);
+					populateComparisonAR(false,print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-TARGET_AR":
 					
@@ -203,10 +204,10 @@ public class T20_MUMBAI_AR extends Scene{
 						category = "W";
 					}
 					
-					populateTargetAR(print_writer, match, session_selected_broadcaster);
+					populateTargetAR(print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-TOSS_AR":
-					populateTossAR(print_writer, match, session_selected_broadcaster);
+					populateTossAR(print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-MATCHID_AR":
 					
@@ -216,7 +217,7 @@ public class T20_MUMBAI_AR extends Scene{
 						category = "W";
 					}
 					
-					populateMatchIdAR(false,print_writer, match, session_selected_broadcaster);
+					populateMatchIdAR(false,print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-COUNT_AR":
 					
@@ -226,14 +227,14 @@ public class T20_MUMBAI_AR extends Scene{
 						category = "W";
 					}
 					
-					populateCountAR(false,print_writer, match, session_selected_broadcaster);
+					populateCountAR(false,print_writer, match, config.getBroadcaster());
 					break;
 					
 				case "POPULATE-RUNRATE":
-					populateRunRate(print_writer,false,match, session_selected_broadcaster,valueToProcess);
+					populateRunRate(print_writer,false,match, config.getBroadcaster(),valueToProcess);
 					break;
 				case "POPULATE-PROJECTED_AR":
-					populateProjectedAR(false,print_writer, match, session_selected_broadcaster);
+					populateProjectedAR(false,print_writer, match, config.getBroadcaster());
 					break;	
 				}
 			}
@@ -242,104 +243,104 @@ public class T20_MUMBAI_AR extends Scene{
 		case "ANIMATE-IN-MATCH_PROMO": case "ANIMATE-IN-TEAMCELEB_AR": case "ANIMATE-IN-PLAYERCELEB_AR": case "ANIMATE-IN-BOWLERDETAILS": case "ANIMATE-IN-BATMILEDETAILS":
 		case "ANIMATE-IN-COUNT_AR": case "ANIMATE-IN-POSITION_LANDMARK": case "ANIMATE-TOSS_AR": case "ANIMATE-IN-RUNRATE_AR":
 			
-			switch (session_selected_broadcaster.toUpperCase()) {
-			case "T20_MUMBAI_AR":
+			switch (config.getBroadcaster().toUpperCase()) {
+			case "T20_MUMBAI_AR": case "BARODA_AR":
 				switch (whatToProcess.toUpperCase()) {
 				case "ANIMATE-IN-THISSERIES":
 					if(infobar.isInfobar_on_screen() == true) {
-						processAnimation(print_writer, "FF_In", "START", session_selected_broadcaster,1);
+						processAnimation(print_writer, "FF_In", "START", config.getBroadcaster(),1);
 						TimeUnit.MILLISECONDS.sleep(200);
 					}
 					break;
 				}
 				switch (whatToProcess.toUpperCase()) {
 				case "ANIMATE-IN-POSITION_LANDMARK":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "POSITION_LANDMARK";
 					break;
 				case "ANIMATE-IN-COUNT_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "COUNT_AR";
 					break;
 				case "ANIMATE-IN-BATMILEDETAILS":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "BATMILEDETAILS";
 					break;
 				case "ANIMATE-IN-BOWLERDETAILS":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "BOWLERDETAILS";
 					break;	
 				case "ANIMATE-IN-PLAYERCELEB_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "PLAYERCELEB_AR";
 					break;
 				case "ANIMATE-IN-TEAMCELEB_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "TEAMCELEB_AR";
 					break;
 				case "ANIMATE-IN-THISOVER_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "THISOVER_AR";
 					break;
 				case "ANIMATE-IN-MATCH_ANIMATION_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "MATCH_ANIMATION_AR";
 					break;
 				case "ANIMATE-IN-EQUATION_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "EQUATION_AR";
 					break;
 				case "ANIMATE-IN-FREETEXT_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "FREETEXT_AR";
 					break;
 				case "ANIMATE-IN-BOUNDARIES_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "BOUNDARIES_AR";
 					break;
 				case "ANIMATE-IN-COMPARISON_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "COMPARISON_AR";
 					break;
 				case "ANIMATE-IN-TARGET_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "TARGET_AR";
 					break;
 				case "ANIMATE-TOSS_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "TOSS_AR";
 					break;
 				case "ANIMATE-IN-RUNRATE_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "RUNRATE_AR";
 					break;
 				case "ANIMATE-IN-MATCH_PROMO":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "MATCHID_PROMO_AR";
 					break;
 				case "ANIMATE-IN-MATCHID_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "MATCHID_AR";
 					break;
 				case "ANIMATE-IN-PROJECTED_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "PROJECTED_AR";
 					break;	
@@ -353,7 +354,7 @@ public class T20_MUMBAI_AR extends Scene{
 				case "ANIMATE-OUT":
 					switch(which_graphics_onscreen) {
 					case "INFOBAR":
-						processAnimation(print_writer, "Out", "START", session_selected_broadcaster,1);
+						processAnimation(print_writer, "Out", "START", config.getBroadcaster(),1);
 						which_graphics_onscreen = "";
 						infobar.setInfobar_on_screen(false);
 						break;
@@ -361,7 +362,7 @@ public class T20_MUMBAI_AR extends Scene{
 					case "FREETEXT_AR": case "PROJECTED_AR": case "MATCHID_PROMO_AR": case "MATCHID_AR":
 					case "TARGET_AR": case "COMPARISON_AR": case "BOUNDARIES_AR": case "PLAYERCELEB_AR":
 					case "BATMILEDETAILS": case "BOWLERDETAILS": case "COUNT_AR": case "POSITION_LANDMARK": case "TOSS_AR": case "RUNRATE_AR":
-						processAnimation(print_writer, "Out", "START", session_selected_broadcaster,1);
+						processAnimation(print_writer, "Out", "START", config.getBroadcaster(),1);
 						which_graphics_onscreen = "";
 						break;
 					}
@@ -376,7 +377,7 @@ public class T20_MUMBAI_AR extends Scene{
 	public void processAnimation(PrintWriter print_writer, String animationName,String animationCommand, String which_broadcaster,int which_layer)
 	{
 		switch(which_broadcaster.toUpperCase()) {
-		case "T20_MUMBAI_AR":
+		case "T20_MUMBAI_AR": case "BARODA_AR":
 			switch(which_layer) {
 			case 1:
 				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*" + animationName + " " + animationCommand + ";");
@@ -587,7 +588,7 @@ public class T20_MUMBAI_AR extends Scene{
 	public void populateBoundariesAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "T20_MUMBAI_AR":
+			case "T20_MUMBAI_AR": case "BARODA_AR":
 				for(Inning inn : match.getMatch().getInning()) {
 					if (inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
 						
@@ -627,7 +628,7 @@ public class T20_MUMBAI_AR extends Scene{
 	public void populateComparisonAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "T20_MUMBAI_AR":
+			case "T20_MUMBAI_AR": case "BARODA_AR":
 				
 				for(Inning inn : match.getMatch().getInning()) {
 					if (inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
@@ -692,7 +693,7 @@ public class T20_MUMBAI_AR extends Scene{
 			MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "T20_MUMBAI_AR":
+			case "T20_MUMBAI_AR": case "BARODA_AR":
 				String match_name="";
 				
 				//print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*CONTAINER SET ACTIVE 0;");
@@ -770,7 +771,7 @@ public class T20_MUMBAI_AR extends Scene{
 	public void populateMatchIdAnimationAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "T20_MUMBAI_AR":
+			case "T20_MUMBAI_AR": case "BARODA_AR":
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lg_HomeTeamLogo " + logo_path2 + 
 						match.getSetup().getHomeTeam().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lg_AwayTeamLogo " + logo_path2 + 
@@ -816,7 +817,7 @@ public class T20_MUMBAI_AR extends Scene{
 	public void populateMatchIdAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "T20_MUMBAI_AR":
+			case "T20_MUMBAI_AR": case "BARODA_AR":
 				
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHomeTeam " + 
 						match.getSetup().getHomeTeam().getTeamName4() + ";");
@@ -860,7 +861,7 @@ public class T20_MUMBAI_AR extends Scene{
 			String session_selected_broadcaster) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "T20_MUMBAI_AR":
+		case "T20_MUMBAI_AR": case "BARODA_AR":
 			
 			print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$RestData*CONTAINER SET ACTIVE 0;");
 			print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$Select$Logos*CONTAINER SET ACTIVE 1;");
@@ -902,7 +903,7 @@ public class T20_MUMBAI_AR extends Scene{
 			String session_selected_broadcaster,Configuration config) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "T20_MUMBAI_AR":
+		case "T20_MUMBAI_AR": case "BARODA_AR":
 			
 			inning = match.getMatch().getInning().stream().filter(inn -> inn.getInningNumber() == Inning).findAny().orElse(null);
 			
@@ -981,8 +982,8 @@ public class T20_MUMBAI_AR extends Scene{
 	public void populateTeamCelebAR(PrintWriter print_writer,MatchAllData match,String data ,String data2,List<Team> tm,String session_selected_broadcaster) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "T20_MUMBAI_AR":
-			
+		case "T20_MUMBAI_AR": case "BARODA_AR":
+			 
 			print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$RestData*CONTAINER SET ACTIVE 0;");
 			print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$Select$Logos*CONTAINER SET ACTIVE 1;");
 			
@@ -1019,7 +1020,7 @@ public class T20_MUMBAI_AR extends Scene{
 	public void populateFreeTextAR(PrintWriter print_writer,MatchAllData match,String data,String session_selected_broadcaster) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "T20_MUMBAI_AR":
+		case "T20_MUMBAI_AR": case "BARODA_AR":
 			String text1_to_return = "",text2_to_return = "";
 			
 			switch (data) {
@@ -1108,7 +1109,7 @@ public class T20_MUMBAI_AR extends Scene{
 	public void populateProjectedAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "T20_MUMBAI_AR":
+			case "T20_MUMBAI_AR": case "BARODA_AR":
 				String[] proj_score_rate = new String[CricketFunctions.projectedScore(match).size()];
 			    for (int i = 0; i < CricketFunctions.projectedScore(match).size(); i++) {
 			    	proj_score_rate[i] = CricketFunctions.projectedScore(match).get(i);
@@ -1197,18 +1198,27 @@ public class T20_MUMBAI_AR extends Scene{
 							+ " D:/EverestCricket/Everest_MT20/Flags/"+ match.getSetup().getAwayTeam().getTeamName4() +"/F000000.dds;");
 				}
 				
-				print_writer.println("LAYER1*EVEREST*GLOBAL PREVIEW ON;");
-				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In STOP;");
-				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*Out STOP;");
-				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In SHOW 12.0;");
-				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*Out SHOW 0.0;");
-				print_writer.println("LAYER1*EVEREST*GLOBAL SNAPSHOT_PATH C:/Temp/Preview.png;");
-				print_writer.println("LAYER1*EVEREST*GLOBAL SNAPSHOT 1920 1080;");
-				TimeUnit.SECONDS.sleep(1);
-				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*Out SHOW 0.0;");
-				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In SHOW 0.0;");
-				print_writer.println("LAYER1*EVEREST*GLOBAL PREVIEW OFF;");
+				this.status = CricketUtil.SUCCESSFUL;	
+			}
+			break;
+		case "BARODA_AR":
+			if (match == null) {
+				this.status = "ERROR: Match is null";
+			} else if (match.getMatch().getInning() == null) {
+				this.status = "ERROR: Inning is null";
+			} else {
 				
+				if(match.getSetup().getTossWinningTeam() == match.getSetup().getHomeTeamId()) {
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHomeTeamName " + 
+							match.getSetup().getHomeTeam().getTeamName4().toUpperCase() + " WON THE TOSS " + ";");
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tAwayTeamName " 
+							+ "CHOSE TO " + match.getSetup().getTossWinningDecision() + ";");
+				}else {
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHomeTeamName " + 
+							match.getSetup().getAwayTeam().getTeamName4().toUpperCase() + " WON THE TOSS " + ";");
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tAwayTeamName " 
+							+ "CHOSE TO " + match.getSetup().getTossWinningDecision() + ";");
+				}
 				
 				this.status = CricketUtil.SUCCESSFUL;	
 			}
@@ -1218,7 +1228,7 @@ public class T20_MUMBAI_AR extends Scene{
 	public void populateTargetAR(PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "T20_MUMBAI_AR":
+			case "T20_MUMBAI_AR": case "BARODA_AR":
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tRR " + "TARGET"  +";");
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$Flags$Flag1_Grp$Flag1*FUNCTION*IMAGESEQUENCE2 SET PATH D:/EverestCricket/Everest_MT20/Flags/"+ 
 				match.getMatch().getInning().get(1).getBatting_team().getTeamName4() +"/F000000.dds;");
@@ -1318,7 +1328,7 @@ public class T20_MUMBAI_AR extends Scene{
 	public void populateRunRate(PrintWriter print_writer,boolean is_this_updating, MatchAllData match, String session_selected_broadcaster,String valueToProcess) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "T20_MUMBAI_AR":
+		case "T20_MUMBAI_AR": case "BARODA_AR":
 		     switch (valueToProcess.split(",")[1]) {
 			case "CURRENT RUNRATE":
 				for(Inning inn : match.getMatch().getInning()) {
@@ -1394,7 +1404,7 @@ public class T20_MUMBAI_AR extends Scene{
 	public void populateCountAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "T20_MUMBAI_AR":
+			case "T20_MUMBAI_AR": case "BARODA_AR":
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET img_Logo1 " + logo_path2 + 
 						match.getSetup().getHomeTeam().getTeamBadge() + category + CricketUtil.PNG_EXTENSION + ";");
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET img_Logo2 " + logo_path2 + 
@@ -1439,7 +1449,7 @@ public class T20_MUMBAI_AR extends Scene{
 	public void populateThisOver(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "T20_MUMBAI_AR":
+			case "T20_MUMBAI_AR": case "BARODA_AR":
 				
 				for(int i=1;i<=9;i++) {
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue0"+ i + " ;");
@@ -1574,7 +1584,7 @@ public class T20_MUMBAI_AR extends Scene{
 	public void populateEquationAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "T20_MUMBAI_AR":
+			case "T20_MUMBAI_AR": case "BARODA_AR":
 				for(Inning inn : match.getMatch().getInning()) {
 					if(inn.getInningNumber() == 2 && inn.getIsCurrentInning().equalsIgnoreCase("YES")) {
 						
@@ -1649,7 +1659,7 @@ public class T20_MUMBAI_AR extends Scene{
 			break;
 		}	
 	}	
-	public void AnimateOutGraphics(PrintWriter print_writer, String whichGraphic) throws InterruptedException
+	public void AnimateOutGraphics(PrintWriter print_writer, String whichGraphic, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch(whichGraphic) {
 		case "INFOBAR":

@@ -29,8 +29,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import com.cricket.archive.Archive;
 import com.cricket.broadcaster.EVEREST_APL_T20;
+import com.cricket.broadcaster.EVEREST_AR_VR;
 import com.cricket.broadcaster.EVEREST_LEGENDS_90;
 import com.cricket.broadcaster.KERALA_T20;
+import com.cricket.broadcaster.T20_MUMBAI_AR;
 import com.cricket.containers.Infobar;
 import com.cricket.containers.Scene;
 import com.cricket.model.BattingCard;
@@ -87,8 +89,8 @@ public class IndexController
 //	public static RPL this_rpl;
 //	public static RSWS this_rsws;
 //	public static FAIR_BREAK_AR this_fairbreak_ar;
-//	public static T20_MUMBAI_AR this_ar_t20Mumbai;
-//	public static EVEREST_AR_VR this_Everest_AR_VR;
+	public static T20_MUMBAI_AR this_ar_t20Mumbai;
+	public static EVEREST_AR_VR this_Everest_AR_VR;
 //	public static MPL this_mpl;
 //	public static ASSAM this_assam;
 //	public static ACC this_acc;
@@ -328,11 +330,15 @@ public class IndexController
 				session_selected_scenes.add(new Scene("D:/DOAD_In_House_Everest/Everest_Cricket/Everest_AR/Scenes/Ident.sum", "1")); // Front layer
 				session_selected_scenes.add(new Scene("","2"));
 				break;
-			case "T20_MUMBAI_AR":
+			case "T20_MUMBAI_AR": case "BARODA_AR":
 				session_selected_scenes.add(new Scene("D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/AR_Matt_Scene/MatchID_Animation_MT20.sum", "1")); // Front layer
 				session_selected_scenes.add(new Scene("","2"));
 				break;
 			case "EVEREST_AR_VR":
+				session_selected_scenes.add(new Scene("D:/Everest_VR_AR/Scenes/MATCH _ID.sum","1")); // Front layer
+				session_selected_scenes.add(new Scene("","2"));
+				break;
+			case "LEGENDS_90_AR":
 				session_selected_scenes.add(new Scene("D:/Everest_VR_AR/Scenes/MATCH _ID.sum","1")); // Front layer
 				session_selected_scenes.add(new Scene("","2"));
 				break;
@@ -522,14 +528,14 @@ public class IndexController
 //					this_fairbreak_ar.infobar = new Infobar();
 					session_selected_scenes.get(0).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_broadcaster);
 					break;
-				case "T20_MUMBAI_AR":
-//					this_ar_t20Mumbai = new T20_MUMBAI_AR();
-//					this_ar_t20Mumbai.infobar = new Infobar();
+				case "T20_MUMBAI_AR": case "BARODA_AR":
+					this_ar_t20Mumbai = new T20_MUMBAI_AR();
+					this_ar_t20Mumbai.infobar = new Infobar();
 					session_selected_scenes.get(0).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_broadcaster);
 					break;
 				case "EVEREST_AR_VR":
-//					this_Everest_AR_VR = new EVEREST_AR_VR();
-//					this_Everest_AR_VR.infobar = new Infobar();
+					this_Everest_AR_VR = new EVEREST_AR_VR();
+					this_Everest_AR_VR.infobar = new Infobar();
 					System.out.println("COming inside controller");
 					session_selected_scenes.get(0).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_broadcaster);
 					break;
@@ -1059,12 +1065,12 @@ public class IndexController
 //			case "FAIR_BREAK_AR":
 //				return (String) this_fairbreak_ar.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
 //						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,session_configuration);
-//			case "T20_MUMBAI_AR":
-//				return (String) this_ar_t20Mumbai.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
-//						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,session_configuration);
-//			case "EVEREST_AR_VR":
-//				return (String) this_Everest_AR_VR.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
-//						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,session_configuration);
+			case "T20_MUMBAI_AR": case "BARODA_AR":
+				return (String) this_ar_t20Mumbai.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
+						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,session_configuration);
+			case "EVEREST_AR_VR":
+				return (String) this_Everest_AR_VR.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
+						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,session_configuration);
 //			
 //			case "DOAD_AR":
 //				return (String) session_llc_ar.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
@@ -1251,12 +1257,12 @@ public class IndexController
 //			case "FAIR_BREAK_AR":
 //				return (String) this_fairbreak_ar.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
 //						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,session_configuration);	
-//			case "T20_MUMBAI_AR":
-//				return (String) this_ar_t20Mumbai.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
-//						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,session_configuration);
-//			case "EVEREST_AR_VR":
-//				return (String) this_Everest_AR_VR.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
-//						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,session_configuration);
+			case "T20_MUMBAI_AR": case "BARODA_AR":
+				return (String) this_ar_t20Mumbai.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
+						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,session_configuration);
+			case "EVEREST_AR_VR":
+				return (String) this_Everest_AR_VR.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
+						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,session_configuration);
 //			
 //			case "ICPL_AR":
 //				return (String) this_icpl_ar.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
@@ -1449,11 +1455,12 @@ public class IndexController
 				case "FAIR_BREAK_AR":
 //					this_fairbreak_ar.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
 					break;
-				case "T20_MUMBAI_AR":
-//					this_ar_t20Mumbai.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
+				case "T20_MUMBAI_AR": case "BARODA_AR":
+					this_ar_t20Mumbai.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0));
 					break;
 				case "EVEREST_AR_VR":
-//					this_Everest_AR_VR.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0),session_configuration,cricketService);
+					this_Everest_AR_VR.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration).get(0),
+							session_configuration,cricketService);
 					break;
 				
 				case "DOAD_AR":
@@ -1561,14 +1568,14 @@ public class IndexController
 //				this_fairbreak_ar.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
 //						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,session_configuration);
 //				break;
-//			case "T20_MUMBAI_AR":
-//				this_ar_t20Mumbai.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
-//						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,session_configuration);
-//				break;
-//			case "EVEREST_AR_VR":
-//				this_Everest_AR_VR.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
-//						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,session_configuration);
-//				break;
+			case "T20_MUMBAI_AR": case "BARODA_AR":
+				this_ar_t20Mumbai.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
+						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,session_configuration);
+				break;
+			case "EVEREST_AR_VR":
+				this_Everest_AR_VR.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
+						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics,session_configuration);
+				break;
 //			
 //			case "DOAD_AR":
 //				session_llc_ar.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 

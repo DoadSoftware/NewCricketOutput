@@ -164,7 +164,7 @@ public class Scene {
 			}
 			break;
 		case "DOAD_AR": case "ICPL_AR": case "FAIR_BREAK_AR": case "T20_MUMBAI_AR": case "EVEREST_AR_VR": case "PLOTTER":
-		case "EUROPE_LEAGUE":	
+		case "EUROPE_LEAGUE": case "BARODA_AR":
 			switch(this.which_layer.toUpperCase()) {
 			case "1":
 				print_writer.println("LAYER1*EVEREST*SCENE LOAD " + this.scene_path + ";");

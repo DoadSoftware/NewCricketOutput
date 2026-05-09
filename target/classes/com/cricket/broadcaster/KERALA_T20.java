@@ -137,6 +137,7 @@ public class KERALA_T20 extends Scene {
 		}
 		return infobar;
 	}
+	
 
 	public Infobar updateInfobar(List<Scene> scenes, MatchAllData match, boolean show_speed,
 			List<PrintWriter> print_writer) throws Exception {

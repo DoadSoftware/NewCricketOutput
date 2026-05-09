@@ -6059,6 +6059,9 @@ function processCricketProcedures(whatToProcess) {
 				case 'T20_MUMBAI_AR':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_MT20/Scenes/Toss.sum';
 					break;
+				case 'BARODA_AR':
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/AR_Matt_Scene/Toss.sum';
+					break;
 				case 'EVEREST_AR_VR':
 					valueToProcess = 'C:/Everest_VR_AR/Scenes/TOSS_RESULT.sum';
 					break;	

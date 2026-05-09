@@ -971,58 +971,44 @@
 			  							
 			  	</c:if>
 			  	
-			  	<c:if test="${(session_selected_broadcaster == 'T20_MUMBAI_AR') || (session_selected_broadcaster == 'EVEREST_AR_VR')}" >
+			  	<c:if test="${(session_selected_broadcaster == 'T20_MUMBAI_AR') || (session_selected_broadcaster == 'BARODA_AR')}" >
 			  	
 			  	<!-- start -->
 			  	
-			  	<!-- <hr style="margin:15px 0; border:1px solid #ccc;">
+			  	<!--   <hr style="margin:15px 0; border:1px solid #ccc;">
                 <p style="font-weight:bold; color:#2E008B; margin-bottom:8px;">AR Graphic Buttons</p>
                  
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="matchId_ar_score_graphic_btn" id="matchId_ar_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button>	
+			  		
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="toss_ar_graphic_btn" id="toss_ar_graphic_btn" onclick="processUserSelection(this)"> Toss </button>
 			  	
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="positionlandmark_graphic_btn" id="positionlandmark_graphic_btn" onclick="processUserSelection(this)"> Batsman In AT</button>
 			  	
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="Next_ar_graphic_btn" id="Next_ar_graphic_btn" onclick="processUserSelection(this)"> Next TO Bat </button>
+			  		
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="toss_ar_graphic_btn" id="toss_ar_graphic_btn" onclick="processUserSelection(this)"> Toss </button>	
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="tosscoin_ar_graphic_btn" id="tosscoin_ar_graphic_btn" onclick="processUserSelection(this)"> Toss Coin Flip </button> -->	
-			  	
-			  	<!-- stop -->
+			  		name="tosscoin_ar_graphic_btn" id="tosscoin_ar_graphic_btn" onclick="processUserSelection(this)"> Toss Coin Flip </button> 	
 			  	
 			  	
-			  <!-- 	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="target_ar_score_graphic_btn" id="target_ar_score_graphic_btn" onclick="processUserSelection(this)"> Target </button> -->
+			   	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="target_ar_score_graphic_btn" id="target_ar_score_graphic_btn" onclick="processUserSelection(this)"> Target </button> 
 			  		
-			  		
-			  	<!-- start -->	
-			  		
-			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  	 <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="targetimage_ar_score_graphic_btn" id="targetimage_ar_score_graphic_btn" onclick="processUserSelection(this)"> Target Image </button>	
 			  	
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="projected_ar_score_graphic_btn" id="projected_ar_score_graphic_btn" onclick="processUserSelection(this)"> Projected </button> -->
-			  	
-			  	<!-- stop -->
+			  		name="projected_ar_score_graphic_btn" id="projected_ar_score_graphic_btn" onclick="processUserSelection(this)"> Projected </button> 
 			  	
 			  	
+			  	 <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  	 	name="equation_vr_score_graphic_btn" id="equation_vr_score_graphic_btn" onclick="processUserSelection(this)"> Equation </button> 
 			  	
 			  	
-			  	
-			  		
-			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button" -->
-			  	<!-- 	name="equation_vr_score_graphic_btn" id="equation_vr_score_graphic_btn" onclick="processUserSelection(this)"> Equation </button> -->
-			  	
-			  	
-			  	
-			  	<!-- start -->	
-			  	
-			  	
-			  	
-			  	<!-- <button style="background-color:#e0ffff;color:#000000;" class="btn btn-sm" type="button"
+			  	 <button style="background-color:#e0ffff;color:#000000;" class="btn btn-sm" type="button"
 			  		name="ltpartnership_graphic_btn" id="ltpartnership_graphic_btn" onclick="processUserSelection(this)"> Current Partnership </button>	
 			  	
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
@@ -1038,30 +1024,124 @@
 					  		name="playerprofileeverest_graphic_btn" id="playerprofileeverest_graphic_btn" onclick="processUserSelection(this)">PlayerProfile Bat</button>
 			  		
 			  	<button style="background-color:#ffb6c1;color:#000000;" class="btn btn-sm" type="button"
-					  		name="playerprofileballeverest_graphic_btn" id="playerprofileballeverest_graphic_btn" onclick="processUserSelection(this)">PlayerProfile Ball</button> -->
+					  		name="playerprofileballeverest_graphic_btn" id="playerprofileballeverest_graphic_btn" onclick="processUserSelection(this)">PlayerProfile Ball</button> 
 				
-				
-				<!-- stop -->
-				
-				
-				
-				
-				<!-- <button style="background-color:#ffb6c1;color:#000000;" class="btn btn-sm" type="button"
-					  		name="doubleplayerprofileballeverest_graphic_btn" id="doubleplayerprofileballeverest_graphic_btn" onclick="processUserSelection(this)">PlayerProfile Double</button> -->	  				
+				 <button style="background-color:#ffb6c1;color:#000000;" class="btn btn-sm" type="button"
+					  		name="doubleplayerprofileballeverest_graphic_btn" id="doubleplayerprofileballeverest_graphic_btn" onclick="processUserSelection(this)">PlayerProfile Double</button> 	  				
 			  	
-			  	
-			  	
-			  	<!-- start -->
-			  	
-			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  	 <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="equationintargetimage_ar_score_graphic_btn" id="equationintargetimage_ar_score_graphic_btn" onclick="processUserSelection(this)"> Equation </button> -->
 			  	
-			  	<!-- stop -->
 			  	
 			  	
-			  	<!--  -->
 			  	
 			  	
+			  	<!--   <hr style="margin:15px 0; border:1px solid #ccc;">
+                <p style="font-weight:bold; color:#2E008B; margin-bottom:8px;">VR Graphic Buttons</p>
+                
+                <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="boundaries_vr_score_graphic_btn" id="boundaries_vr_score_graphic_btn" onclick="processUserSelection(this)"> Boundaries </button>
+                
+                <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="projected_vr_score_graphic_btn" id="projected_vr_score_graphic_btn" onclick="processUserSelection(this)"> Projected </button>
+			  	
+                <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="comparison_vr_score_graphic_btn" id="comparison_vr_score_graphic_btn" onclick="processUserSelection(this)"> Comparison VR </button>
+			  	
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="freetext_ar_graphic_btn" id="freetext_ar_graphic_btn" onclick="processUserSelection(this)"> Free Text </button>
+			  	
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="target_vr_score_graphic_btn" id="target_vr_score_graphic_btn" onclick="processUserSelection(this)"> Target VR </button>
+			  	
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="thisover_vr_graphic_btn" id="thisover_vr_graphic_btn" onclick="processUserSelection(this)"> This Over </button>
+			  			
+			  	
+			  		
+			    <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="equation_ar_score_graphic_btn" id="equation_ar_score_graphic_btn" onclick="processUserSelection(this)"> Equation </button> 
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  	name="matchId_vr_score_graphic_btn" id="matchId_vr_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button> -->
+				 
+			  		
+			  	
+			  <!-- <hr style="margin:15px 0; border:1px solid #ccc;">
+                <p style="font-we ight:bold; color:#2E008B; margin-bottom:8px;">AR New Added Buttons</p>
+                
+                	
+			  	  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="equationimage_ar_score_graphic_btn" id="equationimage_ar_score_graphic_btn" onclick="processUserSelection(this)"> Equation Image </button>		
+                
+               <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="phase_graphic_btn" id="phase_graphic_btn" onclick="processUserSelection(this)"> Phase (Ctrl+H)</button>  
+                
+                 <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="countdown_graphic_btn" id="countdown_graphic_btn" onclick="processUserSelection(this)"> Count Down </button> -->
+			  
+			 
+	        	 <hr style="margin:15px 0; border:1px solid #ccc;">
+                <p style="font-weight:bold; color:#2E008B; margin-bottom:8px;">VR Graphic Buttons</p>	
+			  		
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="toss_ar_graphic_btn" id="toss_ar_graphic_btn" onclick="processUserSelection(this)"> Toss </button>
+			  		
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="boundaries_ar_score_graphic_btn" id="boundaries_ar_score_graphic_btn" onclick="processUserSelection(this)"> Boundaries </button>	
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="playercelebration_ar_graphic_btn" id="playercelebration_ar_graphic_btn" onclick="processUserSelection(this)"> Player Celebration </button> 
+			  		
+			  		
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="equation_ar_score_graphic_btn" id="equation_ar_score_graphic_btn" onclick="processUserSelection(this)"> Equation </button>
+		    	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="freetext_ar_graphic_btn" id="freetext_ar_graphic_btn" onclick="processUserSelection(this)"> Free Text </button> 
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="matchId_vr_score_graphic_btn" id="matchId_vr_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button>
+			  		
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="rate_vr_score_graphic_btn" id="rate_vr_score_graphic_btn" onclick="processUserSelection(this)"> Run rate </button>
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="phase_graphic_btn" id="phase_graphic_btn" onclick="processUserSelection(this)"> Phase </button>
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="LastXBalls_graphic_btn" id="LastXBalls_graphic_btn" onclick="processUserSelection(this)"> Last X Balls </button>				
+			  	
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="matchId_animation_score_graphic_btn" id="matchId_animation_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident Animation </button>
+			  	
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="projected_ar_score_graphic_btn" id="projected_ar_score_graphic_btn" onclick="processUserSelection(this)"> Projected </button>
+			  	
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="matchId_ar_score_graphic_btn" id="matchId_ar_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button>
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="runrate_ar_score_graphic_btn" id="runrate_ar_score_graphic_btn" onclick="processUserSelection(this)"> Run Rates</button> 
+			  		
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="teamcelebration_ar_graphic_btn" id="teamcelebration_ar_graphic_btn" onclick="processUserSelection(this)"> Team Celebration </button>
+			  				
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="Batmile_ar_graphic_btn" id="Batmile_ar_graphic_btn" onclick="processUserSelection(this)"> Bat MileStone </button>	
+			  	
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="Ballmile_ar_graphic_btn" id="Ballmile_ar_graphic_btn" onclick="processUserSelection(this)"> Ball MileStone </button>	
+			  				
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="comparison_ar_score_graphic_btn" id="comparison_ar_score_graphic_btn" onclick="processUserSelection(this)"> Comparison </button> 
+			  	
+			  	<button style="background-color:#ffe2db;color:#000000;" class="btn btn-sm" type="button"
+		  			name="match_promo_graphic_btn" id="match_promo_graphic_btn" onclick="processUserSelection(this)"> FF Match Promo  </button>
+		  		
+		  		<button style="background-color:#ffe2db;color:#000000;" class="btn btn-sm" type="button"
+		  			name="match_promo_animation_graphic_btn" id="match_promo_animation_graphic_btn" onclick="processUserSelection(this)"> FF Match Promo Animation </button> 	
+			  	
+			  		
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="count_ar_score_graphic_btn" id="count_ar_score_graphic_btn" onclick="processUserSelection(this)"> CountDown </button>	
+			  	 					
+			  	</c:if>
+			  	
+			  	<c:if test="${(session_selected_broadcaster == 'EVEREST_AR_VR')}" >
 			  	
 			  	 <hr style="margin:15px 0; border:1px solid #ccc;">
                 <p style="font-weight:bold; color:#2E008B; margin-bottom:8px;">VR Graphic Buttons</p>
@@ -1090,151 +1170,7 @@
 			  		name="equation_ar_score_graphic_btn" id="equation_ar_score_graphic_btn" onclick="processUserSelection(this)"> Equation </button> 
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  	name="matchId_vr_score_graphic_btn" id="matchId_vr_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button>
-				 
-			  		
-			  	
-			  	<!-- <hr style="margin:15px 0; border:1px solid #ccc;">
-                <p style="font-we ight:bold; color:#2E008B; margin-bottom:8px;">AR New Added Buttons</p>
-                
-                	--!>
-			  	 <!-- 	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="equationimage_ar_score_graphic_btn" id="equationimage_ar_score_graphic_btn" onclick="processUserSelection(this)"> Equation Image </button>		
-                
-               <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="phase_graphic_btn" id="phase_graphic_btn" onclick="processUserSelection(this)"> Phase (Ctrl+H)</button>  -->
-                
-               <!--  <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="countdown_graphic_btn" id="countdown_graphic_btn" onclick="processUserSelection(this)"> Count Down </button>
-			  
-			  -->
-	        	<!-- <hr style="margin:15px 0; border:1px solid #ccc;">
-                <p style="font-weight:bold; color:#2E008B; margin-bottom:8px;">VR Graphic Buttons</p>	
-			  		
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="boundaries_ar_score_graphic_btn" id="boundaries_ar_score_graphic_btn" onclick="processUserSelection(this)"> Boundaries </button>	
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="playercelebration_ar_graphic_btn" id="playercelebration_ar_graphic_btn" onclick="processUserSelection(this)"> Player Celebration </button> 
-			  		
-			  		
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="equation_ar_score_graphic_btn" id="equation_ar_score_graphic_btn" onclick="processUserSelection(this)"> Equation </button>
-		    	 <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="freetext_ar_graphic_btn" id="freetext_ar_graphic_btn" onclick="processUserSelection(this)"> Free Text </button> 
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  	name="matchId_vr_score_graphic_btn" id="matchId_vr_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button>
-				
-			  
-			  	
-			  		
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="rate_vr_score_graphic_btn" id="rate_vr_score_graphic_btn" onclick="processUserSelection(this)"> Run rate </button>
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="phase_graphic_btn" id="phase_graphic_btn" onclick="processUserSelection(this)"> Phase </button>
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="LastXBalls_graphic_btn" id="LastXBalls_graphic_btn" onclick="processUserSelection(this)"> Last X Balls </button>				
-			  	
-			  	
-			  	 -->
-			  	<!-- 	
-			  		 -->
-			  	
-			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="matchId_animation_score_graphic_btn" id="matchId_animation_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident Animation </button>
-			  	
-			  	
-			  	
-			  	
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="projected_ar_score_graphic_btn" id="projected_ar_score_graphic_btn" onclick="processUserSelection(this)"> Projected </button>
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="toss_ar_graphic_btn" id="toss_ar_graphic_btn" onclick="processUserSelection(this)"> Toss </button>
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="matchId_ar_score_graphic_btn" id="matchId_ar_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button>
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="runrate_ar_score_graphic_btn" id="runrate_ar_score_graphic_btn" onclick="processUserSelection(this)"> Run Rates</button>  -->
-			  		
-			  	
-			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="teamcelebration_ar_graphic_btn" id="teamcelebration_ar_graphic_btn" onclick="processUserSelection(this)"> Team Celebration </button>
-			  		
-			  	
-			  		
-			  	
-			  			
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="Batmile_ar_graphic_btn" id="Batmile_ar_graphic_btn" onclick="processUserSelection(this)"> Bat MileStone </button>	
-			  	
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="Ballmile_ar_graphic_btn" id="Ballmile_ar_graphic_btn" onclick="processUserSelection(this)"> Ball MileStone </button>	
-			  				
-			  	<!-- 
-			  
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="comparison_ar_score_graphic_btn" id="comparison_ar_score_graphic_btn" onclick="processUserSelection(this)"> Comparison </button> 
-			  	
-			  	<button style="background-color:#ffe2db;color:#000000;" class="btn btn-sm" type="button"
-		  			name="match_promo_graphic_btn" id="match_promo_graphic_btn" onclick="processUserSelection(this)"> FF Match Promo  </button>
-		  		<!-- <button style="background-color:#ffe2db;color:#000000;" class="btn btn-sm" type="button"
-		  			name="match_promo_animation_graphic_btn" id="match_promo_animation_graphic_btn" onclick="processUserSelection(this)"> FF Match Promo Animation </button> 	
-			  	
-			  		
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="count_ar_score_graphic_btn" id="count_ar_score_graphic_btn" onclick="processUserSelection(this)"> CountDown </button>	
-			  	 
-			  	<!--
-			  	
-			  							
-			  	</c:if>
-			  	
-			  	<c:if test="${(session_selected_broadcaster == 'FAIR_BREAK_AR')}">
-			  	
-			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="teamcelebration_ar_graphic_btn" id="teamcelebration_ar_graphic_btn" onclick="processUserSelection(this)"> Team Celebration </button>
-			  		
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="playercelebration_ar_graphic_btn" id="playercelebration_ar_graphic_btn" onclick="processUserSelection(this)"> Player Celebration </button> -->	
-			  	
-			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="Opener_ar_graphic_btn" id="Opener_ar_graphic_btn" onclick="processUserSelection(this)"> Opener </button>
-			  		
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="positionlandmark_graphic_btn" id="positionlandmark_graphic_btn" onclick="processUserSelection(this)"> Batsman In AT</button>
-			  			
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="Batmile_ar_graphic_btn" id="Batmile_ar_graphic_btn" onclick="processUserSelection(this)"> Bat MileStone </button>	
-			  	
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="Ballmile_ar_graphic_btn" id="Ballmile_ar_graphic_btn" onclick="processUserSelection(this)"> Ball MileStone </button>	
-			  		
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="thispart_ar_graphic_btn" id="thispart_ar_graphic_btn" onclick="processUserSelection(this)"> Current Partnership </button>
-			  	
-			  
-			  						
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="thisover_ar_graphic_btn" id="thisover_ar_graphic_btn" onclick="processUserSelection(this)"> This Over </button>
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="boundaries_ar_score_graphic_btn" id="boundaries_ar_score_graphic_btn" onclick="processUserSelection(this)"> Boundaries </button>
-			  	
-			  	
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="target_ar_score_graphic_btn" id="target_ar_score_graphic_btn" onclick="processUserSelection(this)"> Target </button>
-			  	<button style="background-color:#ffe2db;color:#000000;" class="btn btn-sm" type="button"
-		  			name="match_promo_graphic_btn" id="match_promo_graphic_btn" onclick="processUserSelection(this)"> FF Match Promo  </button>
-		  		<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="projected_ar_score_graphic_btn" id="projected_ar_score_graphic_btn" onclick="processUserSelection(this)"> Projected </button>	
-		  		<button style="background-color:#ffe2db;color:#000000;" class="btn btn-sm" type="button"
-		  			name="match_promo_animation_graphic_btn" id="match_promo_animation_graphic_btn" onclick="processUserSelection(this)"> FF Match Promo Animation </button>	
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="matchId_ar_score_graphic_btn" id="matchId_ar_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button>
-			  		
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="count_ar_score_graphic_btn" id="count_ar_score_graphic_btn" onclick="processUserSelection(this)"> CountDown </button>	 -->
-			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="matchId_animation_score_graphic_btn" id="matchId_animation_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident Animation </button>
-			  	
-			  		 -->
-			  							
+				 				
 			  	</c:if>
 			  	
 			  	<c:if test="${(session_selected_broadcaster == 'ICPL_AR')}">
@@ -3233,6 +3169,7 @@
   				<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK')}">
   				<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK_AR')}">
   				<c:if test="${(session_selected_broadcaster != 'T20_MUMBAI_AR')}">
+  				<c:if test="${(session_selected_broadcaster != 'BARODA_AR')}">
   				<c:if test="${(session_selected_broadcaster != 'ACC_NEPAL')}">
   				<c:if test="${(session_selected_broadcaster != 'ICC_CWCU19')}">
   				<c:if test="${(session_selected_broadcaster != 'RPL')}">
@@ -3315,6 +3252,7 @@
 	  			<button style="background-color:#6a33f7;color:#FEFEFE;margin:3px" class="btn btn-sm" type="button"
 			  		name="pointstable_graphic_btn" id="pointstable_graphic_btn" onclick="processUserSelection(this)"> Points Table (P)</button>		
 			  	</div>
+			  	</c:if>
 			  	</c:if>
 			  	</c:if>
 			  	</c:if>
@@ -3426,6 +3364,7 @@
 			  	<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK')}">
 			  	<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'T20_MUMBAI_AR')}">
+			  	<c:if test="${(session_selected_broadcaster != 'BARODA_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ACC_NEPAL')}">
 			  	<c:if test="${(session_selected_broadcaster != 'EVEREST_BENGAL_T20')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ICC_CWCU19')}">
@@ -3571,6 +3510,7 @@
 			  	</c:if>
 			  	</c:if>
 			  	</c:if>
+			  	</c:if>
 			  	<div class="left">
 			  	
 			  	<c:if test="${(session_selected_broadcaster == 'APL') || (session_selected_broadcaster == 'PUNJAB_T20')}">
@@ -3650,6 +3590,7 @@
 			  	<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK')}">
 			  	<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'T20_MUMBAI_AR')}">
+			  	<c:if test="${(session_selected_broadcaster != 'BARODA_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ACC_NEPAL')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ICC_CWCU19')}">
 			  	<c:if test="${(session_selected_broadcaster != 'RPL')}">
@@ -3699,6 +3640,7 @@
 			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="this_series_stats_graphic_btn" id="this_series_stats_graphic_btn" onclick="processUserSelection(this)"> This Series Stats </button> -->
 			  	</div>
+			  	</c:if>
 			  	</c:if>
 			  	</c:if>
 			  	</c:if>
@@ -3785,6 +3727,7 @@
 			  	<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK')}">
 			  	<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'T20_MUMBAI_AR')}">
+			  	<c:if test="${(session_selected_broadcaster != 'BARODA_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ACC_NEPAL')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ICC_CWCU19')}">
 			  	<c:if test="${(session_selected_broadcaster != 'RPL')}">
@@ -3827,6 +3770,7 @@
 				  		name="BallGriff_graphic_btn" id="BallGriff_graphic_btn" onclick="processUserSelection(this)"> Ball Griff ()</button>
 				  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 				  		name="inningbuilder_graphic_btn" id="inningbuilder_graphic_btn" onclick="processUserSelection(this)"> Inning Builder (Ctrl+I)</button>	
+				</c:if>
 				</c:if>
 				</c:if>
 				</c:if>
@@ -3923,6 +3867,7 @@
 			  	<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK')}">
 			  	<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'T20_MUMBAI_AR')}">
+			  	<c:if test="${(session_selected_broadcaster != 'BARODA_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ACC_NEPAL')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ICC_CWCU19')}">
 			  	<c:if test="${(session_selected_broadcaster != 'RPL')}">
@@ -4005,6 +3950,7 @@
 			  	</c:if>
 			  	</c:if>
 			  	</c:if>
+			  	</c:if>
 			  	<div class="left">
 				
 				<c:if test="${(session_selected_broadcaster == 'APL') || (session_selected_broadcaster == 'PUNJAB_T20')}">
@@ -4043,6 +3989,7 @@
 			  	<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK')}">
 			  	<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'T20_MUMBAI_AR')}">
+			  	<c:if test="${(session_selected_broadcaster != 'BARODA_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ACC_NEPAL')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ICC_CWCU19')}">
 			  	<c:if test="${(session_selected_broadcaster != 'RPL')}">
@@ -4064,6 +4011,7 @@
 			  	
 
 			  </div>
+			    </c:if>
 			    </c:if>
 			    </c:if>
 			    </c:if>

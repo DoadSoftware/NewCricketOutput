@@ -101,10 +101,14 @@ public class T20_MUMBAI_AR extends Scene{
 				return new ObjectMapper().writeValueAsString(cricketService.getNameSupers()).toString();
 			}
 		
-		case "POPULATE-BOUNDARIES_AR": case "POPULATE-COMPARISON_AR": case "POPULATE-TARGET_AR": case "POPULATE-MATCHID_AR": case "POPULATE-PROJECTED_AR":
-		case "POPULATE-FREE_TEXT_AR": case "POPULATE-EQUATION_AR": case "POPULATE-MATCH_ANIMATION_AR": case "POPULATE-THISOVER_AR": case "POPULATE-MATCH_PROMO":
+		case "POPULATE-BOUNDARIES_AR": case "POPULATE-TARGET_AR": case "POPULATE-MATCHID_AR":
+		case "POPULATE-FREE_TEXT_AR":  case "POPULATE-MATCH_ANIMATION_AR": case "POPULATE-THISOVER_AR": case "POPULATE-MATCH_PROMO":
 		case "POPULATE-TEAMCELEB_AR": case "POPULATE-PLAYERCELEB": case "POPULATE-MATCH_PROMO_ANIMATION": case "POPULATE-L3-BATMILEDETAILS": case "POPULATE-L3-BOWLERDETAILS":
-		case "POPULATE-COUNT_AR": case "POPULATE-FF-POSITION_LANDMARK": case "POPULATE-TOSS_AR": case "POPULATE-RUNRATE":
+		case "POPULATE-COUNT_AR": case "POPULATE-FF-POSITION_LANDMARK":  case "POPULATE-RUNRATE": 
+			
+			
+		case "POPULATE-TOSS_AR":  case "POPULATE-BOUNDARY_VR": case "POPULATE-COMPARISON_AR":  case "POPULATE-EQUATION_AR":	 
+		case "POPULATE-LASTWICKET_VR":	case "POPULATE-LASTOVER_VR": case "POPULATE-PROJECTED_AR": case "POPULATE-BUG_PARTNERSHIP":
 			
 			switch (config.getBroadcaster().toUpperCase()) {
 			case "T20_MUMBAI_AR": case "BARODA_AR":
@@ -196,6 +200,10 @@ public class T20_MUMBAI_AR extends Scene{
 				case "POPULATE-COMPARISON_AR":
 					populateComparisonAR(false,print_writer, match, config.getBroadcaster());
 					break;
+				case "POPULATE-LASTOVER_VR":
+					break;
+				case "POPULATE-LASTWICKET_VR":
+					break;
 				case "POPULATE-TARGET_AR":
 					
 					if(config.getCategory().equalsIgnoreCase("MEN")) {
@@ -208,6 +216,9 @@ public class T20_MUMBAI_AR extends Scene{
 					break;
 				case "POPULATE-TOSS_AR":
 					populateTossAR(print_writer, match, config.getBroadcaster());
+					break;
+				case "POPULATE-BOUNDARY_VR":	
+					populateBoundariesAR(true,print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-MATCHID_AR":
 					
@@ -593,6 +604,17 @@ public class T20_MUMBAI_AR extends Scene{
 					if (inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
 						
 						//print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*CONTAINER SET ACTIVE 0;");
+						
+//						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFour " + inn.getTotalFours() + ";");
+//						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSix " + inn.getTotalSixes() + ";");
+//						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " + logo_path + inn.getBatting_team().getTeamBadge().toUpperCase() + 
+//								CricketUtil.PNG_EXTENSION + ";");
+//						
+//						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFour " + inn.getTotalFours() + ";");
+//						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSix " + inn.getTotalSixes() + ";");
+//						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " + logo_path + inn.getBatting_team().getTeamBadge().toUpperCase() + 
+//								CricketUtil.PNG_EXTENSION + ";");
+						
 						
 						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFour " + inn.getTotalFours() + ";");
 						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSix " + inn.getTotalSixes() + ";");

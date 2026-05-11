@@ -1085,16 +1085,36 @@
 			  		
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="toss_ar_graphic_btn" id="toss_ar_graphic_btn" onclick="processUserSelection(this)"> Toss </button>
-			  		
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="boundaries_ar_score_graphic_btn" id="boundaries_ar_score_graphic_btn" onclick="processUserSelection(this)"> Boundaries </button>	
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="comparison_ar_score_graphic_btn" id="comparison_ar_score_graphic_btn" onclick="processUserSelection(this)"> Comparison </button> 
+			  		<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="equation_ar_score_graphic_btn" id="equation_ar_score_graphic_btn" onclick="processUserSelection(this)"> Equation </button>
+		    	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="fallofwicket_graphic_btn" id="fallofwicket_graphic_btn" onclick="processUserSelection(this)"> FallOfWicket </button>
+			  	
+			  	
+			  	 <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="lastwicket_ar_graphic_btn" id="lastwicket_ar_graphic_btn" onclick="processUserSelection(this)"> Last Wickets </button> 
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="previous_over_graphic_btn" id="previous_over_graphic_btn" onclick="processUserSelection(this)"> Previous Over </button>
+			  	
+			  	
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="projected_ar_score_graphic_btn" id="projected_ar_score_graphic_btn" onclick="processUserSelection(this)"> Projected </button>
+			  	
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button" 
+			            name="bug_partnership_graphic_btn" id="bug_partnership_graphic_btn" onclick="processUserSelection(this)"> Bug Partnership</button>
+			       
+			  	
+			  		
+			  		
+			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="playercelebration_ar_graphic_btn" id="playercelebration_ar_graphic_btn" onclick="processUserSelection(this)"> Player Celebration </button> 
 			  		
 			  		
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="equation_ar_score_graphic_btn" id="equation_ar_score_graphic_btn" onclick="processUserSelection(this)"> Equation </button>
-		    	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="freetext_ar_graphic_btn" id="freetext_ar_graphic_btn" onclick="processUserSelection(this)"> Free Text </button> 
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="matchId_vr_score_graphic_btn" id="matchId_vr_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button>
@@ -1109,8 +1129,7 @@
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="matchId_animation_score_graphic_btn" id="matchId_animation_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident Animation </button>
 			  	
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="projected_ar_score_graphic_btn" id="projected_ar_score_graphic_btn" onclick="processUserSelection(this)"> Projected </button>
+			  	
 			  	
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="matchId_ar_score_graphic_btn" id="matchId_ar_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button>
@@ -1126,8 +1145,6 @@
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="Ballmile_ar_graphic_btn" id="Ballmile_ar_graphic_btn" onclick="processUserSelection(this)"> Ball MileStone </button>	
 			  				
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="comparison_ar_score_graphic_btn" id="comparison_ar_score_graphic_btn" onclick="processUserSelection(this)"> Comparison </button> 
 			  	
 			  	<button style="background-color:#ffe2db;color:#000000;" class="btn btn-sm" type="button"
 		  			name="match_promo_graphic_btn" id="match_promo_graphic_btn" onclick="processUserSelection(this)"> FF Match Promo  </button>
@@ -1137,7 +1154,7 @@
 			  	
 			  		
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="count_ar_score_graphic_btn" id="count_ar_score_graphic_btn" onclick="processUserSelection(this)"> CountDown </button>	
+			  		name="count_ar_score_graphic_btn" id="count_ar_score_graphic_btn" onclick="processUserSelection(this)"> CountDown </button>	 -->
 			  	 					
 			  	</c:if>
 			  	

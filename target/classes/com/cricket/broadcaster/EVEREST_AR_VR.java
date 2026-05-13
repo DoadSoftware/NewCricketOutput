@@ -3,6 +3,7 @@ package com.cricket.broadcaster;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputFilter.Config;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
@@ -49,7 +50,6 @@ public class EVEREST_AR_VR extends Scene{
 	public List<StatsType> statsTypes;
 	private String slashOrDash = "-",category = "", data = ""; 
 	public Infobar infobar = new Infobar();
-	public String session_selected_broadcaster = "EVEREST_AR_VR";
 	public String which_graphics_onscreen = "";
 //	private String logo_path2 = "C:\\Everest_VR_AR\\Logos\\";
 //	private String logo_path = "C:\\Everest_VR_AR\\Logos\\";
@@ -61,13 +61,17 @@ public class EVEREST_AR_VR extends Scene{
 //	private String photo_path = "C:\\Images\\Everest_VR_AR\\Photos\\";
 	
 	private String logo_path2 = "C:\\Everest_SPL_VR\\Logos\\";
-	private String logo_path = "C:\\Everest_SPL_VR\\Logos\\";
+	private String logo_path = "C:\\Everest_VR_2026\\Logos\\";
 	private String base_path = "C:\\Everest_SPL_VR\\SPL_Base1\\";
 	private String base_path1 = "C:\\Everest_SPL_VR\\SPL_Base1\\";
 	private String base_path2 = "C:\\Everest_SPL_VR\\SPL_Base2\\";
 	private String text_path1 = "C:\\Everest_SPL_VR\\SPL_Text1\\";
 	private String text_path2 = "C:\\Everest_SPL_VR\\SPL_Text2\\";
 	private String photo_path = "C:\\Images\\Everest_SPL_VR\\Photos\\";
+	
+	private String base_path_bp1 = "C:\\Everest_VR_2026\\Textures\\BARODA_Texture\\Base1";
+	private String base_path_bp2 = "C:\\Everest_VR_2026\\Textures\\BARODA_Texture\\Base2";
+	//private String base_path2 = "C:\\Everest_SPL_VR\\SPL_Base2\\";
 	
 	public Inning inning;
 	public BattingCard battingCard;
@@ -93,59 +97,59 @@ public class EVEREST_AR_VR extends Scene{
 	{
 		switch (which_graphics_onscreen.toUpperCase()) {
 		case "PARTNERSHIP":
-			populateCurrentPartnership(print_writer, data.split(",")[0], match, session_selected_broadcaster, config);
+			populateCurrentPartnership(print_writer, data.split(",")[0], match, config.getBroadcaster(), config);
 			break;
 		case "COMPARISON_AR":
-			populateComparisonAR(true,print_writer, match, session_selected_broadcaster);
+			populateComparisonAR(true,print_writer, match, config.getBroadcaster());
 			break;
 		
 		case "PROJECTED_AR":
-			populateProjectedAR(true,print_writer, match, session_selected_broadcaster);
+			populateProjectedAR(true,print_writer, match, config.getBroadcaster());
 			break;
 		case "EQUATION_VR":
-			 populateEquationVR(true,print_writer, match, session_selected_broadcaster);
+			 populateEquationVR(true,print_writer, match, config.getBroadcaster());
 			break;
 			
 		//vr graphics
 		case "RUN_VR":
-			populateRunVR(print_writer, match, session_selected_broadcaster);
+			populateRunVR(print_writer, match, config.getBroadcaster());
 			break;
 		case "BOUNDARIES_AR":
-			populateBoundariesAR(true,print_writer, match, session_selected_broadcaster);
+			populateBoundariesAR(true,print_writer, match, config.getBroadcaster());
 			break;
 			
 		case "COMPARISON_VR":
-			populateComparisonVR(true,print_writer, match, session_selected_broadcaster);
+			populateComparisonVR(true,print_writer, match, config.getBroadcaster());
 			break;
 		case "EQUATION_AR":
-			populateEquationAR(true,print_writer, match, session_selected_broadcaster);
+			populateEquationAR(true,print_writer, match, config.getBroadcaster());
 			break;
 		case "EQUATIONINTARGET_AR":	
-			populateEquationTargetImageAR(true,print_writer, match, session_selected_broadcaster,config);
+			populateEquationTargetImageAR(true,print_writer, match, config.getBroadcaster(),config);
 			break;
 		case "PROJECTED_VR":
-			populateProjectedVR(true,print_writer, match, session_selected_broadcaster);
+			populateProjectedVR(true,print_writer, match, config.getBroadcaster());
 			break;
 			
 		case "THISOVER_AR":
-			populateThisOver(true,print_writer,data.split(",")[1],match,session_selected_broadcaster);
+			populateThisOver(true,print_writer,data.split(",")[1],match,config.getBroadcaster());
 			break;
 		case "PHASE":
-			populatePhase(true,print_writer,Integer.valueOf(data.split(",")[1]),match,session_selected_broadcaster,config);
+			populatePhase(true,print_writer,Integer.valueOf(data.split(",")[1]),match,config.getBroadcaster(),config);
 			break;
 		case "LASTXBALLS_VR":
 			populateLastXBalls(false,print_writer ,Integer.valueOf(data.split(",")[1]),
-					Integer.valueOf(data.split(",")[2]),match , session_selected_broadcaster,config);
+					Integer.valueOf(data.split(",")[2]),match , config.getBroadcaster(),config);
 			break;
 			
 		//bat and ball update
 		case "BATMILEDETAILS":
 			populateBatMile(true,print_writer ,Integer.valueOf(data.split(",")[1]),Integer.valueOf(data.split(",")[2]),
-					cricketService.getAllPlayer(),match , session_selected_broadcaster,config);
+					cricketService.getAllPlayer(),match , config.getBroadcaster(),config);
 			break;
 		case "BOWLERDETAILS":
 			populateBallMile(true,print_writer ,Integer.valueOf(data.split(",")[1]),Integer.valueOf(data.split(",")[2]),
-					cricketService.getAllPlayer(),match , session_selected_broadcaster,config);
+					cricketService.getAllPlayer(),match , config.getBroadcaster(),config);
 			break;	
 			
 			
@@ -164,43 +168,50 @@ public class EVEREST_AR_VR extends Scene{
 		
 		switch (whatToProcess.toUpperCase()) {
 		case "NAMESUPER_GRAPHICS-OPTIONS": 
-			switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			switch (config.getBroadcaster().toUpperCase()) {
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				return new ObjectMapper().writeValueAsString(cricketService.getNameSupers()).toString();
 			}
 		
-		case "POPULATE-BOUNDARIES_VRR": case "POPULATE-COMPARISON_AR": case "POPULATE-COMPARISON_VR": case "POPULATE-TARGET_AR": case "POPULATE-MATCHID_AR": case "POPULATE-PROJECTED_AR":
-		case "POPULATE-FREE_TEXT_AR": case "POPULATE-THISOVER_VR": case "POPULATE-EQUATION_AR": case "POPULATE-EQUATION_VR": case "POPULATE-MATCH_ANIMATION_AR": case "POPULATE-THISOVER_AR": case "POPULATE-MATCH_PROMO": case "POPULATE-PROJECTED_VR":
-		case "POPULATE-TEAMCELEB_AR": case "POPULATE-PLAYERCELEB": case "POPULATE-MATCH_PROMO_ANIMATION": case "POPULATE-L3-BATMILEDETAILS": case "POPULATE-L3-BOWLERDETAILS":
-		case "POPULATE-COUNT_AR": case "POPULATE-FF-POSITION_LANDMARK": case "POPULATE-TOSS_AR": case "POPULATE-RUNRATE": case "POPULATE-LT-PARTNERSHIP":
-		case "POPULATE-EQUATIONIMAGE_AR":	
+		case "POPULATE-BOUNDARIES_VRR": case "POPULATE-COMPARISON_AR": case "POPULATE-COMPARISON_VR": case "POPULATE-TARGET_AR": 
+		case "POPULATE-MATCHID_AR": case "POPULATE-PROJECTED_AR": case "POPULATE-LASTBOUNDARY_AR":
+		case "POPULATE-FREE_TEXT_AR": case "POPULATE-THISOVER_VR": case "POPULATE-EQUATION_AR": case "POPULATE-EQUATION_VR": 
+		case "POPULATE-MATCH_ANIMATION_AR": case "POPULATE-THISOVER_AR": case "POPULATE-MATCH_PROMO": case "POPULATE-PROJECTED_VR":
+		case "POPULATE-TEAMCELEB_AR": case "POPULATE-PLAYERCELEB": case "POPULATE-MATCH_PROMO_ANIMATION": case "POPULATE-L3-BATMILEDETAILS": 
+		case "POPULATE-L3-BOWLERDETAILS": 
+		case "POPULATE-COUNT_AR": case "POPULATE-FF-POSITION_LANDMARK": case "POPULATE-TOSS_AR": case "POPULATE-RUNRATE": 
+		case "POPULATE-LT-PARTNERSHIP": case "POPULATE-EQUATIONIMAGE_AR":	
 		case "POPULATE-MATCHID_VR":	case "POPULATE-TARGET_VR": case "POPULATE-COUNTDOWN_AR": case "POPULATE-NEXT_AR": 
-		case"POPULATE-TOSSFLIP_AR": case "POPULATE-TARGETIMAGE_AR": case "POPULATE-RUN_VR": case "POPULATE-PHASE": case "POPULATE-LASTXBALLS_VR": 
-		case "POPULATE-EVERESTPLAYERPROFILEBAT": case "POPULATE-FF-PLAYERPROFILEBALLL": case "POPULATE-DOUBLEEVERESTPLAYERPROFILEBAT":  case "POPULATE-EQUATION_ARINTARGET":
-			switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+		case"POPULATE-TOSSFLIP_AR": case "POPULATE-TARGETIMAGE_AR": case "POPULATE-RUN_VR": case "POPULATE-PHASE": 
+		case "POPULATE-LASTXBALLS_VR": 
+		case "POPULATE-FALLOFWIKETS_VR":	
+		case "POPULATE-EVERESTPLAYERPROFILEBAT": case "POPULATE-FF-PLAYERPROFILEBALLL": case "POPULATE-DOUBLEEVERESTPLAYERPROFILEBAT":
+		case "POPULATE-EQUATION_ARINTARGET":
+			switch (config.getBroadcaster().toUpperCase()) {
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				switch(whatToProcess.toUpperCase()) {
 				case"POPULATE-INFOBAR-PROMPT": case "POPULATE-INFOBAR-BOTTOM": case"POPULATE-TOSSFLIP_AR":
 					break;
 				case "POPULATE-L3-INFOBAR":
 					scenes.get(0).setScene_path(valueToProcess.split(",")[0]);
-					scenes.get(0).scene_load(print_writer,session_selected_broadcaster);
+					scenes.get(0).scene_load(print_writer,config.getBroadcaster());
 					break;
 				default:
+					System.out.println(valueToProcess);
 					scenes.get(1).setWhich_layer(String.valueOf("1"));
 					scenes.get(1).setScene_path(valueToProcess.split(",")[0]);
-					scenes.get(1).scene_load(print_writer,session_selected_broadcaster);
+					scenes.get(1).scene_load(print_writer,config.getBroadcaster());
 					break;
 				}
 				switch (whatToProcess.toUpperCase()) {
 				case "POPULATE-LASTXBALLS_VR":
 					 data = valueToProcess;
 					populateLastXBalls(false,print_writer ,Integer.valueOf(valueToProcess.split(",")[1]),
-							Integer.valueOf(valueToProcess.split(",")[2]),match , session_selected_broadcaster,config);
+							Integer.valueOf(valueToProcess.split(",")[2]),match , config.getBroadcaster(),config);
 					break;
 				case "POPULATE-PHASE":
 					 data = valueToProcess;
-					populatePhase(false,print_writer ,Integer.valueOf(valueToProcess.split(",")[1]),match , session_selected_broadcaster,config);
+					populatePhase(false,print_writer ,Integer.valueOf(valueToProcess.split(",")[1]),match , config.getBroadcaster(),config);
 					break;
 				case "POPULATE-FF-PLAYERPROFILEBALLL":
 					System.out.println("value" + valueToProcess);
@@ -265,7 +276,7 @@ public class EVEREST_AR_VR extends Scene{
 						}
 					}
 					
-					populateballprofileAr(false,print_writer ,Integer.valueOf(valueToProcess.split(",")[1]),match , session_selected_broadcaster,config,cricketService);
+					populateballprofileAr(false,print_writer ,Integer.valueOf(valueToProcess.split(",")[1]),match , config.getBroadcaster(),config,cricketService);
 					break;
 				case "POPULATE-DOUBLEEVERESTPLAYERPROFILEBAT":
 					FirstPlayerId = Integer.valueOf(valueToProcess.split(",")[1]);
@@ -336,7 +347,7 @@ public class EVEREST_AR_VR extends Scene{
 						}
 					}
 					
-					populatedoublebatprofileAr(false,print_writer ,Integer.valueOf(valueToProcess.split(",")[1]),Integer.valueOf(valueToProcess.split(",")[2]),match , session_selected_broadcaster,config,cricketService);
+					populatedoublebatprofileAr(false,print_writer ,Integer.valueOf(valueToProcess.split(",")[1]),Integer.valueOf(valueToProcess.split(",")[2]),match , config.getBroadcaster(),config,cricketService);
 					break;
 				case "POPULATE-EVERESTPLAYERPROFILEBAT":
 					System.out.println("value" + valueToProcess);
@@ -401,104 +412,107 @@ public class EVEREST_AR_VR extends Scene{
 						}
 					}
 					
-					populatebatprofileAr(false,print_writer ,Integer.valueOf(valueToProcess.split(",")[1]),match , session_selected_broadcaster,config,cricketService);
+					populatebatprofileAr(false,print_writer ,Integer.valueOf(valueToProcess.split(",")[1]),match , config.getBroadcaster(),config,cricketService);
 				break;
 				case "POPULATE-L3-BATMILEDETAILS":
 					 data = valueToProcess;
 					populateBatMile(false,print_writer ,Integer.valueOf(valueToProcess.split(",")[1]),Integer.valueOf(valueToProcess.split(",")[2]),
-							cricketService.getAllPlayer(),match , session_selected_broadcaster,config);
+							cricketService.getAllPlayer(),match , config.getBroadcaster(),config);
 					break;
 				case "POPULATE-L3-BOWLERDETAILS":
 					 data = valueToProcess;
 					populateBallMile(false,print_writer ,Integer.valueOf(valueToProcess.split(",")[1]),Integer.valueOf(valueToProcess.split(",")[2]),
-							cricketService.getAllPlayer(),match , session_selected_broadcaster,config);
+							cricketService.getAllPlayer(),match , config.getBroadcaster(),config);
 					break;	
 				case "POPULATE-MATCH_PROMO":
 					populateMatchPromo(false,print_writer, valueToProcess.split(",")[0] ,Integer.valueOf(valueToProcess.split(",")[1]),cricketService.getTeams(),
-							cricketService.getFixtures(),match , session_selected_broadcaster);
+							cricketService.getFixtures(),match , config.getBroadcaster());
 					break;
 				 case "POPULATE-LT-PARTNERSHIP":
 					 data = valueToProcess;
-					  populateCurrentPartnership(print_writer, valueToProcess.split(",")[0], match, session_selected_broadcaster, config);
+					  populateCurrentPartnership(print_writer, valueToProcess.split(",")[0], match, config.getBroadcaster(), config);
 						break;
 //				case "POPULATE-THISOVER_AR":
-//					populateThisOver(false,print_writer,match,session_selected_broadcaster);
+//					populateThisOver(false,print_writer,match,config.getBroadcaster());
 //					break;
 				case "POPULATE-MATCH_ANIMATION_AR":
-					populateMatchIdAnimationAR(false,print_writer, match, session_selected_broadcaster);
+					populateMatchIdAnimationAR(false,print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-MATCH_PROMO_ANIMATION":
 					populateMatchPromoAnimationAR(false,print_writer,valueToProcess.split(",")[0] ,Integer.valueOf(valueToProcess.split(",")[1]),cricketService.getTeams(),
-							cricketService.getFixtures(), match, session_selected_broadcaster);
+							cricketService.getFixtures(), match, config.getBroadcaster());
 					break;
 				case "POPULATE-EQUATION_AR":
-					populateEquationAR(false,print_writer, match, session_selected_broadcaster);
+					populateEquationAR(false,print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-EQUATION_VR":
-					populateEquationVR(false,print_writer, match, session_selected_broadcaster);
+					populateEquationVR(false,print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-EQUATIONIMAGE_AR":
-					populateEquationImageVR(false,print_writer, match, session_selected_broadcaster);
+					populateEquationImageVR(false,print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-FF-POSITION_LANDMARK":
 					System.out.println("valueToProcess" + valueToProcess);
 					populatePlayerInAt(print_writer, match,Integer.valueOf(valueToProcess.split(",")[1]),Integer.valueOf(valueToProcess.split(",")[2]),cricketService.getAllPlayer(),cricketService.getTeams(), 
-							session_selected_broadcaster,config);
+							config.getBroadcaster(),config);
 					break;
 				case "POPULATE-NEXT_AR":
-					populateNextToBat(false,print_writer,match,session_selected_broadcaster,config,cricketService);
+					populateNextToBat(false,print_writer,match,config.getBroadcaster(),config,cricketService);
 					break;
 					
 				case "POPULATE-PLAYERCELEB":
 					populatePlayerCelebAR(print_writer, match,valueToProcess.split(",")[1],valueToProcess.split(",")[3],valueToProcess.split(",")[2],cricketService.getAllPlayer(),cricketService.getTeams(), 
-							session_selected_broadcaster);
+							config.getBroadcaster());
 					break;
 				case "POPULATE-TEAMCELEB_AR":
 					System.out.println(valueToProcess);
-					populateTeamCelebAR(print_writer, match,valueToProcess.split(",")[1],valueToProcess.split(",")[2],cricketService.getTeams(), session_selected_broadcaster);
+					populateTeamCelebAR(print_writer, match,valueToProcess.split(",")[1],valueToProcess.split(",")[2],cricketService.getTeams(), config.getBroadcaster());
 					break;
 				case "POPULATE-FREE_TEXT_AR":
-					populateFreeTextAR(print_writer, match,valueToProcess.split(",")[1], session_selected_broadcaster);
+					populateFreeTextAR(print_writer, match,valueToProcess.split(",")[1], config.getBroadcaster());
 					break;
 				case "POPULATE-THISOVER_VR":
 					data = valueToProcess;
-					populateThisOver(false,print_writer,valueToProcess.split(",")[1],match,session_selected_broadcaster);
+					populateThisOver(false,print_writer,valueToProcess.split(",")[1],match,config.getBroadcaster());
 					break;
 				case "POPULATE-BOUNDARIES_VRR":
-					populateBoundariesAR(false,print_writer, match, session_selected_broadcaster);
+					populateBoundariesAR(false,print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-COMPARISON_AR":
-					populateComparisonAR(false,print_writer, match, session_selected_broadcaster);
+					populateComparisonAR(false,print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-COMPARISON_VR":
-					populateComparisonVR(false,print_writer, match, session_selected_broadcaster);
+					populateComparisonVR(false,print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-TARGET_AR":
-					populateTargetAR(print_writer, match, session_selected_broadcaster,config);
+					populateTargetAR(print_writer, match, config.getBroadcaster(),config);
 					break;
+				case "POPULATE-LASTBOUNDARY_AR":
+					populateLastBoundary(print_writer, match, config.getBroadcaster());
+					break;					
 				case "POPULATE-TARGETIMAGE_AR":	
-					populateTargetImageAR(print_writer, match, session_selected_broadcaster,config);
+					populateTargetImageAR(print_writer, match, config.getBroadcaster(),config);
 					break;
 				case "POPULATE-EQUATION_ARINTARGET":
-					populateEquationTargetImageAR(true,print_writer, match, session_selected_broadcaster,config);
+					populateEquationTargetImageAR(true,print_writer, match, config.getBroadcaster(),config);
 					break;
 				case "POPULATE-TARGET_VR":
-					populateTargetVR(print_writer, match, session_selected_broadcaster);
+					populateTargetVR(print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-RUN_VR":
-					populateRunVR(print_writer, match, session_selected_broadcaster);
+					populateRunVR(print_writer, match, config.getBroadcaster());
 					break;
 				 case "POPULATE-COUNTDOWN_AR":
-					 populatecountdown(print_writer, match, session_selected_broadcaster);
+					 populatecountdown(print_writer, match, config.getBroadcaster());
 					 break;
 				case "POPULATE-TOSS_AR":
-					populateTossAR(print_writer, match, session_selected_broadcaster);
+					populateTossAR(print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-MATCHID_AR":
-					populateMatchIdAR(false,print_writer, match, session_selected_broadcaster);
+					populateMatchIdAR(false,print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-MATCHID_VR":	
-					populateMatchIdVR(false,print_writer, match, session_selected_broadcaster);
+					populateMatchIdVR(false,print_writer, match, config.getBroadcaster());
 					break;
 				case "POPULATE-COUNT_AR":
 					
@@ -508,23 +522,25 @@ public class EVEREST_AR_VR extends Scene{
 						category = "W";
 					}
 					
-					populateCountAR(false,print_writer, match, session_selected_broadcaster);
+					populateCountAR(false,print_writer, match, config.getBroadcaster());
 					break;
 					
 				case "POPULATE-RUNRATE":
-					populateRunRate(print_writer,false,match, session_selected_broadcaster,valueToProcess);
+					populateRunRate(print_writer,false,match, config.getBroadcaster(),valueToProcess);
 					break;
 				case "POPULATE-PROJECTED_AR":
-					populateProjectedAR(false,print_writer, match, session_selected_broadcaster);
+					populateProjectedAR(false,print_writer, match, config.getBroadcaster());
 					break;	
 				case "POPULATE-PROJECTED_VR":
-					populateProjectedVR(false,print_writer, match, session_selected_broadcaster);
+					populateProjectedVR(false,print_writer, match, config.getBroadcaster());
 					break;	
 				case"POPULATE-TOSSFLIP_AR":
-					populateCoinflip(print_writer);
+			//		populateCoinflip(print_writer);
 					break;
 				}
 			}
+		case "ANIMATE-IN-LASTBOUNDARY_AR":
+	
 		case "ANIMATE-OUT": case "CLEAR-ALL": case "ANIMATE-IN-BOUNDARIES_AR": case "ANIMATE-IN-COMPARISON_AR": case "ANIMATE-IN-COMPARISON_VR": case "ANIMATE-IN-TARGET_AR": case "ANIMATE-IN-MATCHID_AR":
 		case "ANIMATE-IN-PROJECTED_AR": case "ANIMATE-IN-FREETEXT_AR": case "ANIMATE-IN-EQUATION_AR": case "ANIMATE-IN-EQUATION_VR": case "ANIMATE-IN-MATCH_ANIMATION_AR": case "ANIMATE-IN-THISOVER_AR": case "ANIMATE-IN-MATCHID_VR":
 		case "ANIMATE-IN-MATCH_PROMO": case "ANIMATE-IN-TEAMCELEB_AR": case "ANIMATE-IN-PLAYERCELEB_AR": case "ANIMATE-IN-BOWLERDETAILS": case "ANIMATE-IN-BATMILEDETAILS":
@@ -532,278 +548,282 @@ public class EVEREST_AR_VR extends Scene{
 		case "ANIMATE-IN-EQUATIONIMAGE_AR": case "ANIMATE-IN-RUN_VR": case "ANIMATE-IN-PHASE": case "ANIMATE-LASTXBALLS_VR":
 		case "ANIMATE-IN-PLAYERPRFOFILE_BATT":	case "ANIMATE-IN-PLAYERPRFOFILE_BALLL": case "ANIMATE-IN-DOUBLEPLAYERPRFOFILE_BATT": case "ANIMATE-IN-EQUATIONIN TARGET_AR":
 		case "ANIMATE-IN-PROJECTED_VR":	case "ANIMATE-IN-TARGET_VR": case "ANIMATE-IN-COUNTDOWN_VR": case "ANIMATE-IN-NEXT_AR": case "ANIMATE-IN-TARGETIMAGE_AR": 
-			switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			switch (config.getBroadcaster().toUpperCase()) {
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				switch (whatToProcess.toUpperCase()) {
 				case "ANIMATE-IN-THISSERIES":
 					if(infobar.isInfobar_on_screen() == true) {
-						processAnimation(print_writer, "FF_In", "START", session_selected_broadcaster,1);
+						processAnimation(print_writer, "FF_In", "START", config.getBroadcaster(),1);
 						TimeUnit.MILLISECONDS.sleep(200);
 					}
 					break;
 				}
 				switch (whatToProcess.toUpperCase()) {
 				case "ANIMATE-IN-LTPARTNERSHIP":
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "LOOP", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director1", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director2", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director3", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director4", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director4_Copy", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "LOOP", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director1", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director2", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director3", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director4", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director4_Copy", "START", config.getBroadcaster(),1);
 					which_graphics_onscreen = "PARTNERSHIP";
 					break;
 					
 				case "ANIMATE-IN-POSITION_LANDMARK":
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "LOOP", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director1", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director2", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director3", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "LOOP", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director1", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director2", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director3", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "POSITION_LANDMARK";
 					break;
 				case "ANIMATE-IN-PLAYERPRFOFILE_BATT": case "ANIMATE-IN-PLAYERPRFOFILE_BALLL":
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "LOOP", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director1", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director2", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director3", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director3_Copy", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "LOOP", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director1", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director2", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director3", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director3_Copy", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "PROFILE-BATT";
 					break;
 				case "ANIMATE-IN-DOUBLEPLAYERPRFOFILE_BATT":	
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "LOOP", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director1", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director2", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director3", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director4", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director4_Copy", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "LOOP", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director1", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director2", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director3", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director4", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director4_Copy", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "PROFILE-DOUBLEBATT";
 					break;
 				case "ANIMATE-IN-COUNT_AR":
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "IN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Star_grp", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Star_Rotation", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Counter", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "IN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Star_grp", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Star_Rotation", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Counter", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "COUNT_AR";
 					break;
 				case "ANIMATE-IN-BATMILEDETAILS":
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "LOOP", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director1", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director2", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director3", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director3_Copy", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "LOOP", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director1", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director2", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director3", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director3_Copy", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "BATMILEDETAILS";
 					break;
 				case "ANIMATE-IN-BOWLERDETAILS":
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "LOOP", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director1", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director2", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director3", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director3_Copy", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "LOOP", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director1", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director2", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director3", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director3_Copy", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "BOWLERDETAILS";
 					break;	
 				case "ANIMATE-IN-PLAYERCELEB_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "PLAYERCELEB_AR";
 					break;
 				case "ANIMATE-IN-TEAMCELEB_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "TEAMCELEB_AR";
 					break;
 				case "ANIMATE-LASTXBALLS_VR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "LASTXBALLS_VR";
 					break;
 				case "ANIMATE-IN-PHASE":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "PHASE";
 					break;
 				case "ANIMATE-IN-THISOVER_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "THISOVER_AR";
 					break;
 				case "ANIMATE-IN-MATCH_ANIMATION_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "MATCH_ANIMATION_AR";
 					break;
 				case "ANIMATE-IN-RUN_VR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "RUN_VR";
 					break;
 				case "ANIMATE-IN-EQUATION_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "EQUATION_AR";
 					break;
 				case "ANIMATE-IN-EQUATION_VR":
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "IN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Star_Grp", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Flag_Opa", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Star_Rotation", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Flag_Grp", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "IN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Star_Grp", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Flag_Opa", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Star_Rotation", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Flag_Grp", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "EQUATION_VR";
 					break;
 				case "ANIMATE-IN-EQUATIONIMAGE_AR":	
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "IN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Star_Grp", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Flag_Opa", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Star_Rotation", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Flag_Grp", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "IN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Star_Grp", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Flag_Opa", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Star_Rotation", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Flag_Grp", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "EQUATIONIMAGE_AR";
 					break;
 				case "ANIMATE-IN-FREETEXT_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "FREETEXT_AR";
 					break;
 				case "ANIMATE-IN-BOUNDARIES_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "BOUNDARIES_AR";
 					break;
 				case "ANIMATE-IN-COMPARISON_AR":
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "LOOP", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director1", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director2", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director3", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director5", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director5_Copy", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "LOOP", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director1", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director2", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director3", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director5", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director5_Copy", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "COMPARISON_AR";
 					break;
 				case "ANIMATE-IN-NEXT_AR":
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "LOOP", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director1", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director2", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director3", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "LOOP", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director1", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director2", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director3", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "NEXTTOBAT_AR";
 					break;
 				case "ANIMATE-IN-COMPARISON_VR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "COMPARISON_VR";
 					break;
 				case "ANIMATE-IN-TARGET_AR":
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "LOOP", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director1", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director2", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director3", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "LOOP", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director1", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director2", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director3", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "TARGET_AR";
 					break;
 				case "ANIMATE-IN-TARGETIMAGE_AR": 
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "LOOP", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director1", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director2", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director5", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director5_Copy", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "LOOP", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director1", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director2", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director5", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director5_Copy", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "TARGETIMAGE_AR";
 					break;
 				case "ANIMATE-IN-EQUATIONIN TARGET_AR":
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "LOOP", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director1", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director2", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director5", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director5_Copy", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "LOOP", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director1", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director2", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director5", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director5_Copy", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "EQUATIONINTARGET_AR";
 					break;
 				case "ANIMATE-IN-TARGET_VR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "TARGET_VR";
 					break;
 				case "ANIMATE-IN-COUNTDOWN_VR":
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "IN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Star_grp", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Star_Rotation", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Counter", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "IN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Star_grp", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Star_Rotation", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Counter", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "COUNTDOWN_AR";
 					
 				case "ANIMATE-TOSS_AR":
-					processAnimation(print_writer, "All", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "LOOP", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Flag", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Left_Stars", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Right_Stars", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director1", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director1_Copy", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "toss_result", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "All", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "LOOP", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Flag", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Left_Stars", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Right_Stars", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director1", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director1_Copy", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "toss_result", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "TOSS_AR";
 					break;
 				case "ANIMATE-IN-RUNRATE_AR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "RUNRATE_AR";
 					break;
 				case "ANIMATE-IN-MATCH_PROMO":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "MATCHID_PROMO_AR";
 					break;
+				case "ANIMATE-IN-LASTBOUNDARY_AR":
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
+					which_graphics_onscreen = "LASTBOUNDARY_AR";
+					break;
 				case "ANIMATE-IN-MATCHID_AR":
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "LOOP", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director1", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director2", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director3", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director4", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director5", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "LOOP", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director1", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director2", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director3", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director4", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director5", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "MATCHID_AR";
 					break;
 				case "ANIMATE-IN-MATCHID_VR":
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "FLAG1", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "FLAG2", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "FLAG1", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "FLAG2", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "MATCHID_VR";
 					break;
 				case "ANIMATE-IN-PROJECTED_AR":
-					processAnimation(print_writer, "MAIN", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "LOOP", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director1", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director2", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director3", "START", session_selected_broadcaster,1);
-					processAnimation(print_writer, "Director3_Copy", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "MAIN", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "LOOP", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director1", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director2", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director3", "START", config.getBroadcaster(),1);
+					processAnimation(print_writer, "Director3_Copy", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "PROJECTED_AR";
 					break;	
 				case "ANIMATE-IN-PROJECTED_VR":
-					processAnimation(print_writer, "In", "START", session_selected_broadcaster,1);
+					processAnimation(print_writer, "In", "START", config.getBroadcaster(),1);
 //					print_writer.println("LAYER1*EVEREST*STAGE START;");
 					which_graphics_onscreen = "PROJECTED_VR";
 					break;	
@@ -817,16 +837,16 @@ public class EVEREST_AR_VR extends Scene{
 				case "ANIMATE-OUT":
 					switch(which_graphics_onscreen) {
 					case "INFOBAR":
-						processAnimation(print_writer, "Out", "START", session_selected_broadcaster,1);
+						processAnimation(print_writer, "Out", "START", config.getBroadcaster(),1);
 						which_graphics_onscreen = "";
 						infobar.setInfobar_on_screen(false);
 						break;
 					case "THISOVER_AR": case "TEAMCELEB_AR": case "MATCH_ANIMATION_AR": case "EQUATION_AR": case "EQUATIONINTARGET_AR": case "EQUATION_VR": case "EQUATIONIMAGE_AR":
 					case "FREETEXT_AR": case "PROJECTED_AR": case "MATCHID_PROMO_AR": case "MATCHID_AR": case "MATCHID_VR": case "LASTXBALLS_VR":
-					case "TARGET_AR": case "COMPARISON_AR": case "COMPARISON_VR": case "BOUNDARIES_AR": case "PLAYERCELEB_AR": case "TARGET_VR":
+					case "TARGET_AR": case "COMPARISON_AR": case "COMPARISON_VR": case "LASTBOUNDARY_AR": case "BOUNDARIES_AR": case "PLAYERCELEB_AR": case "TARGET_VR":
 					case "BATMILEDETAILS": case "BOWLERDETAILS": case "COUNT_AR": case "POSITION_LANDMARK": case "PROFILE-BATT": case "PROFILE-DOUBLEBATT":case "TOSS_AR": case "RUNRATE_AR": case "COUNTDOWN_AR":
 					case "PARTNERSHIP":	case "PROJECTED_VR": case "NEXTTOBAT_AR": case "TARGETIMAGE_AR": case "RUN_VR": case "PHASE":
-						processAnimation(print_writer, "Out", "START", session_selected_broadcaster,1);
+						processAnimation(print_writer, "Out", "START", config.getBroadcaster(),1);
 						which_graphics_onscreen = "";
 						break;
 					}
@@ -838,14 +858,14 @@ public class EVEREST_AR_VR extends Scene{
 }
 
 	
-	private void populateCoinflip(PrintWriter print_writer) {
+	private void populateCoinflip(PrintWriter print_writer, String session_selected_broadcaster) {
 		processAnimation(print_writer, "Coin_Flip", "START", session_selected_broadcaster,1);
 		
 		this.status = CricketUtil.SUCCESSFUL;
 		
 	}
 
-	private void populatecountdown(PrintWriter print_writer, MatchAllData match, String session_selected_broadcaster2) {
+	private void populatecountdown(PrintWriter print_writer, MatchAllData match, String session_selected_broadcaster) {
 		//base colour
 		
 		print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET I_Home_base1 "  + base_path1 + 
@@ -862,10 +882,10 @@ public class EVEREST_AR_VR extends Scene{
 		
 	}
 
-	public void processAnimation(PrintWriter print_writer, String animationName,String animationCommand, String which_broadcaster,int which_layer)
+	public void processAnimation(PrintWriter print_writer, String animationName,String animationCommand, String session_selected_broadcaster,int which_layer)
 	{
-		switch(which_broadcaster.toUpperCase()) {
-		case "EVEREST_AR_VR":
+		switch(session_selected_broadcaster.toUpperCase()) {
+		case "EVEREST_AR_VR": case "BARODA_AR":
 			switch(which_layer) {
 			case 1:
 				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*" + animationName + " " + animationCommand + ";");
@@ -1446,7 +1466,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateRunVR(PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				for(Inning inn : match.getMatch().getInning()) {
 					if (inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
 						
@@ -1484,10 +1504,21 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateBoundariesAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				for(Inning inn : match.getMatch().getInning()) {
 					if (inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
 						
+						
+						switch (session_selected_broadcaster.toUpperCase()) {
+						
+						case "EVEREST_AR_VR": 
+							System.out.println("EVEREST");
+						break;
+							
+						case "BARODA_AR":
+							System.out.println("BARODA");
+						break;
+						}
 						//print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*CONTAINER SET ACTIVE 0;");
 						//boundries
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader " + "BOUNDARIES" + ";");
@@ -1498,23 +1529,40 @@ public class EVEREST_AR_VR extends Scene{
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSixHead " + "SIXES" + ";");
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSix " + inn.getTotalSixes() + ";");
 						//flags
-						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " + "C:/Everest_VR_AR/Logos/" + inn.getBatting_team().getTeamBadge().toUpperCase() + 
+						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " + "C:/Everest_VR_2026/Logos/" + inn.getBatting_team().getTeamBadge().toUpperCase() + 
 								CricketUtil.PNG_EXTENSION + ";");
 						
-						if(inn.getBatting_team().getTeamBadge().equalsIgnoreCase("WI")) {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 1;");
-						}else {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 0;");
-						}
+//						if(inn.getBatting_team().getTeamBadge().equalsIgnoreCase("WI")) {
+//							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 1;");
+//						}else {
+//							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 0;");
+//						}
 						//base
 //						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base2 " + base_path2 + "EVENT" + 
 //								CricketUtil.PNG_EXTENSION + ";");
+						
+						switch (session_selected_broadcaster.toUpperCase()) {
+						
+//						case "EVEREST_AR_VR": 
+//							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + base_path1 + inn.getBatting_team().getTeamBadge() + 
+//									CricketUtil.PNG_EXTENSION + ";");
+//							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET HOME_TEXT1 " + text_path1 + inn.getBatting_team().getTeamBadge() + 
+//									CricketUtil.PNG_EXTENSION + ";");
+//						break;
+							
+						case "BARODA_AR":
+							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + base_path_bp1+ CricketUtil.PNG_EXTENSION + ";");
+							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base2 " + base_path_bp2+ CricketUtil.PNG_EXTENSION + ";");
+							
+//							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + base_path1 + inn.getBatting_team().getTeamBadge() + 
+//									CricketUtil.PNG_EXTENSION + ";");
+//							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + text_path1 + inn.getBatting_team().getTeamBadge() + 
+//									CricketUtil.PNG_EXTENSION + ";");
+						break;
+						}
 //						
 //						//team base
-						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + base_path1 + inn.getBatting_team().getTeamBadge() + 
-								CricketUtil.PNG_EXTENSION + ";");
-						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET HOME_TEXT1 " + text_path1 + inn.getBatting_team().getTeamBadge() + 
-								CricketUtil.PNG_EXTENSION + ";");
+						
 						
 					}
 				}
@@ -1531,7 +1579,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateComparisonAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				
 				for(Inning inn : match.getMatch().getInning()) {
 					if (inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
@@ -1591,19 +1639,33 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateComparisonVR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				
 				for(Inning inn : match.getMatch().getInning()) {
 					if (inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
-						
+						switch (session_selected_broadcaster.toUpperCase()) {
+						case "EVEREST_AR_VR": 
+							
+							break;
+						case "BARODA_AR":
+							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Team1Base1 " + base_path_bp1+ 
+									CricketUtil.PNG_EXTENSION + ";");
+							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Team1Base2 " + base_path_bp2 + 
+									CricketUtil.PNG_EXTENSION + ";");
+							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Team2Base1 " + base_path_bp1  + 
+									CricketUtil.PNG_EXTENSION + ";");
+							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Team2Base2 " + base_path_bp2  + 
+									CricketUtil.PNG_EXTENSION + ";");
+							break;
+						}
 						//team one
 						//batting team flag
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgHomeTeam " + logo_path + inn.getBowling_team().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
-						if(inn.getBowling_team().getTeamBadge().equalsIgnoreCase("WI")) {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 1;");
-						}else {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 0;");
-						}
+//						if(inn.getBowling_team().getTeamBadge().equalsIgnoreCase("WI")) {
+//							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 1;");
+//						}else {
+//							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 0;");
+//						}
 						//home footer
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tScoreA " + CricketFunctions.compareInningData(match, "-", 1, match.getEventFile().getEvents()) + ";");
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tTeamA " + inn.getBowling_team().getTeamName4() + ";");
@@ -1613,11 +1675,11 @@ public class EVEREST_AR_VR extends Scene{
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tScoreB " + CricketFunctions.compareInningData(match, "-", 2, match.getEventFile().getEvents()) + ";");
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgAwayTeam " + logo_path + inn.getBatting_team().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");   
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tTeamB " + inn.getBatting_team().getTeamName4() + ";");
-						if(inn.getBatting_team().getTeamBadge().equalsIgnoreCase("WI")) {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor1 1;");
-						}else {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor1 0;");
-						}
+//						if(inn.getBatting_team().getTeamBadge().equalsIgnoreCase("WI")) {
+//							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor1 1;");
+//						}else {
+//							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor1 0;");
+//						}
 //						//header
 //						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader " + match.getSetup().getMatchIdent() + ";");
 						//afterthisoverdata
@@ -1664,7 +1726,7 @@ public class EVEREST_AR_VR extends Scene{
 			MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				String match_name="";
 				
 				//print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*CONTAINER SET ACTIVE 0;");
@@ -1732,7 +1794,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateMatchIdAnimationAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lg_HomeTeamLogo " + logo_path2 + 
 						match.getSetup().getHomeTeam().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lg_AwayTeamLogo " + logo_path2 + 
@@ -1768,7 +1830,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateMatchIdAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 //				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHomeTeam " + 
 //						match.getSetup().getHomeTeam().getTeamName4() + ";");
 //				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tAwayTeam " + 
@@ -1807,19 +1869,45 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateMatchIdVR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				//team name
-				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHead " + 
-						match.getSetup().getMatchIdent() + ";");
+				
+				
+				
+				
+				switch (session_selected_broadcaster.toUpperCase()) {
+				case "EVEREST_AR_VR": 
+					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Data_Selector 0;");
+					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base_Selector 0;");
+					break;
+				case "BARODA_AR":
+					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Data_Selector 1;");
+					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base_Selector 1;");
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + base_path_bp1+ CricketUtil.PNG_EXTENSION + ";");
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base2 " + base_path_bp2+ CricketUtil.PNG_EXTENSION + ";");
+					
+					break;
+					}
 				
 				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHomeTeamName " + 
 						match.getSetup().getHomeTeam().getTeamName1() + ";");
 				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tAwayTeamName " + 
 						match.getSetup().getAwayTeam().getTeamName1() + ";");
 				
+				
+					
+				
+					
+				
+				
+//				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHead " + 
+//						match.getSetup().getMatchIdent() + ";");
+				
+				
+				
 				//footer
 				
-				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo " + "FROM " + match.getSetup().getVenueName().toUpperCase() + ";");
+		//		print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo " + "FROM " + match.getSetup().getVenueName().toUpperCase() + ";");
 				
 				//logo
 				
@@ -1828,9 +1916,9 @@ public class EVEREST_AR_VR extends Scene{
 //				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgAwayTeam " + logo_path + 
 //						match.getSetup().getAwayTeam().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
 				
-				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET HOME_TEAM " + logo_path + 
+				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgHomeTeam " + logo_path + 
 						match.getSetup().getHomeTeam().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
-				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET AWAY_TEAM " + logo_path + 
+				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgAwayTeam " + logo_path + 
 						match.getSetup().getAwayTeam().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
 				
 //				print_writer.println("LAYER1*EVEREST*TREEVIEW*Logos$Home_Team_Logo*FUNCTION*IMAGESEQUENCE2 SET PATH "
@@ -1851,7 +1939,7 @@ public class EVEREST_AR_VR extends Scene{
 			String session_selected_broadcaster) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "EVEREST_AR_VR":
+		case "EVEREST_AR_VR": case "BARODA_AR":
 			
 			
 			print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tText " + data2 +";");
@@ -1880,7 +1968,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateNextToBat(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster,Configuration config,CricketService cricketService) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				int row_id = 0;
 				String strike_rate = "";
 				//header
@@ -1963,7 +2051,7 @@ public class EVEREST_AR_VR extends Scene{
 			String session_selected_broadcaster,Configuration config) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "EVEREST_AR_VR":
+		case "EVEREST_AR_VR": case "BARODA_AR":
 			
 			inning = match.getMatch().getInning().stream().filter(inn -> inn.getInningNumber() == Inning).findAny().orElse(null);
 			
@@ -2043,7 +2131,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateTeamCelebAR(PrintWriter print_writer,MatchAllData match,String data ,String data2,List<Team> tm,String session_selected_broadcaster) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "EVEREST_AR_VR":
+		case "EVEREST_AR_VR": case "BARODA_AR":
 			
 			print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$RestData*CONTAINER SET ACTIVE 0;");
 			print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$Select$Logos*CONTAINER SET ACTIVE 1;");
@@ -2070,7 +2158,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateFreeTextAR(PrintWriter print_writer,MatchAllData match,String data,String session_selected_broadcaster) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "EVEREST_AR_VR":
+		case "EVEREST_AR_VR": case "BARODA_AR":
 			String text1_to_return = "",text2_to_return = "";
 			
 			switch (data) {
@@ -2149,7 +2237,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateProjectedAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				String[] proj_score_rate = new String[CricketFunctions.projectedScore(match).size()];
 			    for (int i = 0; i < CricketFunctions.projectedScore(match).size(); i++) {
 			    	proj_score_rate[i] = CricketFunctions.projectedScore(match).get(i);
@@ -2234,7 +2322,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateProjectedVR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				String[] proj_score_rate = new String[CricketFunctions.projectedScore(match).size()];
 			    for (int i = 0; i < CricketFunctions.projectedScore(match).size(); i++) {
 			    	proj_score_rate[i] = CricketFunctions.projectedScore(match).get(i);
@@ -2244,18 +2332,18 @@ public class EVEREST_AR_VR extends Scene{
 					
 					if(inn.getInningNumber() == 1 & inn.getIsCurrentInning().equalsIgnoreCase("YES")) {
 						//header
-						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader " + "PROJECTED" + ";");
-						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader1 " + "SCORES" + ";");
+						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader " + "PROJECTED SCORES" + ";");
+			//			print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader1 " + "SCORES" + ";");
 						
 						//logo
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " + 
 						logo_path  + inn.getBatting_team().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
 						
-						if(inn.getBatting_team().getTeamBadge().equalsIgnoreCase("WI")) {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 1;");
-						}else {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 0;");
-						}
+//						if(inn.getBatting_team().getTeamBadge().equalsIgnoreCase("WI")) {
+//							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 1;");
+//						}else {
+//							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 0;");
+//						}
 						//projected score part
 						//Data 1
 //						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStarHead01 " + "CURR("+ proj_score_rate[0]  +" )RPO" + ";");
@@ -2271,17 +2359,26 @@ public class EVEREST_AR_VR extends Scene{
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue04 " + proj_score_rate[7] + ";");
 						
 						
-							
+						switch (session_selected_broadcaster.toUpperCase()) {
+						case "EVEREST_AR_VR": 
+							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET img_Base1 " + base_path1 + 
+									  inn.getBatting_team().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
+//								//
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET I_Home_base2 " + base_path2 + 
+									 inn.getBatting_team().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET HOME_TEXT1 " + text_path2 + 
+										 inn.getBatting_team().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
+						break;	
+						case "BARODA_AR":
+							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET img_Base1 " + base_path_bp1  + CricketUtil.PNG_EXTENSION + ";");
+//								//
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET img_Base2 " + base_path_bp2 + CricketUtil.PNG_EXTENSION + ";");
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET img_Base3 " + base_path_bp2 + CricketUtil.PNG_EXTENSION + ";");	
+						break;
 						
 						//base
-						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET img_Base1 " + base_path1 + 
-							  inn.getBatting_team().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
-//						//
-						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET I_Home_base2 " + base_path2 + 
-							 inn.getBatting_team().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
-						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET HOME_TEXT1 " + text_path2 + 
-								 inn.getBatting_team().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
 						
+						}
 //						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStarHead01 " + "@"+ proj_score_rate[0] +" (CRR)" + ";");
 //						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue01 " + proj_score_rate[1] + ";");
 //						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStarHead02 " + "@" + proj_score_rate[2] +" RPO"+ ";");
@@ -2308,7 +2405,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateCurrentPartnership(PrintWriter print_writer, String viz_scene, MatchAllData match, String session_selected_broadcaster, Configuration config) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "EVEREST_AR_VR":
+		case "EVEREST_AR_VR": case "BARODA_AR":
 			if (match == null) {
 				this.status = "ERROR: Match is null";
 			} else if (match.getMatch().getInning() == null) {
@@ -2364,7 +2461,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateTossAR(PrintWriter print_writer,MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "EVEREST_AR_VR":
+		case "EVEREST_AR_VR": case "BARODA_AR":
 			if (match == null) {
 				this.status = "ERROR: Match is null";
 			} else if (match.getMatch().getInning() == null) {
@@ -2425,10 +2522,52 @@ public class EVEREST_AR_VR extends Scene{
 			break;
 		}
 	}
+	
+	public void populateLastBoundary(PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
+	{
+		switch (session_selected_broadcaster.toUpperCase()) {
+		case "BARODA_AR":
+			
+			for(Inning inn : match.getMatch().getInning()) {
+				if(inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
+					
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " + logo_path + 
+						inn.getBowling_team().getTeamBadge() + ".png" +";");
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader "
+							+ (CricketFunctions.lastFewOversData(CricketUtil.BOUNDARY, match.getEventFile().getEvents(),inn.getInningNumber()))
+							+ " BALLS SINCE "+ ";");
+					}
+			}
+			switch (session_selected_broadcaster.toUpperCase()) {
+			
+//			case "EVEREST_AR_VR": 
+//				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + base_path1 + inn.getBatting_team().getTeamBadge() + 
+//						CricketUtil.PNG_EXTENSION + ";");
+//				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET HOME_TEXT1 " + text_path1 + inn.getBatting_team().getTeamBadge() + 
+//						CricketUtil.PNG_EXTENSION + ";");
+//			break;
+				
+			case "BARODA_AR":
+				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + base_path_bp1+ CricketUtil.PNG_EXTENSION + ";");
+				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base2 " + base_path_bp2+ CricketUtil.PNG_EXTENSION + ";");
+				
+//				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + base_path1 + inn.getBatting_team().getTeamBadge() + 
+//						CricketUtil.PNG_EXTENSION + ";");
+//				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + text_path1 + inn.getBatting_team().getTeamBadge() + 
+//						CricketUtil.PNG_EXTENSION + ";");
+			break;
+			}
+			print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader2 " + "LAST BOUNDARY" + ";");
+			break;
+		}
+		
+		
+		
+	}
 	public void populateTargetAR(PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster ,Configuration config) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				//team name 
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Team_Name " + match.getMatch().getInning().get(1).getBatting_team().getTeamName2()  +";");
 				//target
@@ -2461,7 +2600,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateEquationTargetImageAR(boolean is_this_updating,PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster ,Configuration config) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				//team name 
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Team_Name " + match.getMatch().getInning().get(1).getBatting_team().getTeamName2()  +";");
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET img_Base1 "  + base_path1 + 
@@ -2528,9 +2667,9 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateTargetVR(PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				//target
-				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader TARGET;");
+				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tTeamA TARGET;");
 				
 				
 //				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tTeamA " + "TARGET"  +";");
@@ -2542,23 +2681,23 @@ public class EVEREST_AR_VR extends Scene{
 //				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tOvers "+ Integer.valueOf(CricketFunctions.GetTargetData(match).getTargetOvers()) * 6  + " BALLS"  +";");
 //				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tScore " + CricketFunctions.GetTargetData(match).getTargetRuns() + ";");
 				
-				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFourHead " + "RUNS" + ";");
-				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFour " + 
+			//	print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFourHead " + "RUNS" + ";");
+				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tScore " + 
 						CricketFunctions.GetTargetData(match).getTargetRuns() + ";");
 				
-				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSixHead " + "OVERS" + ";");
-				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSix " + 
-						Integer.valueOf(CricketFunctions.GetTargetData(match).getTargetOvers()) + ";");
+			//	print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSixHead " + "OVERS" + ";");
+				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tOvers " +  "OFF " +
+						Integer.valueOf(CricketFunctions.GetTargetData(match).getTargetOvers()) + " OVERS" +  ";");
 				
 				//logo
 //				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " + "C:/Everest_VR_AR/Logos/" + 
 //						match.getMatch().getInning().get(1).getBatting_team().getTeamBadge().toUpperCase() + 
 //						CricketUtil.PNG_EXTENSION + ";");
-				if(match.getMatch().getInning().get(1).getBatting_team().getTeamBadge().equalsIgnoreCase("WI")) {
-					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 1;");
-				}else {
-					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 0;");
-				}
+//				if(match.getMatch().getInning().get(1).getBatting_team().getTeamBadge().equalsIgnoreCase("WI")) {
+//					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 1;");
+//				}else {
+//					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 0;");
+//				}
 				
 				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " + "C:/Everest_VR_AR/Logos/" + match.getMatch().getInning().get(1).getBatting_team().getTeamBadge() + 
 						CricketUtil.PNG_EXTENSION + ";");
@@ -2569,8 +2708,8 @@ public class EVEREST_AR_VR extends Scene{
 
 //				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET img_Player " + photo_path + 
 //						+ CricketUtil.PNG_EXTENSION + ";");
-				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + base_path1  +
-				 match.getMatch().getInning().get(1).getBatting_team().getTeamBadge()  + CricketUtil.PNG_EXTENSION + ";");
+//				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + base_path1  +
+//				 match.getMatch().getInning().get(1).getBatting_team().getTeamBadge()  + CricketUtil.PNG_EXTENSION + ";");
 //				
 //				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET I_Home_base2 " + base_path2  +
 //						 match.getMatch().getInning().get(1).getBatting_team().getTeamName4() + "_base2" + CricketUtil.PNG_EXTENSION + ";");
@@ -2642,7 +2781,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateRunRate(PrintWriter print_writer,boolean is_this_updating, MatchAllData match, String session_selected_broadcaster,String valueToProcess) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "EVEREST_AR_VR":
+		case "EVEREST_AR_VR": case "BARODA_AR":
 		     switch (valueToProcess.split(",")[1]) {
 			case "CURRENT RUNRATE":
 				for(Inning inn : match.getMatch().getInning()) {
@@ -2718,7 +2857,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateCountAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET img_Logo1 " + logo_path2 + 
 						match.getSetup().getHomeTeam().getTeamBadge() + category + CricketUtil.PNG_EXTENSION + ";");
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET img_Logo2 " + logo_path2 + 
@@ -2753,7 +2892,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateThisOver(boolean is_this_updating, PrintWriter print_writer,String data,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				
 				switch (data) {
 				case "NO_LOGO":
@@ -2902,7 +3041,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateTargetImageAR(PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster ,Configuration config) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				//team name 
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Team_Name " + match.getMatch().getInning().get(1).getBatting_team().getTeamName2()  +";");
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET img_Base1 "  + base_path1 + 
@@ -2967,9 +3106,32 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateEquationAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				
 				for(Inning inn : match.getMatch().getInning()) {
+					
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " + "C:/Everest_VR_AR/Logos/" + inn.getBatting_team().getTeamBadge().toUpperCase() + 
+							CricketUtil.PNG_EXTENSION + ";");
+					
+					switch (session_selected_broadcaster.toUpperCase()) {
+					
+//					case "EVEREST_AR_VR": 
+//						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + base_path1 + inn.getBatting_team().getTeamBadge() + 
+//								CricketUtil.PNG_EXTENSION + ";");
+//						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET HOME_TEXT1 " + text_path1 + inn.getBatting_team().getTeamBadge() + 
+//								CricketUtil.PNG_EXTENSION + ";");
+//					break;
+						
+					case "BARODA_AR":
+						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + base_path_bp1+ CricketUtil.PNG_EXTENSION + ";");
+						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base2 " + base_path_bp2+ CricketUtil.PNG_EXTENSION + ";");
+						
+//						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + base_path1 + inn.getBatting_team().getTeamBadge() + 
+//								CricketUtil.PNG_EXTENSION + ";");
+//						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + text_path1 + inn.getBatting_team().getTeamBadge() + 
+//								CricketUtil.PNG_EXTENSION + ";");
+					break;
+					}
 					
 					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$NEED*CONTAINER SET ACTIVE 0;");
 //					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$RRGRP$RRHead*CONTAINER SET ACTIVE 0;");
@@ -2978,25 +3140,30 @@ public class EVEREST_AR_VR extends Scene{
 //						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tTeamA " + inn.getBatting_team().getTeamName1() +" NEED" +";");
 						//flag
 						
-						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader " + inn.getBatting_team().getTeamName4() + " NEED" + ";");
+						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tTeamA " + inn.getBatting_team().getTeamName4() + " NEED" + ";");
 						//fours
 						
 						//six
 						
 						//flags
-						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " + "C:/Everest_VR_AR/Logos/" + inn.getBatting_team().getTeamBadge().toUpperCase() + 
-								CricketUtil.PNG_EXTENSION + ";");
+						/*
+						 * print_writer.
+						 * println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " +
+						 * "C:/Everest_VR_AR/Logos/" +
+						 * inn.getBatting_team().getTeamBadge().toUpperCase() +
+						 * CricketUtil.PNG_EXTENSION + ";");
+						 */
 						
-						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + base_path1  +
-								 match.getMatch().getInning().get(1).getBatting_team().getTeamBadge()  + CricketUtil.PNG_EXTENSION + ";");
+//						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + base_path1  +
+//								 match.getMatch().getInning().get(1).getBatting_team().getTeamBadge()  + CricketUtil.PNG_EXTENSION + ";");
 						
 //						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " + "C:/Everest_VR_AR/Logos/" + inn.getBatting_team().getTeamBadge().toUpperCase() + 
 //								CricketUtil.PNG_EXTENSION + ";");
-						if(inn.getBatting_team().getTeamBadge().equalsIgnoreCase("WI")) {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 1;");
-						}else {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 0;");
-						}
+//						if(inn.getBatting_team().getTeamBadge().equalsIgnoreCase("WI")) {
+//							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 1;");
+//						}else {
+//							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Tflagselctor 0;");
+//						}
 						
 //						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " + logo_path  + inn.getBatting_team().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
 						
@@ -3013,36 +3180,45 @@ public class EVEREST_AR_VR extends Scene{
 						
 						if(match.getSetup().getTargetType() == null || match.getSetup().getTargetType().trim().isEmpty()) {
 							
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFourHead " + "RUN" + 
-									CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningRuns()).toUpperCase() + ";");
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFour " + 
-									CricketFunctions.GetTargetData(match).getRemaningRuns() + ";");
 							
+							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tRR " + CricketFunctions.generateRunRate(CricketFunctions.GetTargetData(match).getRemaningRuns(), 0, 
+									CricketFunctions.GetTargetData(match).getRemaningBall(), 2,match) + " RUNS PER OVERS" + ";");
+							
+							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tRRHead " + "" + ";");	
+							
+							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tScore " +CricketFunctions.GetTargetData(match).getRemaningRuns()+ " RUN" + 
+									CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningRuns()).toUpperCase()
+									 + ";");
+//							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFour " + 
+//									CricketFunctions.GetTargetData(match).getRemaningRuns() + ";");
+							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFrom " + "OFF" + ";");
 //							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tScore " + CricketFunctions.GetTargetData(match).getRemaningRuns() + " RUN"+ 
 //									CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningRuns()).toUpperCase() + ";");
 							switch (match.getSetup().getMatchType()) {
 							case CricketUtil.ODI:
 								if(CricketFunctions.GetTargetData(match).getRemaningBall() >= 100) {
-									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSixHead " + "OVERS" + ";");
-									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSix " + CricketFunctions.OverBalls(0, 
-											CricketFunctions.GetTargetData(match).getRemaningBall()) + ";");
+							//		print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSixHead " + "OVERS" + ";");
+									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tOvers " + CricketFunctions.OverBalls(0, 
+											CricketFunctions.GetTargetData(match).getRemaningBall())+ "OVERS"  + ";");
 									
 //									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tOvers " + CricketFunctions.OverBalls(0, 
 //											CricketFunctions.GetTargetData(match).getRemaningBall()) + " OVERS" + ";");
 								}else {
-									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSixHead " + "BALL" + 
-											CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningBall()).toUpperCase() + ";");
-									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSix " + 
-											CricketFunctions.GetTargetData(match).getRemaningBall() + ";");
+								//	print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSixHead " + "BALL" + 
+								//			CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningBall()).toUpperCase() + ";");
+									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tOvers " + 
+											CricketFunctions.GetTargetData(match).getRemaningBall() + "BALL" + 
+													CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningBall()).toUpperCase()+ ";");
 									
 //									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tOvers " + CricketFunctions.GetTargetData(match).getRemaningBall() + " BALL" + 
 //											CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningBall()).toUpperCase()  +";");
 								}
 								break;
 							default:
-								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSixHead " + "BALL" + 
+//								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSixHead " + "BALL" + 
+//										CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningBall()).toUpperCase() + ";");
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tOvers " + CricketFunctions.GetTargetData(match).getRemaningBall()+ "BALL" + 
 										CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningBall()).toUpperCase() + ";");
-								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSix " + CricketFunctions.GetTargetData(match).getRemaningBall() + ";");
 								
 								
 //								if(CricketFunctions.GetTargetData(match).getRemaningBall() >= 100) {
@@ -3066,26 +3242,28 @@ public class EVEREST_AR_VR extends Scene{
 							}
 							
 						}else {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFourHead " + "RUN" + 
+							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tScore " +CricketFunctions.GetTargetData(match).getRemaningRuns() + " RUN" + 
 									CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningRuns()).toUpperCase() + ";");
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFour " + 
-									CricketFunctions.GetTargetData(match).getRemaningRuns() + ";");
+//							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFour " + 
+//									CricketFunctions.GetTargetData(match).getRemaningRuns() + ";");
 							
 //							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tScore " + CricketFunctions.GetTargetData(match).getRemaningRuns() + " RUN"+ 
 //									CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningRuns()).toUpperCase() + ";");
 							switch (match.getSetup().getMatchType()) {
 							case CricketUtil.ODI:
 								if(CricketFunctions.GetTargetData(match).getRemaningBall() >= 100) {
-									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSixHead " + "OVERS" + ";");
-									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSix " + CricketFunctions.OverBalls(0, 
+									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tOvers " + "OVERS " +CricketFunctions.OverBalls(0, 
 											CricketFunctions.GetTargetData(match).getRemaningBall()) + ";");
+//									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSix " + CricketFunctions.OverBalls(0, 
+//											CricketFunctions.GetTargetData(match).getRemaningBall()) + ";");
 									
 //									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tOvers " + CricketFunctions.OverBalls(0, 
 //											CricketFunctions.GetTargetData(match).getRemaningBall()) + " OVERS" + ";");
 								}else {
-									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSixHead " + "BALL" + 
-											CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningBall()).toUpperCase()+ " (" + match.getSetup().getTargetType().toUpperCase()+ ")" + ";");
-									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSix " + CricketFunctions.GetTargetData(match).getRemaningBall() + ";");
+									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tOvers " + "BALL" + 
+											CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningBall()).toUpperCase()+ " (" + match.getSetup().getTargetType().toUpperCase() +
+											 CricketFunctions.GetTargetData(match).getRemaningBall() + ")" + ";");
+							//		print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSix " + CricketFunctions.GetTargetData(match).getRemaningBall() + ";");
 									
 //									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tOvers " + CricketFunctions.GetTargetData(match).getRemaningBall() + " BALL" + 
 //											CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningBall()).toUpperCase()+ " (" + match.getSetup().getTargetType().toUpperCase()+ ")"+";");
@@ -3093,9 +3271,10 @@ public class EVEREST_AR_VR extends Scene{
 								}
 								break;
 							default:
-								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSixHead " + "BALL" + 
-										CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningBall()).toUpperCase() + " (" + match.getSetup().getTargetType().toUpperCase()+ ")" + ";");
-								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSix " + CricketFunctions.GetTargetData(match).getRemaningBall() + ";");
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tOvers " + "BALL" + 
+										CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningBall()).toUpperCase() + " (" + match.getSetup().getTargetType().toUpperCase()+ ")"
+										+ CricketFunctions.GetTargetData(match).getRemaningBall()+ ";");
+							//	print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSix " + CricketFunctions.GetTargetData(match).getRemaningBall() + ";");
 								
 								
 //								if(CricketFunctions.GetTargetData(match).getRemaningBall() >= 100) {
@@ -3113,11 +3292,14 @@ public class EVEREST_AR_VR extends Scene{
 ////									print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tOvers " + CricketFunctions.GetTargetData(match).getRemaningBall() + " BALL" + 
 ////											CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningBall()).toUpperCase() + " (" + match.getSetup().getTargetType().toUpperCase()+ ")"+";");
 //								}
+								
 								break;
 							}
 						}
 					}
 				}
+				
+				
 				
 				//print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET txt_Info LIVE FROM " + match.getSetup().getVenueName() + ";");
 				
@@ -3132,7 +3314,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateEquationVR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				
 				for(Inning inn : match.getMatch().getInning()) {
 					if(inn.getInningNumber() == 2 && inn.getIsCurrentInning().equalsIgnoreCase("YES")) {
@@ -3243,7 +3425,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateEquationImageVR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR":
+			case "EVEREST_AR_VR": case "BARODA_AR":
 				for(Inning inn : match.getMatch().getInning()) {
 					if(inn.getInningNumber() == 2 && inn.getIsCurrentInning().equalsIgnoreCase("YES")) {
 						System.out.println("inside method again");
@@ -3320,23 +3502,23 @@ public class EVEREST_AR_VR extends Scene{
 	{
 		switch(whichGraphic) {
 		case "INFOBAR":
-			processAnimation(print_writer, "Out", "START", session_selected_broadcaster,1);
+			//processAnimation(print_writer, "Out", "START", config.getBroadcaster(),1);
 			break;
 		
 		case "SCORECARD": 
-			processAnimation(print_writer, "BattingCardOut", "START", session_selected_broadcaster,2);
+		//	processAnimation(print_writer, "BattingCardOut", "START", config.getBroadcaster(),2);
 			TimeUnit.SECONDS.sleep(1);
 			break;
 		case "BOWLINGCARD":
-			processAnimation(print_writer, "BowlingCardOut", "START", session_selected_broadcaster,2);
+		//(print_writer, "BowlingCardOut", "START", config.getBroadcaster(),2);
 			TimeUnit.SECONDS.sleep(1);
 			break;
 		case "SUMARRY": case "PREVIOUS_SUMARRY":
-			processAnimation(print_writer, "SummaryOut", "START", session_selected_broadcaster,2);
+		//	processAnimation(print_writer, "SummaryOut", "START", config.getBroadcaster(),2);
 			TimeUnit.SECONDS.sleep(1);
 			break;
 		case "POINTSTABLE":
-			processAnimation(print_writer, "PointsTableOut", "START", session_selected_broadcaster,2);
+	//		processAnimation(print_writer, "PointsTableOut", "START", config.getBroadcaster(),2);
 			TimeUnit.SECONDS.sleep(1);
 			break;
 		
@@ -3347,12 +3529,12 @@ public class EVEREST_AR_VR extends Scene{
 		case "MOSTFOURS": case "MOSTSIXES": case "HIGHESTSCORE": case "MANHATTAN": case "PARTNERSHIP": case "PROJECTED": case "FF_TARGET": case "THISOVER":
 		case "L3HOWOUT": case "CURRENT_PARTNERSHIP": case "WORM": case "PLAYERPROFILE": case "MATCHSTATUS": case "HOWOUT_BOTH": case "BATSMANSTATS_BOTH":
 		case "THIS_SESSION": case "SESSION": case "FF_EQUATION": case "BUG-TOSS": case "BOWLERDETAILS":
-			processAnimation(print_writer, "Out", "START", session_selected_broadcaster,1);
+		//	processAnimation(print_writer, "Out", "START",String session_selected_broadcaster,1);
 			TimeUnit.SECONDS.sleep(1);
 			break;
 			
 		 case "LEADERBOARD":
-			processAnimation(print_writer, "FF_Out", "START", session_selected_broadcaster,1);
+		//	processAnimation(print_writer, "FF_Out", "START", session_selected_broadcaster,1);
 			break;
 			
 			

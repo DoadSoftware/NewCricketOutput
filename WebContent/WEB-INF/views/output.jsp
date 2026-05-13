@@ -971,7 +971,7 @@
 			  							
 			  	</c:if>
 			  	
-			  	<c:if test="${(session_selected_broadcaster == 'T20_MUMBAI_AR') || (session_selected_broadcaster == 'BARODA_AR')}" >
+			  	<c:if test="${(session_selected_broadcaster == 'T20_MUMBAI_AR')}" >
 			  	
 			  	<!-- start -->
 			  	
@@ -1158,7 +1158,7 @@
 			  	 					
 			  	</c:if>
 			  	
-			  	<c:if test="${(session_selected_broadcaster == 'EVEREST_AR_VR')}" >
+			  	<c:if test="${(session_selected_broadcaster == 'EVEREST_AR_VR')  || (session_selected_broadcaster == 'BARODA_AR')}" >
 			  	
 			  	 <hr style="margin:15px 0; border:1px solid #ccc;">
                 <p style="font-weight:bold; color:#2E008B; margin-bottom:8px;">VR Graphic Buttons</p>
@@ -1178,15 +1178,19 @@
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="target_vr_score_graphic_btn" id="target_vr_score_graphic_btn" onclick="processUserSelection(this)"> Target VR </button>
 			  	
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="thisover_vr_graphic_btn" id="thisover_vr_graphic_btn" onclick="processUserSelection(this)"> This Over </button>
+			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="thisover_vr_graphic_btn" id="thisover_vr_graphic_btn" onclick="processUserSelection(this)"> This Over </button> -->
 			  			
-			  	
+			 <!--  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="fallofwicket_graphic_btn" id="fallofwicket_graphic_btn" onclick="processUserSelection(this)"> FallOfWicket </button> -->
 			  		
 			    <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="equation_ar_score_graphic_btn" id="equation_ar_score_graphic_btn" onclick="processUserSelection(this)"> Equation </button> 
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  	name="matchId_vr_score_graphic_btn" id="matchId_vr_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button>
+			  	
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="lastboundary_ar_score_graphic_btn" id="lastboundary_ar_score_graphic_btn" onclick="processUserSelection(this)"> Ball Since last Boundary </button>		
 				 				
 			  	</c:if>
 			  	

@@ -163,11 +163,12 @@ public class Scene {
 				break;
 			}
 			break;
-		case "DOAD_AR": case "ICPL_AR": case "FAIR_BREAK_AR": case "T20_MUMBAI_AR": case "EVEREST_AR_VR": case "PLOTTER":
+		case "DOAD_AR": case "ICPL_AR": case "FAIR_BREAK_AR": case "T20_MUMBAI_AR": case "EVEREST_AR_VR": case "PLOTTER": 
 		case "EUROPE_LEAGUE": case "BARODA_AR":
 			switch(this.which_layer.toUpperCase()) {
 			case "1":
 				print_writer.println("LAYER1*EVEREST*SCENE LOAD " + this.scene_path + ";");
+	//			print_writer.println("LAYER3*EVEREST*SCENE LOAD " + this.scene_path + ";");
 				
 				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In STOP;");
 				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In SHOW 0.0;");
@@ -178,7 +179,8 @@ public class Scene {
 				break;
 			case "2":
 				print_writer.println("LAYER2*EVEREST*SCENE LOAD " + this.scene_path + ";");
-				
+	//			print_writer.println("LAYER3*EVEREST*SCENE LOAD " + this.scene_path + ";");
+	//			
 				print_writer.println("LAYER2*EVEREST*STAGE*DIRECTOR*In STOP;");
 				print_writer.println("LAYER2*EVEREST*STAGE*DIRECTOR*In SHOW 0.0;");
 				

@@ -31,8 +31,10 @@ import com.cricket.archive.Archive;
 import com.cricket.broadcaster.EVEREST_APL_T20;
 import com.cricket.broadcaster.EVEREST_AR_VR;
 import com.cricket.broadcaster.EVEREST_LEGENDS_90;
+import com.cricket.broadcaster.EVEREST_MPL_T20;
 import com.cricket.broadcaster.KERALA_T20;
 import com.cricket.broadcaster.T20_MUMBAI_AR;
+import com.cricket.broadcaster.MAHARAJA_T20;
 import com.cricket.containers.Infobar;
 import com.cricket.containers.Scene;
 import com.cricket.model.BattingCard;
@@ -84,7 +86,7 @@ public class IndexController
 //	public static APL this_apl;
 //	public static PPL this_ppl;
 //	public static PUNJAB_T20 this_punjab_t20;
-//	public static MAHARAJA_T20 this_maharaja_t20;
+		public static MAHARAJA_T20 this_maharaja_t20;
 //	public static FAIR_BREAK this_fairbreak;
 //	public static RPL this_rpl;
 //	public static RSWS this_rsws;
@@ -99,7 +101,7 @@ public class IndexController
 //	public static NEPAL_T20 this_nepal_t20;
 //	public static USPL this_uspl;
 //	public static EVEREST_SPL this_spl;
-//	public static EVEREST_MPL_T20 everest_mpl_t20;
+		public static EVEREST_MPL_T20 everest_mpl_t20;
 //	public static EVEREST_BENGAL_T20 bengal_t20;
 //	public static ICPL_AR this_icpl_ar;
 //	public static EVEREST_NEPAL_T20 everest_nepal_t20;
@@ -639,8 +641,8 @@ public class IndexController
 					session_selected_scenes.get(0).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_broadcaster);
 					break;
 				case "EVEREST_MPL_T20":
-//					everest_mpl_t20 = new EVEREST_MPL_T20();
-//					everest_mpl_t20.infobar = new Infobar();
+					everest_mpl_t20 = new EVEREST_MPL_T20();
+					everest_mpl_t20.infobar = new Infobar();
 					session_selected_scenes.get(0).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_broadcaster);
 					break;
 				case "EVEREST_BENGAL_T20":
@@ -707,8 +709,8 @@ public class IndexController
 					session_selected_scenes.get(2).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_broadcaster);
 					break;	
 				case "MAHARAJA_T20":
-//					this_maharaja_t20 = new MAHARAJA_T20();
-//					this_maharaja_t20.infobar = new Infobar();
+					this_maharaja_t20 = new MAHARAJA_T20();
+					this_maharaja_t20.infobar = new Infobar();
 					session_selected_scenes.get(0).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_broadcaster);
 					break;
 				case "ACC":
@@ -929,8 +931,8 @@ public class IndexController
 //				return (String) session_llc_big_screen.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
 //						CricketFunctions.processPrintWriter(session_configuration).get(1), session_selected_scenes, valueToProcess, session_statistics);
 			case "MPL":
-//				return (String) everest_mpl_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(1), 
-//						session_selected_scenes, valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
+				return (String) everest_mpl_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(1), 
+						session_selected_scenes, valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
 			case "ICC_BIGSCREEN_DOAD_VIZ_SCORING":
 //				return (String) icc_bigscreen_viz_doad.ProcessGraphicOption(whatToProcess, session_match, cricketService, CricketFunctions.processPrintWriter(session_configuration), 
 //						session_selected_scenes, valueToProcess, session_statistics, past_tournament_stats, headToHead.getH2hPlayer(),session_configuration,session_dls);	
@@ -1118,10 +1120,10 @@ public class IndexController
 //			case "SPL":
 //				return (String) this_spl.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
 //						session_selected_scenes, valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
-//			case "EVEREST_MPL_T20":
-//				return (String) everest_mpl_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
-//						session_selected_scenes, valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
-//			
+			case "EVEREST_MPL_T20":
+				return (String) everest_mpl_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
+						session_selected_scenes, valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
+			
 //			case "EVEREST_BENGAL_T20":
 //				return (String) bengal_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
 //						session_selected_scenes, valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
@@ -1167,9 +1169,9 @@ public class IndexController
 ////			case "DOAD-VIZ-MULTI":
 ////				return (String) this_multi.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration), 
 ////						session_selected_scenes, valueToProcess, session_statistics,session_configuration,multiLanguage,foreignLanguage);
-//			case "MAHARAJA_T20":
-//				return (String) this_maharaja_t20.processGraphics(whatToProcess, valueToProcess, session_match, cricket_matches,past_tournament_stats, 
-//						session_selected_scenes, session_statistics, cricketService, CricketFunctions.processPrintWriter(session_configuration).get(0), session_configuration, headToHead.getH2hPlayer(),plotterData);
+			case "MAHARAJA_T20":
+				return (String) this_maharaja_t20.processGraphics(whatToProcess, valueToProcess, session_match, cricket_matches,past_tournament_stats, 
+						session_selected_scenes, session_statistics, cricketService, CricketFunctions.processPrintWriter(session_configuration).get(0), session_configuration, headToHead.getH2hPlayer(),plotterData);
 //			case "ACC":
 //				return (String) this_acc.processGraphics(whatToProcess, valueToProcess, session_match, cricket_matches, session_selected_scenes, 
 //						session_statistics, cricketService, CricketFunctions.processPrintWriter(session_configuration).get(0), session_configuration);
@@ -1206,9 +1208,9 @@ public class IndexController
 //			case "ASSAM":
 //				return (String) this_assam.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
 //						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics, session_configuration);	
-//			case "MAHARAJA_T20":
-//				return (String) this_maharaja_t20.processGraphics(whatToProcess, valueToProcess, session_match, cricket_matches,past_tournament_stats, session_selected_scenes, 
-//						session_statistics, cricketService, CricketFunctions.processPrintWriter(session_configuration).get(0),session_configuration, headToHead.getH2hPlayer(),plotterData);
+			case "MAHARAJA_T20":
+				return (String) this_maharaja_t20.processGraphics(whatToProcess, valueToProcess, session_match, cricket_matches,past_tournament_stats, session_selected_scenes, 
+						session_statistics, cricketService, CricketFunctions.processPrintWriter(session_configuration).get(0),session_configuration, headToHead.getH2hPlayer(),plotterData);
 //			case "ACC":
 //				return (String) this_acc.processGraphics(whatToProcess, valueToProcess, session_match, cricket_matches, session_selected_scenes, 
 //						session_statistics, cricketService, CricketFunctions.processPrintWriter(session_configuration).get(0), session_configuration);
@@ -1418,8 +1420,8 @@ public class IndexController
 					Plotter_file_change = false;
 					break;	
 				case "MAHARAJA_T20":
-//					this_maharaja_t20.updateFieldPlotter(session_selected_scenes, session_match,cricket_matches,show_speed, 
-//							CricketFunctions.processPrintWriter(session_configuration),plotterData);
+					this_maharaja_t20.updateFieldPlotter(session_selected_scenes, session_match,cricket_matches,show_speed, 
+							CricketFunctions.processPrintWriter(session_configuration),plotterData);
 					Plotter_file_change = false;
 					break;	
 				}
@@ -1518,7 +1520,7 @@ public class IndexController
 //					this_multi.updateInfobar(session_selected_scenes, session_match, CricketFunctions.processPrintWriter(session_configuration),session_configuration,multiLanguage,foreignLanguage);
 //					break;
 				case "MAHARAJA_T20":
-//					this_maharaja_t20.updateInfobar(session_selected_scenes, session_match, CricketFunctions.processPrintWriter(session_configuration).get(0));
+					this_maharaja_t20.updateInfobar(session_selected_scenes, session_match, CricketFunctions.processPrintWriter(session_configuration).get(0));
 					break;
 				case "ACC":
 //					this_acc.updateInfobar(session_selected_scenes, session_match, CricketFunctions.processPrintWriter(session_configuration).get(0));
@@ -1651,11 +1653,11 @@ public class IndexController
 //				this_spl.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
 //						session_selected_scenes, valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
 //				return new ObjectMapper().writeValueAsString(this_spl).toString();
-//			case "EVEREST_MPL_T20":
-//				everest_mpl_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
-//						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, 
-//						valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
-//				return new ObjectMapper().writeValueAsString(everest_mpl_t20).toString();
+			case "EVEREST_MPL_T20":
+				everest_mpl_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
+						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, 
+						valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
+				return new ObjectMapper().writeValueAsString(everest_mpl_t20).toString();
 //			case "EVEREST_BENGAL_T20":
 //				bengal_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
 //						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, 
@@ -1704,10 +1706,10 @@ public class IndexController
 //						CricketFunctions.processPrintWriter(session_configuration).get(0), 
 //						session_selected_scenes, valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer());
 //				return new ObjectMapper().writeValueAsString(this_punjab_t20).toString();
-//			case "MAHARAJA_T20":
-//				this_maharaja_t20.processGraphics(whatToProcess, valueToProcess, session_match, cricket_matches,past_tournament_stats, session_selected_scenes, 
-//						session_statistics, cricketService, CricketFunctions.processPrintWriter(session_configuration).get(0),session_configuration, headToHead.getH2hPlayer(),plotterData);
-//				return new ObjectMapper().writeValueAsString(this_maharaja_t20).toString();	
+			case "MAHARAJA_T20":
+				this_maharaja_t20.processGraphics(whatToProcess, valueToProcess, session_match, cricket_matches,past_tournament_stats, session_selected_scenes, 
+						session_statistics, cricketService, CricketFunctions.processPrintWriter(session_configuration).get(0),session_configuration, headToHead.getH2hPlayer(),plotterData);
+				return new ObjectMapper().writeValueAsString(this_maharaja_t20).toString();	
 //			case "FAIR_BREAK":
 //				this_fairbreak.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, 
 //						valueToProcess, session_statistics, session_configuration);

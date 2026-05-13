@@ -1398,6 +1398,10 @@
 			  		name="bug_highlight_graphic_btn" id="bug_highlight_graphic_btn" onclick="processUserSelection(this)"> Bug Highlight</button>
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button"
 			            name="result_bug_graphic_btn" id="result_bug_graphic_btn" onclick="processUserSelection(this)"> BUG Result</button>
+			    <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button"
+			            name="bug_toss_graphic_btn" id="bug_toss_graphic_btn" onclick="processUserSelection(this)"> BUG TOSS</button>
+			        <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button"
+			            name="bug_target_graphic_btn" id="bug_target_graphic_btn" onclick="processUserSelection(this)"> BUG TARGET</button>
 			            
 			    <c:if test="${(session_selected_broadcaster == 'EVEREST_MPL_T20')}"> 
 				  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button"
@@ -1444,10 +1448,10 @@
 			  		<button style="background-color:#6a33f7;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  			name="namesuper_graphic_btn" id="namesuper_graphic_btn" onclick="processUserSelection(this)"> NameSuper</button>
 				  	<button style="background-color:#6a33f7;color:#FEFEFE;" class="btn btn-sm" type="button"
-				  		name="namesuper_player_graphic_btn" id="namesuper_player_graphic_btn" onclick="processUserSelection(this)"> NameSuper-Player Home</button>
+				  		name="namesuper_player_graphic_btn" id="namesuper_player_graphic_btn" onclick="processUserSelection(this)"> NameSuper-Player Home (H)</button>
 				  	
 				  	<button style="background-color:#6a33f7;color:#FEFEFE;" class="btn btn-sm" type="button"
-				  		name="namesuper_player_away_graphic_btn" id="namesuper_player_away_graphic_btn" onclick="processUserSelection(this)"> NameSuper-Player Away</button>
+				  		name="namesuper_player_away_graphic_btn" id="namesuper_player_away_graphic_btn" onclick="processUserSelection(this)"> NameSuper-Player Away (A)</button>
 				  	
 				  	
 				  	<button style="background-color:#6a33f7;color:#FEFEFE;" class="btn btn-sm" type="button"
@@ -1459,16 +1463,16 @@
 			  		
 			  		<c:if test="${(session_selected_broadcaster == 'EVEREST_APL_T20')}"> 
 			  		
-				  	<button style="background-color:#ffb6c1;color:#000000;" class="btn btn-sm" type="button"
+				  <!-- 	<button style="background-color:#ffb6c1;color:#000000;" class="btn btn-sm" type="button"
 					  		name="leaderboard_graphic_btn" id="leaderboard_graphic_btn" onclick="processUserSelection(this)"> LeaderBoard (Shift+L)</button>
 				  	<button style="background-color:#ffb6c1;color:#000000;" class="btn btn-sm" type="button"
-					  	name="most_graphic_btn" id="most_graphic_btn" onclick="processUserSelection(this)"> Most Runs/Wickets in Teams(Z) </button>
+					  	name="most_graphic_btn" id="most_graphic_btn" onclick="processUserSelection(this)"> Most Runs/Wickets in Teams(Z) </button> -->
 					
-					<button style="background-color:#ffb6c1;color:#000000;" class="btn btn-sm" type="button"
+					<!-- <button style="background-color:#ffb6c1;color:#000000;" class="btn btn-sm" type="button"
 					  	name="LT_Excel_graphic_btn" id="LT_Excel_graphic_btn" onclick="processUserSelection(this)"> LT EXCEL(Ctrl+Shift+E) </button>
 					  	
 					<button style="background-color:#ffb6c1;color:#000000;" class="btn btn-sm" type="button"
-					  	name="FF_Excel_graphic_btn" id="FF_Excel_graphic_btn" onclick="processUserSelection(this)"> FF EXCEL(Ctrl+Shift+X) </button>  	  	 
+					  	name="FF_Excel_graphic_btn" id="FF_Excel_graphic_btn" onclick="processUserSelection(this)"> FF EXCEL(Ctrl+Shift+X) </button>   -->	  	 
 					  		
 				  	</c:if>
 				  	
@@ -1488,10 +1492,10 @@
 				  			name="marquee_graphic_btn" id="marquee_graphic_btn" onclick="processUserSelection(this)"> Marquee </button>
 			  		 </c:if>
 			  		 
-			  		 <button style="background-color:#ffb6c1;color:#000000;" class="btn btn-sm" type="button"
-			  			name="rules_graphic_btn" id="rules_graphic_btn" onclick="processUserSelection(this)"> Rules </button>
+			  		 <!-- <button style="background-color:#ffb6c1;color:#000000;" class="btn btn-sm" type="button"
+			  			name="rules_graphic_btn" id="rules_graphic_btn" onclick="processUserSelection(this)"> Rules </button> 
 					 <button style="background-color:#6a33f7;color:#FEFEFE;margin:3px;" class="btn btn-sm" type="button"
-			  		name="matchsummaryexcel_graphic_btn" id="matchsummaryexcel_graphic_btn" onclick="processUserSelection(this)"> Match Summary Excel</button>
+			  		name="matchsummaryexcel_graphic_btn" id="matchsummaryexcel_graphic_btn" onclick="processUserSelection(this)"> Match Summary Excel</button>-->
 			  	
 			  	</div>
 			  	

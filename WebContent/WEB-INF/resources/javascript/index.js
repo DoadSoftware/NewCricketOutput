@@ -2921,7 +2921,7 @@ function processUserSelection(whichInput) {
 		case 'winner_graphic_btn': case 'namesuper_player_away_graphic_btn':
 
 		case 'bug_graphic_btn': case 'howout_graphic_btn': case 'howout_both_graphic_btn': case 'bat_performer_graphic_btn': case 'ball_performer_graphic_btn':
-		case 'batsmanstats_graphic_btn': case 'bowlerstats_graphic_btn': case 'namesuper_graphic_btn': case 'namesuper_player_graphic_btn': 
+		case 'batsmanstats_graphic_btn': case 'bowlerstats_graphic_btn': case 'namesuper_graphic_btn': case 'namesuper_player_graphic_btn': case 'namesuper_homeplayer_graphic_btn':
 		case 'playerprofileeverest_graphic_btn': case 'doubleplayerprofileballeverest_graphic_btn': case 'playerprofile_graphic_btn': case 'playerprofileball_graphic_btn': case 'playerprofileballeverest_graphic_btn':
 		case 'infobar_bottom-left_graphic_btn': case 'infobar_graphic_btn': case 'infobar_bottom-right_graphic_btn': case 'previous_summary_graphic_btn': case 'infobar_middle_graphic_btn':
 		case 'infobar_bottom_graphic_btn': case 'playingxi_graphic_btn': case 'playingxi_photo_graphic_btn': case 'leaderboard_graphic_btn': case 'ident_graphic_btn': case 'lt_tieid_double_graphic_btn':
@@ -3258,13 +3258,21 @@ function processUserSelection(whichInput) {
 					processCricketProcedures('LINE_UP_GRAPHICS-OPTIONS');
 					break;
 				case 'namesuper_player_graphic_btn':
-					
+					console.log('NAMESUPER_PLAYER-OPTIONS');
 					addItemsToList('NAMESUPER_PLAYER-OPTIONS', null);
 					
-					if ($('#selected_broadcaster').val() != 'EVEREST_MPL_T20') {
+					/*if ($('#selected_broadcaster').val() != 'EVEREST_MPL_T20') {
 						addItemsToList('POPULATE-PLAYER', null);
-					}
+					}*/
 					break;
+				case 'namesuper_homeplayer_graphic_btn':
+					console.log('NAMESUPER_PLAYER-OPTIONS');
+					addItemsToList('NAMESUPER_PLAYER-OPTIONS', null);
+					
+					/*if ($('#selected_broadcaster').val() != 'EVEREST_MPL_T20') {
+						addItemsToList('POPULATE-PLAYER', null);
+					}*/
+					break;	
 				case 'namesuper_player_away_graphic_btn':
 					addItemsToList('NAMESUPER_PLAYER_AWAY-OPTIONS', null);
 					break;
@@ -4479,7 +4487,7 @@ function processUserSelection(whichInput) {
 					break;
 				case 'bug_toss_graphic_btn':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'EVEREST_LEGENDS_90': case 'EVEREST_MPL_T20':
+						case 'EVEREST_LEGENDS_90': case 'EVEREST_MPL_T20': case 'EVEREST_APL_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -8345,6 +8353,9 @@ function processCricketProcedures(whatToProcess) {
 				case 'EVEREST_MPL_T20':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_MPL/Scenes/Result_Bug.sum';
 					break;
+				case 'EVEREST_APL_T20':
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_MPL/Scenes/Result_Bug.sum';
+					break;
 			}
 			break;
 		case 'POPULATE-CLIP':
@@ -8368,6 +8379,10 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_MPL/Scenes/TargetBug_Long.sum' + ','
 						+ document.getElementById('which_keypress').value;
 					break;
+					case 'EVEREST_APL_T20':
+						valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_MPL/Scenes/TargetBug_Long.sum' + ','
+							+ document.getElementById('which_keypress').value;
+						break;
 			}
 			break;
 		case 'POPULATE-L3-BUG-TOSS':
@@ -8385,6 +8400,11 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_MPL/Scenes/TargetBug_Long.sum'
 						+","+$('#selectLogos option:selected').val()+","+$('#selectDecision option:selected').val();
 					break;
+					
+					case 'EVEREST_APL_T20':
+						valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_MPL/Scenes/TargetBug_Long.sum'
+							+","+$('#selectLogos option:selected').val();
+						break;
 				case 'EVEREST_LEGENDS_90':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Highlights_Bug_Details_Long.sum'
 					+","+$('#selectLogos option:selected').val()+","+$('#selectDecision option:selected').val();
@@ -8550,7 +8570,7 @@ function processCricketProcedures(whatToProcess) {
 						$('#selectStatType option:selected').val() + ',' + $('#selectHowoutPlayers option:selected').val();
 					break;
 				case 'EVEREST_APL_T20':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_APL2023/Scenes/Bug_DoubleLine.sum' + ',' + document.getElementById('which_keypress').value + ',' +
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_MPL/Scenes/Bug.sum' + ',' + document.getElementById('which_keypress').value + ',' +
 						$('#selectStatType option:selected').val() + ',' + $('#selectHowoutPlayers option:selected').val();
 					break;
 				case 'EVEREST_PPL_T20':
@@ -8673,7 +8693,7 @@ function processCricketProcedures(whatToProcess) {
 						$('#selectStatsType option:selected').val() + ',' + $('#selectPlayers option:selected').val();
 					break;
 				case 'EVEREST_APL_T20':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_APL2023/Scenes/Bug_DoubleLine.sum' + ',' + document.getElementById('which_keypress').value + ',' +
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_MPL/Scenes/Bug.sum' + ',' + document.getElementById('which_keypress').value + ',' +
 						$('#selectStatsType option:selected').val() + ',' + $('#selectPlayers option:selected').val();
 					break;
 				case 'EVEREST_PPL_T20':
@@ -8796,7 +8816,7 @@ function processCricketProcedures(whatToProcess) {
 						$('#selectStatsType option:selected').val() + ',' + $('#selectPlayers option:selected').val();
 					break;
 				case 'EVEREST_APL_T20':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_APL2023/Scenes/Bug_DoubleLine.sum' + ',' + document.getElementById('which_keypress').value + ',' +
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_MPL/Scenes/Bug.sum' + ',' + document.getElementById('which_keypress').value + ',' +
 						$('#selectStatsType option:selected').val() + ',' + $('#selectPlayers option:selected').val();
 					break;
 				case 'EVEREST_PPL_T20':
@@ -9508,7 +9528,7 @@ function processCricketProcedures(whatToProcess) {
 						+ $('#selectNameSuper option:selected').val();
 					break;
 				case 'EVEREST_APL_T20':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_APL2023/Scenes/LT_NameSuper.sum' + ',' + $('#selectNameSuper option:selected').val();
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_MPL/Scenes/LT_NameSuper.sum' + ',' + $('#selectNameSuper option:selected').val();
 					break;
 				case 'EVEREST_PPL_T20':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_PPL/Scenes/LT_NameSuper.sum' + ',' + $('#selectNameSuper option:selected').val();
@@ -9625,7 +9645,7 @@ function processCricketProcedures(whatToProcess) {
 						$('#selectCaptainWicketKeeper option:selected').val() + ',' + $('#selectPlayer option:selected').val();
 					break;
 				case 'EVEREST_APL_T20':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_APL2023/Scenes/LT_NameSuper.sum' + ',' + $('#selectTeam option:selected').val() + ',' +
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_MPL/Scenes/LT_NameSuper.sum' + ',' +
 						$('#selectCaptainWicketKeeper option:selected').val() + ',' + $('#selectPlayer option:selected').val();
 					break;
 				case 'EVEREST_PPL_T20':
@@ -9747,7 +9767,7 @@ function processCricketProcedures(whatToProcess) {
 						+ $('#selectTop5player option:selected').val();
 					break;
 				case 'EVEREST_APL_T20':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_APL2023/Scenes/FF_TOP5.sum' + ',' + $('#selectleaderboardType option:selected').val() + ','
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_MPL/Scenes/Leaderboard.sum' + ',' + $('#selectleaderboardType option:selected').val() + ','
 						+ $('#selectTop5player option:selected').val();
 					break;
 				case 'EVEREST_PPL_T20':
@@ -9868,7 +9888,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_PT20_2023/Scenes/FF_Rows_Columm.sum' + ',' + $('#selectmoststatsType option:selected').val() + ',' + $('#selectType option:selected').val();
 					break;
 				case 'EVEREST_APL_T20':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_APL2023/Scenes/FF_Rows_Columm.sum' + ',' + $('#selectmoststatsType option:selected').val() + ',' + $('#selectType option:selected').val();
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_MPL/Scenes/FF_Row_Col.sum' + ',' + $('#selectmoststatsType option:selected').val() + ',' + $('#selectType option:selected').val();
 					break;
 				case 'EVEREST_PPL_T20':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_PPL/Scenes/FF_Rows_Columm.sum' + ',' + $('#selectmoststatsType option:selected').val() + ',' + $('#selectType option:selected').val();
@@ -10861,7 +10881,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_PT20_2023/Scenes/LT_MATCHID.sum';
 					break;
 				case 'EVEREST_APL_T20':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_APL2023/Scenes/LT_MATCHID.sum';
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_MPL/Scenes/LT_ID.sum';
 					break;
 				case 'EVEREST_PPL_T20':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_PPL/Scenes/LT_MATCHID.sum';
@@ -10956,7 +10976,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_BenagalT20/Scenes/MatchID.sum';
 					break;
 				case 'EVEREST_APL_T20':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_APL2023/Scenes/MatchID.sum';
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_MPL/Scenes/MatchID.sum';
 					break;
 				case 'EVEREST_PPL_T20':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_PPL/Scenes/MatchID.sum';
@@ -16410,11 +16430,13 @@ function addItemsToList(whatToProcess, dataToProcess) {
 				if (inn.inningNumber == document.getElementById('which_keypress').value) {
 					if ($('#selectStatType option:selected').val() == 'Batsman') {
 						inn.battingCard.forEach(function(bc, bc_index, bc_arr) {
-							$('#selectHowoutPlayers').append(
-								$(document.createElement('option')).prop({
-									value: bc.playerId,
-									text: bc.player.full_name + " - " + bc.status
-								}))
+							if(bc.status == 'OUT'){
+								$('#selectHowoutPlayers').append(
+									$(document.createElement('option')).prop({
+										value: bc.playerId,
+										text: bc.player.full_name + " - " + bc.status
+									}))
+							}
 						});
 					}
 				}
@@ -17067,6 +17089,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 				$('#selectleaderboardType option:selected').val() == 'Team_most_fours' || $('#selectleaderboardType option:selected').val() == 'Team_most_sixes') {
 
 				for (i = 0; i < dataToProcess.length; i++) {
+					console.log(dataToProcess)
 					if (i < 5) {
 						if (($('#selectleaderboardType option:selected').val() == 'most_runs' && dataToProcess[i].runs > 0) ||
 							($('#selectleaderboardType option:selected').val() == 'most_wickets' && dataToProcess[i].wickets > 0) ||
@@ -17077,6 +17100,13 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							($('#selectleaderboardType option:selected').val() == 'Team_most_fours' && dataToProcess[i].fours > 0) ||
 							($('#selectleaderboardType option:selected').val() == 'Team_most_sixes' && dataToProcess[i].sixes > 0)) {
 
+								/*dataToProcess.player.forEach(function(hs, index, arr) {
+													$('#selectTop5player').append(
+														$(document.createElement('option')).prop({
+															value: hs.playerId,
+															text: hs.full_name
+														}))
+												});*/
 							$('#selectTop5player').append(
 								$(document.createElement('option')).prop({
 									value: dataToProcess[i].playerId,
@@ -17900,20 +17930,30 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			//alert(session_match.inning.length)
 
 			option = document.createElement('option');
-			option.value = session_match.setup.homeTeam.teamId;
-			option.text = session_match.setup.homeTeam.teamName1;
+			option.value = session_match.setup.homeTeam.teamId + ",CHOSE TO BAT";
+			option.text = session_match.setup.homeTeam.teamName1 + ",CHOSE TO BAT";
 			select.appendChild(option);
 
 			option = document.createElement('option');
-			option.value =session_match.setup.awayTeam.teamId;
-			option.text = session_match.setup.awayTeam.teamName1;
+			option.value =session_match.setup.awayTeam.teamId + ",CHOSE TO BAT";
+			option.text = session_match.setup.awayTeam.teamName1 + ",CHOSE TO BAT";
+			select.appendChild(option);
+			
+			option = document.createElement('option');
+			option.value = session_match.setup.homeTeam.teamId + ",CHOSE TO BOWL";
+			option.text = session_match.setup.homeTeam.teamName1 + ",CHOSE TO BOWL";
+			select.appendChild(option);
+
+			option = document.createElement('option');
+			option.value =session_match.setup.awayTeam.teamId + ",CHOSE TO BOWL";
+			option.text = session_match.setup.awayTeam.teamName1 + ",CHOSE TO BOWL";
 			select.appendChild(option);
 
 			select.setAttribute('onchange', "processUserSelection(this)");
 			row.insertCell(cellCount).appendChild(select);
 			cellCount = cellCount + 1;
 			
-			select = document.createElement('select');
+			/*select = document.createElement('select');
 			select.id = 'selectDecision';
 			select.name = select.id;
 			option = document.createElement('option');
@@ -17927,7 +17967,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			select.appendChild(option);
 
 			row.insertCell(cellCount).appendChild(select);
-			cellCount = cellCount + 1;
+			cellCount = cellCount + 1;*/
 
 			option = document.createElement('input');
 			option.type = 'button';
@@ -26612,6 +26652,23 @@ function addItemsToList(whatToProcess, dataToProcess) {
 								case 'EVEREST_APL_T20': case 'RPL': case 'RSWS': case 'USPL': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20': case 'PPL':
 								case 'EVEREST_PPL_T20': case 'EVEREST_KCL_T20': case 'KERALA_T20': case 'EVEREST_KCL': case 'ARUNACHAL':
 								case "EVEREST_LEGENDS_90": case "SPL":
+									/*if ($('#selected_broadcaster').val().toUpperCase() != 'EVEREST_MPL_T20') {
+										select = document.createElement('select');
+										select.style = 'width:100px';
+										select.id = 'selectTeam';
+										select.name = select.id;
+	
+										session_match.match.inning.forEach(function(hs) {
+											option = document.createElement('option');
+											option.value = hs.batting_team.teamId;
+											option.text = hs.batting_team.teamName4;
+											select.appendChild(option);
+										});
+											
+										row.insertCell(cellCount).appendChild(select);
+										removeSelectDuplicates(select.name);
+										cellCount = cellCount + 1;
+									}*/
 									select = document.createElement('select');
 									select.style = 'width:100px';
 									select.id = 'selectPlayer';
@@ -26696,26 +26753,26 @@ function addItemsToList(whatToProcess, dataToProcess) {
 											cellCount = cellCount + 1;
 											break;
 									}
-									
-									select = document.createElement('select');
-									select.style = 'width:100px';
-									select.id = 'selectImage';
-									select.name = select.id;
+									if($('#selected_broadcaster').val().toUpperCase() != 'EVEREST_APL_T20'){
+										select = document.createElement('select');
+										select.style = 'width:100px';
+										select.id = 'selectImage';
+										select.name = select.id;
 
-									option = document.createElement('option');
-									option.value = 'WITHOUT';
-									option.text = 'WITHOUT';
-									select.appendChild(option);
+										option = document.createElement('option');
+										option.value = 'WITHOUT';
+										option.text = 'WITHOUT';
+										select.appendChild(option);
 
-									option = document.createElement('option');
-									option.value = 'WITH';
-									option.text = 'WITH';
-									select.appendChild(option);
+										option = document.createElement('option');
+										option.value = 'WITH';
+										option.text = 'WITH';
+										select.appendChild(option);
 
-									select.setAttribute('onchange', "processUserSelection(this)");
-									row.insertCell(cellCount).appendChild(select);
-									cellCount = cellCount + 1;
-									
+										select.setAttribute('onchange', "processUserSelection(this)");
+										row.insertCell(cellCount).appendChild(select);
+										cellCount = cellCount + 1;
+									}
 									break;
 								 case 'DOAD_LLC':
 									select = document.createElement('select');
@@ -26991,24 +27048,6 @@ function addItemsToList(whatToProcess, dataToProcess) {
 								case 'EVEREST_APL_T20': case 'RPL': case 'USPL': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20':
 								 case 'EVEREST_PPL_T20': case 'EVEREST_KCL_T20':  case 'EVEREST_KCL':
 
-									if ($('#selected_broadcaster').val().toUpperCase() != 'EVEREST_MPL_T20') {
-										select = document.createElement('select');
-										select.style = 'width:100px';
-										select.id = 'selectTeam';
-										select.name = select.id;
-	
-										session_match.match.inning.forEach(function(hs) {
-											option = document.createElement('option');
-											option.value = hs.batting_team.teamId;
-											option.text = hs.batting_team.teamName4;
-											select.appendChild(option);
-										});
-											
-										row.insertCell(cellCount).appendChild(select);
-										removeSelectDuplicates(select.name);
-										cellCount = cellCount + 1;
-									}
-									
 									select = document.createElement('select');
 
 									select.style = 'width:100px';

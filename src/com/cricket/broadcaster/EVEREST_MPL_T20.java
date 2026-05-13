@@ -689,6 +689,7 @@ public class EVEREST_MPL_T20 extends Scene{
 						cricketService.getTeams(),match, broadcaster);
 				break;
 			case "POPULATE-L3-BUG-DISMISSAL":
+				System.out.println("valueToProcess - " + valueToProcess);
 				populateBugDismissal(print_writer, valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]), 
 						valueToProcess.split(",")[2],Integer.valueOf(valueToProcess.split(",")[3]), match, broadcaster);
 				break;
@@ -1944,7 +1945,7 @@ public class EVEREST_MPL_T20 extends Scene{
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead03 RUNS;");
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead04 S/R;");
 				for(int i = 0; i <= tournament.size() - 1 ; i++) {
-					if(team.get(tournament.get(i).getPlayer().getTeamId() - 1).getTeamName1().equalsIgnoreCase(StatType.toUpperCase())) {
+					if(team.get(tournament.get(i).getPlayer().getTeamId() - 1).getTeamId() == Integer.valueOf(StatType)) {
 						if(tournament.get(i).getRuns() > 0) {
 							row_no = row_no + 1;
 							print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgLogo " + logo_path + team.get(tournament.get(i).getPlayer().getTeamId() - 1).getTeamName4() + 

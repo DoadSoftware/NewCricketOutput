@@ -8411,7 +8411,7 @@ function processCricketProcedures(whatToProcess) {
 							+","+$('#selectLogos option:selected').val();
 						break;
 				case 'EVEREST_LEGENDS_90':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Highlights_Bug_Details_Long.sum'
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Target_Bug_LONG.sum'
 					+","+$('#selectLogos option:selected').val()+","+$('#selectDecision option:selected').val();
 					break;
 				case 'SPL':
@@ -8552,7 +8552,7 @@ function processCricketProcedures(whatToProcess) {
 						$('#selectStatType option:selected').val() + ',' + $('#selectHowoutPlayers option:selected').val();
 				break;
 				case "EVEREST_LEGENDS_90":
-				valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Bug_SingleLine.sum' + ',' + document.getElementById('which_keypress').value + ',' +
+				valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Bug.sum' + ',' + document.getElementById('which_keypress').value + ',' +
 						$('#selectStatType option:selected').val() + ',' + $('#selectHowoutPlayers option:selected').val();
 				break;
 				case 'EVEREST_PUNJAB_T20':
@@ -8794,7 +8794,7 @@ function processCricketProcedures(whatToProcess) {
 						$('#selectStatsType option:selected').val() + ',' + $('#selectPlayers option:selected').val();
 					break;
 				case  "EVEREST_LEGENDS_90":
-						valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Bug_SingleLine.sum' + ',' + document.getElementById('which_keypress').value + ',' +
+						valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Bug.sum' + ',' + document.getElementById('which_keypress').value + ',' +
 						$('#selectStatsType option:selected').val() + ',' + $('#selectPlayers option:selected').val();
 					break;
 				case "SPL":

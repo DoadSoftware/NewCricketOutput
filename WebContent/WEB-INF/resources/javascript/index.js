@@ -8667,7 +8667,7 @@ function processCricketProcedures(whatToProcess) {
 						$('#selectStatsType option:selected').val() + ',' + $('#selectPlayers option:selected').val();
 					break;
 				case  "EVEREST_LEGENDS_90":
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Bug_SingleLine.sum' + ',' + document.getElementById('which_keypress').value + ',' +
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Bug.sum' + ',' + document.getElementById('which_keypress').value + ',' +
 						$('#selectStatsType option:selected').val() + ',' + $('#selectPlayers option:selected').val();
 					break;
 				case "SPL":

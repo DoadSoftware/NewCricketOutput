@@ -982,6 +982,8 @@ public class EVEREST_APL_T20 extends Scene{
 						case CricketUtil.BATSMAN:
 							for (BattingCard bc : inn.getBattingCard()) {
 								if (bc.getPlayerId() == playerId) {
+									print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgSponsor " + logo_path + 
+											inn.getBatting_team().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
 
 									print_writer.println(
 											"LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo "
@@ -1231,6 +1233,8 @@ public class EVEREST_APL_T20 extends Scene{
 						case CricketUtil.BOWLER:
 							for (BowlingCard boc : inn.getBowlingCard()) {
 								if (boc.getPlayerId() == playerId) {
+									print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgSponsor " + logo_path + 
+											inn.getBatting_team().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
 									print_writer.println(
 											"LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo "
 													+ boc.getPlayer().getTicker_name() + "       " + boc.getWickets() + slashOrDash + boc.getRuns() + " " + "(" + CricketFunctions.OverBalls(boc.getOvers(), boc.getBalls()) +")" + ";");

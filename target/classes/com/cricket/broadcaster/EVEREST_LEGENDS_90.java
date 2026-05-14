@@ -1411,7 +1411,7 @@ public class EVEREST_LEGENDS_90 extends Scene{
 							+ ns.getSponsor() + CricketUtil.PNG_EXTENSION + ";");
 				}
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgIMG_BASE " + base_path
-						+ "ASA" + CricketUtil.PNG_EXTENSION + ";");
+						+ ns.getFirstname() + CricketUtil.PNG_EXTENSION + ";");
 				if (ns.getFirstname() == null) {
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFirstName "
 							+ ns.getSurname() + ";");
@@ -1597,9 +1597,15 @@ public class EVEREST_LEGENDS_90 extends Scene{
 				String Home_or_Away = "";
 
 				if (TeamId == match.getSetup().getHomeTeamId()) {
+//					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeamLogo " + logo_path
+//							+ (match.getSetup().getHomeTeam().getTeamBadge().toUpperCase().equalsIgnoreCase("GS") ? "GSA" :
+//								match.getSetup().getHomeTeam().getTeamBadge().toUpperCase()) + CricketUtil.PNG_EXTENSION + ";");
+					
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeamLogo " + logo_path
-							+ (match.getSetup().getHomeTeam().getTeamBadge().toUpperCase().equalsIgnoreCase("GS") ? "GSA" :
-								match.getSetup().getHomeTeam().getTeamBadge().toUpperCase()) + CricketUtil.PNG_EXTENSION + ";");
+							+ match.getSetup().getHomeTeam().getTeamBadge().toUpperCase() + CricketUtil.PNG_EXTENSION + ";");
+					
+					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgIMG_BASE " + base_path
+							+ match.getSetup().getHomeTeam().getTeamBadge().toUpperCase() + CricketUtil.PNG_EXTENSION + ";");
 					Home_or_Away = match.getSetup().getHomeTeam().getTeamName3();
 					for (Player hs : match.getSetup().getHomeSquad()) {
 						if (playerId == hs.getPlayerId()) {
@@ -1612,9 +1618,15 @@ public class EVEREST_LEGENDS_90 extends Scene{
 						}
 					}
 				} else {
+//					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeamLogo " + logo_path
+//							+ (match.getSetup().getAwayTeam().getTeamBadge().toUpperCase().equalsIgnoreCase("GS") ? "GSA" :
+//								match.getSetup().getAwayTeam().getTeamBadge().toUpperCase()) + CricketUtil.PNG_EXTENSION + ";");
+					
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeamLogo " + logo_path
-							+ (match.getSetup().getAwayTeam().getTeamBadge().toUpperCase().equalsIgnoreCase("GS") ? "GSA" :
-								match.getSetup().getAwayTeam().getTeamBadge().toUpperCase()) + CricketUtil.PNG_EXTENSION + ";");
+							+ match.getSetup().getAwayTeam().getTeamBadge().toUpperCase() + CricketUtil.PNG_EXTENSION + ";");
+					
+					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgIMG_BASE " + base_path
+							+ match.getSetup().getAwayTeam().getTeamBadge().toUpperCase() + CricketUtil.PNG_EXTENSION + ";");
 					
 					Home_or_Away = match.getSetup().getAwayTeam().getTeamName3().toUpperCase();
 					for (Player as : match.getSetup().getAwaySquad()) {
@@ -1628,8 +1640,7 @@ public class EVEREST_LEGENDS_90 extends Scene{
 						}
 					}
 				}
-				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgIMG_BASE " + base_path
-						+ "ASA" + CricketUtil.PNG_EXTENSION + ";");
+				
 				
 				switch (captainWicketKeeper.toUpperCase()) {
 				case CricketUtil.CAPTAIN:

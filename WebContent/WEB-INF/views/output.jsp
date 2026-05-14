@@ -1321,8 +1321,8 @@
 			            name="namesuper_graphic_btn" id="namesuper_graphic_btn" onclick="processUserSelection(this)"> NameSuper </button>
 			        <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button"
 			            name="namesuper_player_graphic_btn" id="namesuper_player_graphic_btn" onclick="processUserSelection(this)"> NameSuper-Player </button>
-			        <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button"
-			            name="namesuper_graphic_singleline_btn" id="namesuper_graphic_singleline_btn" onclick="processUserSelection(this)"> NameSuper Single Line </button> 
+			        <!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button"
+			            name="namesuper_graphic_singleline_btn" id="namesuper_graphic_singleline_btn" onclick="processUserSelection(this)"> NameSuper Single Line </button>  -->
 			    </div>
 				<c:if test="${session_selected_broadcaster != 'SPL'}">
 				
@@ -1361,12 +1361,12 @@
 			  			name="tournamentrules_graphic_btn" id="tournamentrules_graphic_btn" onclick="processUserSelection(this)"> Tournament Rules </button>
 			        <button style="background-color:#FFA500;color:#000000;" class="btn btn-sm" type="button"
 			  			name="superover_graphic_btn" id="superover_graphic_btn" onclick="processUserSelection(this)"> Super Over Explainer </button> -->
-			  		<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-				  		name="leaderboard_graphic_btn" id="leaderboard_graphic_btn" onclick="processUserSelection(this)">LeaderBoard</button>	
-				  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+				  		name="leaderboard_graphic_btn" id="leaderboard_graphic_btn" onclick="processUserSelection(this)">LeaderBoard</button>	 -->
+				  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 				  		name="highestScore_graphic_btn" id="highestScore_graphic_btn" onclick="processUserSelection(this)">Highest Individual Score</button>	
 				  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-				  		name="BestFigures_graphic_btn" id="BestFigures_graphic_btn" onclick="processUserSelection(this)">Best Figures</button>	
+				  		name="BestFigures_graphic_btn" id="BestFigures_graphic_btn" onclick="processUserSelection(this)">Best Figures</button>	 -->
 			  	
 			    </div>
 				</c:if>

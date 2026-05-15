@@ -1188,6 +1188,10 @@
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  	name="matchId_vr_score_graphic_btn" id="matchId_vr_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button>
 			  	
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button" 
+			            name="bug_toss_graphic_btn" id="bug_toss_graphic_btn" onclick="processUserSelection(this)"> Bug-Toss </button>
+			        
+			  	
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="lastboundary_ar_score_graphic_btn" id="lastboundary_ar_score_graphic_btn" onclick="processUserSelection(this)"> Ball Since last Boundary </button>		
 				 				

@@ -1406,6 +1406,8 @@ public class EVEREST_LEGENDS_90 extends Scene{
 				if(ns.getSponsor() == null) {
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeamLogo " + logo_path
 							+ "TLogo" + CricketUtil.PNG_EXTENSION + ";");
+					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeamLogo " + logo_path
+							+ "TLogo" + CricketUtil.PNG_EXTENSION + ";");
 				}else {
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeamLogo " + Sponsor_path
 							+ ns.getSponsor() + CricketUtil.PNG_EXTENSION + ";");

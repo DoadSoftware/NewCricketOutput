@@ -218,6 +218,9 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'Alt_r':
 					processCricketProcedures('RE_READ_DATA');
 					break;
+				case 'Alt_v':
+					processCricketProcedures('DB_DATA_READ');
+					break;
 				case 'ArrowLeft':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20': case 'APL': case 'DOAD_LLC':
@@ -355,7 +358,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				//------------------------------------------------------------------------------------------------------------------------------
 				case 'Shift_F12'://Ident Data
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'PUNJAB_T20': case 'APL': case 'ACC': case 'MAHARAJA_T20': case 'RSWS': case 'USPL': case 'PPL':
+						case 'PUNJAB_T20': case 'APL': case 'ACC': case 'MAHARAJA_T20': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1261,15 +1264,15 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL':
-						case 'BIG_SCREEN': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL':
+						case 'BIG_SCREEN': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL': case 'KERALA_T20':
 							processCricketProcedures('POPULATE-HOWOUT_QUICK');
 							break;
-						case 'KERALA_T20':
+						/*case 'KERALA_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
 							addItemsToList('HOWOUT_QUICK-OPTIONS', null);
-							break;	
+							break;	*/
 						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
 							processCricketProcedures('POPULATE-ICC_QUICKHOWOUT');
 							break;
@@ -2237,14 +2240,14 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'THAILAND': case 'ICPL':
-						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL':
+						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL': case 'KERALA_T20':
 							processCricketProcedures('POPULATE-POINTS_TABLE');
 							break;
-						case 'KERALA_T20':
+						/*case 'KERALA_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
-							addItemsToList('BUKH_POINTSTABLE-OPTIONS', null);
+							addItemsToList('BUKH_POINTSTABLE-OPTIONS', null);*/
 						case 'BUKHATIR': 
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
@@ -2500,6 +2503,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					}
 					break;
 				case 'Alt_d'://Alt+d DLS_EQUATION
+				console.log('HELLO DOAD');
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'NEPAL_T20': case 'PPL': case 'KERALA_T20':
@@ -2512,10 +2516,14 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 
 				case '`'://` - DRONE BUG
+					console.log('HELLO INDIA');
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'ACC_NEPAL':
 							processCricketProcedures('POPULATE-DRONE_BUG');
 							break;
+						default:
+							processCricketProcedures('INFOBAR-ALLOUT');
+							break;	
 					}
 					break;
 				case 'SEASON_PROFILE'://need changes
@@ -2698,7 +2706,6 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 }
 function processUserSelection(whichInput) {
 	switch ($(whichInput).attr('name')) {
-
 		case 'audioOnOrOff':
 			processCricketProcedures('TURN_ON_OR_OFF_AUDIO');
 		break;
@@ -5709,7 +5716,6 @@ function processUserSelection(whichInput) {
 }
 function processCricketProcedures(whatToProcess) {
 	var valueToProcess;
-	//console.log('whatToProcess = ' + whatToProcess)
 	switch (whatToProcess) {
 		case 'TURN_ON_OR_OFF_AUDIO':
 			valueToProcess = $('#audioOnOrOff').is(":checked")
@@ -5723,7 +5729,9 @@ function processCricketProcedures(whatToProcess) {
 		case 'GET-CONFIG-DATA':
 			valueToProcess = $('#select_configuration_file option:selected').val();
 			break;
-
+		case 'GET-CATEGORY-DATA':
+				valueToProcess = $('#Category option:selected').val();
+				break;
 		case 'READ-MATCH-AND-POPULATE':
 			valueToProcess = $('#matchFileTimeStamp').val();
 			break;
@@ -10524,7 +10532,7 @@ function processCricketProcedures(whatToProcess) {
 			break;
 		case 'POPULATE-INFOBAR_IDENT_DATA':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'PUNJAB_T20': case 'APL': case 'ACC': case 'MAHARAJA_T20': case 'RSWS': case 'USPL': case 'PPL':
+				case 'PUNJAB_T20': case 'APL': case 'ACC': case 'MAHARAJA_T20': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
 					valueToProcess = $('#selectIdentData option:selected').val();
 					break;
 			}
@@ -13329,7 +13337,10 @@ function processCricketProcedures(whatToProcess) {
 				case 'USPL':
 					valueToProcess = '//Default/LTs_All';
 					break;
-				case 'RPL': case 'DOAD_LLC': case 'KERALA_T20':
+				case 'RPL': case 'DOAD_LLC': 
+					valueToProcess = '/Default/LT_ALL';
+					break;
+				case 'KERALA_T20':
 					valueToProcess = '/Default/LT_ALL';
 					break;
 				case 'ACC':
@@ -13984,9 +13995,32 @@ function processCricketProcedures(whatToProcess) {
 				case 'HEAD_TO_HEAD_FILE':
 					alert(data.match.matchFileName + ' H2H FILE IS CREATED');
 					break;
+				case 'RE_READ_DATA':
+					alert('DATA IS LOADED');
+					break;
+				case 'DB_DATA_READ':
+					alert('DATABASE IS UPDATED');	
+					break;
 				case 'GET-CONFIG-DATA':
 					initialiseForm('UPDATE-CONFIG', data);
 					break;
+				case 'GET-CATEGORY-DATA':
+					    var matchSelect = document.getElementById('select_cricket_matches');
+					    matchSelect.innerHTML = '';
+					    if (data.matchFiles && data.matchFiles.length > 0) {
+					        data.matchFiles.forEach(function(fileName) {
+					            var option = document.createElement('option');
+					            option.value = fileName;
+					            option.text = fileName;
+					            matchSelect.appendChild(option);
+					        });
+					    } else {
+					        var option = document.createElement('option');
+					        option.value = '';
+					        option.text = '-- No matches found --';
+					        matchSelect.appendChild(option);
+					    }
+					    break;	
 				case 'READ-MATCH-AND-POPULATE':
 					if (data) {
 						session_match = data;
@@ -14957,10 +14991,15 @@ function processCricketProcedures(whatToProcess) {
 						alert('Graphics is already on screen')
 					}else
 					if (confirm('Animate In?') == true) {
-						if(whatToProcess != 'POPULATE-BAT-POPUP' && whatToProcess != 'POPULATE-BOWL-POPUP'){
+						switch (whatToProcess) {
+						case 'POPULATE-BAT-POPUP': case 'POPULATE-BOWL-POPUP': case 'POPULATE-L3-BUG': case 'POPULATE-L3-BUG-BOWLER': case 'POPULATE-L3-BUG-DB':
+							case 'POPULATE-L3-BUG-TOSS': case 'POPULATE-MULTI_PARTNERSHIP': case 'POPULATE-L3-BUG-DISMISSAL':
+							break;
+						default:
 							$('#select_graphic_options_div').empty();
 							document.getElementById('select_graphic_options_div').style.display = 'none';
 							$("#captions_div").show();
+							break;
 						}
 						switch (whatToProcess) {
 							/*case 'POPULATE-IMPACT':
@@ -16432,13 +16471,13 @@ function addItemsToList(whatToProcess, dataToProcess) {
 				if (inn.inningNumber == document.getElementById('which_keypress').value) {
 					if ($('#selectStatType option:selected').val() == 'Batsman') {
 						inn.battingCard.forEach(function(bc, bc_index, bc_arr) {
-							if(bc.status == 'OUT'){
+							//if(bc.status == 'OUT'){
 								$('#selectHowoutPlayers').append(
 									$(document.createElement('option')).prop({
 										value: bc.playerId,
 										text: bc.player.full_name + " - " + bc.status
 									}))
-							}
+							//}
 						});
 					}
 				}
@@ -18020,13 +18059,23 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			select.name = select.id;
 			
 			option = document.createElement('option');
-			option.value = 'withoutSponsor';
-			option.text = 'Without Sponsor';
+			option.value = session_match.setup.homeTeam.teamId + ",CHOSE TO BAT";
+			option.text = session_match.setup.homeTeam.teamName1 + ",CHOSE TO BAT";
+			select.appendChild(option);
+
+			option = document.createElement('option');
+			option.value =session_match.setup.awayTeam.teamId + ",CHOSE TO BAT";
+			option.text = session_match.setup.awayTeam.teamName1 + ",CHOSE TO BAT";
 			select.appendChild(option);
 			
 			option = document.createElement('option');
-			option.value = 'withSponsor';
-			option.text = 'With Sponsor';
+			option.value = session_match.setup.homeTeam.teamId + ",CHOSE TO BOWL";
+			option.text = session_match.setup.homeTeam.teamName1 + ",CHOSE TO BOWL";
+			select.appendChild(option);
+
+			option = document.createElement('option');
+			option.value =session_match.setup.awayTeam.teamId + ",CHOSE TO BOWL";
+			option.text = session_match.setup.awayTeam.teamName1 + ",CHOSE TO BOWL";
 			select.appendChild(option);
 			
 			row.insertCell(cellCount).appendChild(select);
@@ -22231,7 +22280,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							break;
 						case 'IDENT_HEAD_DATA-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'ACC': case 'MAHARAJA_T20': case 'RSWS': case 'USPL':
+								case 'ACC': case 'MAHARAJA_T20': case 'RSWS': case 'USPL': case 'KERALA_T20':
 									session_match.match.inning.forEach(function(inn, index, arr) {
 										if (inn.isCurrentInning == 'YES') {
 											if (inn.inningNumber == 1) {
@@ -26695,12 +26744,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									select.style = 'width:100px';
 									select.id = 'selectCaptainWicketKeeper';
 									select.name = select.id;
-
-									option = document.createElement('option');
-									option.value = 'Player';
-									option.text = 'Player';
-									select.appendChild(option);
-
+									
 									option = document.createElement('option');
 									option.value = 'Captain';
 									option.text = 'Captain';
@@ -26709,6 +26753,11 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									option = document.createElement('option');
 									option.value = 'Captain-WicketKeeper';
 									option.text = 'Captain-WicketKeeper';
+									select.appendChild(option);
+
+									option = document.createElement('option');
+									option.value = 'Player';
+									option.text = 'Player';
 									select.appendChild(option);
 
 									option = document.createElement('option');
@@ -27033,7 +27082,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									select.name = select.id;
 
 
-									['Player', 'Captain', 'Captain-WicketKeeper', 'Player Of The Match', 'Wicket_Keeper',
+									['Captain', 'Captain-WicketKeeper', 'Player', 'Player Of The Match', 'Wicket_Keeper',
 										'Player Of The Tournament', 'Player Of The Series'].forEach(text => {
 											let option = document.createElement('option');
 											option.value = text
@@ -27172,7 +27221,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									select.name = select.id;
 
 
-									['Player', 'Captain', 'Captain-WicketKeeper', 'Player Of The Match', 'Wicket_Keeper',
+									['Captain', 'Captain-WicketKeeper', 'Player', 'Player Of The Match', 'Wicket_Keeper',
 										'Player Of The Tournament', 'Player Of The Series'].forEach(text => {
 											let option = document.createElement('option');
 											option.value = text
@@ -34264,6 +34313,11 @@ function addItemsToList(whatToProcess, dataToProcess) {
 												option.value = 'bowlingend';
 												option.text = 'Bowling End';
 												select.appendChild(option);
+												
+												option = document.createElement('option');
+												option.value = 'replaceBowler';
+												option.text = 'Replace Bowler';
+												select.appendChild(option);
 
 												option = document.createElement('option');
 												option.value = 'over';
@@ -34296,6 +34350,11 @@ function addItemsToList(whatToProcess, dataToProcess) {
 												option = document.createElement('option');
 												option.value = 'bowlingend';
 												option.text = 'Bowling End';
+												select.appendChild(option);
+												
+												option = document.createElement('option');
+												option.value = 'replaceBowler';
+												option.text = 'Replace Bowler';
 												select.appendChild(option);
 
 												option = document.createElement('option');

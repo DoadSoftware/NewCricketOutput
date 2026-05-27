@@ -241,6 +241,7 @@
 			      		<option value=" "> </option>
 			      		
 			      		<option value="ICC_BIGSCREEN_DOAD_VIZ_SCORING">ICC BIG SCREEN DOAD VIZ</option>
+			      		<option value="KERALA_T20">MHPL T20</option>
 			      		<option value="PLOTTER">DOAD PT</option>
 			      		<option value="ICPL_AR">NPL VR</option>
 			      		<option value="BARODA_AR">BARODA AR</option>
@@ -251,7 +252,6 @@
 			      		<option value="ARUNACHAL">DY Patil</option>
 			      		<option value="FAIR_BREAK_AR">AR MPL</option>
 			      		<option value="PPL">PPL</option>
-			      		<option value="KERALA_T20">KERALA T20</option>
 			      		<option value="EUROPE_LEAGUE">EUROPE LEAGUE</option>
 			      		<option value="DOAD_LLC">LLC</option>
 			      		<option value="RPL">RPL</option>
@@ -306,7 +306,7 @@
 			    <label for="Category" class="col-sm-4 col-form-label text-left">Select Category </label>
 			    <div class="col-sm-6 col-md-6">
 			      <select id="Category" name="Category" class="browser-default custom-select custom-select-sm"
-			      		onchange="processUserSelection(this)">
+			      		onchange="processCricketProcedures('GET-CATEGORY-DATA')">
 			      		<option value=" "> </option>
 			      		<option value="MEN">MEN</option>
 			      		<option value="WOMEN">WOMEN</option>

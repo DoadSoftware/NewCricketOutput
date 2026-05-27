@@ -1398,7 +1398,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateFowAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "BARODA_AR":
+			case "BARODA_AR": case "EVEREST_AR_VR":
 				for(Inning inn : match.getMatch().getInning()) {
 					if(inn.getIsCurrentInning().equalsIgnoreCase("YES")) {
 						
@@ -1422,38 +1422,42 @@ public class EVEREST_AR_VR extends Scene{
 								}		
 							}
 						}
-						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");
-						if((inn.getFallsOfWickets().size()) == 1) {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");	
-						}else if((inn.getFallsOfWickets().size()) == 2) {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");
-						}else if((inn.getFallsOfWickets().size()) == 3) {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");
-						}else if((inn.getFallsOfWickets().size()) == 4) {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=55"+ ";");
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=55"+ ";");
-						}else if((inn.getFallsOfWickets().size()) == 5) {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=60"+ ";");
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=60"+ ";");
-						}else if((inn.getFallsOfWickets().size()) == 6) {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=55"+ ";");
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=55"+ ";");
-						}else if((inn.getFallsOfWickets().size()) == 7) {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=53"+ ";");
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=53"+ ";");
-						}else if((inn.getFallsOfWickets().size()) == 8) {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");
-						}else if((inn.getFallsOfWickets().size()) == 9) {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=58"+ ";");
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=58"+ ";");
-						}else if((inn.getFallsOfWickets().size()) == 10) {
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=60"+ ";");
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=60"+ ";");
-						}	
+					//	print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");
+						if(inn.getFallsOfWickets() != null){
+							if((inn.getFallsOfWickets().size()) == 1) {
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");	
+							}else if((inn.getFallsOfWickets().size()) == 2) {
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");
+							}else if((inn.getFallsOfWickets().size()) == 3) {
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");
+							}else if((inn.getFallsOfWickets().size()) == 4) {
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=55"+ ";");
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=55"+ ";");
+							}else if((inn.getFallsOfWickets().size()) == 5) {
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=60"+ ";");
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=60"+ ";");
+							}else if((inn.getFallsOfWickets().size()) == 6) {
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=55"+ ";");
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=55"+ ";");
+							}else if((inn.getFallsOfWickets().size()) == 7) {
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=53"+ ";");
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=53"+ ";");
+							}else if((inn.getFallsOfWickets().size()) == 8) {
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=50"+ ";");
+							}else if((inn.getFallsOfWickets().size()) == 9) {
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=58"+ ";");
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=58"+ ";");
+							}else if((inn.getFallsOfWickets().size()) == 10) {
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=60"+ ";");
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$Wickets_Group$Score_Group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=60"+ ";");
+							}
+						}
+						
+						
 					}
 				}
 				

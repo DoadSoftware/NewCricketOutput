@@ -574,7 +574,8 @@
 			    <i class="fas fa-file-video"></i> <b>Match:</b> ${session_match.match.matchFileName}</label>
 			
 			<label class="col-sm-4 col-form-label text-left">
-			    <i class="fas fa-broadcast-tower"></i> <b>Broadcaster:</b> ${session_configuration.broadcaster.replace("_"," ")}
+			    <i class="fas fa-broadcast-tower"></i> <b>Broadcaster:</b> ${session_configuration.broadcaster == 'KERALA_T20' 
+			        ? 'MADHYA PRADESH' : session_configuration.broadcaster.replace("_"," ")}
 			</label>
 			
 			<label class="col-sm-4 col-form-label text-left">
@@ -1318,6 +1319,8 @@
 			         <c:if test="${session_selected_broadcaster != 'SPL'}">
 			         <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button" 
 			            name="bugTarget_graphic_btn" id="bugTarget_graphic_btn" onclick="processUserSelection(this)"> BUG TARGET </button>
+			            <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="bug_equation_graphic_btn" id="equation_graphic_btn" onclick="processUserSelection(this)"> Equation </button>
 			        <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button"
 			            name="result_bug_graphic_btn" id="result_bug_graphic_btn" onclick="processUserSelection(this)"> BUG Result</button>
 			        </c:if>

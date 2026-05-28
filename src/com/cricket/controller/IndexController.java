@@ -319,12 +319,11 @@ public class IndexController
 			session_selected_second_broadcaster = select_second_broadcaster;
 			
 			basePath = CricketUtil.CRICKET_DIRECTORY;
-			
-			if(Category.equalsIgnoreCase("MEN")) {
+			if(Category.equalsIgnoreCase("men")) {
 				cat = "Men";
 				basePath = "C:\\Sports\\CricketMen\\";
 		    	DatabaseContextHolder.setDb("MEN");
-			}else if(Category.equalsIgnoreCase("WOMEN")) {
+			}else if(Category.equalsIgnoreCase("women")) {
 				cat = "Women";
 				basePath = "C:\\Sports\\CricketWomen\\";
 		    	DatabaseContextHolder.setDb("WOMEN");
@@ -965,8 +964,10 @@ public class IndexController
 		    File matchDir;
 		    if (category.equalsIgnoreCase("men")) {
 		        matchDir = new File("C:\\Sports\\CricketMen\\Matches\\");
+		        DatabaseContextHolder.setDb("MEN");
 		    } else if (category.equalsIgnoreCase("women")) {
 		        matchDir = new File("C:\\Sports\\CricketWomen\\Matches\\");
+		        DatabaseContextHolder.setDb("WOMEN");
 		    } else {
 		        matchDir = new File(CricketUtil.CRICKET_SERVER_DIRECTORY + CricketUtil.MATCHES_DIRECTORY);
 		    }
@@ -1270,6 +1271,7 @@ public class IndexController
 //				return (String) this_nepal_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
 //						session_selected_scenes, valueToProcess, session_statistics,session_configuration);	
 			}
+			return null;
 		case "PROMPT_GRAPHICS-OPTIONS": case "TEAM_FIXTURES_GRAPHICS-OPTIONS": case "TEAM_SQUAD_GRAPHICS-OPTIONS":
 			switch (session_selected_broadcaster) {
 //			case "BUKHATIR":
@@ -1355,6 +1357,7 @@ public class IndexController
 //				return (String) this_icpl_ar.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
 //						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics);		
 			}
+			return null;
 		case "MATCH-PROMO_GRAPHICS-OPTIONS": case "PREVIOUS_SUMMARY_GRAPHICS-OPTIONS": case "LT-TIEID-DOUBLE_GRAPHICS-OPTIONS": case "LTMATCH-PROMO_GRAPHICS-OPTIONS": 
 		case "PLAYOFF_GRAPHICS-OPTIONS": case "MATCH-PROMO_ANIMATION_GRAPHICS-OPTIONS":
 			return new ObjectMapper().writeValueAsString(CricketFunctions.processAllFixtures(cricketService)).toString();

@@ -214,10 +214,6 @@ public class EVEREST_LEGENDS_90 extends Scene{
 				scenes.get(0).setScene_path("D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Target_Bug_LONG.sum");
 				scenes.get(0).scene_load(print_writer,broadcaster);
 				break;
-			case "POPULATE-L3-BUG-DB":
-				 scenes.get(0).setScene_path("D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Bug_SingleLine.sum");
-		         scenes.get(0).scene_load(print_writer,broadcaster);
-				break;
 			default:
 					scenes.get(0).setScene_path(valueToProcess.split(",")[0]);
 					scenes.get(0).scene_load(print_writer,broadcaster);
@@ -1504,33 +1500,66 @@ public class EVEREST_LEGENDS_90 extends Scene{
 			if (match == null) {
 				this.status = "ERROR: Match is null";
 			} else {
-
-				if (bug.getText1() != null && bug.getText2() != null) {
-					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tPlayerName01 "
-							+ bug.getText1().toUpperCase() + ";");
-					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$All$Lft_Grp$Data$Info1*CONTAINER SET ACTIVE 1;");
-					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1A "
-							+ bug.getText2().toUpperCase() + ";");
-					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$All$Lft_Grp$Data$Info2*CONTAINER SET ACTIVE 0;");
-					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$All$Lft_Grp$Data$Info3*CONTAINER SET ACTIVE 0;");
-				} else if (bug.getText1() != null) {
-					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tPlayerName01 "
-							+ bug.getText1().toUpperCase() + ";");
-					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$All$Lft_Grp$Data$Info1*CONTAINER SET ACTIVE 0;");
-					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$All$Lft_Grp$Data$Info2*CONTAINER SET ACTIVE 0;");
-					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$All$Lft_Grp$Data$Info3*CONTAINER SET ACTIVE 0;");
-				} else {
-					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tPlayerName01 "
-							+ bug.getText2().toUpperCase() + ";");
-					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$All$Lft_Grp$Data$Info1*CONTAINER SET ACTIVE 0;");
-					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$All$Lft_Grp$Data$Info2*CONTAINER SET ACTIVE 0;");
-					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$All$Lft_Grp$Data$Info3*CONTAINER SET ACTIVE 0;");
+				//print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base_1 " + base_path + ";");
+				
+				if (bug.getText1() != null && bug.getText2() != null && bug.getText3() != null && bug.getText4() != null) {
+					print_writer.println(
+							"LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tPlayerName01 "
+									+ bug.getText1().toUpperCase() + "       " + ";");
+					print_writer
+							.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1A "
+									+ bug.getText2().toUpperCase() + ";");
+					print_writer
+							.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1B "
+									+ bug.getText3().toUpperCase() + ";");
+					print_writer
+							.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1C "
+									+ bug.getText4().toUpperCase() + ";");
+				} else if (bug.getText1() != null && bug.getText2() != null && bug.getText3() != null) {
+					print_writer.println(
+							"LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tPlayerName01 "
+									+ bug.getText1().toUpperCase() + ";");
+					print_writer
+							.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1A "
+									+ bug.getText2().toUpperCase() + ";");
+					print_writer
+							.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1B "
+									+ bug.getText3().toUpperCase() + ";");
+					print_writer
+							.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1C "
+									+ "" + ";");
+				} else if(bug.getText1() != null && bug.getText2() != null) {
+					print_writer.println(
+							"LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tPlayerName01 "
+									+ bug.getText1().toUpperCase() + ";");
+					print_writer
+							.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1A "
+									+ bug.getText2().toUpperCase() + ";");
+					print_writer
+							.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1B "
+									+ "" + ";");
+					print_writer
+							.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1C "
+									+ "" + ";");
+				}else if(bug.getText1() != null) {
+					print_writer.println(
+							"LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tPlayerName01 "
+									+ bug.getText1().toUpperCase() + ";");
+					print_writer
+							.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1A "
+									+ "" + ";");
+					print_writer
+							.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1B "
+									+ "" + ";");
+					print_writer
+							.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1C "
+									+ "" + ";");
 				}
 
 				print_writer.println("LAYER1*EVEREST*GLOBAL PREVIEW ON;");
 				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In STOP;");
 				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*Out STOP;");
-				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In SHOW 62.0;");
+				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In SHOW 32.0;");
 				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*Out SHOW 0.0;");
 				print_writer.println("LAYER1*EVEREST*GLOBAL SNAPSHOT_PATH C:/Temp/Preview.png;");
 				print_writer.println("LAYER1*EVEREST*GLOBAL SNAPSHOT 1920 1080;");

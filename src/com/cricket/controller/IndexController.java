@@ -1004,7 +1004,7 @@ public class IndexController
 			}
 			
 		case "HEAD_TO_HEAD_FILE":
-			CricketFunctions.exportMatchData(session_match);
+			CricketFunctions.exportMatchData(session_match, basePath);
 			
 			return new ObjectMapper().writeValueAsString(session_match).toString();
 		case "DB_DATA_READ":

@@ -21,7 +21,7 @@ import org.springframework.web.servlet.view.JstlView;
     "com.cricket.dao.impl",
     "com.cricket.service.impl"
 })
-@PropertySource("classpath:db.properties")
+//@PropertySource("classpath:db.properties")
 public class WebMvcConfig implements WebMvcConfigurer {
 
     @Resource

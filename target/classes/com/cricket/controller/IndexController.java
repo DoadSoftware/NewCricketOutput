@@ -252,7 +252,6 @@ public class IndexController
 //		model.addAttribute("session_kolkata",session_kolkata);
 		model.addAttribute("session_selected_scenes",session_selected_scenes);
 		
-		DatabaseContextHolder.setDb("LOCAL");
 		return "initialise";
 	}
 
@@ -951,6 +950,16 @@ public class IndexController
 		@RequestParam(value = "valueToProcess", required = false, defaultValue = "") String valueToProcess) 
 					throws Exception 
 	{
+		if(cat.equalsIgnoreCase("Men")) {
+		    DatabaseContextHolder.setDb("MEN");
+		    basePath = "C:\\Sports\\CricketMen\\";
+		} else if(cat.equalsIgnoreCase("Women")) {
+		    DatabaseContextHolder.setDb("WOMEN");
+		    basePath = "C:\\Sports\\CricketWomen\\";
+		} else {
+		    DatabaseContextHolder.setDb("LOCAL");
+		    basePath = CricketUtil.CRICKET_DIRECTORY;
+		}
 		
 		switch (whatToProcess.toUpperCase()) {
 		case "GET-CONFIG-DATA":

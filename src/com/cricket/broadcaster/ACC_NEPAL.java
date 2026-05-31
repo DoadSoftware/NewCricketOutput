@@ -498,7 +498,7 @@ public class ACC_NEPAL extends Scene{
 							
 //							stats = updateTournamentDataWithStats(stats, tournament_matches, match,valueToProcess.split(",")[2]);
 //							stats = updateStatisticsWithMatchData(stats, match,valueToProcess.split(",")[2]);
-							if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								populatePlayerProfile(print_writer,valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),
 										valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,match, session_selected_broadcaster, config);
 							}
@@ -511,7 +511,7 @@ public class ACC_NEPAL extends Scene{
 							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
 //							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match);
 //							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
-							if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								populatePlayerProfile(print_writer,valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),
 										valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,match, session_selected_broadcaster, config);
 							}
@@ -729,7 +729,7 @@ public class ACC_NEPAL extends Scene{
 							
 //							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match);
 //							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
-							if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								populateLTPlayerProfile(print_writer,valueToProcess.split(",")[0],
 										valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,match, session_selected_broadcaster);
 							}
@@ -745,7 +745,7 @@ public class ACC_NEPAL extends Scene{
 //							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match);
 //							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
 							
-							if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								populateLTPlayerProfile(print_writer,valueToProcess.split(",")[0],
 										valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,match, session_selected_broadcaster);
 							}
@@ -9358,8 +9358,8 @@ public class ACC_NEPAL extends Scene{
 		boolean player_found = false;
 		for(MatchAllData match : tournament_matches) {
 			if(!match.getMatch().getMatchFileName().equalsIgnoreCase(currentMatch.getMatch().getMatchFileName())) {
-				if(stat.getStats_type().getStats_short_name().equalsIgnoreCase(match.getSetup().getMatchType()) || (match.getSetup().getMatchType().equalsIgnoreCase("ODI") && 
-						selectedMatchType.equalsIgnoreCase("OD") && stat.getStats_type().getStats_short_name().equalsIgnoreCase(selectedMatchType))) {
+				if(stat.getStats_type().getStatsShortName().equalsIgnoreCase(match.getSetup().getMatchType()) || (match.getSetup().getMatchType().equalsIgnoreCase("ODI") && 
+						selectedMatchType.equalsIgnoreCase("OD") && stat.getStats_type().getStatsShortName().equalsIgnoreCase(selectedMatchType))) {
 					for(Inning inn : match.getMatch().getInning()) {
 						for(BattingCard bc : inn.getBattingCard()) {
 							if(bc.getPlayerId() == stat.getPlayer_id()) {
@@ -9421,8 +9421,8 @@ public class ACC_NEPAL extends Scene{
 	public static Statistics updateStatisticsWithMatchData(Statistics stat, MatchAllData match,String selectedMatchType)
 	{
 		boolean player_found = false;
-		if(stat.getStats_type().getStats_short_name().equalsIgnoreCase(match.getSetup().getMatchType()) || (match.getSetup().getMatchType().equalsIgnoreCase("ODI") && 
-				selectedMatchType.equalsIgnoreCase("OD") && stat.getStats_type().getStats_short_name().equalsIgnoreCase(selectedMatchType))) {
+		if(stat.getStats_type().getStatsShortName().equalsIgnoreCase(match.getSetup().getMatchType()) || (match.getSetup().getMatchType().equalsIgnoreCase("ODI") && 
+				selectedMatchType.equalsIgnoreCase("OD") && stat.getStats_type().getStatsShortName().equalsIgnoreCase(selectedMatchType))) {
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(0).getTotalFours());
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(1).getTotalFours());
 			for(Inning inn : match.getMatch().getInning()) {

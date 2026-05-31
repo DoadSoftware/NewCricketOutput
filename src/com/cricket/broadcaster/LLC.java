@@ -1509,7 +1509,7 @@ public class LLC extends Scene {
 				for (Statistics stats : statistics) {
 					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
 						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-						if (stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+						if (stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 //							stats = CricketFunctions.updateH2h(stats, head_to_head, match);
 //							stats = CricketFunctions.updateMatchData(stats, match);
 							populateLTPlayerProfile(print_writer.get(0), valueToProcess.split(",")[0], valueToProcess.split(",")[2], valueToProcess.split(",")[3], 
@@ -1531,7 +1531,7 @@ public class LLC extends Scene {
 				for (Statistics stats : statistics) {
 					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
 						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-						if (stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+						if (stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 //							stats = CricketFunctions.updateH2h(stats, head_to_head, match);
 //							stats = CricketFunctions.updateMatchData(stats, match);
 							populateLTPlayerProfileBat(print_writer.get(0), valueToProcess.split(",")[0], valueToProcess.split(",")[2], valueToProcess.split(",")[3], 
@@ -1558,7 +1558,7 @@ public class LLC extends Scene {
 				for (Statistics stats : statistics) {
 					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
 						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-						if (stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+						if (stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 //							stats = CricketFunctions.updateH2h(stats, head_to_head, match);
 //							stats = CricketFunctions.updateMatchData(stats, match);
 							populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]), 
@@ -1584,7 +1584,7 @@ public class LLC extends Scene {
 				for (Statistics stats : statistics) {
 					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
 						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-						if (stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+						if (stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 //							stats = CricketFunctions.updateH2h(stats, head_to_head, match);
 //							stats = CricketFunctions.updateMatchData(stats, match);
 							populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0], Integer.valueOf(valueToProcess.split(",")[1]), 
@@ -1874,7 +1874,7 @@ public class LLC extends Scene {
 					stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 					stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 					System.out.println("valueToProcess.split(\",\")[3] : " + valueToProcess.split(",")[3]);
-					if (stats.getStats_type().getStats_short_name()
+					if (stats.getStats_type().getStatsShortName()
 							.equalsIgnoreCase(valueToProcess.split(",")[3])) {
 						if (infobar.getLast_full_section() != null
 								&& !infobar.getLast_full_section().trim().isEmpty()) {
@@ -5674,7 +5674,7 @@ public class LLC extends Scene {
 		boolean player_found = false;
 		for (MatchAllData match : tournament_matches) {
 			if (!match.getMatch().getMatchFileName().equalsIgnoreCase(currentMatch.getMatch().getMatchFileName())) {
-				if (stat.getStats_type().getStats_short_name().equalsIgnoreCase("PR")) {
+				if (stat.getStats_type().getStatsShortName().equalsIgnoreCase("PR")) {
 					for (Inning inn : match.getMatch().getInning()) {
 						for (BattingCard bc : inn.getBattingCard()) {
 							if (bc.getPlayerId() == stat.getPlayer_id()) {
@@ -5738,7 +5738,7 @@ public class LLC extends Scene {
 	public static Statistics updateStatisticsWithMatchData(Statistics stat, MatchAllData match) {
 		boolean player_found = false;
 
-		if (stat.getStats_type().getStats_short_name().equalsIgnoreCase("PR")) {
+		if (stat.getStats_type().getStatsShortName().equalsIgnoreCase("PR")) {
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(0).getTotalFours());
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(1).getTotalFours());
 			for (Inning inn : match.getMatch().getInning()) {
@@ -26001,7 +26001,7 @@ public class LLC extends Scene {
 			for (Statistics stats : statistics) {
 				if (stats.getPlayer_id().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
 					stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-					if (stats.getStats_type().getStats_short_name().equalsIgnoreCase(data.split(",")[2])) {
+					if (stats.getStats_type().getStatsShortName().equalsIgnoreCase(data.split(",")[2])) {
 						populatePlayerProfile(print_writer, data.split(",")[0], Integer.valueOf(data.split(",")[1]),
 								data.split(",")[2], data.split(",")[3], stats, cricketService.getAllPlayer(),
 								null,cricketService, match, broadcaster, 1, config);
@@ -26021,7 +26021,7 @@ public class LLC extends Scene {
 			for (Statistics stats : statistics) {
 				if (stats.getPlayer_id().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
 					stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-					if (stats.getStats_type().getStats_short_name().equalsIgnoreCase(data.split(",")[2])) {
+					if (stats.getStats_type().getStatsShortName().equalsIgnoreCase(data.split(",")[2])) {
 						populatePlayerProfileBall(print_writer, data.split(",")[0],
 								Integer.valueOf(data.split(",")[1]), data.split(",")[2],
 								data.split(",")[3], stats, cricketService.getAllPlayer(), null,
@@ -26319,7 +26319,7 @@ public class LLC extends Scene {
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 
-						if (stats.getStats_type().getStats_short_name().equalsIgnoreCase(data.split(",")[2])) {
+						if (stats.getStats_type().getStatsShortName().equalsIgnoreCase(data.split(",")[2])) {
 							populateLTPlayerProfile(print_writer, data.split(",")[0], data.split(",")[2],
 									data.split(",")[3], stats, match, null, cricketService, broadcaster, 1);
 						}
@@ -26339,7 +26339,7 @@ public class LLC extends Scene {
 			for (Statistics stats : statistics) {
 				if (stats.getPlayer_id().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
 					stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-					if (stats.getStats_type().getStats_short_name().equalsIgnoreCase(data.split(",")[2])) {
+					if (stats.getStats_type().getStatsShortName().equalsIgnoreCase(data.split(",")[2])) {
 //						stats = CricketFunctions.updateH2h(stats, head_to_head, match);
 //						stats = CricketFunctions.updateMatchData(stats, match);
 						populateLTPlayerProfileBat(print_writer, data.split(",")[0],
@@ -26363,7 +26363,7 @@ public class LLC extends Scene {
 //						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match);
 //						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
 //
-//						if (stats.getStats_type().getStats_short_name().equalsIgnoreCase(data.split(",")[2])) {
+//						if (stats.getStats_type().getStatsShortName().equalsIgnoreCase(data.split(",")[2])) {
 //							populateLTPlayerProfileBat(print_writer, data.split(",")[0], data.split(",")[2],
 //									data.split(",")[3], stats, match, null, cricketService, broadcaster, 1);
 //						}

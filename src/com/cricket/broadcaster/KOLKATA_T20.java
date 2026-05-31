@@ -1156,7 +1156,7 @@ public class KOLKATA_T20 extends Scene{
 								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 								
-								if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+								if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 									populateLTPlayerProfile(print_writer.get(0),valueToProcess.split(",")[0],valueToProcess.split(",")[2],valueToProcess.split(",")[3],
 											stats,match,null,cricketService,broadcaster,1);
 								}
@@ -1178,7 +1178,7 @@ public class KOLKATA_T20 extends Scene{
 								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 								
-								if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+								if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 									populateLTPlayerProfile(print_writer.get(0),valueToProcess.split(",")[0],valueToProcess.split(",")[2],valueToProcess.split(",")[3],
 											stats,match,null,cricketService,broadcaster,2);
 								}
@@ -1210,7 +1210,7 @@ public class KOLKATA_T20 extends Scene{
 								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 								
-								if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+								if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 									populateLTPlayerProfileBat(print_writer.get(0),valueToProcess.split(",")[0],valueToProcess.split(",")[2],valueToProcess.split(",")[3],
 											stats,match,null,cricketService,broadcaster,1);
 								}
@@ -1231,7 +1231,7 @@ public class KOLKATA_T20 extends Scene{
 								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 								
-								if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+								if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 									populateLTPlayerProfileBat(print_writer.get(0),valueToProcess.split(",")[0],valueToProcess.split(",")[2],valueToProcess.split(",")[3],
 											stats,match,null,cricketService,broadcaster,2);
 								}
@@ -1265,7 +1265,7 @@ public class KOLKATA_T20 extends Scene{
 								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 								
 								//System.out.println("1." + stats.getStats_type().getStats_short_name() + " 2." + valueToProcess.split(",")[2]);
-								if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+								if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 									populatePlayerProfile(print_writer.get(0),valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),
 											valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,cricketService.getAllPlayer(),
 											null,cricketService,match, broadcaster,1,config);
@@ -1289,7 +1289,7 @@ public class KOLKATA_T20 extends Scene{
 								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 								
 								//System.out.println("1." + stats.getStats_type().getStats_short_name() + " 2." + valueToProcess.split(",")[2]);
-								if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+								if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 									populatePlayerProfile(print_writer.get(0),valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),
 											valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,cricketService.getAllPlayer(),
 											null,cricketService,match, broadcaster,2,config);
@@ -1323,7 +1323,7 @@ public class KOLKATA_T20 extends Scene{
 								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 								
 								//System.out.println("1." + stats.getStats_type().getStats_short_name() + " 2." + valueToProcess.split(",")[2]);
-								if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+								if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 									populatePlayerProfileBall(print_writer.get(0),valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),
 											valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,cricketService.getAllPlayer(),
 											null,cricketService,match, broadcaster,1, config);
@@ -1346,7 +1346,7 @@ public class KOLKATA_T20 extends Scene{
 								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 								
 								//System.out.println("1." + stats.getStats_type().getStats_short_name() + " 2." + valueToProcess.split(",")[2]);
-								if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+								if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 									populatePlayerProfileBall(print_writer.get(0),valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),
 											valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,cricketService.getAllPlayer(),null,cricketService,match, broadcaster,2, config);
 								}
@@ -1612,7 +1612,7 @@ public class KOLKATA_T20 extends Scene{
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						System.out.println("valueToProcess.split(\",\")[3] : "+valueToProcess.split(",")[3]);
-						if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[3])) {
+						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[3])) {
 							 if(infobar.getLast_full_section() != null && !infobar.getLast_full_section().trim().isEmpty()) {
 								 switch(infobar.getLast_full_section().toUpperCase()) {
 			   					case "TIMELINE":
@@ -4713,7 +4713,7 @@ public class KOLKATA_T20 extends Scene{
 		boolean player_found = false;
 		for(MatchAllData match : tournament_matches) {
 			if(!match.getMatch().getMatchFileName().equalsIgnoreCase(currentMatch.getMatch().getMatchFileName())) {
-				if(stat.getStats_type().getStats_short_name().equalsIgnoreCase("PR")) {
+				if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("PR")) {
 					for(Inning inn : match.getMatch().getInning()) {
 						for(BattingCard bc : inn.getBattingCard()) {
 							if(bc.getPlayerId() == stat.getPlayer_id()) {
@@ -4777,7 +4777,7 @@ public class KOLKATA_T20 extends Scene{
 	{
 		boolean player_found = false;
 		
-		if(stat.getStats_type().getStats_short_name().equalsIgnoreCase("PR")) {
+		if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("PR")) {
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(0).getTotalFours());
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(1).getTotalFours());
 			for(Inning inn : match.getMatch().getInning()) {
@@ -8737,7 +8737,7 @@ public class KOLKATA_T20 extends Scene{
 					for(Statistics stat : cricketservice.getAllStats()) {
 						if(stat.getPlayer_id() == stats.getPlayer_id()) {
 							stat.setStats_type(cricketservice.getStatsType(stat.getStats_type_id()));
-							if(stat.getStats_type().getStats_short_name().equalsIgnoreCase("LLCS1")) {
+							if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("LLCS1")) {
 								match_data = stat.getMatches();
 								run_data = stat.getRuns();
 								balls_data = stat.getBalls_faced();
@@ -9037,7 +9037,7 @@ public class KOLKATA_T20 extends Scene{
 					for(Statistics stat : cricketservice.getAllStats()) {
 						if(stat.getPlayer_id() == stats.getPlayer_id()) {
 							stat.setStats_type(cricketservice.getStatsType(stat.getStats_type_id()));
-							if(stat.getStats_type().getStats_short_name().equalsIgnoreCase("LLCS1")) {
+							if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("LLCS1")) {
 								match_data = stat.getMatches();
 								wickets_data = stat.getWickets();
 								balls_bowled = stat.getBalls_bowled();
@@ -9859,7 +9859,7 @@ public class KOLKATA_T20 extends Scene{
 				for(Statistics stat : cricketservice.getAllStats()) {
 					if(stat.getPlayer_id() == stats.getPlayer_id()) {
 						stat.setStats_type(cricketservice.getStatsType(stat.getStats_type_id()));
-						if(stat.getStats_type().getStats_short_name().equalsIgnoreCase("LLCS1")) {
+						if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("LLCS1")) {
 							match_data = stat.getMatches();
 							wickets_data = stat.getWickets();
 							balls_bowled = stat.getBalls_bowled();
@@ -10252,7 +10252,7 @@ public class KOLKATA_T20 extends Scene{
 				for(Statistics stat : cricketservice.getAllStats()) {
 					if(stat.getPlayer_id() == stats.getPlayer_id()) {
 						stat.setStats_type(cricketservice.getStatsType(stat.getStats_type_id()));
-						if(stat.getStats_type().getStats_short_name().equalsIgnoreCase("LLCS1")) {
+						if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("LLCS1")) {
 							match_data = stat.getMatches();
 							run_data = stat.getRuns();
 							balls_data = stat.getBalls_faced();
@@ -18821,7 +18821,7 @@ public class KOLKATA_T20 extends Scene{
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						
 						//System.out.println("1." + stats.getStats_type().getStats_short_name() + " 2." + valueToProcess.split(",")[2]);
-						if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(data.split(",")[2])) {
+						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(data.split(",")[2])) {
 							populatePlayerProfile(print_writer,data.split(",")[0],Integer.valueOf(data.split(",")[1]),
 									data.split(",")[2],data.split(",")[3],stats,cricketService.getAllPlayer(),
 									CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",false, tournament_matches, cricketService,match,null), cricketService,match, broadcaster,1, config);
@@ -18851,7 +18851,7 @@ public class KOLKATA_T20 extends Scene{
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						
 						//System.out.println("1." + stats.getStats_type().getStats_short_name() + " 2." + valueToProcess.split(",")[2]);
-						if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(data.split(",")[2])) {
+						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(data.split(",")[2])) {
 							populatePlayerProfileBall(print_writer,data.split(",")[0],Integer.valueOf(data.split(",")[1]),
 									data.split(",")[2],data.split(",")[3],stats,cricketService.getAllPlayer(),
 									null, cricketService,match, broadcaster,1, config);
@@ -19128,7 +19128,7 @@ public class KOLKATA_T20 extends Scene{
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						
-						if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(data.split(",")[2])) {
+						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(data.split(",")[2])) {
 							populateLTPlayerProfile(print_writer,data.split(",")[0],data.split(",")[2],data.split(",")[3],
 									stats,match,null,cricketService,broadcaster,1);
 						}
@@ -19157,7 +19157,7 @@ public class KOLKATA_T20 extends Scene{
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						
-						if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(data.split(",")[2])) {
+						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(data.split(",")[2])) {
 							populateLTPlayerProfileBat(print_writer,data.split(",")[0],data.split(",")[2],data.split(",")[3],
 									stats,match,null,cricketService,broadcaster,1);
 						}

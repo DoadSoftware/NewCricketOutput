@@ -533,12 +533,12 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 					}else {
 						stats = statistics.stream().filter(st -> st.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()).findAny().orElse(null);
 						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-						if(stats.getStats_type().getStats_short_name().equalsIgnoreCase("ODI")) {
+						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase("ODI")) {
 							stats = CricketFunctions.updateH2h(stats, head_to_head, match, CricketUtil.FULL);
 							stats = CricketFunctions.updateMatchData(stats, match, CricketUtil.FULL);
 						}
 						
-						if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 							this.status = CricketUtil.SUCCESSFUL;
 							
 							populatePlayerProfileBat(print_writer,false,valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),
@@ -1560,7 +1560,7 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 		boolean player_found = false;
 		for(MatchAllData match : tournament_matches) {
 			if(!match.getMatch().getMatchFileName().equalsIgnoreCase(currentMatch.getMatch().getMatchFileName())) {
-				if(stat.getStats_type().getStats_short_name().equalsIgnoreCase("PR")) {
+				if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("PR")) {
 					for(Inning inn : match.getMatch().getInning()) {
 						for(BattingCard bc : inn.getBattingCard()) {
 							if(bc.getPlayerId() == stat.getPlayer_id()) {
@@ -1624,7 +1624,7 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 	{
 		boolean player_found = false;
 		
-		if(stat.getStats_type().getStats_short_name().equalsIgnoreCase("PR")) {
+		if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("PR")) {
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(0).getTotalFours());
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(1).getTotalFours());
 			for(Inning inn : match.getMatch().getInning()) {
@@ -3754,14 +3754,14 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 			this.status = "ERROR: Match is null";
 		} else {
 			
-			if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
+			if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSubHeader " + "T20 CAREER" + ";");
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSubHeader " + "T20-I CAREER" + ";");
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("FC")) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("FC")) {
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSubHeader " + "FIRST-CLASS CAREER" + ";");
 			}else {
-				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSubHeader " + stats.getStats_type().getStats_short_name().toUpperCase() + " CAREER" + ";");
+				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSubHeader " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + ";");
 			}
 
 			for(Inning inn : match.getMatch().getInning()) {
@@ -3814,8 +3814,8 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead4 " + " " + ";");
 			}
 			
-			if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20) || stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20) ||
-					stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("PR")) {
+			if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20) || stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20) ||
+					stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("PR")) {
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead1 " + "MATCHES" + ";");
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue1 " + stats.getMatches() + ";");
 
@@ -3837,7 +3837,7 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 				}else {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + stats.getBest_figures() + ";");
 				}
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.TEST)) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.TEST)) {
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead1 " + "MATCHES" + ";");
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue1 " + stats.getMatches() + ";");
 
@@ -3856,7 +3856,7 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + df_bo.format(average) + ";");
 				}
 				
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.ODI)) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.ODI)) {
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead1 " + "MATCHES" + ";");
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue1 " + stats.getMatches() + ";");
 
@@ -3908,15 +3908,15 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 			if(Profile.equalsIgnoreCase("THISSERIES")) {
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSubHeader " + "THIS SERIES" + ";");
 			}else {
-				if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
+				if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSubHeader " + "T20 CAREER" + ";");
-				}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
+				}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSubHeader " + "T20I CAREER" + ";");
-				}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("FC")) {
+				}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("FC")) {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSubHeader " + "FIRST-CLASS CAREER" + ";");
 				}else {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSubHeader " + 
-							stats.getStats_type().getStats_short_name().toUpperCase() + " CAREER" + ";");
+							stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + ";");
 				}
 			}
 			

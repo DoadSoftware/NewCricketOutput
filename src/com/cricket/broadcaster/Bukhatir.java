@@ -336,7 +336,7 @@ public class Bukhatir extends Scene{
 							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
 							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
-							if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								populatePlayerProfile(print_writer,valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),
 										valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,match, session_selected_broadcaster, session_configuration);
 							}
@@ -349,7 +349,7 @@ public class Bukhatir extends Scene{
 							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
 							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
-							if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								populatePlayerProfile(print_writer,valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),
 										valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,match, session_selected_broadcaster, session_configuration);
 							}
@@ -552,7 +552,7 @@ public class Bukhatir extends Scene{
 							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 							
-							if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								populateLTPlayerProfile(print_writer,valueToProcess.split(",")[0],
 										valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,match, session_selected_broadcaster);
 							}
@@ -567,7 +567,7 @@ public class Bukhatir extends Scene{
 							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 							
-							if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								populateLTPlayerProfile(print_writer,valueToProcess.split(",")[0],
 										valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,match, session_selected_broadcaster);
 							}

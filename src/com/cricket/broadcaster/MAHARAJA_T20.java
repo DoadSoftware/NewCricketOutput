@@ -696,7 +696,7 @@ public class MAHARAJA_T20 extends Scene{
 						for(Statistics stats : statistics) {
 							if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
 								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-								if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[3])){
+								if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[3])){
 //									stats = CricketFunctions.updateH2h(stats, head_to_head, match);
 //									stats = CricketFunctions.updateMatchData(stats, match);
 									populateLTPlayerProfile(print_writer,valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),valueToProcess.split(",")[3],
@@ -710,7 +710,7 @@ public class MAHARAJA_T20 extends Scene{
 						 System.out.println(stats.getPlayer_id());
 						if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
 							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-							if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[3])){
+							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[3])){
 //								stats = CricketFunctions.updateH2h(stats, head_to_head, match);
 //								stats = CricketFunctions.updateMatchData(stats, match);
 
@@ -5339,16 +5339,16 @@ public class MAHARAJA_T20 extends Scene{
 			}else {
 				print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Impact*ACTIVE SET 0 " + "\0");
 			}
-			if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
+			if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
 				print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Bottom_Info*GEOM*TEXT SET " + "T20I" + " CAREER" + "\0");
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("OD")) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("OD")) {
 				print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Bottom_Info*GEOM*TEXT SET " + "LIST A" + " CAREER" + "\0");
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("IPL")) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("IPL")) {
 				print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Bottom_Info*GEOM*TEXT SET " + "IPL CAREER" + "\0");
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("DT20")) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("DT20")) {
 				print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Bottom_Info*GEOM*TEXT SET " + "T20" + " CAREER" + "\0");
 			}else {
-				print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Bottom_Info*GEOM*TEXT SET " + stats.getStats_type().getStats_short_name().toUpperCase() + " CAREER" + "\0");
+				print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Bottom_Info*GEOM*TEXT SET " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + "\0");
 			}
 			
 			print_writer.println("-1 RENDERER PREVIEW SCENE*" + viz_scene + " C:/Temp/Preview.png In 3.500 \0");
@@ -5447,18 +5447,18 @@ public class MAHARAJA_T20 extends Scene{
 					
 					break;
 				}
-				if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
+				if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + "T20I" + " CAREER" + "\0");
-				}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("OD")) {
+				}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("OD")) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + "LIST A" + " CAREER" + "\0");
-				}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("IPL")) {
+				}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("IPL")) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + "IPL CAREER" + "\0");
-				}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("DT20")) {
+				}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("DT20")) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + "T20" + " CAREER" + "\0");
-				}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("ODI")) {
+				}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("ODI")) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + "SEASON 1" + "\0");
 				}else {
-					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + stats.getStats_type().getStats_short_name().toUpperCase() + " CAREER" + "\0");
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + "\0");
 				}
 				
 				if(Profile.equalsIgnoreCase("MAHARAJA_T20_ALL")) {

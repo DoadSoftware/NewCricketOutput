@@ -2529,7 +2529,7 @@ public class RPL extends Scene{
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						
-						if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 							populateLTPlayerProfile(print_writer,valueToProcess.split(",")[0],
 									valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,match, broadcaster);
 						}
@@ -2548,7 +2548,7 @@ public class RPL extends Scene{
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						
-						if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 							populateLTPlayerProfileBat(print_writer,valueToProcess.split(",")[0],
 									valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,match, broadcaster);
 						}
@@ -2562,8 +2562,8 @@ public class RPL extends Scene{
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						
-						//System.out.println("1." + stats.getStats_type().getStats_short_name() + " 2." + valueToProcess.split(",")[2]);
-						if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+						//System.out.println("1." + stats.getStats_type().getStatsShortName() + " 2." + valueToProcess.split(",")[2]);
+						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 							populatePlayerProfile(print_writer,valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),
 									valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,cricketService.getAllPlayer(),match, broadcaster, config);
 						}
@@ -2576,7 +2576,7 @@ public class RPL extends Scene{
 						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
-						if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 							populatePlayerProfileBall(print_writer,valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),
 									valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,cricketService.getAllPlayer(),match, broadcaster, config);
 						}
@@ -4025,7 +4025,7 @@ public class RPL extends Scene{
 		boolean player_found = false;
 		for(MatchAllData match : tournament_matches) {
 			if(!match.getMatch().getMatchFileName().equalsIgnoreCase(currentMatch.getMatch().getMatchFileName())) {
-				if(stat.getStats_type().getStats_short_name().equalsIgnoreCase("PR")) {
+				if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("PR")) {
 					for(Inning inn : match.getMatch().getInning()) {
 						for(BattingCard bc : inn.getBattingCard()) {
 							if(bc.getPlayerId() == stat.getPlayer_id()) {
@@ -4089,7 +4089,7 @@ public class RPL extends Scene{
 	{
 		boolean player_found = false;
 		
-		if(stat.getStats_type().getStats_short_name().equalsIgnoreCase("PR")) {
+		if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("PR")) {
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(0).getTotalFours());
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(1).getTotalFours());
 			for(Inning inn : match.getMatch().getInning()) {
@@ -7219,18 +7219,18 @@ public class RPL extends Scene{
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$Side1$SelectImage$"
 					+ "SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 			
-			if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
+			if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$TopPart$SubHeaderGrp$Side1$SubHeaderTextOut$"
 						+ "SubHeaderText$txt_SubHeader*GEOM*TEXT SET " + "T20 CAREER" +" \0");
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$TopPart$SubHeaderGrp$Side1$SubHeaderTextOut$"
 						+ "SubHeaderText$txt_SubHeader*GEOM*TEXT SET " + "T20I CAREER" +" \0");
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("IPL")) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("IPL")) {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$TopPart$SubHeaderGrp$Side1$SubHeaderTextOut$"
 						+ "SubHeaderText$txt_SubHeader*GEOM*TEXT SET " + "IPL CAREER" +" \0");
 			}else {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$TopPart$SubHeaderGrp$Side1$SubHeaderTextOut$"
-						+ "SubHeaderText$txt_SubHeader*GEOM*TEXT SET " + stats.getStats_type().getStats_short_name().toUpperCase() + " CAREER" +" \0");
+						+ "SubHeaderText$txt_SubHeader*GEOM*TEXT SET " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" +" \0");
 			}
 			
 			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
@@ -7347,8 +7347,8 @@ public class RPL extends Scene{
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row4$Out$In$PlayerProfileGrp"
 						+ "$Data$txt_StatHead*GEOM*TEXT SET " + "STRIKE RATE" +" \0");
 				
-				if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20) ||
-					stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
+				if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20) ||
+					stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
 					
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row1$Out$In$PlayerProfileGrp"
 							+ "$Data$txt_StatValue*GEOM*TEXT SET " + stats.getMatches() +" \0");
@@ -7369,8 +7369,8 @@ public class RPL extends Scene{
 								+ "$Data$txt_StatValue*GEOM*TEXT SET " + df.format(strike_rate) +" \0");
 					}
 					
-				}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.ODI) || 
-						stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("IPL")) {
+				}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.ODI) || 
+						stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("IPL")) {
 					
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row1$Out$In$PlayerProfileGrp"
 							+ "$Data$txt_StatValue*GEOM*TEXT SET " + stats.getMatches() +" \0");
@@ -7410,18 +7410,18 @@ public class RPL extends Scene{
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$Side1$SelectImage$"
 					+ "SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 			
-			if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
+			if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$TopPart$SubHeaderGrp$Side1$SubHeaderTextOut$"
 						+ "SubHeaderText$txt_SubHeader*GEOM*TEXT SET " + "T20 CAREER" +" \0");
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$TopPart$SubHeaderGrp$Side1$SubHeaderTextOut$"
 						+ "SubHeaderText$txt_SubHeader*GEOM*TEXT SET " + "T20I CAREER" +" \0");
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("IPL")) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("IPL")) {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$TopPart$SubHeaderGrp$Side1$SubHeaderTextOut$"
 						+ "SubHeaderText$txt_SubHeader*GEOM*TEXT SET " + "IPL CAREER" +" \0");
 			}else {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$TopPart$SubHeaderGrp$Side1$SubHeaderTextOut$"
-						+ "SubHeaderText$txt_SubHeader*GEOM*TEXT SET " + stats.getStats_type().getStats_short_name().toUpperCase() + " CAREER" +" \0");
+						+ "SubHeaderText$txt_SubHeader*GEOM*TEXT SET " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" +" \0");
 			}
 			
 			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
@@ -7540,8 +7540,8 @@ public class RPL extends Scene{
 			switch(TypeofProfile.toUpperCase()) {
 			case CricketUtil.BOWLER:
 				
-				if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20) ||
-					stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
+				if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20) ||
+					stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
 					
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row1$Out$In$PlayerProfileGrp"
 							+ "$Data$txt_StatValue*GEOM*TEXT SET " + stats.getMatches() +" \0");
@@ -7561,8 +7561,8 @@ public class RPL extends Scene{
 								+ "$Data$txt_StatValue*GEOM*TEXT SET " + df.format(economy_rate) +" \0");
 					}
 					
-				}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.ODI) ||
-						stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("IPL")) {
+				}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.ODI) ||
+						stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("IPL")) {
 					
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row1$Out$In$PlayerProfileGrp"
 							+ "$Data$txt_StatValue*GEOM*TEXT SET " + stats.getMatches() +" \0");
@@ -8031,15 +8031,15 @@ public class RPL extends Scene{
 			
 			print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position*FUNCTION*Omo*vis_con SET 15 \0");
 			
-			if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
+			if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$HeaderGrp$HeaderText$Text2*GEOM*TEXT SET " + "T20 CAREER" +" \0");
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$HeaderGrp$HeaderText$Text2*GEOM*TEXT SET " + "T20I CAREER" +" \0");
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("IPL")) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("IPL")) {
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$HeaderGrp$HeaderText$Text2*GEOM*TEXT SET " + "IPL CAREER" +" \0");
 			}else {
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$HeaderGrp$HeaderText$Text2*GEOM*TEXT SET " + 
-					stats.getStats_type().getStats_short_name().toUpperCase() + " CAREER" +" \0");
+					stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" +" \0");
 			}
 			
 			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
@@ -8066,7 +8066,7 @@ public class RPL extends Scene{
 		switch(TypeofProfile.toUpperCase()) {
 		case CricketUtil.BOWLER:
 			
-			if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
+			if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
 				
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead1"
 						+ "$Text*GEOM*TEXT SET " + stats.getMatches() +" \0");
@@ -8087,9 +8087,9 @@ public class RPL extends Scene{
 					print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead4"
 							+ "$Text*GEOM*TEXT SET " + df_bo.format(economy_rate) +" \0");
 				}
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.ODI) || 
-					stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20) ||
-					stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("IPL")) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.ODI) || 
+					stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20) ||
+					stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("IPL")) {
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead1"
 						+ "$Text*GEOM*TEXT SET " + stats.getMatches() +" \0");
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead2"
@@ -8128,15 +8128,15 @@ public class RPL extends Scene{
 		
 			print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position*FUNCTION*Omo*vis_con SET 15 \0");
 		
-			if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
+			if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$HeaderGrp$HeaderText$Text2*GEOM*TEXT SET " + "T20 CAREER" +" \0");
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$HeaderGrp$HeaderText$Text2*GEOM*TEXT SET " + "T20I CAREER" +" \0");
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("IPL")) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("IPL")) {
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$HeaderGrp$HeaderText$Text2*GEOM*TEXT SET " + "IPL CAREER" +" \0");
 			}else {
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$HeaderGrp$HeaderText$Text2*GEOM*TEXT SET " + 
-					stats.getStats_type().getStats_short_name().toUpperCase() + " CAREER" +" \0");
+					stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" +" \0");
 			}
 		
 		Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
@@ -8163,7 +8163,7 @@ public class RPL extends Scene{
 		switch(TypeofProfile.toUpperCase()) {
 		case CricketUtil.BATSMAN:
 			
-			if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
+			if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
 				
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead1"
 						+ "$Text*GEOM*TEXT SET " + stats.getMatches() +" \0");
@@ -8183,9 +8183,9 @@ public class RPL extends Scene{
 					print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead4"
 							+ "$Text*GEOM*TEXT SET " + df.format(strike_rate) +" \0");
 				}
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.ODI) || 
-					stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20) ||
-					stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("IPL")) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.ODI) || 
+					stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20) ||
+					stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("IPL")) {
 				
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead1"
 						+ "$Text*GEOM*TEXT SET " + stats.getMatches() +" \0");

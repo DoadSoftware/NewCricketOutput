@@ -118,7 +118,7 @@ public class IndexController
 //	public static EVEREST_NEPAL_T20 everest_nepal_t20;
 	public static EVEREST_LEGENDS_90 everest_legends_90;
 	
-	public static KERALA_T20 this_kerala_t20;
+	public static KERALA_T20 this_kerala_t20 = new KERALA_T20();
 //	public static EVEREST_PUNJAB_T20 everest_punjab_t20;
 	public static EVEREST_APL_T20 everest_apl_t20;
 //	public static EVEREST_KCL everest_KCL;
@@ -317,7 +317,6 @@ public class IndexController
 			session_selected_broadcaster = select_broadcaster;
 			session_selected_second_broadcaster = select_second_broadcaster;
 			
-			basePath = CricketUtil.CRICKET_DIRECTORY;
 			if(Category.equalsIgnoreCase("men")) {
 				cat = "Men";
 				basePath = "C:\\Sports\\CricketMen\\";
@@ -326,6 +325,9 @@ public class IndexController
 				cat = "Women";
 				basePath = "C:\\Sports\\CricketWomen\\";
 		    	DatabaseContextHolder.setDb("WOMEN");
+			}else {
+				basePath = CricketUtil.CRICKET_DIRECTORY;
+				DatabaseContextHolder.setDb("LOCAL");
 			}
 			
 //			speed_match_time_stamp = new File("C:\\Sports\\Cricket\\Speed\\SPEED.txt").lastModified();

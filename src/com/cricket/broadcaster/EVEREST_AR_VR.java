@@ -247,10 +247,10 @@ public class EVEREST_AR_VR extends Scene{
 					
 					switch (WhichProfile.toUpperCase()) {
 					case "DT20": 
-						statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStats_short_name().equalsIgnoreCase("DT20")).findAny().orElse(null);
+						statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStatsShortName().equalsIgnoreCase("DT20")).findAny().orElse(null);
 						break;
 					case "IT20":
-						statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStats_short_name().equalsIgnoreCase("IT20")).findAny().orElse(null);
+						statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStatsShortName().equalsIgnoreCase("IT20")).findAny().orElse(null);
 						break;
 					}
 					
@@ -260,7 +260,7 @@ public class EVEREST_AR_VR extends Scene{
 						return "PopulateL3rdPlayerProfile: Stats Type not found for profile [" + WhichProfile + "]";
 					}
 					
-					stat = statistics.stream().filter(st -> st.getPlayer_id() == FirstPlayerId && statsType.getStats_id() == st.getStats_type_id()).findAny().orElse(null);
+					stat = statistics.stream().filter(st -> st.getPlayer_id() == FirstPlayerId && statsType.getStatsId() == st.getStats_type_id()).findAny().orElse(null);
 					if(stat == null) {
 						return "PopulateL3rdPlayerProfile: Stats not found for Player Id [" + FirstPlayerId + "]";
 					}
@@ -313,10 +313,10 @@ public class EVEREST_AR_VR extends Scene{
 					
 					switch (WhichProfile.toUpperCase()) {
 					case "DT20": 
-						statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStats_short_name().equalsIgnoreCase("DT20")).findAny().orElse(null);
+						statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStatsShortName().equalsIgnoreCase("DT20")).findAny().orElse(null);
 						break;
 					case "IT20":
-						statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStats_short_name().equalsIgnoreCase("IT20")).findAny().orElse(null);
+						statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStatsShortName().equalsIgnoreCase("IT20")).findAny().orElse(null);
 						break;
 					}
 					
@@ -326,8 +326,8 @@ public class EVEREST_AR_VR extends Scene{
 						return "PopulateL3rdPlayerProfile: Stats Type not found for profile [" + WhichProfile + "]";
 					}
 					
-					stat = statistics.stream().filter(st -> st.getPlayer_id() == FirstPlayerId && statsType.getStats_id() == st.getStats_type_id()).findAny().orElse(null);
-					stat2 = statistics.stream().filter(st -> st.getPlayer_id() == FirstPlayerId2 && statsType.getStats_id() == st.getStats_type_id()).findAny().orElse(null);
+					stat = statistics.stream().filter(st -> st.getPlayer_id() == FirstPlayerId && statsType.getStatsId() == st.getStats_type_id()).findAny().orElse(null);
+					stat2 = statistics.stream().filter(st -> st.getPlayer_id() == FirstPlayerId2 && statsType.getStatsId() == st.getStats_type_id()).findAny().orElse(null);
 					if(stat == null) {
 						return "PopulateL3rdPlayerProfile: Stats not found for Player Id [" + FirstPlayerId + "]";
 					}
@@ -383,10 +383,10 @@ public class EVEREST_AR_VR extends Scene{
 					
 					switch (WhichProfile.toUpperCase()) {
 					case "DT20": 
-						statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStats_short_name().equalsIgnoreCase("DT20")).findAny().orElse(null);
+						statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStatsShortName().equalsIgnoreCase("DT20")).findAny().orElse(null);
 						break;
 					case "IT20":
-						statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStats_short_name().equalsIgnoreCase("IT20")).findAny().orElse(null);
+						statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStatsShortName().equalsIgnoreCase("IT20")).findAny().orElse(null);
 						break;
 					}
 					
@@ -396,7 +396,7 @@ public class EVEREST_AR_VR extends Scene{
 						return "PopulateL3rdPlayerProfile: Stats Type not found for profile [" + WhichProfile + "]";
 					}
 					
-					stat = statistics.stream().filter(st -> st.getPlayer_id() == FirstPlayerId && statsType.getStats_id() == st.getStats_type_id()).findAny().orElse(null);
+					stat = statistics.stream().filter(st -> st.getPlayer_id() == FirstPlayerId && statsType.getStatsId() == st.getStats_type_id()).findAny().orElse(null);
 					if(stat == null) {
 						return "PopulateL3rdPlayerProfile: Stats not found for Player Id [" + FirstPlayerId + "]";
 					}

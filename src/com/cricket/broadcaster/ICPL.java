@@ -471,7 +471,7 @@ public class ICPL extends Scene{
 							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
 							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
-							if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								populateLTPlayerProfile(print_writer,valueToProcess.split(",")[0],
 										valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,match, broadcaster);
 							}
@@ -485,7 +485,7 @@ public class ICPL extends Scene{
 								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
 								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
-								if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[3])) {
+								if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[3])) {
 									populatePlayerProfile(print_writer,valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),
 											valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,match, broadcaster);
 								}
@@ -3008,12 +3008,12 @@ public class ICPL extends Scene{
 				}
 				break;
 			}
-			if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
+			if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
 				print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Bottom_Info*GEOM*TEXT SET " + "T20I" + " CAREER" + "\0");
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
 				print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Bottom_Info*GEOM*TEXT SET " + "T20" + " CAREER" + "\0");
 			}else {
-				print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Bottom_Info*GEOM*TEXT SET " + stats.getStats_type().getStats_short_name().toUpperCase() + " CAREER" + "\0");
+				print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Bottom_Info*GEOM*TEXT SET " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + "\0");
 			}
 			print_writer.println("-1 RENDERER PREVIEW SCENE*" + viz_scene + " C:/Temp/Preview.png In 3.500 \0");
 	
@@ -3103,12 +3103,12 @@ public class ICPL extends Scene{
 					}
 					break;
 				}
-				if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
+				if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + "T20I" + " CAREER" + "\0");
-				}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
+				}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + "T20" + " CAREER" + "\0");
 				}else {
-					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + stats.getStats_type().getStats_short_name().toUpperCase() + " CAREER" + "\0");
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + "\0");
 				}
 				print_writer.println("-1 RENDERER PREVIEW SCENE*" + viz_scene + " C:/Temp/Preview.png In 3.500 \0");
 	

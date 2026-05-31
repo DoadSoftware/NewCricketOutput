@@ -704,13 +704,13 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 					}else {
 						if(valueToProcess.split(",")[1].equalsIgnoreCase("IT20")) {
 							this.status = CricketUtil.SUCCESSFUL;
-							statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[1])).findAny().orElse(null);
+							statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[1])).findAny().orElse(null);
 							if(statsType == null) {
 								this.status = "NODATABASE";
 							}
 
 							stats = statistics.stream().filter(st -> st.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[0]).intValue() && 
-									statsType.getStats_id() == st.getStats_type_id()).findAny().orElse(null);
+									statsType.getStatsId() == st.getStats_type_id()).findAny().orElse(null);
 							if(stats == null) {
 								this.status = "NODATABASE";
 							}
@@ -721,19 +721,19 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 						}
 						else if(valueToProcess.split(",")[1].equalsIgnoreCase("DT20")) {
 							this.status = CricketUtil.SUCCESSFUL;
-							statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[1])).findAny().orElse(null);
+							statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[1])).findAny().orElse(null);
 							if(statsType == null) {
 								this.status = "NODATABASE";
 							}
 
 							stats = statistics.stream().filter(st -> st.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[0]).intValue() && 
-									statsType.getStats_id() == st.getStats_type_id()).findAny().orElse(null);
+									statsType.getStatsId() == st.getStats_type_id()).findAny().orElse(null);
 							if(stats == null) {
 								this.status = "NODATABASE";
 							}
 							
 							
-							StatsType statTypes =  cricketService.getAllStatsType().stream().filter(st -> st.getStats_short_name().equalsIgnoreCase("IT20")).findAny().orElse(null);
+							StatsType statTypes =  cricketService.getAllStatsType().stream().filter(st -> st.getStatsShortName().equalsIgnoreCase("IT20")).findAny().orElse(null);
 							if(statTypes == null) {
 								this.status = "NODATABASE";
 							}
@@ -746,20 +746,20 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 						}
 						else {
 							this.status = CricketUtil.SUCCESSFUL;
-							statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[1])).findAny().orElse(null);
+							statsType = cricketService.getAllStatsType().stream().filter(st -> st.getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[1])).findAny().orElse(null);
 							if(statsType == null) {
 								this.status = "NODATABASE";
 							}
 							
 							stats = statistics.stream().filter(st -> st.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[0]).intValue() && 
-									statsType.getStats_id() == st.getStats_type_id()).findAny().orElse(null);
+									statsType.getStatsId() == st.getStats_type_id()).findAny().orElse(null);
 							if(stats == null) {
 								this.status = "NODATABASE";
 							}
 							stats.setStats_type(statsType);
 						}
 						
-						if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(valueToProcess.split(",")[1])) {
+						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[1])) {
 							this.status = CricketUtil.SUCCESSFUL;
 							
 							populatePlayerProfileBat(print_writer, false, Integer.valueOf(valueToProcess.split(",")[0]), valueToProcess.split(",")[1], valueToProcess.split(",")[2], 
@@ -2248,7 +2248,7 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 		boolean player_found = false;
 		for(MatchAllData match : tournament_matches) {
 			if(!match.getMatch().getMatchFileName().equalsIgnoreCase(currentMatch.getMatch().getMatchFileName())) {
-				if(stat.getStats_type().getStats_short_name().equalsIgnoreCase("PR")) {
+				if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("PR")) {
 					for(Inning inn : match.getMatch().getInning()) {
 						for(BattingCard bc : inn.getBattingCard()) {
 							if(bc.getPlayerId() == stat.getPlayer_id()) {
@@ -2312,7 +2312,7 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 	{
 		boolean player_found = false;
 		
-		if(stat.getStats_type().getStats_short_name().equalsIgnoreCase("PR")) {
+		if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("PR")) {
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(0).getTotalFours());
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(1).getTotalFours());
 			for(Inning inn : match.getMatch().getInning()) {
@@ -2593,7 +2593,7 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 				stat = statistics.stream().filter(st -> st.getPlayer_id() == bc.getPlayerId() && st.getStats_type_id() == 3).findAny().orElse(null);				
 				if(stat != null) {
 					stat.setStats_type(cricketService.getStatsType(stat.getStats_type_id()));
-					if(stat.getStats_type().getStats_short_name().equalsIgnoreCase("IT20")) {
+					if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("IT20")) {
 						stat = CricketFunctions.updateTournamentWithH2h(stat, head_to_head, match, CricketUtil.FULL);
 						stat = CricketFunctions.updateStatisticsWithMatchData(stat, match, CricketUtil.FULL);
 					}
@@ -4581,14 +4581,14 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 			this.status = "ERROR: Match is null";
 		} else {
 			
-			if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
+			if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSubHeader " + "T20 CAREER" + ";");
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSubHeader " + "T20-I CAREER" + ";");
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("FC")) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("FC")) {
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSubHeader " + "FIRST-CLASS CAREER" + ";");
 			}else {
-				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSubHeader " + stats.getStats_type().getStats_short_name().toUpperCase() + " CAREER" + ";");
+				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSubHeader " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + ";");
 			}
 
 			for(Inning inn : match.getMatch().getInning()) {
@@ -4641,8 +4641,8 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead4 " + " " + ";");
 			}
 			
-			if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20) || stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20) ||
-					stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("PR")) {
+			if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20) || stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20) ||
+					stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("PR")) {
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead1 " + "MATCHES" + ";");
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue1 " + stats.getMatches() + ";");
 
@@ -4664,7 +4664,7 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 				}else {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + stats.getBest_figures() + ";");
 				}
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.TEST)) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.TEST)) {
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead1 " + "MATCHES" + ";");
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue1 " + stats.getMatches() + ";");
 
@@ -4683,7 +4683,7 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + df_bo.format(average) + ";");
 				}
 				
-			}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.ODI)) {
+			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.ODI)) {
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead1 " + "MATCHES" + ";");
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue1 " + stats.getMatches() + ";");
 
@@ -4749,21 +4749,21 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 				CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$Profile$Data$PlayerInfo"
 						+ "$txt_Age*GEOM*TEXT SET " + "THIS SERIES" + "\0", print_writers);
 			}else {
-				if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
+				if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
 					CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$Profile$Data$PlayerInfo"
 							+ "$txt_Age*GEOM*TEXT SET " + "T20 CAREER" + "\0", print_writers);
-				}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
+				}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.IT20)) {
 					CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$Profile$Data$PlayerInfo"
 							+ "$txt_Age*GEOM*TEXT SET " + "T20I CAREER" + "\0", print_writers);
-				}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
+				}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.DT20)) {
 					CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$Profile$Data$PlayerInfo"
 							+ "$txt_Age*GEOM*TEXT SET " + "T20 CAREER" + "\0", print_writers);
-				}else if(stats.getStats_type().getStats_short_name().toUpperCase().equalsIgnoreCase("FC")) {
+				}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase("FC")) {
 					CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$Profile$Data$PlayerInfo"
 							+ "$txt_Age*GEOM*TEXT SET " + "FIRST-CLASS CAREER" + "\0", print_writers);
 				}else {
 					CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$Profile$Data$PlayerInfo"
-							+ "$txt_Age*GEOM*TEXT SET " + stats.getStats_type().getStats_short_name().toUpperCase() + " CAREER" + "\0", print_writers);
+							+ "$txt_Age*GEOM*TEXT SET " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + "\0", print_writers);
 					
 				}
 			}
@@ -8038,7 +8038,7 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 			stat = statistics.stream().filter(st -> st.getPlayer_id() == plyr.getPlayerId() && st.getStats_type_id() == 3).findAny().orElse(null);				
 			if(stat != null) {
 				stat.setStats_type(cricketService.getStatsType(stat.getStats_type_id()));
-				if(stat.getStats_type().getStats_short_name().equalsIgnoreCase("IT20")) {
+				if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("IT20")) {
 					stat = CricketFunctions.updateTournamentWithH2h(stat, head_to_head, match, CricketUtil.FULL);
 					stat = CricketFunctions.updateStatisticsWithMatchData(stat, match, CricketUtil.FULL);
 				}

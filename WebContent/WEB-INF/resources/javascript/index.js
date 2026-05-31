@@ -30097,7 +30097,18 @@ function addItemsToList(whatToProcess, dataToProcess) {
 											option.text = 'IT20';
 											select.appendChild(option);
 											break;
-										case 'APL': case 'PPL': case 'KERALA_T20': case 'ACC_NEPAL': case 'DOAD_LLC':
+										case 'KERALA_T20':
+											option = document.createElement('option');
+											option.value = 'DT20';
+											option.text = 'DT20';
+											select.appendChild(option);
+
+											option = document.createElement('option');
+											option.value = 'MPL';
+											option.text = 'MPL CARRER';
+											select.appendChild(option);
+											break;
+										case 'APL': case 'PPL':  case 'ACC_NEPAL': case 'DOAD_LLC':
 											if($('#selected_broadcaster').val().toUpperCase()=='PPL'){
 												option = document.createElement('option');
 												option.value = 'PPL ALL';

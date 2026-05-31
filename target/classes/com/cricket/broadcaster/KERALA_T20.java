@@ -22681,7 +22681,7 @@ public class KERALA_T20 extends Scene {
 									print_writer.println(
 											"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$CurrentPartnership$CurrentPartnershipDataOut$CurrentPartnershipData$CurrentPartnershipDataGrp$"
 													+ "Row1$Out$In$PlayerGrp1$img_Text2$Select_Star1*FUNCTION*Omo*vis_con SET "
-													+ "0" + " \0");
+													+ "0" + "Â \0");
 								}
 
 								print_writer.println(
@@ -22729,7 +22729,7 @@ public class KERALA_T20 extends Scene {
 									print_writer.println(
 											"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$CurrentPartnership$CurrentPartnershipDataOut$CurrentPartnershipData$CurrentPartnershipDataGrp$"
 													+ "Row1$Out$In$PlayerGrp2$img_Text2$Select_Star1*FUNCTION*Omo*vis_con SET "
-													+ "0" + " \0");
+													+ "0" + "Â \0");
 								}
 
 								print_writer.println(

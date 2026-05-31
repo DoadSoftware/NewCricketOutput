@@ -1983,7 +1983,7 @@ public class EVEREST_AR_VR extends Scene{
 //						match.getSetup().getHomeTeam().getTeamName1() + ";");
 				
 				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHomeTeamName " + 
-						match.getSetup().getAwayTeam().getTeamName2() +  "\r\n" +  match.getSetup().getAwayTeam().getTeamName3()+ ";");
+						match.getSetup().getHomeTeam().getTeamName2() +  "\r\n" +  match.getSetup().getHomeTeam().getTeamName3()+ ";");
 				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tAwayTeamName " + 
 						match.getSetup().getAwayTeam().getTeamName2()  + "\r\n" +   match.getSetup().getAwayTeam().getTeamName3()+ ";");
 				
@@ -3153,7 +3153,7 @@ public class EVEREST_AR_VR extends Scene{
 				        .collect(Collectors.collectingAndThen(Collectors.toList(), list -> {Collections.reverse(list); return list;}))
 				        .toArray(new String[0])));
 				
-				int totalOverSize = 6;
+				int totalOverSize = 0;
 				
 				if(this_data_str.get(this_data_str.size()-1) == null) {
 					
@@ -3227,18 +3227,39 @@ public class EVEREST_AR_VR extends Scene{
 				}else {
 					
 				}
+				System.out.println("(totalOverSize-1)" +(totalOverSize-1));
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET VSelectBalls" + " " + (totalOverSize-1)  + ";");
 				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET VSelectBalls" + " " + (totalOverSize-1)  + ";");
 				
-				if((totalOverSize-1) == 5) {
-					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DATA_GRP*FUNCTION_SET_PROP*GRID_ARRANGE distCol=155"+ ";");
+				if((totalOverSize-1) == 0) {
+					
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$group*FUNCTION_SET_PROP*GRID_ARRANGE numberCol=1;"+ ";");
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=116.00"+ ";");
+				}else if((totalOverSize-1) == 1) {
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$group*FUNCTION_SET_PROP*GRID_ARRANGE numberCol=2;"+ ";");
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=115.00"+ ";");
+				}else if((totalOverSize-1) == 2) {
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$group*FUNCTION_SET_PROP*GRID_ARRANGE numberCol=3;"+ ";");
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=115.00"+ ";");
+				}else if((totalOverSize-1) == 3) {
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$group*FUNCTION_SET_PROP*GRID_ARRANGE numberCol=4;"+ ";");
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=111.00"+ ";");
+				}else if((totalOverSize-1) == 4) {
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$group*FUNCTION_SET_PROP*GRID_ARRANGE numberCol=5;"+ ";");
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=111.00"+ ";");
+				}else if((totalOverSize-1) == 5) {
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$group*FUNCTION_SET_PROP*GRID_ARRANGE numberCol=6;"+ ";");
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=93.00"+ ";");
 				}else if((totalOverSize-1) == 6) {
-					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DATA_GRP*FUNCTION_SET_PROP*GRID_ARRANGE distCol=155"+ ";");
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$group*FUNCTION_SET_PROP*GRID_ARRANGE numberCol=7;"+ ";");
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=80.00"+ ";");
 				}else if((totalOverSize-1) == 7) {
-					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DATA_GRP*FUNCTION_SET_PROP*GRID_ARRANGE distCol=134"+ ";");
-				}else if((totalOverSize-1) == 8) {
-					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DATA_GRP*FUNCTION_SET_PROP*GRID_ARRANGE distCol=112"+ ";");
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$group*FUNCTION_SET_PROP*GRID_ARRANGE numberCol=8;"+ ";");
+					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$group*FUNCTION_SET_PROP*GRID_ARRANGE distCol=70.00"+ ";");
 				}
+				
+				
+				
 				
 //				CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$object$RightData$Side" + WhichSide + "$OverThis$Over"
 //						+ "*FUNCTION*Grid*num_col SET " + totalOverSize + "\0", print_writers);

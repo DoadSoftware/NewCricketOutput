@@ -307,7 +307,7 @@
 			    <div class="col-sm-6 col-md-6">
 			      <select id="Category" name="Category" class="browser-default custom-select custom-select-sm"
 			      		onchange="processCricketProcedures('GET-CATEGORY-DATA')">
-			      		<option value=" "> </option>
+			      		<option value=" "></option>
 			      		<option value="MEN">MEN</option>
 			      		<option value="WOMEN">WOMEN</option>
 			      </select>

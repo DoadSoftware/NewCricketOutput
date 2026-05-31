@@ -182,6 +182,13 @@ public class PPL extends Scene{
 			PrintWriter print_writer, List<Scene> scenes, String valueToProcess, List<Statistics> statistics, Configuration config,List<HeadToHeadPlayer> head_to_head,String plotterData) throws NumberFormatException, Exception{
 		
 		IndexController.matchstats = CricketFunctions.getAllEvents(match ,broadcaster, match.getEventFile().getEvents());
+		
+		Object graphicOption = allGraphicOption(whatToProcess,valueToProcess, match,head_to_head,past_tournament_stats,tournament_matches,cricketService);
+
+		if(graphicOption != null && !"".equals(graphicOption)) {
+		    return graphicOption;
+		}
+		
 		switch (whatToProcess) {
 		
 		
@@ -286,1772 +293,9 @@ public class PPL extends Scene{
 				}
 				break;
 			}
-			switch (whatToProcess.toUpperCase()) {
-			case "ANIMATE-IN-IDENT":
-				if(infobar.isInfobar_on_screen() == true) {
-					AnimateOutGraphics(print_writer, "ANIMATE-OUT-INFOBAR");
-					AnimateInGraphics(print_writer, "IDENT");
-					which_graphic_on_screen = "IDENT";
-					which_graphic_info_on_screen = "IDENT";
-					infobar.setInfobar_on_screen(true);
-				}else {
-					AnimateInGraphics(print_writer, "IN");
-					AnimateInGraphics(print_writer, "IDENT");
-					which_graphic_on_screen = "IDENT";
-					which_graphic_info_on_screen = "IDENT";
-					infobar.setInfobar_on_screen(true);
-				}
-				
-				break;
-				
-			case "ANIMATE-IN-BALL_PERFORMER":
-				if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD") {	
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
-//					print_writer.println("-1 RENDERER*$Main$All$BowlingCard*ACTIVE SET " + "1" + "\0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD_PERFORMER") {
-					if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PARTNERSHIP")) {
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipOut START \0");
-					}else if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-						TimeUnit.MILLISECONDS.sleep(500);
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerOut START \0");
-					}
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingRightCardOut START \0");
-					TimeUnit.MILLISECONDS.sleep(500);
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
-					
-					//print_writer.println("-1 RENDERER*$Main$All$BowlingCard*ACTIVE SET " + "1" + "\0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-					//TimeUnit.MILLISECONDS.sleep(500);
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
-					TimeUnit.MILLISECONDS.sleep(500);
-					bcf.setLast_type("");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_MATCHSUMMARY") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryOut START \0");
-					//print_writer.println("-1 RENDERER*$Main$All$BowlingCard*ACTIVE SET " + "1" + "\0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
-				}else if(which_graphic_on_screen == "POINTSTABLE") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableOut START \0");
-					//print_writer.println("-1 RENDERER*TREE*$Main$All$BowlingCard*ACTIVE SET " + "1" + "\0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
-					TimeUnit.SECONDS.sleep(1);
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BowlingCardAll$BowlingCardType*FUNCTION*Omo*vis_con SET 0 \0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_PARTNERSHIP"){
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllOut START \0");
-				}else {
-//					print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*In START \0");
-				}
-				if(bocf.getLast_type() != null && !bocf.getLast_type().trim().isEmpty()) {
-					if(bocf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-						if(bocf.getType().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BowlingCardAll$BowlingCardType$Format1$BallData$BallRightDataAll*ACTIVE SET 1 \0");
-							print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BallPerformerOut START \0");
-							TimeUnit.SECONDS.sleep(1);
-							print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BallPerformerIn START \0");
-							bocf.setLast_type(bocf.getType());
-						}
-					}
-				}else {
-					bocf.setLast_type(bocf.getType());
-					if(bocf.getType().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-//						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BowlingCardAll$BowlingCardType$Format1$BallData$BallRightDataAll*ACTIVE SET 1 \0");
-
-						//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Reset START \0");
-//						TimeUnit.MILLISECONDS.sleep(500);
-						//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*In START \0");
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
-						TimeUnit.MILLISECONDS.sleep(200);
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingRightCardIn START \0");
-						TimeUnit.MILLISECONDS.sleep(100);
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BallPerformerIn START \0");
-						//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-						bocf.setLast_type(bocf.getType());
-					}
-				}
-				
-				which_graphic_on_screen = "BATBALLSUMMARY_BOWLINGCARD_PERFORMER";
-				TimeUnit.SECONDS.sleep(1);
-				break;
-				
-			case "ANIMATE-IN-BAT-PERFORMER":
-				print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format2$BatData$Header$TeamNameGrp$FirstName"
-						+ "*GEOM*TEXT SET " + " " + "\0");
-				if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
-					TimeUnit.MILLISECONDS.sleep(200);
-					print_writer.println("-1 RENDERER*TREE*$Main$All$BattingCard*ACTIVE SET " + "1" + "\0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD_PERFORMER") {
-					if(bocf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-						TimeUnit.MILLISECONDS.sleep(500);
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BallPerformerOut START \0");
-						TimeUnit.MILLISECONDS.sleep(500);
-					}
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingRightCardOut START \0");
-					TimeUnit.MILLISECONDS.sleep(200);
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
-					
-					//print_writer.println("-1 RENDERER*TREE*$Main$All$BattingCard*ACTIVE SET " + "1" + "\0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-					bocf.setLast_type("");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_MATCHSUMMARY") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryOut START \0");
-					//print_writer.println("-1 RENDERER*TREE*$Main$All$BattingCard*ACTIVE SET " + "1" + "\0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
-				}else if(which_graphic_on_screen == "POINTSTABLE") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableOut START \0");
-					//print_writer.println("-1 RENDERER*TREE*$Main$All$BattingCard*ACTIVE SET " + "1" + "\0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
-					TimeUnit.SECONDS.sleep(1);
-					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType*FUNCTION*Omo*vis_con SET 0 \0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingRightCardIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_PARTNERSHIP"){
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllOut START \0");
-				}else {
-//					print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*In START \0");
-				}
-				
-				if(bcf.getLast_type() != null && !bcf.getLast_type().trim().isEmpty()) {
-					if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PARTNERSHIP")) {
-						if(bcf.getType().toUpperCase().equalsIgnoreCase("PARTNERSHIP")) {
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format1$BatData$BatExtraData$"
-									+ "BatPartnershipGrp*ACTIVE SET 1 \0");
-							print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipOut START \0");
-							TimeUnit.MILLISECONDS.sleep(500);
-							print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipIn START \0");
-							bcf.setLast_type(bcf.getType());
-						}else if(bcf.getType().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format1$BatData$BatExtraData$"
-									+ "BatPerformerGrp*ACTIVE SET 1 \0");
-							print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipOut START \0");
-							TimeUnit.MILLISECONDS.sleep(500);
-							print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerIn START \0");
-							bcf.setLast_type(bcf.getType());
-						}
-					}else if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-						if(bcf.getType().toUpperCase() == "PARTNERSHIP") {
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format1$BatData$BatExtraData$BatPartnershipGrp*ACTIVE SET 1 \0");
-							print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerOut START \0");
-							TimeUnit.MILLISECONDS.sleep(500);
-							print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipIn START \0");
-							bcf.setLast_type(bcf.getType());
-						}else if(bcf.getType().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format1$BatData$BatExtraData$BatPerformerGrp*ACTIVE SET 1 \0");
-							print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerOut START \0");
-							TimeUnit.MILLISECONDS.sleep(500);
-							print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerIn START \0");
-							bcf.setLast_type(bcf.getType());
-						}
-					}
-				}else {
-					bcf.setLast_type(bcf.getType());
-					if(bcf.getType().toUpperCase().equalsIgnoreCase("PARTNERSHIP")) {
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format1$BatData$BatExtraData$"
-								+ "BatPartnershipGrp*ACTIVE SET 1 \0");
-						//print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType*FUNCTION*Omo*vis_con SET 0 \0");
-						//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Reset START \0");
-						TimeUnit.MILLISECONDS.sleep(500);
-						//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*In START \0");
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
-						TimeUnit.MILLISECONDS.sleep(500);
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingRightCardIn START \0");
-						TimeUnit.MILLISECONDS.sleep(500);
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipIn START \0");
-						//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-						
-						bcf.setLast_type(bcf.getType());
-					}else if(bcf.getType().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-//						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format1$BatData$BatExtraData$"
-//								+ "BatPerformerGrp*ACTIVE SET 1 \0");
-						//print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType*FUNCTION*Omo*vis_con SET 0 \0");
-						//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Reset START \0");
-						TimeUnit.MILLISECONDS.sleep(500);
-						//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*In START \0");
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
-						TimeUnit.MILLISECONDS.sleep(600);
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingRightCardIn START \0");
-						TimeUnit.MILLISECONDS.sleep(500);
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerIn START \0");
-						//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-						bcf.setLast_type(bcf.getType());
-					}
-				}
-				
-				which_graphic_on_screen = "BATBALLSUMMARY_SCORECARD_PERFORMER";
-			
-				TimeUnit.SECONDS.sleep(1);
-				break;	
-			case "ANIMATE-IN-LOCATOR":
-				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*In START \0");
-				which_graphic_on_screen = "LOCATOR";
-				break;
-			case "ANIMATE-IN-SCORECARD":
-				if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BattingCardAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD_PERFORMER") {
-					if(bocf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-						TimeUnit.MILLISECONDS.sleep(500);
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BallPerformerOut START \0");
-						TimeUnit.MILLISECONDS.sleep(500);
-					}
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingRightCardOut START \0");
-					TimeUnit.MILLISECONDS.sleep(200);
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
-					
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BattingCardAll*ACTIVE SET " + "1" + "\0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-					bocf.setLast_type("");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_MATCHSUMMARY") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BattingCardAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
-				}else if(which_graphic_on_screen == "POINTSTABLE") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BattingCardAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_PARTNERSHIP"){
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BattingCardAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
-				}else {
-//					print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
-					AnimateInGraphics(print_writer, "SCORECARD");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BattingCardAll*ACTIVE SET " + "1" + "\0");
-				}
-				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-				which_graphic_on_screen = "BATBALLSUMMARY_SCORECARD";
-				break;
-			case "ANIMATE-IN-PLAYOFFS":
-				AnimateInGraphics(print_writer, "PLAYOFFS");
-				which_graphic_on_screen = "PLAYOFFS";
-				break;
-			case "ANIMATE-IN-FIX_AND_RESULT":
-				AnimateInGraphics(print_writer, "FIX_AND_RESULT");
-				which_graphic_on_screen = "FIX_AND_RESULT";
-				break;
-			case "ANIMATE-MINI-BOWLER_VS_ALLBATSMAN":
-				AnimateInGraphics(print_writer, "BOWLER_VS_ALLBATSMAN");
-				which_graphic_on_screen = "BOWLER_VS_ALLBATSMAN";
-				break;
-			case "ANIMATE-MINI-BATSMAN_VS_ALLBOWLERS":
-				AnimateInGraphics(print_writer, "BATSMAN_VS_ALLBOWLER");
-				which_graphic_on_screen = "BATSMAN_VS_ALLBOWLER";
-				break;
-			case "ANIMATE-IN-BALLGRIFF":
-				AnimateInGraphics(print_writer, "BALLGRIFF");
-				which_graphic_on_screen = "BALLGRIFF";
-				break;
-			case "ANIMATE-IN-BATGRIFF":
-				AnimateInGraphics(print_writer, "BATGRIFF");
-				which_graphic_on_screen = "BATGRIFF";
-				break;
-			case "ANIMATE-MINI-BATTINGCARD":
-				AnimateInGraphics(print_writer, "MINI_BATTINGCARD");
-				which_graphic_on_screen = "MINI_BATTINGCARD";
-				break;
-			case "ANIMATE-MINI-BOWLINGCARD":
-				AnimateInGraphics(print_writer, "MINI_BOWLINGCARD");
-				which_graphic_on_screen = "MINI_BOWLINGCARD";
-				break;
-			case "ANIMATE-IN-BOWLINGCARD":
-				if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BowlingCardAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD_PERFORMER") {
-					if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PARTNERSHIP")) {
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipOut START \0");
-					}else if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-						TimeUnit.MILLISECONDS.sleep(500);
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerOut START \0");
-					}
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingRightCardOut START \0");
-					TimeUnit.MILLISECONDS.sleep(500);
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
-					TimeUnit.MILLISECONDS.sleep(500);
-					bcf.setLast_type("");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BowlingCardAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_MATCHSUMMARY") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BowlingCardAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
-				}else if(which_graphic_on_screen == "POINTSTABLE") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BowlingCardAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_PARTNERSHIP"){
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BowlingCardAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
-				}else {
-//					print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BowlingCardAll*ACTIVE SET " + "1" + "\0");
-					AnimateInGraphics(print_writer, "BOWLINGCARD");
-				}
-				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-				which_graphic_on_screen = "BATBALLSUMMARY_BOWLINGCARD";
-				break;
-			case "ANIMATE-IN-PARTNERSHIP":
-				if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$partnershipall*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllIn START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BattingCardAll*ACTIVE SET 0\0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD_PERFORMER") {
-					if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PARTNERSHIP")) {
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipOut START \0");
-					}else if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-						TimeUnit.MILLISECONDS.sleep(500);
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerOut START \0");
-					}
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingRightCardOut START \0");
-					TimeUnit.MILLISECONDS.sleep(500);
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
-					TimeUnit.MILLISECONDS.sleep(500);
-					bcf.setLast_type("");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$partnershipall*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllIn START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BattingCardAll*ACTIVE SET 0\0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$partnershipall*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllIn START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BowlingCardAll*ACTIVE SET 0\0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD_PERFORMER") {
-					if(bocf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-						TimeUnit.MILLISECONDS.sleep(500);
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BallPerformerOut START \0");
-						TimeUnit.MILLISECONDS.sleep(500);
-					}
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingRightCardOut START \0");
-					TimeUnit.MILLISECONDS.sleep(200);
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$partnershipall*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
-					
-					//print_writer.println("-1 RENDERER*TREE*$Main$All$BattingCard*ACTIVE SET " + "1" + "\0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-					bocf.setLast_type("");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllIn START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BowlingCardAll*ACTIVE SET 0\0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_MATCHSUMMARY") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$partnershipall*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllIn START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$SummaryAll*ACTIVE SET 0\0");
-				}else if(which_graphic_on_screen == "POINTSTABLE") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$partnershipall*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllIn START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$PointsTableAll*ACTIVE SET 0\0");
-				}else {
-					AnimateInGraphics(print_writer, "PARTNERSHIP");
-				}
-				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-				which_graphic_on_screen = "BATBALLSUMMARY_PARTNERSHIP";
-				break;
-//			case "ANIMATE-IN-PARTNERSHIP":
-//				AnimateInGraphics(print_writer, "PARTNERSHIP");
-//				which_graphic_on_screen = "PARTNERSHIP";
-//				break;
-			case "ANIMATE-IN-TIEID-DOUBLE":
-				AnimateInGraphics(print_writer, "TIEID-DOUBLE");
-				which_graphic_on_screen = "TIEID-DOUBLE";
-				break;
-			case "ANIMATE-FF_SUMMARY_GRAPHICS":
-//				print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
-				AnimateInGraphics(print_writer, "FF_SUMMARY_GRAPHICS");
-				which_graphic_on_screen = "FF_SUMMARY_GRAPHICS";
-				break;
-			case "ANIMATE-IN-MATCHSUMARRY":
-				if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$SummaryAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD_PERFORMER") {
-					if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PARTNERSHIP")) {
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipOut START \0");
-					}else if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-						TimeUnit.MILLISECONDS.sleep(500);
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerOut START \0");
-					}
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingRightCardOut START \0");
-					TimeUnit.MILLISECONDS.sleep(500);
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
-					TimeUnit.MILLISECONDS.sleep(500);
-					bcf.setLast_type("");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$SummaryAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD_PERFORMER") {
-					if(bocf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-						TimeUnit.MILLISECONDS.sleep(500);
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BallPerformerOut START \0");
-						TimeUnit.MILLISECONDS.sleep(500);
-					}
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingRightCardOut START \0");
-					TimeUnit.MILLISECONDS.sleep(200);
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
-					
-					//print_writer.println("-1 RENDERER*TREE*$Main$All$BattingCard*ACTIVE SET " + "1" + "\0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-					bocf.setLast_type("");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartIn START \0");
-				}else if(which_graphic_on_screen == "POINTSTABLE") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$SummaryAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_PARTNERSHIP"){
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$SummaryAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryIn START \0");
-				}else {
-//					print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$SummaryAll*ACTIVE SET " + "1" + "\0");
-					AnimateInGraphics(print_writer, "MATCHSUMMARY");
-				}
-				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-				which_graphic_on_screen = "BATBALLSUMMARY_MATCHSUMMARY";
-				break;
-			case "ANIMATE-IN-BUG-TOSS":
-				AnimateInGraphics(print_writer, "BUG-TOSS");
-				which_graphic_on_screen = "BUG-TOSS";
-				break;
-			case "ANIMATE-IN-TARGET2":
-				AnimateInGraphics(print_writer, "TARGET2");
-				which_graphic_on_screen = "TARGET2";
-				break;
-			case "ANIMATE-IN-RESULT2":
-				AnimateInGraphics(print_writer, "RESULT2");
-				which_graphic_on_screen = "RESULT2";
-				break;
-			case "ANIMATE-IN-BUG_HIGHLIGHT":
-				AnimateInGraphics(print_writer, "BUG_HIGHLIGHT");
-				which_graphic_on_screen = "BUG_HIGHLIGHT";
-				break;
-			case "ANIMATE-IN-BUGPARTNERSHIP":
-				AnimateInGraphics(print_writer, "BUG_PARTNERSHIP");
-				which_graphic_on_screen = "BUG_PARTNERSHIP";
-				break;
-			case "ANIMATE-IN-MULTI_PARTNERSHIP":
-				AnimateInGraphics(print_writer, "MULTI_PARTNERSHIP");
-				which_graphic_on_screen = "MULTI_PARTNERSHIP";
-				break;
-			case "ANIMATE-IN-BUG_POWERPLAY":
-				AnimateInGraphics(print_writer, "BUG_POWERPLAY");
-				which_graphic_on_screen = "BUG_POWERPLAY";
-				break;
-			case "ANIMATE-IN-BUG-DISMISSAL":
-				AnimateInGraphics(print_writer, "BUG-DISMISSAL");
-				which_graphic_on_screen = "BUG-DISMISSAL";
-				break;
-			case "ANIMATE-IN-BUG":
-				AnimateInGraphics(print_writer, "BUG");
-				which_graphic_on_screen = "BUG";
-				break;
-			case "ANIMATE-IN-BUG-BOWLER":
-				AnimateInGraphics(print_writer, "BUGBOWLER");
-				which_graphic_on_screen = "BUGBOWLER";
-				break;
-			case "ANIMATE-IN-BUG-DB":
-				AnimateInGraphics(print_writer, "BUG-DB");
-				which_graphic_on_screen = "BUG-DB";
-				break;
-			case "ANIMATE-IN-IMPACT":
-				AnimateInGraphics(print_writer, "IMPACT");
-				which_graphic_on_screen = "IMPACT";
-				break;
-			case "ANIMATE-IN-DLS-EQUATION":
-				AnimateInGraphics(print_writer, "DLS_EQUATION");
-				which_graphic_on_screen = "DLS_EQUATION";
-				break;
-			case "ANIMATE-IN-POINTERS":
-				AnimateInGraphics(print_writer, "POINTER");
-				which_graphic_on_screen = "POINTER";
-				break;
-			case "ANIMATE-IN-HOWOUT":
-				AnimateInGraphics(print_writer, "HOWOUT");
-				which_graphic_on_screen = "HOWOUT";
-				break;
-			case "ANIMATE-IN-HOWOUT_QUICK":
-				AnimateInGraphics(print_writer, "HOWOUT_QUICK");
-				which_graphic_on_screen = "HOWOUT_QUICK";
-				break;
-			case "ANIMATE-IN-HOWOUT_WITHOUT_FIELDER":
-				AnimateInGraphics(print_writer, "HOWOUT_WITHOUT");
-				which_graphic_on_screen = "HOWOUT_WITHOUT";
-				break;
-			case "ANIMATE-IN-SCHEDULE":
-				AnimateInGraphics(print_writer, "SCHEDULE");
-				which_graphic_on_screen = "SCHEDULE";
-				break;
-			case "ANIMATE-IN-NAMESUPER":
-				AnimateInGraphics(print_writer, "NAMESUPER");
-				which_graphic_on_screen = "NAMESUPER";
-				break;
-			case "ANIMATE-IN-NAMESUPER-PLAYER":
-				AnimateInGraphics(print_writer, "NAMESUPER-PLAYER");
-				which_graphic_on_screen = "NAMESUPER-PLAYER";
-				break;
-			case "ANIMATE-IN-FALLOFWICKET":
-				AnimateInGraphics(print_writer, "FALLOFWICKET");
-				which_graphic_on_screen = "FALLOFWICKET";
-				break;
-			case "ANIMATE-IN-TEAMS_LOGO":
-				AnimateInGraphics(print_writer, "TEAMS_LOGO");
-				which_graphic_on_screen = "TEAMS_LOGO";
-				break;
-			case "ANIMATE-IN-L3MATCHID":
-				AnimateInGraphics(print_writer, "L3MATCHID");
-				which_graphic_on_screen = "L3MATCHID";
-				break;
-			case "ANIMATE-IN-MATCH_PROMO":
-				AnimateInGraphics(print_writer, "MATCH_PROMO");
-				which_graphic_on_screen = "MATCH_PROMO";
-				break;
-			case "ANIMATE-IN-L3MATCH_PROMO":
-				AnimateInGraphics(print_writer, "L3MATCH_PROMO");
-				which_graphic_on_screen = "L3MATCH_PROMO";
-				break;
-			case "ANIMATE-IN-PREVIOUS_SUMMARY":
-//				print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
-				AnimateInGraphics(print_writer, "PREVIOUS_SUMMARY");
-				which_graphic_on_screen = "PREVIOUS_SUMMARY";
-				break;
-			case "ANIMATE-IN-TARGET":
-				AnimateInGraphics(print_writer, "TARGET");
-				which_graphic_on_screen = "TARGET";
-				break;
-			case "ANIMATE-IN-BUGTARGET":
-				AnimateInGraphics(print_writer, "BUGTARGET");
-				which_graphic_on_screen = "BUGTARGET";
-				break;
-			case "ANIMATE-IN-COMPARISION":
-				AnimateInGraphics(print_writer, "COMPARISION");
-				which_graphic_on_screen = "COMPARISION";
-				break;
-			case "ANIMATE-IN-LTPARTNERSHIP":
-				AnimateInGraphics(print_writer, "LTPARTNERSHIP");
-				which_graphic_on_screen = "LTPARTNERSHIP";
-				break;
-			case "ANIMATE-IN-SPLIT":
-				AnimateInGraphics(print_writer, "SPLIT");
-				which_graphic_on_screen = "SPLIT";
-				break;
-			case "ANIMATE-IN-BATSMANSTATS":
-				AnimateInGraphics(print_writer, "BATSMANSTATS");
-				which_graphic_on_screen = "BATSMANSTATS";
-				break;
-			case "ANIMATE-IN-BOWLERSTATS":
-				AnimateInGraphics(print_writer, "BOWLERSTATS");
-				which_graphic_on_screen = "BOWLERSTATS";
-				break;
-			case "ANIMATE-IN-BOWLERSUMMARY":
-				AnimateInGraphics(print_writer, "BOWLERSUMMARY");
-				which_graphic_on_screen = "BOWLERSUMMARY";
-				break;
-			case "ANIMATE-IN-PLAYERSUMMARY":
-				AnimateInGraphics(print_writer, "PLAYERSUMMARY");
-				which_graphic_on_screen = "PLAYERSUMMARY";
-				break;
-			case "ANIMATE-IN-TEAMSUMMARY":
-				AnimateInGraphics(print_writer, "TEAMSUMMARY");
-				which_graphic_on_screen = "TEAMSUMMARY";
-				break;
-			case "ANIMATE-IN-NEXT_TO_BAT":
-				AnimateInGraphics(print_writer, "NEXTTOBAT");
-				which_graphic_on_screen = "NEXTTOBAT";
-				break;
-			case "ANIMATE-IN-PHASE":
-				AnimateInGraphics(print_writer, "PHASE");
-				which_graphic_on_screen = "PHASE";
-				break;
-			case "ANIMATE-IN-PROJECTED":
-				AnimateInGraphics(print_writer, "PROJECTED");
-				which_graphic_on_screen = "PROJECTED";
-				break;
-			case "ANIMATE-IN-BOWLERDETAILS":
-				AnimateInGraphics(print_writer, "BOWLERDETAILS");
-				which_graphic_on_screen = "BOWLERDETAILS";
-				break;
-			case "ANIMATE-IN-LTPOWERPLAY":
-				AnimateInGraphics(print_writer, "LTPOWERPLAY");
-				which_graphic_on_screen = "LTPOWERPLAY";
-				break;
-			case "ANIMATE-IN-MATCHID":
-				AnimateInGraphics(print_writer, "MATCHID");
-				which_graphic_on_screen = "MATCHID";
-				break;
-			case "ANIMATE-IN-L3PLAYERPROFILE":
-				AnimateInGraphics(print_writer, "L3PLAYERPROFILE");
-				which_graphic_on_screen = "L3PLAYERPROFILE";
-				break;
-			case "ANIMATE-IN-LTPLAYERPROFILEBAT":
-				AnimateInGraphics(print_writer, "LTPLAYERPROFILEBAT");
-				which_graphic_on_screen = "LTPLAYERPROFILEBAT";
-				break;
-			case "ANIMATE-IN-PLAYERPROFILEBALL":
-				AnimateInGraphics(print_writer, "PLAYERPROFILEBALL");
-				which_graphic_on_screen = "PLAYERPROFILEBALL";
-				break;
-			case "ANIMATE-IN-THISSERIES_BALL":
-				AnimateInGraphics(print_writer, "THISSERIES-BALL");
-				which_graphic_on_screen = "THISSERIES-BALL";
-				break;
-			case "ANIMATE-IN-THISSERIES":
-				AnimateInGraphics(print_writer, "THISSERIES");
-				which_graphic_on_screen = "THISSERIES";
-				break;
-			case "ANIMATE-IN-FFTHISSERIES_BALL":
-				AnimateInGraphics(print_writer, "FF-THISSERIES_BALL");
-				which_graphic_on_screen = "FF-THISSERIES_BALL";
-				break;
-			case "ANIMATE-IN-FFTHISSERIES":
-				AnimateInGraphics(print_writer, "FF-THISSERIES");
-				which_graphic_on_screen = "FF-THISSERIES";
-				break;
-			case "ANIMATE-IN-PLAYERPROFILE":
-				AnimateInGraphics(print_writer, "FFPLAYERPROFILE");
-				which_graphic_on_screen = "FFPLAYERPROFILE";
-				break;
-			case "ANIMATE-IN-PLAYERPROFILEBAT":
-				AnimateInGraphics(print_writer, "PLAYERPROFILEBAT");
-				which_graphic_on_screen = "PLAYERPROFILEBAT";
-				break;
-			case "ANIMATE-IN-PLAYINGXI_SEQUENCE":
-				AnimateInGraphics(print_writer, "PLAYINGXI_SEQUENCE");
-				which_graphic_on_screen = "PLAYINGXI_SEQUENCE";
-				break;
-			case "ANIMATE-IN-PLAYINGXI":
-				AnimateInGraphics(print_writer, "TEAMLINEUP");
-				which_graphic_on_screen = "TEAMLINEUP";
-				break;
-			case "ANIMATE-IN-DOUBLETEAMS":
-				AnimateInGraphics(print_writer, "DOUBLETEAMS");
-				which_graphic_on_screen = "DOUBLETEAMS";
-				break;
-			case "ANIMATE-IN-MOSTRUNS":
-				AnimateInGraphics(print_writer, "RUNSMOST");
-				which_graphic_on_screen = "RUNSMOST";
-				break;
-			case "ANIMATE-IN-MOSTWICKETS":
-				AnimateInGraphics(print_writer, "WICKETSMOST");
-				which_graphic_on_screen = "WICKETSMOST";
-				break;
-			case "ANIMATE-IN-MOSTFOURS":
-				AnimateInGraphics(print_writer, "FOURSMOST");
-				which_graphic_on_screen = "FOURSMOST";
-				break;
-			case "ANIMATE-IN-MOSTSIXES":
-				AnimateInGraphics(print_writer, "SIXESMOST");
-				which_graphic_on_screen = "SIXESMOST";
-				break;
-			case "ANIMATE-IN-HIGHESTSCORE":
-				AnimateInGraphics(print_writer, "SCOREHIGHEST");
-				which_graphic_on_screen = "SCOREHIGHEST";
-				break;
-			case "ANIMATE-IN-BESTFIG":
-				AnimateInGraphics(print_writer, "BESTFIG");
-				which_graphic_on_screen = "BESTFIG";
-				break;
-			case "ANIMATE-IN-STRIKERATE":
-				AnimateInGraphics(print_writer, "BESTSTRIKERATE");
-				which_graphic_on_screen = "BESTSTRIKERATE";
-				break;
-			case "ANIMATE-IN-ECONOMY":
-				AnimateInGraphics(print_writer, "BESTECONOMY");
-				which_graphic_on_screen = "BESTECONOMY";
-				break;	
-			case "ANIMATE-IN-CAPTAINS":
-				AnimateInGraphics(print_writer, "CAPTAINS");
-				which_graphic_on_screen = "CAPTAINS";
-				break;
-			case "ANIMATE-IN-TOP_PERFORMER":
-				AnimateInGraphics(print_writer, "TOP_PERFORMER");
-				which_graphic_on_screen = "TOP_PERFORMER";
-				break;
-			case "ANIMATE-IN-LANDMARK": case "ANIMATE-IN-LANDMARK_BALL":
-				AnimateInGraphics(print_writer, "LANDMARK");
-				which_graphic_on_screen = "LANDMARK";
-				break;
-			case "ANIMATE-IN-EQUATION":
-				AnimateInGraphics(print_writer, "EQUATION");
-				which_graphic_on_screen = "EQUATION";
-				break;
-			case "ANIMATE-IN-POSITION_LANDMARK":
-				AnimateInGraphics(print_writer, "POSITION_LANDMARK");
-				which_graphic_on_screen = "POSITION_LANDMARK";
-				break;
-			case "ANIMATE-IN-BATSMAN_THIS_MATCH":
-				AnimateInGraphics(print_writer, "BATSMAN_THIS_MATCH");
-				which_graphic_on_screen = "BATSMAN_THIS_MATCH";
-				break;
-			case "ANIMATE-IN-BOWLER_THIS_MATCH":
-				AnimateInGraphics(print_writer, "BOWLER_THIS_MATCH");
-				which_graphic_on_screen = "BOWLER_THIS_MATCH";
-				break;
-			case "ANIMATE-IN-POINTSTABLE":
-				if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$All$PointsTableAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD_PERFORMER") {
-					if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PARTNERSHIP")) {
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipOut START \0");
-					}else if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-						TimeUnit.MILLISECONDS.sleep(500);
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerOut START \0");
-					}
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingRightCardOut START \0");
-					TimeUnit.MILLISECONDS.sleep(500);
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
-					TimeUnit.MILLISECONDS.sleep(500);
-					bcf.setLast_type("");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$All$PointsTableAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD_PERFORMER") {
-					if(bocf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
-						TimeUnit.MILLISECONDS.sleep(500);
-						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BallPerformerOut START \0");
-						TimeUnit.MILLISECONDS.sleep(500);
-					}
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingRightCardOut START \0");
-					TimeUnit.MILLISECONDS.sleep(200);
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
-					
-					//print_writer.println("-1 RENDERER*TREE*$Main$All$BattingCard*ACTIVE SET " + "1" + "\0");
-					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-					bocf.setLast_type("");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_MATCHSUMMARY") {
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$All$PointsTableAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableIn START \0");
-				}else if(which_graphic_on_screen == "BATBALLSUMMARY_PARTNERSHIP"){
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllOut START \0");
-					print_writer.println("-1 RENDERER*TREE*$Main$All$PointsTableAll*ACTIVE SET " + "1" + "\0");
-					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableIn START \0");
-				}else {
-					print_writer.println("-1 RENDERER*TREE*$Main$All$PointsTableAll*ACTIVE SET " + "1" + "\0");
-//					print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
-					AnimateInGraphics(print_writer, "POINTSTABLE");
-				}
-				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
-				which_graphic_on_screen = "POINTSTABLE";
-				break;
-			case "ANIMATE-IN-LTPOINTSTABLE":
-				AnimateInGraphics(print_writer, "LTPOINTSTABLE");
-				which_graphic_on_screen = "LTPOINTSTABLE";
-				break;
-			case "ANIMATE-IN-BOWLER_STYLE":
-				AnimateInGraphics(print_writer, "BOWLER_STYLE");
-				which_graphic_on_screen = "BOWLER_STYLE";
-				break;
-			case "ANIMATE-IN-BATSMAN_STYLE":
-				AnimateInGraphics(print_writer, "BATSMAN_STYLE");
-				which_graphic_on_screen = "BATSMAN_STYLE";
-				break;
-			case "ANIMATE-IN-MANHATTAN":
-				AnimateInGraphics(print_writer, "MANHATTAN");
-				which_graphic_on_screen = "MANHATTAN";
-				break;
-			case "ANIMATE-IN-WORM":
-				AnimateInGraphics(print_writer, "WORM");
-				which_graphic_on_screen = "WORM";
-				break;
-			case "ANIMATE-IN-LEADERBOARD":case "ANIMATE-IN-TEAM-LEADERBOARD":
-				AnimateInGraphics(print_writer, "LEADERBOARD");
-				which_graphic_on_screen = "LEADERBOARD";
-				break;
-			case "ANIMATE-IN-FF_STATS":
-				AnimateInGraphics(print_writer, "FF_STATS");
-				which_graphic_on_screen = "FF_STATS";
-				break;
-			case "ANIMATE-IN-INFOBAR":
-				if(infobar.isInfobar_on_screen() == true) {
-					AnimateOutGraphics(print_writer, "ANIMATE-OUT-IDENT");
-					AnimateInGraphics(print_writer, "MAIN");
-					which_graphic_on_screen = "SCOREBUG";
-					which_graphic_info_on_screen ="SCOREBUG";
-					infobar.setInfobar_on_screen(true);
-					
-				}else {
-					AnimateInGraphics(print_writer, "SCOREBUG");
-					which_graphic_on_screen = "SCOREBUG";
-					which_graphic_info_on_screen ="SCOREBUG";
-					infobar.setInfobar_on_screen(true);
-				}
-				
-				break;
-			case "TICKER_LT_OUT":
-				if(!which_graphic_on_screen.isEmpty() && which_graphic_info_on_screen != "SCOREBUG") {
-					AnimateOutGraphics(print_writer, which_graphic_info_on_screen);
-					TimeUnit.SECONDS.sleep(1);
-				}
-				populateInfobar(infobar, print_writer, valueToProcess.split(",")[0],match, broadcaster);
-				AnimateOutGraphics(print_writer, "FF_OUT");
-				TimeUnit.SECONDS.sleep(1);
-				which_graphic_on_screen = "SCOREBUG";
-				which_graphic_info_on_screen ="SCOREBUG";
-				infobar.setInfobar_on_screen(true);
-				infobar.setInfobar_down(false);
-				//AnimateOutGraphics(print_writer, which_graphic_on_screen);
-				break;
-			case "TICKER_LT_IN":
-				AnimateInGraphics(print_writer, "FF_IN");
-				TimeUnit.SECONDS.sleep(1);
-				infobar.setInfobar_down(true);
-				infobar.setInfobar_on_screen(false);
-				if(which_graphic_info_on_screen != "SCOREBUG") {
-					AnimateOutGraphics(print_writer, which_graphic_info_on_screen);
-				}
-				break;		
-			case "CLEAR-ALL":
-				   print_writer.println("-1 SCENE CLEANUP\0");
-	               print_writer.println("-1 IMAGE CLEANUP\0");
-	               print_writer.println("-1 GEOM CLEANUP\0");
-	               print_writer.println("-1 FONT CLEANUP\0");
-	               
-	               print_writer.println("-1 IMAGE INFO\0");
-	               print_writer.println("-1 RENDERER SET_OBJECT SCENE*" + valueToProcess.split(",")[0] + "\0");
-	
-	               print_writer.println("-1 RENDERER INITIALIZE\0");
-	               print_writer.println("-1 RENDERER*SCENE_DATA INITIALIZE\0");
-	               print_writer.println("-1 RENDERER*UPDATE SET 0\0");
-	               print_writer.println("-1 RENDERER*STAGE SHOW 0.0\0");
-	               
-	               print_writer.println("-1 RENDERER*UPDATE SET 1\0");
-	               
-	               print_writer.println("-1 RENDERER*FRONT_LAYER SET_OBJECT SCENE*/Default/PPL/ScoreBug\0");
-		           	
-	               print_writer.println("-1 RENDERER*FRONT_LAYER INITIALIZE\0");
-	               print_writer.println("-1 RENDERER*FRONT_LAYER*SCENE_DATA INITIALIZE\0");
-	               print_writer.println("-1 RENDERER*FRONT_LAYER*UPDATE SET 0\0");
-	               print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE SHOW 0.0\0");
-	               print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE SHOW 0.0\0");
-	               
-	               print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Section4In SHOW 0.0 \0");
-	               print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Section5In SHOW 0.0 \0");
-	               print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
-	               
-	               print_writer.println("-1 RENDERER*FRONT_LAYER*UPDATE SET 1\0");
-	               
-	               print_writer.println("-1 SCENE CLEANUP\0");
-	               print_writer.println("-1 IMAGE CLEANUP\0");
-	               print_writer.println("-1 GEOM CLEANUP\0");
-	               print_writer.println("-1 FONT CLEANUP\0");
-	               
-	               bocf.setLast_type(null);
-	               infobar.setInfobar_on_screen(false);
-	               infobar = new Infobar();
-	               which_graphic_on_screen = "";
-	               which_graphic_info_on_screen = "";
-					break;
-			case "ANIMATE-OUT-INFOBAR":
-				AnimateOutGraphics(print_writer, "SCOREBUG");
-				infobar.setInfobar_on_screen(false);
-				infobar = new Infobar();
-				which_graphic_info_on_screen="";
-				break;
-			case "ANIMATE-OUT-IDENT":
-				AnimateOutGraphics(print_writer, "IDENT");
-				which_graphic_on_screen = "";
-				infobar.setInfobar_on_screen(false);
-				which_graphic_info_on_screen="";
-				break;
-			case "ANIMATE-OUT":
-				
-				if(which_graphic_info_on_screen.equalsIgnoreCase("SCOREBUG")) {
-//					populateInfobar(infobar, print_writer, valueToProcess.split(",")[0],CricketFunctions.populateMatchVariables(cricketService, 
-//						CricketFunctions.readOrSaveMatchFile(CricketUtil.READ, CricketUtil.MATCH, match,true)), broadcaster);
-				}
-				
-				switch(which_graphic_on_screen) {
-				case "LOCATOR":
-					AnimateOutGraphics(print_writer, "LOCATOR");
-					TimeUnit.SECONDS.sleep(1);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "PLOTTER_ICC":
-					AnimateOutGraphics(print_writer, "PLOTTER_ICC");
-					which_graphic_on_screen = "";
-					// resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-//				case "IDENT":
-//					AnimateOutGraphics(print_writer, "IDENT");
-//					which_graphic_on_screen = "";
-//					infobar.setInfobar_on_screen(false);
-//					break;
-				case "BATBALLSUMMARY_BOWLINGCARD_PERFORMER":
-					AnimateOutGraphics(print_writer, "BATBALLSUMMARY_BOWLINGCARD_PERFORMER");
-					bocf.setLast_type(null);bocf.setType("");
-					TimeUnit.SECONDS.sleep(1);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BATBALLSUMMARY_SCORECARD_PERFORMER":
-					AnimateOutGraphics(print_writer, "BATBALLSUMMARY_SCORECARD_PERFORMER");
-					bcf.setLast_type(null);bcf.setType("");
-					TimeUnit.SECONDS.sleep(1);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BATBALLSUMMARY_SCORECARD":
-					AnimateOutGraphics(print_writer, "BATBALLSUMMARY_SCORECARD");
-					TimeUnit.MILLISECONDS.sleep(600);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "PLAYOFFS":
-					AnimateOutGraphics(print_writer, "PLAYOFFS");
-					TimeUnit.SECONDS.sleep(1);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "RUNSMOST":
-					AnimateOutGraphics(print_writer, "RUNSMOST");
-					TimeUnit.MILLISECONDS.sleep(600);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;	
-				case "WICKETSMOST":
-					AnimateOutGraphics(print_writer, "WICKETSMOST");
-					TimeUnit.MILLISECONDS.sleep(600);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "FOURSMOST":
-					AnimateOutGraphics(print_writer, "FOURSMOST");
-					TimeUnit.MILLISECONDS.sleep(600);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "SIXESMOST":
-					AnimateOutGraphics(print_writer, "SIXESMOST");
-					TimeUnit.MILLISECONDS.sleep(600);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "SCOREHIGHEST":
-					AnimateOutGraphics(print_writer, "SCOREHIGHEST");
-					TimeUnit.MILLISECONDS.sleep(600);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BESTFIG":
-					AnimateOutGraphics(print_writer, "BESTFIG");
-					TimeUnit.MILLISECONDS.sleep(600);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BESTSTRIKERATE":
-					AnimateOutGraphics(print_writer, "BESTSTRIKERATE");
-					TimeUnit.MILLISECONDS.sleep(600);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BESTECONOMY":
-					AnimateOutGraphics(print_writer, "BESTECONOMY");
-					TimeUnit.MILLISECONDS.sleep(600);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-					
-				case "FIX_AND_RESULT":
-					AnimateOutGraphics(print_writer, "FIX_AND_RESULT");
-					TimeUnit.SECONDS.sleep(1);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BATSMAN_VS_ALLBOWLER":
-					AnimateOutGraphics(print_writer, "BATSMAN_VS_ALLBOWLER");
-					TimeUnit.SECONDS.sleep(1);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "BOWLER_VS_ALLBATSMAN":
-					AnimateOutGraphics(print_writer, "BOWLER_VS_ALLBATSMAN");
-					TimeUnit.SECONDS.sleep(1);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "BALLGRIFF":
-					AnimateOutGraphics(print_writer, "BALLGRIFF");
-					TimeUnit.SECONDS.sleep(1);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "BATGRIFF":
-					AnimateOutGraphics(print_writer, "BATGRIFF");
-					TimeUnit.SECONDS.sleep(1);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "MINI_BATTINGCARD":
-					AnimateOutGraphics(print_writer, "MINI_BATTINGCARD");
-					TimeUnit.SECONDS.sleep(1);
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "MINI_BOWLINGCARD":
-					AnimateOutGraphics(print_writer, "MINI_BOWLINGCARD");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "BATBALLSUMMARY_BOWLINGCARD":
-					AnimateOutGraphics(print_writer, "BATBALLSUMMARY_BOWLINGCARD");
-					TimeUnit.MILLISECONDS.sleep(600);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "FF_SUMMARY_GRAPHICS":
-					AnimateOutGraphics(print_writer, "FF_SUMMARY_GRAPHICS");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BATBALLSUMMARY_MATCHSUMMARY":
-					AnimateOutGraphics(print_writer, "BATBALLSUMMARY_MATCHSUMMARY");
-					TimeUnit.MILLISECONDS.sleep(600);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BATBALLSUMMARY_PARTNERSHIP":
-					AnimateOutGraphics(print_writer, "BATBALLSUMMARY_PARTNERSHIP");
-					TimeUnit.MILLISECONDS.sleep(600);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "TIEID-DOUBLE":
-					AnimateOutGraphics(print_writer, "TIEID-DOUBLE");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BUG_PARTNERSHIP":
-					AnimateOutGraphics(print_writer, "BUG_PARTNERSHIP");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BUG-TOSS":
-					AnimateOutGraphics(print_writer, "BUG-TOSS");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BUG_POWERPLAY":
-					AnimateOutGraphics(print_writer, "BUG_POWERPLAY");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BUG_HIGHLIGHT":
-					AnimateOutGraphics(print_writer, "BUG_HIGHLIGHT");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;	
-				case "MULTI_PARTNERSHIP":
-					AnimateOutGraphics(print_writer, "MULTI_PARTNERSHIP");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BUG-DISMISSAL":
-					AnimateOutGraphics(print_writer, "BUG-DISMISSAL");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "TARGET2":
-					AnimateOutGraphics(print_writer, "TARGET2");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "RESULT2" :
-					AnimateOutGraphics(print_writer, "RESULT2");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BUG":
-					AnimateOutGraphics(print_writer, "BUG");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BUGBOWLER":
-					AnimateOutGraphics(print_writer, "BUGBOWLER");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BUG-DB":
-					AnimateOutGraphics(print_writer, "BUG-DB");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "IMPACT":
-					AnimateOutGraphics(print_writer, "IMPACT");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "DLS_EQUATION":
-					AnimateOutGraphics(print_writer, "DLS_EQUATION");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "POINTER":
-					AnimateOutGraphics(print_writer, "POINTER");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "HOWOUT":
-					AnimateOutGraphics(print_writer, "HOWOUT");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "HOWOUT_QUICK":
-					AnimateOutGraphics(print_writer, "HOWOUT_QUICK");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "HOWOUT_WITHOUT":
-					AnimateOutGraphics(print_writer, "HOWOUT_WITHOUT");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "SCHEDULE":
-					AnimateOutGraphics(print_writer, "SCHEDULE");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "NAMESUPER":
-					AnimateOutGraphics(print_writer, "NAMESUPER");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "NAMESUPER-PLAYER":
-					AnimateOutGraphics(print_writer, "NAMESUPER-PLAYER");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-//				case "SCOREBUG":
-//					AnimateOutGraphics(print_writer, "SCOREBUG");
-//					infobar.setInfobar_on_screen(false);
-//					infobar = new Infobar();
-//					break;
-				
-				case "FALLOFWICKET":
-					AnimateOutGraphics(print_writer, "FALLOFWICKET");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "TEAMS_LOGO":
-					AnimateOutGraphics(print_writer, "TEAMS_LOGO");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "L3MATCHID":
-					AnimateOutGraphics(print_writer, "L3MATCHID");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "PLAYERPROFILEBALL":
-					AnimateOutGraphics(print_writer, "PLAYERPROFILEBALL");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "PLAYERPROFILEBAT":
-					AnimateOutGraphics(print_writer, "PLAYERPROFILEBAT");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;	
-				case "PREVIOUS_SUMMARY":
-					AnimateOutGraphics(print_writer, "PREVIOUS_SUMMARY");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "MATCH_PROMO":
-					AnimateOutGraphics(print_writer, "MATCH_PROMO");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "L3MATCH_PROMO":
-					AnimateOutGraphics(print_writer, "L3MATCH_PROMO");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "TARGET":
-					AnimateOutGraphics(print_writer, "TARGET");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "BUGTARGET":
-					AnimateOutGraphics(print_writer, "BUGTARGET");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					//resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "COMPARISION":
-					AnimateOutGraphics(print_writer, "COMPARISION");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "LTPARTNERSHIP":
-					AnimateOutGraphics(print_writer, "LTPARTNERSHIP");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "SPLIT":
-					AnimateOutGraphics(print_writer, "SPLIT");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "BATSMANSTATS":
-					AnimateOutGraphics(print_writer, "BATSMANSTATS");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "BOWLERSTATS":
-					AnimateOutGraphics(print_writer, "BOWLERSTATS");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "BOWLERSUMMARY":
-					AnimateOutGraphics(print_writer, "BOWLERSUMMARY");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "PLAYERSUMMARY":
-					AnimateOutGraphics(print_writer, "PLAYERSUMMARY");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "TEAMSUMMARY":
-					AnimateOutGraphics(print_writer, "TEAMSUMMARY");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "NEXTTOBAT":
-					AnimateOutGraphics(print_writer, "NEXTTOBAT");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "PHASE":
-					AnimateOutGraphics(print_writer, "PHASE");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "PROJECTED":
-					AnimateOutGraphics(print_writer, "PROJECTED");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "BOWLERDETAILS":
-					AnimateOutGraphics(print_writer, "BOWLERDETAILS");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "LTPOWERPLAY":
-					AnimateOutGraphics(print_writer, "LTPOWERPLAY");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "MATCHID":
-					AnimateOutGraphics(print_writer, "MATCHID");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "L3PLAYERPROFILE":
-					AnimateOutGraphics(print_writer, "L3PLAYERPROFILE");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "LTPLAYERPROFILEBAT":
-					AnimateOutGraphics(print_writer, "LTPLAYERPROFILEBAT");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "THISSERIES":
-					AnimateOutGraphics(print_writer, "THISSERIES");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "THISSERIES-BALL":
-					AnimateOutGraphics(print_writer, "THISSERIES-BALL");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "FF-THISSERIES_BALL":
-					AnimateOutGraphics(print_writer, "FF-THISSERIES_BALL");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "FF-THISSERIES":
-					AnimateOutGraphics(print_writer, "FF-THISSERIES");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "FFPLAYERPROFILE":
-					AnimateOutGraphics(print_writer, "FFPLAYERPROFILE");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "PLAYINGXI_SEQUENCE":
-					AnimateOutGraphics(print_writer, "PLAYINGXI_SEQUENCE");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"");
-					break;
-				case "TEAMLINEUP":
-					AnimateOutGraphics(print_writer, "TEAMLINEUP");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "DOUBLETEAMS":
-					AnimateOutGraphics(print_writer, "DOUBLETEAMS");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "CAPTAINS":
-					AnimateOutGraphics(print_writer, "CAPTAINS");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "TOP_PERFORMER":
-					AnimateOutGraphics(print_writer, "TOP_PERFORMER");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "LANDMARK":
-					AnimateOutGraphics(print_writer, "LANDMARK");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "EQUATION":
-					AnimateOutGraphics(print_writer, "EQUATION");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "POSITION_LANDMARK":
-					AnimateOutGraphics(print_writer, "POSITION_LANDMARK");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "BATSMAN_THIS_MATCH":
-					AnimateOutGraphics(print_writer, "BATSMAN_THIS_MATCH");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "BOWLER_THIS_MATCH":
-					AnimateOutGraphics(print_writer, "BOWLER_THIS_MATCH");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "POINTSTABLE":
-					AnimateOutGraphics(print_writer, "POINTSTABLE");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "LTPOINTSTABLE":
-					AnimateOutGraphics(print_writer, "LTPOINTSTABLE");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "BOWLER_STYLE":
-					AnimateOutGraphics(print_writer, "BOWLER_STYLE");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "BATSMAN_STYLE":
-					AnimateOutGraphics(print_writer, "BATSMAN_STYLE");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"LT_FRAME");
-					break;
-				case "MANHATTAN":
-					AnimateOutGraphics(print_writer, "MANHATTAN");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "WORM":
-					AnimateOutGraphics(print_writer, "WORM");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "LEADERBOARD":
-					AnimateOutGraphics(print_writer, "LEADERBOARD");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				case "FF_STATS":
-					AnimateOutGraphics(print_writer, "FF_STATS");
-					TimeUnit.SECONDS.sleep(1);
-					
-					which_graphic_on_screen = "";
-					resetInfobarAnimation(print_writer,"FF_FRAME");
-					break;
-				}
-				break;
-			case "ANIMATE-OUT-SECTION2":
-				if(infobar.getLast_top_section() != null && !infobar.getLast_top_section().trim().isEmpty()) {
-					switch(infobar.getLast_top_section().toUpperCase()) {
-					case CricketUtil.TOSS:
-						processAnimation(print_writer, "Section2$TossOut", "START", broadcaster);
-						break;
-					case "CRR":
-						processAnimation(print_writer, "Section2$CurRunRateOut", "START", broadcaster);
-						break;
-					case "CRR_RRR":
-						processAnimation(print_writer, "Section2$CRR_RRROut", "START", broadcaster);
-						break;
-					case "FIRST_INNING_SCORE":
-						processAnimation(print_writer, "Section2$FistInnScoreOut", "START", broadcaster);
-						break;
-					case CricketUtil.BOUNDARY:
-						processAnimation(print_writer, "Section2$BallsSinceLastBoundaryOut", "START", broadcaster);
-						break;
-					case "TARGET":
-						processAnimation(print_writer, "Section2$DLSTargetOut", "START", broadcaster);
-						break;
-					case "EXTRAS":
-						processAnimation(print_writer, "Section2$ExtrasOut", "START", broadcaster);
-						break;
-					case "EQUATION":
-						processAnimation(print_writer, "Section2$EquationOut", "START", broadcaster);
-						break;
-					case "PROJECTED":
-						processAnimation(print_writer, "Section2$ProjectedOut", "START", broadcaster);
-						break;
-					case "BOUNDARIES":
-						processAnimation(print_writer, "Section2$BoundariesOut", "START", broadcaster);
-						break;
-					case "PARTNERSHIP":
-						processAnimation(print_writer, "Section2$PartnershipOut", "START", broadcaster);
-						break;
-					case "LAST_WICKET":
-						processAnimation(print_writer, "Section2$LastWicketOut", "START", broadcaster);
-						break;
-					case CricketUtil.TIMELINE:
-						processAnimation(print_writer, "Section2$TimelineOut", "START", broadcaster);
-						break;
-					case "COMMENTATORS": case "LAST_X_BALLS": case "FREE_TEXT": case "STATISTICS": case "DLS_EQUATION": case "DLS_TARGET":
-					case "REVIEWS":
-						processAnimation(print_writer, "Section2$FreeTextSmallOut", "START", broadcaster);
-						break;
-					}
-					processAnimation(print_writer, "ALL_SECTION$Section2$Section2BaseOut", "START", broadcaster);
-				}
-				infobar.setLast_top_section("");infobar.setTop_section("");
-				break;
-			case "ANIMATE-OUT-SECTION4_N_5":
-				if(infobar.getLast_bottom_right_section() != null && infobar.getLast_bottom_right_section() != "") {
-					switch (infobar.getLast_bottom_right_section().toUpperCase()) {
-					case CricketUtil.DOT:
-						processAnimation(print_writer, "Section4_N_5$DotBallOut", "START", broadcaster);
-						break;
-					case "REVIEWS":
-						processAnimation(print_writer, "Section4_N_5$ReviewsOut", "START", broadcaster);
-						break;
-					case CricketUtil.FOUR:
-						processAnimation(print_writer, "Section4_N_5$FourCounterOut", "START", broadcaster);
-						break;
-					case "TOURNAMENT_FOURS":
-						processAnimation(print_writer, "Section4_N_5$FourCounterOut", "START", broadcaster);
-						break;	
-					case "TOURNAMENT_SIXES":
-						processAnimation(print_writer, "Section4_N_5$SixCounterOut", "START", broadcaster);
-						break;
-					case CricketUtil.SIX:
-						processAnimation(print_writer, "Section4_N_5$SixCounterOut", "START", broadcaster);
-						break;
-					case CricketUtil.COMPARE:
-						processAnimation(print_writer, "Section4_N_5$ComparisonOut", "START", broadcaster);
-						break;
-					case "TARGET_2":
-						processAnimation(print_writer, "Section4_N_5$TargetOut", "START", broadcaster);
-						break;
-					case "TOURNAMENT-NAME":
-						processAnimation(print_writer, "Section4_N_5$TargetOut", "START", broadcaster);
-						break;
-					}
-				}
-				processAnimation(print_writer, "Section5$ThisOverOut", "START", broadcaster);
-				processAnimation(print_writer, "Section5$EconomyOut", "START", broadcaster);
-				processAnimation(print_writer, "Section5$BowlingEndOut", "START", broadcaster);
-				
-				infobar.setBottom_right_bottom_section(CricketUtil.OVER);
-				infobar = populateVizInfobarRightBottom(infobar, false,print_writer, match, broadcaster);
-				
-				infobar.setBottom_right_top_section(CricketUtil.BOWLER);
-				infobar = populateVizInfobarRightTop(infobar, false,print_writer, match, broadcaster);
-				
-				processAnimation(print_writer, "ALL_SECTION$Section4In", "START", broadcaster);
-				processAnimation(print_writer, "ALL_SECTION$Section5In", "START", broadcaster);
-				if(over_size>7) {
-					processAnimation(print_writer, "Section5$BowlingEndIn", "START", broadcaster);
-					infobar.setLast_bottom_right_bottom_section("BOWLINGEND");
-				}else {
-					processAnimation(print_writer, "Section5$ThisOverIn", "START", broadcaster);
-					infobar.setLast_bottom_right_bottom_section(CricketUtil.OVER);
-				}				
-				infobar.setLast_bottom_right_section("");
-				infobar.setBottom_right_section("");
-				break;
-				
-			case "ANIMATE-OUT-DIRECTOR":
-				AnimateOutGraphics(print_writer, "DIRECTOR");
-				break;
-			}
+			handleAnimationGraphicsCommand(print_writer, scenes, valueToProcess, whatToProcess,match);
 			break;
 			
-		case "BUG_GRAPHICS-OPTIONS": case "BUG_DISMISSAL_GRAPHICS-OPTIONS": case "BUG_BOWLER_GRAPHICS-OPTIONS":
-		
-		case "HOWOUT_GRAPHICS-OPTIONS": case "BATSMANSTATS_GRAPHICS-OPTIONS": case "BOWLERSTATS_GRAPHICS-OPTIONS": case "NAMESUPER_PLAYER_GRAPHICS-OPTIONS": 
-		case "L3PLAYERPROFILE_GRAPHICS-OPTIONS": case "COMPARISION-GRAPHICS-OPTIONS": case "PROJECTED_GRAPHICS-OPTIONS": case "TARGET_GRAPHICS-OPTIONS":
-		case "PLAYERSUMMARY_GRAPHICS-OPTIONS": case "HOWOUT_WITHOUT_FIELDER_GRAPHICS-OPTIONS": case "BOWLERDETAILS_GRAPHICS-OPTIONS": 
-		case "NEXTTOBAT_GRAPHICS-OPTIONS": case "BOWLERSUMMARY_GRAPHICS-OPTIONS": case "EQUATION_GRAPHICS-OPTIONS": case "BATSMAN_THIS_MATCH_GRAPHICS-OPTIONS":
-		case "BOWLER_THIS_MATCH_GRAPHICS-OPTIONS": case "PLAYERS_GRAPHICS-OPTIONS": case "BATSMAN_STYLE_GRAPHICS-OPTIONS": case "RIGHT_GRAPHICS-OPTIONS":
-		case "THISSERIES-STATS_GRAPHICS-OPTIONS":
-			
-		case "PLAYERPROFILE_GRAPHICS-OPTIONS": case "ANIMATE_PLAYINGXI-OPTIONS": case "TOP_GRAPHICS-OPTIONS": case "LANDMARK_GRAPHICS-OPTIONS":
-		case "POSITION_LANDMARK_GRAPHICS-OPTIONS": case "FF_THISSERIES-STATS_GRAPHICS-OPTIONS":
-			
-		case "BOTTOMLEFT_GRAPHICS-OPTIONS": case "BOTTOMRIGHT_GRAPHICS-OPTIONS": case "INFOBAR_GRAPHICS-OPTIONS": 
-		case "BOTTOM_GRAPHICS-OPTIONS":  
-		    	
-			return match;
-		case "EXCEL_FF_SUMMARY_GRAPHICS_OPTION":
-			return new ObjectMapper().writeValueAsString(CricketFunctions.ReadExcel("C:\\Sports\\Cricket\\Summary.xlsx").keySet()).toString();
-		case "NAMESUPER_GRAPHICS-OPTIONS": 
-			return new ObjectMapper().writeValueAsString(cricketService.getNameSupers()).toString();
-		case "MATCH-PROMO_GRAPHICS-OPTIONS": case "PREVIOUS_SUMMARY_GRAPHICS-OPTIONS": case "LT-TIEID-DOUBLE_GRAPHICS-OPTIONS": case "L3_MATCH-PROMO_GRAPHICS-OPTIONS":
-			return new ObjectMapper().writeValueAsString(CricketFunctions.processAllFixtures(cricketService)).toString();
-		case "BUG_DB_GRAPHICS-OPTIONS": case "BUG_DB2_GRAPHICS-OPTIONS":
-			return new ObjectMapper().writeValueAsString(cricketService.getBugs()).toString();
-		case "LT_POINTERS_GRAPHICS-OPTIONS":
-			return new ObjectMapper().writeValueAsString(cricketService.getPointers()).toString();
-		case "PROMPT_GRAPHICS-OPTIONS":
-			return new ObjectMapper().writeValueAsString(cricketService.getInfobarStats()).toString();
-		case "LEADERBOARD_TEAM_GRAPHICS-OPTIONS":
-			return new ObjectMapper().writeValueAsString(cricketService.getTeams()).toString();
-		case "TEAM_WICKETS_GRAPHICS-OPTIONS": case "TEAM_LEADERBOARD_GRAPHICS-OPTIONS": 
-		case "TEAM_FOURS_GRAPHICS-OPTIONS": case "TEAM_SIXES_GRAPHICS-OPTIONS":
-			LeaderBoard = CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, head_to_head,cricketService, match, past_tournament_stats);
-//			List<Tournament> tourn_stats = CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",false, tournament_matches, cricketService, match,null);
-			LeaderBoard.removeIf(tournament -> tournament.getPlayer().getTeamId() != Integer.valueOf(valueToProcess)); 
-			switch (whatToProcess) {
-			case "TEAM_LEADERBOARD_GRAPHICS-OPTIONS": 
-				Collections.sort(LeaderBoard,new CricketFunctions.BatsmenMostRunComparator());
-				break;
-			case "TEAM_WICKETS_GRAPHICS-OPTIONS": 
-				Collections.sort(LeaderBoard,new CricketFunctions.BowlerWicketsComparator());
-				break;
-			case "TEAM_FOURS_GRAPHICS-OPTIONS": 
-				Collections.sort(LeaderBoard,new CricketFunctions.BatsmanFoursComparator());
-				break;
-			case "TEAM_SIXES_GRAPHICS-OPTIONS":
-				Collections.sort(LeaderBoard,new CricketFunctions.BatsmanSixesComparator());
-				break;
-			}
-			return new ObjectMapper().writeValueAsString(LeaderBoard).toString();
-		case "HIGHEST_SCORE_GRAPHICS-OPTIONS":case "BEST_FIG_GRAPHICS-OPTIONS":
-			LeaderBoard = CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, head_to_head,
-						cricketService, match, past_tournament_stats);
-			 top_ten_beststat = new ArrayList<BestStats>();
-	        for(Tournament tourn : LeaderBoard) {
-				switch (whatToProcess) {
-				case "HIGHEST_SCORE_GRAPHICS-OPTIONS":
-		            for(BestStats bs : tourn.getBatsman_best_Stats()) {
-		            	top_ten_beststat.add(CricketFunctions.getProcessedBatsmanBestStats(bs));
-		            }
-					Collections.sort(top_ten_beststat,new CricketFunctions.BatsmanBestStatsComparator());
-					break;
-				case "BEST_FIG_GRAPHICS-OPTIONS":
-		            for(BestStats bs : tourn.getBowler_best_Stats()) {
-		            	top_ten_beststat.add(CricketFunctions.getProcessedBowlerBestStats(bs));
-		            }
-					Collections.sort(top_ten_beststat,new CricketFunctions.BowlerBestStatsComparator());
-					break;
-				}
-	        }       
-		 return  new ObjectMapper().writeValueAsString(top_ten_beststat).toString();
-		case "LEADERBOARD_GRAPHICS-OPTIONS": case "WICKETS_GRAPHICS-OPTIONS": case "FOURS_GRAPHICS-OPTIONS": case "SIXES_GRAPHICS-OPTIONS":
-			LeaderBoard = CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, head_to_head,cricketService, match, past_tournament_stats);
-//			List<Tournament> tourn_stats = CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",false, tournament_matches, cricketService, match,null);
-			switch (whatToProcess) {
-			case "LEADERBOARD_GRAPHICS-OPTIONS": 
-				Collections.sort(LeaderBoard,new CricketFunctions.BatsmenMostRunComparator());
-				break;
-			case "WICKETS_GRAPHICS-OPTIONS": 
-				Collections.sort(LeaderBoard,new CricketFunctions.BowlerWicketsComparator());
-				break;
-			case "FOURS_GRAPHICS-OPTIONS": 
-				Collections.sort(LeaderBoard,new CricketFunctions.BatsmanFoursComparator());
-				break;
-			case "SIXES_GRAPHICS-OPTIONS":
-				Collections.sort(LeaderBoard,new CricketFunctions.BatsmanSixesComparator());
-				break;
-			}
-			return new ObjectMapper().writeValueAsString(LeaderBoard).toString();
-		
 		//scorebug
 		case "POPULATE-SIXDIRECTOR": case "POPULATE-FOURDIRECTOR": case "POPULATE-WICKETDIRECTOR": case "POPULATE-FREEHITDIRECTOR": case "POPULATE-POWERPLAY_DIRECTOR":
 		case "POPULATE-L3-INFOBAR": case "POPULATE-INFOBAR-BOTTOMLEFT": case "POPULATE-INFOBAR-BOTTOM": case "POPULATE-INFOBAR-PROMPT": case "POPULATE-INFOBAR-IDENT":
@@ -9333,11 +7577,13 @@ public class PPL extends Scene{
 							inn.getBowling_team().getTeamBadge() + "\0");
 					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tBatTeamName" + " SET " + inn.getBatting_team().getTeamName3().toUpperCase() + "\0");
 					
-					if(match.getSetup().getTargetType().equalsIgnoreCase(CricketUtil.DLS) || match.getSetup().getTargetType().equalsIgnoreCase(CricketUtil.VJD)) {
-						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section1_2$BatTeamNameAndScoreGrp$noname$noname$DLS*ACTIVE SET 1 \0");
-						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tDLS" + " SET " + 
-				    			"(" + match.getSetup().getTargetOvers() + ") " + match.getSetup().getTargetType().toUpperCase() + "\0");
-				    }else {
+					if(match.getSetup().getTargetType() != null) {
+						if(match.getSetup().getTargetType().equalsIgnoreCase(CricketUtil.DLS) || match.getSetup().getTargetType().equalsIgnoreCase(CricketUtil.VJD)) {
+							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section1_2$BatTeamNameAndScoreGrp$noname$noname$DLS*ACTIVE SET 1 \0");
+							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tDLS" + " SET " + 
+					    			"(" + match.getSetup().getTargetOvers() + ") " + match.getSetup().getTargetType().toUpperCase() + "\0");
+					    }
+					}else {
 					    print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tDLS" + " SET " + " " + "\0");
 				    	if(match.getSetup().getTargetOvers() != null && !match.getSetup().getTargetOvers().isEmpty()) {
 				    		print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section1_2$BatTeamNameAndScoreGrp$noname$noname$DLS*ACTIVE SET 1 \0");
@@ -16664,4 +14910,1780 @@ public class PPL extends Scene{
 		}
 	}
 
+	public Object handleAnimationGraphicsCommand(PrintWriter print_writer,List<Scene> scenes,
+			String valueToProcess,String whatToProcess,MatchAllData match) throws InterruptedException{
+		
+		switch (whatToProcess.toUpperCase()) {
+		case "ANIMATE-IN-IDENT":
+			if(infobar.isInfobar_on_screen() == true) {
+				AnimateOutGraphics(print_writer, "ANIMATE-OUT-INFOBAR");
+				AnimateInGraphics(print_writer, "IDENT");
+				which_graphic_on_screen = "IDENT";
+				which_graphic_info_on_screen = "IDENT";
+				infobar.setInfobar_on_screen(true);
+			}else {
+				AnimateInGraphics(print_writer, "IN");
+				AnimateInGraphics(print_writer, "IDENT");
+				which_graphic_on_screen = "IDENT";
+				which_graphic_info_on_screen = "IDENT";
+				infobar.setInfobar_on_screen(true);
+			}
+			
+			break;
+			
+		case "ANIMATE-IN-BALL_PERFORMER":
+			if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD") {	
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
+//				print_writer.println("-1 RENDERER*$Main$All$BowlingCard*ACTIVE SET " + "1" + "\0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD_PERFORMER") {
+				if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PARTNERSHIP")) {
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipOut START \0");
+				}else if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+					TimeUnit.MILLISECONDS.sleep(500);
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerOut START \0");
+				}
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingRightCardOut START \0");
+				TimeUnit.MILLISECONDS.sleep(500);
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
+				
+				//print_writer.println("-1 RENDERER*$Main$All$BowlingCard*ACTIVE SET " + "1" + "\0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+				//TimeUnit.MILLISECONDS.sleep(500);
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
+				TimeUnit.MILLISECONDS.sleep(500);
+				bcf.setLast_type("");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_MATCHSUMMARY") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryOut START \0");
+				//print_writer.println("-1 RENDERER*$Main$All$BowlingCard*ACTIVE SET " + "1" + "\0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
+			}else if(which_graphic_on_screen == "POINTSTABLE") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableOut START \0");
+				//print_writer.println("-1 RENDERER*TREE*$Main$All$BowlingCard*ACTIVE SET " + "1" + "\0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
+				TimeUnit.SECONDS.sleep(1);
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BowlingCardAll$BowlingCardType*FUNCTION*Omo*vis_con SET 0 \0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_PARTNERSHIP"){
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllOut START \0");
+			}else {
+//				print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*In START \0");
+			}
+			if(bocf.getLast_type() != null && !bocf.getLast_type().trim().isEmpty()) {
+				if(bocf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+					if(bocf.getType().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BowlingCardAll$BowlingCardType$Format1$BallData$BallRightDataAll*ACTIVE SET 1 \0");
+						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BallPerformerOut START \0");
+						TimeUnit.SECONDS.sleep(1);
+						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BallPerformerIn START \0");
+						bocf.setLast_type(bocf.getType());
+					}
+				}
+			}else {
+				bocf.setLast_type(bocf.getType());
+				if(bocf.getType().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+//					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BowlingCardAll$BowlingCardType$Format1$BallData$BallRightDataAll*ACTIVE SET 1 \0");
+
+					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Reset START \0");
+//					TimeUnit.MILLISECONDS.sleep(500);
+					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*In START \0");
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
+					TimeUnit.MILLISECONDS.sleep(200);
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingRightCardIn START \0");
+					TimeUnit.MILLISECONDS.sleep(100);
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BallPerformerIn START \0");
+					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+					bocf.setLast_type(bocf.getType());
+				}
+			}
+			
+			which_graphic_on_screen = "BATBALLSUMMARY_BOWLINGCARD_PERFORMER";
+			TimeUnit.SECONDS.sleep(1);
+			break;
+			
+		case "ANIMATE-IN-BAT-PERFORMER":
+			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format2$BatData$Header$TeamNameGrp$FirstName"
+					+ "*GEOM*TEXT SET " + " " + "\0");
+			if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
+				TimeUnit.MILLISECONDS.sleep(200);
+				print_writer.println("-1 RENDERER*TREE*$Main$All$BattingCard*ACTIVE SET " + "1" + "\0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD_PERFORMER") {
+				if(bocf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+					TimeUnit.MILLISECONDS.sleep(500);
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BallPerformerOut START \0");
+					TimeUnit.MILLISECONDS.sleep(500);
+				}
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingRightCardOut START \0");
+				TimeUnit.MILLISECONDS.sleep(200);
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
+				
+				//print_writer.println("-1 RENDERER*TREE*$Main$All$BattingCard*ACTIVE SET " + "1" + "\0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+				bocf.setLast_type("");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_MATCHSUMMARY") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryOut START \0");
+				//print_writer.println("-1 RENDERER*TREE*$Main$All$BattingCard*ACTIVE SET " + "1" + "\0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
+			}else if(which_graphic_on_screen == "POINTSTABLE") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableOut START \0");
+				//print_writer.println("-1 RENDERER*TREE*$Main$All$BattingCard*ACTIVE SET " + "1" + "\0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
+				TimeUnit.SECONDS.sleep(1);
+				print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType*FUNCTION*Omo*vis_con SET 0 \0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingRightCardIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_PARTNERSHIP"){
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllOut START \0");
+			}else {
+//				print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*In START \0");
+			}
+			
+			if(bcf.getLast_type() != null && !bcf.getLast_type().trim().isEmpty()) {
+				if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PARTNERSHIP")) {
+					if(bcf.getType().toUpperCase().equalsIgnoreCase("PARTNERSHIP")) {
+						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format1$BatData$BatExtraData$"
+								+ "BatPartnershipGrp*ACTIVE SET 1 \0");
+						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipOut START \0");
+						TimeUnit.MILLISECONDS.sleep(500);
+						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipIn START \0");
+						bcf.setLast_type(bcf.getType());
+					}else if(bcf.getType().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format1$BatData$BatExtraData$"
+								+ "BatPerformerGrp*ACTIVE SET 1 \0");
+						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipOut START \0");
+						TimeUnit.MILLISECONDS.sleep(500);
+						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerIn START \0");
+						bcf.setLast_type(bcf.getType());
+					}
+				}else if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+					if(bcf.getType().toUpperCase() == "PARTNERSHIP") {
+						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format1$BatData$BatExtraData$BatPartnershipGrp*ACTIVE SET 1 \0");
+						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerOut START \0");
+						TimeUnit.MILLISECONDS.sleep(500);
+						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipIn START \0");
+						bcf.setLast_type(bcf.getType());
+					}else if(bcf.getType().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format1$BatData$BatExtraData$BatPerformerGrp*ACTIVE SET 1 \0");
+						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerOut START \0");
+						TimeUnit.MILLISECONDS.sleep(500);
+						print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerIn START \0");
+						bcf.setLast_type(bcf.getType());
+					}
+				}
+			}else {
+				bcf.setLast_type(bcf.getType());
+				if(bcf.getType().toUpperCase().equalsIgnoreCase("PARTNERSHIP")) {
+					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format1$BatData$BatExtraData$"
+							+ "BatPartnershipGrp*ACTIVE SET 1 \0");
+					//print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType*FUNCTION*Omo*vis_con SET 0 \0");
+					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Reset START \0");
+					TimeUnit.MILLISECONDS.sleep(500);
+					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*In START \0");
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
+					TimeUnit.MILLISECONDS.sleep(500);
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingRightCardIn START \0");
+					TimeUnit.MILLISECONDS.sleep(500);
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipIn START \0");
+					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+					
+					bcf.setLast_type(bcf.getType());
+				}else if(bcf.getType().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+//					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format1$BatData$BatExtraData$"
+//							+ "BatPerformerGrp*ACTIVE SET 1 \0");
+					//print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType*FUNCTION*Omo*vis_con SET 0 \0");
+					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Reset START \0");
+					TimeUnit.MILLISECONDS.sleep(500);
+					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*In START \0");
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
+					TimeUnit.MILLISECONDS.sleep(600);
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingRightCardIn START \0");
+					TimeUnit.MILLISECONDS.sleep(500);
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerIn START \0");
+					//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+					bcf.setLast_type(bcf.getType());
+				}
+			}
+			
+			which_graphic_on_screen = "BATBALLSUMMARY_SCORECARD_PERFORMER";
+		
+			TimeUnit.SECONDS.sleep(1);
+			break;	
+		case "ANIMATE-IN-LOCATOR":
+			print_writer.println("-1 RENDERER*STAGE*DIRECTOR*In START \0");
+			which_graphic_on_screen = "LOCATOR";
+			break;
+		case "ANIMATE-IN-SCORECARD":
+			if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BattingCardAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD_PERFORMER") {
+				if(bocf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+					TimeUnit.MILLISECONDS.sleep(500);
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BallPerformerOut START \0");
+					TimeUnit.MILLISECONDS.sleep(500);
+				}
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingRightCardOut START \0");
+				TimeUnit.MILLISECONDS.sleep(200);
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
+				
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BattingCardAll*ACTIVE SET " + "1" + "\0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+				bocf.setLast_type("");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_MATCHSUMMARY") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BattingCardAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
+			}else if(which_graphic_on_screen == "POINTSTABLE") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BattingCardAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_PARTNERSHIP"){
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BattingCardAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardIn START \0");
+			}else {
+//				print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
+				AnimateInGraphics(print_writer, "SCORECARD");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BattingCardAll*ACTIVE SET " + "1" + "\0");
+			}
+			print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+			which_graphic_on_screen = "BATBALLSUMMARY_SCORECARD";
+			break;
+		case "ANIMATE-IN-PLAYOFFS":
+			AnimateInGraphics(print_writer, "PLAYOFFS");
+			which_graphic_on_screen = "PLAYOFFS";
+			break;
+		case "ANIMATE-IN-FIX_AND_RESULT":
+			AnimateInGraphics(print_writer, "FIX_AND_RESULT");
+			which_graphic_on_screen = "FIX_AND_RESULT";
+			break;
+		case "ANIMATE-MINI-BOWLER_VS_ALLBATSMAN":
+			AnimateInGraphics(print_writer, "BOWLER_VS_ALLBATSMAN");
+			which_graphic_on_screen = "BOWLER_VS_ALLBATSMAN";
+			break;
+		case "ANIMATE-MINI-BATSMAN_VS_ALLBOWLERS":
+			AnimateInGraphics(print_writer, "BATSMAN_VS_ALLBOWLER");
+			which_graphic_on_screen = "BATSMAN_VS_ALLBOWLER";
+			break;
+		case "ANIMATE-IN-BALLGRIFF":
+			AnimateInGraphics(print_writer, "BALLGRIFF");
+			which_graphic_on_screen = "BALLGRIFF";
+			break;
+		case "ANIMATE-IN-BATGRIFF":
+			AnimateInGraphics(print_writer, "BATGRIFF");
+			which_graphic_on_screen = "BATGRIFF";
+			break;
+		case "ANIMATE-MINI-BATTINGCARD":
+			AnimateInGraphics(print_writer, "MINI_BATTINGCARD");
+			which_graphic_on_screen = "MINI_BATTINGCARD";
+			break;
+		case "ANIMATE-MINI-BOWLINGCARD":
+			AnimateInGraphics(print_writer, "MINI_BOWLINGCARD");
+			which_graphic_on_screen = "MINI_BOWLINGCARD";
+			break;
+		case "ANIMATE-IN-BOWLINGCARD":
+			if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BowlingCardAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD_PERFORMER") {
+				if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PARTNERSHIP")) {
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipOut START \0");
+				}else if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+					TimeUnit.MILLISECONDS.sleep(500);
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerOut START \0");
+				}
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingRightCardOut START \0");
+				TimeUnit.MILLISECONDS.sleep(500);
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
+				TimeUnit.MILLISECONDS.sleep(500);
+				bcf.setLast_type("");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BowlingCardAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_MATCHSUMMARY") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BowlingCardAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
+			}else if(which_graphic_on_screen == "POINTSTABLE") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BowlingCardAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_PARTNERSHIP"){
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BowlingCardAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardIn START \0");
+			}else {
+//				print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BowlingCardAll*ACTIVE SET " + "1" + "\0");
+				AnimateInGraphics(print_writer, "BOWLINGCARD");
+			}
+			print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+			which_graphic_on_screen = "BATBALLSUMMARY_BOWLINGCARD";
+			break;
+		case "ANIMATE-IN-PARTNERSHIP":
+			if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$partnershipall*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllIn START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BattingCardAll*ACTIVE SET 0\0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD_PERFORMER") {
+				if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PARTNERSHIP")) {
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipOut START \0");
+				}else if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+					TimeUnit.MILLISECONDS.sleep(500);
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerOut START \0");
+				}
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingRightCardOut START \0");
+				TimeUnit.MILLISECONDS.sleep(500);
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
+				TimeUnit.MILLISECONDS.sleep(500);
+				bcf.setLast_type("");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$partnershipall*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllIn START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BattingCardAll*ACTIVE SET 0\0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$partnershipall*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllIn START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BowlingCardAll*ACTIVE SET 0\0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD_PERFORMER") {
+				if(bocf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+					TimeUnit.MILLISECONDS.sleep(500);
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BallPerformerOut START \0");
+					TimeUnit.MILLISECONDS.sleep(500);
+				}
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingRightCardOut START \0");
+				TimeUnit.MILLISECONDS.sleep(200);
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$partnershipall*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
+				
+				//print_writer.println("-1 RENDERER*TREE*$Main$All$BattingCard*ACTIVE SET " + "1" + "\0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+				bocf.setLast_type("");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllIn START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$BowlingCardAll*ACTIVE SET 0\0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_MATCHSUMMARY") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$partnershipall*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllIn START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$SummaryAll*ACTIVE SET 0\0");
+			}else if(which_graphic_on_screen == "POINTSTABLE") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$partnershipall*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllIn START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$PointsTableAll*ACTIVE SET 0\0");
+			}else {
+				AnimateInGraphics(print_writer, "PARTNERSHIP");
+			}
+			print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+			which_graphic_on_screen = "BATBALLSUMMARY_PARTNERSHIP";
+			break;
+//		case "ANIMATE-IN-PARTNERSHIP":
+//			AnimateInGraphics(print_writer, "PARTNERSHIP");
+//			which_graphic_on_screen = "PARTNERSHIP";
+//			break;
+		case "ANIMATE-IN-TIEID-DOUBLE":
+			AnimateInGraphics(print_writer, "TIEID-DOUBLE");
+			which_graphic_on_screen = "TIEID-DOUBLE";
+			break;
+		case "ANIMATE-FF_SUMMARY_GRAPHICS":
+//			print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
+			AnimateInGraphics(print_writer, "FF_SUMMARY_GRAPHICS");
+			which_graphic_on_screen = "FF_SUMMARY_GRAPHICS";
+			break;
+		case "ANIMATE-IN-MATCHSUMARRY":
+			if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$SummaryAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD_PERFORMER") {
+				if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PARTNERSHIP")) {
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipOut START \0");
+				}else if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+					TimeUnit.MILLISECONDS.sleep(500);
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerOut START \0");
+				}
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingRightCardOut START \0");
+				TimeUnit.MILLISECONDS.sleep(500);
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
+				TimeUnit.MILLISECONDS.sleep(500);
+				bcf.setLast_type("");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$SummaryAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD_PERFORMER") {
+				if(bocf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+					TimeUnit.MILLISECONDS.sleep(500);
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BallPerformerOut START \0");
+					TimeUnit.MILLISECONDS.sleep(500);
+				}
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingRightCardOut START \0");
+				TimeUnit.MILLISECONDS.sleep(200);
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
+				
+				//print_writer.println("-1 RENDERER*TREE*$Main$All$BattingCard*ACTIVE SET " + "1" + "\0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+				bocf.setLast_type("");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartIn START \0");
+			}else if(which_graphic_on_screen == "POINTSTABLE") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$SummaryAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_PARTNERSHIP"){
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$SummaryAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryIn START \0");
+			}else {
+//				print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$AllDataGrp$SummaryAll*ACTIVE SET " + "1" + "\0");
+				AnimateInGraphics(print_writer, "MATCHSUMMARY");
+			}
+			print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+			which_graphic_on_screen = "BATBALLSUMMARY_MATCHSUMMARY";
+			break;
+		case "ANIMATE-IN-BUG-TOSS":
+			AnimateInGraphics(print_writer, "BUG-TOSS");
+			which_graphic_on_screen = "BUG-TOSS";
+			break;
+		case "ANIMATE-IN-TARGET2":
+			AnimateInGraphics(print_writer, "TARGET2");
+			which_graphic_on_screen = "TARGET2";
+			break;
+		case "ANIMATE-IN-RESULT2":
+			AnimateInGraphics(print_writer, "RESULT2");
+			which_graphic_on_screen = "RESULT2";
+			break;
+		case "ANIMATE-IN-BUG_HIGHLIGHT":
+			AnimateInGraphics(print_writer, "BUG_HIGHLIGHT");
+			which_graphic_on_screen = "BUG_HIGHLIGHT";
+			break;
+		case "ANIMATE-IN-BUGPARTNERSHIP":
+			AnimateInGraphics(print_writer, "BUG_PARTNERSHIP");
+			which_graphic_on_screen = "BUG_PARTNERSHIP";
+			break;
+		case "ANIMATE-IN-MULTI_PARTNERSHIP":
+			AnimateInGraphics(print_writer, "MULTI_PARTNERSHIP");
+			which_graphic_on_screen = "MULTI_PARTNERSHIP";
+			break;
+		case "ANIMATE-IN-BUG_POWERPLAY":
+			AnimateInGraphics(print_writer, "BUG_POWERPLAY");
+			which_graphic_on_screen = "BUG_POWERPLAY";
+			break;
+		case "ANIMATE-IN-BUG-DISMISSAL":
+			AnimateInGraphics(print_writer, "BUG-DISMISSAL");
+			which_graphic_on_screen = "BUG-DISMISSAL";
+			break;
+		case "ANIMATE-IN-BUG":
+			AnimateInGraphics(print_writer, "BUG");
+			which_graphic_on_screen = "BUG";
+			break;
+		case "ANIMATE-IN-BUG-BOWLER":
+			AnimateInGraphics(print_writer, "BUGBOWLER");
+			which_graphic_on_screen = "BUGBOWLER";
+			break;
+		case "ANIMATE-IN-BUG-DB":
+			AnimateInGraphics(print_writer, "BUG-DB");
+			which_graphic_on_screen = "BUG-DB";
+			break;
+		case "ANIMATE-IN-IMPACT":
+			AnimateInGraphics(print_writer, "IMPACT");
+			which_graphic_on_screen = "IMPACT";
+			break;
+		case "ANIMATE-IN-DLS-EQUATION":
+			AnimateInGraphics(print_writer, "DLS_EQUATION");
+			which_graphic_on_screen = "DLS_EQUATION";
+			break;
+		case "ANIMATE-IN-POINTERS":
+			AnimateInGraphics(print_writer, "POINTER");
+			which_graphic_on_screen = "POINTER";
+			break;
+		case "ANIMATE-IN-HOWOUT":
+			AnimateInGraphics(print_writer, "HOWOUT");
+			which_graphic_on_screen = "HOWOUT";
+			break;
+		case "ANIMATE-IN-HOWOUT_QUICK":
+			AnimateInGraphics(print_writer, "HOWOUT_QUICK");
+			which_graphic_on_screen = "HOWOUT_QUICK";
+			break;
+		case "ANIMATE-IN-HOWOUT_WITHOUT_FIELDER":
+			AnimateInGraphics(print_writer, "HOWOUT_WITHOUT");
+			which_graphic_on_screen = "HOWOUT_WITHOUT";
+			break;
+		case "ANIMATE-IN-SCHEDULE":
+			AnimateInGraphics(print_writer, "SCHEDULE");
+			which_graphic_on_screen = "SCHEDULE";
+			break;
+		case "ANIMATE-IN-NAMESUPER":
+			AnimateInGraphics(print_writer, "NAMESUPER");
+			which_graphic_on_screen = "NAMESUPER";
+			break;
+		case "ANIMATE-IN-NAMESUPER-PLAYER":
+			AnimateInGraphics(print_writer, "NAMESUPER-PLAYER");
+			which_graphic_on_screen = "NAMESUPER-PLAYER";
+			break;
+		case "ANIMATE-IN-FALLOFWICKET":
+			AnimateInGraphics(print_writer, "FALLOFWICKET");
+			which_graphic_on_screen = "FALLOFWICKET";
+			break;
+		case "ANIMATE-IN-TEAMS_LOGO":
+			AnimateInGraphics(print_writer, "TEAMS_LOGO");
+			which_graphic_on_screen = "TEAMS_LOGO";
+			break;
+		case "ANIMATE-IN-L3MATCHID":
+			AnimateInGraphics(print_writer, "L3MATCHID");
+			which_graphic_on_screen = "L3MATCHID";
+			break;
+		case "ANIMATE-IN-MATCH_PROMO":
+			AnimateInGraphics(print_writer, "MATCH_PROMO");
+			which_graphic_on_screen = "MATCH_PROMO";
+			break;
+		case "ANIMATE-IN-L3MATCH_PROMO":
+			AnimateInGraphics(print_writer, "L3MATCH_PROMO");
+			which_graphic_on_screen = "L3MATCH_PROMO";
+			break;
+		case "ANIMATE-IN-PREVIOUS_SUMMARY":
+//			print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
+			AnimateInGraphics(print_writer, "PREVIOUS_SUMMARY");
+			which_graphic_on_screen = "PREVIOUS_SUMMARY";
+			break;
+		case "ANIMATE-IN-TARGET":
+			AnimateInGraphics(print_writer, "TARGET");
+			which_graphic_on_screen = "TARGET";
+			break;
+		case "ANIMATE-IN-BUGTARGET":
+			AnimateInGraphics(print_writer, "BUGTARGET");
+			which_graphic_on_screen = "BUGTARGET";
+			break;
+		case "ANIMATE-IN-COMPARISION":
+			AnimateInGraphics(print_writer, "COMPARISION");
+			which_graphic_on_screen = "COMPARISION";
+			break;
+		case "ANIMATE-IN-LTPARTNERSHIP":
+			AnimateInGraphics(print_writer, "LTPARTNERSHIP");
+			which_graphic_on_screen = "LTPARTNERSHIP";
+			break;
+		case "ANIMATE-IN-SPLIT":
+			AnimateInGraphics(print_writer, "SPLIT");
+			which_graphic_on_screen = "SPLIT";
+			break;
+		case "ANIMATE-IN-BATSMANSTATS":
+			AnimateInGraphics(print_writer, "BATSMANSTATS");
+			which_graphic_on_screen = "BATSMANSTATS";
+			break;
+		case "ANIMATE-IN-BOWLERSTATS":
+			AnimateInGraphics(print_writer, "BOWLERSTATS");
+			which_graphic_on_screen = "BOWLERSTATS";
+			break;
+		case "ANIMATE-IN-BOWLERSUMMARY":
+			AnimateInGraphics(print_writer, "BOWLERSUMMARY");
+			which_graphic_on_screen = "BOWLERSUMMARY";
+			break;
+		case "ANIMATE-IN-PLAYERSUMMARY":
+			AnimateInGraphics(print_writer, "PLAYERSUMMARY");
+			which_graphic_on_screen = "PLAYERSUMMARY";
+			break;
+		case "ANIMATE-IN-TEAMSUMMARY":
+			AnimateInGraphics(print_writer, "TEAMSUMMARY");
+			which_graphic_on_screen = "TEAMSUMMARY";
+			break;
+		case "ANIMATE-IN-NEXT_TO_BAT":
+			AnimateInGraphics(print_writer, "NEXTTOBAT");
+			which_graphic_on_screen = "NEXTTOBAT";
+			break;
+		case "ANIMATE-IN-PHASE":
+			AnimateInGraphics(print_writer, "PHASE");
+			which_graphic_on_screen = "PHASE";
+			break;
+		case "ANIMATE-IN-PROJECTED":
+			AnimateInGraphics(print_writer, "PROJECTED");
+			which_graphic_on_screen = "PROJECTED";
+			break;
+		case "ANIMATE-IN-BOWLERDETAILS":
+			AnimateInGraphics(print_writer, "BOWLERDETAILS");
+			which_graphic_on_screen = "BOWLERDETAILS";
+			break;
+		case "ANIMATE-IN-LTPOWERPLAY":
+			AnimateInGraphics(print_writer, "LTPOWERPLAY");
+			which_graphic_on_screen = "LTPOWERPLAY";
+			break;
+		case "ANIMATE-IN-MATCHID":
+			AnimateInGraphics(print_writer, "MATCHID");
+			which_graphic_on_screen = "MATCHID";
+			break;
+		case "ANIMATE-IN-L3PLAYERPROFILE":
+			AnimateInGraphics(print_writer, "L3PLAYERPROFILE");
+			which_graphic_on_screen = "L3PLAYERPROFILE";
+			break;
+		case "ANIMATE-IN-LTPLAYERPROFILEBAT":
+			AnimateInGraphics(print_writer, "LTPLAYERPROFILEBAT");
+			which_graphic_on_screen = "LTPLAYERPROFILEBAT";
+			break;
+		case "ANIMATE-IN-PLAYERPROFILEBALL":
+			AnimateInGraphics(print_writer, "PLAYERPROFILEBALL");
+			which_graphic_on_screen = "PLAYERPROFILEBALL";
+			break;
+		case "ANIMATE-IN-THISSERIES_BALL":
+			AnimateInGraphics(print_writer, "THISSERIES-BALL");
+			which_graphic_on_screen = "THISSERIES-BALL";
+			break;
+		case "ANIMATE-IN-THISSERIES":
+			AnimateInGraphics(print_writer, "THISSERIES");
+			which_graphic_on_screen = "THISSERIES";
+			break;
+		case "ANIMATE-IN-FFTHISSERIES_BALL":
+			AnimateInGraphics(print_writer, "FF-THISSERIES_BALL");
+			which_graphic_on_screen = "FF-THISSERIES_BALL";
+			break;
+		case "ANIMATE-IN-FFTHISSERIES":
+			AnimateInGraphics(print_writer, "FF-THISSERIES");
+			which_graphic_on_screen = "FF-THISSERIES";
+			break;
+		case "ANIMATE-IN-PLAYERPROFILE":
+			AnimateInGraphics(print_writer, "FFPLAYERPROFILE");
+			which_graphic_on_screen = "FFPLAYERPROFILE";
+			break;
+		case "ANIMATE-IN-PLAYERPROFILEBAT":
+			AnimateInGraphics(print_writer, "PLAYERPROFILEBAT");
+			which_graphic_on_screen = "PLAYERPROFILEBAT";
+			break;
+		case "ANIMATE-IN-PLAYINGXI_SEQUENCE":
+			AnimateInGraphics(print_writer, "PLAYINGXI_SEQUENCE");
+			which_graphic_on_screen = "PLAYINGXI_SEQUENCE";
+			break;
+		case "ANIMATE-IN-PLAYINGXI":
+			AnimateInGraphics(print_writer, "TEAMLINEUP");
+			which_graphic_on_screen = "TEAMLINEUP";
+			break;
+		case "ANIMATE-IN-DOUBLETEAMS":
+			AnimateInGraphics(print_writer, "DOUBLETEAMS");
+			which_graphic_on_screen = "DOUBLETEAMS";
+			break;
+		case "ANIMATE-IN-MOSTRUNS":
+			AnimateInGraphics(print_writer, "RUNSMOST");
+			which_graphic_on_screen = "RUNSMOST";
+			break;
+		case "ANIMATE-IN-MOSTWICKETS":
+			AnimateInGraphics(print_writer, "WICKETSMOST");
+			which_graphic_on_screen = "WICKETSMOST";
+			break;
+		case "ANIMATE-IN-MOSTFOURS":
+			AnimateInGraphics(print_writer, "FOURSMOST");
+			which_graphic_on_screen = "FOURSMOST";
+			break;
+		case "ANIMATE-IN-MOSTSIXES":
+			AnimateInGraphics(print_writer, "SIXESMOST");
+			which_graphic_on_screen = "SIXESMOST";
+			break;
+		case "ANIMATE-IN-HIGHESTSCORE":
+			AnimateInGraphics(print_writer, "SCOREHIGHEST");
+			which_graphic_on_screen = "SCOREHIGHEST";
+			break;
+		case "ANIMATE-IN-BESTFIG":
+			AnimateInGraphics(print_writer, "BESTFIG");
+			which_graphic_on_screen = "BESTFIG";
+			break;
+		case "ANIMATE-IN-STRIKERATE":
+			AnimateInGraphics(print_writer, "BESTSTRIKERATE");
+			which_graphic_on_screen = "BESTSTRIKERATE";
+			break;
+		case "ANIMATE-IN-ECONOMY":
+			AnimateInGraphics(print_writer, "BESTECONOMY");
+			which_graphic_on_screen = "BESTECONOMY";
+			break;	
+		case "ANIMATE-IN-CAPTAINS":
+			AnimateInGraphics(print_writer, "CAPTAINS");
+			which_graphic_on_screen = "CAPTAINS";
+			break;
+		case "ANIMATE-IN-TOP_PERFORMER":
+			AnimateInGraphics(print_writer, "TOP_PERFORMER");
+			which_graphic_on_screen = "TOP_PERFORMER";
+			break;
+		case "ANIMATE-IN-LANDMARK": case "ANIMATE-IN-LANDMARK_BALL":
+			AnimateInGraphics(print_writer, "LANDMARK");
+			which_graphic_on_screen = "LANDMARK";
+			break;
+		case "ANIMATE-IN-EQUATION":
+			AnimateInGraphics(print_writer, "EQUATION");
+			which_graphic_on_screen = "EQUATION";
+			break;
+		case "ANIMATE-IN-POSITION_LANDMARK":
+			AnimateInGraphics(print_writer, "POSITION_LANDMARK");
+			which_graphic_on_screen = "POSITION_LANDMARK";
+			break;
+		case "ANIMATE-IN-BATSMAN_THIS_MATCH":
+			AnimateInGraphics(print_writer, "BATSMAN_THIS_MATCH");
+			which_graphic_on_screen = "BATSMAN_THIS_MATCH";
+			break;
+		case "ANIMATE-IN-BOWLER_THIS_MATCH":
+			AnimateInGraphics(print_writer, "BOWLER_THIS_MATCH");
+			which_graphic_on_screen = "BOWLER_THIS_MATCH";
+			break;
+		case "ANIMATE-IN-POINTSTABLE":
+			if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$All$PointsTableAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_SCORECARD_PERFORMER") {
+				if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PARTNERSHIP")) {
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPartnershipOut START \0");
+				}else if(bcf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+					TimeUnit.MILLISECONDS.sleep(500);
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BatPerformerOut START \0");
+				}
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingRightCardOut START \0");
+				TimeUnit.MILLISECONDS.sleep(500);
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BattingCardOut START \0");
+				TimeUnit.MILLISECONDS.sleep(500);
+				bcf.setLast_type("");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$All$PointsTableAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_BOWLINGCARD_PERFORMER") {
+				if(bocf.getLast_type().toUpperCase().equalsIgnoreCase("PERFORMER")) {
+					TimeUnit.MILLISECONDS.sleep(500);
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BallPerformerOut START \0");
+					TimeUnit.MILLISECONDS.sleep(500);
+				}
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingRightCardOut START \0");
+				TimeUnit.MILLISECONDS.sleep(200);
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*BowlingCardOut START \0");
+				
+				//print_writer.println("-1 RENDERER*TREE*$Main$All$BattingCard*ACTIVE SET " + "1" + "\0");
+				//print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+				bocf.setLast_type("");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_MATCHSUMMARY") {
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*SummaryOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$All$PointsTableAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableIn START \0");
+			}else if(which_graphic_on_screen == "BATBALLSUMMARY_PARTNERSHIP"){
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllOut START \0");
+				print_writer.println("-1 RENDERER*TREE*$Main$All$PointsTableAll*ACTIVE SET " + "1" + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PointsTableIn START \0");
+			}else {
+				print_writer.println("-1 RENDERER*TREE*$Main$All$PointsTableAll*ACTIVE SET " + "1" + "\0");
+//				print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
+				AnimateInGraphics(print_writer, "POINTSTABLE");
+			}
+			print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Loop START \0");
+			which_graphic_on_screen = "POINTSTABLE";
+			break;
+		case "ANIMATE-IN-LTPOINTSTABLE":
+			AnimateInGraphics(print_writer, "LTPOINTSTABLE");
+			which_graphic_on_screen = "LTPOINTSTABLE";
+			break;
+		case "ANIMATE-IN-BOWLER_STYLE":
+			AnimateInGraphics(print_writer, "BOWLER_STYLE");
+			which_graphic_on_screen = "BOWLER_STYLE";
+			break;
+		case "ANIMATE-IN-BATSMAN_STYLE":
+			AnimateInGraphics(print_writer, "BATSMAN_STYLE");
+			which_graphic_on_screen = "BATSMAN_STYLE";
+			break;
+		case "ANIMATE-IN-MANHATTAN":
+			AnimateInGraphics(print_writer, "MANHATTAN");
+			which_graphic_on_screen = "MANHATTAN";
+			break;
+		case "ANIMATE-IN-WORM":
+			AnimateInGraphics(print_writer, "WORM");
+			which_graphic_on_screen = "WORM";
+			break;
+		case "ANIMATE-IN-LEADERBOARD":case "ANIMATE-IN-TEAM-LEADERBOARD":
+			AnimateInGraphics(print_writer, "LEADERBOARD");
+			which_graphic_on_screen = "LEADERBOARD";
+			break;
+		case "ANIMATE-IN-FF_STATS":
+			AnimateInGraphics(print_writer, "FF_STATS");
+			which_graphic_on_screen = "FF_STATS";
+			break;
+		case "ANIMATE-IN-INFOBAR":
+			if(infobar.isInfobar_on_screen() == true) {
+				AnimateOutGraphics(print_writer, "ANIMATE-OUT-IDENT");
+				AnimateInGraphics(print_writer, "MAIN");
+				which_graphic_on_screen = "SCOREBUG";
+				which_graphic_info_on_screen ="SCOREBUG";
+				infobar.setInfobar_on_screen(true);
+				
+			}else {
+				AnimateInGraphics(print_writer, "SCOREBUG");
+				which_graphic_on_screen = "SCOREBUG";
+				which_graphic_info_on_screen ="SCOREBUG";
+				infobar.setInfobar_on_screen(true);
+			}
+			
+			break;
+		case "TICKER_LT_OUT":
+			if(!which_graphic_on_screen.isEmpty() && which_graphic_info_on_screen != "SCOREBUG") {
+				AnimateOutGraphics(print_writer, which_graphic_info_on_screen);
+				TimeUnit.SECONDS.sleep(1);
+			}
+			populateInfobar(infobar, print_writer, valueToProcess.split(",")[0],match, broadcaster);
+			AnimateOutGraphics(print_writer, "FF_OUT");
+			TimeUnit.SECONDS.sleep(1);
+			which_graphic_on_screen = "SCOREBUG";
+			which_graphic_info_on_screen ="SCOREBUG";
+			infobar.setInfobar_on_screen(true);
+			infobar.setInfobar_down(false);
+			//AnimateOutGraphics(print_writer, which_graphic_on_screen);
+			break;
+		case "TICKER_LT_IN":
+			AnimateInGraphics(print_writer, "FF_IN");
+			TimeUnit.SECONDS.sleep(1);
+			infobar.setInfobar_down(true);
+			infobar.setInfobar_on_screen(false);
+			if(which_graphic_info_on_screen != "SCOREBUG") {
+				AnimateOutGraphics(print_writer, which_graphic_info_on_screen);
+			}
+			break;		
+		case "CLEAR-ALL":
+			   print_writer.println("-1 SCENE CLEANUP\0");
+               print_writer.println("-1 IMAGE CLEANUP\0");
+               print_writer.println("-1 GEOM CLEANUP\0");
+               print_writer.println("-1 FONT CLEANUP\0");
+               
+               print_writer.println("-1 IMAGE INFO\0");
+               print_writer.println("-1 RENDERER SET_OBJECT SCENE*" + valueToProcess.split(",")[0] + "\0");
+
+               print_writer.println("-1 RENDERER INITIALIZE\0");
+               print_writer.println("-1 RENDERER*SCENE_DATA INITIALIZE\0");
+               print_writer.println("-1 RENDERER*UPDATE SET 0\0");
+               print_writer.println("-1 RENDERER*STAGE SHOW 0.0\0");
+               
+               print_writer.println("-1 RENDERER*UPDATE SET 1\0");
+               
+               print_writer.println("-1 RENDERER*FRONT_LAYER SET_OBJECT SCENE*/Default/PPL/ScoreBug\0");
+	           	
+               print_writer.println("-1 RENDERER*FRONT_LAYER INITIALIZE\0");
+               print_writer.println("-1 RENDERER*FRONT_LAYER*SCENE_DATA INITIALIZE\0");
+               print_writer.println("-1 RENDERER*FRONT_LAYER*UPDATE SET 0\0");
+               print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE SHOW 0.0\0");
+               print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE SHOW 0.0\0");
+               
+               print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Section4In SHOW 0.0 \0");
+               print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Section5In SHOW 0.0 \0");
+               print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Reset START \0");
+               
+               print_writer.println("-1 RENDERER*FRONT_LAYER*UPDATE SET 1\0");
+               
+               print_writer.println("-1 SCENE CLEANUP\0");
+               print_writer.println("-1 IMAGE CLEANUP\0");
+               print_writer.println("-1 GEOM CLEANUP\0");
+               print_writer.println("-1 FONT CLEANUP\0");
+               
+               bocf.setLast_type(null);
+               infobar.setInfobar_on_screen(false);
+               infobar = new Infobar();
+               which_graphic_on_screen = "";
+               which_graphic_info_on_screen = "";
+				break;
+		case "ANIMATE-OUT-INFOBAR":
+			AnimateOutGraphics(print_writer, "SCOREBUG");
+			infobar.setInfobar_on_screen(false);
+			infobar = new Infobar();
+			which_graphic_info_on_screen="";
+			break;
+		case "ANIMATE-OUT-IDENT":
+			AnimateOutGraphics(print_writer, "IDENT");
+			which_graphic_on_screen = "";
+			infobar.setInfobar_on_screen(false);
+			which_graphic_info_on_screen="";
+			break;
+		case "ANIMATE-OUT":
+			
+			if(which_graphic_info_on_screen.equalsIgnoreCase("SCOREBUG")) {
+//				populateInfobar(infobar, print_writer, valueToProcess.split(",")[0],CricketFunctions.populateMatchVariables(cricketService, 
+//					CricketFunctions.readOrSaveMatchFile(CricketUtil.READ, CricketUtil.MATCH, match,true)), broadcaster);
+			}
+			
+			switch(which_graphic_on_screen) {
+			case "LOCATOR":
+				AnimateOutGraphics(print_writer, "LOCATOR");
+				TimeUnit.SECONDS.sleep(1);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "PLOTTER_ICC":
+				AnimateOutGraphics(print_writer, "PLOTTER_ICC");
+				which_graphic_on_screen = "";
+				// resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+//			case "IDENT":
+//				AnimateOutGraphics(print_writer, "IDENT");
+//				which_graphic_on_screen = "";
+//				infobar.setInfobar_on_screen(false);
+//				break;
+			case "BATBALLSUMMARY_BOWLINGCARD_PERFORMER":
+				AnimateOutGraphics(print_writer, "BATBALLSUMMARY_BOWLINGCARD_PERFORMER");
+				bocf.setLast_type(null);bocf.setType("");
+				TimeUnit.SECONDS.sleep(1);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BATBALLSUMMARY_SCORECARD_PERFORMER":
+				AnimateOutGraphics(print_writer, "BATBALLSUMMARY_SCORECARD_PERFORMER");
+				bcf.setLast_type(null);bcf.setType("");
+				TimeUnit.SECONDS.sleep(1);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BATBALLSUMMARY_SCORECARD":
+				AnimateOutGraphics(print_writer, "BATBALLSUMMARY_SCORECARD");
+				TimeUnit.MILLISECONDS.sleep(600);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "PLAYOFFS":
+				AnimateOutGraphics(print_writer, "PLAYOFFS");
+				TimeUnit.SECONDS.sleep(1);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "RUNSMOST":
+				AnimateOutGraphics(print_writer, "RUNSMOST");
+				TimeUnit.MILLISECONDS.sleep(600);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;	
+			case "WICKETSMOST":
+				AnimateOutGraphics(print_writer, "WICKETSMOST");
+				TimeUnit.MILLISECONDS.sleep(600);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "FOURSMOST":
+				AnimateOutGraphics(print_writer, "FOURSMOST");
+				TimeUnit.MILLISECONDS.sleep(600);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "SIXESMOST":
+				AnimateOutGraphics(print_writer, "SIXESMOST");
+				TimeUnit.MILLISECONDS.sleep(600);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "SCOREHIGHEST":
+				AnimateOutGraphics(print_writer, "SCOREHIGHEST");
+				TimeUnit.MILLISECONDS.sleep(600);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BESTFIG":
+				AnimateOutGraphics(print_writer, "BESTFIG");
+				TimeUnit.MILLISECONDS.sleep(600);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BESTSTRIKERATE":
+				AnimateOutGraphics(print_writer, "BESTSTRIKERATE");
+				TimeUnit.MILLISECONDS.sleep(600);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BESTECONOMY":
+				AnimateOutGraphics(print_writer, "BESTECONOMY");
+				TimeUnit.MILLISECONDS.sleep(600);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+				
+			case "FIX_AND_RESULT":
+				AnimateOutGraphics(print_writer, "FIX_AND_RESULT");
+				TimeUnit.SECONDS.sleep(1);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BATSMAN_VS_ALLBOWLER":
+				AnimateOutGraphics(print_writer, "BATSMAN_VS_ALLBOWLER");
+				TimeUnit.SECONDS.sleep(1);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "BOWLER_VS_ALLBATSMAN":
+				AnimateOutGraphics(print_writer, "BOWLER_VS_ALLBATSMAN");
+				TimeUnit.SECONDS.sleep(1);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "BALLGRIFF":
+				AnimateOutGraphics(print_writer, "BALLGRIFF");
+				TimeUnit.SECONDS.sleep(1);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "BATGRIFF":
+				AnimateOutGraphics(print_writer, "BATGRIFF");
+				TimeUnit.SECONDS.sleep(1);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "MINI_BATTINGCARD":
+				AnimateOutGraphics(print_writer, "MINI_BATTINGCARD");
+				TimeUnit.SECONDS.sleep(1);
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "MINI_BOWLINGCARD":
+				AnimateOutGraphics(print_writer, "MINI_BOWLINGCARD");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "BATBALLSUMMARY_BOWLINGCARD":
+				AnimateOutGraphics(print_writer, "BATBALLSUMMARY_BOWLINGCARD");
+				TimeUnit.MILLISECONDS.sleep(600);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "FF_SUMMARY_GRAPHICS":
+				AnimateOutGraphics(print_writer, "FF_SUMMARY_GRAPHICS");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BATBALLSUMMARY_MATCHSUMMARY":
+				AnimateOutGraphics(print_writer, "BATBALLSUMMARY_MATCHSUMMARY");
+				TimeUnit.MILLISECONDS.sleep(600);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BATBALLSUMMARY_PARTNERSHIP":
+				AnimateOutGraphics(print_writer, "BATBALLSUMMARY_PARTNERSHIP");
+				TimeUnit.MILLISECONDS.sleep(600);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "TIEID-DOUBLE":
+				AnimateOutGraphics(print_writer, "TIEID-DOUBLE");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BUG_PARTNERSHIP":
+				AnimateOutGraphics(print_writer, "BUG_PARTNERSHIP");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BUG-TOSS":
+				AnimateOutGraphics(print_writer, "BUG-TOSS");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BUG_POWERPLAY":
+				AnimateOutGraphics(print_writer, "BUG_POWERPLAY");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BUG_HIGHLIGHT":
+				AnimateOutGraphics(print_writer, "BUG_HIGHLIGHT");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;	
+			case "MULTI_PARTNERSHIP":
+				AnimateOutGraphics(print_writer, "MULTI_PARTNERSHIP");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BUG-DISMISSAL":
+				AnimateOutGraphics(print_writer, "BUG-DISMISSAL");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "TARGET2":
+				AnimateOutGraphics(print_writer, "TARGET2");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "RESULT2" :
+				AnimateOutGraphics(print_writer, "RESULT2");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BUG":
+				AnimateOutGraphics(print_writer, "BUG");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BUGBOWLER":
+				AnimateOutGraphics(print_writer, "BUGBOWLER");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BUG-DB":
+				AnimateOutGraphics(print_writer, "BUG-DB");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "IMPACT":
+				AnimateOutGraphics(print_writer, "IMPACT");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "DLS_EQUATION":
+				AnimateOutGraphics(print_writer, "DLS_EQUATION");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "POINTER":
+				AnimateOutGraphics(print_writer, "POINTER");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "HOWOUT":
+				AnimateOutGraphics(print_writer, "HOWOUT");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "HOWOUT_QUICK":
+				AnimateOutGraphics(print_writer, "HOWOUT_QUICK");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "HOWOUT_WITHOUT":
+				AnimateOutGraphics(print_writer, "HOWOUT_WITHOUT");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "SCHEDULE":
+				AnimateOutGraphics(print_writer, "SCHEDULE");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "NAMESUPER":
+				AnimateOutGraphics(print_writer, "NAMESUPER");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "NAMESUPER-PLAYER":
+				AnimateOutGraphics(print_writer, "NAMESUPER-PLAYER");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+//			case "SCOREBUG":
+//				AnimateOutGraphics(print_writer, "SCOREBUG");
+//				infobar.setInfobar_on_screen(false);
+//				infobar = new Infobar();
+//				break;
+			
+			case "FALLOFWICKET":
+				AnimateOutGraphics(print_writer, "FALLOFWICKET");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "TEAMS_LOGO":
+				AnimateOutGraphics(print_writer, "TEAMS_LOGO");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "L3MATCHID":
+				AnimateOutGraphics(print_writer, "L3MATCHID");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "PLAYERPROFILEBALL":
+				AnimateOutGraphics(print_writer, "PLAYERPROFILEBALL");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "PLAYERPROFILEBAT":
+				AnimateOutGraphics(print_writer, "PLAYERPROFILEBAT");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;	
+			case "PREVIOUS_SUMMARY":
+				AnimateOutGraphics(print_writer, "PREVIOUS_SUMMARY");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "MATCH_PROMO":
+				AnimateOutGraphics(print_writer, "MATCH_PROMO");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "L3MATCH_PROMO":
+				AnimateOutGraphics(print_writer, "L3MATCH_PROMO");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "TARGET":
+				AnimateOutGraphics(print_writer, "TARGET");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "BUGTARGET":
+				AnimateOutGraphics(print_writer, "BUGTARGET");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				//resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "COMPARISION":
+				AnimateOutGraphics(print_writer, "COMPARISION");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "LTPARTNERSHIP":
+				AnimateOutGraphics(print_writer, "LTPARTNERSHIP");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "SPLIT":
+				AnimateOutGraphics(print_writer, "SPLIT");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "BATSMANSTATS":
+				AnimateOutGraphics(print_writer, "BATSMANSTATS");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "BOWLERSTATS":
+				AnimateOutGraphics(print_writer, "BOWLERSTATS");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "BOWLERSUMMARY":
+				AnimateOutGraphics(print_writer, "BOWLERSUMMARY");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "PLAYERSUMMARY":
+				AnimateOutGraphics(print_writer, "PLAYERSUMMARY");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "TEAMSUMMARY":
+				AnimateOutGraphics(print_writer, "TEAMSUMMARY");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "NEXTTOBAT":
+				AnimateOutGraphics(print_writer, "NEXTTOBAT");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "PHASE":
+				AnimateOutGraphics(print_writer, "PHASE");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "PROJECTED":
+				AnimateOutGraphics(print_writer, "PROJECTED");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "BOWLERDETAILS":
+				AnimateOutGraphics(print_writer, "BOWLERDETAILS");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "LTPOWERPLAY":
+				AnimateOutGraphics(print_writer, "LTPOWERPLAY");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "MATCHID":
+				AnimateOutGraphics(print_writer, "MATCHID");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "L3PLAYERPROFILE":
+				AnimateOutGraphics(print_writer, "L3PLAYERPROFILE");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "LTPLAYERPROFILEBAT":
+				AnimateOutGraphics(print_writer, "LTPLAYERPROFILEBAT");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "THISSERIES":
+				AnimateOutGraphics(print_writer, "THISSERIES");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "THISSERIES-BALL":
+				AnimateOutGraphics(print_writer, "THISSERIES-BALL");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "FF-THISSERIES_BALL":
+				AnimateOutGraphics(print_writer, "FF-THISSERIES_BALL");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "FF-THISSERIES":
+				AnimateOutGraphics(print_writer, "FF-THISSERIES");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "FFPLAYERPROFILE":
+				AnimateOutGraphics(print_writer, "FFPLAYERPROFILE");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "PLAYINGXI_SEQUENCE":
+				AnimateOutGraphics(print_writer, "PLAYINGXI_SEQUENCE");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"");
+				break;
+			case "TEAMLINEUP":
+				AnimateOutGraphics(print_writer, "TEAMLINEUP");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "DOUBLETEAMS":
+				AnimateOutGraphics(print_writer, "DOUBLETEAMS");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "CAPTAINS":
+				AnimateOutGraphics(print_writer, "CAPTAINS");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "TOP_PERFORMER":
+				AnimateOutGraphics(print_writer, "TOP_PERFORMER");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "LANDMARK":
+				AnimateOutGraphics(print_writer, "LANDMARK");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "EQUATION":
+				AnimateOutGraphics(print_writer, "EQUATION");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "POSITION_LANDMARK":
+				AnimateOutGraphics(print_writer, "POSITION_LANDMARK");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "BATSMAN_THIS_MATCH":
+				AnimateOutGraphics(print_writer, "BATSMAN_THIS_MATCH");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "BOWLER_THIS_MATCH":
+				AnimateOutGraphics(print_writer, "BOWLER_THIS_MATCH");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "POINTSTABLE":
+				AnimateOutGraphics(print_writer, "POINTSTABLE");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "LTPOINTSTABLE":
+				AnimateOutGraphics(print_writer, "LTPOINTSTABLE");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "BOWLER_STYLE":
+				AnimateOutGraphics(print_writer, "BOWLER_STYLE");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "BATSMAN_STYLE":
+				AnimateOutGraphics(print_writer, "BATSMAN_STYLE");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"LT_FRAME");
+				break;
+			case "MANHATTAN":
+				AnimateOutGraphics(print_writer, "MANHATTAN");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "WORM":
+				AnimateOutGraphics(print_writer, "WORM");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "LEADERBOARD":
+				AnimateOutGraphics(print_writer, "LEADERBOARD");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			case "FF_STATS":
+				AnimateOutGraphics(print_writer, "FF_STATS");
+				TimeUnit.SECONDS.sleep(1);
+				
+				which_graphic_on_screen = "";
+				resetInfobarAnimation(print_writer,"FF_FRAME");
+				break;
+			}
+			break;
+		case "ANIMATE-OUT-SECTION2":
+			if(infobar.getLast_top_section() != null && !infobar.getLast_top_section().trim().isEmpty()) {
+				switch(infobar.getLast_top_section().toUpperCase()) {
+				case CricketUtil.TOSS:
+					processAnimation(print_writer, "Section2$TossOut", "START", broadcaster);
+					break;
+				case "CRR":
+					processAnimation(print_writer, "Section2$CurRunRateOut", "START", broadcaster);
+					break;
+				case "CRR_RRR":
+					processAnimation(print_writer, "Section2$CRR_RRROut", "START", broadcaster);
+					break;
+				case "FIRST_INNING_SCORE":
+					processAnimation(print_writer, "Section2$FistInnScoreOut", "START", broadcaster);
+					break;
+				case CricketUtil.BOUNDARY:
+					processAnimation(print_writer, "Section2$BallsSinceLastBoundaryOut", "START", broadcaster);
+					break;
+				case "TARGET":
+					processAnimation(print_writer, "Section2$DLSTargetOut", "START", broadcaster);
+					break;
+				case "EXTRAS":
+					processAnimation(print_writer, "Section2$ExtrasOut", "START", broadcaster);
+					break;
+				case "EQUATION":
+					processAnimation(print_writer, "Section2$EquationOut", "START", broadcaster);
+					break;
+				case "PROJECTED":
+					processAnimation(print_writer, "Section2$ProjectedOut", "START", broadcaster);
+					break;
+				case "BOUNDARIES":
+					processAnimation(print_writer, "Section2$BoundariesOut", "START", broadcaster);
+					break;
+				case "PARTNERSHIP":
+					processAnimation(print_writer, "Section2$PartnershipOut", "START", broadcaster);
+					break;
+				case "LAST_WICKET":
+					processAnimation(print_writer, "Section2$LastWicketOut", "START", broadcaster);
+					break;
+				case CricketUtil.TIMELINE:
+					processAnimation(print_writer, "Section2$TimelineOut", "START", broadcaster);
+					break;
+				case "COMMENTATORS": case "LAST_X_BALLS": case "FREE_TEXT": case "STATISTICS": case "DLS_EQUATION": case "DLS_TARGET":
+				case "REVIEWS":
+					processAnimation(print_writer, "Section2$FreeTextSmallOut", "START", broadcaster);
+					break;
+				}
+				processAnimation(print_writer, "ALL_SECTION$Section2$Section2BaseOut", "START", broadcaster);
+			}
+			infobar.setLast_top_section("");infobar.setTop_section("");
+			break;
+		case "ANIMATE-OUT-SECTION4_N_5":
+			if(infobar.getLast_bottom_right_section() != null && infobar.getLast_bottom_right_section() != "") {
+				switch (infobar.getLast_bottom_right_section().toUpperCase()) {
+				case CricketUtil.DOT:
+					processAnimation(print_writer, "Section4_N_5$DotBallOut", "START", broadcaster);
+					break;
+				case "REVIEWS":
+					processAnimation(print_writer, "Section4_N_5$ReviewsOut", "START", broadcaster);
+					break;
+				case CricketUtil.FOUR:
+					processAnimation(print_writer, "Section4_N_5$FourCounterOut", "START", broadcaster);
+					break;
+				case "TOURNAMENT_FOURS":
+					processAnimation(print_writer, "Section4_N_5$FourCounterOut", "START", broadcaster);
+					break;	
+				case "TOURNAMENT_SIXES":
+					processAnimation(print_writer, "Section4_N_5$SixCounterOut", "START", broadcaster);
+					break;
+				case CricketUtil.SIX:
+					processAnimation(print_writer, "Section4_N_5$SixCounterOut", "START", broadcaster);
+					break;
+				case CricketUtil.COMPARE:
+					processAnimation(print_writer, "Section4_N_5$ComparisonOut", "START", broadcaster);
+					break;
+				case "TARGET_2":
+					processAnimation(print_writer, "Section4_N_5$TargetOut", "START", broadcaster);
+					break;
+				case "TOURNAMENT-NAME":
+					processAnimation(print_writer, "Section4_N_5$TargetOut", "START", broadcaster);
+					break;
+				}
+			}
+			processAnimation(print_writer, "Section5$ThisOverOut", "START", broadcaster);
+			processAnimation(print_writer, "Section5$EconomyOut", "START", broadcaster);
+			processAnimation(print_writer, "Section5$BowlingEndOut", "START", broadcaster);
+			
+			infobar.setBottom_right_bottom_section(CricketUtil.OVER);
+			infobar = populateVizInfobarRightBottom(infobar, false,print_writer, match, broadcaster);
+			
+			infobar.setBottom_right_top_section(CricketUtil.BOWLER);
+			infobar = populateVizInfobarRightTop(infobar, false,print_writer, match, broadcaster);
+			
+			processAnimation(print_writer, "ALL_SECTION$Section4In", "START", broadcaster);
+			processAnimation(print_writer, "ALL_SECTION$Section5In", "START", broadcaster);
+			if(over_size>7) {
+				processAnimation(print_writer, "Section5$BowlingEndIn", "START", broadcaster);
+				infobar.setLast_bottom_right_bottom_section("BOWLINGEND");
+			}else {
+				processAnimation(print_writer, "Section5$ThisOverIn", "START", broadcaster);
+				infobar.setLast_bottom_right_bottom_section(CricketUtil.OVER);
+			}				
+			infobar.setLast_bottom_right_section("");
+			infobar.setBottom_right_section("");
+			break;
+			
+		case "ANIMATE-OUT-DIRECTOR":
+			AnimateOutGraphics(print_writer, "DIRECTOR");
+			break;
+		}
+		return null;
+	}
+	
+	public Object allGraphicOption(String whatToProcess,String valueToProcess,MatchAllData match,List<HeadToHeadPlayer> head_to_head,
+			List<Tournament> past_tournament_stats,List<MatchAllData> tournament_matches,CricketService cricketService) throws InterruptedException, IOException {
+		
+		switch (whatToProcess) {
+		case "BUG_GRAPHICS-OPTIONS": case "BUG_DISMISSAL_GRAPHICS-OPTIONS": case "BUG_BOWLER_GRAPHICS-OPTIONS":
+			
+		case "HOWOUT_GRAPHICS-OPTIONS": case "BATSMANSTATS_GRAPHICS-OPTIONS": case "BOWLERSTATS_GRAPHICS-OPTIONS": case "NAMESUPER_PLAYER_GRAPHICS-OPTIONS": 
+		case "L3PLAYERPROFILE_GRAPHICS-OPTIONS": case "COMPARISION-GRAPHICS-OPTIONS": case "PROJECTED_GRAPHICS-OPTIONS": case "TARGET_GRAPHICS-OPTIONS":
+		case "PLAYERSUMMARY_GRAPHICS-OPTIONS": case "HOWOUT_WITHOUT_FIELDER_GRAPHICS-OPTIONS": case "BOWLERDETAILS_GRAPHICS-OPTIONS": 
+		case "NEXTTOBAT_GRAPHICS-OPTIONS": case "BOWLERSUMMARY_GRAPHICS-OPTIONS": case "EQUATION_GRAPHICS-OPTIONS": case "BATSMAN_THIS_MATCH_GRAPHICS-OPTIONS":
+		case "BOWLER_THIS_MATCH_GRAPHICS-OPTIONS": case "PLAYERS_GRAPHICS-OPTIONS": case "BATSMAN_STYLE_GRAPHICS-OPTIONS": case "RIGHT_GRAPHICS-OPTIONS":
+		case "THISSERIES-STATS_GRAPHICS-OPTIONS":
+			
+		case "PLAYERPROFILE_GRAPHICS-OPTIONS": case "ANIMATE_PLAYINGXI-OPTIONS": case "TOP_GRAPHICS-OPTIONS": case "LANDMARK_GRAPHICS-OPTIONS":
+		case "POSITION_LANDMARK_GRAPHICS-OPTIONS": case "FF_THISSERIES-STATS_GRAPHICS-OPTIONS":
+			
+		case "BOTTOMLEFT_GRAPHICS-OPTIONS": case "BOTTOMRIGHT_GRAPHICS-OPTIONS": case "INFOBAR_GRAPHICS-OPTIONS": 
+		case "BOTTOM_GRAPHICS-OPTIONS":  
+		    	
+			return match;
+		case "EXCEL_FF_SUMMARY_GRAPHICS_OPTION":
+			return new ObjectMapper().writeValueAsString(CricketFunctions.ReadExcel("C:\\Sports\\Cricket\\Summary.xlsx").keySet()).toString();
+		case "NAMESUPER_GRAPHICS-OPTIONS": 
+			return new ObjectMapper().writeValueAsString(cricketService.getNameSupers()).toString();
+		case "MATCH-PROMO_GRAPHICS-OPTIONS": case "PREVIOUS_SUMMARY_GRAPHICS-OPTIONS": case "LT-TIEID-DOUBLE_GRAPHICS-OPTIONS": case "L3_MATCH-PROMO_GRAPHICS-OPTIONS":
+			return new ObjectMapper().writeValueAsString(CricketFunctions.processAllFixtures(cricketService)).toString();
+		case "BUG_DB_GRAPHICS-OPTIONS": case "BUG_DB2_GRAPHICS-OPTIONS":
+			return new ObjectMapper().writeValueAsString(cricketService.getBugs()).toString();
+		case "LT_POINTERS_GRAPHICS-OPTIONS":
+			return new ObjectMapper().writeValueAsString(cricketService.getPointers()).toString();
+		case "PROMPT_GRAPHICS-OPTIONS":
+			return new ObjectMapper().writeValueAsString(cricketService.getInfobarStats()).toString();
+		case "LEADERBOARD_TEAM_GRAPHICS-OPTIONS":
+			return new ObjectMapper().writeValueAsString(cricketService.getTeams()).toString();
+		case "TEAM_WICKETS_GRAPHICS-OPTIONS": case "TEAM_LEADERBOARD_GRAPHICS-OPTIONS": 
+		case "TEAM_FOURS_GRAPHICS-OPTIONS": case "TEAM_SIXES_GRAPHICS-OPTIONS":
+			LeaderBoard = CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, head_to_head,cricketService, match, past_tournament_stats);
+//			List<Tournament> tourn_stats = CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",false, tournament_matches, cricketService, match,null);
+			LeaderBoard.removeIf(tournament -> tournament.getPlayer().getTeamId() != Integer.valueOf(valueToProcess)); 
+			switch (whatToProcess) {
+			case "TEAM_LEADERBOARD_GRAPHICS-OPTIONS": 
+				Collections.sort(LeaderBoard,new CricketFunctions.BatsmenMostRunComparator());
+				break;
+			case "TEAM_WICKETS_GRAPHICS-OPTIONS": 
+				Collections.sort(LeaderBoard,new CricketFunctions.BowlerWicketsComparator());
+				break;
+			case "TEAM_FOURS_GRAPHICS-OPTIONS": 
+				Collections.sort(LeaderBoard,new CricketFunctions.BatsmanFoursComparator());
+				break;
+			case "TEAM_SIXES_GRAPHICS-OPTIONS":
+				Collections.sort(LeaderBoard,new CricketFunctions.BatsmanSixesComparator());
+				break;
+			}
+			return new ObjectMapper().writeValueAsString(LeaderBoard).toString();
+		case "HIGHEST_SCORE_GRAPHICS-OPTIONS":case "BEST_FIG_GRAPHICS-OPTIONS":
+			LeaderBoard = CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, head_to_head,
+						cricketService, match, past_tournament_stats);
+			 top_ten_beststat = new ArrayList<BestStats>();
+	        for(Tournament tourn : LeaderBoard) {
+				switch (whatToProcess) {
+				case "HIGHEST_SCORE_GRAPHICS-OPTIONS":
+		            for(BestStats bs : tourn.getBatsman_best_Stats()) {
+		            	top_ten_beststat.add(CricketFunctions.getProcessedBatsmanBestStats(bs));
+		            }
+					Collections.sort(top_ten_beststat,new CricketFunctions.BatsmanBestStatsComparator());
+					break;
+				case "BEST_FIG_GRAPHICS-OPTIONS":
+		            for(BestStats bs : tourn.getBowler_best_Stats()) {
+		            	top_ten_beststat.add(CricketFunctions.getProcessedBowlerBestStats(bs));
+		            }
+					Collections.sort(top_ten_beststat,new CricketFunctions.BowlerBestStatsComparator());
+					break;
+				}
+	        }       
+		 return  new ObjectMapper().writeValueAsString(top_ten_beststat).toString();
+		case "LEADERBOARD_GRAPHICS-OPTIONS": case "WICKETS_GRAPHICS-OPTIONS": case "FOURS_GRAPHICS-OPTIONS": case "SIXES_GRAPHICS-OPTIONS":
+			LeaderBoard = CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, head_to_head,cricketService, match, past_tournament_stats);
+//			List<Tournament> tourn_stats = CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",false, tournament_matches, cricketService, match,null);
+			switch (whatToProcess) {
+			case "LEADERBOARD_GRAPHICS-OPTIONS": 
+				Collections.sort(LeaderBoard,new CricketFunctions.BatsmenMostRunComparator());
+				break;
+			case "WICKETS_GRAPHICS-OPTIONS": 
+				Collections.sort(LeaderBoard,new CricketFunctions.BowlerWicketsComparator());
+				break;
+			case "FOURS_GRAPHICS-OPTIONS": 
+				Collections.sort(LeaderBoard,new CricketFunctions.BatsmanFoursComparator());
+				break;
+			case "SIXES_GRAPHICS-OPTIONS":
+				Collections.sort(LeaderBoard,new CricketFunctions.BatsmanSixesComparator());
+				break;
+			}
+			return new ObjectMapper().writeValueAsString(LeaderBoard).toString();
+		}
+		return null;
+	}
 }

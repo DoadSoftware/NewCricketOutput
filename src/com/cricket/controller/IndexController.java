@@ -956,16 +956,7 @@ public class IndexController
 		@RequestParam(value = "valueToProcess", required = false, defaultValue = "") String valueToProcess) 
 					throws Exception 
 	{
-		if(cat.equalsIgnoreCase("Men")) {
-		    DatabaseContextHolder.setDb("MEN");
-		    basePath = "C:\\Sports\\CricketMen\\";
-		} else if(cat.equalsIgnoreCase("Women")) {
-		    DatabaseContextHolder.setDb("WOMEN");
-		    basePath = "C:\\Sports\\CricketWomen\\";
-		} else {
-		    DatabaseContextHolder.setDb("LOCAL");
-		    basePath = CricketUtil.CRICKET_DIRECTORY;
-		}
+		
 		
 		switch (whatToProcess.toUpperCase()) {
 		case "GET-CONFIG-DATA":

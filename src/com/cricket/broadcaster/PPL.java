@@ -3072,12 +3072,18 @@ public class PPL extends Scene{
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format2$BatData$Header$TeamNameGrp"
 							+ "$FirstName*GEOM*TEXT SET " + match.getSetup().getMatchIdent() + "\0");
 					if (inn.getBattingTeamId() == match.getSetup().getHomeTeamId()) {
+						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET "  + 
+				    			match.getSetup().getHomeTeam().getTeamBadge() + "\0");
+						
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBatTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" +
 								match.getSetup().getHomeTeam().getTeamBadge().toUpperCase() + "\0");
 
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format2$BatData$Header$TeamNameGrp"
 								+ "$LastName*GEOM*TEXT SET " + match.getSetup().getHomeTeam().getTeamName1().toUpperCase() + "\0");
 					} else {
+						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET "  + 
+				    			match.getSetup().getAwayTeam().getTeamBadge() + "\0");
+						
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBatTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" +
 								match.getSetup().getAwayTeam().getTeamBadge().toUpperCase() + "\0");
 
@@ -3090,21 +3096,38 @@ public class PPL extends Scene{
 					for (BattingCard bc : inn.getBattingCard()) {
 						row_id = row_id + 1;
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vBatRows" + " SET " + row_id + "\0");
-						
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vBatImpact" + row_id + " SET " + "0" + "\0");
 						if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), bc.getPlayerId()).isEmpty()) {
 							switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), bc.getPlayerId())) {
-							case "IN":
+							case "IMP_IN":
 								impactInThisInning = true;
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vBatImpact" + row_id + " SET " + "1" + "\0");
 								break;
-							case "OUT":
+							case "IMP_OUT":
 								impactInThisInning = true;
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vBatImpact" + row_id + " SET " + "2" + "\0");
 								break;
+							case "CON_IN":
+								break;
+							case "CON_OUT":
+								break;
 							}
-						}else {
-							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vBatImpact" + row_id + " SET " + "0" + "\0");
 						}
+						
+//						if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), bc.getPlayerId()).isEmpty()) {
+//							switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), bc.getPlayerId())) {
+//							case "IN":
+//								impactInThisInning = true;
+//								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vBatImpact" + row_id + " SET " + "1" + "\0");
+//								break;
+//							case "OUT":
+//								impactInThisInning = true;
+//								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vBatImpact" + row_id + " SET " + "2" + "\0");
+//								break;
+//							}
+//						}else {
+//							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vBatImpact" + row_id + " SET " + "0" + "\0");
+//						}
 //						if(CricketFunctions.isImpactPlayer(match.getEventFile().getEvents(), whichInning, bc.getPlayerId()).equalsIgnoreCase(CricketUtil.YES)) {
 //							impactInThisInning = true;
 //							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vBatImpact" + row_id + " SET " + "1" + "\0");
@@ -3415,11 +3438,17 @@ public class PPL extends Scene{
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BowlingCardAll$BowlingCardType$Format2$BallData$Header$SubHeader*GEOM*TEXT SET " 
 							+ match.getSetup().getTournament().toUpperCase() + "\0");
 					if (inn.getBowlingTeamId() == match.getSetup().getHomeTeamId()) {
+						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET "  + 
+				    			match.getSetup().getHomeTeam().getTeamBadge() + "\0");
+						
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBallTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BowlingCardAll$BowlingCardType$Format2$BallData$Header$TeamNameGrp$LastName*GEOM*TEXT SET " 
 								+ match.getSetup().getHomeTeam().getTeamName1().toUpperCase() + "\0");
 					} else {
+						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET "  + 
+				    			match.getSetup().getAwayTeam().getTeamBadge() + "\0");
+						
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBallTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BowlingCardAll$BowlingCardType$Format2$BallData$Header$TeamNameGrp$LastName*GEOM*TEXT SET " 
@@ -3471,15 +3500,20 @@ public class PPL extends Scene{
 //							}
 //							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vBallImpact" + row_id + " SET " + "0" + "\0");
 //						}
+						
 						if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), boc.getPlayerId()).isEmpty()) {
 							switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), boc.getPlayerId())) {
-							case "IN":
+							case "IMP_IN":
 								impactInThisInning = true;
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vBallImpact" + row_id + " SET " + "1" + "\0");
 								break;
-							case "OUT":
+							case "IMP_OUT":
 								impactInThisInning = true;
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vBallImpact" + row_id + " SET " + "2" + "\0");
+								break;
+							case "CON_IN":
+								break;
+							case "CON_OUT":
 								break;
 							}
 						}else {
@@ -3488,6 +3522,24 @@ public class PPL extends Scene{
 							}
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vBallImpact" + row_id + " SET " + "0" + "\0");
 						}
+						
+//						if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), boc.getPlayerId()).isEmpty()) {
+//							switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), boc.getPlayerId())) {
+//							case "IN":
+//								impactInThisInning = true;
+//								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vBallImpact" + row_id + " SET " + "1" + "\0");
+//								break;
+//							case "OUT":
+//								impactInThisInning = true;
+//								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vBallImpact" + row_id + " SET " + "2" + "\0");
+//								break;
+//							}
+//						}else {
+//							if(impactInThisInning == false) {
+//								impactInThisInning = false;
+//							}
+//							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vBallImpact" + row_id + " SET " + "0" + "\0");
+//						}
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BowlingCardAll$BowlingCardType$Format2$BallData$BallDataGrp$BallRow" + row_id + 
 								"$RowAnimation$BallOmo*FUNCTION*Omo*vis_con SET " + omo_num +"\0");
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BowlingCardAll$BowlingCardType$Format2$BallData$BallDataGrp$BallRow" + row_id + 
@@ -3637,6 +3689,9 @@ public class PPL extends Scene{
 								"$RowAnimation$TeamNameAll$TossCoin*ACTIVE SET 0 \0");
 					}
 					
+					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET "  + 
+							match.getMatch().getInning().get(i-1).getBatting_team().getTeamBadge() + "\0");
+					
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow6*ACTIVE SET 0 \0");
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow7*ACTIVE SET 0 \0");
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow8*ACTIVE SET 0 \0");
@@ -3656,6 +3711,9 @@ public class PPL extends Scene{
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + (row_id + 1) + 
 								"$RowAnimation$TeamNameAll$TossCoin*ACTIVE SET 0 \0");
 					}
+					
+					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET "  + 
+							match.getMatch().getInning().get(i-1).getBatting_team().getTeamBadge() + "\0");
 					
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow6*ACTIVE SET 1 \0");
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow7*ACTIVE SET 1 \0");
@@ -3705,17 +3763,22 @@ public class PPL extends Scene{
 //									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + bat_impact_count + 
 //											"$RowAnimation$BatsmanGrp$TextAll$Impact*FUNCTION*Omo*vis_con SET " + "0" + " \0");
 //								}
+								
 								if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), bc.getPlayerId()).isEmpty()) {
 									switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), bc.getPlayerId())) {
-									case "IN":
+									case "IMP_IN":
 										impactBatInThisInning = true;
 										print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + row_id + 
 												"$RowAnimation$BatsmanGrp$TextAll$Impact*FUNCTION*Omo*vis_con SET " + "1" + " \0");
 										break;
-									case "OUT":
+									case "IMP_OUT":
 										impactBatInThisInning = true;
 										print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + row_id + 
 												"$RowAnimation$BatsmanGrp$TextAll$Impact*FUNCTION*Omo*vis_con SET " + "2" + " \0");
+										break;
+									case "CON_IN":
+										break;
+									case "CON_OUT":
 										break;
 									}
 								}else {
@@ -3725,6 +3788,28 @@ public class PPL extends Scene{
 									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + row_id + 
 											"$RowAnimation$BatsmanGrp$TextAll$Impact*FUNCTION*Omo*vis_con SET " + "0" + " \0");
 								}
+								
+								
+//								if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), bc.getPlayerId()).isEmpty()) {
+//									switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), bc.getPlayerId())) {
+//									case "IN":
+//										impactBatInThisInning = true;
+//										print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + row_id + 
+//												"$RowAnimation$BatsmanGrp$TextAll$Impact*FUNCTION*Omo*vis_con SET " + "1" + " \0");
+//										break;
+//									case "OUT":
+//										impactBatInThisInning = true;
+//										print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + row_id + 
+//												"$RowAnimation$BatsmanGrp$TextAll$Impact*FUNCTION*Omo*vis_con SET " + "2" + " \0");
+//										break;
+//									}
+//								}else {
+//									if(impactBatInThisInning == false) {
+//										impactBatInThisInning = false;
+//									}
+//									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + row_id + 
+//											"$RowAnimation$BatsmanGrp$TextAll$Impact*FUNCTION*Omo*vis_con SET " + "0" + " \0");
+//								}
 								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + row_id + 
 										"$RowAnimation$BatsmanGrp*ACTIVE SET 1 \0");
 								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + row_id + 
@@ -3784,20 +3869,24 @@ public class PPL extends Scene{
 //								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + ball_impact_count + 
 //										"$RowAnimation$BowlerGrp$TextAll$Impact*FUNCTION*Omo*vis_con SET " + "0" + " \0");
 //							}
+							
 							if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), boc.getPlayerId()).isEmpty()) {
 								switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), boc.getPlayerId())) {
-								case "IN":
+								case "IMP_IN":
 									impactBowlInThisInning = true;
 									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + ball_impact_count + 
 											"$RowAnimation$BowlerGrp$TextAll$Impact*FUNCTION*Omo*vis_con SET " + "1" + " \0");
 									print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vSumBowlerImpact" + (row_id-1) + " SET " + "1" + "\0");
 									break;
-								case "OUT":
+								case "IMP_OUT":
 									impactBowlInThisInning = true;
 									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + ball_impact_count + 
 											"$RowAnimation$BowlerGrp$TextAll$Impact*FUNCTION*Omo*vis_con SET " + "2" + " \0");
 									print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vSumBowlerImpact" + (row_id-1) + " SET " + "2" + "\0");
-
+									break;
+								case "CON_IN":
+									break;
+								case "CON_OUT":
 									break;
 								}
 							}else {
@@ -3807,7 +3896,33 @@ public class PPL extends Scene{
 								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + ball_impact_count + 
 										"$RowAnimation$BowlerGrp$TextAll$Impact*FUNCTION*Omo*vis_con SET " + "0" + " \0");
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vSumBowlerImpact" + (row_id-1) + " SET " + "0" + "\0");
-							}	
+							}
+							
+							
+//							if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), boc.getPlayerId()).isEmpty()) {
+//								switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), boc.getPlayerId())) {
+//								case "IN":
+//									impactBowlInThisInning = true;
+//									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + ball_impact_count + 
+//											"$RowAnimation$BowlerGrp$TextAll$Impact*FUNCTION*Omo*vis_con SET " + "1" + " \0");
+//									print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vSumBowlerImpact" + (row_id-1) + " SET " + "1" + "\0");
+//									break;
+//								case "OUT":
+//									impactBowlInThisInning = true;
+//									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + ball_impact_count + 
+//											"$RowAnimation$BowlerGrp$TextAll$Impact*FUNCTION*Omo*vis_con SET " + "2" + " \0");
+//									print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vSumBowlerImpact" + (row_id-1) + " SET " + "2" + "\0");
+//
+//									break;
+//								}
+//							}else {
+//								if(impactBowlInThisInning == false) {
+//									impactBowlInThisInning = false;
+//								}
+//								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + ball_impact_count + 
+//										"$RowAnimation$BowlerGrp$TextAll$Impact*FUNCTION*Omo*vis_con SET " + "0" + " \0");
+//								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vSumBowlerImpact" + (row_id-1) + " SET " + "0" + "\0");
+//							}	
 							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + row_id + 
 									"$RowAnimation$BowlerGrp*ACTIVE SET 1 \0");
 							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow" + row_id + 
@@ -4399,11 +4514,17 @@ public class PPL extends Scene{
 				//if (inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
 					
 					if (inn.getBattingTeamId() == match.getSetup().getHomeTeamId()) {
+						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-PartTeamRefName" + " SET "  + 
+								match.getSetup().getHomeTeam().getTeamBadge() + "\0");
+						
 //						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$Base$Left$PartLeftLogoGrp$PartLeftLogo*TEXTURE*IMAGE SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$Base$RightGrp$PartLeftLogoGrp$PartLeftLogo*TEXTURE*IMAGE SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$PartnershipAll$Data$Header$TeamNameGrp$LastName*GEOM*TEXT SET " + match.getSetup().getHomeTeam().getTeamName1().toUpperCase() + "\0");
 					} else {
+						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-PartTeamRefName" + " SET "  + 
+								match.getSetup().getAwayTeam().getTeamBadge() + "\0");
+						
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$Base$Left$PartLeftLogoGrp$PartLeftLogo*TEXTURE*IMAGE SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$Base$RightGrp$PartLeftLogoGrp$PartLeftLogo*TEXTURE*IMAGE SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 						
@@ -4528,15 +4649,19 @@ public class PPL extends Scene{
 //							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vRightImpact" + row_id + " SET " + "0" + "\0");
 //						}
 						
-						if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(),  ps.getFirstBatterNo()).isEmpty()) {
-							switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(),  ps.getFirstBatterNo())) {
-							case "IN":
+						if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), ps.getFirstBatterNo()).isEmpty()) {
+							switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), ps.getFirstBatterNo())) {
+							case "IMP_IN":
 								impactInThisInning = true;
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vLeftImpact" + row_id + " SET " + "1" + "\0");
 								break;
-							case "OUT":
+							case "IMP_OUT":
 								impactInThisInning = true;
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vLeftImpact" + row_id + " SET " + "2" + "\0");
+								break;
+							case "CON_IN":
+								break;
+							case "CON_OUT":
 								break;
 							}
 						}else {
@@ -4545,15 +4670,37 @@ public class PPL extends Scene{
 							}
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vLeftImpact" + row_id + " SET " + "0" + "\0");
 						}
-						if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(),  ps.getSecondBatterNo()).isEmpty()) {
-							switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(),  ps.getSecondBatterNo())) {
-							case "IN":
+						
+//						if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(),  ps.getFirstBatterNo()).isEmpty()) {
+//							switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(),  ps.getFirstBatterNo())) {
+//							case "IN":
+//								impactInThisInning = true;
+//								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vLeftImpact" + row_id + " SET " + "1" + "\0");
+//								break;
+//							case "OUT":
+//								impactInThisInning = true;
+//								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vLeftImpact" + row_id + " SET " + "2" + "\0");
+//								break;
+//							}
+//						}else {
+//							if(impactInThisInning == false) {
+//								impactInThisInning = false;
+//							}
+//							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vLeftImpact" + row_id + " SET " + "0" + "\0");
+//						}
+						if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), ps.getSecondBatterNo()).isEmpty()) {
+							switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), ps.getSecondBatterNo())) {
+							case "IMP_IN":
 								impactInThisInning = true;
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vRightImpact" + row_id + " SET " + "1" + "\0");
 								break;
-							case "OUT":
+							case "IMP_OUT":
 								impactInThisInning = true;
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vRightImpact" + row_id + " SET " + "2" + "\0");
+								break;
+							case "CON_IN":
+								break;
+							case "CON_OUT":
 								break;
 							}
 						}else {
@@ -4562,6 +4709,25 @@ public class PPL extends Scene{
 							}
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vRightImpact" + row_id + " SET " + "0" + "\0");
 						}
+						
+//						if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(),  ps.getSecondBatterNo()).isEmpty()) {
+//							switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(),  ps.getSecondBatterNo())) {
+//							case "IN":
+//								impactInThisInning = true;
+//								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vRightImpact" + row_id + " SET " + "1" + "\0");
+//								break;
+//							case "OUT":
+//								impactInThisInning = true;
+//								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vRightImpact" + row_id + " SET " + "2" + "\0");
+//								break;
+//							}
+//						}else {
+//							if(impactInThisInning == false) {
+//								impactInThisInning = false;
+//							}
+//							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vRightImpact" + row_id + " SET " + "0" + "\0");
+//						}
+						
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$PartnershipAll$Data$BatDataGrp$Row" + row_id  + "$RowAnimation$RowOmo" + "$" + cont_name + 
 								"$Bar*FUNCTION*BarValues*Bar_Value__1 SET " + ScaleFac1 + "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$PartnershipAll$Data$BatDataGrp$Row" + row_id  + "$RowAnimation$RowOmo" + "$" + cont_name + 
@@ -4599,16 +4765,40 @@ public class PPL extends Scene{
 								}
 								else if(bc.getStatus().toUpperCase().equalsIgnoreCase(CricketUtil.STILL_TO_BAT)) {
 									row_id = row_id + 1;
-									if(CricketFunctions.isImpactPlayer(match.getEventFile().getEvents(), whichInning, bc.getPlayerId()).equalsIgnoreCase(CricketUtil.YES)) {
-										System.out.println("row "+row_id);
-										impactInThisInning = true;
-										print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vLeftImpact" + row_id + " SET " + "1" + "\0");
+									
+									if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), bc.getPlayerId()).isEmpty()) {
+										switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), bc.getPlayerId())) {
+										case "IMP_IN":
+											impactInThisInning = true;
+											print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vLeftImpact" + row_id + " SET " + "1" + "\0");
+											break;
+										case "IMP_OUT":
+											impactInThisInning = true;
+											print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vLeftImpact" + row_id + " SET " + "2" + "\0");
+											break;
+										case "CON_IN":
+											break;
+										case "CON_OUT":
+											break;
+										}
 									}else {
 										if(impactInThisInning == false) {
 											impactInThisInning = false;
 										}
 										print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vLeftImpact" + row_id + " SET " + "0" + "\0");
 									}
+									
+									
+//									if(CricketFunctions.isImpactPlayer(match.getEventFile().getEvents(), whichInning, bc.getPlayerId()).equalsIgnoreCase(CricketUtil.YES)) {
+//										System.out.println("row "+row_id);
+//										impactInThisInning = true;
+//										print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vLeftImpact" + row_id + " SET " + "1" + "\0");
+//									}else {
+//										if(impactInThisInning == false) {
+//											impactInThisInning = false;
+//										}
+//										print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vLeftImpact" + row_id + " SET " + "0" + "\0");
+//									}
 									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$PartnershipAll$Data$BatDataGrp$Row" + row_id  + "$RowAnimation$RowOmo*FUNCTION*Omo*vis_con SET " + "1" + " \0");
 									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$PartnershipAll$Data$BatDataGrp$Row" + row_id  + "$RowAnimation$RowOmo$LeftPlayerName$LeftPlayerNameText*GEOM*TEXT SET " + 
 											bc.getPlayer().getTicker_name()+" \0");
@@ -7323,6 +7513,12 @@ public class PPL extends Scene{
 						+ match.getSetup().getAwayTeam().getTeamName1().toUpperCase() + " WON THE TOSS & ELECTED TO " + match.getSetup().getTossWinningDecision().toUpperCase() + "\0");
 			}
 	    	
+	    	print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET "  + 
+	    			match.getSetup().getHomeTeam().getTeamBadge() + "\0");
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET "  + 
+					match.getSetup().getAwayTeam().getTeamBadge() + "\0");
+			
+			
 			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgIdentTeamLogo1" + " SET " 
 									+ "IMAGE*/Default/PPL/Logos/" + match.getSetup().getHomeTeam().getTeamBadge()+ "\0");
 			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tTeamName1" + " SET " 
@@ -7571,6 +7767,10 @@ public class PPL extends Scene{
 		for(Inning inn : match.getMatch().getInning()) {
 			if (inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
 				if(is_this_updating == false) {
+					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET "  + inn.getBatting_team().getTeamBadge() + "\0");
+					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET "  + inn.getBowling_team().getTeamBadge() + "\0");
+					
+					
 					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBatTeamLogo" + " SET "  + "IMAGE*/Default/PPL/Logos/" + 
 							inn.getBatting_team().getTeamBadge() + "\0");
 					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBallTeamLogo" + " SET "  + "IMAGE*/Default/PPL/Logos/" + 
@@ -7662,39 +7862,74 @@ public class PPL extends Scene{
 					
 					if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), current_batsmen.get(0).getPlayerId()).isEmpty()) {
 						switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), current_batsmen.get(0).getPlayerId())) {
-						case "IN":							
+						case "IMP_IN":
 							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Section3$BatsmanGrp$Batsman1$IMPACT*FUNCTION*Omo*vis_con SET " + "1" + " \0");
-//							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON vImpactBatsman01 SET " + "1" + "\0");
 							break;
-						case "OUT":
+						case "IMP_OUT":
 							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Section3$BatsmanGrp$Batsman1$IMPACT*FUNCTION*Omo*vis_con SET " + "2" + " \0");
-
-//							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON vImpactBatsman01 SET " + "2" + "\0");
+							break;
+						case "CON_IN":
+							break;
+						case "CON_OUT":
 							break;
 						}
 					}else {
 						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Section3$BatsmanGrp$Batsman1$IMPACT*FUNCTION*Omo*vis_con SET " + "0" + " \0");
-
-//						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON vImpactBatsman01 SET " + "0" + "\0");
 					}
+					
+					
 					if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), current_batsmen.get(1).getPlayerId()).isEmpty()) {
 						switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), current_batsmen.get(1).getPlayerId())) {
-						case "IN":
+						case "IMP_IN":
 							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Section3$BatsmanGrp$Batsman2$IMPACT*FUNCTION*Omo*vis_con SET " + "1" + " \0");
-
-//							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON vImpactBatsman02 SET " + "1" + "\0");
 							break;
-						case "OUT":
+						case "IMP_OUT":
 							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Section3$BatsmanGrp$Batsman2$IMPACT*FUNCTION*Omo*vis_con SET " + "2" + " \0");
-
-//							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON vImpactBatsman02 SET " + "2" + "\0");
+							break;
+						case "CON_IN":
+							break;
+						case "CON_OUT":
 							break;
 						}
 					}else {
 						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Section3$BatsmanGrp$Batsman2$IMPACT*FUNCTION*Omo*vis_con SET " + "0" + " \0");
-
-//						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON vImpactBatsman02 SET " + "0" + "\0");
 					}
+					
+//					if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), current_batsmen.get(0).getPlayerId()).isEmpty()) {
+//						switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), current_batsmen.get(0).getPlayerId())) {
+//						case "IN":							
+//							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Section3$BatsmanGrp$Batsman1$IMPACT*FUNCTION*Omo*vis_con SET " + "1" + " \0");
+////							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON vImpactBatsman01 SET " + "1" + "\0");
+//							break;
+//						case "OUT":
+//							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Section3$BatsmanGrp$Batsman1$IMPACT*FUNCTION*Omo*vis_con SET " + "2" + " \0");
+//
+////							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON vImpactBatsman01 SET " + "2" + "\0");
+//							break;
+//						}
+//					}else {
+//						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Section3$BatsmanGrp$Batsman1$IMPACT*FUNCTION*Omo*vis_con SET " + "0" + " \0");
+//
+////						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON vImpactBatsman01 SET " + "0" + "\0");
+//					}
+//					if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), current_batsmen.get(1).getPlayerId()).isEmpty()) {
+//						switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), current_batsmen.get(1).getPlayerId())) {
+//						case "IN":
+//							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Section3$BatsmanGrp$Batsman2$IMPACT*FUNCTION*Omo*vis_con SET " + "1" + " \0");
+//
+////							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON vImpactBatsman02 SET " + "1" + "\0");
+//							break;
+//						case "OUT":
+//							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Section3$BatsmanGrp$Batsman2$IMPACT*FUNCTION*Omo*vis_con SET " + "2" + " \0");
+//
+////							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON vImpactBatsman02 SET " + "2" + "\0");
+//							break;
+//						}
+//					}else {
+//						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Section3$BatsmanGrp$Batsman2$IMPACT*FUNCTION*Omo*vis_con SET " + "0" + " \0");
+//
+////						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON vImpactBatsman02 SET " + "0" + "\0");
+//					}
 					
 //					if (CricketFunctions.isImpactPlayer(match.getEventFile().getEvents(),inn.getInningNumber(), current_batsmen.get(0).getPlayerId())
 //							.equalsIgnoreCase(CricketUtil.YES)) {
@@ -7904,18 +8139,36 @@ public class PPL extends Scene{
 									processAnimation(print_writer, "BowlerDeHighlight", "SHOW 0.280", broadcaster);
 									processAnimation(print_writer, "BowlerHighlight", "SHOW 0.0", broadcaster);
 							}
+							
 							if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), boc.getPlayerId()).isEmpty()) {
 								switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), boc.getPlayerId())) {
-								case "IN":
+								case "IMP_IN":
 									print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Sectio4_5$Bowler$IMPACT*FUNCTION*Omo*vis_con SET " + "1" + " \0");
 									break;
-								case "OUT":
+								case "IMP_OUT":
 									print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Sectio4_5$Bowler$IMPACT*FUNCTION*Omo*vis_con SET " + "2" + " \0");
+									break;
+								case "CON_IN":
+									break;
+								case "CON_OUT":
 									break;
 								}
 							}else {
 								print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Sectio4_5$Bowler$IMPACT*FUNCTION*Omo*vis_con SET " + "0" + " \0");
 							}
+							
+//							if(!CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), boc.getPlayerId()).isEmpty()) {
+//								switch(CricketFunctions.checkBatAndBallImpactInOutPlayer(match.getEventFile().getEvents(), boc.getPlayerId())) {
+//								case "IN":
+//									print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Sectio4_5$Bowler$IMPACT*FUNCTION*Omo*vis_con SET " + "1" + " \0");
+//									break;
+//								case "OUT":
+//									print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Sectio4_5$Bowler$IMPACT*FUNCTION*Omo*vis_con SET " + "2" + " \0");
+//									break;
+//								}
+//							}else {
+//								print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section3-4-5$Sectio4_5$Bowler$IMPACT*FUNCTION*Omo*vis_con SET " + "0" + " \0");
+//							}
 //							if(boc.getStatus().toUpperCase().equalsIgnoreCase("CURRENTBOWLER")) {
 //								processAnimation(print_writer, "BowlerHighlight", "SHOW 0.280", broadcaster);	
 //							}
@@ -12281,6 +12534,9 @@ public class PPL extends Scene{
 			        print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$PointsTableAll$PointsData$PointsDataGrp$PointRow" 
 			            + row_id + "$RowAnimation$RowOmo" + cont_name 
 			            + "$TextAll$PoinTeamName*GEOM*TEXT SET " + tm.getTeamName1().toUpperCase() + " \0");
+			        
+			        print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-PTTeam" + row_id + " SET "  + 
+			        		tm.getTeamBadge() + "\0");
 			    }
 			}
 

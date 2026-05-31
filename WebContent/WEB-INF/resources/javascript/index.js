@@ -7392,7 +7392,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
+					valueToProcess = '/Default/BCL/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/BatBallSummary' + ',' + document.getElementById('which_keypress').value;

@@ -17,6 +17,7 @@ import com.cricket.containers.Scene;
 import com.cricket.model.BattingCard;
 import com.cricket.model.BestStats;
 import com.cricket.model.BowlingCard;
+import com.cricket.model.Bugs;
 import com.cricket.model.Configuration;
 import com.cricket.model.Event;
 import com.cricket.model.EverestBugs;
@@ -140,7 +141,7 @@ public class EVEREST_LEGENDS_90 extends Scene{
 		case "MATCH-PROMO_GRAPHICS-OPTIONS": case "PREVIOUS_SUMMARY_GRAPHICS-OPTIONS": case "LT-TIEID-DOUBLE_GRAPHICS-OPTIONS": case "L3_MATCH-PROMO_GRAPHICS-OPTIONS":
 			return new ObjectMapper().writeValueAsString(CricketFunctions.processAllFixtures(cricketService)).toString();
 		case "BUG_DB_GRAPHICS-OPTIONS":
-			return new ObjectMapper().writeValueAsString(cricketService.getEverestBugs()).toString();
+			return new ObjectMapper().writeValueAsString(cricketService.getBugs()).toString();
 		case "PROMPT_GRAPHICS-OPTIONS":
 			return new ObjectMapper().writeValueAsString(cricketService.getInfobarStats()).toString();
 		case "EXCEL_FF_KEY_PLAYER_GRAPHICS_OPTION":
@@ -245,7 +246,7 @@ public class EVEREST_LEGENDS_90 extends Scene{
 						valueToProcess.split(",")[2],Integer.valueOf(valueToProcess.split(",")[3]), match, broadcaster);
 				break;
 			case "POPULATE-L3-BUG-DB":
-				for(EverestBugs bug : cricketService.getEverestBugs()) {
+				for(Bugs bug : cricketService.getBugs()) {
 					  if(bug.getBugId() == Integer.valueOf(valueToProcess.split(",")[1])) {
 						  populateBugsDB(print_writer, valueToProcess.split(",")[0], bug, match, broadcaster);
 					  }
@@ -1266,24 +1267,28 @@ public class EVEREST_LEGENDS_90 extends Scene{
 								Right_Batsman = as.getPlayer().getTicker_name();
 							}
 						}
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tPlayerName01 " + Left_Batsman + " & " + Right_Batsman + ";");
+						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Logo_Unit " + logo_path + 
+								inn.getBatting_team().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
+						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1A " + Left_Batsman + " " + 
+								inn.getPartnerships().get(inn.getPartnerships().size() - 1).getFirstBatterRuns() + " (" +  inn.getPartnerships().get(inn.getPartnerships().size() - 1).getFirstBatterBalls() + ")" + ";");
 						
 						if(part.get(part.size()-1).getPartnershipNumber()==0) {
-							print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1A " + "PARTNERSHIP" + ";");
+							print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tPlayerName01 " + "PARTNERSHIP:" + ";");
 						}else {
 							if(part.get(part.size()-1).getPartnershipNumber() == 1) {
-								print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1A " + (part.get(part.size()-1).getPartnershipNumber()) + "st WICKET PARTNERSHIP" + ";");
+								print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1A " + (part.get(part.size()-1).getPartnershipNumber()) + "st WICKET P'SHIP" + ";");
 							}else if(part.get(part.size()-1).getPartnershipNumber() == 2) {
-								print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1A " + (part.get(part.size()-1).getPartnershipNumber()) + "nd WICKET PARTNERSHIP" + ";");
+								print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1A " + (part.get(part.size()-1).getPartnershipNumber()) + "nd WICKET P'SHIP" + ";");
 							}else if(part.get(part.size()-1).getPartnershipNumber() == 3) {
-								print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1A " + (part.get(part.size()-1).getPartnershipNumber()) + "rd WICKET PARTNERSHIP" + ";");
+								print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1A " + (part.get(part.size()-1).getPartnershipNumber()) + "rd WICKET P'SHIP" + ";");
 							}else {
-								print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1A " + (part.get(part.size()-1).getPartnershipNumber()) + "th WICKET PARTNERSHIP" + ";");
+								print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1A " + (part.get(part.size()-1).getPartnershipNumber()) + "th WICKET P'SHIP" + ";");
 							}
 						}
 						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1B " + 
 								inn.getPartnerships().get(inn.getPartnerships().size() - 1).getTotalRuns() +"* ("+ inn.getPartnerships().get(inn.getPartnerships().size() - 1).getTotalBalls()+");");
-						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1C ;");
+						print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tInfo1C " + Right_Batsman + " " + 
+								inn.getPartnerships().get(inn.getPartnerships().size() - 1).getFirstBatterRuns() + " (" +  inn.getPartnerships().get(inn.getPartnerships().size() - 1).getFirstBatterBalls() + ")" + ";");
 					}
 				}
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$All$Lft_Grp$Data$Info1*CONTAINER SET ACTIVE 1;");
@@ -1493,7 +1498,7 @@ public class EVEREST_LEGENDS_90 extends Scene{
 		}
 
 	}
-	public void populateBugsDB(PrintWriter print_writer, String viz_scene, EverestBugs bug, MatchAllData match,
+	public void populateBugsDB(PrintWriter print_writer, String viz_scene, Bugs bug, MatchAllData match,
 			String session_selected_broadcaster) throws InterruptedException {
 		switch (session_selected_broadcaster.toUpperCase()) {
 		case "EVEREST_LEGENDS_90":

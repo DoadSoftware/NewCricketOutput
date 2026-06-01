@@ -957,7 +957,6 @@ public class IndexController
 					throws Exception 
 	{
 		
-		
 		switch (whatToProcess.toUpperCase()) {
 		case "GET-CONFIG-DATA":
 

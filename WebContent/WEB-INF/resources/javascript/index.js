@@ -1012,15 +1012,15 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL':
-						case 'LCT': case 'NEPAL_T20': case 'PPL':  case 'ARUNACHAL':
+						case 'LCT': case 'NEPAL_T20': case 'PPL':  case 'ARUNACHAL': case 'KERALA_T20':
 							processCricketProcedures('POPULATE-FF-DOUBLETEAMS');
 							break;
-						case 'KERALA_T20':
+						/*case 'KERALA_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
 							addItemsToList('CURRENT-FF-DOUBLETEAMS-OPTIONS');
-							break;
+							break;*/
 						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
@@ -18066,15 +18066,15 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			select.name = select.id;
 			
 			option = document.createElement('option');
-			option.value = "WITHOUT";
-			option.text ="WITHOUT";
-			select.appendChild(option);
-
-			option = document.createElement('option');
 			option.value = "WITH";
 			option.text ="WITH";
 			select.appendChild(option);
 			
+			option = document.createElement('option');
+			option.value = "WITHOUT";
+			option.text ="WITHOUT";
+			select.appendChild(option);
+
 			row.insertCell(cellCount).appendChild(select);
 			cellCount = cellCount + 1;
 			
@@ -30131,6 +30131,11 @@ function addItemsToList(whatToProcess, dataToProcess) {
 											select.appendChild(option);
 											
 											option = document.createElement('option');
+											option.value = 'MPL';
+											option.text = 'MPL';
+											select.appendChild(option);
+											
+											option = document.createElement('option');
 											option.value = 'IPL';
 											option.text = 'IPL';
 											select.appendChild(option);
@@ -31292,7 +31297,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									switch (whatToProcess) {
 										case 'BUG_DB-OPTIONS': case 'PERFORMANCE_BUG_DB-OPTIONS':
 											switch ($('#selected_broadcaster').val().toUpperCase()) {
-												case 'BUKHATIR': case 'ASSAM': case 'THAILAND': case 'ACC_NEPAL': case 'ARUNACHAL':
+												case 'BUKHATIR': case 'ASSAM': case 'THAILAND': case 'ACC_NEPAL': case 'ARUNACHAL': case "EVEREST_LEGENDS_90":
 												case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'EVEREST_NEPAL_T20': case 'ICPL': case 'LCT': case 'APL': case 'PUNJAB_T20':
 												case 'EVEREST_PUNJAB_T20': case 'MAHARAJA_T20': case 'EVEREST_APL_T20': case 'USPL': case 'EVEREST_MPL_T20': case 'PPL':
 												case 'EVEREST_BENGAL_T20': case 'EVEREST_PPL_T20': case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'DOAD_LLC':

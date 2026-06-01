@@ -956,7 +956,10 @@ public class IndexController
 		@RequestParam(value = "valueToProcess", required = false, defaultValue = "") String valueToProcess) 
 					throws Exception 
 	{
+<<<<<<< Updated upstream
 		
+=======
+>>>>>>> Stashed changes
 		switch (whatToProcess.toUpperCase()) {
 		case "GET-CONFIG-DATA":
 

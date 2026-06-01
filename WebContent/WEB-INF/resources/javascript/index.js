@@ -8395,7 +8395,6 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-L3-BUG-TOSS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BARODA_AR':
-				
 					valueToProcess = 'C:/Everest_VR_2026/MattScenes/MatchID02.sum' 	+ ","+ $('#selectLogos option:selected').val();
 					break;
 				case 'ACC_NEPAL':

@@ -245,6 +245,7 @@
 			      		<option value="PLOTTER">DOAD PT</option>
 			      		<option value="ICPL_AR">NPL VR</option>
 			      		<option value="BARODA_AR">BARODA AR</option>
+			      		<option value="MP_AR">MP AR</option>
 			      		<option value="T20_MUMBAI_AR">TRI SERIES MATT</option>
 			      		<option value="EVEREST_AR_VR">Everest_AR_VR</option>
 			      		<option value="SPL">EVEREST SAURASHTRA PRIMIER LEAGUE</option>

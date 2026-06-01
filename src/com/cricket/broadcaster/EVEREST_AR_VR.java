@@ -174,7 +174,7 @@ public class EVEREST_AR_VR extends Scene{
 		switch (whatToProcess.toUpperCase()) {
 		case "NAMESUPER_GRAPHICS-OPTIONS": 
 			switch (config.getBroadcaster().toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				return new ObjectMapper().writeValueAsString(cricketService.getNameSupers()).toString();
 			}
 		
@@ -193,7 +193,7 @@ public class EVEREST_AR_VR extends Scene{
 		case "POPULATE-EVERESTPLAYERPROFILEBAT": case "POPULATE-FF-PLAYERPROFILEBALLL": case "POPULATE-DOUBLEEVERESTPLAYERPROFILEBAT":
 		case "POPULATE-EQUATION_ARINTARGET":  case "POPULATE-L3-BUG-TOSS":
 			switch (config.getBroadcaster().toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				switch(whatToProcess.toUpperCase()) {
 				case"POPULATE-INFOBAR-PROMPT": case "POPULATE-INFOBAR-BOTTOM": case"POPULATE-TOSSFLIP_AR":
 					break;
@@ -562,7 +562,7 @@ public class EVEREST_AR_VR extends Scene{
 		case "ANIMATE-IN-PROJECTED_VR":	case "ANIMATE-IN-TARGET_VR": case "ANIMATE-IN-COUNTDOWN_VR": case "ANIMATE-IN-NEXT_AR": 
 		case "ANIMATE-IN-TARGETIMAGE_AR":  case "ANIMATE-IN-FOW_AR":
 			switch (config.getBroadcaster().toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				switch (whatToProcess.toUpperCase()) {
 				case "ANIMATE-IN-THISSERIES":
 					if(infobar.isInfobar_on_screen() == true) {
@@ -911,7 +911,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void processAnimation(PrintWriter print_writer, String animationName,String animationCommand, String session_selected_broadcaster,int which_layer)
 	{
 		switch(session_selected_broadcaster.toUpperCase()) {
-		case "EVEREST_AR_VR": case "BARODA_AR":
+		case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 			switch(which_layer) {
 			case 1:
 				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*" + animationName + " " + animationCommand + ";");
@@ -1398,7 +1398,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateFowAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "BARODA_AR": case "EVEREST_AR_VR":
+			case "BARODA_AR": case "EVEREST_AR_VR": case "MP_AR":
 				for(Inning inn : match.getMatch().getInning()) {
 					if(inn.getIsCurrentInning().equalsIgnoreCase("YES")) {
 						
@@ -1563,7 +1563,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateRunVR(PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				for(Inning inn : match.getMatch().getInning()) {
 					if (inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
 						
@@ -1601,7 +1601,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateBoundariesAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				for(Inning inn : match.getMatch().getInning()) {
 					if (inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
 						
@@ -1665,7 +1665,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateComparisonAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				
 				for(Inning inn : match.getMatch().getInning()) {
 					if (inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
@@ -1725,7 +1725,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateComparisonVR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				
 				for(Inning inn : match.getMatch().getInning()) {
 					if (inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
@@ -1818,7 +1818,7 @@ public class EVEREST_AR_VR extends Scene{
 			MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				String match_name="";
 				
 				//print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*CONTAINER SET ACTIVE 0;");
@@ -1886,7 +1886,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateMatchIdAnimationAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lg_HomeTeamLogo " + logo_path2 + 
 						match.getSetup().getHomeTeam().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lg_AwayTeamLogo " + logo_path2 + 
@@ -1922,7 +1922,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateMatchIdAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 //				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHomeTeam " + 
 //						match.getSetup().getHomeTeam().getTeamName4() + ";");
 //				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tAwayTeam " + 
@@ -1961,7 +1961,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateMatchIdVR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				switch (session_selected_broadcaster.toUpperCase()) {
 				case "EVEREST_AR_VR": 
 					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Data_Selector 0;");
@@ -2031,7 +2031,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populatetossVR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster,String teamid,String val) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				//team name
 				
 				
@@ -2124,7 +2124,7 @@ public class EVEREST_AR_VR extends Scene{
 			String session_selected_broadcaster) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "EVEREST_AR_VR": case "BARODA_AR":
+		case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 			
 			
 			print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tText " + data2 +";");
@@ -2153,7 +2153,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateNextToBat(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster,Configuration config,CricketService cricketService) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				int row_id = 0;
 				String strike_rate = "";
 				//header
@@ -2236,7 +2236,7 @@ public class EVEREST_AR_VR extends Scene{
 			String session_selected_broadcaster,Configuration config) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "EVEREST_AR_VR": case "BARODA_AR":
+		case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 			
 			inning = match.getMatch().getInning().stream().filter(inn -> inn.getInningNumber() == Inning).findAny().orElse(null);
 			
@@ -2316,7 +2316,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateTeamCelebAR(PrintWriter print_writer,MatchAllData match,String data ,String data2,List<Team> tm,String session_selected_broadcaster) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "EVEREST_AR_VR": case "BARODA_AR":
+		case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 			
 			print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$RestData*CONTAINER SET ACTIVE 0;");
 			print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$Select$Logos*CONTAINER SET ACTIVE 1;");
@@ -2343,7 +2343,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateFreeTextAR(PrintWriter print_writer,MatchAllData match,String data,String session_selected_broadcaster) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "EVEREST_AR_VR": case "BARODA_AR":
+		case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 			String text1_to_return = "",text2_to_return = "";
 			
 			switch (data) {
@@ -2422,7 +2422,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateProjectedAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				String[] proj_score_rate = new String[CricketFunctions.projectedScore(match).size()];
 			    for (int i = 0; i < CricketFunctions.projectedScore(match).size(); i++) {
 			    	proj_score_rate[i] = CricketFunctions.projectedScore(match).get(i);
@@ -2507,7 +2507,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateProjectedVR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				String[] proj_score_rate = new String[CricketFunctions.projectedScore(match).size()];
 			    for (int i = 0; i < CricketFunctions.projectedScore(match).size(); i++) {
 			    	proj_score_rate[i] = CricketFunctions.projectedScore(match).get(i);
@@ -2590,7 +2590,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateCurrentPartnership(PrintWriter print_writer, String viz_scene, MatchAllData match, String session_selected_broadcaster, Configuration config) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "EVEREST_AR_VR": case "BARODA_AR":
+		case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 			if (match == null) {
 				this.status = "ERROR: Match is null";
 			} else if (match.getMatch().getInning() == null) {
@@ -2646,7 +2646,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateTossAR(PrintWriter print_writer,MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "EVEREST_AR_VR": case "BARODA_AR":
+		case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 			if (match == null) {
 				this.status = "ERROR: Match is null";
 			} else if (match.getMatch().getInning() == null) {
@@ -2711,7 +2711,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateLastBoundary(PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "BARODA_AR":
+		case "BARODA_AR": case "MP_AR":
 			
 			for(Inning inn : match.getMatch().getInning()) {
 				if(inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
@@ -2752,7 +2752,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateTargetAR(PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster ,Configuration config) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				//team name 
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Team_Name " + match.getMatch().getInning().get(1).getBatting_team().getTeamName2()  +";");
 				//target
@@ -2785,7 +2785,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateEquationTargetImageAR(boolean is_this_updating,PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster ,Configuration config) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				//team name 
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Team_Name " + match.getMatch().getInning().get(1).getBatting_team().getTeamName2()  +";");
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET img_Base1 "  + base_path1 + 
@@ -2852,7 +2852,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateTargetVR(PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				//target
 				print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tTeamA TARGET;");
 				
@@ -2966,7 +2966,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateRunRate(PrintWriter print_writer,boolean is_this_updating, MatchAllData match, String session_selected_broadcaster,String valueToProcess) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "EVEREST_AR_VR": case "BARODA_AR":
+		case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 		     switch (valueToProcess.split(",")[1]) {
 			case "CURRENT RUNRATE":
 				for(Inning inn : match.getMatch().getInning()) {
@@ -3042,7 +3042,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateCountAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET img_Logo1 " + logo_path2 + 
 						match.getSetup().getHomeTeam().getTeamBadge() + category + CricketUtil.PNG_EXTENSION + ";");
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET img_Logo2 " + logo_path2 + 
@@ -3077,7 +3077,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateThisOver(boolean is_this_updating, PrintWriter print_writer,String data,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				
 				
 				switch (session_selected_broadcaster.toUpperCase()) {
@@ -3253,7 +3253,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateTargetImageAR(PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster ,Configuration config) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				//team name 
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Team_Name " + match.getMatch().getInning().get(1).getBatting_team().getTeamName2()  +";");
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET img_Base1 "  + base_path1 + 
@@ -3318,7 +3318,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateEquationAR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				
 				for(Inning inn : match.getMatch().getInning()) {
 					if(is_this_updating == false) {
@@ -3526,7 +3526,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateEquationVR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				
 				for(Inning inn : match.getMatch().getInning()) {
 					if(inn.getInningNumber() == 2 && inn.getIsCurrentInning().equalsIgnoreCase("YES")) {
@@ -3637,7 +3637,7 @@ public class EVEREST_AR_VR extends Scene{
 	public void populateEquationImageVR(boolean is_this_updating, PrintWriter print_writer,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "EVEREST_AR_VR": case "BARODA_AR":
+			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
 				for(Inning inn : match.getMatch().getInning()) {
 					if(inn.getInningNumber() == 2 && inn.getIsCurrentInning().equalsIgnoreCase("YES")) {
 						System.out.println("inside method again");

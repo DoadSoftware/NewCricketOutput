@@ -1159,7 +1159,8 @@
 			  	 					
 			  	</c:if>
 			  	
-			  	<c:if test="${(session_selected_broadcaster == 'EVEREST_AR_VR')  || (session_selected_broadcaster == 'BARODA_AR')}" >
+			  	<c:if test="${(session_selected_broadcaster == 'EVEREST_AR_VR')  || (session_selected_broadcaster == 'BARODA_AR')
+			  	|| (session_selected_broadcaster == 'MP_AR')}" >
 			  	
 			  	 <hr style="margin:15px 0; border:1px solid #ccc;">
                 <p style="font-weight:bold; color:#2E008B; margin-bottom:8px;">VR Graphic Buttons</p>

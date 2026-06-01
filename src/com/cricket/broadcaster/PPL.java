@@ -41,7 +41,6 @@ import com.cricket.model.FallOfWicket;
 import com.cricket.model.FieldersData;
 import com.cricket.model.Fixture;
 import com.cricket.model.Ground;
-import com.cricket.model.HeadToHead;
 import com.cricket.model.HeadToHeadPlayer;
 import com.cricket.model.InfobarStats;
 import com.cricket.model.Inning;
@@ -121,7 +120,8 @@ public class PPL extends Scene{
 	public Infobar updateInfobar(List<Scene> scenes,List<MatchAllData> tournament_matches, MatchAllData match, PrintWriter print_writer) throws Exception
 	{
 		IndexController.matchstats = CricketFunctions.getAllEvents(match ,broadcaster, match.getEventFile().getEvents());
-		System.out.println("las = " + IndexController.matchstats.getLastOverData().getTotalRuns());
+		System.out.println("las = " + CricketFunctions.GetTargetData(match).getRemaningRuns() + " " + match.getMatch().getInning().get(1).getTotalWickets() + "  " + 
+				CricketFunctions.GetTargetData(match).getRemaningBall());
 		if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0 || match.getMatch().getInning().get(1).getTotalWickets() >= 10
 				|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
 			if(infobar.isInfobar_on_screen() == true) {
@@ -141,9 +141,12 @@ public class PPL extends Scene{
 							CricketFunctions.GenerateMatchSummaryStatus(2, match, CricketUtil.FULL, "|",broadcaster,true).getTargetOrResult().toUpperCase() + "\0");
 					
 					
+					print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*MainOut START \0");
+					TimeUnit.MILLISECONDS.sleep(2000);
+					print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Out START \0");
 					AnimateOutGraphics(print_writer, "ANIMATE-OUT-INFOBAR");
-					TimeUnit.MILLISECONDS.sleep(200);
-					
+					TimeUnit.MILLISECONDS.sleep(1000);
+					print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*In START \0");
 					AnimateInGraphics(print_writer, "IDENT");
 					which_graphic_on_screen = "IDENT";
 					TimeUnit.MILLISECONDS.sleep(200);
@@ -2164,8 +2167,8 @@ public class PPL extends Scene{
 			print_writer.println("-1 RENDERER*STAGE*DIRECTOR*PartnershipAllOut CONTINUE \0");
 			break;
 		case "ANIMATE-OUT-INFOBAR":
-			print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*MainOut START \0");
-			print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*ALL_SECTION$Section2 SHOW 0.0 \0");
+			print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*MainOut CONTINUE\0");
+//			print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*ALL_SECTION$Section2 SHOW 0.0 \0");
 			break;
 		case "ANIMATE-OUT-IDENT":
 			print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*IdentOut START \0");
@@ -3072,7 +3075,7 @@ public class PPL extends Scene{
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format2$BatData$Header$TeamNameGrp"
 							+ "$FirstName*GEOM*TEXT SET " + match.getSetup().getMatchIdent() + "\0");
 					if (inn.getBattingTeamId() == match.getSetup().getHomeTeamId()) {
-						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET "  + 
 				    			match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 						
 //						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBatTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" +
@@ -3081,7 +3084,7 @@ public class PPL extends Scene{
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format2$BatData$Header$TeamNameGrp"
 								+ "$LastName*GEOM*TEXT SET " + match.getSetup().getHomeTeam().getTeamName1().toUpperCase() + "\0");
 					} else {
-						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + 
 				    			match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 						
 //						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBatTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" +
@@ -3438,7 +3441,7 @@ public class PPL extends Scene{
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BowlingCardAll$BowlingCardType$Format2$BallData$Header$SubHeader*GEOM*TEXT SET " 
 							+ match.getSetup().getTournament().toUpperCase() + "\0");
 					if (inn.getBowlingTeamId() == match.getSetup().getHomeTeamId()) {
-						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + 
 				    			match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 						
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBallTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getHomeTeam().getTeamBadge() + "\0");
@@ -3446,7 +3449,7 @@ public class PPL extends Scene{
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BowlingCardAll$BowlingCardType$Format2$BallData$Header$TeamNameGrp$LastName*GEOM*TEXT SET " 
 								+ match.getSetup().getHomeTeam().getTeamName1().toUpperCase() + "\0");
 					} else {
-						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " +
 				    			match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 						
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBallTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getAwayTeam().getTeamBadge() + "\0");
@@ -3689,7 +3692,7 @@ public class PPL extends Scene{
 								"$RowAnimation$TeamNameAll$TossCoin*ACTIVE SET 0 \0");
 					}
 					
-					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " +
 							match.getMatch().getInning().get(i-1).getBatting_team().getTeamBadge() + "\0");
 					
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow6*ACTIVE SET 0 \0");
@@ -3712,7 +3715,7 @@ public class PPL extends Scene{
 								"$RowAnimation$TeamNameAll$TossCoin*ACTIVE SET 0 \0");
 					}
 					
-					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " +
 							match.getMatch().getInning().get(i-1).getBatting_team().getTeamBadge() + "\0");
 					
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow6*ACTIVE SET 1 \0");
@@ -4514,7 +4517,7 @@ public class PPL extends Scene{
 				//if (inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
 					
 					if (inn.getBattingTeamId() == match.getSetup().getHomeTeamId()) {
-						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-PartTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-PartTeamRefName" + " SET " +
 								match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 						
 //						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getHomeTeam().getTeamBadge() + "\0");
@@ -4522,7 +4525,7 @@ public class PPL extends Scene{
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$Base$RightGrp$PartLeftLogoGrp$PartLeftLogo*TEXTURE*IMAGE SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$PartnershipAll$Data$Header$TeamNameGrp$LastName*GEOM*TEXT SET " + match.getSetup().getHomeTeam().getTeamName1().toUpperCase() + "\0");
 					} else {
-						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-PartTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-PartTeamRefName" + " SET " +
 								match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 						
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$Base$Left$PartLeftLogoGrp$PartLeftLogo*TEXTURE*IMAGE SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getAwayTeam().getTeamBadge() + "\0");
@@ -6406,7 +6409,7 @@ public class PPL extends Scene{
 			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$PlayerProfile$Data$SocialMedia*ACTIVE SET " + "0" + "\0");
 
 			if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
-				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " +
 						match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 				
 				if(config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
@@ -6435,7 +6438,7 @@ public class PPL extends Scene{
 
 			}
 			else {
-				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " +
 						match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 				
 				if(config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
@@ -6548,7 +6551,7 @@ public class PPL extends Scene{
 			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$PlayerProfile$Data$SocialMedia*ACTIVE SET " + "0" + "\0");
 
 			if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
-				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " +
 						match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 				
 				if(config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
@@ -6577,7 +6580,7 @@ public class PPL extends Scene{
 
 			}
 			else {
-				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " +
 						match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 				
 				if(config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
@@ -6942,7 +6945,7 @@ public class PPL extends Scene{
 			for(int i = 1; i <= 2 ; i++) {
 				if(i == 1) {
 					
-					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " +
 							match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 					
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamNameGrp1$RowAnimation$TeamNameGrp"
@@ -7012,75 +7015,76 @@ public class PPL extends Scene{
 							}
 						}
 						
-						if(hs.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.CAPTAIN)) {
-							if(hs.getSurname() != null) {
+						if(hs.getCaptainWicketKeeper() != null) {
+							if(hs.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.CAPTAIN)) {
+								if(hs.getSurname() != null) {
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+											"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + hs.getFirstname() + "\0");
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+											"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + hs.getSurname() + "\0");
+								}else {
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+											"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " +hs.getFirstname()  + "\0");
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+											"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + ""+ "\0");
+								}
 								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-										"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + hs.getFirstname() + "\0");
+										"$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*ACTIVE SET 1 \0");
 								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-										"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + hs.getSurname() + "\0");
-							}else {
+										"$RowAnimation$RowOmo$" + cont + "$TextAll$CaptainIcon*ACTIVE SET 1 \0");
 								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-										"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " +hs.getFirstname()  + "\0");
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-										"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + ""+ "\0");
-							}
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-									"$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*ACTIVE SET 1 \0");
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-									"$RowAnimation$RowOmo$" + cont + "$TextAll$CaptainIcon*ACTIVE SET 1 \0");
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-									"$RowAnimation$RowOmo$" + cont + "$TextAll$InternationalIcon*ACTIVE SET 0 \0");
+										"$RowAnimation$RowOmo$" + cont + "$TextAll$InternationalIcon*ACTIVE SET 0 \0");
 
-						}
-						else if(hs.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.WICKET_KEEPER)) {
-							if(hs.getSurname() != null) {
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-										"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + hs.getFirstname() + "\0");
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-										"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + hs.getSurname() + "\0");
-							}else {
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-										"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + hs.getFirstname() + "\0");
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-										"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + "" + "\0");
 							}
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-									"$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*TEXTURE*IMAGE SET " + icon_path +"/"+ "Keeper" + "\0");
-							
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-									"$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*ACTIVE SET 1 \0");
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-									"$RowAnimation$RowOmo$" + cont + "$TextAll$CaptainIcon*ACTIVE SET 0 \0");
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-									"$RowAnimation$RowOmo$" + cont + "$TextAll$InternationalIcon*ACTIVE SET 0 \0");
+							else if(hs.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.WICKET_KEEPER)) {
+								if(hs.getSurname() != null) {
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+											"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + hs.getFirstname() + "\0");
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+											"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + hs.getSurname() + "\0");
+								}else {
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+											"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + hs.getFirstname() + "\0");
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+											"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + "" + "\0");
+								}
+								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+										"$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*TEXTURE*IMAGE SET " + icon_path +"/"+ "Keeper" + "\0");
+								
+								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+										"$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*ACTIVE SET 1 \0");
+								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+										"$RowAnimation$RowOmo$" + cont + "$TextAll$CaptainIcon*ACTIVE SET 0 \0");
+								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+										"$RowAnimation$RowOmo$" + cont + "$TextAll$InternationalIcon*ACTIVE SET 0 \0");
 
-						}
-						else if(hs.getCaptainWicketKeeper().equalsIgnoreCase("CAPTAIN_WICKET_KEEPER")) {
-							if(hs.getSurname() != null) {
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-										"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + hs.getFirstname() + "\0");
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-										"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + hs.getSurname() + "\0");
-							}else {
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-										"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + hs.getFirstname() + "\0");
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-										"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + "" + "\0");
 							}
-							
-							
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-									"$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*TEXTURE*IMAGE SET " + icon_path +"/"+ "Keeper" + "\0");
-							
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-									"$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*ACTIVE SET 1 \0");
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-									"$RowAnimation$RowOmo$" + cont + "$TextAll$CaptainIcon*ACTIVE SET 1 \0");
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
-									"$RowAnimation$RowOmo$" + cont + "$TextAll$InternationalIcon*ACTIVE SET 0 \0");
+							else if(hs.getCaptainWicketKeeper().equalsIgnoreCase("CAPTAIN_WICKET_KEEPER")) {
+								if(hs.getSurname() != null) {
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+											"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + hs.getFirstname() + "\0");
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+											"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + hs.getSurname() + "\0");
+								}else {
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+											"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + hs.getFirstname() + "\0");
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+											"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + "" + "\0");
+								}
+								
+								
+								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+										"$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*TEXTURE*IMAGE SET " + icon_path +"/"+ "Keeper" + "\0");
+								
+								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+										"$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*ACTIVE SET 1 \0");
+								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+										"$RowAnimation$RowOmo$" + cont + "$TextAll$CaptainIcon*ACTIVE SET 1 \0");
+								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
+										"$RowAnimation$RowOmo$" + cont + "$TextAll$InternationalIcon*ACTIVE SET 0 \0");
 
-						}
-						else {
+							}
+						}else {
 							if(hs.getSurname() != null) {
 								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamAll1$RowA" + row_id + 
 										"$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + hs.getFirstname() + "\0");
@@ -7168,7 +7172,7 @@ public class PPL extends Scene{
 				} else {
 					row_id = 0;
 					
-					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " +
 							match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 					
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamNameGrp2$RowAnimation$TeamNameGrp$NameAll$TeamFirstName*GEOM*TEXT SET " 
@@ -7236,80 +7240,80 @@ public class PPL extends Scene{
 							}
 						}
 						
-						
-						if(as.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.CAPTAIN)) {
-							if(as.getSurname() != null) {
+						if(as.getCaptainWicketKeeper() != null) {
+							if(as.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.CAPTAIN)) {
+								if(as.getSurname() != null) {
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+											+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + as.getFirstname() + "\0");
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+											+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + as.getSurname() + "\0");
+								}else {
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+											+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + as.getFirstname()+ "\0");
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+											+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + "" + "\0");
+								}
+								
+								
 								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + as.getFirstname() + "\0");
+										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*ACTIVE SET 1 \0");
 								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + as.getSurname() + "\0");
-							}else {
+										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$CaptainIcon*ACTIVE SET 1 \0");
 								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + as.getFirstname()+ "\0");
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + "" + "\0");
-							}
-							
-							
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-									+ "$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*ACTIVE SET 1 \0");
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-									+ "$RowAnimation$RowOmo$" + cont + "$TextAll$CaptainIcon*ACTIVE SET 1 \0");
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-									+ "$RowAnimation$RowOmo$" + cont + "$TextAll$InternationalIcon*ACTIVE SET 0 \0");
+										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$InternationalIcon*ACTIVE SET 0 \0");
 
-						}
-						else if(as.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.WICKET_KEEPER)) {
-							if(as.getSurname() != null) {
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + as.getFirstname() + "\0");
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + as.getSurname() + "\0");
-							}else {
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + as.getFirstname() + "\0");
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + "" + "\0");
 							}
-							
-							
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id + 
-									"$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*TEXTURE*IMAGE SET " + icon_path+"/" + "Keeper" + "\0");
-							
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-									+ "$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*ACTIVE SET 1 \0");
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-									+ "$RowAnimation$RowOmo$" + cont + "$TextAll$CaptainIcon*ACTIVE SET 0 \0");
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-									+ "$RowAnimation$RowOmo$" + cont + "$TextAll$InternationalIcon*ACTIVE SET 0 \0");
+							else if(as.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.WICKET_KEEPER)) {
+								if(as.getSurname() != null) {
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+											+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + as.getFirstname() + "\0");
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+											+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + as.getSurname() + "\0");
+								}else {
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+											+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + as.getFirstname() + "\0");
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+											+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + "" + "\0");
+								}
+								
+								
+								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id + 
+										"$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*TEXTURE*IMAGE SET " + icon_path+"/" + "Keeper" + "\0");
+								
+								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*ACTIVE SET 1 \0");
+								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$CaptainIcon*ACTIVE SET 0 \0");
+								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$InternationalIcon*ACTIVE SET 0 \0");
 
-						}
-						else if(as.getCaptainWicketKeeper().equalsIgnoreCase("CAPTAIN_WICKET_KEEPER")) {
-							if(as.getSurname() != null) {
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + as.getFirstname() + "\0");
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + as.getSurname() + "\0");
-							}else {
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + as.getFirstname() + "\0");
-								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + "" + "\0");
 							}
-							
-							
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id + 
-									"$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*TEXTURE*IMAGE SET " + icon_path +"/"+ "Keeper" + "\0");
-							
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-									+ "$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*ACTIVE SET 1 \0");
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-									+ "$RowAnimation$RowOmo$" + cont + "$TextAll$CaptainIcon*ACTIVE SET 1 \0");
-							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
-									+ "$RowAnimation$RowOmo$" + cont + "$TextAll$InternationalIcon*ACTIVE SET 0 \0");
+							else if(as.getCaptainWicketKeeper().equalsIgnoreCase("CAPTAIN_WICKET_KEEPER")) {
+								if(as.getSurname() != null) {
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+											+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + as.getFirstname() + "\0");
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+											+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + as.getSurname() + "\0");
+								}else {
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+											+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + as.getFirstname() + "\0");
+									print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+											+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " + "" + "\0");
+								}
+								
+								
+								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id + 
+										"$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*TEXTURE*IMAGE SET " + icon_path +"/"+ "Keeper" + "\0");
+								
+								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$RoleIcon*ACTIVE SET 1 \0");
+								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$CaptainIcon*ACTIVE SET 1 \0");
+								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
+										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$InternationalIcon*ACTIVE SET 0 \0");
 
-						}
-						else {
+							}
+						}else {
 							if(as.getSurname() != null) {
 								print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamAll2$RowB" + row_id 
 										+ "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$FirstName*GEOM*TEXT SET " + as.getFirstname() + "\0");
@@ -7533,9 +7537,9 @@ public class PPL extends Scene{
 						+ match.getSetup().getAwayTeam().getTeamName1().toUpperCase() + " WON THE TOSS & ELECTED TO " + match.getSetup().getTossWinningDecision().toUpperCase() + "\0");
 			}
 	    	
-	    	print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+	    	print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " +
 	    			match.getSetup().getHomeTeam().getTeamBadge() + "\0");
-			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " +
 					match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 			
 			
@@ -7787,8 +7791,8 @@ public class PPL extends Scene{
 		for(Inning inn : match.getMatch().getInning()) {
 			if (inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
 				if(is_this_updating == false) {
-					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + inn.getBatting_team().getTeamBadge() + "\0");
-					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + inn.getBowling_team().getTeamBadge() + "\0");
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET "  + inn.getBatting_team().getTeamBadge() + "\0");
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET "  + inn.getBowling_team().getTeamBadge() + "\0");
 					
 					
 					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBatTeamLogo" + " SET "  + "IMAGE*/Default/PPL/Logos/" + 
@@ -9275,18 +9279,18 @@ public class PPL extends Scene{
 			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDEsign$RightGrp$Bands$RightTeamLogos$RightLogo$RightLogo*TEXTURE*IMAGE SET "
 					+ logo_path + "TLogo" + "\0");
 			
-			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " +
 					match.getSetup().getHomeTeam().getTeamBadge() + "\0");
-			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " +
 					match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 			
-			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgHomeTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" + 
-					match.getSetup().getHomeTeam().getTeamBadge() + "\0");
+//			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgHomeTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" + 
+//					match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 
 			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$MatchId$TeamsAll$TeamData$logos$HomeLogoGrp$HomeTeamName_Grp$FirstName*GEOM*TEXT SET " + 
 					match.getSetup().getHomeTeam().getTeamName1().toUpperCase() + " \0");
-			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgAwayTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" + 
-					match.getSetup().getAwayTeam().getTeamBadge() + "\0");
+//			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgAwayTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" + 
+//					match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 
 			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$MatchId$TeamsAll$TeamData$logos$AwayLogoGrp$AwayTeamName_Grp$FirstName*GEOM*TEXT SET " + 
 					match.getSetup().getAwayTeam().getTeamName1().toUpperCase() + " \0");
@@ -10225,7 +10229,7 @@ public class PPL extends Scene{
 			
 			if(TeamId == match.getSetup().getHomeTeamId()) {
 				
-				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " +
 						match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 				
 				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgTeamLogo" + " SET " + logo_path + match.getSetup().getHomeTeam().getTeamBadge() + "\0");
@@ -10251,31 +10255,33 @@ public class PPL extends Scene{
 							config.getPrimaryIpAddress() + local_photo_path + match.getSetup().getHomeTeam().getTeamName4() + "\\\\" + 
 								hs.getPhoto() + CricketUtil.PNG_EXTENSION + "\0");
 					}
-					if(hs.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.CAPTAIN)) {
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " 
-								+ hs.getTicker_name() + "\0");
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$RoleIconGrp*ACTIVE SET " 
-								+ 0 + " \0");
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$CaptainIcon*ACTIVE SET " 
-								+ 1 + " \0");
-					}
-					else if(hs.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.WICKET_KEEPER)) {
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " 
-								+ hs.getTicker_name() + " (WK)" + "\0");
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$RoleIconGrp*ACTIVE SET " 
-								+ 0 + " \0");
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$CaptainIcon*ACTIVE SET " 
-								+ 0 + " \0");
-					}
-					else if(hs.getCaptainWicketKeeper().equalsIgnoreCase("CAPTAIN_WICKET_KEEPER")) {
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " 
-								+ hs.getTicker_name() + " (C & WK)" + "\0");
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$RoleIconGrp*ACTIVE SET " 
-								+ 0 + " \0");
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$CaptainIcon*ACTIVE SET " 
-								+ 0 + " \0");
-					}
-					else {
+					
+					if(hs.getCaptainWicketKeeper() != null) {
+						if(hs.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.CAPTAIN)) {
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " 
+									+ hs.getTicker_name() + "\0");
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$RoleIconGrp*ACTIVE SET " 
+									+ 0 + " \0");
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$CaptainIcon*ACTIVE SET " 
+									+ 1 + " \0");
+						}
+						else if(hs.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.WICKET_KEEPER)) {
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " 
+									+ hs.getTicker_name() + " (WK)" + "\0");
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$RoleIconGrp*ACTIVE SET " 
+									+ 0 + " \0");
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$CaptainIcon*ACTIVE SET " 
+									+ 0 + " \0");
+						}
+						else if(hs.getCaptainWicketKeeper().equalsIgnoreCase("CAPTAIN_WICKET_KEEPER")) {
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " 
+									+ hs.getTicker_name() + " (C & WK)" + "\0");
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$RoleIconGrp*ACTIVE SET " 
+									+ 0 + " \0");
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$CaptainIcon*ACTIVE SET " 
+									+ 0 + " \0");
+						}
+					}else {
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " 
 								+ hs.getTicker_name() + "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$RoleIconGrp*ACTIVE SET " 
@@ -10309,7 +10315,7 @@ public class PPL extends Scene{
 			}
 			
 			else {
-				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " +
 						match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgTeamLogo" + " SET " + logo_path + match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 
@@ -10332,31 +10338,33 @@ public class PPL extends Scene{
 							config.getPrimaryIpAddress() + local_photo_path + match.getSetup().getAwayTeam().getTeamName4() + "\\\\" + 
 								as.getPhoto() + CricketUtil.PNG_EXTENSION + "\0");
 					}
-					if(as.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.CAPTAIN)) {
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " 
-								+ as.getTicker_name() + "\0");
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$RoleIconGrp*ACTIVE SET " 
-								+ 0 + " \0");
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$CaptainIcon*ACTIVE SET " 
-								+ 1 + " \0");
-					}
-					else if(as.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.WICKET_KEEPER)) {
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " 
-								+ as.getTicker_name() + " (WK)" + "\0");
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$RoleIconGrp*ACTIVE SET " 
-								+ 0 + " \0");
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$CaptainIcon*ACTIVE SET " 
-								+ 0 + " \0");
-					}
-					else if(as.getCaptainWicketKeeper().equalsIgnoreCase("CAPTAIN_WICKET_KEEPER")) {
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " 
-								+ as.getTicker_name() + " (C & WK)" + "\0");
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$RoleIconGrp*ACTIVE SET " 
-								+ 0 + " \0");
-						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$CaptainIcon*ACTIVE SET " 
-								+ 0 + " \0");
-					}
-					else {
+					
+					if(as.getCaptainWicketKeeper() != null) {
+						if(as.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.CAPTAIN)) {
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " 
+									+ as.getTicker_name() + "\0");
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$RoleIconGrp*ACTIVE SET " 
+									+ 0 + " \0");
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$CaptainIcon*ACTIVE SET " 
+									+ 1 + " \0");
+						}
+						else if(as.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.WICKET_KEEPER)) {
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " 
+									+ as.getTicker_name() + " (WK)" + "\0");
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$RoleIconGrp*ACTIVE SET " 
+									+ 0 + " \0");
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$CaptainIcon*ACTIVE SET " 
+									+ 0 + " \0");
+						}
+						else if(as.getCaptainWicketKeeper().equalsIgnoreCase("CAPTAIN_WICKET_KEEPER")) {
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " 
+									+ as.getTicker_name() + " (C & WK)" + "\0");
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$RoleIconGrp*ACTIVE SET " 
+									+ 0 + " \0");
+							print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$CaptainIcon*ACTIVE SET " 
+									+ 0 + " \0");
+						}
+					}else {
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$NameAll$LastName*GEOM*TEXT SET " 
 								+ as.getTicker_name() + "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDataGrp$Data$TeamAll$ImagesAll$ImageGrp" + row_id + "$RowAnimation$RowOmo$" + cont + "$TextAll$Icons$RoleIconGrp*ACTIVE SET " 
@@ -11299,7 +11307,7 @@ public class PPL extends Scene{
 					Left_Batsman = inn.getPartnerships().get(inn.getPartnerships().size()-1).getFirstPlayer().getFull_name();
 					Right_Batsman = inn.getPartnerships().get(inn.getPartnerships().size()-1).getSecondPlayer().getFull_name();
 					
-					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " +
 							inn.getBatting_team().getTeamBadge() + "\0");
 					
 					if(config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
@@ -12569,7 +12577,7 @@ public class PPL extends Scene{
 			            + row_id + "$RowAnimation$RowOmo" + cont_name 
 			            + "$TextAll$PoinTeamName*GEOM*TEXT SET " + tm.getTeamName1().toUpperCase() + " \0");
 			        
-			        print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-PTTeam" + row_id + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
+			        print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-PTTeam" + row_id + " SET " +
 			        		tm.getTeamBadge() + "\0");
 			    }
 			}
@@ -12996,7 +13004,7 @@ public class PPL extends Scene{
 			for(Inning inn : match.getMatch().getInning()) {
 				if (inn.getInningNumber() == whichInning) {
 					
-					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " +
 							inn.getBatting_team().getTeamBadge() + "\0");
 					
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" + inn.getBatting_team().getTeamBadge() + "\0");
@@ -13074,10 +13082,10 @@ public class PPL extends Scene{
 			double Lngth = 0;
 			
 			
-			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " +
 					match.getMatch().getInning().get(0).getBatting_team().getTeamBadge() + "\0");
 			
-			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " +
 					match.getMatch().getInning().get(1).getBatting_team().getTeamBadge() + "\0");
 			
 			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$WormAll$TeamsAll$TeamDataData$Header$TeamNameGrp$LastName*GEOM*TEXT SET "+ "COMPARISION " + " \0");

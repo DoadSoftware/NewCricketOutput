@@ -9416,8 +9416,11 @@ function processCricketProcedures(whatToProcess) {
 				case 'ASSAM': case 'ACC_NEPAL': case 'BUKHATIR': case 'THAILAND': case 'EVEREST_NEPAL_T20': case 'EVEREST_PUNJAB_T20':
 				case 'EVEREST_APL_T20': case 'GPCL': case 'APL': case 'PUNJAB_T20': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'DOAD_LLC':
 				case 'RPL': case 'ACC': case 'MAHARAJA_T20': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20': case 'PPL':  case 'EVEREST_PPL_T20':
-				case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':case  "EVEREST_LEGENDS_90":
+				case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':
 					valueToProcess = $('#bugdbScene').val() + ',' + $('#selectBugdb option:selected').val();
+					break;
+				case  "EVEREST_LEGENDS_90":
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Bug_SingleLine.sum' + ',' + $('#selectBugdb option:selected').val();
 					break;
 				case 'KERALA_T20':
 					valueToProcess = '/Default/Bugs' + ',' + $('#selectBugdb option:selected').val();
@@ -16903,35 +16906,35 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						if (bug.text2 == '') {
 							document.getElementById('bugdbScene').value = 'D:/DOAD_In_House_Everest/Everest_Cricket/NEPAL_T20/Scenes/Bug_SingleLine.sum';
 						} else {
-							document.getElementById('bugdbScene').value = 'D:/DOAD_In_House_Everest/Everest_Cricket/NEPAL_T20/Scenes/Bug_DoubleLine.sum';;
+							document.getElementById('bugdbScene').value = 'D:/DOAD_In_House_Everest/Everest_Cricket/NEPAL_T20/Scenes/Bug_DoubleLine.sum';
 						}
 
 					}else if ($('#selected_broadcaster').val().toUpperCase() == 'EVEREST_LEGENDS_90') {
 						if (bug.text2 == '') {
 							document.getElementById('bugdbScene').value = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Bug_SingleLine.sum';
 						} else {
-							document.getElementById('bugdbScene').value = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Bug_DoubleLine.sum';;
+							document.getElementById('bugdbScene').value = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Barodaleague_2025/Scenes/Bug_DoubleLine.sum';
 						}
 
 					} else if ($('#selected_broadcaster').val().toUpperCase() == 'EVEREST_PUNJAB_T20') {
 						if (bug.text2 == '') {
 							document.getElementById('bugdbScene').value = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_PT20_2023/Scenes/Bug_SingleLine.sum';
 						} else {
-							document.getElementById('bugdbScene').value = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_PT20_2023/Scenes/Bug_DoubleLine.sum';;
+							document.getElementById('bugdbScene').value = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_PT20_2023/Scenes/Bug_DoubleLine.sum';
 						}
 
 					} else if ($('#selected_broadcaster').val().toUpperCase() == 'EVEREST_APL_T20') {
 						if (bug.text2 == '') {
 							document.getElementById('bugdbScene').value = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_APL2023/Scenes/Bug_SingleLine.sum';
 						} else {
-							document.getElementById('bugdbScene').value = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_APL2023/Scenes/Bug_DoubleLine.sum';;
+							document.getElementById('bugdbScene').value = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_APL2023/Scenes/Bug_DoubleLine.sum';
 						}
 
 					} else if ($('#selected_broadcaster').val().toUpperCase() == 'EVEREST_PPL_T20') {
 						if (bug.text2 == '') {
 							document.getElementById('bugdbScene').value = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_PPL/Scenes/Bug_SingleLine.sum';
 						} else {
-							document.getElementById('bugdbScene').value = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_PPL/Scenes/Bug_DoubleLine.sum';;
+							document.getElementById('bugdbScene').value = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_PPL/Scenes/Bug_DoubleLine.sum';
 						}
 
 					} else if ($('#selected_broadcaster').val().toUpperCase() == 'EVEREST_KCL_T20') {
@@ -28729,6 +28732,13 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									select = document.createElement('select');
 									select.id = 'selectProfile';
 									select.name = select.id;
+									
+									if($('#selected_broadcaster').val().toUpperCase()=='KERALA_T20'){
+										option = document.createElement('option');
+										option.value = 'MPL';
+										option.text = 'MPL CARRER';
+										select.appendChild(option);
+									}
 
 									if($('#selected_broadcaster').val().toUpperCase()=='PPL'){
 											option = document.createElement('option');
@@ -28740,13 +28750,12 @@ function addItemsToList(whatToProcess, dataToProcess) {
 											option.value = 'PPL 2024';
 											option.text = 'PPL SEASON 1';
 											select.appendChild(option);
-									}else{
-
-										option = document.createElement('option');
-										option.value = 'IT20';
-										option.text = 'IT20';
-										select.appendChild(option);	
 									}
+									option = document.createElement('option');
+									option.value = 'IT20';
+									option.text = 'IT20';
+									select.appendChild(option);	
+									
 									option = document.createElement('option');
 									option.value = 'DT20';
 									option.text = 'DT20';
@@ -30097,15 +30106,17 @@ function addItemsToList(whatToProcess, dataToProcess) {
 											select.appendChild(option);
 											break;
 										case 'KERALA_T20':
+											
+											option = document.createElement('option');
+											option.value = 'MPL';
+											option.text = 'MPL CARRER';
+											select.appendChild(option);
+											
 											option = document.createElement('option');
 											option.value = 'DT20';
 											option.text = 'DT20';
 											select.appendChild(option);
 
-											option = document.createElement('option');
-											option.value = 'MPL';
-											option.text = 'MPL CARRER';
-											select.appendChild(option);
 											break;
 										case 'APL': case 'PPL':  case 'ACC_NEPAL': case 'DOAD_LLC':
 											if($('#selected_broadcaster').val().toUpperCase()=='PPL'){
@@ -31055,6 +31066,12 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									select = document.createElement('select');
 									select.id = 'selectl3Profile';
 									select.name = select.id;
+									if($('#selected_broadcaster').val().toUpperCase()=='KERALA_T20'){
+										option = document.createElement('option');
+										option.value = 'MPL';
+										option.text = 'MPL CARRER';
+										select.appendChild(option);
+									}
 									if (session_match.setup.matchType == 'DT20' || session_match.setup.matchType == 'D10') {
 
 										/*option = document.createElement('option');

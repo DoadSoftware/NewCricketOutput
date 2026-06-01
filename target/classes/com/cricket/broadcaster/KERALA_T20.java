@@ -12449,6 +12449,7 @@ public class KERALA_T20 extends Scene {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 							+ "$DataOut$DataGrp$Group1$Out$In$SelectHighlight$Dehighlight$img_Text1$txt_StatValue*GEOM*TEXT SET "
 							+ stats.getMatches() + "\0");
+					System.out.println("stats.getMatches() -----------------" +stats.getMatches());
 
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 							+ "$DataOut$DataGrp$Group2$Out$In$SelectHighlight$Dehighlight$txt_StatHead*GEOM*TEXT SET "
@@ -12807,7 +12808,8 @@ public class KERALA_T20 extends Scene {
 						|| Profile.toUpperCase().equalsIgnoreCase(CricketUtil.IT20)
 						|| Profile.toUpperCase().equalsIgnoreCase(CricketUtil.ODI)
 						|| Profile.toUpperCase().equalsIgnoreCase("LLCS1")
-						|| Profile.toUpperCase().equalsIgnoreCase("IPL")) {
+						|| Profile.toUpperCase().equalsIgnoreCase("IPL")
+						|| Profile.toUpperCase().equalsIgnoreCase("MPL")) {
 
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 							+ "$DataOut$DataGrp$Group1$Out$In$SelectHighlight$Dehighlight$txt_StatHead*GEOM*TEXT SET "
@@ -12815,6 +12817,7 @@ public class KERALA_T20 extends Scene {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 							+ "$DataOut$DataGrp$Group1$Out$In$SelectHighlight$Dehighlight$img_Text1$txt_StatValue*GEOM*TEXT SET "
 							+ stats.getMatches() + "\0");
+					System.out.println("stats.getMatches() ---------------------------------------------------" +stats.getMatches());
 
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 							+ "$DataOut$DataGrp$Group2$Out$In$SelectHighlight$Dehighlight$txt_StatHead*GEOM*TEXT SET "
@@ -13883,7 +13886,11 @@ public class KERALA_T20 extends Scene {
 				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 						+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$" + "txt_Data1*GEOM*TEXT SET "
 						+ "T20I CAREER" + "\0");
-			} else if (Profile.toUpperCase().equalsIgnoreCase("LLCS1")) {
+			} else if (Profile.toUpperCase().equalsIgnoreCase("MPL")) {
+				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
+						+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$" + "txt_Data1*GEOM*TEXT SET "
+						+ "MADHYA PRADESH LEAGUE" + "\0");
+			}else if (Profile.toUpperCase().equalsIgnoreCase("LLCS1")) {
 				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 						+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$" + "txt_Data1*GEOM*TEXT SET "
 						+ "LEGENDS LEAGUE CRICKET SEASON 1" + "\0");
@@ -14137,7 +14144,8 @@ public class KERALA_T20 extends Scene {
 						|| Profile.toUpperCase().equalsIgnoreCase(CricketUtil.IT20)
 						|| Profile.toUpperCase().equalsIgnoreCase(CricketUtil.ODI)
 						|| Profile.toUpperCase().equalsIgnoreCase("LLCS1")
-						|| Profile.toUpperCase().equalsIgnoreCase("IPL")) {
+						|| Profile.toUpperCase().equalsIgnoreCase("IPL")
+						|| Profile.toUpperCase().equalsIgnoreCase("MPL")) {
 
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 							+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$1$img_Text2$"
@@ -14172,7 +14180,7 @@ public class KERALA_T20 extends Scene {
 					DecimalFormat df_s = new DecimalFormat("0.00");
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 							+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$4$img_Text2$txt_Data1A*GEOM*TEXT SET "
-							+ "BOWL STRIKE RATE" + "\0");
+							+ "STRIKE RATE" + "\0");
 					if (stats.getWickets() == 0 || stats.getBalls_bowled() == 0) {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$4$img_Text2$txt_Data2A*GEOM*TEXT SET "
@@ -14232,7 +14240,7 @@ public class KERALA_T20 extends Scene {
 							DecimalFormat df_s = new DecimalFormat("0.00");
 							print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 									+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$4$"
-									+ "img_Text2$txt_Data1A*GEOM*TEXT SET " + "BOWL STRIKE RATE" + "\0");
+									+ "img_Text2$txt_Data1A*GEOM*TEXT SET " + "STRIKE RATE" + "\0");
 							if (this_series.get(i).getWickets() == 0 || this_series.get(i).getBallsBowled() == 0) {
 								print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 										+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$4$img_Text2$txt_Data2A*GEOM*TEXT SET "
@@ -36387,6 +36395,7 @@ public class KERALA_T20 extends Scene {
 		case "POPULATE-FF-PLAYERPROFILEBALL":
 			this.status = "NODATABASE";
 			data = valueToProcess;
+			System.out.println("valueToProcess =================================" + valueToProcess);
 			if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG"
 					|| which_graphic_on_screen == "PLAYERPROFILEBALL"
 					|| which_graphic_on_screen == "FFPLAYERPROFILE" || which_graphic_on_screen == "TEAMLINEUP"
@@ -36401,6 +36410,8 @@ public class KERALA_T20 extends Scene {
 						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
 						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 							this.status = CricketUtil.SUCCESSFUL;
+							System.out.println("stats.getPlayer_id() -------------------------" + stats.getPlayer_id() + "    valueToProcess= " + Integer.valueOf(valueToProcess.split(",")[1]));
+							System.out.println("valueToProcess ----------------" + valueToProcess);
 							populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
 									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
 									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,

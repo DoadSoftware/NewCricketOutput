@@ -1093,6 +1093,8 @@ public class EVEREST_LEGENDS_90 extends Scene{
 						case CricketUtil.BATSMAN:
 							for (BattingCard bc : inn.getBattingCard()) {
 								if (bc.getPlayerId() == playerId) {
+									print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgSponsor "
+											 + logo_path+ inn.getBatting_team().getTeamName4() + CricketUtil.PNG_EXTENSION + ";");
 									print_writer.println(
 											"LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tPlayerName01 "
 													+ bc.getPlayer().getTicker_name().toUpperCase() + ";");
@@ -1506,6 +1508,13 @@ public class EVEREST_LEGENDS_90 extends Scene{
 				this.status = "ERROR: Match is null";
 			} else {
 				//print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base_1 " + base_path + ";");
+				if (bug.getFlag() != null) {
+					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgSponsor "
+							 + logo_path+ bug.getFlag() + CricketUtil.PNG_EXTENSION + ";");
+				}else {
+					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgSponsor "
+							 + logo_path+ "TLogo" + CricketUtil.PNG_EXTENSION + ";");
+				}
 				
 				if (bug.getText1() != null && bug.getText2() != null && bug.getText3() != null && bug.getText4() != null) {
 					print_writer.println(
@@ -1577,7 +1586,6 @@ public class EVEREST_LEGENDS_90 extends Scene{
 			}
 			break;
 		}
-
 	}
 	public void populateNameSuper(PrintWriter print_writer, String viz_scene, NameSuper ns, MatchAllData match,
 			String session_selected_broadcaster) throws InterruptedException {
@@ -1595,11 +1603,16 @@ public class EVEREST_LEGENDS_90 extends Scene{
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeamLogo " + Sponsor_path
 							+ ns.getSponsor() + CricketUtil.PNG_EXTENSION + ";");
 				}
-				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeamLogo " + logo_path
-						+ "TLogo" + CricketUtil.PNG_EXTENSION + ";");
+//				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeamLogo " + logo_path
+//						+ "TLogo" + CricketUtil.PNG_EXTENSION + ";");
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main$Data$group$Header$img_Base*CONTAINER SET ACTIVE 0;");
+				
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgIMG_BASE " + base_path
 						+ ns.getFirstname() + CricketUtil.PNG_EXTENSION + ";");
+				
+				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgIMG_Text " + base_path
+						+ "TLogo" + CricketUtil.PNG_EXTENSION + ";");
+				
 				if (ns.getFirstname() == null) {
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFirstName "
 							+ ns.getSurname() + ";");
@@ -1616,7 +1629,7 @@ public class EVEREST_LEGENDS_90 extends Scene{
 				  print_writer.println("LAYER1*EVEREST*GLOBAL PREVIEW ON;");
 				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In STOP;");
 				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*Out STOP;");
-				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In SHOW 67.0;");
+				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In SHOW 190;");
 				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*Out SHOW 0.0;");
 				  print_writer.println("LAYER1*EVEREST*GLOBAL SNAPSHOT_PATH C:/Temp/Preview.png;");
 				  print_writer.println("LAYER1*EVEREST*GLOBAL SNAPSHOT 1920 1080;");
@@ -1657,7 +1670,7 @@ public class EVEREST_LEGENDS_90 extends Scene{
 				print_writer.println("LAYER1*EVEREST*GLOBAL PREVIEW ON;");
 				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In STOP;");
 				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*Out STOP;");
-				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In SHOW 60.0;");
+				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In SHOW 190;");
 				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*Out SHOW 0.0;");
 				print_writer.println("LAYER1*EVEREST*GLOBAL SNAPSHOT_PATH C:/Temp/Preview.png;");
 				print_writer.println("LAYER1*EVEREST*GLOBAL SNAPSHOT 1920 1080;");
@@ -1716,7 +1729,7 @@ public class EVEREST_LEGENDS_90 extends Scene{
 			print_writer.println("LAYER1*EVEREST*TREEVIEW*Infobar*CONTAINER SET ACTIVE 0;");
 			print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In STOP;");
 			print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*Out STOP;");
-			print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In SHOW 159.0;");
+			print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In SHOW 190;");
 			print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*Out SHOW 0.0;");
 			print_writer.println("LAYER1*EVEREST*GLOBAL SNAPSHOT_PATH C:/Temp/Preview.png;");
 			print_writer.println("LAYER1*EVEREST*GLOBAL SNAPSHOT 1920 1080;");
@@ -1829,7 +1842,8 @@ public class EVEREST_LEGENDS_90 extends Scene{
 					}
 				}
 				
-				
+				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgIMG_Text " + base_path
+						+ "TLogo" + CricketUtil.PNG_EXTENSION + ";");
 				switch (captainWicketKeeper.toUpperCase()) {
 				case CricketUtil.CAPTAIN:
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tBottomInfo "
@@ -1852,7 +1866,7 @@ public class EVEREST_LEGENDS_90 extends Scene{
 				  print_writer.println("LAYER1*EVEREST*GLOBAL PREVIEW ON;");
 				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In STOP;");
 				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*Out STOP;");
-				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In SHOW 67.0;");
+				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In SHOW 190;");
 				  print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*Out SHOW 0.0;");
 				  print_writer.println("LAYER1*EVEREST*GLOBAL SNAPSHOT_PATH C:/Temp/Preview.png;");
 				  print_writer.println("LAYER1*EVEREST*GLOBAL SNAPSHOT 1920 1080;");

@@ -3072,20 +3072,20 @@ public class PPL extends Scene{
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format2$BatData$Header$TeamNameGrp"
 							+ "$FirstName*GEOM*TEXT SET " + match.getSetup().getMatchIdent() + "\0");
 					if (inn.getBattingTeamId() == match.getSetup().getHomeTeamId()) {
-						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET "  + 
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
 				    			match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 						
-						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBatTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" +
-								match.getSetup().getHomeTeam().getTeamBadge().toUpperCase() + "\0");
+//						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBatTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" +
+//								match.getSetup().getHomeTeam().getTeamBadge().toUpperCase() + "\0");
 
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format2$BatData$Header$TeamNameGrp"
 								+ "$LastName*GEOM*TEXT SET " + match.getSetup().getHomeTeam().getTeamName1().toUpperCase() + "\0");
 					} else {
-						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET "  + 
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
 				    			match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 						
-						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBatTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" +
-								match.getSetup().getAwayTeam().getTeamBadge().toUpperCase() + "\0");
+//						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBatTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" +
+//								match.getSetup().getAwayTeam().getTeamBadge().toUpperCase() + "\0");
 
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BattingCardAll$BattingCardType$Format2$BatData$Header$TeamNameGrp"
 								+ "$LastName*GEOM*TEXT SET " + match.getSetup().getAwayTeam().getTeamName1().toUpperCase() + "\0");
@@ -3438,7 +3438,7 @@ public class PPL extends Scene{
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BowlingCardAll$BowlingCardType$Format2$BallData$Header$SubHeader*GEOM*TEXT SET " 
 							+ match.getSetup().getTournament().toUpperCase() + "\0");
 					if (inn.getBowlingTeamId() == match.getSetup().getHomeTeamId()) {
-						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET "  + 
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
 				    			match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 						
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBallTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getHomeTeam().getTeamBadge() + "\0");
@@ -3446,7 +3446,7 @@ public class PPL extends Scene{
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$BowlingCardAll$BowlingCardType$Format2$BallData$Header$TeamNameGrp$LastName*GEOM*TEXT SET " 
 								+ match.getSetup().getHomeTeam().getTeamName1().toUpperCase() + "\0");
 					} else {
-						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET "  + 
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
 				    			match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 						
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBallTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getAwayTeam().getTeamBadge() + "\0");
@@ -3689,7 +3689,7 @@ public class PPL extends Scene{
 								"$RowAnimation$TeamNameAll$TossCoin*ACTIVE SET 0 \0");
 					}
 					
-					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET "  + 
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
 							match.getMatch().getInning().get(i-1).getBatting_team().getTeamBadge() + "\0");
 					
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow6*ACTIVE SET 0 \0");
@@ -3712,7 +3712,7 @@ public class PPL extends Scene{
 								"$RowAnimation$TeamNameAll$TossCoin*ACTIVE SET 0 \0");
 					}
 					
-					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET "  + 
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
 							match.getMatch().getInning().get(i-1).getBatting_team().getTeamBadge() + "\0");
 					
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$AllDataGrp$AllDataGrp$SummaryAll$SummaryData$BatDataGrp$SumRow6*ACTIVE SET 1 \0");
@@ -4514,7 +4514,7 @@ public class PPL extends Scene{
 				//if (inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
 					
 					if (inn.getBattingTeamId() == match.getSetup().getHomeTeamId()) {
-						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-PartTeamRefName" + " SET "  + 
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-PartTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
 								match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 						
 //						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getHomeTeam().getTeamBadge() + "\0");
@@ -4522,7 +4522,7 @@ public class PPL extends Scene{
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$Base$RightGrp$PartLeftLogoGrp$PartLeftLogo*TEXTURE*IMAGE SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$PartnershipAll$Data$Header$TeamNameGrp$LastName*GEOM*TEXT SET " + match.getSetup().getHomeTeam().getTeamName1().toUpperCase() + "\0");
 					} else {
-						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-PartTeamRefName" + " SET "  + 
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-PartTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
 								match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 						
 						print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$Base$Left$PartLeftLogoGrp$PartLeftLogo*TEXTURE*IMAGE SET " + "IMAGE*/Default/PPL/Logos/" + match.getSetup().getAwayTeam().getTeamBadge() + "\0");
@@ -6406,6 +6406,9 @@ public class PPL extends Scene{
 			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$PlayerProfile$Data$SocialMedia*ACTIVE SET " + "0" + "\0");
 
 			if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
+				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+						match.getSetup().getHomeTeam().getTeamBadge() + "\0");
+				
 				if(config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgImage" + " SET " + photo_path + 
 							match.getSetup().getHomeTeam().getTeamName4().toUpperCase() + "\\\\" + plyr.getPhoto() + CricketUtil.PNG_EXTENSION + "\0");
@@ -6432,6 +6435,9 @@ public class PPL extends Scene{
 
 			}
 			else {
+				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+						match.getSetup().getAwayTeam().getTeamBadge() + "\0");
+				
 				if(config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgImage" + " SET " + photo_path + 
 							match.getSetup().getAwayTeam().getTeamName4().toUpperCase() + "\\\\" + plyr.getPhoto() + CricketUtil.PNG_EXTENSION + "\0");
@@ -6542,6 +6548,9 @@ public class PPL extends Scene{
 			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$PlayerProfile$Data$SocialMedia*ACTIVE SET " + "0" + "\0");
 
 			if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
+				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+						match.getSetup().getHomeTeam().getTeamBadge() + "\0");
+				
 				if(config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgImage" + " SET " + photo_path + 
 							match.getSetup().getHomeTeam().getTeamName4().toUpperCase() + "\\\\" + plyr.getPhoto() + CricketUtil.PNG_EXTENSION + "\0");
@@ -6568,6 +6577,9 @@ public class PPL extends Scene{
 
 			}
 			else {
+				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+						match.getSetup().getAwayTeam().getTeamBadge() + "\0");
+				
 				if(config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgImage" + " SET " + photo_path + 
 							match.getSetup().getAwayTeam().getTeamName4().toUpperCase() + "\\\\" + plyr.getPhoto() + CricketUtil.PNG_EXTENSION + "\0");
@@ -6929,6 +6941,10 @@ public class PPL extends Scene{
 			
 			for(int i = 1; i <= 2 ; i++) {
 				if(i == 1) {
+					
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+							match.getSetup().getHomeTeam().getTeamBadge() + "\0");
+					
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll1$TeamNameGrp1$RowAnimation$TeamNameGrp"
 						+ "$NameAll$TeamFirstName*GEOM*TEXT SET " + match.getSetup().getHomeTeam().getTeamName1().toUpperCase() + " \0");
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tTeamLastName1" + " SET " + " " + "\0");
@@ -7151,6 +7167,10 @@ public class PPL extends Scene{
 					
 				} else {
 					row_id = 0;
+					
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+							match.getSetup().getAwayTeam().getTeamBadge() + "\0");
+					
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$TeamLineup_Both$TeamsAll$TeamDataData$TeamAll2$TeamNameGrp2$RowAnimation$TeamNameGrp$NameAll$TeamFirstName*GEOM*TEXT SET " 
 											+ match.getSetup().getAwayTeam().getTeamName1().toUpperCase() + "\0");
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tTeamLastName2" + " SET " + " " + "\0");
@@ -7513,9 +7533,9 @@ public class PPL extends Scene{
 						+ match.getSetup().getAwayTeam().getTeamName1().toUpperCase() + " WON THE TOSS & ELECTED TO " + match.getSetup().getTossWinningDecision().toUpperCase() + "\0");
 			}
 	    	
-	    	print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET "  + 
+	    	print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
 	    			match.getSetup().getHomeTeam().getTeamBadge() + "\0");
-			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET "  + 
+			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
 					match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 			
 			
@@ -7767,8 +7787,8 @@ public class PPL extends Scene{
 		for(Inning inn : match.getMatch().getInning()) {
 			if (inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
 				if(is_this_updating == false) {
-					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET "  + inn.getBatting_team().getTeamBadge() + "\0");
-					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET "  + inn.getBowling_team().getTeamBadge() + "\0");
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + inn.getBatting_team().getTeamBadge() + "\0");
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/"  + inn.getBowling_team().getTeamBadge() + "\0");
 					
 					
 					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgBatTeamLogo" + " SET "  + "IMAGE*/Default/PPL/Logos/" + 
@@ -9255,6 +9275,11 @@ public class PPL extends Scene{
 			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$AllDEsign$RightGrp$Bands$RightTeamLogos$RightLogo$RightLogo*TEXTURE*IMAGE SET "
 					+ logo_path + "TLogo" + "\0");
 			
+			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+					match.getSetup().getHomeTeam().getTeamBadge() + "\0");
+			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+					match.getSetup().getAwayTeam().getTeamBadge() + "\0");
+			
 			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgHomeTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" + 
 					match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 
@@ -10199,6 +10224,10 @@ public class PPL extends Scene{
 			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$SubstituteAll*ACTIVE SET 1 \0");
 			
 			if(TeamId == match.getSetup().getHomeTeamId()) {
+				
+				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+						match.getSetup().getHomeTeam().getTeamBadge() + "\0");
+				
 				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgTeamLogo" + " SET " + logo_path + match.getSetup().getHomeTeam().getTeamBadge() + "\0");
 
 				for(Player hs : match.getSetup().getHomeSquad()) {
@@ -10280,6 +10309,8 @@ public class PPL extends Scene{
 			}
 			
 			else {
+				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+						match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgTeamLogo" + " SET " + logo_path + match.getSetup().getAwayTeam().getTeamBadge() + "\0");
 
 				for(Player as : match.getSetup().getAwaySquad()) {
@@ -11267,6 +11298,9 @@ public class PPL extends Scene{
 					
 					Left_Batsman = inn.getPartnerships().get(inn.getPartnerships().size()-1).getFirstPlayer().getFull_name();
 					Right_Batsman = inn.getPartnerships().get(inn.getPartnerships().size()-1).getSecondPlayer().getFull_name();
+					
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+							inn.getBatting_team().getTeamBadge() + "\0");
 					
 					if(config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgPlayerImage1" + " SET " + photo_path + 
@@ -12535,7 +12569,7 @@ public class PPL extends Scene{
 			            + row_id + "$RowAnimation$RowOmo" + cont_name 
 			            + "$TextAll$PoinTeamName*GEOM*TEXT SET " + tm.getTeamName1().toUpperCase() + " \0");
 			        
-			        print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-PTTeam" + row_id + " SET "  + 
+			        print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-PTTeam" + row_id + " SET " + "IMAGE*/Default/BCL/Logos/"  + 
 			        		tm.getTeamBadge() + "\0");
 			    }
 			}
@@ -12961,6 +12995,10 @@ public class PPL extends Scene{
 			
 			for(Inning inn : match.getMatch().getInning()) {
 				if (inn.getInningNumber() == whichInning) {
+					
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-TeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+							inn.getBatting_team().getTeamBadge() + "\0");
+					
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgTeamLogo" + " SET " + "IMAGE*/Default/PPL/Logos/" + inn.getBatting_team().getTeamBadge() + "\0");
 
 					print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$Manhattan$Data$Header$TeamNameGrp$FirstName*GEOM*TEXT SET "+ match.getSetup().getMatchIdent() + " \0");				
@@ -13034,6 +13072,13 @@ public class PPL extends Scene{
 			String teamname = "";
 			int maxRuns = 0,runsIncr = 0,row_id = 0;
 			double Lngth = 0;
+			
+			
+			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-HomeTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+					match.getMatch().getInning().get(0).getBatting_team().getTeamBadge() + "\0");
+			
+			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "000-AwayTeamRefName" + " SET " + "IMAGE*/Default/BCL/Logos/" + 
+					match.getMatch().getInning().get(1).getBatting_team().getTeamBadge() + "\0");
 			
 			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$WormAll$TeamsAll$TeamDataData$Header$TeamNameGrp$LastName*GEOM*TEXT SET "+ "COMPARISION " + " \0");
 			print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$WormAll$TeamsAll$TeamDataData$Header$TeamNameGrp$FirstName*GEOM*TEXT SET "+match.getSetup().getMatchIdent()+"\0");

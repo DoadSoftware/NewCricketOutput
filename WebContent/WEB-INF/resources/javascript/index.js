@@ -5233,7 +5233,7 @@ function processUserSelection(whichInput) {
 									document.getElementById('selected_which_scene').value = '/Default/APL/ScoreBug';
 									break;
 								case 'PPL':
-									document.getElementById('selected_which_scene').value = '/Default/PPL/ScoreBug';
+									document.getElementById('selected_which_scene').value = '/Default/BCL/ScoreBug';
 									break;
 								case 'PUNJAB_T20':
 									document.getElementById('selected_which_scene').value = '/Default/Punjab_Cup_2023/ScoreBug';
@@ -5746,7 +5746,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Lt_Subs' + ',' + $('#selectPlayerIn').val() + ',' + $('#selectPlayerOut').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Lt_Subs' + ',' + $('#selectPlayerIn').val() + ',' + $('#selectPlayerOut').val()+ ',' + $('#selectImageImpact').val();
+					valueToProcess = '/Default/BCL/Lt_Subs' + ',' + $('#selectPlayerIn').val() + ',' + $('#selectPlayerOut').val()+ ',' + $('#selectImageImpact').val();
 					break;
 				case 'MPL':
 					valueToProcess = '/Default/MPL/LtSubstitution' + ',' + $('#selectPlayerIn').val() + ',' + $('#selectPlayerOut').val();
@@ -5807,7 +5807,7 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-FF_SUMMARY_GRAPHICS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'PPL':
-					valueToProcess = '/Default/PPL/BatBallSummary' + ',' + $('#selectGraphics').val();
+					valueToProcess = '/Default/BCL/BatBallSummary' + ',' + $('#selectGraphics').val();
 					break;
 				case 'KERALA_T20':
 					valueToProcess = '/Default/FullFrames' + ',' + $('#selectGraphics').val();
@@ -5888,7 +5888,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/DLS_Par.sum';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LT_Pointers' + ',' + $('#selectDLSOptions option:selected').val();
+					valueToProcess = '/Default/BCL/LT_Pointers' + ',' + $('#selectDLSOptions option:selected').val();
 					break;
 			}
 			break;
@@ -6764,7 +6764,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/LtNextToBat';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LtNextToBat';
+					valueToProcess = '/Default/BCL/LtNextToBat';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/LtNextToBat';
@@ -6883,7 +6883,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectpartnership').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectpartnership').val();
+					valueToProcess = '/Default/BCL/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectpartnership').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectpartnership').val();
@@ -6992,7 +6992,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value;
+					valueToProcess = '/Default/BCL/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value;
@@ -7039,7 +7039,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/MiniBowling' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' + $('#selectPlayers option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/MiniBowling' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' + $('#selectPlayers option:selected').val();
+					valueToProcess = '/Default/BCL/MiniBowling' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' + $('#selectPlayers option:selected').val();
 					break;
 				case 'MPL':
 					valueToProcess = '/Default/MPL/MiniBowlingTraditional' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' + $('#selectPlayers option:selected').val();
@@ -7089,7 +7089,7 @@ function processCricketProcedures(whatToProcess) {
 						$('#selectPlayers option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/MiniBatting' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' +
+					valueToProcess = '/Default/BCL/MiniBatting' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' +
 						$('#selectPlayers option:selected').val();
 					break;
 				case 'MPL':
@@ -7128,7 +7128,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Bugs_DoubleLine';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Bugs_DoubleLine';
+					valueToProcess = '/Default/BCL/Bugs_DoubleLine';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Bugs_DoubleLine';
@@ -7161,7 +7161,7 @@ function processCricketProcedures(whatToProcess) {
 						+ ',' + $('#selectPlayerData option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/BatBallSummary' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val()
+					valueToProcess = '/Default/BCL/BatBallSummary' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val()
 						+ ',' + $('#selectPlayerData option:selected').val();
 					break;
 				case 'FAIR_BREAK':
@@ -7446,7 +7446,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/MiniBatting' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/MiniBatting' + ',' + document.getElementById('which_keypress').value;
+					valueToProcess = '/Default/BCL/MiniBatting' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Mini_Batting' + ',' + document.getElementById('which_keypress').value;
@@ -7489,7 +7489,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/MiniBowling' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/MiniBowling' + ',' + document.getElementById('which_keypress').value;
+					valueToProcess = '/Default/BCL/MiniBowling' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Mini_Bowling' + ',' + document.getElementById('which_keypress').value;
@@ -7569,7 +7569,7 @@ function processCricketProcedures(whatToProcess) {
 						$('#selectStatsType option:selected').val() + ',' + $('#selectPlayerData option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/BatBallSummary' + ',' + document.getElementById('which_keypress').value + ',' +
+					valueToProcess = '/Default/BCL/BatBallSummary' + ',' + document.getElementById('which_keypress').value + ',' +
 						$('#selectStatsType option:selected').val() + ',' + $('#selectPlayerData option:selected').val();
 					break;
 			}
@@ -7588,7 +7588,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/FF_Row_Columm' + ',' + $('#selectTeam option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/FF_Road_to_Final' + ',' + $('#selectTeam option:selected').val();
+					valueToProcess = '/Default/BCL/FF_Road_to_Final' + ',' + $('#selectTeam option:selected').val();
 					break;
 				case 'KERALA_T20':
 					valueToProcess = '/Default/FF_ROW_COL' + ',' + $('#selectTeam option:selected').val();
@@ -7630,7 +7630,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
+					valueToProcess = '/Default/BCL/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
@@ -7695,7 +7695,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Partnership';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Partnership';
+					valueToProcess = '/Default/BCL/Partnership';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Partnership';
@@ -7760,7 +7760,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
+					valueToProcess = '/Default/BCL/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
@@ -7947,7 +7947,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Schedule_7M' + ',' + $('#selectScheduleOptions option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Schedule_7M' + ',' + $('#selectScheduleOptions option:selected').val();
+					valueToProcess = '/Default/BCL/Schedule_7M' + ',' + $('#selectScheduleOptions option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Schedule';
@@ -7971,7 +7971,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Lt_PowerPlay';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Lt_PowerPlay';
+					valueToProcess = '/Default/BCL/Lt_PowerPlay';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Lt_PowerPlay';
@@ -8064,7 +8064,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value;
+					valueToProcess = '/Default/BCL/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value;
@@ -8142,14 +8142,14 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-TOURNAMENT_TEAM':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'EVEREST_PPL_T20':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_PPL/Scenes/PPLTOURNAMENT_RECORDS_ONE.sum';
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_PPL/Scenes/BCLTOURNAMENT_RECORDS_ONE.sum';
 					break;
 			}
 			break;
 		case 'POPULATE-TEAM_TOURNAMENT':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'EVEREST_PPL_T20':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_PPL/Scenes/PPLTOURNAMENT_RECORDS_ONE.sum';
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_PPL/Scenes/BCLTOURNAMENT_RECORDS_ONE.sum';
 					break;
 			}
 			break;				
@@ -8185,7 +8185,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
+					valueToProcess = '/Default/BCL/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
@@ -8249,7 +8249,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/BatBallSummary' + ',' + $('#selectTeam1 option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/BatBallSummary' + ',' + $('#selectTeam1 option:selected').val();
+					valueToProcess = '/Default/BCL/BatBallSummary' + ',' + $('#selectTeam1 option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/BatBallSummary' + ',' + $('#selectTeam1 option:selected').val();
@@ -8308,7 +8308,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/DoubleMatchId' + ',' + $('#selectTieID option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/DoubleMatchId' + ',' + $('#selectTieID option:selected').val();
+					valueToProcess = '/Default/BCL/DoubleMatchId' + ',' + $('#selectTieID option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/MatchId_Double' + ',' + $('#selectTieID option:selected').val();
@@ -8439,7 +8439,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Bugs_DoubleLine';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Bugs_DoubleLine'+","+$('#selectLogos option:selected').val()+","+$('#selectDecision option:selected').val();
+					valueToProcess = '/Default/BCL/Bugs_DoubleLine'+","+$('#selectLogos option:selected').val()+","+$('#selectDecision option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Bugs_DoubleLine';
@@ -8479,7 +8479,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Teams';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Teams'+","+$('#selectOptions option:selected').val();
+					valueToProcess = '/Default/BCL/Teams'+","+$('#selectOptions option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Teams';
@@ -8609,7 +8609,7 @@ function processCricketProcedures(whatToProcess) {
 						$('#selectStatType option:selected').val() + ',' + $('#selectHowoutPlayers option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value + ',' +
+					valueToProcess = '/Default/BCL/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value + ',' +
 						$('#selectStatType option:selected').val() + ',' + $('#selectHowoutPlayers option:selected').val();
 					break;
 				case 'PUNJAB_T20':
@@ -8728,7 +8728,7 @@ function processCricketProcedures(whatToProcess) {
 						$('#selectPlayers option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' +
+					valueToProcess = '/Default/BCL/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' +
 						$('#selectPlayers option:selected').val();
 					break;
 				case 'PUNJAB_T20':
@@ -8851,7 +8851,7 @@ function processCricketProcedures(whatToProcess) {
 						$('#selectPlayers option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Bugs' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' +
+					valueToProcess = '/Default/BCL/Bugs' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' +
 						$('#selectPlayers option:selected').val();
 					break;
 				case 'PUNJAB_T20':
@@ -8935,7 +8935,7 @@ function processCricketProcedures(whatToProcess) {
 						$('#selectHowoutPlayers option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LT_PlayerHowOut' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatType option:selected').val() + ',' +
+					valueToProcess = '/Default/BCL/LT_PlayerHowOut' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatType option:selected').val() + ',' +
 						$('#selectHowoutPlayers option:selected').val();
 					break;
 				case 'PUNJAB_T20':
@@ -8997,7 +8997,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/LT_PlayerHowOut';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LT_PlayerHowOut';
+					valueToProcess = '/Default/BCL/LT_PlayerHowOut';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/LT_PlayerHowOut';
@@ -9055,7 +9055,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/LT_PlayerHowOut';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LT_PlayerHowOut';
+					valueToProcess = '/Default/BCL/LT_PlayerHowOut';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/LT_PlayerHowOut';
@@ -9160,7 +9160,7 @@ function processCricketProcedures(whatToProcess) {
 						$('#selectPlayers option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LtPlayerStats' + ',' + document.getElementById('which_keypress').value + ',' + 'Batsman' + ',' +
+					valueToProcess = '/Default/BCL/LtPlayerStats' + ',' + document.getElementById('which_keypress').value + ',' + 'Batsman' + ',' +
 						$('#selectPlayers option:selected').val();
 					break;
 				case 'PUNJAB_T20':
@@ -9280,7 +9280,7 @@ function processCricketProcedures(whatToProcess) {
 						$('#selectPlayers option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LtPlayerStats' + ',' + document.getElementById('which_keypress').value + ',' + 'Bowler' + ',' +
+					valueToProcess = '/Default/BCL/LtPlayerStats' + ',' + document.getElementById('which_keypress').value + ',' + 'Bowler' + ',' +
 						$('#selectPlayers option:selected').val();
 					break;
 				case 'PUNJAB_T20':
@@ -9364,7 +9364,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/LT_Pointers' + ',' + $('#selectPointers option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LT_Pointers' + ',' + $('#selectPointers option:selected').val();
+					valueToProcess = '/Default/BCL/LT_Pointers' + ',' + $('#selectPointers option:selected').val();
 					break;
 				case 'MPL':
 					valueToProcess = '/Default/MPL/Lt_Schedule' + ',' + $('#selectPointers option:selected').val();
@@ -9557,7 +9557,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/LT_NameSuper' + ',' + $('#selectNameSuper option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LT_NameSuper' + ',' + $('#selectNameSuper option:selected').val();
+					valueToProcess = '/Default/BCL/LT_NameSuper' + ',' + $('#selectNameSuper option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/LT_NameSuper' + ',' + $('#selectNameSuper option:selected').val();
@@ -9603,7 +9603,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/LT_NameSuper' + ',' + 'CAPTAIN' + ',' + $('#selectPlayer option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LT_NameSuper' + ',' + 'CAPTAIN' + ',' + $('#selectPlayer option:selected').val();
+					valueToProcess = '/Default/BCL/LT_NameSuper' + ',' + 'CAPTAIN' + ',' + $('#selectPlayer option:selected').val();
 					break;
 				case 'MAHARAJA_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtNameSuper' + ',' + 'CAPTAIN' + ',' + $('#selectPlayer option:selected').val();
@@ -9679,7 +9679,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/LT_NameSuper' + ',' + $('#selectCaptainWicketKeeper option:selected').val() + ',' + $('#selectPlayer option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LT_NameSuper' + ',' + $('#selectCaptainWicketKeeper option:selected').val() + ',' + $('#selectPlayer option:selected').val();
+					valueToProcess = '/Default/BCL/LT_NameSuper' + ',' + $('#selectCaptainWicketKeeper option:selected').val() + ',' + $('#selectPlayer option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/LT_NameSuper' + ',' + $('#selectCaptainWicketKeeper option:selected').val() + ',' + $('#selectPlayer option:selected').val();
@@ -9736,7 +9736,7 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-FF-TEAMS-LEADERBOARD':
 		switch ($('#selected_broadcaster').val().toUpperCase()) {
 			case 'PPL':
-				valueToProcess = '/Default/PPL/LeaderBoard' + ',' +$('#selectTeamsleader option:selected').val() +','+$('#selectleaderboardType option:selected').val() + ',' + $('#selectTop5player option:selected').val();
+				valueToProcess = '/Default/BCL/LeaderBoard' + ',' +$('#selectTeamsleader option:selected').val() +','+$('#selectleaderboardType option:selected').val() + ',' + $('#selectTop5player option:selected').val();
 				break;
 		}
 		break;
@@ -9811,7 +9811,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/LeaderBoard' + ',' + $('#selectleaderboardType option:selected').val() + ',' + $('#selectTop5player option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LeaderBoard' + ',' + $('#selectleaderboardType option:selected').val() + ',' + $('#selectTop5player option:selected').val();
+					valueToProcess = '/Default/BCL/LeaderBoard' + ',' + $('#selectleaderboardType option:selected').val() + ',' + $('#selectTop5player option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/LeaderBoard' + ',' + $('#selectleaderboardType option:selected').val() + ',' + $('#selectTop5player option:selected').val();
@@ -9941,7 +9941,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/GPCL/FF_Row_Columm' + ',' + $('#selectffstatsType option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/FF_Row_Columm' + ',' + $('#selectffstatsType option:selected').val();
+					valueToProcess = '/Default/BCL/FF_Row_Columm' + ',' + $('#selectffstatsType option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/FF_Row_Columm' + ',' + $('#selectffstatsType option:selected').val();
@@ -10035,7 +10035,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/MiniBatting' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerName option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/MiniBatting' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerName option:selected').val();
+					valueToProcess = '/Default/BCL/MiniBatting' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerName option:selected').val();
 					break;
 				case 'MAHARAJA_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Mini_Batting' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerName option:selected').val();
@@ -10049,7 +10049,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/MiniBowling' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerName option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/MiniBowling' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerName option:selected').val();
+					valueToProcess = '/Default/BCL/MiniBowling' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerName option:selected').val();
 					break;
 			}
 			break;
@@ -10104,7 +10104,7 @@ function processCricketProcedures(whatToProcess) {
 						'Batsman';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/PlayerProfile' + ',' + $('#selectPlayerName option:selected').val() + ',' + $('#selectProfile option:selected').val() + ',' +
+					valueToProcess = '/Default/BCL/PlayerProfile' + ',' + $('#selectPlayerName option:selected').val() + ',' + $('#selectProfile option:selected').val() + ',' +
 						'Batsman';
 					break;
 				case 'EVEREST_MPL_T20':
@@ -10184,7 +10184,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Lt_Projected' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Lt_Projected' + ',' + document.getElementById('which_keypress').value;
+					valueToProcess = '/Default/BCL/Lt_Projected' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'KERALA_T20':
 					valueToProcess = '/Default/LT_All' + ',' + document.getElementById('which_keypress').value;
@@ -10242,7 +10242,7 @@ function processCricketProcedures(whatToProcess) {
 						'Bowler';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/PlayerProfile' + ',' + $('#selectPlayerName option:selected').val() + ',' + $('#selectProfile option:selected').val() + ',' +
+					valueToProcess = '/Default/BCL/PlayerProfile' + ',' + $('#selectPlayerName option:selected').val() + ',' + $('#selectProfile option:selected').val() + ',' +
 						'Bowler';
 					break;
 				case 'FAIR_BREAK':
@@ -10395,7 +10395,7 @@ function processCricketProcedures(whatToProcess) {
 
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/ScoreBug' + ',' + $('#selectTopLeftStats option:selected').val() + ',' + $('#selectSection4 option:selected').val() + ',' +
+					valueToProcess = '/Default/BCL/ScoreBug' + ',' + $('#selectTopLeftStats option:selected').val() + ',' + $('#selectSection4 option:selected').val() + ',' +
 						$('#selectBottomRight option:selected').val();
 
 					break;
@@ -10479,7 +10479,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/ScoreBug' + ',' + $('#selectIdent option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/ScoreBug' + ',' + $('#selectIdent option:selected').val();
+					valueToProcess = '/Default/BCL/ScoreBug' + ',' + $('#selectIdent option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/ScoreBug' + ',' + $('#selectIdent option:selected').val();
@@ -10578,7 +10578,7 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-6POPUP':case 'POPULATE-4POPUP':
 		switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Extra_PopUps';
+					valueToProcess = '/Default/BCL/Extra_PopUps';
 					break;
 			}
 		case 'POPULATE-ONAHATTRICKDIRECTOR':
@@ -11008,7 +11008,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/MatchId';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/MatchId';
+					valueToProcess = '/Default/BCL/MatchId';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/MatchId';
@@ -11075,7 +11075,7 @@ function processCricketProcedures(whatToProcess) {
 					break;
 				case 'PPL':
 					//alert('hello');
-					valueToProcess = '/Default/PPL/Lt_MatchId';
+					valueToProcess = '/Default/BCL/Lt_MatchId';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Lt_MatchId';
@@ -11125,7 +11125,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/TeamLineUpOnlyImage' + ',' + $('#selectPlayingXI option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/TeamLineUpOnlyImage' + ',' + $('#selectPlayingXI option:selected').val();
+					valueToProcess = '/Default/BCL/TeamLineUpOnlyImage' + ',' + $('#selectPlayingXI option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/TeamLineUpOnlyImage' + ',' + $('#selectPlayingXI option:selected').val();
@@ -11162,7 +11162,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/TeamLineUpImage' + ',' + $('#selectPlayingXI option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/TeamLineUpSingle' + ',' + $('#selectPlayingXI option:selected').val();
+					valueToProcess = '/Default/BCL/TeamLineUpSingle' + ',' + $('#selectPlayingXI option:selected').val();
 					break;
 			}
 			break;
@@ -11194,7 +11194,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/TeamLineUpOnlyImage' + ',' + $('#selectPlayingXI option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/TeamLineUpOnlyImage' + ',' + $('#selectPlayingXI option:selected').val();
+					valueToProcess = '/Default/BCL/TeamLineUpOnlyImage' + ',' + $('#selectPlayingXI option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/TeamLineUpOnlyImage' + ',' + $('#selectPlayingXI option:selected').val();
@@ -11268,7 +11268,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/LtTimeSince';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LtTimeSince';
+					valueToProcess = '/Default/BCL/LtTimeSince';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/LtTimeSince';
@@ -11311,7 +11311,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Bug_Target';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Bug_Target';
+					valueToProcess = '/Default/BCL/Bug_Target';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Bug_Target';
@@ -11410,7 +11410,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Lt_Projected';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Lt_Projected';
+					valueToProcess = '/Default/BCL/Lt_Projected';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Lt_Projected';
@@ -11471,7 +11471,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Lt_Projected';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Lt_Projected';
+					valueToProcess = '/Default/BCL/Lt_Projected';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Lt_Projected';
@@ -11526,7 +11526,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Lt_BattingSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Lt_BattingSummary' + ',' + document.getElementById('which_keypress').value;
+					valueToProcess = '/Default/BCL/Lt_BattingSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Lt_BattingSummary' + ',' + document.getElementById('which_keypress').value;
@@ -11591,7 +11591,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Lt_BattingSummary' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerData option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Lt_BattingSummary' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerData option:selected').val();
+					valueToProcess = '/Default/BCL/Lt_BattingSummary' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerData option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Lt_BattingSummary' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerData option:selected').val();
@@ -11690,7 +11690,7 @@ function processCricketProcedures(whatToProcess) {
 					//alert(valueToProcess);
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Lt_BattingSummary' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerData option:selected').val();
+					valueToProcess = '/Default/BCL/Lt_BattingSummary' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerData option:selected').val();
 					//alert(valueToProcess);
 					break;
 				case 'DOAD_LLC': case 'KERALA_T20':
@@ -12273,7 +12273,7 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-RESULT2':case 'POPULATE-TARGET2':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Bugs';
+					valueToProcess = '/Default/BCL/Bugs';
 					break;
 			}
 			break;
@@ -12414,7 +12414,7 @@ function processCricketProcedures(whatToProcess) {
 						'Batsman';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3Profile option:selected').val() + ',' +
+					valueToProcess = '/Default/BCL/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3Profile option:selected').val() + ',' +
 						'Batsman';
 					break;
 				case 'PUNJAB_T20':
@@ -12534,7 +12534,7 @@ function processCricketProcedures(whatToProcess) {
 						'Bowler';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3Profile option:selected').val() + ',' +
+					valueToProcess = '/Default/BCL/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3Profile option:selected').val() + ',' +
 						'Bowler';
 					break;
 				case 'PUNJAB_T20':
@@ -12620,7 +12620,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
+					valueToProcess = '/Default/BCL/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
 					break;
 				case 'MAHARAJA_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + 'Bowler' + ',' + $('#selectl3TypeOfProfile option:selected').val();
@@ -12665,7 +12665,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
+					valueToProcess = '/Default/BCL/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
@@ -12732,7 +12732,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/PlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/PlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
+					valueToProcess = '/Default/BCL/PlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
 					break;
 				case 'KERALA_T20':
 					valueToProcess = '/Default/FullFrames' + ',' + $('#selectl3PlayerName option:selected').val()+ ',' + 'Bowler' + ',' + $('#selectl3TypeOfProfile option:selected').val();
@@ -12787,7 +12787,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/PlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/PlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
+					valueToProcess = '/Default/BCL/PlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/PlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
@@ -12866,7 +12866,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/MatchId' + ',' + $('#selectMatchPromo option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/MatchId' + ',' + $('#selectMatchPromo option:selected').val();
+					valueToProcess = '/Default/BCL/MatchId' + ',' + $('#selectMatchPromo option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/MatchId' + ',' + $('#selectMatchPromo option:selected').val();
@@ -12927,7 +12927,7 @@ function processCricketProcedures(whatToProcess) {
 					break;
 				case 'PPL':
 					//alert('hello');
-					valueToProcess = '/Default/PPL/Lt_MatchId' + ',' + $('#selectMatchPromo option:selected').val();
+					valueToProcess = '/Default/BCL/Lt_MatchId' + ',' + $('#selectMatchPromo option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					//alert('hello');
@@ -12989,7 +12989,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Lt_FOW' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Lt_FOW' + ',' + document.getElementById('which_keypress').value;
+					valueToProcess = '/Default/BCL/Lt_FOW' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Lt_FOW' + ',' + document.getElementById('which_keypress').value;
@@ -13047,7 +13047,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Lt_30_50Splits' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectSplitValue option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Lt_30_50Splits' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectSplitValue option:selected').val();
+					valueToProcess = '/Default/BCL/Lt_30_50Splits' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectSplitValue option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Lt_30_50Splits' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectSplitValue option:selected').val();
@@ -13087,7 +13087,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/TopPerformers';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/TopPerformers';
+					valueToProcess = '/Default/BCL/TopPerformers';
 					break;
 			}
 			break;
@@ -13097,7 +13097,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Captains';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Captains';
+					valueToProcess = '/Default/BCL/Captains';
 					break;
 			}
 			break;
@@ -13124,7 +13124,7 @@ function processCricketProcedures(whatToProcess) {
 					//alert(valueToProcess);
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/TeamLineup_Both';
+					valueToProcess = '/Default/BCL/TeamLineup_Both';
 					//alert(valueToProcess);
 					break;
 				case 'PUNJAB_T20':
@@ -13195,7 +13195,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Lt_Comparison';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Lt_Comparison';
+					valueToProcess = '/Default/BCL/Lt_Comparison';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Lt_Comparison';
@@ -13248,7 +13248,7 @@ function processCricketProcedures(whatToProcess) {
 						',' + $('#selectlandmarkPlayers option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Milestone' + ',' + document.getElementById('which_keypress').value + ',' + 'Bowler' +
+					valueToProcess = '/Default/BCL/Milestone' + ',' + document.getElementById('which_keypress').value + ',' + 'Bowler' +
 						',' + $('#selectlandmarkPlayers option:selected').val();
 					break;
 				case 'MPL':
@@ -13273,7 +13273,7 @@ function processCricketProcedures(whatToProcess) {
 						',' + $('#selectlandmarkPlayers option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Milestone' + ',' + document.getElementById('which_keypress').value + ',' + 'Batsman' +
+					valueToProcess = '/Default/BCL/Milestone' + ',' + document.getElementById('which_keypress').value + ',' + 'Batsman' +
 						',' + $('#selectlandmarkPlayers option:selected').val();
 					break;
 				case 'MPL':
@@ -13327,7 +13327,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/LtTimeSince';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LtTimeSince';
+					valueToProcess = '/Default/BCL/LtTimeSince';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/LtTimeSince';
@@ -13420,7 +13420,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/RoadToFinal';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Playoffs';
+					valueToProcess = '/Default/BCL/Playoffs';
 					break;
 				case 'MAHARAJA_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Playoffs';
@@ -13457,7 +13457,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/BatBallSummary';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/BatBallSummary';
+					valueToProcess = '/Default/BCL/BatBallSummary';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/BatBallSummary';
@@ -13511,7 +13511,7 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-LOCATOR':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LocatorIdent';
+					valueToProcess = '/Default/BCL/LocatorIdent';
 					break;
 			}
 			break;	
@@ -13524,7 +13524,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/MiniPointsTable';
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/MiniPointsTable';
+					valueToProcess = '/Default/BCL/MiniPointsTable';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Mini_PointsTable';
@@ -13632,7 +13632,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/FF_ROW_COL';
 					break;	
 				case 'PPL':
-					valueToProcess = '/Default/PPL/FF_Leaderboard_WithoutImage';
+					valueToProcess = '/Default/BCL/FF_Leaderboard_WithoutImage';
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/FF_Row_Columm';
@@ -13703,7 +13703,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/LT_NameSuper' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectbowler option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LT_NameSuper' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectbowler option:selected').val();
+					valueToProcess = '/Default/BCL/LT_NameSuper' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectbowler option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/LT_NameSuper' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectbowler option:selected').val();
@@ -13776,7 +13776,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/LT_NameSuper' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectpositionlandmark option:selected').val();
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/LT_NameSuper' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectpositionlandmark option:selected').val();
+					valueToProcess = '/Default/BCL/LT_NameSuper' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectpositionlandmark option:selected').val();
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/LT_NameSuper' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectpositionlandmark option:selected').val();
@@ -13828,7 +13828,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Manhattan' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Manhattan' + ',' + document.getElementById('which_keypress').value;
+					valueToProcess = '/Default/BCL/Manhattan' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Manhattan' + ',' + document.getElementById('which_keypress').value;
@@ -13952,7 +13952,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/APL/Worm' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PPL':
-					valueToProcess = '/Default/PPL/Worm' + ',' + document.getElementById('which_keypress').value;
+					valueToProcess = '/Default/BCL/Worm' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'PUNJAB_T20':
 					valueToProcess = '/Default/Punjab_Cup_2023/Worm' + ',' + document.getElementById('which_keypress').value;
@@ -17001,9 +17001,9 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						}
 					} else if ($('#selected_broadcaster').val().toUpperCase() == 'PPL') {
 						if (bug.text2 == '') {
-							document.getElementById('bugdbScene').value = '/Default/PPL/Bugs';
+							document.getElementById('bugdbScene').value = '/Default/BCL/Bugs';
 						} else {
-							document.getElementById('bugdbScene').value = '/Default/PPL/Bugs_DoubleLine';
+							document.getElementById('bugdbScene').value = '/Default/BCL/Bugs_DoubleLine';
 						}
 					} else if ($('#selected_broadcaster').val().toUpperCase() == 'PUNJAB_T20') {
 						if (bug.text2 == '') {

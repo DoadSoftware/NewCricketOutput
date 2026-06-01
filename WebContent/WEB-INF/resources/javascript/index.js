@@ -2326,7 +2326,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'RPL': case 'THAILAND': case 'LCT':
 							processCricketProcedures('POPULATE-FOUR');
 							break;
-						case 'MAHARAJA_T20': case 'DOAD_LLC':
+						case 'MAHARAJA_T20': case 'DOAD_LLC': case 'KERALA_T20':
 							processCricketProcedures('POPULATE-FIELD_PLOTTER_USPL');
 							break;
 						case 'ACC_NEPAL':
@@ -31671,6 +31671,36 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									select.name = select.id;
 
 									option = document.createElement('option');
+									option.value = 'Ident';
+									option.text = 'Ident';
+									select.appendChild(option);
+																		
+									session_match.match.inning.forEach(function(inn, index, arr) {
+										if (inn.isCurrentInning == 'YES') {
+											if (inn.inningNumber == 1) {
+												option = document.createElement('option');
+												option.value = 'Projected';
+												option.text = 'Projected';
+												select.appendChild(option);
+											}else{
+												/*option.value = 'target';
+												option.text = 'Target';
+												select.appendChild(option);*/
+
+												option = document.createElement('option');
+												option.value = 'equation';
+												option.text = 'Equation';
+												select.appendChild(option);
+
+												option = document.createElement('option');
+												option.value = 'comparison';
+												option.text = 'AT THIS STAGE';
+												select.appendChild(option);
+											}
+										}
+									});	
+												
+									option = document.createElement('option');
 									option.value = 'timeline';
 									option.text = 'Timeline';
 									select.appendChild(option);
@@ -34357,6 +34387,11 @@ function addItemsToList(whatToProcess, dataToProcess) {
 												option.value = 'economy';
 												option.text = 'Economy';
 												select.appendChild(option);
+												
+												option = document.createElement('option');
+												option.value = 'CRR';
+												option.text = 'CRR';
+												select.appendChild(option);
 
 												/*option = document.createElement('option');
 												option.value = 'lastoverruns';
@@ -34404,6 +34439,21 @@ function addItemsToList(whatToProcess, dataToProcess) {
 												option = document.createElement('option');
 												option.value = 'extras';
 												option.text = 'Extras';
+												select.appendChild(option);
+												
+												option = document.createElement('option');
+												option.value = 'CRR_RRR';
+												option.text = 'RRR';
+												select.appendChild(option);
+												
+												option = document.createElement('option');
+												option.value = 'TARGET';
+												option.text = 'TARGET';
+												select.appendChild(option);
+												
+												option = document.createElement('option');
+												option.value = 'EQUATION';
+												option.text = 'EQUATION';
 												select.appendChild(option);
 
 												row.insertCell(cellCount).appendChild(select);

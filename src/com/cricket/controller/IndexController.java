@@ -120,7 +120,7 @@ public class IndexController
 //	public static EVEREST_NEPAL_T20 everest_nepal_t20;
 	public static EVEREST_LEGENDS_90 everest_legends_90;
 	
-	public static KERALA_T20 this_kerala_t20 = new KERALA_T20();
+	public static KERALA_T20 this_kerala_t20;
 //	public static EVEREST_PUNJAB_T20 everest_punjab_t20;
 	public static EVEREST_APL_T20 everest_apl_t20;
 //	public static EVEREST_KCL everest_KCL;
@@ -142,7 +142,7 @@ public class IndexController
 	public boolean Plotter_file_change = false;
 	public boolean match_file_change_third_party=false;
 	public static MatchStats matchstats ;
-	public static String cat = "Men";
+	public static String cat = "";
 	File speedFile = new File("C:\\Sports\\Cricket\\Speed\\SPEED.txt");
 	public static String basePath = "";
 	
@@ -322,17 +322,23 @@ public class IndexController
 			System.out.println("Category = " + Category);
 			
 			if(Category.equalsIgnoreCase("men")) {
-				cat = "Men";
-				basePath = "C:\\Sports\\CricketMen\\";
-		    	DatabaseContextHolder.setDb("MEN");
-			}else if(Category.equalsIgnoreCase("women")) {
-				cat = "Women";
-				basePath = "C:\\Sports\\CricketWomen\\";
-		    	DatabaseContextHolder.setDb("WOMEN");
-			}else {
-				basePath = CricketUtil.CRICKET_DIRECTORY;
-				DatabaseContextHolder.setDb("LOCAL");
+			    cat = "Men";
+			    basePath = "C:\\Sports\\CricketMen\\";
+			    DatabaseContextHolder.setDb("MEN");
+			} else if(Category.equalsIgnoreCase("women")) {
+			    cat = "Women";
+			    basePath = "C:\\Sports\\CricketWomen\\";
+			    DatabaseContextHolder.setDb("WOMEN");
+			} else {
+			    cat = ""; 
+			    basePath = CricketUtil.CRICKET_DIRECTORY;
+			    DatabaseContextHolder.setDb("LOCAL");
 			}
+			System.out.println("===== CATEGORY =====");
+			System.out.println("Category = " + Category);
+			System.out.println("cat = " + cat);
+			System.out.println("basePath = " + basePath);
+			System.out.println("Current DB = " + DatabaseContextHolder.getDb());
 			
 //			speed_match_time_stamp = new File("C:\\Sports\\Cricket\\Speed\\SPEED.txt").lastModified();
 //			plotter_match_time_stamp = new File(CricketUtil.CRICKET_DIRECTORY + "Fielder/" + "FielderFormation.json").lastModified();
@@ -953,9 +959,25 @@ public class IndexController
 		@ModelAttribute("session_selected_second_broadcaster") String session_selected_second_broadcaster,
 		@ModelAttribute("session_selected_scenes") List<Scene> session_selected_scenes,
 		@RequestParam(value = "whatToProcess", required = false, defaultValue = "") String whatToProcess,
-		@RequestParam(value = "valueToProcess", required = false, defaultValue = "") String valueToProcess) 
+		@RequestParam(value = "valueToProcess", required = false, defaultValue = "") String valueToProcess,
+		@RequestParam(value = "Category", required = false, defaultValue = "") String Category) 
 					throws Exception 
 	{
+		if(cat.equalsIgnoreCase("Men")) {
+		    DatabaseContextHolder.setDb("MEN");
+		    basePath = "C:\\Sports\\CricketMen\\";
+		} else if(cat.equalsIgnoreCase("Women")) {
+		    DatabaseContextHolder.setDb("WOMEN");
+		    basePath = "C:\\Sports\\CricketWomen\\";
+		} else {
+		    DatabaseContextHolder.setDb("LOCAL");
+		    basePath = CricketUtil.CRICKET_DIRECTORY;
+		}
+		System.out.println("===== CATEGORY =====");
+		System.out.println("Category = " + Category);
+		System.out.println("cat = " + cat);
+		System.out.println("basePath = " + basePath);
+		System.out.println("Current DB = " + DatabaseContextHolder.getDb());
 		
 		switch (whatToProcess.toUpperCase()) {
 		case "GET-CONFIG-DATA":

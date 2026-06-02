@@ -40,6 +40,7 @@ import com.cricket.model.BattingCard;
 import com.cricket.model.BestStats;
 import com.cricket.model.BowlingCard;
 import com.cricket.model.Bugs;
+import com.cricket.model.Commentator;
 import com.cricket.model.Configuration;
 import com.cricket.model.Event;
 import com.cricket.model.EventFile;
@@ -157,7 +158,7 @@ public class KERALA_T20 extends Scene {
 	
 
 	public Infobar updateInfobar(List<Scene> scenes, MatchAllData match, boolean show_speed,
-			List<PrintWriter> print_writer) throws Exception {
+			List<PrintWriter> print_writer,CricketService cricketService) throws Exception {
 		
 		IndexController.matchstats = CricketFunctions.getAllEvents(match ,broadcaster, match.getEventFile().getEvents());
 		if (infobar.isInfobar_on_screen() == true) {
@@ -183,15 +184,13 @@ public class KERALA_T20 extends Scene {
 				}
 
 				if (infobar.getFull_section() != null && !infobar.getFull_section().trim().isEmpty()) {
-					infobar = populateSection5(infobar, true, print_writer.get(0), 0, match, broadcaster);
+					infobar = populateSection5(infobar, true, print_writer.get(0), 0, match, broadcaster,"",cricketService);
 				}
 				if (infobar.getLast_top_section() != null && !infobar.getLast_top_section().trim().isEmpty()) {
 					infobar = populateVizInfobarTop(infobar, true, print_writer.get(0), match, broadcaster);
 				}
 			}
 
-			System.out.println("info = " + infobar.getLast_speed_value());
-			System.out.println("match = " + match.getMatch().getCurrent_speed());
 			// infobar.setLast_speed_value(match.getMatch().getCurrent_speed());
 			if (infobar.getLast_speed_value() == null) {
 				if (match.getMatch().getCurrent_speed() != null) {
@@ -259,6 +258,27 @@ public class KERALA_T20 extends Scene {
 				case "FREETEXT":
 					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
 					break;
+				case "PROJECTED":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "TARGET":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "EQUATION":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "COMPARISON":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				case "IDENT":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "TOURNAMENT":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				case "COMMS":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;		
 				}
 				TimeUnit.MILLISECONDS.sleep(200);
 				processAnimation(print_writer, "Section5$Section5Out", "START", broadcaster);
@@ -375,7 +395,8 @@ public class KERALA_T20 extends Scene {
 				case "ECONOMY":
 					processAnimation(print_writer, "Section3$EconomyOut", "START", broadcaster);
 					break;
-				case "BOWLINGEND":
+				case "BOWLINGEND": case "REPLACEBOWLER":case "CRR": case "TARGET":
+				case "EQUATION": case "CRR_RRR":
 					processAnimation(print_writer, "Section3$BowlingEndOut", "START", broadcaster);
 					break;
 				case "EXTRAS":
@@ -905,6 +926,7 @@ public class KERALA_T20 extends Scene {
 			print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*In START \0");
 			break;
 		case "MAIN":
+			TimeUnit.MILLISECONDS.sleep(2000);
 			print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*In START \0");
 //			print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*MainIn START \0");
 			break;
@@ -2631,7 +2653,8 @@ public class KERALA_T20 extends Scene {
 				case "ECONOMY":
 					processAnimation(print_writer, "Section3$EconomyIn", "START", broadcaster);
 					break;
-				case "BOWLINGEND":
+				case "BOWLINGEND": case "REPLACEBOWLER":case "CRR": case "TARGET":
+				case "EQUATION": case "CRR_RRR":
 					processAnimation(print_writer, "Section3$BowlingEndIn", "START", broadcaster);
 					break;
 				case "EXTRAS":
@@ -2652,41 +2675,62 @@ public class KERALA_T20 extends Scene {
 				case "FREETEXT":
 					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
 					break;
+				case "PROJECTED":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "TARGET":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "EQUATION":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "COMPARISON":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				case "IDENT":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "TOURNAMENT":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				case "COMMS":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;		
 				}
 				// TimeUnit.MILLISECONDS.sleep(100);
 				infobar.setBottom_right_bottom_section(CricketUtil.OVER);
 				infobar = populateVizInfobarRightBottom(infobar, false, print_writer, match, broadcaster);
 				// TimeUnit.MILLISECONDS.sleep(500);
-				processAnimation(print_writer, "Section3$ThisOverOut", "START", broadcaster);
-				processAnimation(print_writer, "Section3$EconomyOut", "START", broadcaster);
-				processAnimation(print_writer, "Section3$BowlingEndOut", "START", broadcaster);
-				processAnimation(print_writer, "Section3$ExtrasOut", "START", broadcaster);
-				// .MILLISECONDS.sleep(100);
-				infobar.setBottom_right_top_section(CricketUtil.BOWLER);
-				infobar = populateVizInfobarRightTop(infobar, false, print_writer, match, broadcaster);
+//				processAnimation(print_writer, "Section3$ThisOverOut", "START", broadcaster);
+//				processAnimation(print_writer, "Section3$EconomyOut", "START", broadcaster);
+//				processAnimation(print_writer, "Section3$BowlingEndOut", "START", broadcaster);
+//				processAnimation(print_writer, "Section3$ExtrasOut", "START", broadcaster);
+//				infobar.setBottom_right_top_section(CricketUtil.BOWLER);
+//				infobar = populateVizInfobarRightTop(infobar, false, print_writer, match, broadcaster);
 				processAnimation(print_writer, "BowlerIn", "START", broadcaster);
-				// TimeUnit.MILLISECONDS.sleep(100);
-				switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
-				case CricketUtil.OVER:
-					System.out.println("HELLO 10");
-					if (infobar.isThisover()) {
-						processAnimation(print_writer, "Section3$ThisOverIn", "START", broadcaster);
-					} else {
-						processAnimation(print_writer, "Section3$FreeTextIn", "START", broadcaster);
-					}
-					break;
-				case "ECONOMY":
-					processAnimation(print_writer, "Section3$EconomyIn", "START", broadcaster);
-					break;
-				case "BOWLINGEND":
-					processAnimation(print_writer, "Section3$BowlingEndIn", "START", broadcaster);
-					break;
-				case "EXTRAS":
-					processAnimation(print_writer, "Section3$ExtrasIn", "START", broadcaster);
-					break;
-				}
+//				// TimeUnit.MILLISECONDS.sleep(100);
+//				switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
+//				case CricketUtil.OVER:
+//					System.out.println("HELLO 10");
+//					if (infobar.isThisover()) {
+//						processAnimation(print_writer, "Section3$ThisOverIn", "START", broadcaster);
+//					} else {
+//						processAnimation(print_writer, "Section3$FreeTextIn", "START", broadcaster);
+//					}
+//					break;
+//				case "ECONOMY":
+//					processAnimation(print_writer, "Section3$EconomyIn", "START", broadcaster);
+//					break;
+//				case "BOWLINGEND": case "REPLACEBOWLER":case "CRR": case "TARGET":
+//				case "EQUATION": case "CRR_RRR":
+//					processAnimation(print_writer, "Section3$BowlingEndIn", "START", broadcaster);
+//					break;
+//				case "EXTRAS":
+//					processAnimation(print_writer, "Section3$ExtrasIn", "START", broadcaster);
+//					break;
+//				}
 				TimeUnit.MILLISECONDS.sleep(100);
-
+//
 				processAnimation(print_writer, "Section5$Section5Out", "START", broadcaster);
 				infobar.setLast_full_section("");
 				infobar.setFull_section("");
@@ -2769,7 +2813,8 @@ public class KERALA_T20 extends Scene {
 			case "ECONOMY":
 				processAnimation(print_writer, "Section3$EconomyIn", "START", broadcaster);
 				break;
-			case "BOWLINGEND":
+			case "BOWLINGEND": case "REPLACEBOWLER":case "CRR": case "TARGET":
+			case "EQUATION": case "CRR_RRR":
 				processAnimation(print_writer, "Section3$BowlingEndIn", "START", broadcaster);
 				break;
 			case "EXTRAS":
@@ -2791,6 +2836,27 @@ public class KERALA_T20 extends Scene {
 				case "FREETEXT":
 					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
 					break;
+				case "PROJECTED":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "TARGET":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "EQUATION":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "COMPARISON":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				case "IDENT":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "TOURNAMENT":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				case "COMMS":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;		
 				}
 			}
 
@@ -2819,7 +2885,8 @@ public class KERALA_T20 extends Scene {
 			case "ECONOMY":
 				processAnimation(print_writer, "Section3$EconomyIn", "START", broadcaster);
 				break;
-			case "BOWLINGEND":
+			case "BOWLINGEND": case "REPLACEBOWLER":case "CRR": case "TARGET":
+			case "EQUATION": case "CRR_RRR":
 				processAnimation(print_writer, "Section3$BowlingEndIn", "START", broadcaster);
 				break;
 			case "EXTRAS":
@@ -3941,9 +4008,10 @@ public class KERALA_T20 extends Scene {
 
 	public void populateFieldPlotter(PrintWriter print_writer, String viz_scene, MatchAllData match, String broadcaster,
 			String fileName) throws InterruptedException, IOException {
+		System.out.println(broadcaster);
 		switch (broadcaster.toUpperCase()) {
 		case "KERALA_T20":
-
+			
 			FieldersData fielderFormation = new FieldersData();
 			fielderFormation = CricketFunctions
 					.getFielderFormation(CricketUtil.CRICKET_DIRECTORY + "Fielder/" + fileName);
@@ -11423,12 +11491,12 @@ public class KERALA_T20 extends Scene {
 	}
 
 	public void populateLTNextToBat(PrintWriter print_writer, String viz_scene, MatchAllData match, String broadcaster,
-			int whichside, Configuration config) throws InterruptedException {
+			int whichside, Configuration config, CricketService cricketService) throws InterruptedException {
 		if (match == null) {
 			this.status = "ERROR: Match is null";
 		} else {
 			this.status = CricketUtil.SUCCESSFUL;
-			int row_id = 0;
+			int row_id = 0,run_data=0,balls_data=0;
 			print_writer.println("-1 RENDERER*TREE*$LT$ALL_LT_LOGOGRP$Select*FUNCTION*Omo*vis_con SET 0 \0");
 			print_writer.println("-1 RENDERER*TREE*$LT$All$BaseAll$Select*FUNCTION*Omo*vis_con SET 2 \0");
 			print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Select*FUNCTION*Omo*vis_con SET 2 \0");
@@ -11500,29 +11568,17 @@ public class KERALA_T20 extends Scene {
 						if (inn.getBattingCard().get(b - 1).getStatus().equalsIgnoreCase(CricketUtil.STILL_TO_BAT)) {
 							row_id = row_id + 1;
 							if (row_id <= 2) {
-								// System.out.println(b + " PLAYER ID - " +
-								// inn.getBattingCard().get(b-1).getPlayerId() + " - PLAYER NAME - " +
-								// inn.getBattingCard().get(b-1).getPlayer().getTicker_name());
-
-//								print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
-//										+ "$Select$NextToBat$BottomGrp$RestDataGrp$Visible$Player" + row_id
-//										+ "$img_Base2*TEXTURE*IMAGE SET " + base_path2
-//										+ "TLogo" + "\0");
-//								print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
-//										+ "$Select$NextToBat$BottomGrp$RestDataGrp$Visible$Player" + row_id
-//										+ "$ImageBase$img_Base2*TEXTURE*IMAGE SET " + base_path2
-//										+ "TLogo" + "\0");
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
-											+ "$Select$NextToBat$BottomGrp$RestDataGrp$Player" + row_id
-											+ "$ImageBase$img_Player*TEXTURE*IMAGE SET " + photo_path 
+											+ "$Select$NextToBat$BottomGrp$RestDataGrp$img_Text2$Player" + row_id
+											+ "$img_Player*TEXTURE*IMAGE SET " + photo_path 
 											+ inn.getBatting_team().getTeamName4().toUpperCase() + "\\\\"
 											+ inn.getBattingCard().get(b - 1).getPlayer().getPhoto()
 											+ CricketUtil.PNG_EXTENSION + " \0");
 								} else {
 									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
-											+ "$Select$NextToBat$BottomGrp$RestDataGrp$Player" + row_id
-											+ "$ImageBase$img_Player*TEXTURE*IMAGE SET " + "\\\\" + config.getPrimaryIpAddress()
+											+ "$Select$NextToBat$BottomGrp$RestDataGrp$img_Text2$Player" + row_id
+											+ "$img_Player*TEXTURE*IMAGE SET " + "\\\\" + config.getPrimaryIpAddress()
 											+ "\\\\" + local_photo_path+ inn.getBatting_team().getTeamName4().toUpperCase() + "\\\\"
 											+ inn.getBattingCard().get(b - 1).getPlayer().getPhoto() + CricketUtil.PNG_EXTENSION + " \0");
 								}
@@ -11534,20 +11590,29 @@ public class KERALA_T20 extends Scene {
 										+ "$Select$NextToBat$BottomGrp$RestDataGrp$Player" + row_id
 										+ "$PlayerData$Data1*GEOM*TEXT SET "
 										+ inn.getBattingCard().get(b - 1).getPlayer().getTicker_name() + "\0");
-
-								print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
-										+ "$Select$NextToBat$BottomGrp$RestDataGrp$Player" + row_id
-										+ "$PlayerData$Data2*GEOM*TEXT SET "
-										+ inn.getBattingCard().get(b - 1).getPlayer().getBattingStyle() + "\0");
-
-//								print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
-//										+ "$Select$NextToBat$BottomGrp$RestDataGrp$Visible$Player" + row_id
-//										+ "$PlayerData$img_Text*TEXTURE*IMAGE SET " + text_path + "/"
-//										+ "TLogo"+ "\0");
-
-								// print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside +
-								// "$Select$NextToBat$BottomGrp$RestDataGrp$Visible$Player" + row_id +
-								// "$PlayerData$Data2*ACTIVE SET 0 \0");
+								
+								for (Statistics stat : cricketService.getAllStats()) {
+									if (stat.getPlayer_id() == inn.getBattingCard().get(b - 1).getPlayer().getPlayerId()) {
+										if (stat.getStats_type_id() == 10) {
+											run_data = stat.getRuns();
+											balls_data = stat.getBalls_faced();
+										}
+									}
+								}
+								String SR = "";
+								
+								SR = CricketFunctions.generateStrikeRate(run_data, balls_data, 1);
+								
+								if(SR != null && !SR.isEmpty()) {
+									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
+											+ "$Select$NextToBat$BottomGrp$RestDataGrp$Player" + row_id
+											+ "$PlayerData$Data2*GEOM*TEXT SET S/R: " + SR+ "\0");
+								}else {
+									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
+											+ "$Select$NextToBat$BottomGrp$RestDataGrp$Player" + row_id
+											+ "$PlayerData$Data2*GEOM*TEXT SET S/R: -\0");
+								}
+								
 								print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 										+ "$Select$NextToBat$BottomGrp$RestDataGrp$Player" + row_id
 										+ "$PlayerData$Data3*ACTIVE SET 0 \0");
@@ -14784,7 +14849,6 @@ public class KERALA_T20 extends Scene {
 								fifty_data = stat.getFifties();
 								hundreds_data = stat.getHundreds();
 								best = stat.getBest_score();
-								System.out.println("ALL STATS = " + stat.getMatches() + "---------------" + stat.getRuns()+ "---------------" + stat.getBalls_faced()+ "---------------" + stat.getFifties());
 							}
 						}
 					}
@@ -16188,56 +16252,36 @@ public class KERALA_T20 extends Scene {
 					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$ScoreGrp$BowlTeam_Over_PPGrp$img_Text1$Over_PP$txt_DLS*GEOM*TEXT SET " 
 							+ "(" + match.getSetup().getTargetOvers() + ") " + (match.getSetup().getTargetType() != null && 
 							!match.getSetup().getTargetType().isEmpty() ? match.getSetup().getTargetType().toUpperCase() : "")  + "\0");
+				}else if(match.getSetup().getReducedOvers() != null && !match.getSetup().getReducedOvers().isEmpty()){
+					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$ScoreGrp$BowlTeam_Over_PPGrp$img_Text1$Over_PP$txt_DLS*GEOM*TEXT SET " 
+							+ "(" + match.getSetup().getReducedOvers() + ")"  + "\0");
 				} else {
 					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$ScoreGrp$BowlTeam_Over_PPGrp$img_Text1$Over_PP$txt_DLS*GEOM*TEXT SET "
 									+ " " + "\0");
 				}
 				
-				if (match.getSetup().getMatchType().equalsIgnoreCase(CricketUtil.SUPER_OVER)
-						&& match.getSetup().getMaxOvers() == 1) {
-					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$ScoreGrp$BowlTeam_Over_PPGrp$img_Text1$Over_PP$img_BatTeamBase2$txt_PowerPlay"
-							+ "*ACTIVE SET 0 \0");
-				} else {
-					if (!CricketFunctions.processPowerPlay(CricketUtil.MINI, match).isEmpty()) {
-						if (infobar.isPowerplay_on_screen() == true){
-						}else {
-							if (infobar.isPowerplay_on_screen() == false) {
-								print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$ScoreGrp$BowlTeam_Over_PPGrp$img_Text1$Over_PP$img_BatTeamBase2$txt_PowerPlay"
-										+ "*GEOM*TEXT SET " + "P" + "\0");
-								print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$ScoreGrp$BowlTeam_Over_PPGrp$img_Text1$Over_PP$img_BatTeamBase2$txt_PowerPlay"
-										+ "*ACTIVE SET 1 \0");
-								
-								if(infobar.isForced_powerplay_out() == false) {
-									if (infobar.isPowerplay_on_screen() == true) {
-									} else {
-										if (infobar.isPowerplay_on_screen() == false) {
-											infobar.setPowerplay_on_screen(true);
-											print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*PowerPlayIn START \0");
-										}
-									}
+				if(!infobar.isForced_powerplay_out()) {
+					if (infobar.isPowerplay_on_screen() == true) {
+					}else {
+						if (match.getSetup().getMatchType().equalsIgnoreCase(CricketUtil.SUPER_OVER)
+								&& match.getSetup().getMaxOvers() == 1) {
+							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$ScoreGrp$BowlTeam_Over_PPGrp$img_Text1$Over_PP$img_BatTeamBase2$txt_PowerPlay"
+									+ "*ACTIVE SET 0 \0");
+						} else {
+							System.out.println("pow = " + CricketFunctions.processPowerPlay(CricketUtil.MINI, match));
+							if (!CricketFunctions.processPowerPlay(CricketUtil.MINI, match).isEmpty()) {
+								if (infobar.isPowerplay_on_screen() == true) {
+									break;
+								} else {
+									infobar.setPowerplay_on_screen(true);
+									print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*PowerPlayIn START \0");
+								}
+							} else {
+								if (infobar.isPowerplay_on_screen() == true) {
+									print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*PowerPlayOut START \0");
+									infobar.setPowerplay_on_screen(false);
 								}
 							}
-						}
-					}else {
-						if (infobar.isPowerplay_on_screen() == true) {
-							print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*PowerPlayOut START \0");
-							infobar.setPowerplay_on_screen(false);
-						}
-					}
-					
-					
-					
-					if (!CricketFunctions.processPowerPlay(CricketUtil.MINI, match).isEmpty()) {
-						if (infobar.isPowerplay_on_screen() == true) {
-							break;
-						} else {
-							infobar.setPowerplay_on_screen(true);
-							print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*PowerPlayIn START \0");
-						}
-					} else {
-						if (infobar.isPowerplay_on_screen() == true) {
-							print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*PowerPlayOut START \0");
-							infobar.setPowerplay_on_screen(false);
 						}
 					}
 				}
@@ -16964,17 +17008,8 @@ public class KERALA_T20 extends Scene {
 		switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
 		case CricketUtil.OVER:
 			List<String> over = Arrays.stream(IndexController.matchstats.getOverData().getThisOverTxt().split(","))
-		    .map(s -> s.replace("WIDE", "WD")
-		               .replace("NO_BALL", "NB")
-		               .replace("LEG_BYE", "LB")
-		               .replace("BYE", "B")
-		               .replace("PENALTY", "PN")
-		               .replace("LOG_WICKET", "W")
-		               .replace("WICKET", "W")
-		               .trim()) // remove leading/trailing whitespace
-		    .filter(s -> !s.isEmpty()) // remove empty or whitespace-only entries
-		    .collect(Collectors.collectingAndThen(Collectors.toList(), list -> {
-		        Collections.reverse(list);
+		    .map(s -> s.replace("WIDE", "WD").replace("NO_BALL", "NB").replace("LEG_BYE", "LB").replace("BYE", "B").replace("PENALTY", "PN").replace("LOG_WICKET", "W")
+		               .replace("WICKET", "W").trim()).filter(s -> !s.isEmpty()).collect(Collectors.collectingAndThen(Collectors.toList(), list -> {Collections.reverse(list);
 		        return list;
 		    }));
 			boolean result = false;
@@ -17134,7 +17169,7 @@ public class KERALA_T20 extends Scene {
 														+ (iBall + 1) + "$SelectType*FUNCTION*Omo*vis_con SET " + "4" + " \0");
 									}
 								}else {
-									
+									//System.out.println("over.get(iBall)-------------------------------" + over.get(iBall));
 									if(!over.get(iBall).isEmpty()) {
 										
 										print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$ThisOver$ThisOverAll$BallGrp" + (iBall + 1) 
@@ -17142,8 +17177,16 @@ public class KERALA_T20 extends Scene {
 										print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$ThisOver$ThisOverAll$BallGrp" + (iBall + 1) 
 												+ "$SelectType$Rest$img_Base1*TEXTURE*IMAGE SET " + text_path2+ inning.getBowling_team().getTeamBadge() + "\0");
 										
-										print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$ThisOver$ThisOverAll$BallGrp"
-														+ (iBall + 1)  + "$SelectType$Rest$txt_Ball*GEOM*TEXT SET " + over.get(iBall) +"\0");
+										if(over.get(iBall).contains("_N")) {
+											print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$ThisOver$ThisOverAll$BallGrp"
+													+ (iBall + 1)  + "$SelectType$Rest$txt_Ball*GEOM*TEXT SET " + over.get(iBall).replace("_N", "") +"\0");
+										}else if(over.get(iBall).contains("_Y")) {
+											print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$ThisOver$ThisOverAll$BallGrp"
+													+ (iBall + 1)  + "$SelectType$Rest$txt_Ball*GEOM*TEXT SET " + over.get(iBall).replace("_Y", "") +"\0");
+										}else {
+											print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$ThisOver$ThisOverAll$BallGrp"
+													+ (iBall + 1)  + "$SelectType$Rest$txt_Ball*GEOM*TEXT SET " + over.get(iBall) +"\0");
+										}
 										
 										print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$ThisOver$ThisOverAll$BallGrp"
 														+ (iBall + 1) + "$SelectType*FUNCTION*Omo*vis_con SET " + "4" + " \0");
@@ -17227,6 +17270,83 @@ public class KERALA_T20 extends Scene {
 				}
 			}
 			infobar.setLast_bottom_right_bottom_section("BOWLINGEND");
+			break;
+		case "REPLACEBOWLER":
+			for (Inning inn : match.getMatch().getInning()) {
+				if (inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
+					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$BowlingEnd$Img_AwayTeamBase2*TEXTURE*IMAGE SET "
+									+ text_path1 + inn.getBowling_team().getTeamBadge() + " \0");
+					for (BowlingCard boc : inn.getBowlingCard()) {
+						if (boc.getStatus().equalsIgnoreCase(CricketUtil.CURRENT + CricketUtil.BOWLER)
+								|| (boc.getStatus().equalsIgnoreCase(CricketUtil.LAST + CricketUtil.BOWLER))) {
+							int Replaced_Player_id = CricketFunctions.SecondLastBowlerId(match,boc.getPlayerId());
+							if(Replaced_Player_id > 0) {
+								BowlingCard booc = inn.getBowlingCard().stream().filter(plyr -> plyr.getPlayerId() == Replaced_Player_id).findAny().orElse(null);
+								print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$BowlingEnd$Img_AwayTeamBase2$txt_Data1*GEOM*TEXT SET REPLACE  "
+										+ booc.getPlayer().getTicker_name() + "\0");
+							}
+						}
+					}
+				}
+			}
+			infobar.setLast_bottom_right_bottom_section("REPLACEBOWLER");
+			break;
+		case "CRR":
+			for (Inning inn : match.getMatch().getInning()) {
+				if (inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
+					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$BowlingEnd$Img_AwayTeamBase2*TEXTURE*IMAGE SET "
+							+ text_path1 + inn.getBatting_team().getTeamBadge() + " \0");
+					if (inn.getRunRate() == null) {
+						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$BowlingEnd$Img_AwayTeamBase2$txt_Data1*GEOM*TEXT SET CURRENT RUNRATE:  "
+								+  "-"  + "\0");
+					} else {
+						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$BowlingEnd$Img_AwayTeamBase2$txt_Data1*GEOM*TEXT SET CURRENT RUNRATE:  "
+								+ inn.getRunRate()  + "\0");
+					}
+				}
+			}
+			infobar.setLast_bottom_right_bottom_section("CRR");
+			break;
+		case "TARGET":
+			for (Inning inn : match.getMatch().getInning()) {
+				if (inn.getInningNumber() == 2 && inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
+					
+					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$BowlingEnd$Img_AwayTeamBase2*TEXTURE*IMAGE SET "
+							+ text_path1 + inn.getBatting_team().getTeamBadge() + " \0");
+					
+					if(match.getSetup().getTargetType() != null && !match.getSetup().getTargetType().isEmpty()) {
+						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$BowlingEnd$Img_AwayTeamBase2$txt_Data1*GEOM*TEXT SET TARGET:  "
+								+ CricketFunctions.GetTargetData(match).getTargetRuns() + " (" + match.getSetup().getTargetType().toUpperCase() + ")"  + "\0");
+					}else {
+						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$BowlingEnd$Img_AwayTeamBase2$txt_Data1*GEOM*TEXT SET TARGET:  "
+								+ CricketFunctions.GetTargetData(match).getTargetRuns()   + "\0");
+					}
+				}
+			}
+			infobar.setLast_bottom_right_bottom_section("TARGET");
+			break;
+		case "EQUATION":
+			
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$BowlingEnd$Img_AwayTeamBase2*TEXTURE*IMAGE SET "
+					+ text_path1 + match.getMatch().getInning().get(1).getBatting_team().getTeamBadge() + " \0");
+			
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$BowlingEnd$Img_AwayTeamBase2$txt_Data1*GEOM*TEXT SET  "
+					+ "NEED " + CricketFunctions.GetTargetData(match).getRemaningRuns() + " RUN" + CricketFunctions.Plural(CricketFunctions.
+							GetTargetData(match).getRemaningRuns()).toUpperCase() + " FROM " + CricketFunctions.GetTargetData(match).getRemaningBall() + " BALL" + 
+							CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningBall()).toUpperCase() + (match.getSetup().getTargetType() != null 
+							&& !match.getSetup().getTargetType().isEmpty() ? " (" + match.getSetup().getTargetType().toUpperCase() + ")" : "")   + "\0");
+			
+			infobar.setLast_bottom_right_bottom_section("EQUATION");
+			break;
+		case "CRR_RRR":
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$BowlingEnd$Img_AwayTeamBase2*TEXTURE*IMAGE SET "
+					+ text_path1 + match.getMatch().getInning().get(1).getBatting_team().getTeamBadge() + " \0");
+			
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$BowlingEnd$Img_AwayTeamBase2$txt_Data1*GEOM*TEXT SET REQUIRED RUNRATE:  "
+					+ CricketFunctions.generateRunRate(CricketFunctions.GetTargetData(match).getRemaningRuns(), 0,
+							CricketFunctions.GetTargetData(match).getRemaningBall(), 2, match)  + "\0");
+			
+			infobar.setLast_bottom_right_bottom_section("CRR_RRR");
 			break;
 		case "EXTRAS":
 			for (Inning inn : match.getMatch().getInning()) {
@@ -17459,7 +17579,9 @@ public class KERALA_T20 extends Scene {
 		infobar.setLast_top_section(Sponsor_value);
 	}
 
-	public void populateInfobarPowerPlay(PrintWriter print_writer) {
+	public void populateInfobarPowerPlay(PrintWriter print_writer, MatchAllData match) throws InterruptedException {
+		
+		System.out.println("infobar.isPowerplay_on_screen() = " + infobar.isPowerplay_on_screen());
 		if(infobar.isPowerplay_on_screen() == false) {
 			print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*PowerPlayIn START \0");
 			infobar.setPowerplay_on_screen(true);
@@ -17469,6 +17591,31 @@ public class KERALA_T20 extends Scene {
 			infobar.setPowerplay_on_screen(false);
 			infobar.setForced_powerplay_out(true);
 		}
+		
+//		boolean hasPowerPlay = !CricketFunctions.processPowerPlay(CricketUtil.MINI, match).isEmpty();
+//		boolean isPowerPlayVisible = infobar.isPowerplay_on_screen();
+//		boolean isForcedOut = infobar.isForced_powerplay_out();
+//System.out.println("POWER= " + CricketFunctions.processPowerPlay(CricketUtil.MINI, match));
+//
+//
+//		if (hasPowerPlay) {
+//		    // Clear existing text if powerplay is not already visible
+//		    if (!isPowerPlayVisible) {
+//		        // Show animation only if not forced out
+//		        if (!isForcedOut) {
+//		            infobar.setPowerplay_on_screen(true);
+//		            print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*PowerPlayIn START \0");
+//		        }
+//		    }
+//		} else {
+//		    // Hide powerplay if currently visible
+//		    if (isPowerPlayVisible) {
+//		    	print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*PowerPlayIn CONTINUE REVERSE \0");
+//		        TimeUnit.MILLISECONDS.sleep(300);
+//		        print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*PowerPlayIn SHOW 0.0 \0");
+//		        infobar.setPowerplay_on_screen(false);
+//		    }
+//		}
 	}
 
 	public void populateInfobarWatermark(PrintWriter print_writer) {
@@ -17495,38 +17642,148 @@ public class KERALA_T20 extends Scene {
 	}
 
 	public Infobar populateSection5(Infobar infobar, boolean is_this_updating, PrintWriter print_writer, int Line_value,
-			MatchAllData match, String broadcaster) throws IOException {
+			MatchAllData match, String broadcaster,String vtp,CricketService cs) throws IOException {
 
 		switch (infobar.getFull_section().toUpperCase()) {
+		case "COMMS":
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*TEXTURE*IMAGE SET "+ text_path2 + "TLogo\0");
+			
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*FUNCTION*Omo*vis_con SET 0 \0");
+			
+			String comm1Name = "",comm2Name = "",comm3Name = "";
+			int comm1 = Integer.valueOf(vtp.split(",")[1]);
+			int comm2 = Integer.valueOf(vtp.split(",")[2]);
+			int comm3 = Integer.valueOf(vtp.split(",")[3]);
+			
+			for(Commentator comm : cs.getCommentator()) {
+				if(comm.getCommentatorId() > 0) {
+					if(comm.getCommentatorId() == comm1) {
+						comm1Name = comm.getCommentatorName();
+					}else if(comm.getCommentatorId() == comm2) {
+						comm2Name = comm.getCommentatorName();
+					}else if(comm.getCommentatorId() == comm3) {
+						comm3Name = comm.getCommentatorName();
+					}
+				}
+			}
+			
+			if(comm1 > 0 && comm2 > 0 && comm3 > 0) {
+				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
+						+ "COMMENTATORS : "+comm1Name+",  "+comm2Name+",  "+comm3Name + "\0");
+			}else if(comm1 > 0 && comm2 > 0 && comm3 == 0) {
+				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
+						+ "COMMENTATORS : "+comm1Name+",  "+comm2Name + "\0");
+			}else if(comm1 > 0 && comm2 == 0 && comm3 == 0) {
+				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
+						+ "COMMENTATORS : "+comm1Name + "\0");
+			}
+			break;
+		case "COMPARISON":
+			for (Inning inn : match.getMatch().getInning()) {
+				if (inn.getInningNumber() == 2 && inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
+					
+					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*TEXTURE*IMAGE SET "+ text_path2 + "TLogo\0");
+					
+					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*FUNCTION*Omo*vis_con SET 0 \0");
+					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
+									+ "AFTER " + CricketFunctions.OverBalls(inn.getTotalOvers(), inn.getTotalBalls()) + " OVERS : " + 
+									inn.getBowling_team().getTeamName2().toUpperCase() + " WERE " +  CricketFunctions.compareInningData(match, "-", 1,match.getEventFile().getEvents()) + "\0");
+					
+				}
+			}
+//			infobar.setLast_bottom_right_section(CricketUtil.COMPARE);
+			break;
+		case "PROJECTED":
+			String[] proj_score_rate = new String[CricketFunctions.projectedScore(match).size()];
+			for (int i = 0; i < CricketFunctions.projectedScore(match).size(); i++) {
+				proj_score_rate[i] = CricketFunctions.projectedScore(match).get(i);
+			}
+			
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*TEXTURE*IMAGE SET "+ text_path2 + "TLogo\0");
+			
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*FUNCTION*Omo*vis_con SET 0 \0");
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
+							+ "PROJECTED SCORE : "  + "@CRR (" + proj_score_rate[0] + ") " + proj_score_rate[1]  + " | " +  "@" + proj_score_rate[2] + " (" + proj_score_rate[3] + ")\0");
+			
+//			infobar.setLast_bottom_right_section("PROJECTED");
+			break;
+		case "TARGET":
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*FUNCTION*Omo*vis_con SET 0 \0");
+			
+			for (Inning inn : match.getMatch().getInning()) {
+				if (inn.getInningNumber() == 2 && inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
+					if(match.getSetup().getTargetType() != null && !match.getSetup().getTargetType().isEmpty()) {
+						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
+								+ CricketFunctions.GetTargetData(match).getTargetRuns() + " (" + match.getSetup().getTargetType().toUpperCase() + ")"+ "\0");
+					}else {
+						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
+								+ CricketFunctions.GetTargetData(match).getTargetRuns()+ "\0");
+					}
+				}
+			}
+			break;
+		case "EQUATION":
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*TEXTURE*IMAGE SET "+ text_path2 + "TLogo\0");
+			
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*FUNCTION*Omo*vis_con SET 0 \0");
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
+							+ "NEED " + CricketFunctions.GetTargetData(match).getRemaningRuns() + " RUN" + CricketFunctions.Plural(CricketFunctions.
+									GetTargetData(match).getRemaningRuns()).toUpperCase() + " FROM " + CricketFunctions.GetTargetData(match).getRemaningBall() + " BALL" + 
+									CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningBall()).toUpperCase() + (match.getSetup().getTargetType() != null 
+									&& !match.getSetup().getTargetType().isEmpty() ? " (" + match.getSetup().getTargetType().toUpperCase() + ")" : "")  + "\0");
+			
+//			infobar.setLast_bottom_right_section("EQUATION");
+			break;
+		case "IDENT":
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*TEXTURE*IMAGE SET "+ text_path2 + "TLogo\0");
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*FUNCTION*Omo*vis_con SET 0 \0");
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
+							+ match.getSetup().getMatchIdent() + " | " + match.getSetup().getHomeTeam().getTeamName3() + " v " + match.getSetup().getAwayTeam().getTeamName3() + "\0");
+			break;
+		case "TOURNAMENT":
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*TEXTURE*IMAGE SET "+ text_path2 + "TLogo\0");
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*FUNCTION*Omo*vis_con SET 0 \0");
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
+							+ match.getSetup().getTournament() + "\0");
+			break;	
 		case "FREETEXT":
 			String text_to_return = "";
 			int lineIndex1 = 1;
 			boolean found1 = false;
-			BufferedReader br = new BufferedReader(
-					new FileReader(CricketUtil.CRICKET_DIRECTORY + CricketUtil.INFOBAR_FREE_TXT));
+			File file = new File(IndexController.basePath + CricketUtil.INFOBAR_FREE_TXT);
 			
-			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*TEXTURE*IMAGE SET "+ text_path2 + "TLogo\0");
+			if(!file.exists()) {
+				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*TEXTURE*IMAGE SET "+ text_path2 + "TLogo\0");
+				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*FUNCTION*Omo*vis_con SET 0 \0");
+				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
+								+ match.getSetup().getTournament() + "\0");
+			}else {
+				BufferedReader br = new BufferedReader(
+						new FileReader(file));
+				
+				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*TEXTURE*IMAGE SET "+ text_path2 + "TLogo\0");
 
-			while ((text_to_return = br.readLine()) != null) {
-				if (lineIndex1 == Line_value) {
-					if (Line_value == 1) {
-						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*FUNCTION*Omo*vis_con SET 0 \0");
-						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
-										+ text_to_return + "\0");
-					} else if (Line_value == 2) {
-						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*FUNCTION*Omo*vis_con SET 1 \0");
-						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head2*GEOM*TEXT SET "
-										+ text_to_return + "\0");
+				while ((text_to_return = br.readLine()) != null) {
+					if (lineIndex1 == Line_value) {
+						if (Line_value == 1) {
+							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*FUNCTION*Omo*vis_con SET 0 \0");
+							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
+											+ text_to_return + "\0");
+						} else if (Line_value == 2) {
+							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*FUNCTION*Omo*vis_con SET 1 \0");
+							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head2*GEOM*TEXT SET "
+											+ text_to_return + "\0");
+						}
+						found1 = true;
+						br.close();;
+						break;
 					}
-					found1 = true;
-					break;
+					lineIndex1++;
 				}
-				lineIndex1++;
+				if (!found1) {
+					// System.out.println("Line Not There");
+				}
 			}
-			if (!found1) {
-				// System.out.println("Line Not There");
-			}
-
 			break;
 		case CricketUtil.TIMELINE:
 
@@ -21079,164 +21336,42 @@ public class KERALA_T20 extends Scene {
 					// " TO WIN FROM " +
 					// CricketFunctions.OverBalls(0,CricketFunctions.GetTargetData(match).getRemaningBall()) + "
 					// OVERS" + "\0");
-
-					if (match.getSetup().getTargetOvers() == null || match.getSetup().getTargetOvers().trim().isEmpty()
-							&& match.getSetup().getTargetRuns() == 0) {
-						if ((match.getSetup().getMaxOvers() * 6) >= 100) {
-							if(match.getSetup().getTargetType() != null) {
-								if (match.getSetup().getTargetType().toUpperCase().equalsIgnoreCase("VJD")) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS TO WIN FROM "
-													+ match.getSetup().getMaxOvers() + " OVERS (VJD)" + "\0");
-
-								} else if (match.getSetup().getTargetType().toUpperCase().equalsIgnoreCase("DLS")) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ match.getSetup().getMaxOvers() + " OVERS (DLS)" + "\0");
-								}
-							}else {
+					
+					if (match.getSetup().getTargetOvers() != null && !match.getSetup().getTargetOvers().isEmpty()) {
+						
+						print_writer.println(
+								"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
+										+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
+										+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS TO WIN FROM "
+										+ match.getSetup().getTargetOvers() + " OVERS" + "\0");
+						if(match.getSetup().getTargetType() != null && !match.getSetup().getTargetType().isEmpty()) {
+							if(match.getSetup().getTargetType().toUpperCase().equalsIgnoreCase("VJD")) {
 								print_writer.println(
 										"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
 												+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-												+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-												+ match.getSetup().getMaxOvers() + " OVERS" + "\0");
-							}
-
-						} else {
-							if(match.getSetup().getTargetType() != null) {
-								if (match.getSetup().getTargetType().toUpperCase().equalsIgnoreCase("VJD")) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ match.getSetup().getMaxOvers() * 6 + " BALLS (VJD)" + "\0");
-								} else if (match.getSetup().getTargetType().toUpperCase().equalsIgnoreCase("DLS")) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ (match.getSetup().getMaxOvers() * 6) + " BALLS (DLS)" + "\0");
-								}
-							}else {
+												+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS TO WIN FROM "
+												+ match.getSetup().getTargetOvers() + " OVERS (VJD)" + "\0");
+							}else if(match.getSetup().getTargetType().toUpperCase().equalsIgnoreCase("DLS")) {
 								print_writer.println(
 										"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
 												+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-												+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-												+ match.getSetup().getMaxOvers() * 6 + " BALLS" + "\0");
+												+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS TO WIN FROM "
+												+ match.getSetup().getTargetOvers() + " OVERS (DLS)" + "\0");
 							}
 						}
-
-					} else {
-						if (Double.valueOf(match.getSetup().getTargetOvers()) != 0) {
-							if (match.getSetup().getTargetOvers().contains(".")) {
-								if ((Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[0]) * 6)
-										+ Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[1]) >= 100) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ match.getSetup().getTargetOvers() + " OVERS" + "\0");
-								} else {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ ((Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[0]) * 6)
-													+ Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[1]))
-													+ " BALLS" + "\0");
-								}
-							} else {
-								if ((Double.valueOf(match.getSetup().getTargetOvers()) * 6) >= 100) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ match.getSetup().getTargetOvers() + " OVERS" + "\0");
-								} else {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ (Integer.valueOf(match.getSetup().getTargetOvers()) * 6) + " BALLS"
-													+ "\0");
-								}
-							}
-						}
-						if (match.getSetup().getTargetType().toUpperCase().equalsIgnoreCase("VJD")) {
-							if (match.getSetup().getTargetOvers().contains(".")) {
-								if ((Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[0]) * 6)
-										+ Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[1]) >= 100) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName3().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ match.getSetup().getTargetOvers() + " OVERS (VJD)" + "\0");
-								} else {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName3().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ ((Integer.valueOf(
-															match.getSetup().getTargetOvers().split("\\.")[0]) * 6)
-													+ Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[1]))
-													+ " BALLS (VJD)" + "\0");
-								}
-							} else {
-								if ((Double.valueOf(match.getSetup().getTargetOvers()) * 6) >= 100) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName3().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ match.getSetup().getTargetOvers() + " OVERS (VJD)" + "\0");
-								} else {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName3().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ Integer.valueOf(match.getSetup().getTargetOvers()) * 6
-													+ " BALLS (VJD)" + "\0");
-								}
-							}
-						} else if (match.getSetup().getTargetType().toUpperCase().equalsIgnoreCase("DLS")) {
-							if (match.getSetup().getTargetOvers().contains(".")) {
-								if ((Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[0]) * 6)
-										+ Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[1]) >= 100) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName3().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ match.getSetup().getTargetOvers() + " OVERS (DLS)" + "\0");
-								} else {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName3().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+((Integer.valueOf(
-															match.getSetup().getTargetOvers().split("\\.")[0]) * 6)
-													+ Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[1]))
-													+ " BALLS (DLS)" + "\0");
-								}
-							} else {
-								if ((Double.valueOf(match.getSetup().getTargetOvers()) * 6) >= 100) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName3().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ match.getSetup().getTargetOvers() + " OVERS (DLS)" + "\0");
-								} else {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName3().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ Integer.valueOf(match.getSetup().getTargetOvers()) * 6
-													+ " BALLS (DLS)" + "\0");
-								}
-							}
-						}
+						
+					}else if (match.getSetup().getReducedOvers() != null && !match.getSetup().getReducedOvers().isEmpty()) {
+						print_writer.println(
+								"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
+										+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
+										+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS TO WIN FROM "
+										+ match.getSetup().getReducedOvers() + " OVERS" + "\0");
+					}else {
+						print_writer.println(
+								"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
+										+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
+										+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS TO WIN FROM "
+										+ match.getSetup().getMaxOvers() + " OVERS" + "\0");
 					}
 				}
 			}
@@ -25266,78 +25401,107 @@ public class KERALA_T20 extends Scene {
 			
 			for(int i = 0; i <= fix.size()-1; i++) {
 				if(fix.get(i).getDate().equalsIgnoreCase(Date)) {
-					if(row_id == 1) {
-						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo$TeamBadgeGrp1$img_Badges*TEXTURE*IMAGE SET " + 
-								logo_path + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
-						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo$TeamBadgeGrp1$img_BadgesShadow*TEXTURE*IMAGE SET " + 
-								logo_path + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
-						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Side1$TeamColourBase1$ExtendedBaseGrp"
-								+ "$BgScaleOut$BgScaleIn$img_Base1*TEXTURE*IMAGE SET " + base_path1 + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
-//						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$TeamColourBase1$BG_Home01"
-//								+ "$img_Base2*TEXTURE*IMAGE SET " + base_path2 + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
-						
-						
-						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo$TeamBadgeGrp2$img_Badges*TEXTURE*IMAGE SET " + 
-								logo_path + team.get(fix.get(i).getAwayteamid()-1).getTeamBadge() + "\0");
-						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo$TeamBadgeGrp2$img_BadgesShadow*TEXTURE*IMAGE SET " + 
-								logo_path + team.get(fix.get(i).getAwayteamid()-1).getTeamBadge() + "\0");
-						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Side1$TeamColourBase2$ExtendedBaseGrp"
-								+ "$BgScaleOut$BgScaleIn$img_Base1*TEXTURE*IMAGE SET " + base_path1 + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
-//						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$TeamColourBase2$BG_Away01"
-//								+ "$img_Base2*TEXTURE*IMAGE SET " + base_path2 + team.get(fix.get(i).getAwayteamid()-1).getTeamBadge() + "\0");
-						
-						if(day.toUpperCase().equalsIgnoreCase("TODAY")) {
-							if(fix.get(i).getMatchnumber()<10) {
-								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
-										"MATCH "+ fix.get(i).getMatchnumber() + "\0");
+					if(fix.get(i).getVenue().equalsIgnoreCase("HOLKAR CRICKET STADIUM, INDORE")) {
+						if(row_id == 1) {
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo$TeamBadgeGrp1$img_Badges*TEXTURE*IMAGE SET " + 
+									logo_path + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo$TeamBadgeGrp1$img_BadgesShadow*TEXTURE*IMAGE SET " + 
+									logo_path + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Side1$TeamColourBase1$ExtendedBaseGrp"
+									+ "$BgScaleOut$BgScaleIn" + row_id + "$img_Base1*TEXTURE*IMAGE SET " + base_path1 + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Side1$TeamColourBase2$ExtendedBaseGrp"
+									+ "$BgScaleOut$BgScaleIn" + row_id + "$img_Base1*TEXTURE*IMAGE SET " + base_path1 + team.get(fix.get(i).getAwayteamid()-1).getTeamBadge() + "\0");
+//							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$TeamColourBase1$BG_Home01"
+//									+ "$img_Base2*TEXTURE*IMAGE SET " + base_path2 + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
+							
+							
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo$TeamBadgeGrp2$img_Badges*TEXTURE*IMAGE SET " + 
+									logo_path + team.get(fix.get(i).getAwayteamid()-1).getTeamBadge() + "\0");
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo$TeamBadgeGrp2$img_BadgesShadow*TEXTURE*IMAGE SET " + 
+									logo_path + team.get(fix.get(i).getAwayteamid()-1).getTeamBadge() + "\0");
+//							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Side1$TeamColourBase2$ExtendedBaseGrp"
+//									+ "$BgScaleOut$BgScaleIn1$img_Base1*TEXTURE*IMAGE SET " + base_path1 + team.get(fix.get(i).getAwayteamid()-1).getTeamBadge() + "\0");
+//							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Side1$TeamColourBase2$ExtendedBaseGrp"
+//									+ "$BgScaleOut$BgScaleIn2$img_Base1*TEXTURE*IMAGE SET " + base_path1 + team.get(fix.get(i).getAwayteamid()-1).getTeamBadge() + "\0");
+//							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$TeamColourBase2$BG_Away01"
+//									+ "$img_Base2*TEXTURE*IMAGE SET " + base_path2 + team.get(fix.get(i).getAwayteamid()-1).getTeamBadge() + "\0");
+							
+							if(day.toUpperCase().equalsIgnoreCase("TODAY")) {
+								if(fix.get(i).getMatchnumber()<10) {
+									print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
+											"MATCH "+ fix.get(i).getMatchnumber() + "\0");
+								}else {
+									print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
+											fix.get(i).getMatchfilename() + "\0");
+								}
 							}else {
-								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
-										fix.get(i).getMatchfilename() + "\0");
+								if(fix.get(i).getMatchnumber()<10) {
+									print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
+											"MATCH "+ fix.get(i).getMatchnumber() + " AT " + fix.get(i).getLocalTime() + "\0");
+								}else {
+									if(fix.get(i).getMatchfilename().contains("M_")) {
+										print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
+												fix.get(i).getMatchfilename().replace("M_", "") + " AT " + fix.get(i).getLocalTime() + "\0");
+									}else if(fix.get(i).getMatchfilename().contains("W_")) {
+										print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
+												fix.get(i).getMatchfilename().replace("W_", "") + " AT " + fix.get(i).getLocalTime() + "\0");
+									}else {
+										print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
+												fix.get(i).getMatchfilename() + " AT " + fix.get(i).getLocalTime() + "\0");
+									}
+								}
 							}
-						}else {
+						}else if(row_id == 2) {
+							
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo2$TeamBadgeGrp1$img_Badges*TEXTURE*IMAGE SET " + 
+									logo_path + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo2$TeamBadgeGrp1$img_BadgesShadow*TEXTURE*IMAGE SET " + 
+									logo_path + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$TeamColourBase1$BG_Home02"
+									+ "$img_Base2*TEXTURE*IMAGE SET " + base_path2 + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
+							
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo2$TeamBadgeGrp2$img_Badges*TEXTURE*IMAGE SET " + 
+									logo_path + team.get(fix.get(i).getAwayteamid()-1).getTeamBadge() + "\0");
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo2$TeamBadgeGrp2$img_BadgesShadow*TEXTURE*IMAGE SET " + 
+									logo_path + team.get(fix.get(i).getAwayteamid()-1).getTeamBadge() + "\0");
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$TeamColourBase2$BG_Away02"
+									+ "$img_Base2*TEXTURE*IMAGE SET " + base_path2 + team.get(fix.get(i).getAwayteamid()-1).getTeamBadge() + "\0");
+							
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Side1$TeamColourBase1$ExtendedBaseGrp"
+									+ "$BgScaleOut$BgScaleIn" + row_id + "$img_Base1*TEXTURE*IMAGE SET " + base_path1 + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Side1$TeamColourBase2$ExtendedBaseGrp"
+									+ "$BgScaleOut$BgScaleIn" + row_id + "$img_Base1*TEXTURE*IMAGE SET " + base_path1 + team.get(fix.get(i).getAwayteamid()-1).getTeamBadge() + "\0");
+							
 							if(fix.get(i).getMatchnumber()<10) {
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
 										"MATCH "+ fix.get(i).getMatchnumber() + " AT " + fix.get(i).getLocalTime() + "\0");
 							}else {
-								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
-										fix.get(i).getMatchfilename() + " AT " + fix.get(i).getLocalTime() + "\0");
+								if(fix.get(i).getMatchfilename().contains("M_")) {
+									print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
+											fix.get(i).getMatchfilename().replace("M_", "") + " AT " + fix.get(i).getLocalTime() + "\0");
+								}else if(fix.get(i).getMatchfilename().contains("W_")) {
+									print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
+											fix.get(i).getMatchfilename().replace("W_", "") + " AT " + fix.get(i).getLocalTime() + "\0");
+								}else {
+									print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
+											fix.get(i).getMatchfilename() + " AT " + fix.get(i).getLocalTime() + "\0");
+								}
+//								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
+//										fix.get(i).getMatchfilename() + " AT " + fix.get(i).getLocalTime() + "\0");
+							}
+							
+							if(day.toUpperCase().equalsIgnoreCase("DAY_AFTER_TOMORROW")) {	
+								newDate = fix.get(fix.get(i).getMatchnumber() - 1).getDate().split("-")[0];
+								if (Integer.valueOf(newDate) < 10) {
+									newDate = newDate.replaceFirst("0", "");
+								}
+								date_data = newDate + dateSuffix[Integer.valueOf(newDate)] + " "
+										+ Month.of(Integer.valueOf(fix.get(fix.get(i).getMatchnumber() - 1).getDate().split("-")[1])) + " 2026";
+								System.out.println("date_data ------------------------------------------------------------------------ " + date_data);
 							}
 						}
-					}else if(row_id == 2) {
-						
-						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo2$TeamBadgeGrp1$img_Badges*TEXTURE*IMAGE SET " + 
-								logo_path + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
-						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo2$TeamBadgeGrp1$img_BadgesShadow*TEXTURE*IMAGE SET " + 
-								logo_path + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
-						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$TeamColourBase1$BG_Home02"
-								+ "$img_Base2*TEXTURE*IMAGE SET " + base_path2 + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
-						
-						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo2$TeamBadgeGrp2$img_Badges*TEXTURE*IMAGE SET " + 
-								logo_path + team.get(fix.get(i).getAwayteamid()-1).getTeamBadge() + "\0");
-						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo2$TeamBadgeGrp2$img_BadgesShadow*TEXTURE*IMAGE SET " + 
-								logo_path + team.get(fix.get(i).getAwayteamid()-1).getTeamBadge() + "\0");
-						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$TeamColourBase2$BG_Away02"
-								+ "$img_Base2*TEXTURE*IMAGE SET " + base_path2 + team.get(fix.get(i).getAwayteamid()-1).getTeamBadge() + "\0");
-						
-						if(fix.get(i).getMatchnumber()<10) {
-							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
-									"MATCH "+ fix.get(i).getMatchnumber() + " AT " + fix.get(i).getLocalTime() + "\0");
-						}else {
-							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
-									fix.get(i).getMatchfilename() + " AT " + fix.get(i).getLocalTime() + "\0");
-						}
-						
-						if(day.toUpperCase().equalsIgnoreCase("DAY_AFTER_TOMORROW")) {	
-							newDate = fix.get(fix.get(i).getMatchnumber() - 1).getDate().split("-")[0];
-							if (Integer.valueOf(newDate) < 10) {
-								newDate = newDate.replaceFirst("0", "");
-							}
-							date_data = newDate + dateSuffix[Integer.valueOf(newDate)] + " "
-									+ Month.of(Integer.valueOf(fix.get(fix.get(i).getMatchnumber() - 1).getDate().split("-")[1])) + " 2026";
-							System.out.println("date_data ------------------------------------------------------------------------ " + date_data);
-						}
+						row_id = row_id +1;
 					}
-					row_id = row_id +1;
 				}
 			}
 			if(day.toUpperCase().equalsIgnoreCase("DAY_AFTER_TOMORROW")) {
@@ -34972,7 +35136,7 @@ public class KERALA_T20 extends Scene {
 		case "ANIMATE-IN-BATSMAN_STYLE": case "ANIMATE-IN-GENERIC": case "ANIMATE-IN-HOWOUT_QUICK": case "ANIMATE-IN-THISSERIES": case "ANIMATE-IN-THISSERIES_BALL":
 		case "ANIMATE-IN-THIS_PARTNERSHIP": case "ANIMATE-IN-LTPLAYERPROFILEBAT": case "ANIMATE-IN-LINEUP": case "ANIMATE-IN-LTMANHATTAN":
 		case "ANIMATE-IN-INN_BUILDER": case "ANIMATE-IN-LT_SEASON": case "ANIMATE-IN-BALLSINCE": case "ANIMATE-IN-DLS-EQUATION":
-		case "ANIMATE-IN-PLOTTER_ICC":
+		//case "ANIMATE-IN-PLOTTER_ICC":
 			if (!infobar.isIs_ticker_shrink() && !infobar.isInfobar_down()) {
 				if (infobar.isInfobar_on_screen() == true && which_graphic_on_screen == "SCOREBUG") {
 					TimeUnit.MILLISECONDS.sleep(200);
@@ -35121,6 +35285,1702 @@ public class KERALA_T20 extends Scene {
 		}
 		return null;
 	}
+	public Object populateGfxCommand(List<PrintWriter> print_writer,String valueToProcess,String whatToProcess,
+			MatchAllData match,CricketService cricketService,Configuration config,List<HeadToHeadPlayer> headToHead,
+			List<MatchAllData> tournament_matches, List<Tournament> past_tournament_stats,List<Statistics> statistics,String plotterData) 
+					throws NumberFormatException, Exception{
+		
+		switch (whatToProcess.toUpperCase()) {
+		case "POPULATE-FF-PLAYERPROFILE":
+			this.status = "NODATABASE";
+			data = valueToProcess;
+			if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG"
+					|| which_graphic_on_screen == "PLAYERPROFILEBALL"
+					|| which_graphic_on_screen == "FFPLAYERPROFILE" || which_graphic_on_screen == "TEAMLINEUP"
+					|| which_graphic_on_screen == "DOUBLETEAMS" || which_graphic_on_screen == "FFTARGET"
+					|| which_graphic_on_screen == "MANHATTAN" || which_graphic_on_screen == "WORM"
+					|| which_graphic_on_screen == "LEADERBOARD" ||which_graphic_on_screen == "LEADERBOARD_DB"
+					|| which_graphic_on_screen == "FF_STATS"
+					|| which_graphic_on_screen == "TEAM_SQUAD") {
+				which_side = 1;
+				for(Statistics stats : statistics) {
+					if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+						System.out.println("valueToProcess = "+ valueToProcess);
+						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+							this.status = CricketUtil.SUCCESSFUL;
+							populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
+									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
+									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,
+									cricketService, match, broadcaster, 1, config);
+						}
+					}
+				}
+//				for (Statistics stats : statistics) {
+//					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
+//							.intValue()) {
+//						if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
+//								|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
+//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//							populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
+//									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
+//									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(),
+//									CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",
+//											false, tournament_matches, cricketService, match, null),
+//									cricketService, match, broadcaster, 1, config);
+//						} else {
+//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
+//									match);
+//							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
+//
+//							// System.out.println("1." + stats.getStats_type().getStats_short_name() + " 2."
+//							// + valueToProcess.split(",")[2]);
+//							if (stats.getStats_type().getStats_short_name()
+//									.equalsIgnoreCase(valueToProcess.split(",")[2])) {
+//								populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
+//										Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
+//										valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,
+//										cricketService, match, broadcaster, 1, config);
+//							}
+//						}
+//
+//					}
+//				}
+			} else {
+				which_side = 2;
+				for(Statistics stats : statistics) {
+					if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+							this.status = CricketUtil.SUCCESSFUL;
+							populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
+									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
+									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,
+									cricketService, match, broadcaster, 2, config);
+						}
+					}
+				}
+//				for (Statistics stats : statistics) {
+//					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
+//							.intValue()) {
+//						if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
+//								|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
+//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//							populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
+//									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
+//									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(),
+//									CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",
+//											false, tournament_matches, cricketService, match, null),
+//									cricketService, match, broadcaster, 2, config);
+//						} else {
+//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
+//									match);
+//							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
+//
+//							// System.out.println("1." + stats.getStats_type().getStats_short_name() + " 2."
+//							// + valueToProcess.split(",")[2]);
+//							if (stats.getStats_type().getStats_short_name()
+//									.equalsIgnoreCase(valueToProcess.split(",")[2])) {
+//								populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
+//										Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
+//										valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,
+//										cricketService, match, broadcaster, 2, config);
+//							}
+//						}
+//					}
+//				}
+			}
+			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*TREE*$Main$All$FF$AllActive$OutAnim$Side"
+					+ which_side + "*FUNCTION*Omo*vis_con SET 4 \0");
+			populateFFEverestPreview(print_writer.get(0), valueToProcess.split(",")[0], which_side, "PLAYERPROFILE",
+					null);
+			TimeUnit.SECONDS.sleep(2);
+//			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*STAGE*DIRECTOR*anim_PlayerProfile SHOW 0.0 \0");
+			break;
+		case "POPULATE-FF-PLAYERPROFILEBALL":
+			this.status = "NODATABASE";
+			data = valueToProcess;
+			System.out.println("valueToProcess =================================" + valueToProcess);
+			if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG"
+					|| which_graphic_on_screen == "PLAYERPROFILEBALL"
+					|| which_graphic_on_screen == "FFPLAYERPROFILE" || which_graphic_on_screen == "TEAMLINEUP"
+					|| which_graphic_on_screen == "DOUBLETEAMS" || which_graphic_on_screen == "FFTARGET"
+					|| which_graphic_on_screen == "MANHATTAN" || which_graphic_on_screen == "WORM"
+					|| which_graphic_on_screen == "LEADERBOARD" ||which_graphic_on_screen == "LEADERBOARD_DB"
+					|| which_graphic_on_screen == "FF_STATS"
+					|| which_graphic_on_screen == "TEAM_SQUAD") {
+				which_side = 1;
+				for(Statistics stats : statistics) {
+					if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+							this.status = CricketUtil.SUCCESSFUL;
+							System.out.println("stats.getPlayer_id() -------------------------" + stats.getPlayer_id() + "    valueToProcess= " + Integer.valueOf(valueToProcess.split(",")[1]));
+							System.out.println("valueToProcess ----------------" + valueToProcess);
+							populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
+									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
+									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,
+									cricketService, match, broadcaster, 1, config);
+						}
+					}
+				}
+//				for (Statistics stats : statistics) {
+//					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
+//							.intValue()) {
+//						if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
+//								|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
+//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//							populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
+//									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
+//									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(),
+//									CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",
+//											false, tournament_matches, cricketService, match, null),
+//									cricketService, match, broadcaster, 1, config);
+//						} else {
+//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
+//									match);
+//							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
+//
+//							// System.out.println("1." + stats.getStats_type().getStats_short_name() + " 2."
+//							// + valueToProcess.split(",")[2]);
+//							if (stats.getStats_type().getStats_short_name()
+//									.equalsIgnoreCase(valueToProcess.split(",")[2])) {
+//								populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
+//										Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
+//										valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,
+//										cricketService, match, broadcaster, 1, config);
+//							}
+//						}
+//					}
+//				}
+			} else {
+				which_side = 2;
+				for(Statistics stats : statistics) {
+					if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
+							this.status = CricketUtil.SUCCESSFUL;
+							populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
+									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
+									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,
+									cricketService, match, broadcaster, 2, config);
+						}
+					}
+				}
+				
+				
+				
+				
+//				for (Statistics stats : statistics) {
+//					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
+//							.intValue()) {
+//						if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
+//								|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
+//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//							populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
+//									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
+//									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(),
+//									CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",
+//											false, tournament_matches, cricketService, match, null),
+//									cricketService, match, broadcaster, 2, config);
+//						} else {
+//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
+//									match);
+//							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
+//
+//							// System.out.println("1." + stats.getStats_type().getStats_short_name() + " 2."
+//							// + valueToProcess.split(",")[2]);
+//							if (stats.getStats_type().getStats_short_name()
+//									.equalsIgnoreCase(valueToProcess.split(",")[2])) {
+//								populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
+//										Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
+//										valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,
+//										cricketService, match, broadcaster, 2, config);
+//							}
+//						}
+//					}
+//				}
+			}
+			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*TREE*$Main$All$FF$AllActive$OutAnim$Side"
+					+ which_side + "*FUNCTION*Omo*vis_con SET 4 \0");
+			populateFFEverestPreview(print_writer.get(0), valueToProcess.split(",")[0], which_side,
+					"PLAYERPROFILEBALL", null);
+			TimeUnit.SECONDS.sleep(2);
+//			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*STAGE*DIRECTOR*anim_PlayerProfile SHOW 0.0 \0");
+			break;
+		case "POPULATE-FF-TEAM_SQUAD":
+			populateFFTeamSquad(print_writer.get(0), valueToProcess.split(",")[0],
+					Integer.valueOf(valueToProcess.split(",")[1]), 1, cricketService, match,
+					broadcaster, config);
+			break;
+		case "POPULATE-FF-PLAYINGXI_SUBS5": case "POPULATE-FF-PLAYINGXI":
+			data = valueToProcess;
+			if (which_graphic_on_screen == "TEAMLINEUP") {
+				which_side = 2;
+				populatePlayingXI(print_writer.get(0), valueToProcess.split(",")[0],
+						Integer.valueOf(valueToProcess.split(",")[1]), 2, cricketService.getAllPlayer(), match,
+						broadcaster, config);
+			} else {
+				which_side = 1;
+				populatePlayingXI(print_writer.get(0), valueToProcess.split(",")[0],
+						Integer.valueOf(valueToProcess.split(",")[1]), 1, cricketService.getAllPlayer(), match,
+						broadcaster, config);
+			}
+//			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*TREE*$Main$All$FF$AllActive$OutAnim$Side" + which_side + "*FUNCTION*Omo*vis_con SET 4 \0");
+			populateFFEverestPreview(print_writer.get(0), valueToProcess.split(",")[0], which_side, "TEAMLINEUP",
+					null);
+			TimeUnit.MILLISECONDS.sleep(100);
+//			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*STAGE*DIRECTOR*anim_LineUpImage SHOW 0.0 \0");
+			break;
+//		case "POPULATE-FF-PLAYINGXI_SUBS5":
+//			populatePlayingXISubs(print_writer.get(0), valueToProcess.split(",")[0], Integer.valueOf(valueToProcess.split(",")[1]),cricketService.getAllPlayer(),
+//					match, broadcaster);
+//			break;
+		case "POPULATE-FF-DOUBLETEAMS":
+			sponsor = valueToProcess.split(",")[valueToProcess.split(",").length-1];
+			populateDoubleteams(print_writer.get(0), valueToProcess, cricketService.getAllPlayer(), match,
+					broadcaster);
+//			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*STAGE*DIRECTOR*anim_FullFrames SHOW 0.0 \0");
+			break;
+		case "POPULATE-LT-EQUATION":
+			populateLtEquation(print_writer.get(0), valueToProcess.split(",")[0], match, broadcaster);
+			break;
+		case "POPULATE-DLS-EQUATION":
+			populateDuckWorthLewisEquation(print_writer.get(0), valueToProcess.split(",")[0],
+					valueToProcess.split(",")[1], match, broadcaster);
+			break;
+
+		case "POPULATE-POINTS_TABLE":
+			
+//			LeagueTable group_A = null;
+//			LeagueTable group_B = null;
+//			if(new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.LEAGUE_TABLE_DIRECTORY + "GroupA.xml").exists()) {
+//				group_A = (LeagueTable)JAXBContext.newInstance(LeagueTable.class).createUnmarshaller().
+//						unmarshal(new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.LEAGUE_TABLE_DIRECTORY + "GroupA.xml"));
+//			}
+//			if(new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.LEAGUE_TABLE_DIRECTORY + "GroupB.xml").exists()) {
+//				group_B = (LeagueTable)JAXBContext.newInstance(LeagueTable.class).createUnmarshaller().
+//						unmarshal(new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.LEAGUE_TABLE_DIRECTORY + "GroupB.xml"));
+//			}
+			
+			basePath = CricketUtil.CRICKET_DIRECTORY;
+			if(config.getCategory().equalsIgnoreCase("men")) {
+				basePath = "C:\\Sports\\CricketMen\\";
+			}else if(config.getCategory().equalsIgnoreCase("women")) {
+				basePath = "C:\\Sports\\CricketWomen\\";
+			}
+			
+			LeagueTable league_table = null;
+			if (new File(basePath + CricketUtil.LEAGUE_TABLE_DIRECTORY
+					+ CricketUtil.LEAGUETABLE_XML).exists()) {
+				league_table = (LeagueTable) JAXBContext.newInstance(LeagueTable.class).createUnmarshaller()
+						.unmarshal(new File(basePath + CricketUtil.LEAGUE_TABLE_DIRECTORY
+								+ CricketUtil.LEAGUETABLE_XML));
+			}
+			data = valueToProcess;
+			if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG"
+					|| which_graphic_on_screen == "PLAYERPROFILEBALL"
+					|| which_graphic_on_screen == "FFPLAYERPROFILE" || which_graphic_on_screen == "TEAMLINEUP"
+					|| which_graphic_on_screen == "DOUBLETEAMS" || which_graphic_on_screen == "FFTARGET"
+					|| which_graphic_on_screen == "MANHATTAN" || which_graphic_on_screen == "WORM"
+					|| which_graphic_on_screen == "LEADERBOARD" ||which_graphic_on_screen == "LEADERBOARD_DB"
+					|| which_graphic_on_screen == "FF_STATS"
+					|| which_graphic_on_screen == "TEAM_SQUAD") {
+				which_side = 1;
+				populatePointsTable(print_writer.get(0), valueToProcess.split(",")[0],valueToProcess.split(",")[1],
+						league_table.getLeagueTeams(), cricketService.getTeams(), 1, broadcaster, match,
+						cricketService.getVariousTexts());
+			} else {
+				which_side = 2;
+				populatePointsTable(print_writer.get(0), valueToProcess.split(",")[0],valueToProcess.split(",")[1],
+						league_table.getLeagueTeams(), cricketService.getTeams(), 2, broadcaster, match,
+						cricketService.getVariousTexts());
+			}
+			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side
+					+ "*FUNCTION*Omo*vis_con SET 10 \0");
+			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+which_side+
+					"$PointsTable$HeaderAllGrp*ACTIVE SET 1 \0");
+			populateFFEverestPreview(print_writer.get(0), valueToProcess.split(",")[0], which_side, "POINTSTABLE",
+					which_graphic_on_screen);
+			TimeUnit.MILLISECONDS.sleep(100);
+			break;
+		case "POPULATE-L3-POINTERS":
+			data = valueToProcess;
+			if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG") {
+				which_side = 1;
+				
+				for(Pointers point : cricketService.getPointers()) {
+				  if(point.getPointersId() == Integer.valueOf(valueToProcess.split(",")[1])) {
+					  populatePointers(print_writer.get(0), valueToProcess.split(",")[0], point, match, broadcaster,1);
+				  }
+				}
+			} else {
+				which_side = 2;
+				for(Pointers point : cricketService.getPointers()) {
+				  if(point.getPointersId() == Integer.valueOf(valueToProcess.split(",")[1])) {
+					  populatePointers(print_writer.get(0), valueToProcess.split(",")[0], point, match, broadcaster,2);
+				  }
+				}
+			}
+			print_writer.get(0).println("-1 RENDERER*TREE*$LT$ALL_LT_LOGOGRP$Side" + which_side
+					+ "$Select*FUNCTION*Omo*vis_con SET 0 \0");
+			print_writer.get(0).println(
+					"-1 RENDERER*TREE*$LT$All$BaseAll$Side" + which_side + "$Select*FUNCTION*Omo*vis_con SET 2 \0");
+			print_writer.get(0).println(
+					"-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side + "$Select*FUNCTION*Omo*vis_con SET 22 \0");
+
+			populateEverestPreview(print_writer.get(0), valueToProcess.split(",")[0], which_side, "LT_POINTER");
+			TimeUnit.MILLISECONDS.sleep(100);
+			
+			break;
+				
+		case "POPULATE-BOWLER_STYLE":
+			data = valueToProcess;
+			if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG") {
+				which_side = 1;
+				populateBowlerStyle(print_writer.get(0), valueToProcess.split(",")[0],
+						Integer.valueOf(valueToProcess.split(",")[1]),
+						Integer.valueOf(valueToProcess.split(",")[2]),valueToProcess.split(",")[3], cricketService.getAllPlayer(),
+						cricketService.getTeams(), cricketService.getGrounds(), match, broadcaster, 1,config);
+			} else {
+				which_side = 2;
+				populateBowlerStyle(print_writer.get(0), valueToProcess.split(",")[0],
+						Integer.valueOf(valueToProcess.split(",")[1]),
+						Integer.valueOf(valueToProcess.split(",")[2]),valueToProcess.split(",")[3], cricketService.getAllPlayer(),
+						cricketService.getTeams(), cricketService.getGrounds(), match, broadcaster, 2,config);
+			}
+//			print_writer.get(0).println("-1 RENDERER*TREE*$LT$ALL_LT_LOGOGRP$Side" + which_side
+//					+ "$Select*FUNCTION*Omo*vis_con SET 0 \0");
+			print_writer.get(0).println(
+					"-1 RENDERER*TREE*$LT$All$BaseAll$Side" + which_side + "$Select*FUNCTION*Omo*vis_con SET 5 \0");
+//			print_writer.get(0).println(
+//					"-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side + "$Select*FUNCTION*Omo*vis_con SET 3 \0");
+
+			populateEverestPreview(print_writer.get(0), valueToProcess.split(",")[0], which_side, "BOWLER_STYLE");
+			TimeUnit.MILLISECONDS.sleep(100);
+			break;
+		case "POPULATE-BATSMAN_STYLE":
+			data = valueToProcess;
+			if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG") {
+				which_side = 1;
+				populateBatsmanStyle(print_writer.get(0), valueToProcess.split(",")[0],
+						Integer.valueOf(valueToProcess.split(",")[1]),
+						Integer.valueOf(valueToProcess.split(",")[2]),valueToProcess.split(",")[3], cricketService.getAllPlayer(),
+						cricketService.getTeams(), match, broadcaster, 1,config);
+			} else {
+				which_side = 2;
+				populateBatsmanStyle(print_writer.get(0), valueToProcess.split(",")[0],
+						Integer.valueOf(valueToProcess.split(",")[1]),
+						Integer.valueOf(valueToProcess.split(",")[2]),valueToProcess.split(",")[3], cricketService.getAllPlayer(),
+						cricketService.getTeams(), match, broadcaster, 2,config);
+			}
+
+//			print_writer.get(0).println("-1 RENDERER*TREE*$LT$ALL_LT_LOGOGRP$Side" + which_side
+//					+ "$Select*FUNCTION*Omo*vis_con SET 0 \0");
+			print_writer.get(0).println(
+					"-1 RENDERER*TREE*$LT$All$BaseAll$Side" + which_side + "$Select*FUNCTION*Omo*vis_con SET 5 \0");
+//			print_writer.get(0).println(
+//					"-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side + "$Select*FUNCTION*Omo*vis_con SET 3 \0");
+
+			populateEverestPreview(print_writer.get(0), valueToProcess.split(",")[0], which_side, "BATSMAN_STYLE");
+			TimeUnit.MILLISECONDS.sleep(100);
+			break;
+		case "POPULATE-MANHATTAN":
+			populateManhattan(print_writer.get(0), valueToProcess.split(",")[0],
+					Integer.valueOf(valueToProcess.split(",")[1]), match, broadcaster);
+			break;
+		case "POPULATE-WORM":
+			populateWorm(print_writer.get(0), valueToProcess.split(",")[0],
+					Integer.valueOf(valueToProcess.split(",")[1]), match, broadcaster,
+					match.getEventFile().getEvents());
+			break;
+		case "POPULATE-STRIKERATE":
+			LeaderBoard = CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, head_to_head,cricketService, match, past_tournament_stats);
+			populateBestStrike(print_writer.get(0), valueToProcess.split(",")[0],LeaderBoard,cricketService.getTeams(),match, broadcaster, config);
+			break;
+		case "POPULATE-ECONOMY":
+			LeaderBoard = CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, head_to_head,cricketService, match, past_tournament_stats);
+			populateBestEcon(print_writer.get(0), valueToProcess.split(",")[0],LeaderBoard,cricketService.getTeams(),match, broadcaster, config);
+			break;
+		case "POPULATE-HIGH_LOW":
+			populateTeamHighestTotal(print_writer.get(0), valueToProcess.split(",")[0],valueToProcess.split(",")[1],cricketService.getTeams(),
+					match, broadcaster, config);
+			break;
+		case "POPULATE-FF-FIX_AND_RESULT":
+			populateFixturesAndResult(print_writer.get(0), valueToProcess.split(",")[0], Integer.valueOf(valueToProcess.split(",")[1]),
+					cricketService.getTeams(), cricketService.getFixtures(), broadcaster, match,cricketService.getVariousTexts());
+			break;
+		case "POPULATE-PREVIOUS_SUMMARY":
+			MatchAllData cricket_matches = new MatchAllData();
+			Fixture  fix = cricketService.getFixtures().stream().filter(fx->fx.getMatchnumber()
+					== Integer.valueOf(valueToProcess.split(",")[1])).findAny().orElse(null);
+			data = valueToProcess;
+			sponsor = valueToProcess.split(",")[valueToProcess.split(",").length-1];
+			basePath = CricketUtil.CRICKET_DIRECTORY;
+			if(config.getCategory().equalsIgnoreCase("men")) {
+				basePath = "C:\\Sports\\CricketMen\\";
+			}else if(config.getCategory().equalsIgnoreCase("women")) {
+				basePath = "C:\\Sports\\CricketWomen\\";
+			}
+			if(new File(basePath + CricketUtil.SETUP_DIRECTORY + 
+					fix.getMatchfilename()+".json").exists()) {
+				cricket_matches.setSetup(new ObjectMapper().readValue(new File(basePath + CricketUtil.SETUP_DIRECTORY + 
+						fix.getMatchfilename()+".json"), Setup.class));
+				cricket_matches.setMatch(new ObjectMapper().readValue(new File(basePath + CricketUtil.MATCHES_DIRECTORY + 
+						fix.getMatchfilename()+".json"), Match.class));
+			}
+			if(new File(basePath + CricketUtil.EVENT_DIRECTORY + 
+					fix.getMatchfilename()+".json").exists()) {
+				cricket_matches.setEventFile(new ObjectMapper().readValue(new File(basePath + CricketUtil.EVENT_DIRECTORY + 
+						fix.getMatchfilename()+".json"), EventFile.class));
+			}
+//			cricket_matches = CricketFunctions.populateMatchVariables(cricketService, CricketFunctions.readOrSaveMatchFile(CricketUtil.READ,CricketUtil.SETUP + "," + 
+//					CricketUtil.MATCH , cricket_matches,true));	
+			
+			populatePreviousSummary(print_writer.get(0), valueToProcess.split(",")[0],
+					Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[0], cricket_matches,
+					cricketService.getFixtures(), match, broadcaster, cricketService.getVariousTexts(), config);
+			TimeUnit.MILLISECONDS.sleep(100);
+			break;
+		case "POPULATE-TIEID-DOUBLE":
+			populateTieIdDouble(print_writer.get(0), valueToProcess.split(",")[0], valueToProcess.split(",")[1],
+					cricketService.getFixtures(), cricketService.getTeams(), match, broadcaster);
+			break;
+		case "POPULATE-L3-INFOBAR":
+
+			infobar.setLast_full_section("");
+			infobar.setFull_section("");
+			infobar.setLast_bottom_right_section("");
+			infobar.setBottom_right_section("");
+			infobar.setLast_bottom_right_bottom_section("");
+			infobar.setBottom_right_bottom_section("");
+			infobar.setLast_top_section("");
+			infobar.setTop_section("");
+			infobar.setLast_bottom_right_top_section("");
+			infobar.setBottom_right_top_section("");
+			infobar.setMiddle_section("");
+			infobar.setLast_middle_section("");
+			infobar.setLast_top_right_section("");
+			infobar.setTop_right_section("");
+			infobar.setBottom_left_section("");
+			infobar.setLast_bottom_left_section("");
+			
+			infobar.setMiddle_section(valueToProcess.split(",")[1]);
+			infobar.setBottom_right_top_section(valueToProcess.split(",")[2]);
+			infobar.setTop_section(valueToProcess.split(",")[3]);
+			infobar.setBottom_right_bottom_section(valueToProcess.split(",")[4]);
+
+			populateInfobar(infobar, print_writer.get(0), valueToProcess.split(",")[0], match, broadcaster);
+
+			processAnimation(print_writer.get(0), "Section3$ThisOverOut", "START", broadcaster);
+			processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
+			processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
+			processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
+
+			switch (infobar.getTop_section().toUpperCase()) {
+			case "TARGET":
+				processAnimation(print_writer.get(0), "Section2$TargetIn", "START", broadcaster);
+				break;
+			case CricketUtil.TOSS:case "SUPER_OVER":case "TOURNAMENT":
+				processAnimation(print_writer.get(0), "Section2$TossIn", "START", broadcaster);
+				break;
+			case "CRR":
+				processAnimation(print_writer.get(0), "Section2$RunRateIn", "START", broadcaster);
+				break;
+			case "RRR":
+				processAnimation(print_writer.get(0), "Section2$ReqRunRateIn", "START", broadcaster);
+				break;
+			}
+
+			switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
+			case CricketUtil.OVER:
+				System.out.println("HELLO 2");
+				if (infobar.isThisover()) {
+					processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
+				} else {
+					processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
+				}
+				break;
+			case "ECONOMY":
+				processAnimation(print_writer.get(0), "Section3$EconomyIn", "START", broadcaster);
+				break;
+			case "BOWLINGEND": case "REPLACEBOWLER":
+				processAnimation(print_writer.get(0), "Section3$BowlingEndIn", "START", broadcaster);
+				break;
+			}
+			infobar.setIdent_section("");
+			break;
+
+		case "POPULATE-INFOBAR-IDENT":
+			infobar.setIdent_section(valueToProcess.split(",")[1]);
+			populateInfobarIdent(infobar, false, valueToProcess.split(",")[0], print_writer.get(0), match,
+					broadcaster);
+			break;
+
+		case "POPULATE-INFOBAR_RIGHT_LASTXOVER":
+
+			if (infobar.getLast_bottom_right_section() != null
+					&& !infobar.getLast_bottom_right_section().trim().isEmpty()) {
+
+				switch (infobar.getLast_bottom_right_section().toUpperCase()) {
+				case "EQUATION":
+					if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0
+							|| match.getMatch().getInning().get(1).getTotalWickets() >= 10
+							|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
+						processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
+					} else {
+						processAnimation(print_writer.get(0), "Section4$EquationOut", "START", broadcaster);
+					}
+					break;
+				case "PROJECTED":
+					processAnimation(print_writer.get(0), "Section4$ProjectedScoreOut", "START", broadcaster);
+					break;
+				case CricketUtil.COMPARE:
+					processAnimation(print_writer.get(0), "Section4$AtThisStageOut", "START", broadcaster);
+					break;
+				case CricketUtil.DOT:
+					processAnimation(print_writer.get(0), "Section4$DotBallsOut", "START", broadcaster);
+					break;
+				case CricketUtil.FOUR:case "THIS_MATCH_FOURS": case "TOURNAMENT_FOURS":
+					processAnimation(print_writer.get(0), "Section4$TournamentFoursOut", "START", broadcaster);
+					break;
+				case CricketUtil.SIX:case "THIS_MATCH_SIXES": case "TOURNAMENT_SIXES":
+					processAnimation(print_writer.get(0), "Section4$TournamentSixesOut", "START", broadcaster);
+					break;
+				case CricketUtil.BOUNDARY:
+					processAnimation(print_writer.get(0), "Section4$BallsSinceOut", "START", broadcaster);
+					break;
+				case "BOUNDARIES":
+					processAnimation(print_writer.get(0), "Section4$InningsBoundariesOut", "START", broadcaster);
+					break;
+				case "LAST_WICKET":
+					processAnimation(print_writer.get(0), "Section4$LastWicketOut", "START", broadcaster);
+					break;
+				case "TOURNAMENT-NAME":
+					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
+					break;
+				case "STATISTICS":
+					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
+					break;
+				case "EXTRAS":
+					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
+					break;
+				case "REVIEW":
+					processAnimation(print_writer.get(0), "Section4$ReviewOut", "START", broadcaster);
+					break;
+				case "LASTXOVERS":
+					processAnimation(print_writer.get(0), "Section4$LastXBallsOut", "START", broadcaster);
+					break;
+				}
+
+				TimeUnit.MILLISECONDS.sleep(200);
+				infobar.setBottom_right_section("LASTXOVERS");
+				populateInfobarLastxOver(infobar, false, print_writer.get(0), Integer.valueOf(valueToProcess),
+						match, broadcaster);
+
+				processAnimation(print_writer.get(0), "Section4$LastXBallsIn", "START", broadcaster);
+
+			} else if (infobar.getLast_bottom_right_bottom_section() != null
+					&& !infobar.getLast_bottom_right_bottom_section().trim().isEmpty()) { // Normal change on
+
+				processAnimation(print_writer.get(0), "Section4$Section4In", "START", broadcaster);
+
+				TimeUnit.MILLISECONDS.sleep(200);
+				infobar.setBottom_right_section("LASTXOVERS");
+				populateInfobarLastxOver(infobar, false, print_writer.get(0), Integer.valueOf(valueToProcess),
+						match, broadcaster);
+
+				processAnimation(print_writer.get(0), "Section4$LastXBallsIn", "START", broadcaster);
+
+			}
+			break;
+		case "POPULATE-BAT_BALL_STATS":
+			for (Statistics stats : statistics) {
+				if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+					stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+					stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
+					stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
+					System.out.println("valueToProcess.split(\",\")[3] : " + valueToProcess.split(",")[3]);
+					if (stats.getStats_type().getStatsShortName()
+							.equalsIgnoreCase(valueToProcess.split(",")[3])) {
+						if (infobar.getLast_full_section() != null
+								&& !infobar.getLast_full_section().trim().isEmpty()) {
+							switch (infobar.getLast_full_section().toUpperCase()) {
+							case "TIMELINE":
+								processAnimation(print_writer.get(0), "Section5$TimeLineOut", "START", broadcaster);
+								break;
+							case "FREETEXT":
+								processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+								break;
+							case "PROJECTED":
+								processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+								break;
+							case "TARGET":
+								processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+								break;
+							case "EQUATION":
+								processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+								break;
+							case "COMPARISON":
+								processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+								break;	
+							case "IDENT":
+								processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+								break;
+							case "TOURNAMENT":
+								processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+								break;		
+							case "BOWLERSTATS":
+								processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+								break;
+							case "COMMS":
+								processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+								break;		
+							}
+							infobar.setFull_section("BOWLERSTATS");
+							populateInfobarPlayerStats(infobar, false, print_writer.get(0),
+									Integer.valueOf(valueToProcess.split(",")[0]),
+									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
+									valueToProcess.split(",")[3], match, stats, broadcaster);
+							processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+						} else {
+							infobar.setFull_section("BOWLERSTATS");
+							populateInfobarPlayerStats(infobar, false, print_writer.get(0),
+									Integer.valueOf(valueToProcess.split(",")[0]),
+									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
+									valueToProcess.split(",")[3], match, stats, broadcaster);
+							processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+						}
+					}
+				}
+			}
+
+			break;
+		case "POPULATE-INFOBAR-PROMPT":
+			for (Inning inn : match.getMatch().getInning()) {
+				if (inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
+					for (InfobarStats ibs : cricketService.getInfobarStats())
+						if (ibs.getOrder() == Integer.valueOf(valueToProcess)) {
+							if (infobar.getLast_full_section() != null
+									&& !infobar.getLast_full_section().trim().isEmpty()) {
+								switch (infobar.getLast_full_section().toUpperCase()) {
+								case "TIMELINE":
+									processAnimation(print_writer.get(0), "Section5$TimeLineOut", "START",
+											broadcaster);
+									break;
+								case "FREETEXT":
+									processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START",
+											broadcaster);
+									break;
+								case "PROJECTED":
+									processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+									break;
+								case "TARGET":
+									processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+									break;
+								case "EQUATION":
+									processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+									break;
+								case "COMPARISON":
+									processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+									break;	
+								case "IDENT":
+									processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+									break;
+								case "TOURNAMENT":
+									processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+									break;	
+								case "COMMS":
+									processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+									break;		
+								}
+
+								TimeUnit.MILLISECONDS.sleep(500);
+								processAnimation(print_writer.get(0), "Section5$Section5Out", "START", broadcaster);
+
+								TimeUnit.MILLISECONDS.sleep(500);
+								processAnimation(print_writer.get(0), "Section4$Section4In", "START", broadcaster);
+
+								TimeUnit.MILLISECONDS.sleep(500);
+								infobar.setBottom_right_section("STATISTICS");
+								populateInfobarFreeText(infobar, false, print_writer.get(0), ibs, match,
+										broadcaster);
+
+								processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START", broadcaster);
+							} else if (infobar.getLast_bottom_right_section() != null
+									&& !infobar.getLast_bottom_right_section().trim().isEmpty()) {
+
+								switch (infobar.getLast_bottom_right_section().toUpperCase()) {
+								case "EQUATION":
+									if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0
+											|| match.getMatch().getInning().get(1).getTotalWickets() >= 10
+											|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
+										processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START",
+												broadcaster);
+									} else {
+										processAnimation(print_writer.get(0), "Section4$EquationOut", "START",
+												broadcaster);
+									}
+									break;
+								case "PROJECTED":
+									processAnimation(print_writer.get(0), "Section4$ProjectedScoreOut", "START",
+											broadcaster);
+									break;
+								case CricketUtil.COMPARE:
+									processAnimation(print_writer.get(0), "Section4$AtThisStageOut", "START",
+											broadcaster);
+									break;
+								case CricketUtil.DOT:
+									processAnimation(print_writer.get(0), "Section4$DotBallsOut", "START",
+											broadcaster);
+									break;
+								case CricketUtil.FOUR: case "THIS_MATCH_FOURS": case "TOURNAMENT_FOURS":
+									processAnimation(print_writer.get(0), "Section4$TournamentFoursOut", "START",
+											broadcaster);
+									break;
+								case CricketUtil.SIX: case "THIS_MATCH_SIXES": case "TOURNAMENT_SIXES":
+									processAnimation(print_writer.get(0), "Section4$TournamentSixesOut", "START",
+											broadcaster);
+									break;
+								case CricketUtil.BOUNDARY:
+									processAnimation(print_writer.get(0), "Section4$BallsSinceOut", "START",
+											broadcaster);
+									break;
+								case "BOUNDARIES":
+									processAnimation(print_writer.get(0), "Section4$InningsBoundariesOut", "START",
+											broadcaster);
+									break;
+								case "LAST_WICKET":
+									processAnimation(print_writer.get(0), "Section4$LastWicketOut", "START",
+											broadcaster);
+									break;
+								case "TOURNAMENT-NAME":
+									processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START",
+											broadcaster);
+									break;
+								case "STATISTICS":
+									processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START",
+											broadcaster);
+									break;
+								case "EXTRAS":
+									processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START",
+											broadcaster);
+									break;
+								case "REVIEW":
+									processAnimation(print_writer.get(0), "Section4$ReviewOut", "START",
+											broadcaster);
+									break;
+								}
+
+								TimeUnit.MILLISECONDS.sleep(500);
+								infobar.setFull_section("STATISTICS");
+								populateInfobarFreeText(infobar, false, print_writer.get(0), ibs, match,
+										broadcaster);
+
+								processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START", broadcaster);
+
+							} else if (infobar.getLast_bottom_right_bottom_section() != null
+									&& !infobar.getLast_bottom_right_bottom_section().trim().isEmpty()) { // Normal
+																											// change
+																											// on
+
+								processAnimation(print_writer.get(0), "Section4$Section4In", "START", broadcaster);
+								TimeUnit.MILLISECONDS.sleep(500);
+								processAnimation(print_writer.get(0), "BowlerOut", "START", broadcaster);
+								TimeUnit.MILLISECONDS.sleep(500);
+								switch (infobar.getLast_bottom_right_bottom_section().toUpperCase()) {
+								case CricketUtil.OVER:
+									System.out.println("HELLO 3");
+									if (infobar.isThisover()) {
+										processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START",
+												broadcaster);
+									} else {
+										processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START",
+												broadcaster);
+									}
+									break;
+								case "ECONOMY":
+									processAnimation(print_writer.get(0), "Section3$EconomyOut", "START",
+											broadcaster);
+									break;
+								case "BOWLINGEND": case "REPLACEBOWLER":
+									processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START",
+											broadcaster);
+									break;
+								case "EXTRAS":
+									processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START",
+											broadcaster);
+									break;
+								}
+
+								TimeUnit.MILLISECONDS.sleep(500);
+								infobar.setBottom_right_section("STATISTICS");
+								populateInfobarFreeText(infobar, false, print_writer.get(0), ibs, match,
+										broadcaster);
+
+								processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START", broadcaster);
+
+								infobar.setLast_full_section("");
+								infobar.setFull_section("");
+								infobar.setLast_bottom_right_bottom_section("");
+								infobar.setBottom_right_bottom_section("");
+								infobar.setLast_bottom_right_top_section("");
+								infobar.setBottom_right_top_section("");
+							}
+						}
+				}
+			}
+			break;
+		case "POPULATE-DIRECTOR":
+			populateInfobarDirector(print_writer.get(0), valueToProcess, broadcaster);
+			break;
+		case "POPULATE-SIXDIRECTOR":
+			print_writer.get(0).println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$SixIn START \0");
+			infobar_director_on_screen = "SIX";
+			break;
+		case "POPULATE-FOURDIRECTOR":
+			print_writer.get(0).println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$FourIn START \0");
+			infobar_director_on_screen = "FOUR";
+			break;
+		case "POPULATE-WICKETDIRECTOR":
+			print_writer.get(0).println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$WicketIn START \0");
+			infobar_director_on_screen = "WICKET";
+			break;
+		case "POPULATE-FREEHITDIRECTOR":
+			if(infobar_director_on_screen.equalsIgnoreCase("FREEHIT")) {
+				print_writer.get(0).println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$FreeHitOut START \0");
+				infobar_director_on_screen = "";
+			}else {
+				print_writer.get(0).println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$FreeHitIn START \0");
+				infobar_director_on_screen = "FREEHIT";
+			}
+			
+			break;
+		case "POPULATE-ONAHATTRICKDIRECTOR":
+			print_writer.get(0)
+					.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$OnHattrickIn START \0");
+			break;
+		case "POPULATE-HATTRICKDIRECTOR":
+			print_writer.get(0)
+					.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$HattrickIn START \0");
+			break;
+		case "POPULATE-SPONSOR":
+			populateInfobarSponsor(print_writer.get(0), valueToProcess, broadcaster);
+			break;
+		case "POPULATE-INFOBAR-SECTION5":
+			if (infobar.getLast_bottom_right_section() != null
+					&& !infobar.getLast_bottom_right_section().trim().isEmpty()) {
+
+				processAnimation(print_writer.get(0), "Section5$Section5In", "START", broadcaster);
+				TimeUnit.MILLISECONDS.sleep(300);
+				switch (infobar.getLast_bottom_right_section().toUpperCase()) {
+				case "EQUATION":
+					if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0
+							|| match.getMatch().getInning().get(1).getTotalWickets() >= 10
+							|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
+						processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
+					} else {
+						processAnimation(print_writer.get(0), "Section4$EquationOut", "START", broadcaster);
+					}
+					break;
+				case "PROJECTED":
+					processAnimation(print_writer.get(0), "Section4$ProjectedScoreOut", "START", broadcaster);
+					break;
+				case CricketUtil.COMPARE:
+					processAnimation(print_writer.get(0), "Section4$AtThisStageOut", "START", broadcaster);
+					break;
+				case CricketUtil.DOT:
+					processAnimation(print_writer.get(0), "Section4$DotBallsOut", "START", broadcaster);
+					break;
+				case CricketUtil.FOUR:case "THIS_MATCH_FOURS": case "TOURNAMENT_FOURS":
+					processAnimation(print_writer.get(0), "Section4$TournamentFoursOut", "START", broadcaster);
+					break;
+				case CricketUtil.SIX:case "THIS_MATCH_SIXES": case "TOURNAMENT_SIXES":
+					processAnimation(print_writer.get(0), "Section4$TournamentSixesOut", "START", broadcaster);
+					break;
+				case CricketUtil.BOUNDARY:
+					processAnimation(print_writer.get(0), "Section4$BallsSinceOut", "START", broadcaster);
+					break;
+				case "BOUNDARIES":
+					processAnimation(print_writer.get(0), "Section4$InningsBoundariesOut", "START", broadcaster);
+					break;
+				case "LAST_WICKET":
+					processAnimation(print_writer.get(0), "Section4$LastWicketOut", "START", broadcaster);
+					break;
+				case "STATISTICS":
+					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
+					break;
+				case "EXTRAS":
+					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
+					break;
+				case "REVIEW":
+					processAnimation(print_writer.get(0), "Section4$ReviewOut", "START", broadcaster);
+					break;
+				}
+
+				TimeUnit.MILLISECONDS.sleep(100);
+				infobar.setFull_section(valueToProcess.split(",")[0]);
+				infobar = populateSection5(infobar, false, print_writer.get(0),
+						Integer.valueOf(valueToProcess.split(",")[1]), match, broadcaster,valueToProcess,cricketService);
+
+				// TimeUnit.MILLISECONDS.sleep(500);
+				switch (infobar.getFull_section().toUpperCase()) {
+				case "TIMELINE":
+					processAnimation(print_writer.get(0), "Section5$TimeLineIn", "START", broadcaster);
+					break;
+				case "FREETEXT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "PROJECTED":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "TARGET":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "EQUATION":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "COMPARISON":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;	
+				case "IDENT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "TOURNAMENT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;	
+				case "COMMS":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;		
+				}
+			} else if (infobar.getLast_full_section() != null && !infobar.getLast_full_section().trim().isEmpty()) {
+				switch (infobar.getLast_full_section().toUpperCase()) {
+				case "TIMELINE":
+					processAnimation(print_writer.get(0), "Section5$TimeLineOut", "START", broadcaster);
+					break;
+				case "FREETEXT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "PROJECTED":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "TARGET":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "EQUATION":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "COMPARISON":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				case "IDENT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "TOURNAMENT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "COMMS":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				}
+
+				TimeUnit.MILLISECONDS.sleep(100);
+				infobar.setFull_section(valueToProcess.split(",")[0]);
+				infobar = populateSection5(infobar, false, print_writer.get(0),
+						Integer.valueOf(valueToProcess.split(",")[1]), match, broadcaster,valueToProcess,cricketService);
+
+				// TimeUnit.MILLISECONDS.sleep(500);
+				switch (infobar.getFull_section().toUpperCase()) {
+				case "TIMELINE":
+					processAnimation(print_writer.get(0), "Section5$TimeLineIn", "START", broadcaster);
+					break;
+				case "FREETEXT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "PROJECTED":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "TARGET":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "EQUATION":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "COMPARISON":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;	
+				case "IDENT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "TOURNAMENT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;	
+				case "COMMS":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;		
+				}
+			} else if (infobar.getLast_bottom_right_bottom_section() != null
+					&& !infobar.getLast_bottom_right_bottom_section().trim().isEmpty()) {
+				processAnimation(print_writer.get(0), "Section5$Section5In", "START", broadcaster);
+				TimeUnit.MILLISECONDS.sleep(100);
+				processAnimation(print_writer.get(0), "BowlerOut", "START", broadcaster);
+				// TimeUnit.MILLISECONDS.sleep(100);
+				switch (infobar.getLast_bottom_right_bottom_section().toUpperCase()) {
+				case CricketUtil.OVER:
+					System.out.println("HELLO 4");
+					if (infobar.isThisover()) {
+						processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
+					} else {
+						processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
+					}
+					break;
+				case "ECONOMY":
+					processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
+					break;
+				case "BOWLINGEND": case "REPLACEBOWLER":
+					processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
+					break;
+				case "EXTRAS":
+					processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
+					break;
+				}
+
+				System.out.println("line = "  + Integer.valueOf(valueToProcess.split(",")[1]));
+				TimeUnit.MILLISECONDS.sleep(100);
+				infobar.setFull_section(valueToProcess.split(",")[0]);
+				infobar = populateSection5(infobar, false, print_writer.get(0),
+						Integer.valueOf(valueToProcess.split(",")[1]), match, broadcaster,valueToProcess,cricketService);
+
+				TimeUnit.MILLISECONDS.sleep(100);
+				switch (infobar.getFull_section().toUpperCase()) {
+				case "TIMELINE":
+					processAnimation(print_writer.get(0), "Section5$TimeLineIn", "START", broadcaster);
+					break;
+				case "FREETEXT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "PROJECTED":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "TARGET":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "EQUATION":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "COMPARISON":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;	
+				case "IDENT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "TOURNAMENT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;	
+				case "COMMS":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;		
+				}
+			}
+
+			infobar.setBottom_right_section("");
+			infobar.setLast_bottom_right_section("");
+			infobar.setLast_bottom_right_bottom_section("");
+			infobar.setBottom_right_bottom_section("");
+			infobar.setLast_bottom_right_top_section("");
+			infobar.setBottom_right_top_section("");
+			break;
+
+		case "POPULATE-INFOBAR-BOTTOMRIGHT":
+			if (infobar.getLast_bottom_right_section() != null
+					&& !infobar.getLast_bottom_right_section().trim().isEmpty()) { // section4 to bottomright
+				
+				infobar.setOverPlayed(false);
+				infobar.setOverballLessThan9(false);
+				infobar.setOverBallGreaterThen9(false);
+				infobar.setOverBallequalto0(false);
+				
+				// section
+				System.out.println(infobar.getLast_bottom_right_section().toUpperCase());
+				switch (infobar.getLast_bottom_right_section().toUpperCase()) {
+				case "EQUATION":
+					if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0
+							|| match.getMatch().getInning().get(1).getTotalWickets() >= 10
+							|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
+						processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
+					} else {
+						processAnimation(print_writer.get(0), "Section4$EquationOut", "START", broadcaster);
+					}
+					break;
+				case "PROJECTED":
+					processAnimation(print_writer.get(0), "Section4$ProjectedScoreOut", "START", broadcaster);
+					break;
+				case CricketUtil.COMPARE:
+					processAnimation(print_writer.get(0), "Section4$AtThisStageOut", "START", broadcaster);
+					break;
+				case CricketUtil.DOT:
+					processAnimation(print_writer.get(0), "Section4$DotBallsOut", "START", broadcaster);
+					break;
+				case CricketUtil.FOUR:case "THIS_MATCH_FOURS": case "TOURNAMENT_FOURS":
+					processAnimation(print_writer.get(0), "Section4$TournamentFoursOut", "START", broadcaster);
+					break;
+				case CricketUtil.SIX:case "THIS_MATCH_SIXES": case "TOURNAMENT_SIXES":
+					processAnimation(print_writer.get(0), "Section4$TournamentSixesOut", "START", broadcaster);
+					break;
+				case CricketUtil.BOUNDARY:
+					processAnimation(print_writer.get(0), "Section4$BallsSinceOut", "START", broadcaster);
+					break;
+				case "BOUNDARIES":
+					processAnimation(print_writer.get(0), "Section4$InningsBoundariesOut", "START", broadcaster);
+					break;
+				case "LAST_WICKET":
+					processAnimation(print_writer.get(0), "Section4$LastWicketOut", "START", broadcaster);
+					break;
+				case "STATISTICS":
+					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
+					break;
+				case "EXTRAS":
+					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
+					break;
+				case "REVIEW":
+					processAnimation(print_writer.get(0), "Section4$ReviewOut", "START", broadcaster);
+					break;
+				}
+
+				infobar.setBottom_right_bottom_section(valueToProcess);
+				infobar = populateVizInfobarRightBottom(infobar, false, print_writer.get(0), match, broadcaster);
+				processAnimation(print_writer.get(0), "Section3$ThisOverOut", "START", broadcaster);
+				processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
+				processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
+				processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
+				infobar.setBottom_right_top_section(CricketUtil.BOWLER);
+				infobar = populateVizInfobarRightTop(infobar, false, print_writer.get(0), match, broadcaster);
+
+				TimeUnit.MILLISECONDS.sleep(500);
+				processAnimation(print_writer.get(0), "BowlerIn", "START", broadcaster);
+				switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
+				case CricketUtil.OVER:
+					System.out.println("HELLO 5");
+					if (infobar.isThisover()) {
+						processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
+					} else {
+						processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
+					}
+					break;
+				case "ECONOMY":
+					processAnimation(print_writer.get(0), "Section3$EconomyIn", "START", broadcaster);
+					break;
+				case "BOWLINGEND": case "REPLACEBOWLER": case "CRR": case "TARGET":
+				case "EQUATION": case "CRR_RRR":	
+					processAnimation(print_writer.get(0), "Section3$BowlingEndIn", "START", broadcaster);
+					break;
+				case "EXTRAS":
+					processAnimation(print_writer.get(0), "Section3$ExtrasIn", "START", broadcaster);
+					break;
+				}
+				TimeUnit.MILLISECONDS.sleep(500);
+				processAnimation(print_writer.get(0), "Section4$Section4Out", "START", broadcaster);
+
+			} else if (infobar.getLast_full_section() != null && !infobar.getLast_full_section().trim().isEmpty()) {
+				switch (infobar.getLast_full_section().toUpperCase()) {
+				case "TIMELINE":
+					processAnimation(print_writer.get(0), "Section5$TimeLineOut", "START", broadcaster);
+					break;
+				case "FREETEXT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "PROJECTED":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "TARGET":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "EQUATION":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "COMPARISON":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				case "IDENT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "TOURNAMENT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				case "COMMS":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;		
+				}
+				TimeUnit.MILLISECONDS.sleep(500);
+				processAnimation(print_writer.get(0), "Section5$Section5Out", "START", broadcaster);
+
+				infobar.setBottom_right_bottom_section(valueToProcess);
+				infobar = populateVizInfobarRightBottom(infobar, false, print_writer.get(0), match, broadcaster);
+
+				processAnimation(print_writer.get(0), "Section3$ThisOverOut", "START", broadcaster);
+				processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
+				processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
+				processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
+
+				infobar.setBottom_right_top_section(CricketUtil.BOWLER);
+				infobar = populateVizInfobarRightTop(infobar, false, print_writer.get(0), match, broadcaster);
+
+				processAnimation(print_writer.get(0), "BowlerIn", "START", broadcaster);
+				TimeUnit.MILLISECONDS.sleep(500);
+				switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
+				case CricketUtil.OVER:
+					System.out.println("HELLO 6");
+					if (infobar.isThisover()) {
+						processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
+					} else {
+						processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
+					}
+					break;
+				case "ECONOMY":
+					processAnimation(print_writer.get(0), "Section3$EconomyIn", "START", broadcaster);
+					break;
+				case "BOWLINGEND": case "REPLACEBOWLER":case "CRR": case "TARGET":
+				case "EQUATION": case "CRR_RRR":
+					processAnimation(print_writer.get(0), "Section3$BowlingEndIn", "START", broadcaster);
+					break;
+				case "EXTRAS":
+					processAnimation(print_writer.get(0), "Section3$ExtrasIn", "START", broadcaster);
+					break;
+				}
+
+			} else if (infobar.getLast_bottom_right_top_section() != null
+					&& infobar.getLast_bottom_right_bottom_section() != null
+					&& !infobar.getLast_bottom_right_top_section().trim().isEmpty()
+					&& !infobar.getLast_bottom_right_bottom_section().trim().isEmpty()) { // Normal change on
+
+				switch (infobar.getLast_bottom_right_bottom_section().toUpperCase()) {
+				case CricketUtil.OVER:
+					System.out.println("HELLO 1");
+					if (infobar.isThisover()) {
+						processAnimation(print_writer.get(0), "Section3$ThisOverOut", "START", broadcaster);
+					} else {
+						processAnimation(print_writer.get(0), "Section3$FreeTextOut", "START", broadcaster);
+					}
+					break;
+				case "ECONOMY":
+					processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
+					break;
+				case "BOWLINGEND": case "REPLACEBOWLER":case "CRR": case "TARGET":
+				case "EQUATION": case "CRR_RRR":
+					processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
+					break;
+				case "EXTRAS":
+					processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
+					break;
+				}
+				TimeUnit.MILLISECONDS.sleep(400);
+				infobar.setBottom_right_bottom_section(valueToProcess);
+				infobar = populateVizInfobarRightBottom(infobar, false, print_writer.get(0), match, broadcaster);
+				switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
+				case CricketUtil.OVER:
+					System.out.println("HELLO 7");
+					if (infobar.isThisover()) {
+						processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
+					} else {
+						processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
+					}
+					break;
+				case "ECONOMY":
+					processAnimation(print_writer.get(0), "Section3$EconomyIn", "START", broadcaster);
+					break;
+				case "BOWLINGEND": case "REPLACEBOWLER":case "CRR": case "TARGET":
+				case "EQUATION": case "CRR_RRR":
+					processAnimation(print_writer.get(0), "Section3$BowlingEndIn", "START", broadcaster);
+					break;
+				case "EXTRAS":
+					processAnimation(print_writer.get(0), "Section3$ExtrasIn", "START", broadcaster);
+					break;
+				}
+			}
+			infobar.setBottom_right_section("");
+			infobar.setLast_bottom_right_section("");
+			infobar.setLast_full_section("");
+			infobar.setFull_section("");
+			break;
+
+		case "POPULATE-INFOBAR-RIGHT":
+			if (infobar.getLast_full_section() != null && !infobar.getLast_full_section().trim().isEmpty()) {
+				switch (infobar.getLast_full_section().toUpperCase()) {
+				case "TIMELINE":
+					processAnimation(print_writer.get(0), "Section5$TimeLineOut", "START", broadcaster);
+					break;
+				case "FREETEXT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "PROJECTED":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "TARGET":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "EQUATION":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "COMPARISON":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				case "IDENT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "TOURNAMENT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				case "COMMS":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;		
+				}
+				TimeUnit.MILLISECONDS.sleep(150);
+				processAnimation(print_writer.get(0), "Section5$Section5Out", "START", broadcaster);
+				TimeUnit.MILLISECONDS.sleep(150);
+				processAnimation(print_writer.get(0), "Section4$Section4In", "START", broadcaster);
+
+				TimeUnit.MILLISECONDS.sleep(150);
+				infobar.setBottom_right_section(valueToProcess);
+				infobar = populateVizInfobarRight(infobar, false, print_writer.get(0), match, broadcaster);
+
+				TimeUnit.MILLISECONDS.sleep(150);
+
+				switch (infobar.getBottom_right_section().toUpperCase()) {
+				case "EQUATION":
+					if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0
+							|| match.getMatch().getInning().get(1).getTotalWickets() >= 10
+							|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
+						showWinner(infobar, print_writer.get(0), match);
+						TimeUnit.MILLISECONDS.sleep(200);
+						// processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START",
+						// broadcaster);
+					} else {
+						processAnimation(print_writer.get(0), "Section4$EquationIn", "START", broadcaster);
+					}
+					break;
+				case "PROJECTED":
+					processAnimation(print_writer.get(0), "Section4$ProjectedScoreIn", "START", broadcaster);
+					break;
+				case CricketUtil.COMPARE:
+					processAnimation(print_writer.get(0), "Section4$AtThisStageIn", "START", broadcaster);
+					break;
+				case CricketUtil.DOT:
+					processAnimation(print_writer.get(0), "Section4$DotBallsIn", "START", broadcaster);
+					break;
+				case CricketUtil.FOUR: case "THIS_MATCH_FOURS": case "TOURNAMENT_FOURS":
+					processAnimation(print_writer.get(0), "Section4$TournamentFoursIn", "START", broadcaster);
+					break;
+				case CricketUtil.SIX: case "THIS_MATCH_SIXES": case "TOURNAMENT_SIXES":
+					processAnimation(print_writer.get(0), "Section4$TournamentSixesIn", "START", broadcaster);
+					break;
+				case CricketUtil.BOUNDARY:
+					processAnimation(print_writer.get(0), "Section4$BallsSinceIn", "START", broadcaster);
+					break;
+				case "BOUNDARIES":
+					processAnimation(print_writer.get(0), "Section4$InningsBoundariesIn", "START", broadcaster);
+					break;
+				case "LAST_WICKET":
+					processAnimation(print_writer.get(0), "Section4$LastWicketIn", "START", broadcaster);
+					break;
+				case "TOURNAMENT-NAME":
+					processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START", broadcaster);
+					break;
+				case "EXTRAS":
+					processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START", broadcaster);
+					break;
+				case "REVIEW":
+					processAnimation(print_writer.get(0), "Section4$ReviewIn", "START", broadcaster);
+					break;
+				}
+
+			} else if (infobar.getLast_bottom_right_bottom_section() != null
+					&& !infobar.getLast_bottom_right_bottom_section().trim().isEmpty()) { // Normal change on
+
+				processAnimation(print_writer.get(0), "Section4$Section4In", "START", broadcaster);
+				TimeUnit.MILLISECONDS.sleep(100);
+				processAnimation(print_writer.get(0), "BowlerOut", "START", broadcaster);
+				TimeUnit.MILLISECONDS.sleep(200);
+				switch (infobar.getLast_bottom_right_bottom_section().toUpperCase()) {
+				case CricketUtil.OVER:
+					System.out.println("HELLO 8");
+					if (infobar.isThisover()) {
+						processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
+					} else {
+						processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
+					}
+					break;
+				case "ECONOMY":
+					processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
+					break;
+				case "BOWLINGEND": case "REPLACEBOWLER":case "CRR": case "TARGET":
+				case "EQUATION": case "CRR_RRR":
+					processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
+					break;
+				case "EXTRAS":
+					processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
+					break;
+				}
+
+				TimeUnit.MILLISECONDS.sleep(150);
+
+				infobar.setBottom_right_section(valueToProcess);
+				infobar = populateVizInfobarRight(infobar, false, print_writer.get(0), match, broadcaster);
+
+				TimeUnit.MILLISECONDS.sleep(150);
+
+				switch (infobar.getBottom_right_section().toUpperCase()) {
+				case "EQUATION":
+					if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0
+							|| match.getMatch().getInning().get(1).getTotalWickets() >= 10
+							|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
+						showWinner(infobar, print_writer.get(0), match);
+						TimeUnit.MILLISECONDS.sleep(150);
+						// processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START",
+						// broadcaster);
+					} else {
+						processAnimation(print_writer.get(0), "Section4$EquationIn", "START", broadcaster);
+					}
+					break;
+				case "PROJECTED":
+					processAnimation(print_writer.get(0), "Section4$ProjectedScoreIn", "START", broadcaster);
+					break;
+				case CricketUtil.COMPARE:
+					processAnimation(print_writer.get(0), "Section4$AtThisStageIn", "START", broadcaster);
+					break;
+				case CricketUtil.DOT:
+					processAnimation(print_writer.get(0), "Section4$DotBallsIn", "START", broadcaster);
+					break;
+				case CricketUtil.FOUR: case "THIS_MATCH_FOURS": case "TOURNAMENT_FOURS":
+					processAnimation(print_writer.get(0), "Section4$TournamentFoursIn", "START", broadcaster);
+					break;
+				case CricketUtil.SIX: case "THIS_MATCH_SIXES": case "TOURNAMENT_SIXES":
+					processAnimation(print_writer.get(0), "Section4$TournamentSixesIn", "START", broadcaster);
+					break;
+				case CricketUtil.BOUNDARY:
+					processAnimation(print_writer.get(0), "Section4$BallsSinceIn", "START", broadcaster);
+					break;
+				case "BOUNDARIES":
+					processAnimation(print_writer.get(0), "Section4$InningsBoundariesIn", "START", broadcaster);
+					break;
+				case "LAST_WICKET":
+					processAnimation(print_writer.get(0), "Section4$LastWicketIn", "START", broadcaster);
+					break;
+				case "EXTRAS":
+					processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START", broadcaster);
+					break;
+				case "REVIEW":
+					processAnimation(print_writer.get(0), "Section4$ReviewIn", "START", broadcaster);
+					break;
+				}
+			} else if (infobar.getLast_bottom_right_section() != null
+					&& !infobar.getLast_bottom_right_section().trim().isEmpty()) {
+
+				switch (infobar.getLast_bottom_right_section().toUpperCase()) {
+				case "EQUATION":
+					if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0
+							|| match.getMatch().getInning().get(1).getTotalWickets() >= 10
+							|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
+						processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
+					} else {
+						processAnimation(print_writer.get(0), "Section4$EquationOut", "START", broadcaster);
+					}
+					break;
+				case "PROJECTED":
+					processAnimation(print_writer.get(0), "Section4$ProjectedScoreOut", "START", broadcaster);
+					break;
+				case CricketUtil.COMPARE:
+					processAnimation(print_writer.get(0), "Section4$AtThisStageOut", "START", broadcaster);
+					break;
+				case CricketUtil.DOT:
+					processAnimation(print_writer.get(0), "Section4$DotBallsOut", "START", broadcaster);
+					break;
+				case CricketUtil.FOUR: case "THIS_MATCH_FOURS": case "TOURNAMENT_FOURS":
+					processAnimation(print_writer.get(0), "Section4$TournamentFoursOut", "START", broadcaster);
+					break;
+				case CricketUtil.SIX: case "THIS_MATCH_SIXES": case "TOURNAMENT_SIXES":
+					processAnimation(print_writer.get(0), "Section4$TournamentSixesOut", "START", broadcaster);
+					break;
+				case CricketUtil.BOUNDARY:
+					processAnimation(print_writer.get(0), "Section4$BallsSinceOut", "START", broadcaster);
+					break;
+				case "BOUNDARIES":
+					processAnimation(print_writer.get(0), "Section4$InningsBoundariesOut", "START", broadcaster);
+					break;
+				case "LAST_WICKET":
+					processAnimation(print_writer.get(0), "Section4$LastWicketOut", "START", broadcaster);
+					break;
+				case "STATISTICS":
+					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
+					break;
+				case "EXTRAS":
+					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
+					break;
+				case "REVIEW":
+					processAnimation(print_writer.get(0), "Section4$ReviewOut", "START", broadcaster);
+					break;
+				}
+
+				TimeUnit.MILLISECONDS.sleep(150);
+
+				infobar.setBottom_right_section(valueToProcess);
+				infobar = populateVizInfobarRight(infobar, false, print_writer.get(0), match, broadcaster);
+
+				TimeUnit.MILLISECONDS.sleep(150);
+
+				switch (infobar.getBottom_right_section().toUpperCase()) {
+				case "EQUATION":
+					if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0
+							|| match.getMatch().getInning().get(1).getTotalWickets() >= 10
+							|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
+						showWinner(infobar, print_writer.get(0), match);
+						TimeUnit.MILLISECONDS.sleep(200);
+						// processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START",
+						// broadcaster);
+					} else {
+						processAnimation(print_writer.get(0), "Section4$EquationIn", "START", broadcaster);
+					}
+					break;
+				case "PROJECTED":
+					processAnimation(print_writer.get(0), "Section4$ProjectedScoreIn", "START", broadcaster);
+					break;
+				case CricketUtil.COMPARE:
+					processAnimation(print_writer.get(0), "Section4$AtThisStageIn", "START", broadcaster);
+					break;
+				case CricketUtil.DOT:
+					processAnimation(print_writer.get(0), "Section4$DotBallsIn", "START", broadcaster);
+					break;
+				case CricketUtil.FOUR: case "THIS_MATCH_FOURS": case "TOURNAMENT_FOURS":
+					processAnimation(print_writer.get(0), "Section4$TournamentFoursIn", "START", broadcaster);
+					break;
+				case CricketUtil.SIX: case "THIS_MATCH_SIXES": case "TOURNAMENT_SIXES":
+					processAnimation(print_writer.get(0), "Section4$TournamentSixesIn", "START", broadcaster);
+					break;
+				case CricketUtil.BOUNDARY:
+					processAnimation(print_writer.get(0), "Section4$BallsSinceIn", "START", broadcaster);
+					break;
+				case "BOUNDARIES":
+					processAnimation(print_writer.get(0), "Section4$InningsBoundariesIn", "START", broadcaster);
+					break;
+				case "LAST_WICKET":
+					processAnimation(print_writer.get(0), "Section4$LastWicketIn", "START", broadcaster);
+					break;
+				case "EXTRAS":
+					processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START", broadcaster);
+					break;
+				case "REVIEW":
+					processAnimation(print_writer.get(0), "Section4$ReviewIn", "START", broadcaster);
+					break;
+				}
+
+			}
+
+			infobar.setLast_full_section("");
+			infobar.setFull_section("");
+			infobar.setBottom_right_bottom_section("");
+			infobar.setLast_bottom_right_bottom_section("");
+			infobar.setLast_bottom_right_top_section("");
+			infobar.setBottom_right_top_section("");
+			break;
+
+		case "POPULATE-INFOBAR-TOP":
+			if (infobar.getLast_top_section() != null && !infobar.getLast_top_section().trim().isEmpty()) {
+				switch (infobar.getLast_top_section().toUpperCase()) {
+				case CricketUtil.TOSS:
+					processAnimation(print_writer.get(0), "Section2$TossOut", "START", broadcaster);
+					break;
+				case "CRR":
+					processAnimation(print_writer.get(0), "Section2$RunRateOut", "START", broadcaster);
+					break;
+				case "RRR":
+					processAnimation(print_writer.get(0), "Section2$ReqRunRateOut", "START", broadcaster);
+					break;
+				case "NEXT_TO_BAT":
+					processAnimation(print_writer.get(0), "Section2$NextInOut", "START", broadcaster);
+					break;
+				case "TARGET":
+					processAnimation(print_writer.get(0), "Section2$TargetOut", "START", broadcaster);
+					break;
+				case "PARTNERSHIP":
+					processAnimation(print_writer.get(0), "Section2$PartnershipOut", "START", broadcaster);
+					break;
+				case "SUPER_OVER":
+					processAnimation(print_writer.get(0), "Section2$TossOut", "START", broadcaster);
+					break;	
+				case "TOURNAMENT":
+					processAnimation(print_writer.get(0), "Section2$TossOut", "START", broadcaster);
+					break;	
+
+				}
+				TimeUnit.MILLISECONDS.sleep(200);
+				infobar.setTop_section(valueToProcess);
+				populateVizInfobarTop(infobar, false, print_writer.get(0), match, broadcaster);
+
+				switch (infobar.getTop_section().toUpperCase()) {
+				case CricketUtil.TOSS:
+					processAnimation(print_writer.get(0), "Section2$TossIn", "START", broadcaster);
+					break;
+				case "CRR":
+					processAnimation(print_writer.get(0), "Section2$RunRateIn", "START", broadcaster);
+					break;
+				case "RRR":
+					processAnimation(print_writer.get(0), "Section2$ReqRunRateIn", "START", broadcaster);
+					break;
+				case "NEXT_TO_BAT":
+					processAnimation(print_writer.get(0), "Section2$NextInIn", "START", broadcaster);
+					break;
+				case "TARGET":
+					processAnimation(print_writer.get(0), "Section2$TargetIn", "START", broadcaster);
+					break;
+				case "PARTNERSHIP":
+					processAnimation(print_writer.get(0), "Section2$PartnershipIn", "START", broadcaster);
+					break;
+				case "SUPER_OVER":
+					processAnimation(print_writer.get(0), "Section2$TossIn", "START", broadcaster);
+					break;	
+				case "TOURNAMENT":
+					processAnimation(print_writer.get(0), "Section2$TossIn", "START", broadcaster);
+					break;		
+				}
+
+			} else {
+				infobar.setTop_section(valueToProcess);
+				populateVizInfobarTop(infobar, false, print_writer.get(0), match, broadcaster);
+
+				switch (infobar.getTop_section().toUpperCase()) {
+				case CricketUtil.TOSS:
+					processAnimation(print_writer.get(0), "Section2$TossOut", "START", broadcaster);
+					break;
+				case "CRR":
+					processAnimation(print_writer.get(0), "Section2$RunRateOut", "START", broadcaster);
+					break;
+				case "RRR":
+					processAnimation(print_writer.get(0), "Section2$ReqRunRateOut", "START", broadcaster);
+					break;
+				case "NEXT_TO_BAT":
+					processAnimation(print_writer.get(0), "Section2$NextInOut", "START", broadcaster);
+					break;
+				case "TARGET":
+					processAnimation(print_writer.get(0), "Section2$TargetOut", "START", broadcaster);
+					break;
+				case "PARTNERSHIP":
+					processAnimation(print_writer.get(0), "Section2$PartnershipOut", "START", broadcaster);
+					break;
+				case "SUPER_OVER":	
+					processAnimation(print_writer.get(0), "Section2$TossOut", "START", broadcaster);
+					break;	
+				case "TOURNAMENT":	
+					processAnimation(print_writer.get(0), "Section2$TossOut", "START", broadcaster);
+					break;		
+				}
+			}
+			break;
+		}
+		return null;
+	}
 	public Object populateGraphicsCommand(List<PrintWriter> print_writer,String valueToProcess,String whatToProcess,
 			MatchAllData match,CricketService cricketService,Configuration config,List<HeadToHeadPlayer> headToHead,
 			List<MatchAllData> tournament_matches, List<Tournament> past_tournament_stats,List<Statistics> statistics,String plotterData) 
@@ -35142,6 +37002,7 @@ public class KERALA_T20 extends Scene {
 		
 		  case "POPULATE-FIELD_PLOTTER_USPL": 
 			  infobar.setFieldPlotter_on_screen(true);
+			  System.out.println("FIELD PLOTTER");
 			  populateFieldPlotter(print_writer.get(0), valueToProcess.split(",")[0],match,
 			  broadcaster,plotterData);
 			  break;
@@ -35198,11 +37059,11 @@ public class KERALA_T20 extends Scene {
 			if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG") {
 				which_side = 1;
 				populateLTNextToBat(print_writer.get(0), valueToProcess.split(",")[0], match, broadcaster, 1,
-						config);
+						config, cricketService);
 			} else {
 				which_side = 2;
 				populateLTNextToBat(print_writer.get(0), valueToProcess.split(",")[0], match, broadcaster, 2,
-						config);
+						config, cricketService);
 			}
 			print_writer.get(0).println("-1 RENDERER*TREE*$LT$ALL_LT_LOGOGRP$Side1$Select*FUNCTION*Omo*vis_con SET 0 \0");
 			print_writer.get(0).println("-1 RENDERER*TREE*$LT$ALL_LT_LOGOGRP$Side2$Select*FUNCTION*Omo*vis_con SET 0 \0");
@@ -35290,7 +37151,8 @@ public class KERALA_T20 extends Scene {
 					headToHead,cricketService, match, broadcaster);
 			break;
 		case "POPULATE-POWERPLAY_DIRECTOR":
-			populateInfobarPowerPlay(print_writer.get(0));
+			System.out.println("IN");
+			populateInfobarPowerPlay(print_writer.get(0),match);
 			break;
 		case "POPULATE-WATERMARK_DIRECTOR":
 			populateInfobarWatermark(print_writer.get(0));
@@ -36115,32 +37977,6 @@ public class KERALA_T20 extends Scene {
 						}
 					}
 				}
-//				for (Statistics stats : statistics) {
-//					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
-//							.intValue()) {
-//						if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
-//								|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-//							populateLTPlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
-//									valueToProcess.split(",")[2], valueToProcess.split(",")[3], stats, match,
-//									CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",
-//											false, tournament_matches, cricketService, match, null),
-//									cricketService, broadcaster, 1);
-//						} else {
-//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-//							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
-//									match);
-//							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
-//
-//							if (stats.getStats_type().getStats_short_name()
-//									.equalsIgnoreCase(valueToProcess.split(",")[2])) {
-//								populateLTPlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
-//										valueToProcess.split(",")[2], valueToProcess.split(",")[3], stats, match,
-//										null, cricketService, broadcaster, 1);
-//							}
-//						}
-//					}
-//				}
 			} else {
 				which_side = 2;
 				for(Statistics stats : statistics) {
@@ -36154,33 +37990,6 @@ public class KERALA_T20 extends Scene {
 						}
 					}
 				}
-//				for (Statistics stats : statistics) {
-//					// System.out.println("player id = " + stats.getPlayer_id());
-//					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
-//							.intValue()) {
-//						if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
-//								|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-//							populateLTPlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
-//									valueToProcess.split(",")[2], valueToProcess.split(",")[3], stats, match,
-//									CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",
-//											false, tournament_matches, cricketService, match, null),
-//									cricketService, broadcaster, 2);
-//						} else {
-//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-//							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
-//									match);
-//							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
-//
-//							if (stats.getStats_type().getStats_short_name()
-//									.equalsIgnoreCase(valueToProcess.split(",")[2])) {
-//								populateLTPlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
-//										valueToProcess.split(",")[2], valueToProcess.split(",")[3], stats, match,
-//										null, cricketService, broadcaster, 2);
-//							}
-//						}
-//					}
-//				}
 			}
 			print_writer.get(0).println("-1 RENDERER*TREE*$LT$ALL_LT_LOGOGRP$Side" + which_side
 					+ "$Select*FUNCTION*Omo*vis_con SET 0 \0");
@@ -36208,32 +38017,6 @@ public class KERALA_T20 extends Scene {
 						}
 					}
 				}
-//				for (Statistics stats : statistics) {
-//					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
-//							.intValue()) {
-//						if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
-//								|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-//							populateLTPlayerProfileBat(print_writer.get(0), valueToProcess.split(",")[0],
-//									valueToProcess.split(",")[2], valueToProcess.split(",")[3], stats, match,
-//									CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",
-//											false, tournament_matches, cricketService, match, null),
-//									cricketService, broadcaster, 1);
-//						} else {
-//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-//							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
-//									match);
-//							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
-//
-//							if (stats.getStats_type().getStats_short_name()
-//									.equalsIgnoreCase(valueToProcess.split(",")[2])) {
-//								populateLTPlayerProfileBat(print_writer.get(0), valueToProcess.split(",")[0],
-//										valueToProcess.split(",")[2], valueToProcess.split(",")[3], stats, match,
-//										null, cricketService, broadcaster, 1);
-//							}
-//						}
-//					}
-//				}
 			} else {
 				which_side = 2;
 				for(Statistics stats : statistics) {
@@ -36247,32 +38030,6 @@ public class KERALA_T20 extends Scene {
 						}
 					}
 				}
-//				for (Statistics stats : statistics) {
-//					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
-//							.intValue()) {
-//						if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
-//								|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-//							populateLTPlayerProfileBat(print_writer.get(0), valueToProcess.split(",")[0],
-//									valueToProcess.split(",")[2], valueToProcess.split(",")[3], stats, match,
-//									CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",
-//											false, tournament_matches, cricketService, match, null),
-//									cricketService, broadcaster, 2);
-//						} else {
-//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-//							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
-//									match);
-//							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
-//
-//							if (stats.getStats_type().getStats_short_name()
-//									.equalsIgnoreCase(valueToProcess.split(",")[2])) {
-//								populateLTPlayerProfileBat(print_writer.get(0), valueToProcess.split(",")[0],
-//										valueToProcess.split(",")[2], valueToProcess.split(",")[3], stats, match,
-//										null, cricketService, broadcaster, 2);
-//							}
-//						}
-//					}
-//				}
 			}
 			print_writer.get(0).println("-1 RENDERER*TREE*$LT$ALL_LT_LOGOGRP$Side" + which_side
 					+ "$Select*FUNCTION*Omo*vis_con SET 0 \0");
@@ -36284,1520 +38041,10 @@ public class KERALA_T20 extends Scene {
 					"PLAYERPROFILEBAT");
 			TimeUnit.MILLISECONDS.sleep(100);
 			break;
-		case "POPULATE-FF-PLAYERPROFILE":
-			this.status = "NODATABASE";
-			data = valueToProcess;
-			if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG"
-					|| which_graphic_on_screen == "PLAYERPROFILEBALL"
-					|| which_graphic_on_screen == "FFPLAYERPROFILE" || which_graphic_on_screen == "TEAMLINEUP"
-					|| which_graphic_on_screen == "DOUBLETEAMS" || which_graphic_on_screen == "FFTARGET"
-					|| which_graphic_on_screen == "MANHATTAN" || which_graphic_on_screen == "WORM"
-					|| which_graphic_on_screen == "LEADERBOARD" ||which_graphic_on_screen == "LEADERBOARD_DB"
-					|| which_graphic_on_screen == "FF_STATS"
-					|| which_graphic_on_screen == "TEAM_SQUAD") {
-				which_side = 1;
-				for(Statistics stats : statistics) {
-					if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-						System.out.println("valueToProcess = "+ valueToProcess);
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
-							this.status = CricketUtil.SUCCESSFUL;
-							populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
-									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
-									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,
-									cricketService, match, broadcaster, 1, config);
-						}
-					}
-				}
-//				for (Statistics stats : statistics) {
-//					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
-//							.intValue()) {
-//						if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
-//								|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-//							populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
-//									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
-//									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(),
-//									CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",
-//											false, tournament_matches, cricketService, match, null),
-//									cricketService, match, broadcaster, 1, config);
-//						} else {
-//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-//							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
-//									match);
-//							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
-//
-//							// System.out.println("1." + stats.getStats_type().getStats_short_name() + " 2."
-//							// + valueToProcess.split(",")[2]);
-//							if (stats.getStats_type().getStats_short_name()
-//									.equalsIgnoreCase(valueToProcess.split(",")[2])) {
-//								populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
-//										Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
-//										valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,
-//										cricketService, match, broadcaster, 1, config);
-//							}
-//						}
-//
-//					}
-//				}
-			} else {
-				which_side = 2;
-				for(Statistics stats : statistics) {
-					if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
-							this.status = CricketUtil.SUCCESSFUL;
-							populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
-									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
-									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,
-									cricketService, match, broadcaster, 2, config);
-						}
-					}
-				}
-//				for (Statistics stats : statistics) {
-//					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
-//							.intValue()) {
-//						if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
-//								|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-//							populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
-//									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
-//									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(),
-//									CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",
-//											false, tournament_matches, cricketService, match, null),
-//									cricketService, match, broadcaster, 2, config);
-//						} else {
-//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-//							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
-//									match);
-//							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
-//
-//							// System.out.println("1." + stats.getStats_type().getStats_short_name() + " 2."
-//							// + valueToProcess.split(",")[2]);
-//							if (stats.getStats_type().getStats_short_name()
-//									.equalsIgnoreCase(valueToProcess.split(",")[2])) {
-//								populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
-//										Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
-//										valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,
-//										cricketService, match, broadcaster, 2, config);
-//							}
-//						}
-//					}
-//				}
-			}
-			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*TREE*$Main$All$FF$AllActive$OutAnim$Side"
-					+ which_side + "*FUNCTION*Omo*vis_con SET 4 \0");
-			populateFFEverestPreview(print_writer.get(0), valueToProcess.split(",")[0], which_side, "PLAYERPROFILE",
-					null);
-			TimeUnit.SECONDS.sleep(2);
-//			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*STAGE*DIRECTOR*anim_PlayerProfile SHOW 0.0 \0");
+		default:
+			populateGfxCommand(print_writer, valueToProcess, whatToProcess, match, cricketService, 
+					config, headToHead, tournament_matches, past_tournament_stats, statistics,plotterData);
 			break;
-		case "POPULATE-FF-PLAYERPROFILEBALL":
-			this.status = "NODATABASE";
-			data = valueToProcess;
-			System.out.println("valueToProcess =================================" + valueToProcess);
-			if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG"
-					|| which_graphic_on_screen == "PLAYERPROFILEBALL"
-					|| which_graphic_on_screen == "FFPLAYERPROFILE" || which_graphic_on_screen == "TEAMLINEUP"
-					|| which_graphic_on_screen == "DOUBLETEAMS" || which_graphic_on_screen == "FFTARGET"
-					|| which_graphic_on_screen == "MANHATTAN" || which_graphic_on_screen == "WORM"
-					|| which_graphic_on_screen == "LEADERBOARD" ||which_graphic_on_screen == "LEADERBOARD_DB"
-					|| which_graphic_on_screen == "FF_STATS"
-					|| which_graphic_on_screen == "TEAM_SQUAD") {
-				which_side = 1;
-				for(Statistics stats : statistics) {
-					if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
-							this.status = CricketUtil.SUCCESSFUL;
-							System.out.println("stats.getPlayer_id() -------------------------" + stats.getPlayer_id() + "    valueToProcess= " + Integer.valueOf(valueToProcess.split(",")[1]));
-							System.out.println("valueToProcess ----------------" + valueToProcess);
-							populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
-									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
-									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,
-									cricketService, match, broadcaster, 1, config);
-						}
-					}
-				}
-//				for (Statistics stats : statistics) {
-//					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
-//							.intValue()) {
-//						if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
-//								|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-//							populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
-//									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
-//									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(),
-//									CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",
-//											false, tournament_matches, cricketService, match, null),
-//									cricketService, match, broadcaster, 1, config);
-//						} else {
-//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-//							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
-//									match);
-//							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
-//
-//							// System.out.println("1." + stats.getStats_type().getStats_short_name() + " 2."
-//							// + valueToProcess.split(",")[2]);
-//							if (stats.getStats_type().getStats_short_name()
-//									.equalsIgnoreCase(valueToProcess.split(",")[2])) {
-//								populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
-//										Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
-//										valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,
-//										cricketService, match, broadcaster, 1, config);
-//							}
-//						}
-//					}
-//				}
-			} else {
-				which_side = 2;
-				for(Statistics stats : statistics) {
-					if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
-							this.status = CricketUtil.SUCCESSFUL;
-							populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
-									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
-									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,
-									cricketService, match, broadcaster, 2, config);
-						}
-					}
-				}
-				
-				
-				
-				
-//				for (Statistics stats : statistics) {
-//					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
-//							.intValue()) {
-//						if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
-//								|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-//							populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
-//									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
-//									valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(),
-//									CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",
-//											false, tournament_matches, cricketService, match, null),
-//									cricketService, match, broadcaster, 2, config);
-//						} else {
-//							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-//							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
-//									match);
-//							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
-//
-//							// System.out.println("1." + stats.getStats_type().getStats_short_name() + " 2."
-//							// + valueToProcess.split(",")[2]);
-//							if (stats.getStats_type().getStats_short_name()
-//									.equalsIgnoreCase(valueToProcess.split(",")[2])) {
-//								populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
-//										Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
-//										valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(), null,
-//										cricketService, match, broadcaster, 2, config);
-//							}
-//						}
-//					}
-//				}
-			}
-			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*TREE*$Main$All$FF$AllActive$OutAnim$Side"
-					+ which_side + "*FUNCTION*Omo*vis_con SET 4 \0");
-			populateFFEverestPreview(print_writer.get(0), valueToProcess.split(",")[0], which_side,
-					"PLAYERPROFILEBALL", null);
-			TimeUnit.SECONDS.sleep(2);
-//			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*STAGE*DIRECTOR*anim_PlayerProfile SHOW 0.0 \0");
-			break;
-		case "POPULATE-FF-TEAM_SQUAD":
-			populateFFTeamSquad(print_writer.get(0), valueToProcess.split(",")[0],
-					Integer.valueOf(valueToProcess.split(",")[1]), 1, cricketService, match,
-					broadcaster, config);
-			break;
-		case "POPULATE-FF-PLAYINGXI_SUBS5": case "POPULATE-FF-PLAYINGXI":
-			data = valueToProcess;
-			if (which_graphic_on_screen == "TEAMLINEUP") {
-				which_side = 2;
-				populatePlayingXI(print_writer.get(0), valueToProcess.split(",")[0],
-						Integer.valueOf(valueToProcess.split(",")[1]), 2, cricketService.getAllPlayer(), match,
-						broadcaster, config);
-			} else {
-				which_side = 1;
-				populatePlayingXI(print_writer.get(0), valueToProcess.split(",")[0],
-						Integer.valueOf(valueToProcess.split(",")[1]), 1, cricketService.getAllPlayer(), match,
-						broadcaster, config);
-			}
-//			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*TREE*$Main$All$FF$AllActive$OutAnim$Side" + which_side + "*FUNCTION*Omo*vis_con SET 4 \0");
-			populateFFEverestPreview(print_writer.get(0), valueToProcess.split(",")[0], which_side, "TEAMLINEUP",
-					null);
-			TimeUnit.MILLISECONDS.sleep(100);
-//			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*STAGE*DIRECTOR*anim_LineUpImage SHOW 0.0 \0");
-			break;
-//		case "POPULATE-FF-PLAYINGXI_SUBS5":
-//			populatePlayingXISubs(print_writer.get(0), valueToProcess.split(",")[0], Integer.valueOf(valueToProcess.split(",")[1]),cricketService.getAllPlayer(),
-//					match, broadcaster);
-//			break;
-		case "POPULATE-FF-DOUBLETEAMS":
-			sponsor = valueToProcess.split(",")[valueToProcess.split(",").length-1];
-			populateDoubleteams(print_writer.get(0), valueToProcess, cricketService.getAllPlayer(), match,
-					broadcaster);
-//			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*STAGE*DIRECTOR*anim_FullFrames SHOW 0.0 \0");
-			break;
-		case "POPULATE-LT-EQUATION":
-			populateLtEquation(print_writer.get(0), valueToProcess.split(",")[0], match, broadcaster);
-			break;
-		case "POPULATE-DLS-EQUATION":
-			populateDuckWorthLewisEquation(print_writer.get(0), valueToProcess.split(",")[0],
-					valueToProcess.split(",")[1], match, broadcaster);
-			break;
-
-		case "POPULATE-POINTS_TABLE":
-			
-//			LeagueTable group_A = null;
-//			LeagueTable group_B = null;
-//			if(new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.LEAGUE_TABLE_DIRECTORY + "GroupA.xml").exists()) {
-//				group_A = (LeagueTable)JAXBContext.newInstance(LeagueTable.class).createUnmarshaller().
-//						unmarshal(new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.LEAGUE_TABLE_DIRECTORY + "GroupA.xml"));
-//			}
-//			if(new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.LEAGUE_TABLE_DIRECTORY + "GroupB.xml").exists()) {
-//				group_B = (LeagueTable)JAXBContext.newInstance(LeagueTable.class).createUnmarshaller().
-//						unmarshal(new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.LEAGUE_TABLE_DIRECTORY + "GroupB.xml"));
-//			}
-			
-			basePath = CricketUtil.CRICKET_DIRECTORY;
-			if(config.getCategory().equalsIgnoreCase("men")) {
-				basePath = "C:\\Sports\\CricketMen\\";
-			}else if(config.getCategory().equalsIgnoreCase("women")) {
-				basePath = "C:\\Sports\\CricketWomen\\";
-			}
-			
-			LeagueTable league_table = null;
-			if (new File(basePath + CricketUtil.LEAGUE_TABLE_DIRECTORY
-					+ CricketUtil.LEAGUETABLE_XML).exists()) {
-				league_table = (LeagueTable) JAXBContext.newInstance(LeagueTable.class).createUnmarshaller()
-						.unmarshal(new File(basePath + CricketUtil.LEAGUE_TABLE_DIRECTORY
-								+ CricketUtil.LEAGUETABLE_XML));
-			}
-			data = valueToProcess;
-			if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG"
-					|| which_graphic_on_screen == "PLAYERPROFILEBALL"
-					|| which_graphic_on_screen == "FFPLAYERPROFILE" || which_graphic_on_screen == "TEAMLINEUP"
-					|| which_graphic_on_screen == "DOUBLETEAMS" || which_graphic_on_screen == "FFTARGET"
-					|| which_graphic_on_screen == "MANHATTAN" || which_graphic_on_screen == "WORM"
-					|| which_graphic_on_screen == "LEADERBOARD" ||which_graphic_on_screen == "LEADERBOARD_DB"
-					|| which_graphic_on_screen == "FF_STATS"
-					|| which_graphic_on_screen == "TEAM_SQUAD") {
-				which_side = 1;
-				populatePointsTable(print_writer.get(0), valueToProcess.split(",")[0],valueToProcess.split(",")[1],
-						league_table.getLeagueTeams(), cricketService.getTeams(), 1, broadcaster, match,
-						cricketService.getVariousTexts());
-			} else {
-				which_side = 2;
-				populatePointsTable(print_writer.get(0), valueToProcess.split(",")[0],valueToProcess.split(",")[1],
-						league_table.getLeagueTeams(), cricketService.getTeams(), 2, broadcaster, match,
-						cricketService.getVariousTexts());
-			}
-			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side
-					+ "*FUNCTION*Omo*vis_con SET 10 \0");
-			print_writer.get(0).println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+which_side+
-					"$PointsTable$HeaderAllGrp*ACTIVE SET 1 \0");
-			populateFFEverestPreview(print_writer.get(0), valueToProcess.split(",")[0], which_side, "POINTSTABLE",
-					which_graphic_on_screen);
-			TimeUnit.MILLISECONDS.sleep(100);
-			break;
-		case "POPULATE-L3-POINTERS":
-			data = valueToProcess;
-			if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG") {
-				which_side = 1;
-				
-				for(Pointers point : cricketService.getPointers()) {
-				  if(point.getPointersId() == Integer.valueOf(valueToProcess.split(",")[1])) {
-					  populatePointers(print_writer.get(0), valueToProcess.split(",")[0], point, match, broadcaster,1);
-				  }
-				}
-			} else {
-				which_side = 2;
-				for(Pointers point : cricketService.getPointers()) {
-				  if(point.getPointersId() == Integer.valueOf(valueToProcess.split(",")[1])) {
-					  populatePointers(print_writer.get(0), valueToProcess.split(",")[0], point, match, broadcaster,2);
-				  }
-				}
-			}
-			print_writer.get(0).println("-1 RENDERER*TREE*$LT$ALL_LT_LOGOGRP$Side" + which_side
-					+ "$Select*FUNCTION*Omo*vis_con SET 0 \0");
-			print_writer.get(0).println(
-					"-1 RENDERER*TREE*$LT$All$BaseAll$Side" + which_side + "$Select*FUNCTION*Omo*vis_con SET 2 \0");
-			print_writer.get(0).println(
-					"-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side + "$Select*FUNCTION*Omo*vis_con SET 22 \0");
-
-			populateEverestPreview(print_writer.get(0), valueToProcess.split(",")[0], which_side, "LT_POINTER");
-			TimeUnit.MILLISECONDS.sleep(100);
-			
-			break;
-				
-		case "POPULATE-BOWLER_STYLE":
-			data = valueToProcess;
-			if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG") {
-				which_side = 1;
-				populateBowlerStyle(print_writer.get(0), valueToProcess.split(",")[0],
-						Integer.valueOf(valueToProcess.split(",")[1]),
-						Integer.valueOf(valueToProcess.split(",")[2]),valueToProcess.split(",")[3], cricketService.getAllPlayer(),
-						cricketService.getTeams(), cricketService.getGrounds(), match, broadcaster, 1,config);
-			} else {
-				which_side = 2;
-				populateBowlerStyle(print_writer.get(0), valueToProcess.split(",")[0],
-						Integer.valueOf(valueToProcess.split(",")[1]),
-						Integer.valueOf(valueToProcess.split(",")[2]),valueToProcess.split(",")[3], cricketService.getAllPlayer(),
-						cricketService.getTeams(), cricketService.getGrounds(), match, broadcaster, 2,config);
-			}
-//			print_writer.get(0).println("-1 RENDERER*TREE*$LT$ALL_LT_LOGOGRP$Side" + which_side
-//					+ "$Select*FUNCTION*Omo*vis_con SET 0 \0");
-			print_writer.get(0).println(
-					"-1 RENDERER*TREE*$LT$All$BaseAll$Side" + which_side + "$Select*FUNCTION*Omo*vis_con SET 5 \0");
-//			print_writer.get(0).println(
-//					"-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side + "$Select*FUNCTION*Omo*vis_con SET 3 \0");
-
-			populateEverestPreview(print_writer.get(0), valueToProcess.split(",")[0], which_side, "BOWLER_STYLE");
-			TimeUnit.MILLISECONDS.sleep(100);
-			break;
-		case "POPULATE-BATSMAN_STYLE":
-			data = valueToProcess;
-			if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG") {
-				which_side = 1;
-				populateBatsmanStyle(print_writer.get(0), valueToProcess.split(",")[0],
-						Integer.valueOf(valueToProcess.split(",")[1]),
-						Integer.valueOf(valueToProcess.split(",")[2]),valueToProcess.split(",")[3], cricketService.getAllPlayer(),
-						cricketService.getTeams(), match, broadcaster, 1,config);
-			} else {
-				which_side = 2;
-				populateBatsmanStyle(print_writer.get(0), valueToProcess.split(",")[0],
-						Integer.valueOf(valueToProcess.split(",")[1]),
-						Integer.valueOf(valueToProcess.split(",")[2]),valueToProcess.split(",")[3], cricketService.getAllPlayer(),
-						cricketService.getTeams(), match, broadcaster, 2,config);
-			}
-
-//			print_writer.get(0).println("-1 RENDERER*TREE*$LT$ALL_LT_LOGOGRP$Side" + which_side
-//					+ "$Select*FUNCTION*Omo*vis_con SET 0 \0");
-			print_writer.get(0).println(
-					"-1 RENDERER*TREE*$LT$All$BaseAll$Side" + which_side + "$Select*FUNCTION*Omo*vis_con SET 5 \0");
-//			print_writer.get(0).println(
-//					"-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side + "$Select*FUNCTION*Omo*vis_con SET 3 \0");
-
-			populateEverestPreview(print_writer.get(0), valueToProcess.split(",")[0], which_side, "BATSMAN_STYLE");
-			TimeUnit.MILLISECONDS.sleep(100);
-			break;
-		case "POPULATE-MANHATTAN":
-			populateManhattan(print_writer.get(0), valueToProcess.split(",")[0],
-					Integer.valueOf(valueToProcess.split(",")[1]), match, broadcaster);
-			break;
-		case "POPULATE-WORM":
-			populateWorm(print_writer.get(0), valueToProcess.split(",")[0],
-					Integer.valueOf(valueToProcess.split(",")[1]), match, broadcaster,
-					match.getEventFile().getEvents());
-			break;
-		case "POPULATE-STRIKERATE":
-			LeaderBoard = CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, head_to_head,cricketService, match, past_tournament_stats);
-			populateBestStrike(print_writer.get(0), valueToProcess.split(",")[0],LeaderBoard,cricketService.getTeams(),match, broadcaster, config);
-			break;
-		case "POPULATE-ECONOMY":
-			LeaderBoard = CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, head_to_head,cricketService, match, past_tournament_stats);
-			populateBestEcon(print_writer.get(0), valueToProcess.split(",")[0],LeaderBoard,cricketService.getTeams(),match, broadcaster, config);
-			break;
-		case "POPULATE-HIGH_LOW":
-			populateTeamHighestTotal(print_writer.get(0), valueToProcess.split(",")[0],valueToProcess.split(",")[1],cricketService.getTeams(),
-					match, broadcaster, config);
-			break;
-		case "POPULATE-FF-FIX_AND_RESULT":
-			populateFixturesAndResult(print_writer.get(0), valueToProcess.split(",")[0], Integer.valueOf(valueToProcess.split(",")[1]),
-					cricketService.getTeams(), cricketService.getFixtures(), broadcaster, match,cricketService.getVariousTexts());
-			break;
-		case "POPULATE-PREVIOUS_SUMMARY":
-			MatchAllData cricket_matches = new MatchAllData();
-			Fixture  fix = cricketService.getFixtures().stream().filter(fx->fx.getMatchnumber()
-					== Integer.valueOf(valueToProcess.split(",")[1])).findAny().orElse(null);
-			data = valueToProcess;
-			sponsor = valueToProcess.split(",")[valueToProcess.split(",").length-1];
-			basePath = CricketUtil.CRICKET_DIRECTORY;
-			if(config.getCategory().equalsIgnoreCase("men")) {
-				basePath = "C:\\Sports\\CricketMen\\";
-			}else if(config.getCategory().equalsIgnoreCase("women")) {
-				basePath = "C:\\Sports\\CricketWomen\\";
-			}
-			if(new File(basePath + CricketUtil.SETUP_DIRECTORY + 
-					fix.getMatchfilename()+".json").exists()) {
-				cricket_matches.setSetup(new ObjectMapper().readValue(new File(basePath + CricketUtil.SETUP_DIRECTORY + 
-						fix.getMatchfilename()+".json"), Setup.class));
-				cricket_matches.setMatch(new ObjectMapper().readValue(new File(basePath + CricketUtil.MATCHES_DIRECTORY + 
-						fix.getMatchfilename()+".json"), Match.class));
-			}
-			if(new File(basePath + CricketUtil.EVENT_DIRECTORY + 
-					fix.getMatchfilename()+".json").exists()) {
-				cricket_matches.setEventFile(new ObjectMapper().readValue(new File(basePath + CricketUtil.EVENT_DIRECTORY + 
-						fix.getMatchfilename()+".json"), EventFile.class));
-			}
-//			cricket_matches = CricketFunctions.populateMatchVariables(cricketService, CricketFunctions.readOrSaveMatchFile(CricketUtil.READ,CricketUtil.SETUP + "," + 
-//					CricketUtil.MATCH , cricket_matches,true));	
-			
-			populatePreviousSummary(print_writer.get(0), valueToProcess.split(",")[0],
-					Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[0], cricket_matches,
-					cricketService.getFixtures(), match, broadcaster, cricketService.getVariousTexts(), config);
-			TimeUnit.MILLISECONDS.sleep(100);
-			break;
-		case "POPULATE-TIEID-DOUBLE":
-			populateTieIdDouble(print_writer.get(0), valueToProcess.split(",")[0], valueToProcess.split(",")[1],
-					cricketService.getFixtures(), cricketService.getTeams(), match, broadcaster);
-			break;
-		case "POPULATE-L3-INFOBAR":
-
-			infobar.setLast_full_section("");
-			infobar.setFull_section("");
-			infobar.setLast_bottom_right_section("");
-			infobar.setBottom_right_section("");
-			infobar.setLast_bottom_right_bottom_section("");
-			infobar.setBottom_right_bottom_section("");
-			infobar.setLast_top_section("");
-			infobar.setTop_section("");
-			infobar.setLast_bottom_right_top_section("");
-			infobar.setBottom_right_top_section("");
-			infobar.setMiddle_section("");
-			infobar.setLast_middle_section("");
-			infobar.setLast_top_right_section("");
-			infobar.setTop_right_section("");
-			infobar.setBottom_left_section("");
-			infobar.setLast_bottom_left_section("");
-			
-			infobar.setMiddle_section(valueToProcess.split(",")[1]);
-			infobar.setBottom_right_top_section(valueToProcess.split(",")[2]);
-			infobar.setTop_section(valueToProcess.split(",")[3]);
-			infobar.setBottom_right_bottom_section(valueToProcess.split(",")[4]);
-
-			populateInfobar(infobar, print_writer.get(0), valueToProcess.split(",")[0], match, broadcaster);
-
-			processAnimation(print_writer.get(0), "Section3$ThisOverOut", "START", broadcaster);
-			processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
-			processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
-			processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
-
-			switch (infobar.getTop_section().toUpperCase()) {
-			case "TARGET":
-				processAnimation(print_writer.get(0), "Section2$TargetIn", "START", broadcaster);
-				break;
-			case CricketUtil.TOSS:case "SUPER_OVER":case "TOURNAMENT":
-				processAnimation(print_writer.get(0), "Section2$TossIn", "START", broadcaster);
-				break;
-			case "CRR":
-				processAnimation(print_writer.get(0), "Section2$RunRateIn", "START", broadcaster);
-				break;
-			case "RRR":
-				processAnimation(print_writer.get(0), "Section2$ReqRunRateIn", "START", broadcaster);
-				break;
-			}
-
-			switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
-			case CricketUtil.OVER:
-				System.out.println("HELLO 2");
-				if (infobar.isThisover()) {
-					processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
-				} else {
-					processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
-				}
-				break;
-			case "ECONOMY":
-				processAnimation(print_writer.get(0), "Section3$EconomyIn", "START", broadcaster);
-				break;
-			case "BOWLINGEND":
-				processAnimation(print_writer.get(0), "Section3$BowlingEndIn", "START", broadcaster);
-				break;
-			}
-			infobar.setIdent_section("");
-			break;
-
-		case "POPULATE-INFOBAR-IDENT":
-			infobar.setIdent_section(valueToProcess.split(",")[1]);
-			populateInfobarIdent(infobar, false, valueToProcess.split(",")[0], print_writer.get(0), match,
-					broadcaster);
-			break;
-
-		case "POPULATE-INFOBAR_RIGHT_LASTXOVER":
-
-			if (infobar.getLast_bottom_right_section() != null
-					&& !infobar.getLast_bottom_right_section().trim().isEmpty()) {
-
-				switch (infobar.getLast_bottom_right_section().toUpperCase()) {
-				case "EQUATION":
-					if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0
-							|| match.getMatch().getInning().get(1).getTotalWickets() >= 10
-							|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
-						processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
-					} else {
-						processAnimation(print_writer.get(0), "Section4$EquationOut", "START", broadcaster);
-					}
-					break;
-				case "PROJECTED":
-					processAnimation(print_writer.get(0), "Section4$ProjectedScoreOut", "START", broadcaster);
-					break;
-				case CricketUtil.COMPARE:
-					processAnimation(print_writer.get(0), "Section4$AtThisStageOut", "START", broadcaster);
-					break;
-				case CricketUtil.DOT:
-					processAnimation(print_writer.get(0), "Section4$DotBallsOut", "START", broadcaster);
-					break;
-				case CricketUtil.FOUR:case "THIS_MATCH_FOURS": case "TOURNAMENT_FOURS":
-					processAnimation(print_writer.get(0), "Section4$TournamentFoursOut", "START", broadcaster);
-					break;
-				case CricketUtil.SIX:case "THIS_MATCH_SIXES": case "TOURNAMENT_SIXES":
-					processAnimation(print_writer.get(0), "Section4$TournamentSixesOut", "START", broadcaster);
-					break;
-				case CricketUtil.BOUNDARY:
-					processAnimation(print_writer.get(0), "Section4$BallsSinceOut", "START", broadcaster);
-					break;
-				case "BOUNDARIES":
-					processAnimation(print_writer.get(0), "Section4$InningsBoundariesOut", "START", broadcaster);
-					break;
-				case "LAST_WICKET":
-					processAnimation(print_writer.get(0), "Section4$LastWicketOut", "START", broadcaster);
-					break;
-				case "TOURNAMENT-NAME":
-					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
-					break;
-				case "STATISTICS":
-					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
-					break;
-				case "EXTRAS":
-					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
-					break;
-				case "REVIEW":
-					processAnimation(print_writer.get(0), "Section4$ReviewOut", "START", broadcaster);
-					break;
-				case "LASTXOVERS":
-					processAnimation(print_writer.get(0), "Section4$LastXBallsOut", "START", broadcaster);
-					break;
-				}
-
-				TimeUnit.MILLISECONDS.sleep(200);
-				infobar.setBottom_right_section("LASTXOVERS");
-				populateInfobarLastxOver(infobar, false, print_writer.get(0), Integer.valueOf(valueToProcess),
-						match, broadcaster);
-
-				processAnimation(print_writer.get(0), "Section4$LastXBallsIn", "START", broadcaster);
-
-			} else if (infobar.getLast_bottom_right_bottom_section() != null
-					&& !infobar.getLast_bottom_right_bottom_section().trim().isEmpty()) { // Normal change on
-
-				processAnimation(print_writer.get(0), "Section4$Section4In", "START", broadcaster);
-
-				TimeUnit.MILLISECONDS.sleep(200);
-				infobar.setBottom_right_section("LASTXOVERS");
-				populateInfobarLastxOver(infobar, false, print_writer.get(0), Integer.valueOf(valueToProcess),
-						match, broadcaster);
-
-				processAnimation(print_writer.get(0), "Section4$LastXBallsIn", "START", broadcaster);
-
-			}
-			break;
-		case "POPULATE-BAT_BALL_STATS":
-			for (Statistics stats : statistics) {
-				if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-					stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
-					stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
-					stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
-					System.out.println("valueToProcess.split(\",\")[3] : " + valueToProcess.split(",")[3]);
-					if (stats.getStats_type().getStatsShortName()
-							.equalsIgnoreCase(valueToProcess.split(",")[3])) {
-						if (infobar.getLast_full_section() != null
-								&& !infobar.getLast_full_section().trim().isEmpty()) {
-							switch (infobar.getLast_full_section().toUpperCase()) {
-							case "TIMELINE":
-								processAnimation(print_writer.get(0), "Section5$TimeLineOut", "START", broadcaster);
-								break;
-							case "FREETEXT":
-								processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
-								break;
-							case "BOWLERSTATS":
-								processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
-								break;
-							}
-							infobar.setFull_section("BOWLERSTATS");
-							populateInfobarPlayerStats(infobar, false, print_writer.get(0),
-									Integer.valueOf(valueToProcess.split(",")[0]),
-									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
-									valueToProcess.split(",")[3], match, stats, broadcaster);
-							processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
-						} else {
-							infobar.setFull_section("BOWLERSTATS");
-							populateInfobarPlayerStats(infobar, false, print_writer.get(0),
-									Integer.valueOf(valueToProcess.split(",")[0]),
-									Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
-									valueToProcess.split(",")[3], match, stats, broadcaster);
-							processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
-						}
-					}
-				}
-			}
-
-			break;
-		case "POPULATE-INFOBAR-PROMPT":
-			for (Inning inn : match.getMatch().getInning()) {
-				if (inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
-					for (InfobarStats ibs : cricketService.getInfobarStats())
-						if (ibs.getOrder() == Integer.valueOf(valueToProcess)) {
-							if (infobar.getLast_full_section() != null
-									&& !infobar.getLast_full_section().trim().isEmpty()) {
-								switch (infobar.getLast_full_section().toUpperCase()) {
-								case "TIMELINE":
-									processAnimation(print_writer.get(0), "Section5$TimeLineOut", "START",
-											broadcaster);
-									break;
-								case "FREETEXT":
-									processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START",
-											broadcaster);
-									break;
-								}
-
-								TimeUnit.MILLISECONDS.sleep(500);
-								processAnimation(print_writer.get(0), "Section5$Section5Out", "START", broadcaster);
-
-								TimeUnit.MILLISECONDS.sleep(500);
-								processAnimation(print_writer.get(0), "Section4$Section4In", "START", broadcaster);
-
-								TimeUnit.MILLISECONDS.sleep(500);
-								infobar.setBottom_right_section("STATISTICS");
-								populateInfobarFreeText(infobar, false, print_writer.get(0), ibs, match,
-										broadcaster);
-
-								processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START", broadcaster);
-							} else if (infobar.getLast_bottom_right_section() != null
-									&& !infobar.getLast_bottom_right_section().trim().isEmpty()) {
-
-								switch (infobar.getLast_bottom_right_section().toUpperCase()) {
-								case "EQUATION":
-									if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0
-											|| match.getMatch().getInning().get(1).getTotalWickets() >= 10
-											|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
-										processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START",
-												broadcaster);
-									} else {
-										processAnimation(print_writer.get(0), "Section4$EquationOut", "START",
-												broadcaster);
-									}
-									break;
-								case "PROJECTED":
-									processAnimation(print_writer.get(0), "Section4$ProjectedScoreOut", "START",
-											broadcaster);
-									break;
-								case CricketUtil.COMPARE:
-									processAnimation(print_writer.get(0), "Section4$AtThisStageOut", "START",
-											broadcaster);
-									break;
-								case CricketUtil.DOT:
-									processAnimation(print_writer.get(0), "Section4$DotBallsOut", "START",
-											broadcaster);
-									break;
-								case CricketUtil.FOUR: case "THIS_MATCH_FOURS": case "TOURNAMENT_FOURS":
-									processAnimation(print_writer.get(0), "Section4$TournamentFoursOut", "START",
-											broadcaster);
-									break;
-								case CricketUtil.SIX: case "THIS_MATCH_SIXES": case "TOURNAMENT_SIXES":
-									processAnimation(print_writer.get(0), "Section4$TournamentSixesOut", "START",
-											broadcaster);
-									break;
-								case CricketUtil.BOUNDARY:
-									processAnimation(print_writer.get(0), "Section4$BallsSinceOut", "START",
-											broadcaster);
-									break;
-								case "BOUNDARIES":
-									processAnimation(print_writer.get(0), "Section4$InningsBoundariesOut", "START",
-											broadcaster);
-									break;
-								case "LAST_WICKET":
-									processAnimation(print_writer.get(0), "Section4$LastWicketOut", "START",
-											broadcaster);
-									break;
-								case "TOURNAMENT-NAME":
-									processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START",
-											broadcaster);
-									break;
-								case "STATISTICS":
-									processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START",
-											broadcaster);
-									break;
-								case "EXTRAS":
-									processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START",
-											broadcaster);
-									break;
-								case "REVIEW":
-									processAnimation(print_writer.get(0), "Section4$ReviewOut", "START",
-											broadcaster);
-									break;
-								}
-
-								TimeUnit.MILLISECONDS.sleep(500);
-								infobar.setFull_section("STATISTICS");
-								populateInfobarFreeText(infobar, false, print_writer.get(0), ibs, match,
-										broadcaster);
-
-								processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START", broadcaster);
-
-							} else if (infobar.getLast_bottom_right_bottom_section() != null
-									&& !infobar.getLast_bottom_right_bottom_section().trim().isEmpty()) { // Normal
-																											// change
-																											// on
-
-								processAnimation(print_writer.get(0), "Section4$Section4In", "START", broadcaster);
-								TimeUnit.MILLISECONDS.sleep(500);
-								processAnimation(print_writer.get(0), "BowlerOut", "START", broadcaster);
-								TimeUnit.MILLISECONDS.sleep(500);
-								switch (infobar.getLast_bottom_right_bottom_section().toUpperCase()) {
-								case CricketUtil.OVER:
-									System.out.println("HELLO 3");
-									if (infobar.isThisover()) {
-										processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START",
-												broadcaster);
-									} else {
-										processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START",
-												broadcaster);
-									}
-									break;
-								case "ECONOMY":
-									processAnimation(print_writer.get(0), "Section3$EconomyOut", "START",
-											broadcaster);
-									break;
-								case "BOWLINGEND":
-									processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START",
-											broadcaster);
-									break;
-								case "EXTRAS":
-									processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START",
-											broadcaster);
-									break;
-								}
-
-								TimeUnit.MILLISECONDS.sleep(500);
-								infobar.setBottom_right_section("STATISTICS");
-								populateInfobarFreeText(infobar, false, print_writer.get(0), ibs, match,
-										broadcaster);
-
-								processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START", broadcaster);
-
-								infobar.setLast_full_section("");
-								infobar.setFull_section("");
-								infobar.setLast_bottom_right_bottom_section("");
-								infobar.setBottom_right_bottom_section("");
-								infobar.setLast_bottom_right_top_section("");
-								infobar.setBottom_right_top_section("");
-							}
-						}
-				}
-			}
-			break;
-		case "POPULATE-DIRECTOR":
-			populateInfobarDirector(print_writer.get(0), valueToProcess, broadcaster);
-			break;
-		case "POPULATE-SIXDIRECTOR":
-			print_writer.get(0).println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$SixIn START \0");
-			infobar_director_on_screen = "SIX";
-			break;
-		case "POPULATE-FOURDIRECTOR":
-			print_writer.get(0).println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$FourIn START \0");
-			infobar_director_on_screen = "FOUR";
-			break;
-		case "POPULATE-WICKETDIRECTOR":
-			print_writer.get(0).println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$WicketIn START \0");
-			infobar_director_on_screen = "WICKET";
-			break;
-		case "POPULATE-FREEHITDIRECTOR":
-			if(infobar_director_on_screen.equalsIgnoreCase("FREEHIT")) {
-				print_writer.get(0).println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$FreeHitOut START \0");
-				infobar_director_on_screen = "";
-			}else {
-				print_writer.get(0).println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$FreeHitIn START \0");
-				infobar_director_on_screen = "FREEHIT";
-			}
-			
-			break;
-		case "POPULATE-ONAHATTRICKDIRECTOR":
-			print_writer.get(0)
-					.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$OnHattrickIn START \0");
-			break;
-		case "POPULATE-HATTRICKDIRECTOR":
-			print_writer.get(0)
-					.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$HattrickIn START \0");
-			break;
-		case "POPULATE-SPONSOR":
-			populateInfobarSponsor(print_writer.get(0), valueToProcess, broadcaster);
-			break;
-		case "POPULATE-INFOBAR-SECTION5":
-			if (infobar.getLast_bottom_right_section() != null
-					&& !infobar.getLast_bottom_right_section().trim().isEmpty()) {
-
-				processAnimation(print_writer.get(0), "Section5$Section5In", "START", broadcaster);
-				TimeUnit.MILLISECONDS.sleep(300);
-				switch (infobar.getLast_bottom_right_section().toUpperCase()) {
-				case "EQUATION":
-					if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0
-							|| match.getMatch().getInning().get(1).getTotalWickets() >= 10
-							|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
-						processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
-					} else {
-						processAnimation(print_writer.get(0), "Section4$EquationOut", "START", broadcaster);
-					}
-					break;
-				case "PROJECTED":
-					processAnimation(print_writer.get(0), "Section4$ProjectedScoreOut", "START", broadcaster);
-					break;
-				case CricketUtil.COMPARE:
-					processAnimation(print_writer.get(0), "Section4$AtThisStageOut", "START", broadcaster);
-					break;
-				case CricketUtil.DOT:
-					processAnimation(print_writer.get(0), "Section4$DotBallsOut", "START", broadcaster);
-					break;
-				case CricketUtil.FOUR:case "THIS_MATCH_FOURS": case "TOURNAMENT_FOURS":
-					processAnimation(print_writer.get(0), "Section4$TournamentFoursOut", "START", broadcaster);
-					break;
-				case CricketUtil.SIX:case "THIS_MATCH_SIXES": case "TOURNAMENT_SIXES":
-					processAnimation(print_writer.get(0), "Section4$TournamentSixesOut", "START", broadcaster);
-					break;
-				case CricketUtil.BOUNDARY:
-					processAnimation(print_writer.get(0), "Section4$BallsSinceOut", "START", broadcaster);
-					break;
-				case "BOUNDARIES":
-					processAnimation(print_writer.get(0), "Section4$InningsBoundariesOut", "START", broadcaster);
-					break;
-				case "LAST_WICKET":
-					processAnimation(print_writer.get(0), "Section4$LastWicketOut", "START", broadcaster);
-					break;
-				case "STATISTICS":
-					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
-					break;
-				case "EXTRAS":
-					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
-					break;
-				case "REVIEW":
-					processAnimation(print_writer.get(0), "Section4$ReviewOut", "START", broadcaster);
-					break;
-				}
-
-				TimeUnit.MILLISECONDS.sleep(100);
-				infobar.setFull_section(valueToProcess.split(",")[0]);
-				infobar = populateSection5(infobar, false, print_writer.get(0),
-						Integer.valueOf(valueToProcess.split(",")[1]), match, broadcaster);
-
-				// TimeUnit.MILLISECONDS.sleep(500);
-				switch (infobar.getFull_section().toUpperCase()) {
-				case "TIMELINE":
-					processAnimation(print_writer.get(0), "Section5$TimeLineIn", "START", broadcaster);
-					break;
-				case "FREETEXT":
-					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
-					break;
-				}
-			} else if (infobar.getLast_full_section() != null && !infobar.getLast_full_section().trim().isEmpty()) {
-				switch (infobar.getLast_full_section().toUpperCase()) {
-				case "TIMELINE":
-					processAnimation(print_writer.get(0), "Section5$TimeLineOut", "START", broadcaster);
-					break;
-				case "FREETEXT":
-					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
-					break;
-				}
-
-				TimeUnit.MILLISECONDS.sleep(100);
-				infobar.setFull_section(valueToProcess.split(",")[0]);
-				infobar = populateSection5(infobar, false, print_writer.get(0),
-						Integer.valueOf(valueToProcess.split(",")[1]), match, broadcaster);
-
-				// TimeUnit.MILLISECONDS.sleep(500);
-				switch (infobar.getFull_section().toUpperCase()) {
-				case "TIMELINE":
-					processAnimation(print_writer.get(0), "Section5$TimeLineIn", "START", broadcaster);
-					break;
-				case "FREETEXT":
-					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
-					break;
-				}
-			} else if (infobar.getLast_bottom_right_bottom_section() != null
-					&& !infobar.getLast_bottom_right_bottom_section().trim().isEmpty()) {
-				processAnimation(print_writer.get(0), "Section5$Section5In", "START", broadcaster);
-				TimeUnit.MILLISECONDS.sleep(100);
-				processAnimation(print_writer.get(0), "BowlerOut", "START", broadcaster);
-				// TimeUnit.MILLISECONDS.sleep(100);
-				switch (infobar.getLast_bottom_right_bottom_section().toUpperCase()) {
-				case CricketUtil.OVER:
-					System.out.println("HELLO 4");
-					if (infobar.isThisover()) {
-						processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
-					} else {
-						processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
-					}
-					break;
-				case "ECONOMY":
-					processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
-					break;
-				case "BOWLINGEND":
-					processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
-					break;
-				case "EXTRAS":
-					processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
-					break;
-				}
-
-				System.out.println("line = "  + Integer.valueOf(valueToProcess.split(",")[1]));
-				TimeUnit.MILLISECONDS.sleep(100);
-				infobar.setFull_section(valueToProcess.split(",")[0]);
-				infobar = populateSection5(infobar, false, print_writer.get(0),
-						Integer.valueOf(valueToProcess.split(",")[1]), match, broadcaster);
-
-				TimeUnit.MILLISECONDS.sleep(100);
-				switch (infobar.getFull_section().toUpperCase()) {
-				case "TIMELINE":
-					processAnimation(print_writer.get(0), "Section5$TimeLineIn", "START", broadcaster);
-					break;
-				case "FREETEXT":
-					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
-					break;
-				}
-			}
-
-			infobar.setBottom_right_section("");
-			infobar.setLast_bottom_right_section("");
-			infobar.setLast_bottom_right_bottom_section("");
-			infobar.setBottom_right_bottom_section("");
-			infobar.setLast_bottom_right_top_section("");
-			infobar.setBottom_right_top_section("");
-			break;
-
-		case "POPULATE-INFOBAR-BOTTOMRIGHT":
-			if (infobar.getLast_bottom_right_section() != null
-					&& !infobar.getLast_bottom_right_section().trim().isEmpty()) { // section4 to bottomright
-				
-				infobar.setOverPlayed(false);
-				infobar.setOverballLessThan9(false);
-				infobar.setOverBallGreaterThen9(false);
-				infobar.setOverBallequalto0(false);
-				
-				// section
-				System.out.println(infobar.getLast_bottom_right_section().toUpperCase());
-				switch (infobar.getLast_bottom_right_section().toUpperCase()) {
-				case "EQUATION":
-					if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0
-							|| match.getMatch().getInning().get(1).getTotalWickets() >= 10
-							|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
-						processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
-					} else {
-						processAnimation(print_writer.get(0), "Section4$EquationOut", "START", broadcaster);
-					}
-					break;
-				case "PROJECTED":
-					processAnimation(print_writer.get(0), "Section4$ProjectedScoreOut", "START", broadcaster);
-					break;
-				case CricketUtil.COMPARE:
-					processAnimation(print_writer.get(0), "Section4$AtThisStageOut", "START", broadcaster);
-					break;
-				case CricketUtil.DOT:
-					processAnimation(print_writer.get(0), "Section4$DotBallsOut", "START", broadcaster);
-					break;
-				case CricketUtil.FOUR:case "THIS_MATCH_FOURS": case "TOURNAMENT_FOURS":
-					processAnimation(print_writer.get(0), "Section4$TournamentFoursOut", "START", broadcaster);
-					break;
-				case CricketUtil.SIX:case "THIS_MATCH_SIXES": case "TOURNAMENT_SIXES":
-					processAnimation(print_writer.get(0), "Section4$TournamentSixesOut", "START", broadcaster);
-					break;
-				case CricketUtil.BOUNDARY:
-					processAnimation(print_writer.get(0), "Section4$BallsSinceOut", "START", broadcaster);
-					break;
-				case "BOUNDARIES":
-					processAnimation(print_writer.get(0), "Section4$InningsBoundariesOut", "START", broadcaster);
-					break;
-				case "LAST_WICKET":
-					processAnimation(print_writer.get(0), "Section4$LastWicketOut", "START", broadcaster);
-					break;
-				case "STATISTICS":
-					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
-					break;
-				case "EXTRAS":
-					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
-					break;
-				case "REVIEW":
-					processAnimation(print_writer.get(0), "Section4$ReviewOut", "START", broadcaster);
-					break;
-				}
-
-				infobar.setBottom_right_bottom_section(valueToProcess);
-				infobar = populateVizInfobarRightBottom(infobar, false, print_writer.get(0), match, broadcaster);
-				processAnimation(print_writer.get(0), "Section3$ThisOverOut", "START", broadcaster);
-				processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
-				processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
-				processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
-				infobar.setBottom_right_top_section(CricketUtil.BOWLER);
-				infobar = populateVizInfobarRightTop(infobar, false, print_writer.get(0), match, broadcaster);
-
-				TimeUnit.MILLISECONDS.sleep(500);
-				processAnimation(print_writer.get(0), "BowlerIn", "START", broadcaster);
-				switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
-				case CricketUtil.OVER:
-					System.out.println("HELLO 5");
-					if (infobar.isThisover()) {
-						processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
-					} else {
-						processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
-					}
-					break;
-				case "ECONOMY":
-					processAnimation(print_writer.get(0), "Section3$EconomyIn", "START", broadcaster);
-					break;
-				case "BOWLINGEND":
-					processAnimation(print_writer.get(0), "Section3$BowlingEndIn", "START", broadcaster);
-					break;
-				case "EXTRAS":
-					processAnimation(print_writer.get(0), "Section3$ExtrasIn", "START", broadcaster);
-					break;
-				}
-				TimeUnit.MILLISECONDS.sleep(500);
-				processAnimation(print_writer.get(0), "Section4$Section4Out", "START", broadcaster);
-
-			} else if (infobar.getLast_full_section() != null && !infobar.getLast_full_section().trim().isEmpty()) {
-				switch (infobar.getLast_full_section().toUpperCase()) {
-				case "TIMELINE":
-					processAnimation(print_writer.get(0), "Section5$TimeLineOut", "START", broadcaster);
-					break;
-				case "FREETEXT":
-					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
-					break;
-				}
-				TimeUnit.MILLISECONDS.sleep(500);
-				processAnimation(print_writer.get(0), "Section5$Section5Out", "START", broadcaster);
-
-				infobar.setBottom_right_bottom_section(valueToProcess);
-				infobar = populateVizInfobarRightBottom(infobar, false, print_writer.get(0), match, broadcaster);
-
-				processAnimation(print_writer.get(0), "Section3$ThisOverOut", "START", broadcaster);
-				processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
-				processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
-				processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
-
-				infobar.setBottom_right_top_section(CricketUtil.BOWLER);
-				infobar = populateVizInfobarRightTop(infobar, false, print_writer.get(0), match, broadcaster);
-
-				processAnimation(print_writer.get(0), "BowlerIn", "START", broadcaster);
-				TimeUnit.MILLISECONDS.sleep(500);
-				switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
-				case CricketUtil.OVER:
-					System.out.println("HELLO 6");
-					if (infobar.isThisover()) {
-						processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
-					} else {
-						processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
-					}
-					break;
-				case "ECONOMY":
-					processAnimation(print_writer.get(0), "Section3$EconomyIn", "START", broadcaster);
-					break;
-				case "BOWLINGEND":
-					processAnimation(print_writer.get(0), "Section3$BowlingEndIn", "START", broadcaster);
-					break;
-				case "EXTRAS":
-					processAnimation(print_writer.get(0), "Section3$ExtrasIn", "START", broadcaster);
-					break;
-				}
-
-			} else if (infobar.getLast_bottom_right_top_section() != null
-					&& infobar.getLast_bottom_right_bottom_section() != null
-					&& !infobar.getLast_bottom_right_top_section().trim().isEmpty()
-					&& !infobar.getLast_bottom_right_bottom_section().trim().isEmpty()) { // Normal change on
-
-				switch (infobar.getLast_bottom_right_bottom_section().toUpperCase()) {
-				case CricketUtil.OVER:
-					System.out.println("HELLO 1");
-					if (infobar.isThisover()) {
-						processAnimation(print_writer.get(0), "Section3$ThisOverOut", "START", broadcaster);
-					} else {
-						processAnimation(print_writer.get(0), "Section3$FreeTextOut", "START", broadcaster);
-					}
-					break;
-				case "ECONOMY":
-					processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
-					break;
-				case "BOWLINGEND":
-					processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
-					break;
-				case "EXTRAS":
-					processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
-					break;
-				}
-				TimeUnit.MILLISECONDS.sleep(400);
-				infobar.setBottom_right_bottom_section(valueToProcess);
-				infobar = populateVizInfobarRightBottom(infobar, false, print_writer.get(0), match, broadcaster);
-				switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
-				case CricketUtil.OVER:
-					System.out.println("HELLO 7");
-					if (infobar.isThisover()) {
-						processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
-					} else {
-						processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
-					}
-					break;
-				case "ECONOMY":
-					processAnimation(print_writer.get(0), "Section3$EconomyIn", "START", broadcaster);
-					break;
-				case "BOWLINGEND":
-					processAnimation(print_writer.get(0), "Section3$BowlingEndIn", "START", broadcaster);
-					break;
-				case "EXTRAS":
-					processAnimation(print_writer.get(0), "Section3$ExtrasIn", "START", broadcaster);
-					break;
-				}
-			}
-			infobar.setBottom_right_section("");
-			infobar.setLast_bottom_right_section("");
-			infobar.setLast_full_section("");
-			infobar.setFull_section("");
-			break;
-
-		case "POPULATE-INFOBAR-RIGHT":
-			if (infobar.getLast_full_section() != null && !infobar.getLast_full_section().trim().isEmpty()) {
-				switch (infobar.getLast_full_section().toUpperCase()) {
-				case "TIMELINE":
-					processAnimation(print_writer.get(0), "Section5$TimeLineOut", "START", broadcaster);
-					break;
-				case "FREETEXT":
-					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
-					break;
-				}
-				TimeUnit.MILLISECONDS.sleep(150);
-				processAnimation(print_writer.get(0), "Section5$Section5Out", "START", broadcaster);
-				TimeUnit.MILLISECONDS.sleep(150);
-				processAnimation(print_writer.get(0), "Section4$Section4In", "START", broadcaster);
-
-				TimeUnit.MILLISECONDS.sleep(150);
-				infobar.setBottom_right_section(valueToProcess);
-				infobar = populateVizInfobarRight(infobar, false, print_writer.get(0), match, broadcaster);
-
-				TimeUnit.MILLISECONDS.sleep(150);
-
-				switch (infobar.getBottom_right_section().toUpperCase()) {
-				case "EQUATION":
-					if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0
-							|| match.getMatch().getInning().get(1).getTotalWickets() >= 10
-							|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
-						showWinner(infobar, print_writer.get(0), match);
-						TimeUnit.MILLISECONDS.sleep(200);
-						// processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START",
-						// broadcaster);
-					} else {
-						processAnimation(print_writer.get(0), "Section4$EquationIn", "START", broadcaster);
-					}
-					break;
-				case "PROJECTED":
-					processAnimation(print_writer.get(0), "Section4$ProjectedScoreIn", "START", broadcaster);
-					break;
-				case CricketUtil.COMPARE:
-					processAnimation(print_writer.get(0), "Section4$AtThisStageIn", "START", broadcaster);
-					break;
-				case CricketUtil.DOT:
-					processAnimation(print_writer.get(0), "Section4$DotBallsIn", "START", broadcaster);
-					break;
-				case CricketUtil.FOUR: case "THIS_MATCH_FOURS": case "TOURNAMENT_FOURS":
-					processAnimation(print_writer.get(0), "Section4$TournamentFoursIn", "START", broadcaster);
-					break;
-				case CricketUtil.SIX: case "THIS_MATCH_SIXES": case "TOURNAMENT_SIXES":
-					processAnimation(print_writer.get(0), "Section4$TournamentSixesIn", "START", broadcaster);
-					break;
-				case CricketUtil.BOUNDARY:
-					processAnimation(print_writer.get(0), "Section4$BallsSinceIn", "START", broadcaster);
-					break;
-				case "BOUNDARIES":
-					processAnimation(print_writer.get(0), "Section4$InningsBoundariesIn", "START", broadcaster);
-					break;
-				case "LAST_WICKET":
-					processAnimation(print_writer.get(0), "Section4$LastWicketIn", "START", broadcaster);
-					break;
-				case "TOURNAMENT-NAME":
-					processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START", broadcaster);
-					break;
-				case "EXTRAS":
-					processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START", broadcaster);
-					break;
-				case "REVIEW":
-					processAnimation(print_writer.get(0), "Section4$ReviewIn", "START", broadcaster);
-					break;
-				}
-
-			} else if (infobar.getLast_bottom_right_bottom_section() != null
-					&& !infobar.getLast_bottom_right_bottom_section().trim().isEmpty()) { // Normal change on
-
-				processAnimation(print_writer.get(0), "Section4$Section4In", "START", broadcaster);
-				TimeUnit.MILLISECONDS.sleep(100);
-				processAnimation(print_writer.get(0), "BowlerOut", "START", broadcaster);
-				TimeUnit.MILLISECONDS.sleep(200);
-				switch (infobar.getLast_bottom_right_bottom_section().toUpperCase()) {
-				case CricketUtil.OVER:
-					System.out.println("HELLO 8");
-					if (infobar.isThisover()) {
-						processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
-					} else {
-						processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
-					}
-					break;
-				case "ECONOMY":
-					processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
-					break;
-				case "BOWLINGEND":
-					processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
-					break;
-				case "EXTRAS":
-					processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
-					break;
-				}
-
-				TimeUnit.MILLISECONDS.sleep(150);
-
-				infobar.setBottom_right_section(valueToProcess);
-				infobar = populateVizInfobarRight(infobar, false, print_writer.get(0), match, broadcaster);
-
-				TimeUnit.MILLISECONDS.sleep(150);
-
-				switch (infobar.getBottom_right_section().toUpperCase()) {
-				case "EQUATION":
-					if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0
-							|| match.getMatch().getInning().get(1).getTotalWickets() >= 10
-							|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
-						showWinner(infobar, print_writer.get(0), match);
-						TimeUnit.MILLISECONDS.sleep(150);
-						// processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START",
-						// broadcaster);
-					} else {
-						processAnimation(print_writer.get(0), "Section4$EquationIn", "START", broadcaster);
-					}
-					break;
-				case "PROJECTED":
-					processAnimation(print_writer.get(0), "Section4$ProjectedScoreIn", "START", broadcaster);
-					break;
-				case CricketUtil.COMPARE:
-					processAnimation(print_writer.get(0), "Section4$AtThisStageIn", "START", broadcaster);
-					break;
-				case CricketUtil.DOT:
-					processAnimation(print_writer.get(0), "Section4$DotBallsIn", "START", broadcaster);
-					break;
-				case CricketUtil.FOUR: case "THIS_MATCH_FOURS": case "TOURNAMENT_FOURS":
-					processAnimation(print_writer.get(0), "Section4$TournamentFoursIn", "START", broadcaster);
-					break;
-				case CricketUtil.SIX: case "THIS_MATCH_SIXES": case "TOURNAMENT_SIXES":
-					processAnimation(print_writer.get(0), "Section4$TournamentSixesIn", "START", broadcaster);
-					break;
-				case CricketUtil.BOUNDARY:
-					processAnimation(print_writer.get(0), "Section4$BallsSinceIn", "START", broadcaster);
-					break;
-				case "BOUNDARIES":
-					processAnimation(print_writer.get(0), "Section4$InningsBoundariesIn", "START", broadcaster);
-					break;
-				case "LAST_WICKET":
-					processAnimation(print_writer.get(0), "Section4$LastWicketIn", "START", broadcaster);
-					break;
-				case "EXTRAS":
-					processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START", broadcaster);
-					break;
-				case "REVIEW":
-					processAnimation(print_writer.get(0), "Section4$ReviewIn", "START", broadcaster);
-					break;
-				}
-			} else if (infobar.getLast_bottom_right_section() != null
-					&& !infobar.getLast_bottom_right_section().trim().isEmpty()) {
-
-				switch (infobar.getLast_bottom_right_section().toUpperCase()) {
-				case "EQUATION":
-					if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0
-							|| match.getMatch().getInning().get(1).getTotalWickets() >= 10
-							|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
-						processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
-					} else {
-						processAnimation(print_writer.get(0), "Section4$EquationOut", "START", broadcaster);
-					}
-					break;
-				case "PROJECTED":
-					processAnimation(print_writer.get(0), "Section4$ProjectedScoreOut", "START", broadcaster);
-					break;
-				case CricketUtil.COMPARE:
-					processAnimation(print_writer.get(0), "Section4$AtThisStageOut", "START", broadcaster);
-					break;
-				case CricketUtil.DOT:
-					processAnimation(print_writer.get(0), "Section4$DotBallsOut", "START", broadcaster);
-					break;
-				case CricketUtil.FOUR: case "THIS_MATCH_FOURS": case "TOURNAMENT_FOURS":
-					processAnimation(print_writer.get(0), "Section4$TournamentFoursOut", "START", broadcaster);
-					break;
-				case CricketUtil.SIX: case "THIS_MATCH_SIXES": case "TOURNAMENT_SIXES":
-					processAnimation(print_writer.get(0), "Section4$TournamentSixesOut", "START", broadcaster);
-					break;
-				case CricketUtil.BOUNDARY:
-					processAnimation(print_writer.get(0), "Section4$BallsSinceOut", "START", broadcaster);
-					break;
-				case "BOUNDARIES":
-					processAnimation(print_writer.get(0), "Section4$InningsBoundariesOut", "START", broadcaster);
-					break;
-				case "LAST_WICKET":
-					processAnimation(print_writer.get(0), "Section4$LastWicketOut", "START", broadcaster);
-					break;
-				case "STATISTICS":
-					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
-					break;
-				case "EXTRAS":
-					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
-					break;
-				case "REVIEW":
-					processAnimation(print_writer.get(0), "Section4$ReviewOut", "START", broadcaster);
-					break;
-				}
-
-				TimeUnit.MILLISECONDS.sleep(150);
-
-				infobar.setBottom_right_section(valueToProcess);
-				infobar = populateVizInfobarRight(infobar, false, print_writer.get(0), match, broadcaster);
-
-				TimeUnit.MILLISECONDS.sleep(150);
-
-				switch (infobar.getBottom_right_section().toUpperCase()) {
-				case "EQUATION":
-					if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0
-							|| match.getMatch().getInning().get(1).getTotalWickets() >= 10
-							|| CricketFunctions.GetTargetData(match).getRemaningBall() == 0) {
-						showWinner(infobar, print_writer.get(0), match);
-						TimeUnit.MILLISECONDS.sleep(200);
-						// processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START",
-						// broadcaster);
-					} else {
-						processAnimation(print_writer.get(0), "Section4$EquationIn", "START", broadcaster);
-					}
-					break;
-				case "PROJECTED":
-					processAnimation(print_writer.get(0), "Section4$ProjectedScoreIn", "START", broadcaster);
-					break;
-				case CricketUtil.COMPARE:
-					processAnimation(print_writer.get(0), "Section4$AtThisStageIn", "START", broadcaster);
-					break;
-				case CricketUtil.DOT:
-					processAnimation(print_writer.get(0), "Section4$DotBallsIn", "START", broadcaster);
-					break;
-				case CricketUtil.FOUR: case "THIS_MATCH_FOURS": case "TOURNAMENT_FOURS":
-					processAnimation(print_writer.get(0), "Section4$TournamentFoursIn", "START", broadcaster);
-					break;
-				case CricketUtil.SIX: case "THIS_MATCH_SIXES": case "TOURNAMENT_SIXES":
-					processAnimation(print_writer.get(0), "Section4$TournamentSixesIn", "START", broadcaster);
-					break;
-				case CricketUtil.BOUNDARY:
-					processAnimation(print_writer.get(0), "Section4$BallsSinceIn", "START", broadcaster);
-					break;
-				case "BOUNDARIES":
-					processAnimation(print_writer.get(0), "Section4$InningsBoundariesIn", "START", broadcaster);
-					break;
-				case "LAST_WICKET":
-					processAnimation(print_writer.get(0), "Section4$LastWicketIn", "START", broadcaster);
-					break;
-				case "EXTRAS":
-					processAnimation(print_writer.get(0), "Section4$FreeTextIn", "START", broadcaster);
-					break;
-				case "REVIEW":
-					processAnimation(print_writer.get(0), "Section4$ReviewIn", "START", broadcaster);
-					break;
-				}
-
-			}
-
-			infobar.setLast_full_section("");
-			infobar.setFull_section("");
-			infobar.setBottom_right_bottom_section("");
-			infobar.setLast_bottom_right_bottom_section("");
-			infobar.setLast_bottom_right_top_section("");
-			infobar.setBottom_right_top_section("");
-			break;
-
-		case "POPULATE-INFOBAR-TOP":
-			if (infobar.getLast_top_section() != null && !infobar.getLast_top_section().trim().isEmpty()) {
-				switch (infobar.getLast_top_section().toUpperCase()) {
-				case CricketUtil.TOSS:
-					processAnimation(print_writer.get(0), "Section2$TossOut", "START", broadcaster);
-					break;
-				case "CRR":
-					processAnimation(print_writer.get(0), "Section2$RunRateOut", "START", broadcaster);
-					break;
-				case "RRR":
-					processAnimation(print_writer.get(0), "Section2$ReqRunRateOut", "START", broadcaster);
-					break;
-				case "NEXT_TO_BAT":
-					processAnimation(print_writer.get(0), "Section2$NextInOut", "START", broadcaster);
-					break;
-				case "TARGET":
-					processAnimation(print_writer.get(0), "Section2$TargetOut", "START", broadcaster);
-					break;
-				case "PARTNERSHIP":
-					processAnimation(print_writer.get(0), "Section2$PartnershipOut", "START", broadcaster);
-					break;
-				case "SUPER_OVER":
-					processAnimation(print_writer.get(0), "Section2$TossOut", "START", broadcaster);
-					break;	
-				case "TOURNAMENT":
-					processAnimation(print_writer.get(0), "Section2$TossOut", "START", broadcaster);
-					break;	
-
-				}
-				TimeUnit.MILLISECONDS.sleep(200);
-				infobar.setTop_section(valueToProcess);
-				populateVizInfobarTop(infobar, false, print_writer.get(0), match, broadcaster);
-
-				switch (infobar.getTop_section().toUpperCase()) {
-				case CricketUtil.TOSS:
-					processAnimation(print_writer.get(0), "Section2$TossIn", "START", broadcaster);
-					break;
-				case "CRR":
-					processAnimation(print_writer.get(0), "Section2$RunRateIn", "START", broadcaster);
-					break;
-				case "RRR":
-					processAnimation(print_writer.get(0), "Section2$ReqRunRateIn", "START", broadcaster);
-					break;
-				case "NEXT_TO_BAT":
-					processAnimation(print_writer.get(0), "Section2$NextInIn", "START", broadcaster);
-					break;
-				case "TARGET":
-					processAnimation(print_writer.get(0), "Section2$TargetIn", "START", broadcaster);
-					break;
-				case "PARTNERSHIP":
-					processAnimation(print_writer.get(0), "Section2$PartnershipIn", "START", broadcaster);
-					break;
-				case "SUPER_OVER":
-					processAnimation(print_writer.get(0), "Section2$TossIn", "START", broadcaster);
-					break;	
-				case "TOURNAMENT":
-					processAnimation(print_writer.get(0), "Section2$TossIn", "START", broadcaster);
-					break;		
-				}
-
-			} else {
-				infobar.setTop_section(valueToProcess);
-				populateVizInfobarTop(infobar, false, print_writer.get(0), match, broadcaster);
-
-				switch (infobar.getTop_section().toUpperCase()) {
-				case CricketUtil.TOSS:
-					processAnimation(print_writer.get(0), "Section2$TossOut", "START", broadcaster);
-					break;
-				case "CRR":
-					processAnimation(print_writer.get(0), "Section2$RunRateOut", "START", broadcaster);
-					break;
-				case "RRR":
-					processAnimation(print_writer.get(0), "Section2$ReqRunRateOut", "START", broadcaster);
-					break;
-				case "NEXT_TO_BAT":
-					processAnimation(print_writer.get(0), "Section2$NextInOut", "START", broadcaster);
-					break;
-				case "TARGET":
-					processAnimation(print_writer.get(0), "Section2$TargetOut", "START", broadcaster);
-					break;
-				case "PARTNERSHIP":
-					processAnimation(print_writer.get(0), "Section2$PartnershipOut", "START", broadcaster);
-					break;
-				case "SUPER_OVER":	
-					processAnimation(print_writer.get(0), "Section2$TossOut", "START", broadcaster);
-					break;	
-				case "TOURNAMENT":	
-					processAnimation(print_writer.get(0), "Section2$TossOut", "START", broadcaster);
-					break;		
-				}
-			}
-			break;	
 		}
 		
 		return null;

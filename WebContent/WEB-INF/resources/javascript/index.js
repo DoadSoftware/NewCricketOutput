@@ -410,7 +410,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Alt_0': //
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'APL': case 'PPL': case 'MAHARAJA_T20':
+						case 'APL': case 'PPL': case 'MAHARAJA_T20': case 'KERALA_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2749,6 +2749,9 @@ function processUserSelection(whichInput) {
 					addItemsToList('POPULATE-PROFILE', session_match);
 					//processCricketProcedures('TICKER_BOWLER_GRAPHICS-OPTIONS');
 					break;
+				/*case 'COMMS':
+					processCricketProcedures('COMMS_GRAPHICS_OPTIONS');
+					break;	*/
 			}
 			break;
 		case 'selectSection5FreeText':
@@ -10295,7 +10298,7 @@ function processCricketProcedures(whatToProcess) {
 			break;
 		case 'POPULATE-COMMENTATORS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'APL': case 'MAHARAJA_T20':
+				case 'APL': case 'MAHARAJA_T20': case 'KERALA_T20':
 					valueToProcess = $('#selectInfoBarComm1 option:selected').val() + ',' + $('#selectInfoBarComm2 option:selected').val() + ',' + $('#selectInfoBarComm3 option:selected').val();
 					break;
 				case 'PPL':
@@ -10326,9 +10329,17 @@ function processCricketProcedures(whatToProcess) {
 			break;
 		case 'POPULATE-INFOBAR-SECTION5':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'DOAD_LLC': case 'MPL': case 'KERALA_T20':
+				case 'DOAD_LLC': case 'MPL':
 					valueToProcess = $('#selectSection5 option:selected').val() + ',' + $('#selectSection5FreeText option:selected').val()+',' + $('#selectxOvers').val();
 					break;
+				case 'KERALA_T20':
+					console.log('COMMS - ' + $('#selectSection5 option:selected').val())
+					if($('#selectSection5 option:selected').val() == 'comms'){
+						valueToProcess = $('#selectSection5 option:selected').val() + ',' + $('#selectInfoBarComm1 option:selected').val() + ',' + $('#selectInfoBarComm2 option:selected').val() + ',' + $('#selectInfoBarComm3 option:selected').val();
+					}else{
+						valueToProcess = $('#selectSection5 option:selected').val() + ',' + $('#selectSection5FreeText option:selected').val()+',' + $('#selectxOvers').val();
+					}
+					break;	
 				case 'FAIR_BREAK':
 					valueToProcess = $('#selectSection5 option:selected').val() + ',' + $('#selectSection5FreeText option:selected').val() + ',' + $('#over').val();
 					break;
@@ -14322,6 +14333,10 @@ function processCricketProcedures(whatToProcess) {
 					addItemsToList('COMMENTATORS-OPTIONS', data);
 					session_match = data;
 					break;
+				case "COMMS_GRAPHICS_OPTIONS":
+					addItemsToList('COMMS-OPTIONS', data);
+					session_match = data;
+					break;
 				case 'BUG_DB2_GRAPHICS-OPTIONS':
 					addItemsToList('POPULATE-BUG-SCENE', data);
 					session_match = data;
@@ -17860,6 +17875,103 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 			document.getElementById('select_graphic_options_div').style.display = '';
 			break;
+		case 'COMMS-OPTIONS':
+			$('#select_graphic_options_div').empty();
+
+				header_text = document.createElement('h6');
+				header_text.innerHTML = 'Select Graphic Options';
+				document.getElementById('select_graphic_options_div').appendChild(header_text);
+
+				table = document.createElement('table');
+				table.setAttribute('class', 'table table-bordered');
+
+				tbody = document.createElement('tbody');
+
+				table.appendChild(tbody);
+				document.getElementById('select_graphic_options_div').appendChild(table);
+
+				row = tbody.insertRow(tbody.rows.length);
+				select = document.createElement('select');
+				select.id = 'selectInfoBarComm1';
+				select.name = select.id;
+
+				option = document.createElement('option');
+				option.value = '0';
+				option.text = "";
+				select.appendChild(option);
+				dataToProcess.forEach(function(comm, index, arr1) {
+					if (comm.useThis == 'Yes') {
+						option = document.createElement('option');
+						option.value = comm.commentatorId;
+						option.text = comm.commentatorName;
+						select.appendChild(option);
+					}
+				});
+				row.insertCell(cellCount).appendChild(select);
+				cellCount = cellCount + 1;
+				select = document.createElement('select');
+				select.id = 'selectInfoBarComm2';
+				select.name = select.id;
+
+				option = document.createElement('option');
+				option.value = '0';
+				option.text = "";
+				select.appendChild(option);
+				dataToProcess.forEach(function(comm, index, arr1) {
+					if (comm.useThis == 'Yes') {
+						option = document.createElement('option');
+						option.value = comm.commentatorId;
+						option.text = comm.commentatorName;
+						select.appendChild(option);
+					}
+				});
+				row.insertCell(cellCount).appendChild(select);
+				cellCount = cellCount + 1;
+				select = document.createElement('select');
+				select.id = 'selectInfoBarComm3';
+				select.name = select.id;
+
+				option = document.createElement('option');
+				option.value = '0';
+				option.text = "";
+				select.appendChild(option);
+				dataToProcess.forEach(function(comm, index, arr1) {
+					if (comm.useThis == 'Yes') {
+						option = document.createElement('option');
+						option.value = comm.commentatorId;
+						option.text = comm.commentatorName;
+						select.appendChild(option);
+					}
+				});
+				row.insertCell(cellCount).appendChild(select);
+				cellCount = cellCount + 1;
+
+				option = document.createElement('input');
+				option.type = 'button';
+
+				option.name = 'populate_infobar_section5_btn';
+				option.value = 'Populate Commentator';
+
+				option.id = option.name;
+				option.setAttribute('onclick', "processUserSelection(this)");
+
+				div = document.createElement('div');
+				div.append(option);
+
+				option = document.createElement('input');
+				option.type = 'button';
+				option.name = 'cancel_graphics_btn';
+				option.id = option.name;
+				option.value = 'Cancel';
+				option.setAttribute('onclick', 'processUserSelection(this)');
+
+				div.append(option);
+
+				row.insertCell(cellCount).appendChild(div);
+				cellCount = cellCount + 1;
+
+				document.getElementById('select_graphic_options_div').style.display = '';
+				break;
 		case 'COMMENTATORS-OPTIONS':
 			$('#select_graphic_options_div').empty();
 
@@ -31704,6 +31816,11 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									option.value = 'timeline';
 									option.text = 'Timeline';
 									select.appendChild(option);
+									
+									/*option = document.createElement('option');
+									option.value = 'comms';
+									option.text = 'COMMS';
+									select.appendChild(option);*/
 
 									/*option = document.createElement('option');
 									option.value = 'bowlerStats';

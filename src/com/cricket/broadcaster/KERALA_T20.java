@@ -40,6 +40,7 @@ import com.cricket.model.BattingCard;
 import com.cricket.model.BestStats;
 import com.cricket.model.BowlingCard;
 import com.cricket.model.Bugs;
+import com.cricket.model.Commentator;
 import com.cricket.model.Configuration;
 import com.cricket.model.Event;
 import com.cricket.model.EventFile;
@@ -157,7 +158,7 @@ public class KERALA_T20 extends Scene {
 	
 
 	public Infobar updateInfobar(List<Scene> scenes, MatchAllData match, boolean show_speed,
-			List<PrintWriter> print_writer) throws Exception {
+			List<PrintWriter> print_writer,CricketService cricketService) throws Exception {
 		
 		IndexController.matchstats = CricketFunctions.getAllEvents(match ,broadcaster, match.getEventFile().getEvents());
 		if (infobar.isInfobar_on_screen() == true) {
@@ -183,7 +184,7 @@ public class KERALA_T20 extends Scene {
 				}
 
 				if (infobar.getFull_section() != null && !infobar.getFull_section().trim().isEmpty()) {
-					infobar = populateSection5(infobar, true, print_writer.get(0), 0, match, broadcaster);
+					infobar = populateSection5(infobar, true, print_writer.get(0), 0, match, broadcaster,"",cricketService);
 				}
 				if (infobar.getLast_top_section() != null && !infobar.getLast_top_section().trim().isEmpty()) {
 					infobar = populateVizInfobarTop(infobar, true, print_writer.get(0), match, broadcaster);
@@ -273,6 +274,9 @@ public class KERALA_T20 extends Scene {
 					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
 					break;
 				case "TOURNAMENT":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				case "COMMS":
 					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
 					break;		
 				}
@@ -2688,43 +2692,45 @@ public class KERALA_T20 extends Scene {
 					break;
 				case "TOURNAMENT":
 					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				case "COMMS":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
 					break;		
 				}
 				// TimeUnit.MILLISECONDS.sleep(100);
 				infobar.setBottom_right_bottom_section(CricketUtil.OVER);
 				infobar = populateVizInfobarRightBottom(infobar, false, print_writer, match, broadcaster);
 				// TimeUnit.MILLISECONDS.sleep(500);
-				processAnimation(print_writer, "Section3$ThisOverOut", "START", broadcaster);
-				processAnimation(print_writer, "Section3$EconomyOut", "START", broadcaster);
-				processAnimation(print_writer, "Section3$BowlingEndOut", "START", broadcaster);
-				processAnimation(print_writer, "Section3$ExtrasOut", "START", broadcaster);
-				// .MILLISECONDS.sleep(100);
-				infobar.setBottom_right_top_section(CricketUtil.BOWLER);
-				infobar = populateVizInfobarRightTop(infobar, false, print_writer, match, broadcaster);
+//				processAnimation(print_writer, "Section3$ThisOverOut", "START", broadcaster);
+//				processAnimation(print_writer, "Section3$EconomyOut", "START", broadcaster);
+//				processAnimation(print_writer, "Section3$BowlingEndOut", "START", broadcaster);
+//				processAnimation(print_writer, "Section3$ExtrasOut", "START", broadcaster);
+//				infobar.setBottom_right_top_section(CricketUtil.BOWLER);
+//				infobar = populateVizInfobarRightTop(infobar, false, print_writer, match, broadcaster);
 				processAnimation(print_writer, "BowlerIn", "START", broadcaster);
-				// TimeUnit.MILLISECONDS.sleep(100);
-				switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
-				case CricketUtil.OVER:
-					System.out.println("HELLO 10");
-					if (infobar.isThisover()) {
-						processAnimation(print_writer, "Section3$ThisOverIn", "START", broadcaster);
-					} else {
-						processAnimation(print_writer, "Section3$FreeTextIn", "START", broadcaster);
-					}
-					break;
-				case "ECONOMY":
-					processAnimation(print_writer, "Section3$EconomyIn", "START", broadcaster);
-					break;
-				case "BOWLINGEND": case "REPLACEBOWLER":case "CRR": case "TARGET":
-				case "EQUATION": case "CRR_RRR":
-					processAnimation(print_writer, "Section3$BowlingEndIn", "START", broadcaster);
-					break;
-				case "EXTRAS":
-					processAnimation(print_writer, "Section3$ExtrasIn", "START", broadcaster);
-					break;
-				}
+//				// TimeUnit.MILLISECONDS.sleep(100);
+//				switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
+//				case CricketUtil.OVER:
+//					System.out.println("HELLO 10");
+//					if (infobar.isThisover()) {
+//						processAnimation(print_writer, "Section3$ThisOverIn", "START", broadcaster);
+//					} else {
+//						processAnimation(print_writer, "Section3$FreeTextIn", "START", broadcaster);
+//					}
+//					break;
+//				case "ECONOMY":
+//					processAnimation(print_writer, "Section3$EconomyIn", "START", broadcaster);
+//					break;
+//				case "BOWLINGEND": case "REPLACEBOWLER":case "CRR": case "TARGET":
+//				case "EQUATION": case "CRR_RRR":
+//					processAnimation(print_writer, "Section3$BowlingEndIn", "START", broadcaster);
+//					break;
+//				case "EXTRAS":
+//					processAnimation(print_writer, "Section3$ExtrasIn", "START", broadcaster);
+//					break;
+//				}
 				TimeUnit.MILLISECONDS.sleep(100);
-
+//
 				processAnimation(print_writer, "Section5$Section5Out", "START", broadcaster);
 				infobar.setLast_full_section("");
 				infobar.setFull_section("");
@@ -2846,6 +2852,9 @@ public class KERALA_T20 extends Scene {
 					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
 					break;
 				case "TOURNAMENT":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				case "COMMS":
 					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
 					break;		
 				}
@@ -11482,12 +11491,12 @@ public class KERALA_T20 extends Scene {
 	}
 
 	public void populateLTNextToBat(PrintWriter print_writer, String viz_scene, MatchAllData match, String broadcaster,
-			int whichside, Configuration config) throws InterruptedException {
+			int whichside, Configuration config, CricketService cricketService) throws InterruptedException {
 		if (match == null) {
 			this.status = "ERROR: Match is null";
 		} else {
 			this.status = CricketUtil.SUCCESSFUL;
-			int row_id = 0;
+			int row_id = 0,run_data=0,balls_data=0;
 			print_writer.println("-1 RENDERER*TREE*$LT$ALL_LT_LOGOGRP$Select*FUNCTION*Omo*vis_con SET 0 \0");
 			print_writer.println("-1 RENDERER*TREE*$LT$All$BaseAll$Select*FUNCTION*Omo*vis_con SET 2 \0");
 			print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Select*FUNCTION*Omo*vis_con SET 2 \0");
@@ -11559,29 +11568,17 @@ public class KERALA_T20 extends Scene {
 						if (inn.getBattingCard().get(b - 1).getStatus().equalsIgnoreCase(CricketUtil.STILL_TO_BAT)) {
 							row_id = row_id + 1;
 							if (row_id <= 2) {
-								// System.out.println(b + " PLAYER ID - " +
-								// inn.getBattingCard().get(b-1).getPlayerId() + " - PLAYER NAME - " +
-								// inn.getBattingCard().get(b-1).getPlayer().getTicker_name());
-
-//								print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
-//										+ "$Select$NextToBat$BottomGrp$RestDataGrp$Visible$Player" + row_id
-//										+ "$img_Base2*TEXTURE*IMAGE SET " + base_path2
-//										+ "TLogo" + "\0");
-//								print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
-//										+ "$Select$NextToBat$BottomGrp$RestDataGrp$Visible$Player" + row_id
-//										+ "$ImageBase$img_Base2*TEXTURE*IMAGE SET " + base_path2
-//										+ "TLogo" + "\0");
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
-											+ "$Select$NextToBat$BottomGrp$RestDataGrp$Player" + row_id
-											+ "$ImageBase$img_Player*TEXTURE*IMAGE SET " + photo_path 
+											+ "$Select$NextToBat$BottomGrp$RestDataGrp$img_Text2$Player" + row_id
+											+ "$img_Player*TEXTURE*IMAGE SET " + photo_path 
 											+ inn.getBatting_team().getTeamName4().toUpperCase() + "\\\\"
 											+ inn.getBattingCard().get(b - 1).getPlayer().getPhoto()
 											+ CricketUtil.PNG_EXTENSION + " \0");
 								} else {
 									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
-											+ "$Select$NextToBat$BottomGrp$RestDataGrp$Player" + row_id
-											+ "$ImageBase$img_Player*TEXTURE*IMAGE SET " + "\\\\" + config.getPrimaryIpAddress()
+											+ "$Select$NextToBat$BottomGrp$RestDataGrp$img_Text2$Player" + row_id
+											+ "$img_Player*TEXTURE*IMAGE SET " + "\\\\" + config.getPrimaryIpAddress()
 											+ "\\\\" + local_photo_path+ inn.getBatting_team().getTeamName4().toUpperCase() + "\\\\"
 											+ inn.getBattingCard().get(b - 1).getPlayer().getPhoto() + CricketUtil.PNG_EXTENSION + " \0");
 								}
@@ -11593,20 +11590,29 @@ public class KERALA_T20 extends Scene {
 										+ "$Select$NextToBat$BottomGrp$RestDataGrp$Player" + row_id
 										+ "$PlayerData$Data1*GEOM*TEXT SET "
 										+ inn.getBattingCard().get(b - 1).getPlayer().getTicker_name() + "\0");
-
-								print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
-										+ "$Select$NextToBat$BottomGrp$RestDataGrp$Player" + row_id
-										+ "$PlayerData$Data2*GEOM*TEXT SET "
-										+ inn.getBattingCard().get(b - 1).getPlayer().getBattingStyle() + "\0");
-
-//								print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
-//										+ "$Select$NextToBat$BottomGrp$RestDataGrp$Visible$Player" + row_id
-//										+ "$PlayerData$img_Text*TEXTURE*IMAGE SET " + text_path + "/"
-//										+ "TLogo"+ "\0");
-
-								// print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside +
-								// "$Select$NextToBat$BottomGrp$RestDataGrp$Visible$Player" + row_id +
-								// "$PlayerData$Data2*ACTIVE SET 0 \0");
+								
+								for (Statistics stat : cricketService.getAllStats()) {
+									if (stat.getPlayer_id() == inn.getBattingCard().get(b - 1).getPlayer().getPlayerId()) {
+										if (stat.getStats_type_id() == 10) {
+											run_data = stat.getRuns();
+											balls_data = stat.getBalls_faced();
+										}
+									}
+								}
+								String SR = "";
+								
+								SR = CricketFunctions.generateStrikeRate(run_data, balls_data, 1);
+								
+								if(SR != null && !SR.isEmpty()) {
+									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
+											+ "$Select$NextToBat$BottomGrp$RestDataGrp$Player" + row_id
+											+ "$PlayerData$Data2*GEOM*TEXT SET S/R: " + SR+ "\0");
+								}else {
+									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
+											+ "$Select$NextToBat$BottomGrp$RestDataGrp$Player" + row_id
+											+ "$PlayerData$Data2*GEOM*TEXT SET S/R: -\0");
+								}
+								
 								print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 										+ "$Select$NextToBat$BottomGrp$RestDataGrp$Player" + row_id
 										+ "$PlayerData$Data3*ACTIVE SET 0 \0");
@@ -14843,7 +14849,6 @@ public class KERALA_T20 extends Scene {
 								fifty_data = stat.getFifties();
 								hundreds_data = stat.getHundreds();
 								best = stat.getBest_score();
-								System.out.println("ALL STATS = " + stat.getMatches() + "---------------" + stat.getRuns()+ "---------------" + stat.getBalls_faced()+ "---------------" + stat.getFifties());
 							}
 						}
 					}
@@ -16247,6 +16252,9 @@ public class KERALA_T20 extends Scene {
 					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$ScoreGrp$BowlTeam_Over_PPGrp$img_Text1$Over_PP$txt_DLS*GEOM*TEXT SET " 
 							+ "(" + match.getSetup().getTargetOvers() + ") " + (match.getSetup().getTargetType() != null && 
 							!match.getSetup().getTargetType().isEmpty() ? match.getSetup().getTargetType().toUpperCase() : "")  + "\0");
+				}else if(match.getSetup().getReducedOvers() != null && !match.getSetup().getReducedOvers().isEmpty()){
+					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$ScoreGrp$BowlTeam_Over_PPGrp$img_Text1$Over_PP$txt_DLS*GEOM*TEXT SET " 
+							+ "(" + match.getSetup().getReducedOvers() + ")"  + "\0");
 				} else {
 					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$ScoreGrp$BowlTeam_Over_PPGrp$img_Text1$Over_PP$txt_DLS*GEOM*TEXT SET "
 									+ " " + "\0");
@@ -17634,9 +17642,42 @@ public class KERALA_T20 extends Scene {
 	}
 
 	public Infobar populateSection5(Infobar infobar, boolean is_this_updating, PrintWriter print_writer, int Line_value,
-			MatchAllData match, String broadcaster) throws IOException {
+			MatchAllData match, String broadcaster,String vtp,CricketService cs) throws IOException {
 
 		switch (infobar.getFull_section().toUpperCase()) {
+		case "COMMS":
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*TEXTURE*IMAGE SET "+ text_path2 + "TLogo\0");
+			
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*FUNCTION*Omo*vis_con SET 0 \0");
+			
+			String comm1Name = "",comm2Name = "",comm3Name = "";
+			int comm1 = Integer.valueOf(vtp.split(",")[1]);
+			int comm2 = Integer.valueOf(vtp.split(",")[2]);
+			int comm3 = Integer.valueOf(vtp.split(",")[3]);
+			
+			for(Commentator comm : cs.getCommentator()) {
+				if(comm.getCommentatorId() > 0) {
+					if(comm.getCommentatorId() == comm1) {
+						comm1Name = comm.getCommentatorName();
+					}else if(comm.getCommentatorId() == comm2) {
+						comm2Name = comm.getCommentatorName();
+					}else if(comm.getCommentatorId() == comm3) {
+						comm3Name = comm.getCommentatorName();
+					}
+				}
+			}
+			
+			if(comm1 > 0 && comm2 > 0 && comm3 > 0) {
+				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
+						+ "COMMENTATORS : "+comm1Name+",  "+comm2Name+",  "+comm3Name + "\0");
+			}else if(comm1 > 0 && comm2 > 0 && comm3 == 0) {
+				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
+						+ "COMMENTATORS : "+comm1Name+",  "+comm2Name + "\0");
+			}else if(comm1 > 0 && comm2 == 0 && comm3 == 0) {
+				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
+						+ "COMMENTATORS : "+comm1Name + "\0");
+			}
+			break;
 		case "COMPARISON":
 			for (Inning inn : match.getMatch().getInning()) {
 				if (inn.getInningNumber() == 2 && inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
@@ -21295,164 +21336,42 @@ public class KERALA_T20 extends Scene {
 					// " TO WIN FROM " +
 					// CricketFunctions.OverBalls(0,CricketFunctions.GetTargetData(match).getRemaningBall()) + "
 					// OVERS" + "\0");
-
-					if (match.getSetup().getTargetOvers() == null || match.getSetup().getTargetOvers().trim().isEmpty()
-							&& match.getSetup().getTargetRuns() == 0) {
-						if ((match.getSetup().getMaxOvers() * 6) >= 100) {
-							if(match.getSetup().getTargetType() != null) {
-								if (match.getSetup().getTargetType().toUpperCase().equalsIgnoreCase("VJD")) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS TO WIN FROM "
-													+ match.getSetup().getMaxOvers() + " OVERS (VJD)" + "\0");
-
-								} else if (match.getSetup().getTargetType().toUpperCase().equalsIgnoreCase("DLS")) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ match.getSetup().getMaxOvers() + " OVERS (DLS)" + "\0");
-								}
-							}else {
+					
+					if (match.getSetup().getTargetOvers() != null && !match.getSetup().getTargetOvers().isEmpty()) {
+						
+						print_writer.println(
+								"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
+										+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
+										+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS TO WIN FROM "
+										+ match.getSetup().getTargetOvers() + " OVERS" + "\0");
+						if(match.getSetup().getTargetType() != null && !match.getSetup().getTargetType().isEmpty()) {
+							if(match.getSetup().getTargetType().toUpperCase().equalsIgnoreCase("VJD")) {
 								print_writer.println(
 										"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
 												+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-												+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-												+ match.getSetup().getMaxOvers() + " OVERS" + "\0");
-							}
-
-						} else {
-							if(match.getSetup().getTargetType() != null) {
-								if (match.getSetup().getTargetType().toUpperCase().equalsIgnoreCase("VJD")) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ match.getSetup().getMaxOvers() * 6 + " BALLS (VJD)" + "\0");
-								} else if (match.getSetup().getTargetType().toUpperCase().equalsIgnoreCase("DLS")) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ (match.getSetup().getMaxOvers() * 6) + " BALLS (DLS)" + "\0");
-								}
-							}else {
+												+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS TO WIN FROM "
+												+ match.getSetup().getTargetOvers() + " OVERS (VJD)" + "\0");
+							}else if(match.getSetup().getTargetType().toUpperCase().equalsIgnoreCase("DLS")) {
 								print_writer.println(
 										"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
 												+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-												+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-												+ match.getSetup().getMaxOvers() * 6 + " BALLS" + "\0");
+												+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS TO WIN FROM "
+												+ match.getSetup().getTargetOvers() + " OVERS (DLS)" + "\0");
 							}
 						}
-
-					} else {
-						if (Double.valueOf(match.getSetup().getTargetOvers()) != 0) {
-							if (match.getSetup().getTargetOvers().contains(".")) {
-								if ((Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[0]) * 6)
-										+ Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[1]) >= 100) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ match.getSetup().getTargetOvers() + " OVERS" + "\0");
-								} else {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ ((Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[0]) * 6)
-													+ Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[1]))
-													+ " BALLS" + "\0");
-								}
-							} else {
-								if ((Double.valueOf(match.getSetup().getTargetOvers()) * 6) >= 100) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ match.getSetup().getTargetOvers() + " OVERS" + "\0");
-								} else {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ (Integer.valueOf(match.getSetup().getTargetOvers()) * 6) + " BALLS"
-													+ "\0");
-								}
-							}
-						}
-						if (match.getSetup().getTargetType().toUpperCase().equalsIgnoreCase("VJD")) {
-							if (match.getSetup().getTargetOvers().contains(".")) {
-								if ((Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[0]) * 6)
-										+ Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[1]) >= 100) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName3().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ match.getSetup().getTargetOvers() + " OVERS (VJD)" + "\0");
-								} else {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName3().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ ((Integer.valueOf(
-															match.getSetup().getTargetOvers().split("\\.")[0]) * 6)
-													+ Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[1]))
-													+ " BALLS (VJD)" + "\0");
-								}
-							} else {
-								if ((Double.valueOf(match.getSetup().getTargetOvers()) * 6) >= 100) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName3().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ match.getSetup().getTargetOvers() + " OVERS (VJD)" + "\0");
-								} else {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName3().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ Integer.valueOf(match.getSetup().getTargetOvers()) * 6
-													+ " BALLS (VJD)" + "\0");
-								}
-							}
-						} else if (match.getSetup().getTargetType().toUpperCase().equalsIgnoreCase("DLS")) {
-							if (match.getSetup().getTargetOvers().contains(".")) {
-								if ((Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[0]) * 6)
-										+ Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[1]) >= 100) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName3().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ match.getSetup().getTargetOvers() + " OVERS (DLS)" + "\0");
-								} else {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName3().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+((Integer.valueOf(
-															match.getSetup().getTargetOvers().split("\\.")[0]) * 6)
-													+ Integer.valueOf(match.getSetup().getTargetOvers().split("\\.")[1]))
-													+ " BALLS (DLS)" + "\0");
-								}
-							} else {
-								if ((Double.valueOf(match.getSetup().getTargetOvers()) * 6) >= 100) {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName3().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ match.getSetup().getTargetOvers() + " OVERS (DLS)" + "\0");
-								} else {
-									print_writer.println(
-											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
-													+ inn.getBatting_team().getTeamName3().toUpperCase() + " NEED "
-													+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS" + " TO WIN FROM "
-													+ Integer.valueOf(match.getSetup().getTargetOvers()) * 6
-													+ " BALLS (DLS)" + "\0");
-								}
-							}
-						}
+						
+					}else if (match.getSetup().getReducedOvers() != null && !match.getSetup().getReducedOvers().isEmpty()) {
+						print_writer.println(
+								"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
+										+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
+										+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS TO WIN FROM "
+										+ match.getSetup().getReducedOvers() + " OVERS" + "\0");
+					}else {
+						print_writer.println(
+								"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$Target$TopGrp$HeaderGrp$img_Text2$txt_Text*GEOM*TEXT SET "
+										+ inn.getBatting_team().getTeamName1().toUpperCase() + " NEED "
+										+ CricketFunctions.GetTargetData(match).getTargetRuns() + " RUNS TO WIN FROM "
+										+ match.getSetup().getMaxOvers() + " OVERS" + "\0");
 					}
 				}
 			}
@@ -35217,7 +35136,7 @@ public class KERALA_T20 extends Scene {
 		case "ANIMATE-IN-BATSMAN_STYLE": case "ANIMATE-IN-GENERIC": case "ANIMATE-IN-HOWOUT_QUICK": case "ANIMATE-IN-THISSERIES": case "ANIMATE-IN-THISSERIES_BALL":
 		case "ANIMATE-IN-THIS_PARTNERSHIP": case "ANIMATE-IN-LTPLAYERPROFILEBAT": case "ANIMATE-IN-LINEUP": case "ANIMATE-IN-LTMANHATTAN":
 		case "ANIMATE-IN-INN_BUILDER": case "ANIMATE-IN-LT_SEASON": case "ANIMATE-IN-BALLSINCE": case "ANIMATE-IN-DLS-EQUATION":
-		case "ANIMATE-IN-PLOTTER_ICC":
+		//case "ANIMATE-IN-PLOTTER_ICC":
 			if (!infobar.isIs_ticker_shrink() && !infobar.isInfobar_down()) {
 				if (infobar.isInfobar_on_screen() == true && which_graphic_on_screen == "SCOREBUG") {
 					TimeUnit.MILLISECONDS.sleep(200);
@@ -36018,6 +35937,9 @@ public class KERALA_T20 extends Scene {
 							case "BOWLERSTATS":
 								processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
 								break;
+							case "COMMS":
+								processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+								break;		
 							}
 							infobar.setFull_section("BOWLERSTATS");
 							populateInfobarPlayerStats(infobar, false, print_writer.get(0),
@@ -36070,6 +35992,9 @@ public class KERALA_T20 extends Scene {
 									processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
 									break;
 								case "TOURNAMENT":
+									processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+									break;	
+								case "COMMS":
 									processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
 									break;		
 								}
@@ -36300,7 +36225,7 @@ public class KERALA_T20 extends Scene {
 				TimeUnit.MILLISECONDS.sleep(100);
 				infobar.setFull_section(valueToProcess.split(",")[0]);
 				infobar = populateSection5(infobar, false, print_writer.get(0),
-						Integer.valueOf(valueToProcess.split(",")[1]), match, broadcaster);
+						Integer.valueOf(valueToProcess.split(",")[1]), match, broadcaster,valueToProcess,cricketService);
 
 				// TimeUnit.MILLISECONDS.sleep(500);
 				switch (infobar.getFull_section().toUpperCase()) {
@@ -36328,6 +36253,9 @@ public class KERALA_T20 extends Scene {
 				case "TOURNAMENT":
 					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
 					break;	
+				case "COMMS":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;		
 				}
 			} else if (infobar.getLast_full_section() != null && !infobar.getLast_full_section().trim().isEmpty()) {
 				switch (infobar.getLast_full_section().toUpperCase()) {
@@ -36354,13 +36282,16 @@ public class KERALA_T20 extends Scene {
 					break;
 				case "TOURNAMENT":
 					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
-					break;		
+					break;
+				case "COMMS":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;	
 				}
 
 				TimeUnit.MILLISECONDS.sleep(100);
 				infobar.setFull_section(valueToProcess.split(",")[0]);
 				infobar = populateSection5(infobar, false, print_writer.get(0),
-						Integer.valueOf(valueToProcess.split(",")[1]), match, broadcaster);
+						Integer.valueOf(valueToProcess.split(",")[1]), match, broadcaster,valueToProcess,cricketService);
 
 				// TimeUnit.MILLISECONDS.sleep(500);
 				switch (infobar.getFull_section().toUpperCase()) {
@@ -36386,6 +36317,9 @@ public class KERALA_T20 extends Scene {
 					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
 					break;
 				case "TOURNAMENT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;	
+				case "COMMS":
 					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
 					break;		
 				}
@@ -36419,7 +36353,7 @@ public class KERALA_T20 extends Scene {
 				TimeUnit.MILLISECONDS.sleep(100);
 				infobar.setFull_section(valueToProcess.split(",")[0]);
 				infobar = populateSection5(infobar, false, print_writer.get(0),
-						Integer.valueOf(valueToProcess.split(",")[1]), match, broadcaster);
+						Integer.valueOf(valueToProcess.split(",")[1]), match, broadcaster,valueToProcess,cricketService);
 
 				TimeUnit.MILLISECONDS.sleep(100);
 				switch (infobar.getFull_section().toUpperCase()) {
@@ -36445,6 +36379,9 @@ public class KERALA_T20 extends Scene {
 					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
 					break;
 				case "TOURNAMENT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;	
+				case "COMMS":
 					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
 					break;		
 				}
@@ -36573,6 +36510,9 @@ public class KERALA_T20 extends Scene {
 					break;
 				case "TOURNAMENT":
 					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				case "COMMS":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
 					break;		
 				}
 				TimeUnit.MILLISECONDS.sleep(500);
@@ -36692,6 +36632,9 @@ public class KERALA_T20 extends Scene {
 					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
 					break;
 				case "TOURNAMENT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;	
+				case "COMMS":
 					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
 					break;		
 				}
@@ -37116,11 +37059,11 @@ public class KERALA_T20 extends Scene {
 			if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG") {
 				which_side = 1;
 				populateLTNextToBat(print_writer.get(0), valueToProcess.split(",")[0], match, broadcaster, 1,
-						config);
+						config, cricketService);
 			} else {
 				which_side = 2;
 				populateLTNextToBat(print_writer.get(0), valueToProcess.split(",")[0], match, broadcaster, 2,
-						config);
+						config, cricketService);
 			}
 			print_writer.get(0).println("-1 RENDERER*TREE*$LT$ALL_LT_LOGOGRP$Side1$Select*FUNCTION*Omo*vis_con SET 0 \0");
 			print_writer.get(0).println("-1 RENDERER*TREE*$LT$ALL_LT_LOGOGRP$Side2$Select*FUNCTION*Omo*vis_con SET 0 \0");

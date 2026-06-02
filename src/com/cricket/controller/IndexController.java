@@ -1141,7 +1141,7 @@ public class IndexController
 			
 		case "L3PLAYERPROFILEBAT-OPTIONS": case "STATS-OPTIONS": 
 			return new ObjectMapper().writeValueAsString(CricketFunctions.processAllStats(cricketService)).toString();
-		case "COMMENTATORS_GRAPHICS_OPTIONS":
+		case "COMMENTATORS_GRAPHICS_OPTIONS": case "COMMS_GRAPHICS_OPTIONS":
 			return new ObjectMapper().writeValueAsString(cricketService.getCommentator()).toString();
 		case "FIXTURE_AND_RESULT-OPTIONS":
 			return new ObjectMapper().writeValueAsString(cricketService.getTeams()).toString();
@@ -1656,7 +1656,7 @@ public class IndexController
 //					session_europe.updateInfobar(session_selected_scenes, session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration));
 					break;
 				case "KERALA_T20":
-					this_kerala_t20.updateInfobar(session_selected_scenes, session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration));
+					this_kerala_t20.updateInfobar(session_selected_scenes, session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration),cricketService);
 					break;	
 				case "KOLKATA_T20":
 //					session_kolkata.updateInfobar(session_selected_scenes, session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration),1);

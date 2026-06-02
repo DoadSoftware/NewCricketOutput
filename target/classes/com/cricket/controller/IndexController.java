@@ -77,7 +77,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 //@SessionAttributes(value = {"session_configuration","session_Icc_big_screen", "session_icc_big_screen_doad_scoring","session_llc_big_screen","session_llc",
 //	"session_llc_ar","session_kolkata","session_kerala","session_europe","session_selected_broadcaster","session_selected_scenes","expiryDate"})
-@SessionAttributes(value = {"session_configuration","session_selected_broadcaster","session_selected_scenes","expiryDate"})
+@SessionAttributes(value = {"session_configuration","session_selected_broadcaster","session_selected_scenes","expiryDate", "session_MasterCricketDirectory"})
 public class IndexController 
 {
 	@Autowired
@@ -85,7 +85,6 @@ public class IndexController
 	
 	public static MatchAllData session_match;
 	public static MultiLanguageDatabase multiLanguage;
-	
 	public static Archive session_archive;
 //	public static AE_Cricket third_party_session_match;
 //	public static AE_Last_Ball third_party_last_ball_speed;
@@ -144,7 +143,7 @@ public class IndexController
 	public static MatchStats matchstats ;
 	public static String cat = "";
 	File speedFile = new File("C:\\Sports\\Cricket\\Speed\\SPEED.txt");
-	public static String basePath = "";
+	//public static String session_MasterCricketDirectory = "";
 	
 	List<ForeignLanguageData> foreignLanguage = new ArrayList<ForeignLanguageData>();
 	List<MatchAllData> cricket_matches = new ArrayList<MatchAllData>();
@@ -166,6 +165,35 @@ public class IndexController
 	public static List<Ground> session_ground = new ArrayList<>();
 	public static List<Player> session_players = new ArrayList<>();
 	
+	public String switchDbAndDirectory(String whatToProcess, String genderCategory) {
+
+		String baseDir = "";
+		if(whatToProcess.toUpperCase().contains("DIRECTORY")) {
+			if(genderCategory.equalsIgnoreCase("men")) {
+			    baseDir = "C:\\Sports\\CricketMen\\";
+			} else if(genderCategory.equalsIgnoreCase("women")) {
+			    baseDir = "C:\\Sports\\CricketWomen\\";
+			} else {
+			    baseDir = CricketUtil.CRICKET_DIRECTORY;
+			}
+		}
+		if(whatToProcess.toUpperCase().contains("DATABASE")) {
+			if(genderCategory.equalsIgnoreCase("men")) {
+			    DatabaseContextHolder.setDb("MEN");
+			} else if(genderCategory.equalsIgnoreCase("women")) {
+			    DatabaseContextHolder.setDb("WOMEN");
+			} else {
+			    DatabaseContextHolder.setDb("LOCAL");
+			}
+		}
+		System.out.println("===== CATEGORY =====");
+		System.out.println("Category = " + genderCategory);
+		System.out.println("cat = " + cat);
+		System.out.println("session_MasterCricketDirectory = " + baseDir);
+		System.out.println("Current DB = " + DatabaseContextHolder.getDb());
+		return baseDir;
+	}
+	
 	@RequestMapping(value = {"/help"}, method={RequestMethod.GET,RequestMethod.POST}) 
 	public String HelpPage()  
 	{
@@ -174,14 +202,7 @@ public class IndexController
 	
 	@RequestMapping(value = {"/","/initialise"}, method={RequestMethod.GET,RequestMethod.POST}) 
 	public String initialisePage(ModelMap model, 
-//		@ModelAttribute("session_llc_big_screen") LLC_BigScreen session_llc_big_screen, 
-//		@ModelAttribute("session_Icc_big_screen") ICC_BIG_SCREEN session_Icc_big_screen, 
-//		@ModelAttribute("session_icc_big_screen_doad_scoring") ICC_BIGSCREEN_DOAD_SCORING session_icc_big_screen_doad_scoring,
-//		@ModelAttribute("session_llc") LLC session_llc,
-//		@ModelAttribute("session_kolkata") KOLKATA_T20 session_kolkata,
-//		@ModelAttribute("session_llc_ar") LLC_AR session_llc_ar,
-//		@ModelAttribute("session_kerala") KERALA_T20 session_kerala,
-//		@ModelAttribute("session_europe") EUROPE_LEAGUE session_europe,
+		@ModelAttribute("session_MasterCricketDirectory") String session_MasterCricketDirectory, 
 		@ModelAttribute("session_selected_broadcaster") String session_selected_broadcaster, 
 		@ModelAttribute("session_configuration") Configuration session_configuration, 
 		@ModelAttribute("session_selected_scenes") List<Scene> session_selected_scenes,
@@ -218,18 +239,6 @@ public class IndexController
 		    }
 		}));
 		
-//		File files[] = new File(CricketUtil.CRICKET_SERVER_DIRECTORY + CricketUtil.MATCHES_DIRECTORY).listFiles(new FileFilter() {
-//			@Override
-//		    public boolean accept(File pathname) {
-//		        String name = pathname.getName().toLowerCase();
-//		        return name.endsWith(".json") && pathname.isFile();
-//		    }
-//		});
-//
-//		if(cricket_matches == null || cricket_matches.size()<=0) {
-//			cricket_matches = CricketFunctions.getTournamentMatches(files, cricketService);
-//		}
-		
 		if(session_statistics == null || session_statistics.size()<=0) {
 			session_statistics = cricketService.getAllStats();
 		}
@@ -243,15 +252,11 @@ public class IndexController
 					new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.CONFIGURATIONS_DIRECTORY + CricketUtil.OUTPUT_XML));
 		}
 		
+		if(session_configuration != null && session_configuration.getCategory() != null) {
+			session_MasterCricketDirectory = switchDbAndDirectory(session_configuration.getCategory(), "DIRECTORY_DATABASE");
+		}
+		
 		model.addAttribute("session_configuration",session_configuration);
-//		model.addAttribute("session_llc_big_screen",session_llc_big_screen);
-//		model.addAttribute("session_icc_big_screen_doad_scoring", session_icc_big_screen_doad_scoring);
-//		model.addAttribute("session_Icc_big_screen",session_Icc_big_screen);
-//		model.addAttribute("session_llc",session_llc);
-//		model.addAttribute("session_kerala",session_kerala);
-//		model.addAttribute("session_europe",session_europe);
-//		model.addAttribute("session_llc_ar",session_llc_ar);
-//		model.addAttribute("session_kolkata",session_kolkata);
 		model.addAttribute("session_selected_scenes",session_selected_scenes);
 		
 		return "initialise";
@@ -259,43 +264,32 @@ public class IndexController
 
 	@RequestMapping(value = {"/output"}, method={RequestMethod.GET,RequestMethod.POST}) 
 	public String outputPage(ModelMap model,
-			@ModelAttribute("session_configuration") Configuration session_configuration,
-//			@ModelAttribute("session_llc_big_screen") LLC_BigScreen session_llc_big_screen, 
-//			@ModelAttribute("session_Icc_big_screen") ICC_BIG_SCREEN session_Icc_big_screen, 
-//			@ModelAttribute("session_icc_big_screen_doad_scoring") ICC_BIGSCREEN_DOAD_SCORING session_icc_big_screen_doad_scoring,
-//			@ModelAttribute("session_llc") LLC session_llc,
-//			@ModelAttribute("session_kerala") KERALA_T20 session_kerala,
-//			@ModelAttribute("session_europe") EUROPE_LEAGUE session_europe,
-//			@ModelAttribute("session_kolkata") KOLKATA_T20 session_kolkata,
-//			@ModelAttribute("session_llc_ar") LLC_AR session_llc_ar, 
-			@ModelAttribute("session_selected_scenes") List<Scene> session_selected_scenes,
-			@ModelAttribute("session_selected_broadcaster") String session_selected_broadcaster,
-			@ModelAttribute("expiryDate") String expiryDate,
-			@RequestParam(value = "configuration_file_name", required = false, defaultValue = "") String configuration_file_name,
-			@RequestParam(value = "select_broadcaster", required = false, defaultValue = "") String select_broadcaster,
-			@RequestParam(value = "select_second_broadcaster", required = false, defaultValue = "") String select_second_broadcaster,
-			@RequestParam(value = "which_layer", required = false, defaultValue = "") String which_layer,
-			@RequestParam(value = "which_scene", required = false, defaultValue = "") String which_scene,
-			@RequestParam(value = "select_cricket_matches", required = false, defaultValue = "") String selectedMatch,
-			@RequestParam(value = "qtIPAddress", required = false, defaultValue = "") String qtIPAddress,
-			@RequestParam(value = "qtPortNumber", required = false, defaultValue = "") int qtPortNumber,
-			@RequestParam(value = "qtSceneName", required = false, defaultValue = "") String qtScene,
-			@RequestParam(value = "qtLanguage", required = false, defaultValue = "") String qtLanguage,
-			@RequestParam(value = "vizIPAddress", required = false, defaultValue = "") String vizIPAddress,
-			@RequestParam(value = "vizPortNumber", required = false, defaultValue = "") int vizPortNumber,
-			@RequestParam(value = "vizSceneName", required = false, defaultValue = "") String vizScene,
-			@RequestParam(value = "vizLanguage", required = false, defaultValue = "") String vizLanguage,
-			@RequestParam(value = "vizSecondaryIPAddress", required = false, defaultValue = "") String vizSecondaryIPAddress,
-			@RequestParam(value = "vizSecondaryPortNumber", required = false, defaultValue = "") int vizSecondaryPortNumber,
-			@RequestParam(value = "vizSecondaryScene", required = false, defaultValue = "") String vizSecondaryScene,
-			@RequestParam(value = "vizSecondaryLanguage", required = false, defaultValue = "") String vizSecondaryLanguage,
-			@RequestParam(value = "vizTertiaryIPAddress", required = false, defaultValue = "") String vizTertiaryIPAddress,
-			@RequestParam(value = "vizTertiaryPortNumber", required = false, defaultValue = "") int vizTertiaryPortNumber,
-			@RequestParam(value = "vizTertiaryScene", required = false, defaultValue = "") String vizTertiaryScene,
-			@RequestParam(value = "vizTertiaryLanguage", required = false, defaultValue = "") String vizTertiaryLanguage,
-			@RequestParam(value = "Category", required = false, defaultValue = "") String Category) 
-					throws UnknownHostException, IllegalAccessException, InvocationTargetException, ParseException, 
-					IOException, InterruptedException, JAXBException, URISyntaxException
+		@ModelAttribute("session_MasterCricketDirectory") String session_MasterCricketDirectory, 
+		@ModelAttribute("session_configuration") Configuration session_configuration,
+		@ModelAttribute("session_selected_scenes") List<Scene> session_selected_scenes,
+		@ModelAttribute("session_selected_broadcaster") String session_selected_broadcaster,
+		@ModelAttribute("expiryDate") String expiryDate,
+		@RequestParam(value = "configuration_file_name", required = false, defaultValue = "") String configuration_file_name,
+		@RequestParam(value = "select_broadcaster", required = false, defaultValue = "") String select_broadcaster,
+		@RequestParam(value = "select_second_broadcaster", required = false, defaultValue = "") String select_second_broadcaster,
+		@RequestParam(value = "which_layer", required = false, defaultValue = "") String which_layer,
+		@RequestParam(value = "which_scene", required = false, defaultValue = "") String which_scene,
+		@RequestParam(value = "select_cricket_matches", required = false, defaultValue = "") String selectedMatch,
+		@RequestParam(value = "vizIPAddress", required = false, defaultValue = "") String vizIPAddress,
+		@RequestParam(value = "vizPortNumber", required = false, defaultValue = "") int vizPortNumber,
+		@RequestParam(value = "vizSceneName", required = false, defaultValue = "") String vizScene,
+		@RequestParam(value = "vizLanguage", required = false, defaultValue = "") String vizLanguage,
+		@RequestParam(value = "vizSecondaryIPAddress", required = false, defaultValue = "") String vizSecondaryIPAddress,
+		@RequestParam(value = "vizSecondaryPortNumber", required = false, defaultValue = "") int vizSecondaryPortNumber,
+		@RequestParam(value = "vizSecondaryScene", required = false, defaultValue = "") String vizSecondaryScene,
+		@RequestParam(value = "vizSecondaryLanguage", required = false, defaultValue = "") String vizSecondaryLanguage,
+		@RequestParam(value = "vizTertiaryIPAddress", required = false, defaultValue = "") String vizTertiaryIPAddress,
+		@RequestParam(value = "vizTertiaryPortNumber", required = false, defaultValue = "") int vizTertiaryPortNumber,
+		@RequestParam(value = "vizTertiaryScene", required = false, defaultValue = "") String vizTertiaryScene,
+		@RequestParam(value = "vizTertiaryLanguage", required = false, defaultValue = "") String vizTertiaryLanguage,
+		@RequestParam(value = "Category", required = false, defaultValue = "") String Category) 
+				throws UnknownHostException, IllegalAccessException, InvocationTargetException, ParseException, 
+				IOException, InterruptedException, JAXBException, URISyntaxException
 	{
 		if(current_date == null || current_date.isEmpty()) {
 			
@@ -321,25 +315,6 @@ public class IndexController
 			
 			System.out.println("Category = " + Category);
 			
-			if(Category.equalsIgnoreCase("men")) {
-			    cat = "Men";
-			    basePath = "C:\\Sports\\CricketMen\\";
-			    DatabaseContextHolder.setDb("MEN");
-			} else if(Category.equalsIgnoreCase("women")) {
-			    cat = "Women";
-			    basePath = "C:\\Sports\\CricketWomen\\";
-			    DatabaseContextHolder.setDb("WOMEN");
-			} else {
-			    cat = ""; 
-			    basePath = CricketUtil.CRICKET_DIRECTORY;
-			    DatabaseContextHolder.setDb("LOCAL");
-			}
-			System.out.println("===== CATEGORY =====");
-			System.out.println("Category = " + Category);
-			System.out.println("cat = " + cat);
-			System.out.println("basePath = " + basePath);
-			System.out.println("Current DB = " + DatabaseContextHolder.getDb());
-			
 //			speed_match_time_stamp = new File("C:\\Sports\\Cricket\\Speed\\SPEED.txt").lastModified();
 //			plotter_match_time_stamp = new File(CricketUtil.CRICKET_DIRECTORY + "Fielder/" + "FielderFormation.json").lastModified();
 //			plotter_match_time_stamp1 = new File(CricketUtil.CRICKET_DIRECTORY + "Fielder/" + "FielderFormation_1.json").lastModified();
@@ -347,16 +322,19 @@ public class IndexController
 //			plotter_match_time_stamp3 = new File(CricketUtil.CRICKET_DIRECTORY + "Fielder/" + "FielderFormation_3.json").lastModified();
 //			plotter_match_time_stamp4 = new File(CricketUtil.CRICKET_DIRECTORY + "Fielder/" + "FielderFormation_4.json").lastModified();
 //			
-			last_match_time_stamp = new File(basePath + CricketUtil.MATCHES_DIRECTORY + selectedMatch).lastModified();
-			last_setup_time_stamp = new File(basePath + CricketUtil.SETUP_DIRECTORY + selectedMatch).lastModified();
-			
 			session_configuration = new Configuration(selectedMatch, select_broadcaster, select_second_broadcaster,
-					vizIPAddress, vizPortNumber, vizLanguage, qtIPAddress, qtPortNumber, null, vizSecondaryIPAddress,
-					vizSecondaryPortNumber, vizSecondaryLanguage, null, null,"",Category,"");
-			
-			session_configuration.setCategory(Category);
+				vizIPAddress, vizPortNumber, vizLanguage, "", 0, null, vizSecondaryIPAddress,
+				vizSecondaryPortNumber, vizSecondaryLanguage, null, null,"",Category,"");
+			//session_configuration.setCategory(Category);
+			if(session_configuration != null && session_configuration.getCategory() != null) {
+				session_MasterCricketDirectory = switchDbAndDirectory(session_configuration.getCategory(), "DIRECTORY_DATABASE");
+			}
+
 			JAXBContext.newInstance(Configuration.class).createMarshaller().marshal(session_configuration, 
 					new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.CONFIGURATIONS_DIRECTORY + configuration_file_name));
+			
+			last_match_time_stamp = new File(session_MasterCricketDirectory + CricketUtil.MATCHES_DIRECTORY + selectedMatch).lastModified();
+			last_setup_time_stamp = new File(session_MasterCricketDirectory + CricketUtil.SETUP_DIRECTORY + selectedMatch).lastModified();
 			
 			session_selected_scenes.clear();
 			
@@ -813,13 +791,13 @@ public class IndexController
 				}
 			}
 
-			if(!qtIPAddress.trim().isEmpty()) {
-				switch (select_second_broadcaster) {
-				case "Quidich":
-					session_selected_scenes.get(0).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), select_second_broadcaster);
-					break;
-				}
-			}
+//			if(!qtIPAddress.trim().isEmpty()) {
+//				switch (select_second_broadcaster) {
+//				case "Quidich":
+//					session_selected_scenes.get(0).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), select_second_broadcaster);
+//					break;
+//				}
+//			}
 			model.addAttribute("manual_files", new File(CricketUtil.CRICKET_SERVER_DIRECTORY + "Manual/Data/").listFiles(new FileFilter() {
 				@Override
 			    public boolean accept(File pathname) {
@@ -832,16 +810,16 @@ public class IndexController
 					new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.CONFIGURATIONS_DIRECTORY + configuration_file_name));
 			
 			session_match = new MatchAllData();
-			if(new File(basePath + CricketUtil.SETUP_DIRECTORY + 
+			if(new File(session_MasterCricketDirectory + CricketUtil.SETUP_DIRECTORY + 
 					selectedMatch).exists()) {
-				session_match.setSetup(new ObjectMapper().readValue(new File(basePath + CricketUtil.SETUP_DIRECTORY + 
+				session_match.setSetup(new ObjectMapper().readValue(new File(session_MasterCricketDirectory + CricketUtil.SETUP_DIRECTORY + 
 						selectedMatch), Setup.class));
-				session_match.setMatch(new ObjectMapper().readValue(new File(basePath+ CricketUtil.MATCHES_DIRECTORY + 
+				session_match.setMatch(new ObjectMapper().readValue(new File(session_MasterCricketDirectory+ CricketUtil.MATCHES_DIRECTORY + 
 						selectedMatch), Match.class));
 			}
-			if(new File(basePath + CricketUtil.EVENT_DIRECTORY + 
+			if(new File(session_MasterCricketDirectory + CricketUtil.EVENT_DIRECTORY + 
 					selectedMatch).exists()) {
-				session_match.setEventFile(new ObjectMapper().readValue(new File(basePath + CricketUtil.EVENT_DIRECTORY + 
+				session_match.setEventFile(new ObjectMapper().readValue(new File(session_MasterCricketDirectory + CricketUtil.EVENT_DIRECTORY + 
 						selectedMatch), EventFile.class));
 			}
 			session_match.getMatch().setMatchFileName(selectedMatch);
@@ -851,7 +829,7 @@ public class IndexController
 			session_players = cricketService.getAllPlayer();
 			
 			session_match = CricketFunctions.populateMatchVariables(CricketFunctions.readOrSaveMatchFile(CricketUtil.READ, 
-					CricketUtil.SETUP + "," + CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match, session_configuration,basePath), 
+					CricketUtil.SETUP + "," + CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match, session_configuration,session_MasterCricketDirectory), 
 					session_players, session_team, session_ground);			
 			
 			session_match.getSetup().setMatchFileTimeStamp(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()));
@@ -861,7 +839,7 @@ public class IndexController
 			}
 			matchstats = CricketFunctions.getAllEvents(session_match ,session_selected_broadcaster, session_match.getEventFile().getEvents());
 
-			headToHead = CricketFunctions.extractHeadToHead(session_match, cricketService,basePath);
+			headToHead = CricketFunctions.extractHeadToHead(session_match, cricketService,session_MasterCricketDirectory);
 			past_tournament_stats = CricketFunctions.extractTournamentData("PAST_MATCHES_DATA", false, headToHead.getH2hPlayer(), cricketService, session_match, null);
 			
 			switch(session_selected_broadcaster) {
@@ -946,14 +924,7 @@ public class IndexController
 
 	@RequestMapping(value = {"/processCricketProcedures.html"}, method={RequestMethod.GET,RequestMethod.POST})    
 	public @ResponseBody String processCricketProcedures(
-//		@ModelAttribute("session_llc_big_screen") LLC_BigScreen session_llc_big_screen, 
-//		@ModelAttribute("session_Icc_big_screen") ICC_BIG_SCREEN session_Icc_big_screen,
-//		@ModelAttribute("session_icc_big_screen_doad_scoring") ICC_BIGSCREEN_DOAD_SCORING session_icc_big_screen_doad_scoring,
-//		@ModelAttribute("session_llc") LLC session_llc,
-//		@ModelAttribute("session_kerala") KERALA_T20 session_kerala,
-//		@ModelAttribute("session_europe") EUROPE_LEAGUE session_europe,
-//		@ModelAttribute("session_kolkata") KOLKATA_T20 session_kolkata,
-//		@ModelAttribute("session_llc_ar") LLC_AR session_llc_ar, 
+		@ModelAttribute("session_MasterCricketDirectory") String session_MasterCricketDirectory,
 		@ModelAttribute("session_configuration") Configuration session_configuration,
 		@ModelAttribute("session_selected_broadcaster") String session_selected_broadcaster,
 		@ModelAttribute("session_selected_second_broadcaster") String session_selected_second_broadcaster,
@@ -963,21 +934,21 @@ public class IndexController
 		@RequestParam(value = "Category", required = false, defaultValue = "") String Category) 
 					throws Exception 
 	{
-		if(cat.equalsIgnoreCase("Men")) {
-		    DatabaseContextHolder.setDb("MEN");
-		    basePath = "C:\\Sports\\CricketMen\\";
-		} else if(cat.equalsIgnoreCase("Women")) {
-		    DatabaseContextHolder.setDb("WOMEN");
-		    basePath = "C:\\Sports\\CricketWomen\\";
-		} else {
-		    DatabaseContextHolder.setDb("LOCAL");
-		    basePath = CricketUtil.CRICKET_DIRECTORY;
-		}
-		System.out.println("===== CATEGORY =====");
-		System.out.println("Category = " + Category);
-		System.out.println("cat = " + cat);
-		System.out.println("basePath = " + basePath);
-		System.out.println("Current DB = " + DatabaseContextHolder.getDb());
+//		if(cat.equalsIgnoreCase("Men")) {
+//		    DatabaseContextHolder.setDb("MEN");
+//		    session_MasterCricketDirectory = "C:\\Sports\\CricketMen\\";
+//		} else if(cat.equalsIgnoreCase("Women")) {
+//		    DatabaseContextHolder.setDb("WOMEN");
+//		    session_MasterCricketDirectory = "C:\\Sports\\CricketWomen\\";
+//		} else {
+//		    DatabaseContextHolder.setDb("LOCAL");
+//		    session_MasterCricketDirectory = CricketUtil.CRICKET_DIRECTORY;
+//		}
+//		System.out.println("===== CATEGORY =====");
+//		System.out.println("Category = " + Category);
+//		System.out.println("cat = " + cat);
+//		System.out.println("session_MasterCricketDirectory = " + session_MasterCricketDirectory);
+//		System.out.println("Current DB = " + DatabaseContextHolder.getDb());
 		
 		switch (whatToProcess.toUpperCase()) {
 		case "GET-CONFIG-DATA":
@@ -987,30 +958,21 @@ public class IndexController
 			
 			return new ObjectMapper().writeValueAsString(session_configuration).toString();
 		case "GET-CATEGORY-DATA":
-		    String category = valueToProcess.trim().toLowerCase(); // "men" or "women"
-		    File matchDir;
-		    if (category.equalsIgnoreCase("men")) {
-		        matchDir = new File("C:\\Sports\\CricketMen\\Matches\\");
-		        DatabaseContextHolder.setDb("MEN");
-		    } else if (category.equalsIgnoreCase("women")) {
-		        matchDir = new File("C:\\Sports\\CricketWomen\\Matches\\");
-		        DatabaseContextHolder.setDb("WOMEN");
-		    } else {
-		        matchDir = new File(CricketUtil.CRICKET_SERVER_DIRECTORY + CricketUtil.MATCHES_DIRECTORY);
-		    }
 
-		    File[] files = matchDir.listFiles(f -> f.isFile() && f.getName().toLowerCase().endsWith(".json"));
+			String baseDir = switchDbAndDirectory(valueToProcess.trim().toLowerCase(), "DIRECTORY");
+		    File[] files = new File(baseDir + CricketUtil.MATCHES_DIRECTORY).listFiles(f -> f.isFile() && f.getName().toLowerCase().endsWith(".json"));
 		    List<String> matchNames = new ArrayList<>();
 		    if (files != null) {
 		        for (File f : files) {
 		            matchNames.add(f.getName());
 		        }
 		    }
-
 		    Map<String, Object> response = new HashMap<>();
 		    response.put("configuration", session_configuration);
 		    response.put("matchFiles", matchNames);
+		    
 		    return new ObjectMapper().writeValueAsString(response).toString();
+		    
 		case "ANIMATE_IN_SPEED_SECOND_BROADCASTER":
 			switch (session_configuration.getSecondaryBroadcaster()) {
 			case "DOAD_LLC":
@@ -1031,7 +993,7 @@ public class IndexController
 			}
 			
 		case "HEAD_TO_HEAD_FILE":
-			CricketFunctions.exportMatchData(session_match, basePath);
+			CricketFunctions.exportMatchData(session_match, session_MasterCricketDirectory);
 			
 			return new ObjectMapper().writeValueAsString(session_match).toString();
 		case "DB_DATA_READ":
@@ -1062,7 +1024,7 @@ public class IndexController
 //			});
 //			
 //			cricket_matches = CricketFunctions.getTournamentMatches(files, cricketService);
-			headToHead = CricketFunctions.extractHeadToHead(session_match, cricketService, basePath);
+			headToHead = CricketFunctions.extractHeadToHead(session_match, cricketService, session_MasterCricketDirectory);
 			session_statistics = cricketService.getAllStats();
 			session_team = cricketService.getTeams();
 			session_ground = cricketService.getGrounds();
@@ -1078,7 +1040,7 @@ public class IndexController
 					cricketService, session_match, null);
 			matchstats = CricketFunctions.getAllEvents(session_match ,session_selected_broadcaster, session_match.getEventFile().getEvents());
 			 
-			if(new File(basePath + "ParScores BB.html").exists()) {
+			if(new File(session_MasterCricketDirectory + "ParScores BB.html").exists()) {
 				session_dls = CricketFunctions.populateDuckWorthLewis(session_match);
 			}
 			switch (session_selected_second_broadcaster) {
@@ -1127,7 +1089,7 @@ public class IndexController
 			return String.valueOf(show_watermark);
 			
 		case "PITCH_MAP_GRAPHICS-OPTIONS":
-			File folder = new File(basePath + "PitchMap\\");
+			File folder = new File(session_MasterCricketDirectory + "PitchMap\\");
 			File[] jsonFiles = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".json"));
 
 			List<String> fileName = new ArrayList<>();
@@ -1495,11 +1457,11 @@ public class IndexController
 //				return new ObjectMapper().writeValueAsString(third_party_session_match).toString();
 				
 			default:
-				if(last_match_time_stamp != new File(basePath + CricketUtil.MATCHES_DIRECTORY 
+				if(last_match_time_stamp != new File(session_MasterCricketDirectory + CricketUtil.MATCHES_DIRECTORY 
 						+ session_match.getMatch().getMatchFileName()).lastModified()) {
 					session_match = CricketFunctions.populateMatchVariables(CricketFunctions.readOrSaveMatchFile(CricketUtil.READ, CricketUtil.SETUP + "," 
-							+ CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match, session_configuration, basePath), session_players, session_team, session_ground);
-					last_match_time_stamp = new File(basePath + CricketUtil.MATCHES_DIRECTORY 
+							+ CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match, session_configuration, session_MasterCricketDirectory), session_players, session_team, session_ground);
+					last_match_time_stamp = new File(session_MasterCricketDirectory + CricketUtil.MATCHES_DIRECTORY 
 							+ session_match.getMatch().getMatchFileName()).lastModified();
 					matchstats = CricketFunctions.getAllEvents(session_match ,session_selected_broadcaster, session_match.getEventFile().getEvents());
 
@@ -1508,7 +1470,7 @@ public class IndexController
 				
 				switch (session_selected_broadcaster) {
 				case "EUROPE_LEAGUE":
-					if(last_match_time_stamp == new File(basePath + CricketUtil.MATCHES_DIRECTORY 
+					if(last_match_time_stamp == new File(session_MasterCricketDirectory + CricketUtil.MATCHES_DIRECTORY 
 							+ session_match.getMatch().getMatchFileName()).lastModified()) {
 //						LocalTime time = LocalTime.now();
 						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
@@ -1544,11 +1506,11 @@ public class IndexController
 			//-----------------------------------------------
 			
 			session_match = CricketFunctions.populateMatchVariables(CricketFunctions.readOrSaveMatchFile(CricketUtil.READ, CricketUtil.SETUP + "," 
-					+ CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match, session_configuration, basePath), session_players, session_team, session_ground);
+					+ CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match, session_configuration, session_MasterCricketDirectory), session_players, session_team, session_ground);
 			match_file_change = true;
 			if(match_file_change == true) {
 				session_match = CricketFunctions.populateMatchVariables(CricketFunctions.readOrSaveMatchFile(CricketUtil.READ, CricketUtil.SETUP + "," 
-						+ CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match, session_configuration,basePath), session_players, session_team, session_ground);
+						+ CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match, session_configuration,session_MasterCricketDirectory), session_players, session_team, session_ground);
 				matchstats = CricketFunctions.getAllEvents(session_match ,session_selected_broadcaster, session_match.getEventFile().getEvents());
 				 
 				switch (session_selected_broadcaster) {
@@ -1662,9 +1624,9 @@ public class IndexController
 //					session_kolkata.updateInfobar(session_selected_scenes, session_match,show_speed, CricketFunctions.processPrintWriter(session_configuration),1);
 					break;	
 				}
-				last_match_time_stamp = new File(basePath + CricketUtil.MATCHES_DIRECTORY 
+				last_match_time_stamp = new File(session_MasterCricketDirectory + CricketUtil.MATCHES_DIRECTORY 
 						+ session_match.getMatch().getMatchFileName()).lastModified();
-				last_setup_time_stamp = new File(basePath + CricketUtil.SETUP_DIRECTORY 
+				last_setup_time_stamp = new File(session_MasterCricketDirectory + CricketUtil.SETUP_DIRECTORY 
 						+ session_match.getMatch().getMatchFileName()).lastModified();
 				match_file_change = false;
 				return new ObjectMapper().writeValueAsString(session_match).toString();
@@ -1920,6 +1882,10 @@ public class IndexController
 	}
 	@ModelAttribute("expiryDate")
 	public String expiryDate(){
+		return new String();
+	}
+	@ModelAttribute("session_MasterCricketDirectory")
+	public String session_MasterCricketDirectory(){
 		return new String();
 	}
 }

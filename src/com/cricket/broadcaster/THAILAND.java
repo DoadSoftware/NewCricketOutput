@@ -41,7 +41,6 @@ import com.cricket.model.Ground;
 import com.cricket.model.InfobarStats;
 import com.cricket.containers.Infobar;
 import com.cricket.containers.Scene;
-import com.cricket.controller.IndexController;
 import com.cricket.util.CricketFunctions;
 import com.cricket.util.CricketUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -83,7 +82,8 @@ public class THAILAND extends Scene{
 			infobar = populateInfobarBottomRight(infobar,true, print_writer,  match, session_selected_broadcaster);
 			infobar = populateInfobarBottom(infobar,true, print_writer,  match, session_selected_broadcaster);
 		}
-		CricketFunctions.getInteractive(match,"FULL_WRITE",IndexController.basePath);
+		//DJ look into this. Why are we using IndexController.basePath
+		//CricketFunctions.getInteractive(match,"FULL_WRITE",IndexController.basePath);
 		return infobar;
 	}
 	

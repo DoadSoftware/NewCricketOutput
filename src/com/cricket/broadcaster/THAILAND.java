@@ -51,6 +51,7 @@ public class THAILAND extends Scene{
 	private String slashOrDash = "-";
 	public Infobar infobar = new Infobar();
 	public String session_selected_broadcaster = "THAILAND";
+	public String diectoryPath = "";
 	public String which_graphics_onscreen = "";
 	private String logo_path = "C:\\Images\\THAILAND\\Logos\\";
 	private String sponsor_logo_path = "D:\\EverestCricket\\Everest_Cric2022\\Logos\\Goa_Cricket_Logos\\Sponsors\\";
@@ -82,13 +83,15 @@ public class THAILAND extends Scene{
 			infobar = populateInfobarBottomRight(infobar,true, print_writer,  match, session_selected_broadcaster);
 			infobar = populateInfobarBottom(infobar,true, print_writer,  match, session_selected_broadcaster);
 		}
-		//DJ look into this. Why are we using IndexController.basePath
-		//CricketFunctions.getInteractive(match,"FULL_WRITE",IndexController.basePath);
+		CricketFunctions.getInteractive(match,"FULL_WRITE",diectoryPath);
 		return infobar;
 	}
 	
 	public Object ProcessGraphicOption(String whatToProcess, MatchAllData match, CricketService cricketService, List<MatchAllData> tournament_matches,
-			PrintWriter print_writer, List<Scene> scenes, String valueToProcess, List<Statistics> statistics, Configuration config) throws InterruptedException, ParseException, JAXBException, NumberFormatException, IOException, IllegalAccessException, InvocationTargetException{
+			PrintWriter print_writer, List<Scene> scenes, String valueToProcess, List<Statistics> statistics, Configuration config, String session_directoryPath) throws InterruptedException, ParseException, JAXBException, NumberFormatException, IOException, IllegalAccessException, InvocationTargetException{
+		
+		diectoryPath = session_directoryPath;
+		
 		switch (whatToProcess.toUpperCase()) {
 		case "BUG_GRAPHICS-OPTIONS": case "HOWOUT_GRAPHICS-OPTIONS": case "BATSMANSTATS_GRAPHICS-OPTIONS": case "BOWLERSTATS_GRAPHICS-OPTIONS": case "NAMESUPER_PLAYER_GRAPHICS-OPTIONS": 
 		case "L3PLAYERPROFILE_GRAPHICS-OPTIONS": case "PLAYERPROFILE_GRAPHICS-OPTIONS": case "BOTTOMLEFT_GRAPHICS-OPTIONS": case "BOTTOMRIGHT_GRAPHICS-OPTIONS": case "INFOBAR_GRAPHICS-OPTIONS": 

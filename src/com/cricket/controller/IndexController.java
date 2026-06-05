@@ -38,6 +38,7 @@ import com.cricket.broadcaster.EVEREST_LEGENDS_90;
 import com.cricket.broadcaster.EVEREST_MPL_T20;
 import com.cricket.broadcaster.KERALA_T20;
 import com.cricket.broadcaster.T20_MUMBAI_AR;
+import com.cricket.broadcaster.THAILAND;
 import com.cricket.config.DatabaseContextHolder;
 import com.cricket.broadcaster.MAHARAJA_T20;
 import com.cricket.broadcaster.PPL;
@@ -91,7 +92,7 @@ public class IndexController
 //	public static PLOTTER this_plotter;
 //	public static Bukhatir this_bukhatir;
 //	public static Arunachal this_arunachal;
-//	public static THAILAND this_thailand;
+//	    public static THAILAND this_thailand;
 //	public static ACC_NEPAL this_acc_nepal;
 //	public static ICC_CWCU19 this_icc_cwc_u19;
 //	public static GCPL this_gpcl;
@@ -171,10 +172,13 @@ public class IndexController
 		if(whatToProcess.toUpperCase().contains("DIRECTORY")) {
 			if(genderCategory.equalsIgnoreCase("men")) {
 			    baseDir = "C:\\Sports\\CricketMen\\";
+			    cat = "Men";
 			} else if(genderCategory.equalsIgnoreCase("women")) {
 			    baseDir = "C:\\Sports\\CricketWomen\\";
+			    cat = "Women";
 			} else {
 			    baseDir = CricketUtil.CRICKET_DIRECTORY;
+			    cat = "";
 			}
 		}
 		if(whatToProcess.toUpperCase().contains("DATABASE")) {
@@ -186,11 +190,10 @@ public class IndexController
 			    DatabaseContextHolder.setDb("LOCAL");
 			}
 		}
-		System.out.println("===== CATEGORY =====");
-		System.out.println("Category = " + genderCategory);
-		System.out.println("cat = " + cat);
-		System.out.println("session_MasterCricketDirectory = " + baseDir);
-		System.out.println("Current DB = " + DatabaseContextHolder.getDb());
+//		System.out.println("===== CATEGORY =====");
+//		System.out.println("Category = " + genderCategory);
+//		System.out.println("session_MasterCricketDirectory = " + baseDir);
+//		System.out.println("Current DB = " + DatabaseContextHolder.getDb());
 		return baseDir;
 	}
 	
@@ -253,11 +256,12 @@ public class IndexController
 		}
 		
 		if(session_configuration != null && session_configuration.getCategory() != null) {
-			session_MasterCricketDirectory = switchDbAndDirectory(session_configuration.getCategory(), "DIRECTORY_DATABASE");
+			session_MasterCricketDirectory = switchDbAndDirectory("DIRECTORY_DATABASE", session_configuration.getCategory());
 		}
 		
 		model.addAttribute("session_configuration",session_configuration);
 		model.addAttribute("session_selected_scenes",session_selected_scenes);
+		model.addAttribute("session_MasterCricketDirectory", session_MasterCricketDirectory);
 		
 		return "initialise";
 	}
@@ -313,7 +317,7 @@ public class IndexController
 			session_selected_broadcaster = select_broadcaster;
 			session_selected_second_broadcaster = select_second_broadcaster;
 			
-			System.out.println("Category = " + Category);
+			System.out.println("Category1  = " + Category);
 			
 //			speed_match_time_stamp = new File("C:\\Sports\\Cricket\\Speed\\SPEED.txt").lastModified();
 //			plotter_match_time_stamp = new File(CricketUtil.CRICKET_DIRECTORY + "Fielder/" + "FielderFormation.json").lastModified();
@@ -322,13 +326,13 @@ public class IndexController
 //			plotter_match_time_stamp3 = new File(CricketUtil.CRICKET_DIRECTORY + "Fielder/" + "FielderFormation_3.json").lastModified();
 //			plotter_match_time_stamp4 = new File(CricketUtil.CRICKET_DIRECTORY + "Fielder/" + "FielderFormation_4.json").lastModified();
 //			
-			session_configuration = new Configuration(selectedMatch, select_broadcaster, select_second_broadcaster,
-				vizIPAddress, vizPortNumber, vizLanguage, "", 0, null, vizSecondaryIPAddress,
-				vizSecondaryPortNumber, vizSecondaryLanguage, null, null,"",Category,"");
+			session_configuration = new Configuration(selectedMatch, select_broadcaster, select_second_broadcaster, vizIPAddress, vizPortNumber, vizLanguage, "",
+					0, null, vizSecondaryIPAddress,vizSecondaryPortNumber, vizSecondaryLanguage, null, null,"",Category,"");
 			//session_configuration.setCategory(Category);
 			if(session_configuration != null && session_configuration.getCategory() != null) {
-				session_MasterCricketDirectory = switchDbAndDirectory(session_configuration.getCategory(), "DIRECTORY_DATABASE");
+				session_MasterCricketDirectory = switchDbAndDirectory("DIRECTORY_DATABASE", session_configuration.getCategory());
 			}
+			System.out.println("MASTER FILES - " + session_MasterCricketDirectory);
 
 			JAXBContext.newInstance(Configuration.class).createMarshaller().marshal(session_configuration, 
 					new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.CONFIGURATIONS_DIRECTORY + configuration_file_name));
@@ -810,20 +814,20 @@ public class IndexController
 					new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.CONFIGURATIONS_DIRECTORY + configuration_file_name));
 			
 			session_match = new MatchAllData();
-			if(new File(session_MasterCricketDirectory + CricketUtil.SETUP_DIRECTORY + 
-					selectedMatch).exists()) {
+			System.out.println("selectedMatch - " + selectedMatch);
+			if(new File(session_MasterCricketDirectory + CricketUtil.SETUP_DIRECTORY + selectedMatch).exists()) {
 				session_match.setSetup(new ObjectMapper().readValue(new File(session_MasterCricketDirectory + CricketUtil.SETUP_DIRECTORY + 
 						selectedMatch), Setup.class));
 				session_match.setMatch(new ObjectMapper().readValue(new File(session_MasterCricketDirectory+ CricketUtil.MATCHES_DIRECTORY + 
 						selectedMatch), Match.class));
 			}
-			if(new File(session_MasterCricketDirectory + CricketUtil.EVENT_DIRECTORY + 
-					selectedMatch).exists()) {
+			if(new File(session_MasterCricketDirectory + CricketUtil.EVENT_DIRECTORY + selectedMatch).exists()) {
 				session_match.setEventFile(new ObjectMapper().readValue(new File(session_MasterCricketDirectory + CricketUtil.EVENT_DIRECTORY + 
 						selectedMatch), EventFile.class));
 			}
-			session_match.getMatch().setMatchFileName(selectedMatch);
 			
+			session_match.getMatch().setMatchFileName(selectedMatch);
+
 			session_team =  cricketService.getTeams();
 			session_ground =  cricketService.getGrounds();
 			session_players = cricketService.getAllPlayer();
@@ -917,6 +921,7 @@ public class IndexController
 //			model.addAttribute("session_kolkata",session_kolkata);
 //			model.addAttribute("session_llc_ar",session_llc_ar);
 			model.addAttribute("session_selected_scenes",session_selected_scenes);
+			model.addAttribute("session_MasterCricketDirectory", session_MasterCricketDirectory);
 			
 			return "output";
 		}
@@ -934,32 +939,15 @@ public class IndexController
 		@RequestParam(value = "Category", required = false, defaultValue = "") String Category) 
 					throws Exception 
 	{
-//		if(cat.equalsIgnoreCase("Men")) {
-//		    DatabaseContextHolder.setDb("MEN");
-//		    session_MasterCricketDirectory = "C:\\Sports\\CricketMen\\";
-//		} else if(cat.equalsIgnoreCase("Women")) {
-//		    DatabaseContextHolder.setDb("WOMEN");
-//		    session_MasterCricketDirectory = "C:\\Sports\\CricketWomen\\";
-//		} else {
-//		    DatabaseContextHolder.setDb("LOCAL");
-//		    session_MasterCricketDirectory = CricketUtil.CRICKET_DIRECTORY;
-//		}
-//		System.out.println("===== CATEGORY =====");
-//		System.out.println("Category = " + Category);
-//		System.out.println("cat = " + cat);
-//		System.out.println("session_MasterCricketDirectory = " + session_MasterCricketDirectory);
-//		System.out.println("Current DB = " + DatabaseContextHolder.getDb());
 		
 		switch (whatToProcess.toUpperCase()) {
 		case "GET-CONFIG-DATA":
-
 			session_configuration = (Configuration)JAXBContext.newInstance(Configuration.class).createUnmarshaller().unmarshal(
 				new File(CricketUtil.CRICKET_DIRECTORY + CricketUtil.CONFIGURATIONS_DIRECTORY + valueToProcess));
-			
 			return new ObjectMapper().writeValueAsString(session_configuration).toString();
 		case "GET-CATEGORY-DATA":
-
-			String baseDir = switchDbAndDirectory(valueToProcess.trim().toLowerCase(), "DIRECTORY");
+			System.out.println("valueToProcess - " + valueToProcess);
+			String baseDir = switchDbAndDirectory("DIRECTORY_DATABASE", valueToProcess.trim().toLowerCase());
 		    File[] files = new File(baseDir + CricketUtil.MATCHES_DIRECTORY).listFiles(f -> f.isFile() && f.getName().toLowerCase().endsWith(".json"));
 		    List<String> matchNames = new ArrayList<>();
 		    if (files != null) {
@@ -1049,7 +1037,7 @@ public class IndexController
 //						session_selected_scenes, valueToProcess, session_statistics,plotterData, session_configuration, past_tournament_stats, headToHead.getH2hPlayer());
 			case "KERALA_T20":
 				return (String) this_kerala_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, past_tournament_stats, CricketFunctions.processPrintWriter(session_configuration), 
-						session_selected_scenes, valueToProcess, session_statistics,plotterData, headToHead.getH2hPlayer(), session_configuration);	
+						session_selected_scenes, valueToProcess, session_statistics,plotterData, headToHead.getH2hPlayer(), session_configuration,session_MasterCricketDirectory);	
 			case "KOLKATA_T20":
 //				return (String) session_kolkata.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration), 
 //						session_selected_scenes, valueToProcess, session_statistics,plotterData, session_configuration);	
@@ -1161,7 +1149,7 @@ public class IndexController
 			case "KERALA_T20":
 				return (String) this_kerala_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, past_tournament_stats,
 						CricketFunctions.processPrintWriter(session_configuration), session_selected_scenes, valueToProcess, session_statistics,plotterData, 
-						headToHead.getH2hPlayer(), session_configuration);
+						headToHead.getH2hPlayer(), session_configuration,session_MasterCricketDirectory);
 //			case "KOLKATA_T20":
 //				return (String) session_kolkata.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
 //						CricketFunctions.processPrintWriter(session_configuration), session_selected_scenes, valueToProcess, session_statistics,plotterData, session_configuration);	
@@ -1325,7 +1313,8 @@ public class IndexController
 //						CricketFunctions.processPrintWriter(session_configuration),session_selected_scenes, valueToProcess, session_statistics,plotterData, session_configuration, past_tournament_stats, headToHead.getH2hPlayer());
 			case "KERALA_T20":
 				return (String) this_kerala_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, past_tournament_stats,
-						CricketFunctions.processPrintWriter(session_configuration),session_selected_scenes, valueToProcess, session_statistics,plotterData, headToHead.getH2hPlayer(), session_configuration);	
+						CricketFunctions.processPrintWriter(session_configuration),session_selected_scenes, valueToProcess, session_statistics,plotterData, 
+						headToHead.getH2hPlayer(), session_configuration,session_MasterCricketDirectory);	
 //			case "KOLKATA_T20":
 //				return (String) session_kolkata.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches,
 //						CricketFunctions.processPrintWriter(session_configuration),session_selected_scenes, valueToProcess, session_statistics,plotterData, session_configuration);	
@@ -1457,8 +1446,11 @@ public class IndexController
 //				return new ObjectMapper().writeValueAsString(third_party_session_match).toString();
 				
 			default:
+				System.out.println("session_MasterCricketDirectory1 - " + session_MasterCricketDirectory);
+				
 				if(last_match_time_stamp != new File(session_MasterCricketDirectory + CricketUtil.MATCHES_DIRECTORY 
 						+ session_match.getMatch().getMatchFileName()).lastModified()) {
+					System.out.println("session_MasterCricketDirectory2 - " + session_MasterCricketDirectory);
 					session_match = CricketFunctions.populateMatchVariables(CricketFunctions.readOrSaveMatchFile(CricketUtil.READ, CricketUtil.SETUP + "," 
 							+ CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match, session_configuration, session_MasterCricketDirectory), session_players, session_team, session_ground);
 					last_match_time_stamp = new File(session_MasterCricketDirectory + CricketUtil.MATCHES_DIRECTORY 
@@ -1632,9 +1624,7 @@ public class IndexController
 				return new ObjectMapper().writeValueAsString(session_match).toString();
 				
 			} else {
-				
 				return new ObjectMapper().writeValueAsString(session_match).toString();
-			
 			}
 			
 		default:
@@ -1692,8 +1682,8 @@ public class IndexController
 //						session_selected_scenes, valueToProcess, session_statistics,past_tournament_stats, headToHead.getH2hPlayer(),session_configuration);
 //				return new ObjectMapper().writeValueAsString(this_arunachal).toString();	
 //			case "THAILAND":
-//				this_thailand.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
-//						CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_scenes, valueToProcess, session_statistics, session_configuration);
+//				this_thailand.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(0), 
+//							session_selected_scenes, valueToProcess, session_statistics, session_configuration,session_MasterCricketDirectory);
 //				return new ObjectMapper().writeValueAsString(this_thailand).toString();
 //			case "RSWS":
 //				this_rsws.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches,past_tournament_stats, 
@@ -1822,7 +1812,7 @@ public class IndexController
 //				return new ObjectMapper().writeValueAsString(session_llc).toString();
 			case "KERALA_T20":
 				this_kerala_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches,past_tournament_stats, CricketFunctions.processPrintWriter(session_configuration), 
-						session_selected_scenes, valueToProcess, session_statistics,plotterData, headToHead.getH2hPlayer(), session_configuration);
+						session_selected_scenes, valueToProcess, session_statistics,plotterData, headToHead.getH2hPlayer(), session_configuration, session_MasterCricketDirectory);
 				return new ObjectMapper().writeValueAsString(this_kerala_t20).toString();
 //			case "EUROPE_LEAGUE":
 //				session_europe.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches,past_tournament_stats, CricketFunctions.processPrintWriter(session_configuration), 

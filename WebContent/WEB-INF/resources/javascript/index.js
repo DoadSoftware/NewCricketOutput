@@ -2261,14 +2261,14 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Alt_F7'://Alt+F7 LT_POINTS_TABLE
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ACC': case 'KERALA_T20':
+						case 'ACC': 
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
 							addItemsToList('LT_POINTSTABLE-OPTIONS', null);
 							break;
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'PUNJAB_T20': case 'USPL': case 'DOAD_LLC':
-						case 'ICPL': case 'LCT': case 'APL': case 'MAHARAJA_T20': case 'PPL':
+						case 'ICPL': case 'LCT': case 'APL': case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20':
 							processCricketProcedures('POPULATE-LTPOINTS_TABLE');
 							break;
 					}
@@ -2334,6 +2334,9 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							break;
 					}
 					break;
+					case "Alt_Shift_Q":
+						processCricketProcedures('POPULATE-DIMENSION');
+						break;	
 				case '6'://THIS_MATCH_SIXES
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'ACC_NEPAL': case 'RPL': case 'THAILAND': case 'LCT':
@@ -2743,15 +2746,20 @@ function processUserSelection(whichInput) {
 			processCricketProcedures('GET-CONFIG-DATA');
 			break;
 		case 'selectSection5':
+			$('#comms_graphics_div').remove();
 			switch ($('#selectSection5 :selected').val().toUpperCase()) {
 				case 'BOWLERSTATS':
 					addItemsToList('TICKER_BOWLERSTATS-OPTIONS', null);
 					addItemsToList('POPULATE-PROFILE', session_match);
 					//processCricketProcedures('TICKER_BOWLER_GRAPHICS-OPTIONS');
 					break;
-				/*case 'COMMS':
+				case 'COMMS':
 					processCricketProcedures('COMMS_GRAPHICS_OPTIONS');
-					break;	*/
+					break;	
+				/*case 'INFOBARSTAT':
+					alert('hii');
+					processCricketProcedures('FULLSECTION_INFOBARSTATS_GRAPHICS_OPTIONS');
+					break;*/
 			}
 			break;
 		case 'selectSection5FreeText':
@@ -10333,9 +10341,10 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = $('#selectSection5 option:selected').val() + ',' + $('#selectSection5FreeText option:selected').val()+',' + $('#selectxOvers').val();
 					break;
 				case 'KERALA_T20':
-					console.log('COMMS - ' + $('#selectSection5 option:selected').val())
 					if($('#selectSection5 option:selected').val() == 'comms'){
-						valueToProcess = $('#selectSection5 option:selected').val() + ',' + $('#selectInfoBarComm1 option:selected').val() + ',' + $('#selectInfoBarComm2 option:selected').val() + ',' + $('#selectInfoBarComm3 option:selected').val();
+						valueToProcess = $('#selectSection5 option:selected').val() + ',' + $('#commentator1 option:selected').val() + ',' + $('#commentator2 option:selected').val() + ',' + $('#commentator3 option:selected').val();
+					}else if ($('#selectSection5 option:selected').val() == 'infobarstat'){
+						valueToProcess = $('#selectSection5 option:selected').val() + ',' + $('#infobar_Stats option:selected').val();
 					}else{
 						valueToProcess = $('#selectSection5 option:selected').val() + ',' + $('#selectSection5FreeText option:selected').val()+',' + $('#selectxOvers').val();
 					}
@@ -10725,6 +10734,13 @@ function processCricketProcedures(whatToProcess) {
 					break;
 			}
 			break;
+		case 'POPULATE-DIMENSION':
+			switch ($('#selected_broadcaster').val().toUpperCase()) {
+					case 'KERALA_T20':
+						valueToProcess = '/Default/FieldDimesnsion';
+						break;
+				}
+				break;
 		case 'POPULATE-FIELD_PLOTTER_USPL':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'DOAD_LLC': case 'KERALA_T20':
@@ -11991,8 +12007,6 @@ function processCricketProcedures(whatToProcess) {
 					break;	
 			}
 			break;
-			
-			
 		case 'POPULATE-EQUATIONSHORT_ICC':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'ICC_BIG_SCREEN':
@@ -13552,7 +13566,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/Mini_Popups';
 					break;
 				case 'KERALA_T20':
-					valueToProcess = '/Default/Mini_Popups' + ',' + $('#selectPointsGroup option:selected').val();
+					valueToProcess = '/Default/Mini_Popups';
 					break;	
 				case 'RPL':
 					valueToProcess = '/Default/MIniPointsTable';
@@ -14337,6 +14351,15 @@ function processCricketProcedures(whatToProcess) {
 					addItemsToList('COMMS-OPTIONS', data);
 					session_match = data;
 					break;
+				case "FULLSECTION_INFOBARSTATS_GRAPHICS_OPTIONS":
+					alert('hello');
+					addItemsToList('FULLSECTION_INFOBARSTATS-OPTIONS', data);
+					session_match = data;
+					break;
+				case 'STATS_GRAPHICS_OPTIONS':
+					addItemsToList('STATS-OPTIONS', data);
+					session_match = data;
+					break;
 				case 'BUG_DB2_GRAPHICS-OPTIONS':
 					addItemsToList('POPULATE-BUG-SCENE', data);
 					session_match = data;
@@ -14989,7 +15012,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'POPULATE-FF_GRAPHICS': case 'POPULATE-FF_SUMMARY_GRAPHICS': case 'POPULATE-LT_GRAPHICS': case 'POPULATE-SUPER_OVER': case 'POPULATE-TOURNAMENT_RULES':
 				case 'POPULATE-L3-POINTER': case 'POPULATE-FIELD_PLOTTER_USPL': case 'POPULATE-BUG_BAT_SPEED': case 'POPULATE-BUG_BAT_POWER': case 'POPULATE-BUG_BAT_IMPACT': case 'POPULATE-BUG_BAT_TWIST':
 				case 'POPULATE-THIS_PARTNERSHIP': case 'POPULATE-BUKH-POINTSTABLE': case 'POPULATE-FF-CAPTAINS':case "POPULATE-TIMEOUT_LT_RULES":
-				case 'POPULATE-FF_KEYPLAYER_GRAPHICS':case "POPULATE-POWERPLAY_LT_RULES":
+				case 'POPULATE-FF_KEYPLAYER_GRAPHICS':case "POPULATE-POWERPLAY_LT_RULES": case 'POPULATE-DIMENSION':
 				case 'POPULATE-L3-POINTER': case 'POPULATE-INFOBAR_ICC': case 'POPULATE-SIX_DISTANCE_ICC': case 'POPULATE-SCOREBUG_ICC': case 'POPULATE-PARTNERSHIP_ICC':
 				case 'POPULATE-MATCHID_ICC': case 'POPULATE-FREEHIT_ICC': case 'POPULATE-SCOREBOARD_ICC': case 'POPULATE-BOUNDARY_ICC': case 'POPULATE-FREETEXT_ICC':
 				case 'POPULATE-LINE2FREE_ICC': case 'POPULATE-EXTRAS_ICC': case 'POPULATE-TARGET_ICC': case 'POPULATE-EQUATION_ICC':
@@ -15239,6 +15262,9 @@ function processCricketProcedures(whatToProcess) {
 							case 'POPULATE-FIELD_PLOTTER_USPL':
 								processCricketProcedures('ANIMATE-IN-PLOTTER_ICC');
 								break;
+							case 'POPULATE-DIMENSION':
+								processCricketProcedures('ANIMATE-IN-DIMENSION');
+								break;	
 							case 'POPULATE-L3-PARTNERSHIP':
 								processCricketProcedures('ANIMATE-IN-L3PARTNERSHIP');
 								break;
@@ -17875,102 +17901,165 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 			document.getElementById('select_graphic_options_div').style.display = '';
 			break;
+		case 'STATS-OPTIONS':
+			// Remove old comms div if already present
+		    $('#comms_graphics_div').remove();
+
+		    var div = document.createElement('div');
+		    div.id = 'comms_graphics_div';
+		    div.style.marginTop = '10px';
+
+		    // Commentator 1
+		    var comm1 = document.createElement('select');
+		    comm1.id = 'commentator1';
+		    comm1.name = 'commentator1';
+
+		    // Commentator 2
+		    var comm2 = document.createElement('select');
+		    comm2.id = 'commentator2';
+		    comm2.name = 'commentator2';
+
+		    // Commentator 3
+		    var comm3 = document.createElement('select');
+		    comm3.id = 'commentator3';
+		    comm3.name = 'commentator3';
+			
+		    dataToProcess.forEach(function(comm, index, arr1){
+
+		        var o1 = document.createElement('option');
+		        o1.value = comm.commentatorId;
+		        o1.text = comm.commentatorName;
+		        comm1.appendChild(o1);
+
+		        var o2 = document.createElement('option');
+		        o2.value = comm.commentatorId;
+		        o2.text = comm.commentatorName;
+		        comm2.appendChild(o2);
+
+		        var o3 = document.createElement('option');
+		        o3.value = comm.commentatorId;
+		        o3.text = comm.commentatorName;
+		        comm3.appendChild(o3)
+		    });
+
+		    div.appendChild(document.createTextNode('Commentator 1 : '));
+		    div.appendChild(comm1);
+
+		    div.appendChild(document.createElement('br'));
+		    div.appendChild(document.createElement('br'));
+
+		    div.appendChild(document.createTextNode('Commentator 2 : '));
+		    div.appendChild(comm2);
+
+		    div.appendChild(document.createElement('br'));
+		    div.appendChild(document.createElement('br'));
+
+		    div.appendChild(document.createTextNode('Commentator 3 : '));
+		    div.appendChild(comm3);
+
+		    document.getElementById('select_graphic_options_div').appendChild(div);
+			break;
+		case 'FULLSECTION_INFOBARSTATS-OPTIONS':
+			alert('hollow');
+			// Remove old comms div if already present
+		    $('#infoBarStat_graphics_div').remove();
+
+		    var div = document.createElement('div');
+		    div.id = 'infoBarStat_graphics_div';
+		    div.style.marginTop = '10px';
+
+		    // Commentator 1
+		    var comm1 = document.createElement('select');
+		    comm1.id = 'infobar_Stats';
+		    comm1.name = 'infobarStats';
+				
+			dataToProcess.forEach(function(stats, index, arr1){
+		        var o1 = document.createElement('option');
+		        o1.value = stats.order;
+		        o1.text = stats.order+ '-' + pro.prompt;
+		        comm1.appendChild(o1);
+		    });
+
+		    div.appendChild(document.createTextNode('Commentator 1 : '));
+		    div.appendChild(comm1);
+
+		    document.getElementById('select_graphic_options_div').appendChild(div);
+			break;
 		case 'COMMS-OPTIONS':
-			$('#select_graphic_options_div').empty();
 
-				header_text = document.createElement('h6');
-				header_text.innerHTML = 'Select Graphic Options';
-				document.getElementById('select_graphic_options_div').appendChild(header_text);
+			    // Remove old comms div if already present
+			    $('#comms_graphics_div').remove();
 
-				table = document.createElement('table');
-				table.setAttribute('class', 'table table-bordered');
+			    var div = document.createElement('div');
+			    div.id = 'comms_graphics_div';
+			    div.style.marginTop = '10px';
 
-				tbody = document.createElement('tbody');
+			    // Commentator 1
+			    var comm1 = document.createElement('select');
+			    comm1.id = 'commentator1';
+			    comm1.name = 'commentator1';
 
-				table.appendChild(tbody);
-				document.getElementById('select_graphic_options_div').appendChild(table);
+			    // Commentator 2
+			    var comm2 = document.createElement('select');
+			    comm2.id = 'commentator2';
+			    comm2.name = 'commentator2';
 
-				row = tbody.insertRow(tbody.rows.length);
-				select = document.createElement('select');
-				select.id = 'selectInfoBarComm1';
-				select.name = select.id;
+			    // Commentator 3
+			    var comm3 = document.createElement('select');
+			    comm3.id = 'commentator3';
+			    comm3.name = 'commentator3';
 
-				option = document.createElement('option');
-				option.value = '0';
-				option.text = "";
-				select.appendChild(option);
-				dataToProcess.forEach(function(comm, index, arr1) {
-					if (comm.useThis == 'Yes') {
-						option = document.createElement('option');
-						option.value = comm.commentatorId;
-						option.text = comm.commentatorName;
-						select.appendChild(option);
-					}
+				// Blank option with value 0
+				var blank1 = document.createElement('option');
+				blank1.value = "0";
+				blank1.text = "";
+				comm1.appendChild(blank1);
+
+				var blank2 = document.createElement('option');
+				blank2.value = "0";
+				blank2.text = "";
+				comm2.appendChild(blank2);
+
+				var blank3 = document.createElement('option');
+				blank3.value = "0";
+				blank3.text = "";
+				comm3.appendChild(blank3);
+
+				dataToProcess.forEach(function(comm, index, arr1){
+
+				    var o1 = document.createElement('option');
+				    o1.value = comm.commentatorId;
+				    o1.text = comm.commentatorName;
+				    comm1.appendChild(o1);
+
+				    var o2 = document.createElement('option');
+				    o2.value = comm.commentatorId;
+				    o2.text = comm.commentatorName;
+				    comm2.appendChild(o2);
+
+				    var o3 = document.createElement('option');
+				    o3.value = comm.commentatorId;
+				    o3.text = comm.commentatorName;
+				    comm3.appendChild(o3);
 				});
-				row.insertCell(cellCount).appendChild(select);
-				cellCount = cellCount + 1;
-				select = document.createElement('select');
-				select.id = 'selectInfoBarComm2';
-				select.name = select.id;
 
-				option = document.createElement('option');
-				option.value = '0';
-				option.text = "";
-				select.appendChild(option);
-				dataToProcess.forEach(function(comm, index, arr1) {
-					if (comm.useThis == 'Yes') {
-						option = document.createElement('option');
-						option.value = comm.commentatorId;
-						option.text = comm.commentatorName;
-						select.appendChild(option);
-					}
-				});
-				row.insertCell(cellCount).appendChild(select);
-				cellCount = cellCount + 1;
-				select = document.createElement('select');
-				select.id = 'selectInfoBarComm3';
-				select.name = select.id;
+			    div.appendChild(document.createTextNode('Commentator 1 : '));
+			    div.appendChild(comm1);
 
-				option = document.createElement('option');
-				option.value = '0';
-				option.text = "";
-				select.appendChild(option);
-				dataToProcess.forEach(function(comm, index, arr1) {
-					if (comm.useThis == 'Yes') {
-						option = document.createElement('option');
-						option.value = comm.commentatorId;
-						option.text = comm.commentatorName;
-						select.appendChild(option);
-					}
-				});
-				row.insertCell(cellCount).appendChild(select);
-				cellCount = cellCount + 1;
+			    div.appendChild(document.createElement('br'));
+			    div.appendChild(document.createElement('br'));
 
-				option = document.createElement('input');
-				option.type = 'button';
+			    div.appendChild(document.createTextNode('Commentator 2 : '));
+			    div.appendChild(comm2);
 
-				option.name = 'populate_infobar_section5_btn';
-				option.value = 'Populate Commentator';
+			    div.appendChild(document.createElement('br'));
+			    div.appendChild(document.createElement('br'));
 
-				option.id = option.name;
-				option.setAttribute('onclick', "processUserSelection(this)");
+			    div.appendChild(document.createTextNode('Commentator 3 : '));
+			    div.appendChild(comm3);
 
-				div = document.createElement('div');
-				div.append(option);
+			    document.getElementById('select_graphic_options_div').appendChild(div);
 
-				option = document.createElement('input');
-				option.type = 'button';
-				option.name = 'cancel_graphics_btn';
-				option.id = option.name;
-				option.value = 'Cancel';
-				option.setAttribute('onclick', 'processUserSelection(this)');
-
-				div.append(option);
-
-				row.insertCell(cellCount).appendChild(div);
-				cellCount = cellCount + 1;
-
-				document.getElementById('select_graphic_options_div').style.display = '';
 				break;
 		case 'COMMENTATORS-OPTIONS':
 			$('#select_graphic_options_div').empty();
@@ -31817,14 +31906,14 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									option.text = 'Timeline';
 									select.appendChild(option);
 									
-									/*option = document.createElement('option');
+									option = document.createElement('option');
 									option.value = 'comms';
 									option.text = 'COMMS';
-									select.appendChild(option);*/
+									select.appendChild(option);
 
 									/*option = document.createElement('option');
-									option.value = 'bowlerStats';
-									option.text = 'Bowler Stats';
+									option.value = 'infobarstat';
+									option.text = 'INFOBARSTAT';
 									select.appendChild(option);*/
 
 									option = document.createElement('option');
@@ -32550,10 +32639,20 @@ function addItemsToList(whatToProcess, dataToProcess) {
 												select = document.createElement('select');
 												select.id = 'selectRightStat';
 												select.name = select.id;
+												
+												option = document.createElement('option');
+												option.value = 'Venue';
+												option.text = 'Venue';
+												select.appendChild(option);
 
 												option = document.createElement('option');
 												option.value = 'Review';
 												option.text = 'Review';
+												select.appendChild(option);
+												
+												option = document.createElement('option');
+												option.value = 'crr';
+												option.text = 'CRR';
 												select.appendChild(option);
 
 												option = document.createElement('option');
@@ -32640,6 +32739,11 @@ function addItemsToList(whatToProcess, dataToProcess) {
 												select = document.createElement('select');
 												select.id = 'selectRightStat';
 												select.name = select.id;
+												
+												option = document.createElement('option');
+												option.value = 'Venue';
+												option.text = 'Venue';
+												select.appendChild(option);
 
 												option = document.createElement('option');
 												option.value = 'Review';
@@ -32649,6 +32753,16 @@ function addItemsToList(whatToProcess, dataToProcess) {
 												option = document.createElement('option');
 												option.value = 'Extras';
 												option.text = 'Extras';
+												select.appendChild(option);
+												
+												option = document.createElement('option');
+												option.value = 'crr_rrr';
+												option.text = 'Current And Required Run Rate';
+												select.appendChild(option);
+												
+												option = document.createElement('option');
+												option.value = 'rrr';
+												option.text = 'Required Run Rate';
 												select.appendChild(option);
 
 												option = document.createElement('option');
@@ -33259,6 +33373,11 @@ function addItemsToList(whatToProcess, dataToProcess) {
 												option = document.createElement('option');
 												option.value = 'crr';
 												option.text = 'CRR';
+												select.appendChild(option);
+												
+												option = document.createElement('option');
+												option.value = 'projected';
+												option.text = 'Projected';
 												select.appendChild(option);
 
 												option = document.createElement('option');
@@ -35575,6 +35694,11 @@ function addItemsToList(whatToProcess, dataToProcess) {
 					select.id = 'selectSection2';
 					select.name = select.id;
 
+					option = document.createElement('option');
+					option.value = 'TOURNAMENT';
+					option.text = 'TOURNAMENT';
+					select.appendChild(option);
+													
 					session_match.match.inning.forEach(function(inn, index, arr) {
 						if (inn.isCurrentInning == 'YES') {
 							if (inn.inningNumber == 1) {

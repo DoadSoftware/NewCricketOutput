@@ -2240,14 +2240,15 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'THAILAND': case 'ICPL':
-						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL': case 'KERALA_T20':
+						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL': //case 'KERALA_T20':
 							processCricketProcedures('POPULATE-POINTS_TABLE');
 							break;
-						/*case 'KERALA_T20':
+						case 'KERALA_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
-							addItemsToList('BUKH_POINTSTABLE-OPTIONS', null);*/
+							addItemsToList('SPONS_POINTSTABLE-OPTIONS', null);
+							break;
 						case 'BUKHATIR': 
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
@@ -3671,7 +3672,7 @@ function processUserSelection(whichInput) {
 		case 'populate_playervideo_icc_btn': case 'populate_longlineup_icc_btn': case 'six_distance_auto_icc_graphic_btn': case 'populate_fantasydropdown_btn':
 		case 'decision_out_not_graphic_btn': case 'hundred_icc_graphic_btn': case 'fifty_icc_graphic_btn': case 'catch_icc_graphic_btn': case 'match_id_with_img':
 		case 'populate_bukh_points_table_btn': case 'populate_iccintro_btn': case 'populate_h2h_icc_btn': case 'equation_with_img_icc_bs_graphic_btn': case 'changeon_intro_icc_btn':
-		case 'HatTrick_icc_graphic_btn': case 'HatTrickBall_icc_graphic_btn': case 'populate_GpTble_btn': case 'populate_playerceleb_btn':
+		case 'HatTrick_icc_graphic_btn': case 'HatTrickBall_icc_graphic_btn': case 'populate_GpTble_btn': case 'populate_playerceleb_btn': case 'populate_spons_points_table_btn':
 		case 'parscore_icc_graphic_btn': case 'phaseBy_graphic_btn': case 'populate_img_line2freetext_icc_bs_btn': case 'orangecap_honour_btn': case 'purplecap_honour_btn':
 		case 'superover_graphic_btn': case 'tournamentrules_graphic_btn': case 'boundaries_graphic_btn': case 'Promo_graphic_btn': case 'pre_sum_btn': case 'mission_btn':case 'timeOut_lt_graphic_btn':
 		case "powerplay_lt_graphic_btn": case 'points_icc_graphic_btn': case 'result_icc_graphic_btn': case 'populate_LastXBalls_VR_btn': case 'populate_pitch_map_btn': case 'Phase_comp_icc_graphic_btn':
@@ -4917,6 +4918,9 @@ function processUserSelection(whichInput) {
 							break;
 					}
 					break;
+				case 'populate_spons_points_table_btn':
+					processCricketProcedures('POPULATE-POINTS_TABLE');
+					break;	
 				case 'populate_fixtures_btn':
 					processCricketProcedures('POPULATE-FF-FIXTURES');
 					break;
@@ -13500,7 +13504,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/FullFrames';
 					break;
 				case 'KERALA_T20':
-					valueToProcess = '/Default/FullFrames' + ',' + $('#selectPointsGroup option:selected').val();
+					valueToProcess = '/Default/FullFrames' + ',' + $('#selectSpons option:selected').val();
 					break;	
 				case 'USPL':
 					valueToProcess = '/Default/FullFrames';
@@ -26297,8 +26301,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 										select.id = 'selectSponsor';
 										select.name = select.id;						
 										[
-											{ value: 'without_Sponsor', text: 'Without Sponsor' },
-										    { value: 'with_Sponsor', text: 'With Sponsor' }
+											{ value: 'with_Sponsor', text: 'With Sponsor' },
+											{ value: 'without_Sponsor', text: 'Without Sponsor' }
 										].forEach(optData => {
 										    const option = document.createElement('option');
 										    option.value = optData.value;
@@ -36583,6 +36587,65 @@ function addItemsToList(whatToProcess, dataToProcess) {
 					document.getElementById('select_graphic_options_div').style.display = '';
 					break;
 			}
+			break;
+		case 'SPONS_POINTSTABLE-OPTIONS':
+			$('#select_graphic_options_div').empty();
+
+			header_text = document.createElement('h6');
+			header_text.innerHTML = 'Select Graphic Options';
+			document.getElementById('select_graphic_options_div').appendChild(header_text);
+
+			table = document.createElement('table');
+			table.setAttribute('class', 'table table-bordered');
+
+			tbody = document.createElement('tbody');
+
+			table.appendChild(tbody);
+			document.getElementById('select_graphic_options_div').appendChild(table);
+
+			row = tbody.insertRow(tbody.rows.length);
+			
+			select = document.createElement('select');
+			select.id = 'selectSpons';
+			select.name = select.id;
+
+			option = document.createElement('option');
+			option.value = 'with_Sponsor';
+			option.text = 'WITH SPONSOR';
+			select.appendChild(option);
+
+			option = document.createElement('option');
+			option.value = 'without_Sponsor';
+			option.text = 'WITHOUT SPONSOR';
+			select.appendChild(option);
+			
+			row.insertCell(cellCount).appendChild(select);
+			cellCount = cellCount + 1;
+
+			option = document.createElement('input');
+			option.type = 'button';
+			option.name = 'populate_spons_points_table_btn';
+			option.value = 'Populate Points Table';
+
+			option.id = option.name;
+			option.setAttribute('onclick', "processUserSelection(this)");
+
+			div = document.createElement('div');
+			div.append(option);
+
+			option = document.createElement('input');
+			option.type = 'button';
+			option.name = 'cancel_graphics_btn';
+			option.id = option.name;
+			option.value = 'Cancel';
+			option.setAttribute('onclick', 'processUserSelection(this)');
+
+			div.append(option);
+
+			row.insertCell(cellCount).appendChild(div);
+			cellCount = cellCount + 1;
+
+			document.getElementById('select_graphic_options_div').style.display = '';
 			break;
 		case 'BUKH_POINTSTABLE-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {

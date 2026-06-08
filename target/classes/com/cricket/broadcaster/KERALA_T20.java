@@ -2523,13 +2523,13 @@ public class KERALA_T20 extends Scene {
 		case "ANIMATE-IN-INFOBAR":
 			if (infobar.isInfobar_on_screen() == true) {
 				AnimateOutGraphics(print_writer, "ANIMATE-OUT-IDENT");
-				TimeUnit.SECONDS.sleep(1);
+				TimeUnit.MILLISECONDS.sleep(500);
 				AnimateInGraphics(print_writer, "MAIN");
 				which_graphic_on_screen = "SCOREBUG";
 				infobar.setInfobar_on_screen(true);
-				processAnimation(print_writer, "IdentOut", "SHOW 0.0", broadcaster);
-				TimeUnit.MILLISECONDS.sleep(200);
-				processAnimation(print_writer, "IdentIn", "SHOW 0.0", broadcaster);
+//				processAnimation(print_writer, "IdentOut", "SHOW 0.0", broadcaster);
+//				TimeUnit.MILLISECONDS.sleep(200);
+//				processAnimation(print_writer, "IdentIn", "SHOW 0.0", broadcaster);
 			} else {
 				processAnimation(print_writer, "IdentOut", "SHOW 0.360", broadcaster);
 				processAnimation(print_writer, "Section5$FreeTextOut", "SHOW 0.340", broadcaster);
@@ -2665,8 +2665,10 @@ public class KERALA_T20 extends Scene {
 				case CricketUtil.OVER:
 					System.out.println("HELLO 9");
 					if (infobar.isThisover()) {
+						System.out.println("THISOVER OUT9");
 						processAnimation(print_writer, "Section3$ThisOverIn", "START", broadcaster);
 					} else {
+						System.out.println("THISOVER OUT10");
 						processAnimation(print_writer, "Section3$FreeTextIn", "START", broadcaster);
 					}
 					break;
@@ -2825,8 +2827,10 @@ public class KERALA_T20 extends Scene {
 			case CricketUtil.OVER:
 				System.out.println("HELLO 9");
 				if (infobar.isThisover()) {
+					System.out.println("THISOVER OUT11");
 					processAnimation(print_writer, "Section3$ThisOverIn", "START", broadcaster);
 				} else {
+					System.out.println("THISOVER OUT12");
 					processAnimation(print_writer, "Section3$FreeTextIn", "START", broadcaster);
 				}
 				break;
@@ -2896,9 +2900,10 @@ public class KERALA_T20 extends Scene {
 			switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
 			case CricketUtil.OVER:
 				System.out.println("HELLO 10");
-				if (infobar.isThisover()) {
+				if (infobar.isThisover()) {System.out.println("THISOVER OUT13");
 					processAnimation(print_writer, "Section3$ThisOverIn", "START", broadcaster);
 				} else {
+					System.out.println("THISOVER OUT14");
 					processAnimation(print_writer, "Section3$FreeTextIn", "START", broadcaster);
 				}
 				break;
@@ -4314,6 +4319,8 @@ public class KERALA_T20 extends Scene {
 	}
 	
 	public void clearAll(PrintWriter print_writer)throws InterruptedException, IOException {
+		print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$LeaderBoard$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
+		print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side2$LeaderBoard$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 		print_writer.println("-1 RENDERER*BACK_LAYER*STAGE*DIRECTOR*anim_MatchId SHOW 0.0\0");
 		print_writer.println("-1 RENDERER*BACK_LAYER*STAGE*DIRECTOR*anim_FullFrames SHOW 0.0\0");
 		print_writer.println("-1 RENDERER*BACK_LAYER*STAGE*DIRECTOR*Change SHOW 0.0\0");
@@ -4334,6 +4341,7 @@ public class KERALA_T20 extends Scene {
 		print_writer.println("-1 RENDERER*STAGE*DIRECTOR*StarLoop SHOW 0.0\0");
 		print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Change_In SHOW 0.0\0");
 		
+		print_writer.println("-1 RENDERER*BACK_LAYER*STAGE*DIRECTOR*anim_FullFrames$In_Out SHOW 0.0\0");
 		infobar.setInfobar_on_screen(false);
 		infobar = new Infobar();
 		infobar.setLast_full_section("");
@@ -7217,9 +7225,9 @@ public class KERALA_T20 extends Scene {
 						}
 					}
 					
-//					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$FooterGrp$Side" + whichside
-//							+ "$FooterOut$FooterIn$SelctFooterStyle$FooterGrp1$OversGrp$txt_OversValue*GEOM*TEXT SET "
-//							+ CricketFunctions.OverBalls(inn.getTotalOvers(), inn.getTotalBalls()) + "\0");
+					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$FooterGrp$Side" + whichside
+							+ "$FooterOut$FooterIn$SelctFooterStyle$FooterGrp1$OversGrp$txt_OversValue*GEOM*TEXT SET "
+							+ CricketFunctions.OverBalls(inn.getTotalOvers(), inn.getTotalBalls()) + "\0");
 
 					if (inn.getTotalWickets() >= 10) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$FooterGrp$Side"
@@ -17182,8 +17190,10 @@ public class KERALA_T20 extends Scene {
 						if(infobar.getLast_bottom_right_bottom_section()!=null && infobar.getLast_bottom_right_bottom_section().equalsIgnoreCase(CricketUtil.OVER)&&
 								!infobar.isOverBallequalto0()) {
 							processAnimation(print_writer, "Section3$ThisOverIn", "START", broadcaster);
+							System.out.println("THISOVER OUT15");
 							TimeUnit.MILLISECONDS.sleep(500);
 							processAnimation(print_writer, "Section3$FreeTextOut", "START", broadcaster);
+							System.out.println("THISOVER OUT16");
 							infobar.setOverBallequalto0(true);
 						}
 						
@@ -17196,10 +17206,13 @@ public class KERALA_T20 extends Scene {
 //					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$ThisOver$ThisOverAll*FUNCTION*Omo*vis_con SET "
 //							+  over.size() + " \0");
 					infobar.setOverPlayed(false);
+					TimeUnit.MILLISECONDS.sleep(400);
 					if(infobar.getLast_bottom_right_bottom_section()!=null && infobar.getLast_bottom_right_bottom_section().equalsIgnoreCase(CricketUtil.OVER)&&
 							!infobar.isOverballLessThan9()) {
+						System.out.println("THISOVER OUT17");
 						processAnimation(print_writer, "Section3$ThisOverIn", "START", broadcaster);
 						TimeUnit.MILLISECONDS.sleep(500);
+						System.out.println("THISOVER OUT18");
 						processAnimation(print_writer, "Section3$FreeTextOut", "START", broadcaster);
 						infobar.setOverballLessThan9(true);
 					}
@@ -17407,7 +17420,7 @@ public class KERALA_T20 extends Scene {
 							int Replaced_Player_id = CricketFunctions.SecondLastBowlerId(match,boc.getPlayerId());
 							if(Replaced_Player_id > 0) {
 								BowlingCard booc = inn.getBowlingCard().stream().filter(plyr -> plyr.getPlayerId() == Replaced_Player_id).findAny().orElse(null);
-								print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$BowlingEnd$Img_AwayTeamBase2$txt_Data1*GEOM*TEXT SET REPLACE  "
+								print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$BowlerGrp$Section3$Section3All$BowlingEnd$Img_AwayTeamBase2$txt_Data1*GEOM*TEXT SET REPLACES  "
 										+ booc.getPlayer().getTicker_name() + "\0");
 							}
 						}
@@ -17877,12 +17890,20 @@ public class KERALA_T20 extends Scene {
 		case "EQUATION":
 			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*TEXTURE*IMAGE SET "+ text_path2 + "TLogo\0");
 			
+			if(CricketFunctions.GetTargetData(match).getRemaningRuns() <= 0 || CricketFunctions.GetTargetData(match).getRemaningBall() <= 0 || 
+					CricketFunctions.getWicketsLeft(match, 2) >= 10) {
+				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "  + CricketFunctions
+						.GenerateMatchSummaryStatus(2, match, CricketUtil.FULL, "|",broadcaster,true)
+					.getTargetOrResult().toUpperCase()  + "\0");
+			}else {
+				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "  + match.getMatch().getInning().get(1).getBatting_team().getTeamName1()
+						+ " NEED " + CricketFunctions.GetTargetData(match).getRemaningRuns() + " RUN" + CricketFunctions.Plural(CricketFunctions.
+								GetTargetData(match).getRemaningRuns()).toUpperCase() + " FROM " + CricketFunctions.GetTargetData(match).getRemaningBall() + " BALL" + 
+								CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningBall()).toUpperCase() + (match.getSetup().getTargetType() != null 
+								&& !match.getSetup().getTargetType().isEmpty() ? " (" + match.getSetup().getTargetType().toUpperCase() + ")" : "")  + "\0");
+			}
 			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*FUNCTION*Omo*vis_con SET 0 \0");
-			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "  + match.getMatch().getInning().get(1).getBatting_team().getTeamName1()
-							+ " NEED " + CricketFunctions.GetTargetData(match).getRemaningRuns() + " RUN" + CricketFunctions.Plural(CricketFunctions.
-									GetTargetData(match).getRemaningRuns()).toUpperCase() + " FROM " + CricketFunctions.GetTargetData(match).getRemaningBall() + " BALL" + 
-									CricketFunctions.Plural(CricketFunctions.GetTargetData(match).getRemaningBall()).toUpperCase() + (match.getSetup().getTargetType() != null 
-									&& !match.getSetup().getTargetType().isEmpty() ? " (" + match.getSetup().getTargetType().toUpperCase() + ")" : "")  + "\0");
+			
 			
 //			infobar.setLast_bottom_right_section("EQUATION");
 			break;
@@ -23409,7 +23430,7 @@ public class KERALA_T20 extends Scene {
 		}
 	}
 
-	public void populateLeaderBoard(PrintWriter print_writer, String viz_scene, String StatType, int playerid,
+	public void populateLeaderBoard(PrintWriter print_writer, String viz_scene, String StatType, int playerid,String sponsor,
 			List<Tournament> tournament, List<Team> team, MatchAllData match, String broadcaster, Configuration config)
 			throws InterruptedException {
 		if (match == null) {
@@ -23427,6 +23448,9 @@ public class KERALA_T20 extends Scene {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+which_side+
 						"$LeaderBoard$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 			}
+			print_writer.println(
+					"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$CapAll"
+							+ "*FUNCTION*Omo*vis_con SET 0\0");
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "*FUNCTION*Omo*vis_con SET 9 \0");
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$HeaderAllGrp"
 							+ "$HeaderStyle1$txt_SubHeader*GEOM*TEXT SET "+ match.getSetup().getTournament().toUpperCase() + "\0");
@@ -23441,6 +23465,10 @@ public class KERALA_T20 extends Scene {
 //						+ "HeaderBaseIn$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$LeaderBoardDataOut$LeaderBoarData"
 								+ "$Stat_Head$SelectDataType*FUNCTION*Omo*vis_con SET 2 \0");
+				print_writer.println(
+						"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$SelectSponsor"
+								+ "$SelectSponsor*FUNCTION*Omo*vis_con SET 0\0");
+				
 				
 				List<BestStats> top_ten_beststats = new ArrayList<BestStats>();
 				
@@ -23496,10 +23524,10 @@ public class KERALA_T20 extends Scene {
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$ImageGrp$PlayerImageGrpOut$"
 										+ "PlayerImageGrpIn$SelectImage$ImageAll$img_PlayerShadow*TEXTURE*IMAGE SET " + photo_path + team.get(top_ten_beststats.get(i).getPlayer()
-										.getTeamId() - 1).getTeamName4().toUpperCase()+ "\\" + top_ten_beststats.get(i).getPlayer().getPhoto()+ CricketUtil.PNG_EXTENSION + " \0");
+										.getTeamId() - 1).getTeamName4().toUpperCase()+ "\\\\" + top_ten_beststats.get(i).getPlayer().getPhoto()+ CricketUtil.PNG_EXTENSION + " \0");
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
 												+ "$SelectImage$ImageAll$img_Player*TEXTURE*IMAGE SET " + photo_path+ team.get(top_ten_beststats.get(i).getPlayer().getTeamId() - 1).getTeamName4()
-												.toUpperCase()+ "\\" + top_ten_beststats.get(i).getPlayer().getPhoto()+ CricketUtil.PNG_EXTENSION + " \0");
+												.toUpperCase()+ "\\\\" + top_ten_beststats.get(i).getPlayer().getPhoto()+ CricketUtil.PNG_EXTENSION + " \0");
 							} else {
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
 												+ "$SelectImage$ImageAll$img_PlayerShadow*TEXTURE*IMAGE SET " + "\\\\"+ config.getPrimaryIpAddress() + "\\\\" + local_photo_path
@@ -23556,8 +23584,17 @@ public class KERALA_T20 extends Scene {
 			case "MOST_RUNS":
 
 				print_writer.println(
+						"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$CapAll"
+								+ "*FUNCTION*Omo*vis_con SET 1\0");
+				
+				print_writer.println(
 						"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$SelectSponsor"
-								+ "$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
+								+ "*FUNCTION*Omo*vis_con SET " + (sponsor.equalsIgnoreCase("without_Sponsor") ? "0" : "1") + "\0");
+				
+				print_writer.println(
+						"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$SelectSponsor"
+								+ "$Select_Sponsor_Image*FUNCTION*Omo*vis_con SET 0\0");
+				
 				print_writer.println(
 						"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$LeaderBoardDataOut$LeaderBoarData"
 								+ "$Stat_Head$SelectDataType*FUNCTION*Omo*vis_con SET 2 \0");
@@ -23599,14 +23636,14 @@ public class KERALA_T20 extends Scene {
 												+ photo_path
 												+ team.get(tournament.get(i).getPlayer().getTeamId() - 1).getTeamName4()
 														.toUpperCase()
-												+ "\\" + tournament.get(i).getPlayer().getPhoto()
+												+ "\\\\" + tournament.get(i).getPlayer().getPhoto()
 												+ CricketUtil.PNG_EXTENSION + " \0");
 								print_writer.println(
 										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
 												+ "$SelectImage$ImageAll$img_Player*TEXTURE*IMAGE SET " + photo_path
 												+ team.get(tournament.get(i).getPlayer().getTeamId() - 1).getTeamName4()
 														.toUpperCase()
-												+ "\\" + tournament.get(i).getPlayer().getPhoto()
+												+ "\\\\" + tournament.get(i).getPlayer().getPhoto()
 												+ CricketUtil.PNG_EXTENSION + " \0");
 							} else {
 								print_writer.println(
@@ -23709,8 +23746,16 @@ public class KERALA_T20 extends Scene {
 			case "MOST_WICKETS":
 
 				print_writer.println(
-						"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard"
-								+ "$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
+						"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$CapAll"
+								+ "*FUNCTION*Omo*vis_con SET 2\0");
+				
+				print_writer.println(
+						"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$SelectSponsor"
+								+ "*FUNCTION*Omo*vis_con SET 1\0");
+				print_writer.println(
+						"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$SelectSponsor"
+								+ "$Select_Sponsor_Image*FUNCTION*Omo*vis_con SET 0\0");
+				
 				print_writer.println(
 						"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$LeaderBoardDataOut$LeaderBoarData"
 								+ "$Stat_Head$SelectDataType*FUNCTION*Omo*vis_con SET 2 \0");
@@ -23748,14 +23793,14 @@ public class KERALA_T20 extends Scene {
 												+ photo_path
 												+ team.get(tournament.get(i).getPlayer().getTeamId() - 1).getTeamName4()
 														.toUpperCase()
-												+ "\\" + tournament.get(i).getPlayer().getPhoto()
+												+ "\\\\" + tournament.get(i).getPlayer().getPhoto()
 												+ CricketUtil.PNG_EXTENSION + " \0");
 								print_writer.println(
 										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
 												+ "$SelectImage$ImageAll$img_Player*TEXTURE*IMAGE SET " + photo_path
 												+ team.get(tournament.get(i).getPlayer().getTeamId() - 1).getTeamName4()
 														.toUpperCase()
-												+ "\\" + tournament.get(i).getPlayer().getPhoto()
+												+ "\\\\" + tournament.get(i).getPlayer().getPhoto()
 												+ CricketUtil.PNG_EXTENSION + " \0");
 							} else {
 								print_writer.println(
@@ -23855,9 +23900,13 @@ public class KERALA_T20 extends Scene {
 				break;
 			case "MOST_FOURS":
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard"
-						+ "$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
-				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard"
-						+ "$SelectSponsor$Sponsor$LogoOut$Spon1*ACTIVE SET 0\0");
+						+ "$SelectSponsor*FUNCTION*Omo*vis_con SET " + (sponsor.equalsIgnoreCase("without_Sponsor") ? "0" : "1") + "\0");
+//				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard"
+//						+ "$SelectSponsor$Sponsor$LogoOut$Spon1*ACTIVE SET 0\0");
+				print_writer.println(
+						"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$SelectSponsor"
+								+ "$Select_Sponsor_Image*FUNCTION*Omo*vis_con SET 1\0");
+				
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard"
 						+ "$SelectSponsor$Sponsor$LogoOut$Spon2*TEXTURE*IMAGE SET " + sponsers_path + "Adani"+ "\0");
 				
@@ -23893,19 +23942,15 @@ public class KERALA_T20 extends Scene {
 											+ "$SelectImage*FUNCTION*Omo*vis_con SET 0 \0");
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println(
-										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
-												+ "$SelectImage$ImageAll$img_PlayerShadow*TEXTURE*IMAGE SET "
-												+ photo_path
-												+ team.get(tournament.get(i).getPlayer().getTeamId() - 1).getTeamName4()
-														.toUpperCase()
-												+ "\\" + tournament.get(i).getPlayer().getPhoto()
-												+ CricketUtil.PNG_EXTENSION + " \0");
+										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn" + photo_path
+												+ team.get(tournament.get(i).getPlayer().getTeamId() - 1).getTeamName4().toUpperCase()
+												+ "\\\\" + tournament.get(i).getPlayer().getPhoto() + CricketUtil.PNG_EXTENSION + " \0");
 								print_writer.println(
 										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
 												+ "$SelectImage$ImageAll$img_Player*TEXTURE*IMAGE SET " + photo_path
 												+ team.get(tournament.get(i).getPlayer().getTeamId() - 1).getTeamName4()
 														.toUpperCase()
-												+ "\\" + tournament.get(i).getPlayer().getPhoto()
+												+ "\\\\" + tournament.get(i).getPlayer().getPhoto()
 												+ CricketUtil.PNG_EXTENSION + " \0");
 							} else {
 								print_writer.println(
@@ -24006,11 +24051,14 @@ public class KERALA_T20 extends Scene {
 			case "MOST_SIXES":
 				
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard"
-						+ "$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
-				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard"
-						+ "$SelectSponsor$Sponsor$LogoOut$Spon1*ACTIVE SET 0\0");
-				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard"
-						+ "$SelectSponsor$Sponsor$LogoOut$Spon2*TEXTURE*IMAGE SET " + sponsers_path + "Vimal"+ "\0");
+						+ "$SelectSponsor*FUNCTION*Omo*vis_con SET " + (sponsor.equalsIgnoreCase("without_Sponsor") ? "0" : "1") + "\0");
+//				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard"
+//						+ "$SelectSponsor$Sponsor$LogoOut$Spon1*ACTIVE SET 0\0");
+				print_writer.println(
+						"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$SelectSponsor"
+								+ "$Select_Sponsor_Image*FUNCTION*Omo*vis_con SET 2\0");
+//				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard"
+//						+ "$SelectSponsor$Sponsor$LogoOut$Spon2*TEXTURE*IMAGE SET " + sponsers_path + "Vimal"+ "\0");
 
 //				print_writer.println(
 //						"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$HeaderAllGrp$HeaderBaseGrp$HeaderBaseOut$HeaderBaseIn"
@@ -24053,14 +24101,14 @@ public class KERALA_T20 extends Scene {
 												+ photo_path
 												+ team.get(tournament.get(i).getPlayer().getTeamId() - 1).getTeamName4()
 														.toUpperCase()
-												+ "\\" + tournament.get(i).getPlayer().getPhoto()
+												+ "\\\\" + tournament.get(i).getPlayer().getPhoto()
 												+ CricketUtil.PNG_EXTENSION + " \0");
 								print_writer.println(
 										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
 												+ "$SelectImage$ImageAll$img_Player*TEXTURE*IMAGE SET " + photo_path
 												+ team.get(tournament.get(i).getPlayer().getTeamId() - 1).getTeamName4()
 														.toUpperCase()
-												+ "\\" + tournament.get(i).getPlayer().getPhoto()
+												+ "\\\\" + tournament.get(i).getPlayer().getPhoto()
 												+ CricketUtil.PNG_EXTENSION + " \0");
 							} else {
 								print_writer.println(
@@ -24432,6 +24480,9 @@ public class KERALA_T20 extends Scene {
 		DecimalFormat df = new DecimalFormat("0.000");
 
 		
+		print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + whichside
+				+ "$PointsTable$SponsorGrp1*ACTIVE SET " + (grp.equalsIgnoreCase("without_sponsor") ? "0" : "1") + "\0");
+		
 //		print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + whichside
 //				+ "$PointsTable$PointsDataOut$PointsTale$PointsTableAll$PointsRows$Row5*ACTIVE SET 0\0");
 		
@@ -24535,7 +24586,7 @@ public class KERALA_T20 extends Scene {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + whichside
 								+ "$PointsTable$PointsDataOut$PointsTale$PointsTableAll$PointsRows$Row" + i
 								+ "$Out$In$SelectHighlight" + cont_name + data + "$txt_TeamName*GEOM*TEXT SET "
-								+ team.getTeamName3() + "\0");
+								+ team.getTeamName2() + "\0");
 					}
 				}
 
@@ -25684,7 +25735,7 @@ public class KERALA_T20 extends Scene {
 
 				print_writer.println(
 						"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$FooterGrp$Side1$FooterOut$FooterIn$SelctFooterStyle*FUNCTION*Omo*vis_con SET "
-								+ "1" + " \0");
+								+ "2" + " \0");
 //				for (VariousText vartext : vt) {
 //					if (vartext.getVariousType().equalsIgnoreCase("PREVIOUSMATCHSUMMARYFOOTER")
 //							&& vartext.getUseThis().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
@@ -28035,7 +28086,7 @@ public class KERALA_T20 extends Scene {
 					print_writer.println(
 							"-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$PointsTable$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
 									+ row_id + "$RowAnimation$Select" + cont + "$AllData$txt_TeamName*GEOM*TEXT SET "
-									+ team.getTeamName3() + "\0");
+									+ team.getTeamName2() + "\0");
 				}
 			}
 
@@ -35638,8 +35689,10 @@ public class KERALA_T20 extends Scene {
 			case CricketUtil.OVER:
 				System.out.println("HELLO 2");
 				if (infobar.isThisover()) {
+					System.out.println("THISOVER OUT19");
 					processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
 				} else {
+					System.out.println("THISOVER OUT20");
 					processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
 				}
 				break;
@@ -35928,15 +35981,17 @@ public class KERALA_T20 extends Scene {
 
 								processAnimation(print_writer.get(0), "Section4$Section4In", "START", broadcaster);
 								TimeUnit.MILLISECONDS.sleep(500);
-								processAnimation(print_writer.get(0), "BowlerOut", "START", broadcaster);
-								TimeUnit.MILLISECONDS.sleep(500);
+//								processAnimation(print_writer.get(0), "BowlerOut", "START", broadcaster);
+//								TimeUnit.MILLISECONDS.sleep(500);
 								switch (infobar.getLast_bottom_right_bottom_section().toUpperCase()) {
 								case CricketUtil.OVER:
 									System.out.println("HELLO 3");
 									if (infobar.isThisover()) {
+										System.out.println("THISOVER OUT21");
 										processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START",
 												broadcaster);
 									} else {
+										System.out.println("THISOVER OUT22");
 										processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START",
 												broadcaster);
 									}
@@ -36178,8 +36233,10 @@ public class KERALA_T20 extends Scene {
 				case CricketUtil.OVER:
 					System.out.println("HELLO 4");
 					if (infobar.isThisover()) {
+						System.out.println("THISOVER OUT23");
 						processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
 					} else {
+						System.out.println("THISOVER OUT24");
 						processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
 					}
 					break;
@@ -36307,12 +36364,15 @@ public class KERALA_T20 extends Scene {
 
 				TimeUnit.MILLISECONDS.sleep(500);
 				processAnimation(print_writer.get(0), "BowlerIn", "START", broadcaster);
+				TimeUnit.MILLISECONDS.sleep(200);
 				switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
 				case CricketUtil.OVER:
 					System.out.println("HELLO 5");
 					if (infobar.isThisover()) {
+						System.out.println("THISOVER OUT 1");
 						processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
 					} else {
+						System.out.println("THISOVER OUT2");
 						processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
 					}
 					break;
@@ -36380,8 +36440,10 @@ public class KERALA_T20 extends Scene {
 				case CricketUtil.OVER:
 					System.out.println("HELLO 6");
 					if (infobar.isThisover()) {
+						System.out.println("THISOVER OUT3");
 						processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
 					} else {
+						System.out.println("THISOVER OUT4");
 						processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
 					}
 					break;
@@ -36425,12 +36487,15 @@ public class KERALA_T20 extends Scene {
 				TimeUnit.MILLISECONDS.sleep(400);
 				infobar.setBottom_right_bottom_section(valueToProcess);
 				infobar = populateVizInfobarRightBottom(infobar, false, print_writer.get(0), match, broadcaster);
+				TimeUnit.MILLISECONDS.sleep(400);
 				switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
 				case CricketUtil.OVER:
 					System.out.println("HELLO 7");
 					if (infobar.isThisover()) {
+						System.out.println("THISOVER OUT5");
 						processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
 					} else {
+						System.out.println("THISOVER OUT6");
 						processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
 					}
 					break;
@@ -36551,8 +36616,10 @@ public class KERALA_T20 extends Scene {
 				case CricketUtil.OVER:
 					System.out.println("HELLO 8");
 					if (infobar.isThisover()) {
+						System.out.println("THISOVER OUT7");
 						processAnimation(print_writer.get(0), "Section3$ThisOverIn", "START", broadcaster);
 					} else {
+						System.out.println("THISOVER OUT8");
 						processAnimation(print_writer.get(0), "Section3$FreeTextIn", "START", broadcaster);
 					}
 					break;
@@ -37043,7 +37110,7 @@ public class KERALA_T20 extends Scene {
 			}
 			sponsor = valueToProcess.split(",")[valueToProcess.split(",").length-1];
 			populateLeaderBoard(print_writer.get(0), valueToProcess.split(",")[0], valueToProcess.split(",")[1], Integer.valueOf(valueToProcess.split(",")[2]),
-					CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, headToHead,cricketService, match, past_tournament_stats),
+					valueToProcess.split(",")[3],CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, headToHead,cricketService, match, past_tournament_stats),
 					cricketService.getTeams(),match, broadcaster, config);
 			
 			break;

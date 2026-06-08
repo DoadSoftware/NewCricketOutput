@@ -90,6 +90,7 @@ public class USPL extends Scene{
 	
 	public String data = "",previous_data = "";
 	public int which_side=1;
+	public String diectoryPath = "";
 	
 	public String last_speed = "";
 	public Infobar infobar = new Infobar(); 
@@ -208,8 +209,10 @@ public class USPL extends Scene{
 	}
 	
 	public Object ProcessGraphicOption(String whatToProcess, MatchAllData match, CricketService cricketService, List<MatchAllData> tournament_matches,
-			List<Tournament> past_tournament_stats,PrintWriter print_writer, List<Scene> scenes, String valueToProcess, List<Statistics> statistics, Configuration config) 
+			List<Tournament> past_tournament_stats,PrintWriter print_writer, List<Scene> scenes, String valueToProcess, List<Statistics> statistics, Configuration config, String session_directoryPath) 
 				throws InterruptedException, ParseException, JAXBException,IllegalAccessException, InvocationTargetException, IOException, CloneNotSupportedException{
+		
+		diectoryPath = session_directoryPath;
 	
 		switch (whatToProcess) {
 		case "ANIMATE-IN-INFOBAR": case "ANIMATE-IN-IDENT": case "ANIMATE-OUT-DIRECTOR": case "ANIMATE-OUT-SPONSOR": case "TICKER_LT_OUT": case "TICKER_LT_IN": 
@@ -3059,10 +3062,10 @@ public class USPL extends Scene{
 				data = valueToProcess;
 				if(which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG") {
 					which_side = 1;
-					populateDuckWorthLewisEquation(print_writer, valueToProcess.split(",")[0],valueToProcess.split(",")[1], match, broadcaster,1);
+					populateDuckWorthLewisEquation(print_writer, valueToProcess.split(",")[0],valueToProcess.split(",")[1], match, broadcaster,1, session_directoryPath);
 				}else {
 					which_side = 2;
-					populateDuckWorthLewisEquation(print_writer, valueToProcess.split(",")[0],valueToProcess.split(",")[1], match, broadcaster,2);
+					populateDuckWorthLewisEquation(print_writer, valueToProcess.split(",")[0],valueToProcess.split(",")[1], match, broadcaster,2, session_directoryPath);
 				}
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + which_side + "*FUNCTION*SELECTOR SET NUMBER 6;");
 				//populateEverestPreview(print_writer);
@@ -15601,7 +15604,7 @@ System.out.println(viz_scene);
 			break;
 		}
 	}
-	public void populateDuckWorthLewisEquation(PrintWriter print_writer,String viz_scene,String balls,MatchAllData match,String session_selected_broadcaster,int whichside) throws InterruptedException 
+	public void populateDuckWorthLewisEquation(PrintWriter print_writer,String viz_scene,String balls,MatchAllData match,String session_selected_broadcaster,int whichside, String session_directoryPath ) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
 			case "USPL":
@@ -15655,14 +15658,14 @@ System.out.println(viz_scene);
 						print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$D/L$Data$TopLine"
 								+ "$TextSecondName*TEXTURE2 SET TEXTURE_PATH " + text_color1 + team + CricketUtil.PNG_EXTENSION + ";");
 						
-						for(int i = 0; i<= CricketFunctions.populateDuckWorthLewis(match).size() -1;i++) {
-							if(CricketFunctions.populateDuckWorthLewis(match).get(i).getOver_left().equalsIgnoreCase(balls)) {
+						for(int i = 0; i<= CricketFunctions.populateDuckWorthLewis(match, session_directoryPath).size() -1;i++) {
+							if(CricketFunctions.populateDuckWorthLewis(match, session_directoryPath).get(i).getOver_left().equalsIgnoreCase(balls)) {
 								
 								print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side1$D/L$Data$SeondLine$BallsFaced"
 										+ "*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "DLS PAR SCORE AFTER " 
-										+ balls + " OVERS " + (Integer.valueOf(CricketFunctions.populateDuckWorthLewis(match).get(i).getWkts_down())) + ";");
+										+ balls + " OVERS " + (Integer.valueOf(CricketFunctions.populateDuckWorthLewis(match, session_directoryPath).get(i).getWkts_down())) + ";");
 								
-								runs = (inn.getTotalRuns()) - Integer.valueOf((CricketFunctions.populateDuckWorthLewis(match).get(i).getWkts_down()));
+								runs = (inn.getTotalRuns()) - Integer.valueOf((CricketFunctions.populateDuckWorthLewis(match, session_directoryPath).get(i).getWkts_down()));
 		                        if(runs < 0)
 		                        {
 		                            ahead_behind = team + " ARE " + (Math.abs(runs)) + " RUNS BEHIND PAR SCORE";

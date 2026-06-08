@@ -71,6 +71,7 @@ public class MAHARAJA_T20 extends Scene{
 	private String photo_path = "C:\\\\Images\\\\MAHARAJA_T20\\\\Photos\\\\";
 	private String local_photo_path = "\\\\c\\\\Images\\\\MAHARAJA_T20\\\\Photos\\\\";
 	private int lastXBalls = 0;
+	public String diectoryPath = "";
 	private String infobarFreeText = "", commentatorsID;
 	private String isAudioOn = "true";
 	
@@ -150,7 +151,7 @@ public class MAHARAJA_T20 extends Scene{
 		
 		return status;
 	}
-	public Infobar updateInfobar(List<Scene> scenes, MatchAllData match, PrintWriter print_writer) throws InterruptedException
+	public Infobar updateInfobar(List<Scene> scenes, MatchAllData match, PrintWriter print_writer, String session_directoryPath) throws InterruptedException
 	{
 		System.out.println("HEY");
 		if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0 || match.getMatch().getInning().get(1).getTotalWickets() >= 10
@@ -188,7 +189,7 @@ public class MAHARAJA_T20 extends Scene{
 					populateInfobarTeamScore(true, print_writer, match, broadcaster);
 					infobar = processInfobarPowerplay(infobar, print_writer, broadcaster, match);
 					if(infobar.getMiddle_section() != null && !infobar.getMiddle_section().trim().isEmpty()) {
-						infobar = populateInfobarMiddleSection(infobar, true, print_writer, match, broadcaster, null, null);
+						infobar = populateInfobarMiddleSection(infobar, true, print_writer, match, broadcaster, null, null, session_directoryPath);
 					}
 					infobar = populateInfobarBottomRight(infobar, true,print_writer, match, broadcaster);
 					infobar = populateBottomRightBottom(infobar, true, print_writer, match, broadcaster);
@@ -198,9 +199,10 @@ public class MAHARAJA_T20 extends Scene{
 		return infobar;
 	}
 	public Object processGraphics(String whatToProcess, String valueToProcess, MatchAllData match, List<MatchAllData> tournament_matches, List<Tournament> past_tournament_stats,
-			List<Scene> scenes,List<Statistics> statistics, CricketService cricketService, PrintWriter print_writer, Configuration config, List<HeadToHeadPlayer> head_to_head,String plotterData) 
+			List<Scene> scenes,List<Statistics> statistics, CricketService cricketService, PrintWriter print_writer, Configuration config, List<HeadToHeadPlayer> head_to_head,String plotterData,String session_directoryPath) 
 			throws JAXBException, InterruptedException, NumberFormatException, ParseException, IllegalAccessException, InvocationTargetException, IOException, URISyntaxException
 	{
+		diectoryPath = session_directoryPath;
 		System.out.println(whatToProcess.toUpperCase());
 		switch (whatToProcess.toUpperCase()) {
 		case "TURN_ON_OR_OFF_AUDIO":
@@ -990,7 +992,7 @@ public class MAHARAJA_T20 extends Scene{
 					populateDuckWorthLewis(print_writer, valueToProcess.split(",")[0],valueToProcess.split(",")[1], match, broadcaster);
 					break;
 				case "POPULATE-DLS-EQUATION":
-					populateDuckWorthLewisEquation(print_writer, valueToProcess.split(",")[0],valueToProcess.split(",")[1], match, broadcaster);
+					populateDuckWorthLewisEquation(print_writer, valueToProcess.split(",")[0],valueToProcess.split(",")[1], match, broadcaster, session_directoryPath);
 					break;
 					
 					
@@ -1008,7 +1010,7 @@ public class MAHARAJA_T20 extends Scene{
 					infobar.setMiddle_section(valueToProcess.split(",")[1]);
 					infobar.setBottom_right_section(valueToProcess.split(",")[2]);
 					
-					infobar = populateInfobar(infobar, print_writer, match, cricketService, broadcaster);
+					infobar = populateInfobar(infobar, print_writer, match, cricketService, broadcaster, session_directoryPath);
 					infobar.setIdent_section("");
 					TimeUnit.SECONDS.sleep(2);
 					which_graphics_onscreen = "SCOREBUG";
@@ -1037,33 +1039,33 @@ public class MAHARAJA_T20 extends Scene{
 					System.out.println("VALUE : "+valueToProcess);
 					commentatorsID = valueToProcess;
 					infobar = populateInfobarMiddleSection(infobar, false, print_writer, 
-							  match, broadcaster, null, cricketService);
+							  match, broadcaster, null, cricketService, session_directoryPath);
 					break;
 				case "POPULATE-INFOBAR-FREE_TEXT":
 					infobarFreeText = "";
 					infobarFreeText = valueToProcess;
 					infobar.setMiddle_section("INFOBAR_FREE_TEXT");
 					  infobar = populateInfobarMiddleSection(infobar, false, print_writer, 
-							  match, broadcaster, null, cricketService);
+							  match, broadcaster, null, cricketService, session_directoryPath);
 					break;
 				case "POPULATE-INFOBAR-LAST_X_BALLS":
 					lastXBalls = Integer.valueOf(valueToProcess);
 					infobar.setMiddle_section("LAST_X_BALLS");
 					  infobar = populateInfobarMiddleSection(infobar, false, print_writer, 
-							  match, broadcaster, null, cricketService);
+							  match, broadcaster, null, cricketService, session_directoryPath);
 					break;
 				case "POPULATE-INFOBAR-PROMPT":
 					for(InfobarStats ibs : cricketService.getInfobarStats() ) {
 					  if(ibs.getOrder() == Integer.valueOf(valueToProcess)) {
 						  infobar.setMiddle_section("FREE_TEXT");
 						  infobar = populateInfobarMiddleSection(infobar, false, print_writer, 
-								  match, broadcaster, ibs, cricketService);
+								  match, broadcaster, ibs, cricketService, session_directoryPath);
 					  }
 					}
 					break;	
 				case "POPULATE-INFOBAR-BOTTOMLEFT": case "POPULATE-INFOBAR-BOTTOM":
 					infobar.setMiddle_section(valueToProcess);
-				    infobar = populateInfobarMiddleSection(infobar, false, print_writer, match, broadcaster, null, cricketService);
+				    infobar = populateInfobarMiddleSection(infobar, false, print_writer, match, broadcaster, null, cricketService, session_directoryPath);
 					break;
 					
 				case "POPULATE-INFOBAR-BOTTOMRIGHT": 
@@ -5856,7 +5858,7 @@ public class MAHARAJA_T20 extends Scene{
 		return infobar;
 		
 	}
-	public Infobar populateInfobar(Infobar infobar, PrintWriter print_writer, MatchAllData match, CricketService cricketService, String broadcaster) throws InterruptedException 
+	public Infobar populateInfobar(Infobar infobar, PrintWriter print_writer, MatchAllData match, CricketService cricketService, String broadcaster, String session_directoryPath) throws InterruptedException 
 	{
 		switch (broadcaster.toUpperCase()) {
 		case "MAHARAJA_T20":
@@ -5868,7 +5870,7 @@ public class MAHARAJA_T20 extends Scene{
 				
 				populateInfobarTeamScore(false, print_writer, match, broadcaster);
 				infobar = processInfobarPowerplay(infobar, print_writer, broadcaster, match);
-				infobar = populateInfobarMiddleSection(infobar, false, print_writer, match, broadcaster, null, cricketService);
+				infobar = populateInfobarMiddleSection(infobar, false, print_writer, match, broadcaster, null, cricketService, session_directoryPath);
 				infobar = populateInfobarBottomRight(infobar,false, print_writer,match, broadcaster);
 				//this.status = CricketUtil.SUCCESSFUL;	
 			}
@@ -6029,7 +6031,7 @@ public class MAHARAJA_T20 extends Scene{
 		return infobar;
 	}
 	public Infobar populateInfobarMiddleSection(Infobar infobar, boolean is_this_updating, PrintWriter print_writer, 
-			MatchAllData match, String broadcaster, InfobarStats infobar_stats, CricketService cricketService) throws InterruptedException
+			MatchAllData match, String broadcaster, InfobarStats infobar_stats, CricketService cricketService, String session_directoryPath) throws InterruptedException
 	{
 		Inning inning = match.getMatch().getInning().stream().filter(inn->inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)).findAny().orElse(null);
 		List<BattingCard> current_batsmen = new ArrayList<BattingCard>();
@@ -7057,7 +7059,7 @@ public class MAHARAJA_T20 extends Scene{
 									+ "*GEOM*TEXT SET " + "DLS TARGET AFTER " + balls + " OVERS : " + (Integer.valueOf(this_dls.get(i).getWkts_down()) + 1) + "\0");
 							break;
 						case "DLS_EQUATION":
-							runs = (total_runs) - Integer.valueOf((CricketFunctions.populateDuckWorthLewis(match).get(i).getWkts_down()));
+							runs = (total_runs) - Integer.valueOf((CricketFunctions.populateDuckWorthLewis(match, session_directoryPath).get(i).getWkts_down()));
 	                        if(runs < 0){
 	                            ahead_behind = " | " + team + " ARE " + (Math.abs(runs)) + " RUNS BEHIND";
 	                        }else if (runs > 0){
@@ -12218,7 +12220,7 @@ public class MAHARAJA_T20 extends Scene{
 				break;
 		}
 	}
-	public void populateDuckWorthLewisEquation(PrintWriter print_writer,String viz_scene,String balls,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
+	public void populateDuckWorthLewisEquation(PrintWriter print_writer,String viz_scene,String balls,MatchAllData match,String session_selected_broadcaster, String session_directoryPath) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
 			case "MAHARAJA_T20":
@@ -12261,7 +12263,7 @@ public class MAHARAJA_T20 extends Scene{
 				}
 				for(int i = 0; i<= this_dls.size() -1;i++) {
 					if(this_dls.get(i).getOver_left().equalsIgnoreCase(balls)) {
-						runs = (total_runs) - Integer.valueOf((CricketFunctions.populateDuckWorthLewis(match).get(i).getWkts_down()));
+						runs = (total_runs) - Integer.valueOf((CricketFunctions.populateDuckWorthLewis(match, session_directoryPath).get(i).getWkts_down()));
                         if(runs < 0){
                             ahead_behind = " (" + (Math.abs(runs)) + " runs behind)";
                         }else if (runs > 0){

@@ -31911,6 +31911,11 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									select.appendChild(option);
 									
 									option = document.createElement('option');
+									option.value = 'LASTWICKET';
+									option.text = 'LAST WICKET';
+									select.appendChild(option);
+									
+									option = document.createElement('option');
 									option.value = 'comms';
 									option.text = 'COMMS';
 									select.appendChild(option);

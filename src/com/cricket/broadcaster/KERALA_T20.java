@@ -168,6 +168,8 @@ public class KERALA_T20 extends Scene {
 			} else {
 				infobar = populateInfobarTeamScore(infobar, true, print_writer.get(0), match, broadcaster);
 				infobar = populateVizInfobarMiddle(infobar, true, print_writer.get(0), match, broadcaster);
+				infobar = populateVizInfobarRightTop(infobar, true, print_writer.get(0), match, broadcaster);
+				infobar = populateVizInfobarRightBottom(infobar, true, print_writer.get(0), match, broadcaster);
 
 				if (infobar.getBottom_right_section() != null && !infobar.getBottom_right_section().trim().isEmpty()) {
 					infobar = populateVizInfobarRight(infobar, true, print_writer.get(0), match, broadcaster);
@@ -178,9 +180,6 @@ public class KERALA_T20 extends Scene {
 						infobar.setOverBallGreaterThen9(false);
 						infobar.setOverBallequalto0(false);
 					}
-				} else {
-					infobar = populateVizInfobarRightTop(infobar, true, print_writer.get(0), match, broadcaster);
-					infobar = populateVizInfobarRightBottom(infobar, true, print_writer.get(0), match, broadcaster);
 				}
 
 				if (infobar.getFull_section() != null && !infobar.getFull_section().trim().isEmpty()) {
@@ -261,6 +260,9 @@ public class KERALA_T20 extends Scene {
 				case "PROJECTED":
 					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
 					break;
+				case "LASTWICKET":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;
 				case "TARGET":
 					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
 					break;
@@ -281,34 +283,45 @@ public class KERALA_T20 extends Scene {
 					break;		
 				}
 				TimeUnit.MILLISECONDS.sleep(200);
-				processAnimation(print_writer, "Section5$Section5Out", "START", broadcaster);
-				processAnimation(print_writer, "Section4$Section4In", "START", broadcaster);
-				TimeUnit.MILLISECONDS.sleep(200);
-
-				if (match.getSetup().getMatchType().equalsIgnoreCase(CricketUtil.SUPER_OVER)) {
-					if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0) {
-						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section4$FreeText$txt_Head*GEOM*TEXT SET " 
-								+ match.getMatch().getInning().get(1).getBatting_team().getTeamName2() + " WIN\nBY SUPER OVER" + "\0");
-					} else if ((CricketFunctions.GetTargetData(match).getRemaningBall() == 0
-							|| CricketFunctions.getWicketsLeft(match, 2) <= 0 ) && CricketFunctions.GetTargetData(match).getRemaningRuns() >= 2) {
-						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section4$FreeText$txt_Head*GEOM*TEXT SET " 
-								+ match.getMatch().getInning().get(1).getBowling_team().getTeamName2() + " WIN\nBY SUPER OVER" + "\0");
-					}else {
-						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section4$FreeText$txt_Head*GEOM*TEXT SET " 
-								+ CricketFunctions.GenerateMatchSummaryStatus(2, match, CricketUtil.FULL, "|",broadcaster,true)
-								.getTargetOrResult().toUpperCase()+ "\0");
-					}
-				} else {
-					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section4$FreeText$txt_Head*GEOM*TEXT SET " 
-							+ CricketFunctions.GenerateMatchSummaryStatus(2, match, CricketUtil.FULL, "|",broadcaster,true)
-							.getTargetOrResult().toUpperCase()+ "\0");
-				}
-
-				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section4$FreeText$txt_Head*TEXTURE*IMAGE SET " + text_path1 + "TLogo\0");
-				
-				processAnimation(print_writer, "Section4$FreeTextIn", "START", broadcaster);
+//				processAnimation(print_writer, "Section5$Section5Out", "START", broadcaster);
+//				processAnimation(print_writer, "Section4$Section4In", "START", broadcaster);
+//				TimeUnit.MILLISECONDS.sleep(200);
+				processAnimation(print_writer, "Section5$FreeTextIn", "START", broadcaster);
+				infobar.setFull_section("EQUATION");
+//				if (match.getSetup().getMatchType().equalsIgnoreCase(CricketUtil.SUPER_OVER)) {
+//					if (CricketFunctions.GetTargetData(match).getRemaningRuns() == 0) {
+//						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section4$FreeText$txt_Head*GEOM*TEXT SET " 
+//								+ match.getMatch().getInning().get(1).getBatting_team().getTeamName2() + " WIN\nBY SUPER OVER" + "\0");
+//					} else if ((CricketFunctions.GetTargetData(match).getRemaningBall() == 0
+//							|| CricketFunctions.getWicketsLeft(match, 2) <= 0 ) && CricketFunctions.GetTargetData(match).getRemaningRuns() >= 2) {
+//						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section4$FreeText$txt_Head*GEOM*TEXT SET " 
+//								+ match.getMatch().getInning().get(1).getBowling_team().getTeamName2() + " WIN\nBY SUPER OVER" + "\0");
+//					}else {
+//						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section4$FreeText$txt_Head*GEOM*TEXT SET " 
+//								+ CricketFunctions.GenerateMatchSummaryStatus(2, match, CricketUtil.FULL, "|",broadcaster,true)
+//								.getTargetOrResult().toUpperCase()+ "\0");
+//					}
+//				} else {
+//					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section4$FreeText$txt_Head*GEOM*TEXT SET " 
+//							+ CricketFunctions.GenerateMatchSummaryStatus(2, match, CricketUtil.FULL, "|",broadcaster,true)
+//							.getTargetOrResult().toUpperCase()+ "\0");
+//				}
+//
+//				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section4$FreeText$txt_Head*TEXTURE*IMAGE SET " + text_path1 + "TLogo\0");
+//				
+//				processAnimation(print_writer, "Section4$FreeTextIn", "START", broadcaster);
 
 				infobar.setShow_winner(true);
+				infobar.setLast_full_section("");
+				infobar.setFull_section("");
+				infobar.setBottom_right_bottom_section("");
+				infobar.setLast_bottom_right_bottom_section("");
+				infobar.setLast_bottom_right_top_section("");
+				infobar.setBottom_right_top_section("");
+				infobar.setBottom_right_section("");
+				infobar.setLast_bottom_right_section("");
+
+				infobar.setLast_full_section("EQUATION");
 			} else if (infobar.getLast_bottom_right_section() != null
 					&& !infobar.getLast_bottom_right_section().trim().isEmpty()) {
 
@@ -376,6 +389,17 @@ public class KERALA_T20 extends Scene {
 				
 				processAnimation(print_writer, "Section4$FreeTextIn", "START", broadcaster);
 				infobar.setShow_winner(true);
+				infobar.setLast_full_section("");
+				infobar.setFull_section("");
+				infobar.setBottom_right_bottom_section("");
+				infobar.setLast_bottom_right_bottom_section("");
+				infobar.setLast_bottom_right_top_section("");
+				infobar.setBottom_right_top_section("");
+				infobar.setBottom_right_section("");
+				infobar.setLast_bottom_right_section("");
+
+				infobar.setLast_bottom_right_section("EQUATION");
+				
 			} else if (infobar.getLast_bottom_right_bottom_section() != null
 					&& !infobar.getLast_bottom_right_bottom_section().trim().isEmpty()) { // Normal change on
 
@@ -429,18 +453,19 @@ public class KERALA_T20 extends Scene {
 				
 				processAnimation(print_writer, "Section4$FreeTextIn", "START", broadcaster);
 				infobar.setShow_winner(true);
+				
+				infobar.setLast_full_section("");
+				infobar.setFull_section("");
+				infobar.setBottom_right_bottom_section("");
+				infobar.setLast_bottom_right_bottom_section("");
+				infobar.setLast_bottom_right_top_section("");
+				infobar.setBottom_right_top_section("");
+				infobar.setBottom_right_section("");
+				infobar.setLast_bottom_right_section("");
+
+				infobar.setLast_bottom_right_section("EQUATION");
+				
 			}
-
-			infobar.setLast_full_section("");
-			infobar.setFull_section("");
-			infobar.setBottom_right_bottom_section("");
-			infobar.setLast_bottom_right_bottom_section("");
-			infobar.setLast_bottom_right_top_section("");
-			infobar.setBottom_right_top_section("");
-			infobar.setBottom_right_section("");
-			infobar.setLast_bottom_right_section("");
-
-			infobar.setLast_bottom_right_section("EQUATION");
 		}
 	}
 
@@ -2697,6 +2722,9 @@ public class KERALA_T20 extends Scene {
 				case "FREETEXT":
 					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
 					break;
+				case "LASTWICKET":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;
 				case "PROJECTED":
 					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
 					break;
@@ -2727,8 +2755,9 @@ public class KERALA_T20 extends Scene {
 //				processAnimation(print_writer, "Section3$EconomyOut", "START", broadcaster);
 //				processAnimation(print_writer, "Section3$BowlingEndOut", "START", broadcaster);
 //				processAnimation(print_writer, "Section3$ExtrasOut", "START", broadcaster);
-//				infobar.setBottom_right_top_section(CricketUtil.BOWLER);
-//				infobar = populateVizInfobarRightTop(infobar, false, print_writer, match, broadcaster);
+				infobar.setBottom_right_top_section(CricketUtil.BOWLER);
+				infobar = populateVizInfobarRightTop(infobar, false, print_writer, match, broadcaster);
+				TimeUnit.MILLISECONDS.sleep(400);
 				processAnimation(print_writer, "BowlerIn", "START", broadcaster);
 //				// TimeUnit.MILLISECONDS.sleep(100);
 //				switch (infobar.getBottom_right_bottom_section().toUpperCase()) {
@@ -2858,6 +2887,9 @@ public class KERALA_T20 extends Scene {
 					processAnimation(print_writer, "Section5$TimeLineOut", "START", broadcaster);
 					break;
 				case "FREETEXT":
+					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "LASTWICKET":
 					processAnimation(print_writer, "Section5$FreeTextOut", "START", broadcaster);
 					break;
 				case "PROJECTED":
@@ -16968,6 +17000,7 @@ public class KERALA_T20 extends Scene {
 					}
 				}
 			}
+			infobar.setLast_bottom_right_section("BOWLER_REPLACE");
 			break;
 		case "LAST_WICKET":
 			for (Inning inn : match.getMatch().getInning()) {
@@ -17055,6 +17088,7 @@ public class KERALA_T20 extends Scene {
 									CricketFunctions.GetTargetData(match).getRemaningBall(), 2, match) + "\0");
 				}
 			}
+			infobar.setLast_bottom_right_section("RRR");
 			break;
 		case "CRR":
 			for (Inning inn : match.getMatch().getInning()) {
@@ -17070,7 +17104,7 @@ public class KERALA_T20 extends Scene {
 					}
 				}
 			}
-			infobar.setLast_bottom_right_bottom_section("CRR");
+			infobar.setLast_bottom_right_section("CRR");
 			break;
 		}
 		return infobar;
@@ -17919,6 +17953,26 @@ public class KERALA_T20 extends Scene {
 			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
 							+ match.getSetup().getTournament() + "\0");
 			break;	
+		case "LASTWICKET":
+			for (Inning inn : match.getMatch().getInning()) {
+				if (inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
+					for (BattingCard bc : inn.getBattingCard()) {
+						if (inn.getFallsOfWickets() != null && !inn.getFallsOfWickets().isEmpty()) {
+							if (inn.getFallsOfWickets().size() > 0) {
+								if (inn.getFallsOfWickets().get(inn.getFallsOfWickets().size() - 1)
+										.getFowPlayerID() == bc.getPlayerId()) {
+									print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*TEXTURE*IMAGE SET "+ text_path2 + "TLogo\0");
+									print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*FUNCTION*Omo*vis_con SET 0 \0");
+									print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
+													+ "LAST WICKET: " + bc.getPlayer().getTicker_name() + " (" + bc.getHowOutText() + ")  " + bc.getRuns() + " (" + bc.getBalls() + ")\0");
+									print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*ACTIVE SET 1 \0");
+								}
+							}
+						}	
+					}
+				}
+			}
+			break;
 		case "FREETEXT":
 			String text_to_return = "";
 			int lineIndex1 = 1;
@@ -17958,6 +18012,7 @@ public class KERALA_T20 extends Scene {
 				}
 			}
 			break;
+			
 		case CricketUtil.TIMELINE:
 
 			Inning inning = match.getMatch().getInning().stream().filter(inn -> inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)).findAny().orElse(null);
@@ -18344,6 +18399,7 @@ public class KERALA_T20 extends Scene {
 					}
 				}
 			}
+			System.out.println("fix.get(match_number - 1).getVenue() = " + fix.get(match_number - 1).getVenue());
 			print_writer.println("-1 RENDERER PREVIEW SCENE*" + viz_sence_path
 					+ " C:/Temp/Preview.tga anim_MatchId 1.400 anim_MatchId$in_Out$In 1.400 \0");
 			TimeUnit.MILLISECONDS.sleep(100);
@@ -21288,7 +21344,7 @@ public class KERALA_T20 extends Scene {
 		print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$PhaseScore$BottomGrp$RestDataGrp$3$txt_Data1A*GEOM*TEXT SET "
 				+ "7-15" + "\0");
 		print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$PhaseScore$BottomGrp$RestDataGrp$4$txt_Data1A*GEOM*TEXT SET "
-				+ "15-20" + "\0");
+				+ "16-20" + "\0");
 		
 		if(oneToSixRuns == 0 && oneToSixfWkt == 0) {
 			print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$PhaseScore$BottomGrp$RestDataGrp$2$txt_Data2A*GEOM*TEXT SET "+ "-" + "\0");
@@ -25282,9 +25338,12 @@ public class KERALA_T20 extends Scene {
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Side1$LLC_LogoGrp$TLogo*TEXTURE*IMAGE SET " + 
 					logo_path + "TLogo_Blue" + "\0");
 			
+			System.out.println("STADIUMssss = " + fix.get(0).getVenue());
+			
 			for(int i = 0; i <= fix.size()-1; i++) {
 				if(fix.get(i).getDate().equalsIgnoreCase(Date)) {
-					if(fix.get(i).getVenue().equalsIgnoreCase("HOLKAR CRICKET STADIUM, INDORE")) {
+					System.out.println("STADIUM = " + fix.get(i).getVenue());
+					if(fix.get(i).getVenue().equalsIgnoreCase("HOLKAR STADIUM, INDORE")) {
 						if(row_id == 1) {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo$TeamBadgeGrp1$img_Badges*TEXTURE*IMAGE SET " + 
 									logo_path + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
@@ -25308,14 +25367,24 @@ public class KERALA_T20 extends Scene {
 							
 							if(day.toUpperCase().equalsIgnoreCase("TODAY")) {
 								if(fix.get(i).getMatchnumber()<10) {
+									System.out.println("MATCH ------------------------"+ fix.get(i).getMatchnumber());
 									print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
 											"MATCH "+ fix.get(i).getMatchnumber() + " - LIVE" + "\0");
 								}else {
-									print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
-											fix.get(i).getMatchfilename() + "\0");
+									if(fix.get(i).getMatchfilename().contains("M_")) {
+										print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
+												fix.get(i).getMatchfilename().replace("M_", "") + "\0");
+									}else if(fix.get(i).getMatchfilename().contains("W_")) {
+										print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
+												fix.get(i).getMatchfilename().replace("W_", "") + "\0");
+									}else {
+										print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
+												fix.get(i).getMatchfilename() + "\0");
+									}
 								}
 							}else {
 								if(fix.get(i).getMatchnumber()<10) {
+									System.out.println("MATCH ------------------------"+ fix.get(i).getMatchnumber());
 									print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$HeaderAllGrp$HeaderStyle1$SubHead" + row_id + "$txt_SubHeader*GEOM*TEXT SET " + 
 											"MATCH "+ fix.get(i).getMatchnumber() + " AT " + fix.get(i).getLocalTime() + "\0");
 								}else {
@@ -25376,6 +25445,7 @@ public class KERALA_T20 extends Scene {
 							}
 							
 							if(day.toUpperCase().equalsIgnoreCase("DAY_AFTER_TOMORROW")) {	
+								System.out.println("MATCH ------------------------"+ fix.get(i).getMatchnumber());
 								newDate = fix.get(fix.get(i).getMatchnumber() - 1).getDate().split("-")[0];
 								if (Integer.valueOf(newDate) < 10) {
 									newDate = newDate.replaceFirst("0", "");
@@ -30738,7 +30808,7 @@ public class KERALA_T20 extends Scene {
 					MatchName = h2h.getMatchFileName();
 					print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bating$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
 							+ row_no+ "$RowAnimation$Select$Dehighlight$img_Text2$txt_PlayerName*GEOM*TEXT SET " + "v "
-							+ h2h.getOpponentTeam().getTeamName3() + "\0");
+							+ h2h.getOpponentTeam().getTeamName2() + "\0");
 					
 					if(h2h.getInningStarted().contains("Y")) {
 						if(h2h.getDismissed().contains("N")) {
@@ -30783,7 +30853,7 @@ public class KERALA_T20 extends Scene {
 									+ row_no + "$RowAnimation$Select*FUNCTION*Omo*vis_con SET " + "0" + " \0");
 							print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bating$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
 									+ row_no+ "$RowAnimation$Select$Dehighlight$img_Text2$txt_PlayerName*GEOM*TEXT SET " + "v "
-									+ h2h.getOpponentTeam().getTeamName3() + "\0");
+									+ h2h.getOpponentTeam().getTeamName2() + "\0");
 							print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bating$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
 									+ row_no + "$RowAnimation$Select$Dehighlight$img_Text2$txt_Data1*GEOM*TEXT SET "+ "" + "\0");
 							print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bating$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
@@ -30813,7 +30883,7 @@ public class KERALA_T20 extends Scene {
 								+ row_no + "$RowAnimation$Select*FUNCTION*Omo*vis_con SET " + "1" + " \0");
 						print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bating$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
 								+ row_no+ "$RowAnimation$Select$Highlight$img_Text2$txt_PlayerName*GEOM*TEXT SET " + "v "
-								+ inning.getBowling_team().getTeamName3() + "\0");
+								+ inning.getBowling_team().getTeamName2() + "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bating$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
 								+ row_no + "$RowAnimation$Select$Highlight$img_Text2$txt_Data1*GEOM*TEXT SET "+ "" + "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bating$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
@@ -30833,7 +30903,7 @@ public class KERALA_T20 extends Scene {
 								+ row_no + "$RowAnimation$Select*FUNCTION*Omo*vis_con SET " + "1" + " \0");
 						print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bating$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
 								+ row_no+ "$RowAnimation$Select$Highlight$img_Text2$txt_PlayerName*GEOM*TEXT SET " + "v "
-								+ inning.getBowling_team().getTeamName3() + "\0");
+								+ inning.getBowling_team().getTeamName2() + "\0");
 						
 						if(bc.getStatus().equalsIgnoreCase(CricketUtil.OUT)) {
 							print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bating$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
@@ -30873,7 +30943,7 @@ public class KERALA_T20 extends Scene {
 						+ row_no + "$RowAnimation$Select*FUNCTION*Omo*vis_con SET " + "1" + " \0");
 				print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bating$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
 						+ row_no+ "$RowAnimation$Select$Highlight$img_Text2$txt_PlayerName*GEOM*TEXT SET " + "v "
-						+ inning.getBowling_team().getTeamName3() + "\0");
+						+ inning.getBowling_team().getTeamName2() + "\0");
 				print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bating$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
 						+ row_no + "$RowAnimation$Select$Highlight$img_Text2$txt_Data1*GEOM*TEXT SET "+ "" + "\0");
 				print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bating$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
@@ -30945,7 +31015,7 @@ public class KERALA_T20 extends Scene {
 					
 					print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bowling$AllDataGrp$CardAll$Data$Data$DataGrp$Row"+ row_no
 									+ "$RowAnimation$Select$Dehighlight$img_Text2$txt_PlayerName*GEOM*TEXT SET " + "v "
-									+ h2h.getOpponentTeam().getTeamName3()+ "\0");
+									+ h2h.getOpponentTeam().getTeamName2()+ "\0");
 					print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bowling$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
 									+ row_no + "$RowAnimation$Select$Dehighlight$img_Text2$txt_Star*ACTIVE SET 0 \0");
 					
@@ -30978,7 +31048,7 @@ public class KERALA_T20 extends Scene {
 										+ row_no + "$RowAnimation$Select*FUNCTION*Omo*vis_con SET 0 \0");
 						print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bowling$AllDataGrp$CardAll$Data$Data$DataGrp$Row"+ row_no
 										+ "$RowAnimation$Select$Dehighlight$img_Text2$txt_PlayerName*GEOM*TEXT SET " + "v "
-										+ h2h.getOpponentTeam().getTeamName3()+ "\0");
+										+ h2h.getOpponentTeam().getTeamName2()+ "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bowling$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
 										+ row_no + "$RowAnimation$Select$Dehighlight$img_Text2$txt_Star*ACTIVE SET 0 \0");
 						print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bowling$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
@@ -31018,7 +31088,7 @@ public class KERALA_T20 extends Scene {
 										+ row_no + "$RowAnimation$Select*FUNCTION*Omo*vis_con SET 1 \0");
 						print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bowling$AllDataGrp$CardAll$Data$Data$DataGrp$Row"+ row_no
 										+ "$RowAnimation$Select$Highlight$img_Text2$txt_PlayerName*GEOM*TEXT SET " + "v "
-										+ inning.getBatting_team().getTeamName3()+ "\0");
+										+ inning.getBatting_team().getTeamName2()+ "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bowling$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
 										+ row_no + "$RowAnimation$Select$Highlight$img_Text2$txt_Star*ACTIVE SET 0 \0");
 						print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bowling$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
@@ -31042,7 +31112,7 @@ public class KERALA_T20 extends Scene {
 								+ row_no + "$RowAnimation$Select*FUNCTION*Omo*vis_con SET 1 \0");
 				print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bowling$AllDataGrp$CardAll$Data$Data$DataGrp$Row"+ row_no
 								+ "$RowAnimation$Select$Highlight$img_Text2$txt_PlayerName*GEOM*TEXT SET " + "v "
-								+ inning.getBatting_team().getTeamName3()+ "\0");
+								+ inning.getBatting_team().getTeamName2()+ "\0");
 				print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bowling$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
 								+ row_no + "$RowAnimation$Select$Highlight$img_Text2$txt_Star*ACTIVE SET 0 \0");
 				print_writer.println("-1 RENDERER*TREE*$Main$Select$MiniBatting_Bwling$Mini$Bowling$AllDataGrp$CardAll$Data$Data$DataGrp$Row"
@@ -35810,6 +35880,9 @@ public class KERALA_T20 extends Scene {
 							case "PROJECTED":
 								processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
 								break;
+							case "LASTWICKET":
+								processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+								break;
 							case "TARGET":
 								processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
 								break;
@@ -35868,6 +35941,9 @@ public class KERALA_T20 extends Scene {
 											broadcaster);
 									break;
 								case "PROJECTED":
+									processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+									break;
+								case "LASTWICKET":
 									processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
 									break;
 								case "TARGET":
@@ -36114,7 +36190,7 @@ public class KERALA_T20 extends Scene {
 				case "STATISTICS":
 					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
 					break;
-				case "EXTRAS":
+				case "EXTRAS": case "VENUE": case "CRR_RRR": case "CRR":  case "RRR":
 					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
 					break;
 				case "REVIEW":
@@ -36136,6 +36212,9 @@ public class KERALA_T20 extends Scene {
 					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
 					break;
 				case "PROJECTED":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "LASTWICKET":
 					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
 					break;
 				case "TARGET":
@@ -36163,6 +36242,9 @@ public class KERALA_T20 extends Scene {
 					processAnimation(print_writer.get(0), "Section5$TimeLineOut", "START", broadcaster);
 					break;
 				case "FREETEXT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "LASTWICKET":
 					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
 					break;
 				case "PROJECTED":
@@ -36199,6 +36281,9 @@ public class KERALA_T20 extends Scene {
 					processAnimation(print_writer.get(0), "Section5$TimeLineIn", "START", broadcaster);
 					break;
 				case "FREETEXT":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "LASTWICKET":
 					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
 					break;
 				case "PROJECTED":
@@ -36266,6 +36351,9 @@ public class KERALA_T20 extends Scene {
 					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
 					break;
 				case "PROJECTED":
+					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
+					break;
+				case "LASTWICKET":
 					processAnimation(print_writer.get(0), "Section5$FreeTextIn", "START", broadcaster);
 					break;
 				case "TARGET":
@@ -36345,7 +36433,7 @@ public class KERALA_T20 extends Scene {
 				case "STATISTICS":
 					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
 					break;
-				case "EXTRAS":
+				case "EXTRAS": case "VENUE": case "CRR_RRR": case "CRR":  case "RRR":
 					processAnimation(print_writer.get(0), "Section4$FreeTextOut", "START", broadcaster);
 					break;
 				case "REVIEW":
@@ -36355,10 +36443,10 @@ public class KERALA_T20 extends Scene {
 
 				infobar.setBottom_right_bottom_section(valueToProcess);
 				infobar = populateVizInfobarRightBottom(infobar, false, print_writer.get(0), match, broadcaster);
-				processAnimation(print_writer.get(0), "Section3$ThisOverOut", "START", broadcaster);
-				processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
-				processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
-				processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
+//				processAnimation(print_writer.get(0), "Section3$ThisOverOut", "START", broadcaster);
+//				processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
+//				processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
+//				processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
 				infobar.setBottom_right_top_section(CricketUtil.BOWLER);
 				infobar = populateVizInfobarRightTop(infobar, false, print_writer.get(0), match, broadcaster);
 
@@ -36401,6 +36489,9 @@ public class KERALA_T20 extends Scene {
 				case "PROJECTED":
 					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
 					break;
+				case "LASTWICKET":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
 				case "TARGET":
 					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
 					break;
@@ -36424,12 +36515,38 @@ public class KERALA_T20 extends Scene {
 				processAnimation(print_writer.get(0), "Section5$Section5Out", "START", broadcaster);
 
 				infobar.setBottom_right_bottom_section(valueToProcess);
+				
+				System.out.println("HELLO 6 = " + infobar.getLast_bottom_right_bottom_section());
+				
+				switch (infobar.getLast_bottom_right_bottom_section().toUpperCase()) {
+				case CricketUtil.OVER:
+					System.out.println("HELLO 6");
+					if (infobar.isThisover()) {
+						System.out.println("THISOVER OUT3");
+						processAnimation(print_writer.get(0), "Section3$ThisOverOut", "START", broadcaster);
+					} else {
+						System.out.println("THISOVER OUT4");
+						processAnimation(print_writer.get(0), "Section3$FreeTextOut", "START", broadcaster);
+					}
+					break;
+				case "ECONOMY":
+					processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
+					break;
+				case "BOWLINGEND": case "REPLACEBOWLER":case "CRR": case "TARGET":
+				case "EQUATION": case "CRR_RRR":
+					processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
+					break;
+				case "EXTRAS":
+					processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
+					break;
+				}
+				
 				infobar = populateVizInfobarRightBottom(infobar, false, print_writer.get(0), match, broadcaster);
 
-				processAnimation(print_writer.get(0), "Section3$ThisOverOut", "START", broadcaster);
-				processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
-				processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
-				processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
+//				processAnimation(print_writer.get(0), "Section3$ThisOverOut", "START", broadcaster);
+//				processAnimation(print_writer.get(0), "Section3$EconomyOut", "START", broadcaster);
+//				processAnimation(print_writer.get(0), "Section3$BowlingEndOut", "START", broadcaster);
+//				processAnimation(print_writer.get(0), "Section3$ExtrasOut", "START", broadcaster);
 
 				infobar.setBottom_right_top_section(CricketUtil.BOWLER);
 				infobar = populateVizInfobarRightTop(infobar, false, print_writer.get(0), match, broadcaster);
@@ -36510,6 +36627,8 @@ public class KERALA_T20 extends Scene {
 					processAnimation(print_writer.get(0), "Section3$ExtrasIn", "START", broadcaster);
 					break;
 				}
+				
+				TimeUnit.MILLISECONDS.sleep(1000);
 			}
 			infobar.setBottom_right_section("");
 			infobar.setLast_bottom_right_section("");
@@ -36527,6 +36646,9 @@ public class KERALA_T20 extends Scene {
 					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
 					break;
 				case "PROJECTED":
+					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
+					break;
+				case "LASTWICKET":
 					processAnimation(print_writer.get(0), "Section5$FreeTextOut", "START", broadcaster);
 					break;
 				case "TARGET":

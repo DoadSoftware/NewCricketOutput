@@ -9207,7 +9207,7 @@ public class ACC_NEPAL extends Scene{
 			case "ACC_NEPAL":
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFirstName " + match.getMatch().getInning().get(1).getBatting_team().getTeamName1() + " " 
 						+ match.getMatch().getInning().get(1).getTotalRuns() + "-" + match.getMatch().getInning().get(1).getTotalWickets() + ";");
-				
+
 				for(int i = 0; i<= CricketFunctions.populateDuckWorthLewis(match, session_directoryPath).size() -1;i++) {
 					if(CricketFunctions.populateDuckWorthLewis(match, session_directoryPath).get(i).getOver_left().equalsIgnoreCase(balls)) {
 						print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tDetails " + "CURRENT DLS PAR SCORE AFTER " 

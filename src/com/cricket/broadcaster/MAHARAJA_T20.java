@@ -7060,6 +7060,7 @@ public class MAHARAJA_T20 extends Scene{
 							break;
 						case "DLS_EQUATION":
 							runs = (total_runs) - Integer.valueOf((CricketFunctions.populateDuckWorthLewis(match, session_directoryPath).get(i).getWkts_down()));
+
 	                        if(runs < 0){
 	                            ahead_behind = " | " + team + " ARE " + (Math.abs(runs)) + " RUNS BEHIND";
 	                        }else if (runs > 0){

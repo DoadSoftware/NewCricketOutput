@@ -16798,7 +16798,6 @@ public class RSWS extends Scene{
 						
 						print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$D/L$Data$TopLine"
 								+ "$TextSecondName*TEXTURE2 SET TEXTURE_PATH " + text_color1 + team + CricketUtil.PNG_EXTENSION + ";");
-						
 						for(int i = 0; i<= CricketFunctions.populateDuckWorthLewis(match, session_directoryPath).size() -1;i++) {
 							if(CricketFunctions.populateDuckWorthLewis(match, session_directoryPath).get(i).getOver_left().equalsIgnoreCase(balls)) {
 								

@@ -218,7 +218,9 @@ public class Scene {
 				print_writer.println("LAYER1*EVEREST*SINGLE_SCENE LOAD " + this.scene_path + ";");
 				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In STOP;");
 				print_writer.println("LAYER1*EVEREST*STAGE*DIRECTOR*In SHOW 0.0;");
-				TimeUnit.MILLISECONDS.sleep(500);
+				TimeUnit.MILLISECONDS.sleep(1000);
+				
+				print_writer.println("LAYER6*EVEREST*SINGLE_SCENE LOAD " + this.scene_path + ";");
 				break;
 			case "MIDDLE_LAYER":
 				print_writer.println("LAYER2*EVEREST*SINGLE_SCENE LOAD " + this.scene_path + ";");

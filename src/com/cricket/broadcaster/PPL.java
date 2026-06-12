@@ -30,7 +30,6 @@ import com.cricket.containers.Infobar;
 import com.cricket.containers.Scene;
 import com.cricket.controller.IndexController;
 import com.cricket.model.BatBallGriff;
-import com.cricket.model.BattingBuzzer;
 import com.cricket.model.BattingCard;
 import com.cricket.model.BestStats;
 import com.cricket.model.BowlingCard;
@@ -12153,61 +12152,61 @@ public class PPL extends Scene{
 		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHeader" + " SET " + "BIG CRICKET LEAGUE" + "\0");
 		
 		
-		try {
-            ObjectMapper mapper = new ObjectMapper();
-            BattingBuzzer data = mapper.readValue(
-                new File("C:/Sports/Cricket/BATTING_BUZZER.json"),
-                BattingBuzzer.class
-            );
- 
-            System.out.println("Success : " + data.isSuccess());
-            System.out.println("Total Players : " + data.getList().size());
-            System.out.println("------------------------------");
- 
-            for (BattingBuzzer.Player player : data.getList()) {
-            	row_no++;
-            	for(Team tm : cricketservice.getTeams()) {
-        			if(Integer.valueOf(tm.getOnlineId()) == player.getTeamId()) {
-        				for(Player plyr : cricketservice.getAllPlayer()) {
-                    		if(plyr.getOnlineId() == player.getPlayerId()) {
-                    			if(row_no == 1) {
-                    				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vHighlight" + row_no + " SET " + tm.getTeamBadge() + "\0");
-                    				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgPlayerImage1" + " SET " + photo_path + 
-            								tm.getTeamBadge() + "\\\\" + plyr.getPhoto() + CricketUtil.PNG_EXTENSION + "\0");
-                    			}
-                    		}
-                    	}
-        			}
-        		}
-            	
-                System.out.println("Player Name    : " + player.getPlayerName());
-                System.out.println("Team           : " + player.getTeamName());
-                System.out.println("Points         : " + player.getPoints());
-                System.out.println("Category       : " + player.getCategory());
-                System.out.println("Buzzers        : " + player.getBuzzers());
-                System.out.println("Matches Played : " + player.getMatchesPlayed());
-                System.out.println("------------------------------");
-                
-                
-                print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vHighlight" + row_no + " SET " + "0" + "\0");
-        		
-                print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$LeaderBoard$TeamAll$Row" + row_no + "*ACTIVE SET 1\0");
-        		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tPlayerName" + row_no + " SET " + 
-        				player.getPlayerName().toUpperCase() + "\0");
-        		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tTeamName" + row_no + " SET " + 
-        				player.getTeamName().toUpperCase() + "\0");
-        		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tPlayerRuns" + row_no + " SET " + 
-        				player.getPoints() + "\0");
-        		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tPlayerBalls" + row_no + " SET " + " " + "\0");
-        		print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$LeaderBoard$BottomInfoGrp*ACTIVE SET 0 \0");
-        		
-        		print_writer.println("-1 RENDERER PREVIEW SCENE*" + viz_scene + " C:/Temp/Preview.tga In 2.474 In$DataIn 1.180 \0");
-            }
-
-        } catch (Exception e) {
-            System.err.println("Error reading BATTING_BUZZER.json : " + e.getMessage());
-            e.printStackTrace();
-        }
+//		try {
+//            ObjectMapper mapper = new ObjectMapper();
+//            BattingBuzzer data = mapper.readValue(
+//                new File("C:/Sports/Cricket/BATTING_BUZZER.json"),
+//                BattingBuzzer.class
+//            );
+// 
+//            System.out.println("Success : " + data.isSuccess());
+//            System.out.println("Total Players : " + data.getList().size());
+//            System.out.println("------------------------------");
+// 
+//            for (BattingBuzzer.Player player : data.getList()) {
+//            	row_no++;
+//            	for(Team tm : cricketservice.getTeams()) {
+//        			if(Integer.valueOf(tm.getOnlineId()) == player.getTeamId()) {
+//        				for(Player plyr : cricketservice.getAllPlayer()) {
+//                    		if(plyr.getOnlineId() == player.getPlayerId()) {
+//                    			if(row_no == 1) {
+//                    				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vHighlight" + row_no + " SET " + tm.getTeamBadge() + "\0");
+//                    				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgPlayerImage1" + " SET " + photo_path + 
+//            								tm.getTeamBadge() + "\\\\" + plyr.getPhoto() + CricketUtil.PNG_EXTENSION + "\0");
+//                    			}
+//                    		}
+//                    	}
+//        			}
+//        		}
+//            	
+//                System.out.println("Player Name    : " + player.getPlayerName());
+//                System.out.println("Team           : " + player.getTeamName());
+//                System.out.println("Points         : " + player.getPoints());
+//                System.out.println("Category       : " + player.getCategory());
+//                System.out.println("Buzzers        : " + player.getBuzzers());
+//                System.out.println("Matches Played : " + player.getMatchesPlayed());
+//                System.out.println("------------------------------");
+//                
+//                
+//                print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vHighlight" + row_no + " SET " + "0" + "\0");
+//        		
+//                print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$LeaderBoard$TeamAll$Row" + row_no + "*ACTIVE SET 1\0");
+//        		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tPlayerName" + row_no + " SET " + 
+//        				player.getPlayerName().toUpperCase() + "\0");
+//        		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tTeamName" + row_no + " SET " + 
+//        				player.getTeamName().toUpperCase() + "\0");
+//        		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tPlayerRuns" + row_no + " SET " + 
+//        				player.getPoints() + "\0");
+//        		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tPlayerBalls" + row_no + " SET " + " " + "\0");
+//        		print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$LeaderBoard$BottomInfoGrp*ACTIVE SET 0 \0");
+//        		
+//        		print_writer.println("-1 RENDERER PREVIEW SCENE*" + viz_scene + " C:/Temp/Preview.tga In 2.474 In$DataIn 1.180 \0");
+//            }
+//
+//        } catch (Exception e) {
+//            System.err.println("Error reading BATTING_BUZZER.json : " + e.getMessage());
+//            e.printStackTrace();
+//        }
 	}
 	public void populateBallBuzzer(PrintWriter print_writer,String viz_scene,String spon,MatchAllData match, String broadcaster, Configuration config,CricketService cricketservice) 
 	{
@@ -12233,61 +12232,61 @@ public class PPL extends Scene{
 		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHeader" + " SET " + "BIG CRICKET LEAGUE" + "\0");
 		
 		
-		try {
-            ObjectMapper mapper = new ObjectMapper();
-            BattingBuzzer data = mapper.readValue(
-                new File("C:/Sports/Cricket/BOWLING_BUZZER.json"),
-                BattingBuzzer.class
-            );
- 
-            System.out.println("Success : " + data.isSuccess());
-            System.out.println("Total Players : " + data.getList().size());
-            System.out.println("------------------------------");
- 
-            for (BattingBuzzer.Player player : data.getList()) {
-            	row_no++;
-                System.out.println("Player Name    : " + player.getPlayerName());
-                System.out.println("Team           : " + player.getTeamName());
-                System.out.println("Points         : " + player.getPoints());
-                System.out.println("Category       : " + player.getCategory());
-                System.out.println("Buzzers        : " + player.getBuzzers());
-                System.out.println("Matches Played : " + player.getMatchesPlayed());
-                System.out.println("------------------------------");
-                
-                
-                for(Team tm : cricketservice.getTeams()) {
-        			if(Integer.valueOf(tm.getOnlineId()) == player.getTeamId()) {
-        				for(Player plyr : cricketservice.getAllPlayer()) {
-                    		if(plyr.getOnlineId() == player.getPlayerId()) {
-                    			if(row_no == 1) {
-                    				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vHighlight" + row_no + " SET " + tm.getTeamBadge() + "\0");
-                    				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgPlayerImage1" + " SET " + photo_path + 
-            								tm.getTeamBadge() + "\\\\" + plyr.getPhoto() + CricketUtil.PNG_EXTENSION + "\0");
-                    			}
-                    		}
-                    	}
-        			}
-        		}
-                
-                print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vHighlight" + row_no + " SET " + "0" + "\0");
-        		
-                print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$LeaderBoard$TeamAll$Row" + row_no + "*ACTIVE SET 1\0");
-        		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tPlayerName" + row_no + " SET " + 
-        				player.getPlayerName().toUpperCase() + "\0");
-        		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tTeamName" + row_no + " SET " + 
-        				player.getTeamName().toUpperCase() + "\0");
-        		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tPlayerRuns" + row_no + " SET " + 
-        				player.getPoints() + "\0");
-        		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tPlayerBalls" + row_no + " SET " + " " + "\0");
-        		print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$LeaderBoard$BottomInfoGrp*ACTIVE SET 0 \0");
-        		
-        		print_writer.println("-1 RENDERER PREVIEW SCENE*" + viz_scene + " C:/Temp/Preview.tga In 2.474 In$DataIn 1.180 \0");
-            }
-
-        } catch (Exception e) {
-            System.err.println("Error reading BATTING_BUZZER.json : " + e.getMessage());
-            e.printStackTrace();
-        }
+//		try {
+//            ObjectMapper mapper = new ObjectMapper();
+//            BattingBuzzer data = mapper.readValue(
+//                new File("C:/Sports/Cricket/BOWLING_BUZZER.json"),
+//                BattingBuzzer.class
+//            );
+// 
+//            System.out.println("Success : " + data.isSuccess());
+//            System.out.println("Total Players : " + data.getList().size());
+//            System.out.println("------------------------------");
+// 
+//            for (BattingBuzzer.Player player : data.getList()) {
+//            	row_no++;
+//                System.out.println("Player Name    : " + player.getPlayerName());
+//                System.out.println("Team           : " + player.getTeamName());
+//                System.out.println("Points         : " + player.getPoints());
+//                System.out.println("Category       : " + player.getCategory());
+//                System.out.println("Buzzers        : " + player.getBuzzers());
+//                System.out.println("Matches Played : " + player.getMatchesPlayed());
+//                System.out.println("------------------------------");
+//                
+//                
+//                for(Team tm : cricketservice.getTeams()) {
+//        			if(Integer.valueOf(tm.getOnlineId()) == player.getTeamId()) {
+//        				for(Player plyr : cricketservice.getAllPlayer()) {
+//                    		if(plyr.getOnlineId() == player.getPlayerId()) {
+//                    			if(row_no == 1) {
+//                    				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vHighlight" + row_no + " SET " + tm.getTeamBadge() + "\0");
+//                    				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgPlayerImage1" + " SET " + photo_path + 
+//            								tm.getTeamBadge() + "\\\\" + plyr.getPhoto() + CricketUtil.PNG_EXTENSION + "\0");
+//                    			}
+//                    		}
+//                    	}
+//        			}
+//        		}
+//                
+//                print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "vHighlight" + row_no + " SET " + "0" + "\0");
+//        		
+//                print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$LeaderBoard$TeamAll$Row" + row_no + "*ACTIVE SET 1\0");
+//        		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tPlayerName" + row_no + " SET " + 
+//        				player.getPlayerName().toUpperCase() + "\0");
+//        		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tTeamName" + row_no + " SET " + 
+//        				player.getTeamName().toUpperCase() + "\0");
+//        		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tPlayerRuns" + row_no + " SET " + 
+//        				player.getPoints() + "\0");
+//        		print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tPlayerBalls" + row_no + " SET " + " " + "\0");
+//        		print_writer.println("-1 RENDERER*TREE*$Main$AllGrp$All$LeaderBoard$BottomInfoGrp*ACTIVE SET 0 \0");
+//        		
+//        		print_writer.println("-1 RENDERER PREVIEW SCENE*" + viz_scene + " C:/Temp/Preview.tga In 2.474 In$DataIn 1.180 \0");
+//            }
+//
+//        } catch (Exception e) {
+//            System.err.println("Error reading BATTING_BUZZER.json : " + e.getMessage());
+//            e.printStackTrace();
+//        }
 	}
 	public void populateLeaderBoard(PrintWriter print_writer,String viz_scene,String StatType,int playerid,List<Tournament> tournament,List<Team> team,MatchAllData match, String broadcaster, Configuration config) 
 	{

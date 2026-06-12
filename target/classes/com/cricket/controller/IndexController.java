@@ -149,14 +149,14 @@ public class IndexController
 	List<ForeignLanguageData> foreignLanguage = new ArrayList<ForeignLanguageData>();
 	List<MatchAllData> cricket_matches = new ArrayList<MatchAllData>();
 	List<Tournament> past_tournament_stats = new ArrayList<Tournament>();
-	List<Statistics> session_statistics = new ArrayList<Statistics>();
-	List<Fixture> session_fixture = new ArrayList<Fixture>();
-	List<Bugs> session_bug = new ArrayList<Bugs>();
-	List<InfobarStats> session_infoBarStat = new ArrayList<InfobarStats>();
-	List<Commentator> session_commentator = new ArrayList<Commentator>();
-	List<VariousText> session_variousText = new ArrayList<VariousText>();
-	List<StatsType> session_statType = new ArrayList<StatsType>();
-	List<NameSuper> session_nameSuper = new ArrayList<NameSuper>();
+	public static List<Statistics> session_statistics = new ArrayList<Statistics>();
+	public static List<Fixture> session_fixture = new ArrayList<Fixture>();
+	public static List<Bugs> session_bug = new ArrayList<Bugs>();
+	public static List<InfobarStats> session_infoBarStat = new ArrayList<InfobarStats>();
+	public static List<Commentator> session_commentator = new ArrayList<Commentator>();
+	public static List<VariousText> session_variousText = new ArrayList<VariousText>();
+	public static List<StatsType> session_statType = new ArrayList<StatsType>();
+	public static List<NameSuper> session_nameSuper = new ArrayList<NameSuper>();
 	
 	public static HeadToHead headToHead = new HeadToHead ();
 	List<DuckWorthLewis> session_dls = new ArrayList<DuckWorthLewis>();
@@ -831,6 +831,14 @@ public class IndexController
 			session_team =  cricketService.getTeams();
 			session_ground =  cricketService.getGrounds();
 			session_players = cricketService.getAllPlayer();
+			session_statistics = cricketService.getAllStats();
+			session_fixture = cricketService.getFixtures();
+			session_bug = cricketService.getBugs();
+			session_variousText = cricketService.getVariousTexts();
+			session_infoBarStat = cricketService.getInfobarStats();
+			session_commentator = cricketService.getCommentator();
+			session_statType = cricketService.getAllStatsType();
+			session_nameSuper = cricketService.getNameSupers();
 			
 			session_match = CricketFunctions.populateMatchVariables(CricketFunctions.readOrSaveMatchFile(CricketUtil.READ, 
 					CricketUtil.SETUP + "," + CricketUtil.MATCH + "," + CricketUtil.EVENT, session_match, session_configuration,session_MasterCricketDirectory), 

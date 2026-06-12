@@ -1443,10 +1443,10 @@
 				  		name="team_tournament_graphic_btn" id="team_tournament_graphic_btn" onclick="processUserSelection(this)"> Tournament Team2</button>		
 			  	</c:if>
 			  	
-			  	<c:if test="${(session_selected_broadcaster == 'EVEREST_APL_T20')}"> 
+			  	<%-- <c:if test="${(session_selected_broadcaster == 'EVEREST_APL_T20')}"> 
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="split_db_graphic_btn" id="split_db_graphic_btn" onclick="processUserSelection(this)"> SPLIT </button>	
-			  	</c:if>
+			  	</c:if> --%>
 			  	
 			  	</div>
 			  	<div class = "mt-2">
@@ -1465,8 +1465,8 @@
 				  		name="ltmatchid_graphic_btn" id="ltmatchid_graphic_btn" onclick="processUserSelection(this)"> LT MatchID</button>
 			  	</div>
 			  	<div class = "mt-2">
-			  		<button style="background-color:#ffb6c1;color:#000000;" class="btn btn-sm" type="button"
-			  			name="matchid_graphic_btn" id="matchid_graphic_btn" onclick="processUserSelection(this)"> MatchID </button>
+			  		<!-- <button style="background-color:#ffb6c1;color:#000000;" class="btn btn-sm" type="button"
+			  			name="matchid_graphic_btn" id="matchid_graphic_btn" onclick="processUserSelection(this)"> MatchID </button> -->
 			  		
 			  		<c:if test="${(session_selected_broadcaster == 'EVEREST_APL_T20')}"> 
 			  		

@@ -8812,6 +8812,7 @@ public class APL extends Scene{
 			infobar.setLast_bottom_right_section(CricketUtil.FOUR);
 			break;
 //		case "TOURNAMENT_SIXES":
+
 //			for(Inning inn : match.getMatch().getInning()) {
 //				if(inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
 //					String sixes = String.valueOf(CricketFunctions.extracttournamentFoursAndSixes("COMBINED_PAST_CURRENT_MATCH_DATA", 
@@ -8822,6 +8823,7 @@ public class APL extends Scene{
 //			}
 //			infobar.setLast_bottom_right_section("TOURNAMENT_SIXES");
 //			break;
+
 		case CricketUtil.SIX:
 			for(Inning inn : match.getMatch().getInning()) {
 				if(inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {

@@ -4274,28 +4274,28 @@ public class USPL extends Scene{
 		return "Doad [status=" + status + ", slashOrDash=" + slashOrDash + "]";
 	}
 	public void populatetournamentFour(PrintWriter print_writer, String viz_scene,List<MatchAllData> tourn_matches,MatchAllData match, String broadcaster) throws InterruptedException, CloneNotSupportedException {
-		switch (broadcaster.toUpperCase()) {
-		case "USPL":
-			print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$TopPart$Sub_Header$RowAnim$Dehighlight$StatHeadHrp$StatHead1$Text*GEOM*TEXT SET " + "FOURS" + "\0");
-			print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$TopPart$CounterGrp$Counter$Text*GEOM*TEXT SET " +
-					CricketFunctions.extracttournamentFoursAndSixes("COMBINED_PAST_CURRENT_MATCH_DATA", tourn_matches, match, null).getTournament_fours() + "\0");
-			
-			print_writer.println("-1 RENDERER PREVIEW SCENE*" + viz_scene + " C:/Temp/Preview.png In 1.500 \0");
-			TimeUnit.MILLISECONDS.sleep(200);
-			break;
-		}
+//		switch (broadcaster.toUpperCase()) {
+//		case "USPL":
+//			print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$TopPart$Sub_Header$RowAnim$Dehighlight$StatHeadHrp$StatHead1$Text*GEOM*TEXT SET " + "FOURS" + "\0");
+//			print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$TopPart$CounterGrp$Counter$Text*GEOM*TEXT SET " +
+//					CricketFunctions.extracttournamentFoursAndSixes("COMBINED_PAST_CURRENT_MATCH_DATA", tourn_matches, match, null).getTournament_fours() + "\0");
+//			
+//			print_writer.println("-1 RENDERER PREVIEW SCENE*" + viz_scene + " C:/Temp/Preview.png In 1.500 \0");
+//			TimeUnit.MILLISECONDS.sleep(200);
+//			break;
+//		}
 	}
 	public void populatetournamentSix(PrintWriter print_writer, String viz_scene,List<MatchAllData> tourn_matches,MatchAllData match, String broadcaster) throws InterruptedException, CloneNotSupportedException {
-		switch (broadcaster.toUpperCase()) {
-		case "USPL":
-			print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$TopPart$Sub_Header$RowAnim$Dehighlight$StatHeadHrp$StatHead1$Text*GEOM*TEXT SET " + "SIXES" + "\0");
-			print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$TopPart$CounterGrp$Counter$Text*GEOM*TEXT SET " +
-					CricketFunctions.extracttournamentFoursAndSixes("COMBINED_PAST_CURRENT_MATCH_DATA", tourn_matches, match, null).getTournament_sixes() + "\0");
-			
-			print_writer.println("-1 RENDERER PREVIEW SCENE*" + viz_scene + " C:/Temp/Preview.png In 1.500 \0");
-			TimeUnit.MILLISECONDS.sleep(200);
-			break;
-		}
+//		switch (broadcaster.toUpperCase()) {
+//		case "USPL":
+//			print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$TopPart$Sub_Header$RowAnim$Dehighlight$StatHeadHrp$StatHead1$Text*GEOM*TEXT SET " + "SIXES" + "\0");
+//			print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$TopPart$CounterGrp$Counter$Text*GEOM*TEXT SET " +
+//					CricketFunctions.extracttournamentFoursAndSixes("COMBINED_PAST_CURRENT_MATCH_DATA", tourn_matches, match, null).getTournament_sixes() + "\0");
+//			
+//			print_writer.println("-1 RENDERER PREVIEW SCENE*" + viz_scene + " C:/Temp/Preview.png In 1.500 \0");
+//			TimeUnit.MILLISECONDS.sleep(200);
+//			break;
+//		}
 	}
 	
 	public void populateBatPerformer(PrintWriter print_writer, String viz_scene, int whichInning,String Type,int player,int which_side, MatchAllData match, String broadcaster, Configuration config) throws InterruptedException 
@@ -8810,23 +8810,23 @@ System.out.println(viz_scene);
 			}
 			infobar.setLast_bottom_right_section(CricketUtil.SIX);
 			break;
-		case "TOURNAMENT_FOUR":
-			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tFourCounterHead" + " SET " + 
-					"FOURS THIS TOURNAMENT" + "\0");
-			
-			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tFourCounterCounter" + " SET " +
-					CricketFunctions.extracttournamentFoursAndSixes("COMBINED_PAST_CURRENT_MATCH_DATA", tourn_matches, match, null).getTournament_fours() + "\0");
-			
-			infobar.setLast_bottom_right_section("TOURNAMENT_FOUR");
-			break;
-		case "TOURNAMENT_SIX":
-			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSixCounterHead" + " SET " + 
-					"SIXES THIS TOURNAMENT" + "\0");
-			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSixCounterCounter" + " SET " + 
-					CricketFunctions.extracttournamentFoursAndSixes("COMBINED_PAST_CURRENT_MATCH_DATA", tourn_matches, match, null).getTournament_sixes() + "\0");
-			
-			infobar.setLast_bottom_right_section("TOURNAMENT_SIX");
-			break;	
+//		case "TOURNAMENT_FOUR":
+//			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tFourCounterHead" + " SET " + 
+//					"FOURS THIS TOURNAMENT" + "\0");
+//			
+//			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tFourCounterCounter" + " SET " +
+//					CricketFunctions.extracttournamentFoursAndSixes("COMBINED_PAST_CURRENT_MATCH_DATA", tourn_matches, match, null).getTournament_fours() + "\0");
+//			
+//			infobar.setLast_bottom_right_section("TOURNAMENT_FOUR");
+//			break;
+//		case "TOURNAMENT_SIX":
+//			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSixCounterHead" + " SET " + 
+//					"SIXES THIS TOURNAMENT" + "\0");
+//			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSixCounterCounter" + " SET " + 
+//					CricketFunctions.extracttournamentFoursAndSixes("COMBINED_PAST_CURRENT_MATCH_DATA", tourn_matches, match, null).getTournament_sixes() + "\0");
+//			
+//			infobar.setLast_bottom_right_section("TOURNAMENT_SIX");
+//			break;	
 		case CricketUtil.COMPARE:
 			for(Inning inn : match.getMatch().getInning()) {
 				if(inn.getInningNumber() == 2 && inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {

@@ -8788,19 +8788,19 @@ public class APL extends Scene{
 			}
 			infobar.setLast_bottom_right_section(CricketUtil.DOT);	
 			break;
-		case "TOURNAMENT_FOURS":
-			
-			for(Inning inn : match.getMatch().getInning()) {
-				if(inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
-					String fours = String.valueOf(CricketFunctions.extracttournamentFoursAndSixes("COMBINED_PAST_CURRENT_MATCH_DATA", 
-							tourn_matches, match, null).getTournament_fours());
-					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tFourCounterHead" + " SET " + "FOURS THIS TOURNAMENT" + "\0");
-					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tFourCounterCounter" + " SET " + 
-					fours + "\0");
-				}
-			}
-			infobar.setLast_bottom_right_section("TOURNAMENT_FOURS");
-			break;
+//		case "TOURNAMENT_FOURS":
+//			
+//			for(Inning inn : match.getMatch().getInning()) {
+//				if(inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
+//					String fours = String.valueOf(CricketFunctions.extracttournamentFoursAndSixes("COMBINED_PAST_CURRENT_MATCH_DATA", 
+//							tourn_matches, match, null).getTournament_fours());
+//					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tFourCounterHead" + " SET " + "FOURS THIS TOURNAMENT" + "\0");
+//					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tFourCounterCounter" + " SET " + 
+//					fours + "\0");
+//				}
+//			}
+//			infobar.setLast_bottom_right_section("TOURNAMENT_FOURS");
+//			break;
 		case CricketUtil.FOUR:
 			
 			for(Inning inn : match.getMatch().getInning()) {
@@ -8811,17 +8811,17 @@ public class APL extends Scene{
 			}
 			infobar.setLast_bottom_right_section(CricketUtil.FOUR);
 			break;
-		case "TOURNAMENT_SIXES":
-			for(Inning inn : match.getMatch().getInning()) {
-				if(inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
-					String sixes = String.valueOf(CricketFunctions.extracttournamentFoursAndSixes("COMBINED_PAST_CURRENT_MATCH_DATA", 
-							tourn_matches, match, null).getTournament_sixes());
-					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSixCounterHead" + " SET " + "SIXES THIS TOURNAMENT" + "\0");
-					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSixCounterCounter" + " SET " + sixes + "\0");
-				}
-			}
-			infobar.setLast_bottom_right_section("TOURNAMENT_SIXES");
-			break;
+//		case "TOURNAMENT_SIXES":
+//			for(Inning inn : match.getMatch().getInning()) {
+//				if(inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {
+//					String sixes = String.valueOf(CricketFunctions.extracttournamentFoursAndSixes("COMBINED_PAST_CURRENT_MATCH_DATA", 
+//							tourn_matches, match, null).getTournament_sixes());
+//					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSixCounterHead" + " SET " + "SIXES THIS TOURNAMENT" + "\0");
+//					print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSixCounterCounter" + " SET " + sixes + "\0");
+//				}
+//			}
+//			infobar.setLast_bottom_right_section("TOURNAMENT_SIXES");
+//			break;
 		case CricketUtil.SIX:
 			for(Inning inn : match.getMatch().getInning()) {
 				if(inn.getIsCurrentInning().equalsIgnoreCase(CricketUtil.YES)) {

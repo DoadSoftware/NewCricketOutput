@@ -18144,9 +18144,6 @@ public class KERALA_T20 extends Scene {
 					"th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th",
 
 					"th", "st" };
-			print_writer.println(
-					"-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId$Side1$LLC_LogoGrp$TLogo$TLogo*TEXTURE*IMAGE SET "
-							+ logo_path + "TLogo_Blue" + " \0");
 			
 			for (Team TM : team) {
 				if (fix.get(match_number - 1).getHometeamid() == TM.getTeamId()) {
@@ -18412,9 +18409,6 @@ public class KERALA_T20 extends Scene {
 		} else if (match.getMatch().getInning() == null) {
 			this.status = "ERROR: MatchId's inning is null";
 		} else {
-			print_writer.println(
-					"-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId$Side1$LLC_LogoGrp$TLogo$TLogo*TEXTURE*IMAGE SET "
-							+ logo_path + "TLogo_Blue" + " \0");
 
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId$Side1$HeaderAllGrp$HeaderTextGrpOut"
 					+ "$HeaderTextGrpIn$img_Text1$HeaderStyle1$txt_Text1*GEOM*TEXT SET "

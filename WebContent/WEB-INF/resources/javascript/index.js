@@ -2984,7 +2984,7 @@ function processUserSelection(whichInput) {
 		case 'decision_out_not_graphic_btn': case 'free_bs_score_graphic_btn': case 'playerprofile_bs_graphic_btn': case 'playerprofileball_bs_graphic_btn':
 		case 'playermilestone_bs_graphic_btn': case 'countdown_bs_graphic_btn': case 'howout_bs_graphic_btn': case 'bowlerfig_bs_graphic_btn':
 		case 'dls_graphic_btn': case 'dls_equation_graphic_btn': case 'namesuper_graphic_singleline_btn':
-		case 'six_distance_icc_graphic_btn': case 'Fall_of_Wickets_graphic_btn':
+		case 'six_distance_icc_graphic_btn': case 'Fall_of_Wickets_graphic_btn': case 'six_distance_graphic_btn':
 		case 'scorebug_changeon_icc_graphic_btn': case 'freetext_icc_graphic_btn': case 'freetext2LINE_icc_graphic_btn': //case 'review_icc_graphic_btn':
 		case 'Wagon_icc_graphic_btn': case 'image4_3_icc_graphic_btn': case 'image16_9_icc_graphic_btn': case 'img_freetext2LINE_icc_graphic_btn':
 		//case 'freehit_icc_graphic_btn':		
@@ -3109,7 +3109,7 @@ function processUserSelection(whichInput) {
 				case 'weather_icc_graphic_btn':
 					addItemsToList('WEATHER_ICC-OPTIONS', null);
 					break;
-				case 'six_distance_icc_graphic_btn':
+				case 'six_distance_icc_graphic_btn': case 'six_distance_graphic_btn':
 					addItemsToList('SIX_DISTANCE-OPTIONS', null);
 					break;
 				case 'dls_graphic_btn':
@@ -6903,7 +6903,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_BenagalT20/Scenes/Partnership_Bug.sum' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectpartnership').val();
 					break;
 				case 'EVEREST_APL_T20':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_APL2023/Scenes/Bug_DoubleLine.sum' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectpartnership').val();
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_MPL/Scenes/Bug_DoubleLine.sum' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectpartnership').val();
 					break;
 				case 'EVEREST_PPL_T20':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_PPL/Scenes/Bug_DoubleLine.sum' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectpartnership').val();
@@ -7008,7 +7008,7 @@ function processCricketProcedures(whatToProcess) {
 						+ document.getElementById('which_keypress').value;
 					break;
 				case 'EVEREST_APL_T20':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_APL2023/Scenes/Bug_DoubleLine.sum' + ','
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_MPL/Scenes/Bug_DoubleLine.sum' + ','
 						+ document.getElementById('which_keypress').value;
 					break;
 				case 'EVEREST_PPL_T20':
@@ -7898,7 +7898,7 @@ function processCricketProcedures(whatToProcess) {
 						+ document.getElementById('which_keypress').value;
 					break;
 				case 'EVEREST_APL_T20':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_APL2023/Scenes/Bug_DoubleLine.sum' + ','
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_MPL/Scenes/Bug_DoubleLine.sum' + ','
 						+ document.getElementById('which_keypress').value;
 					break;
 				case 'EVEREST_PPL_T20':
@@ -8088,7 +8088,7 @@ function processCricketProcedures(whatToProcess) {
 						+ document.getElementById('which_keypress').value;
 					break;
 				case 'EVEREST_APL_T20':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_APL2023/Scenes/Bug_DoubleLine.sum' + ','
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/EVEREST_MPL/Scenes/Bug_DoubleLine.sum' + ','
 						+ document.getElementById('which_keypress').value;
 					break;
 				case 'EVEREST_PPL_T20':
@@ -12259,7 +12259,10 @@ function processCricketProcedures(whatToProcess) {
 				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
 					valueToProcess = $('#runs').val();
 					//alert(valueToProcess);
-					break;	
+					break;
+				case 'EVEREST_APL_T20':
+					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_MPL/Scenes/Bug_Six Distance.sum' + ',' + $('#runs').val();
+					break;
 			}
 			break;
 		case 'POPULATE-PARTNERSHIP_ICC':
@@ -14363,11 +14366,9 @@ function processCricketProcedures(whatToProcess) {
 					session_match = data;
 					break;
 				case 'BUG_DB_GRAPHICS-OPTIONS':
-					console.log(data)
+					bugdbData = data;
 					addItemsToList('BUG_DB-OPTIONS', data);
 					addItemsToList('POPULATE-BUG-SCENE', data);
-					bugdbData = data;
-					
 					break;
 				case 'SPLIT_GRAPHICS-OPTIONS':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
@@ -16991,7 +16992,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 		case 'POPULATE-BUG-SCENE':
 
 			$('#bugdbScene').empty();
-			dataToProcess.forEach(function(bug, index, arr1) {
+			bugdbData.forEach(function(bug, index, arr1) {
 				if (bug.bugId == $('#selectBugdb option:selected').val()) {
 					if ($('#selected_broadcaster').val().toUpperCase() == 'BUKHATIR' || $('#selected_broadcaster').val().toUpperCase() == 'THAILAND') {
 						if (bug.text2 == '') {
@@ -17031,6 +17032,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						}
 
 					} else if ($('#selected_broadcaster').val().toUpperCase() == 'EVEREST_APL_T20') {
+						console.log(bug.text2);
 						if (bug.text2 != null) {
 							document.getElementById('bugdbScene').value = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_MPL/Scenes/Bug_DoubleLine.sum';
 						} else {
@@ -19989,7 +19991,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 		case 'SIX_DISTANCE-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BIG_SCREEN': case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
-
+				case 'EVEREST_APL_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');

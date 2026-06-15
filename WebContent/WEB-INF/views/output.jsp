@@ -1407,8 +1407,10 @@
 			            name="result_bug_graphic_btn" id="result_bug_graphic_btn" onclick="processUserSelection(this)"> BUG Result</button>
 			    <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button"
 			            name="bug_toss_graphic_btn" id="bug_toss_graphic_btn" onclick="processUserSelection(this)"> BUG TOSS</button>
-			        <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button"
+			    <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button"
 			            name="bug_target_graphic_btn" id="bug_target_graphic_btn" onclick="processUserSelection(this)"> BUG TARGET</button>
+			    <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button"
+			            name="six_distance_graphic_btn" id="six_distance_graphic_btn" onclick="processUserSelection(this)"> Six Distance</button>
 			            
 			    <c:if test="${(session_selected_broadcaster == 'EVEREST_MPL_T20')}"> 
 				  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button"

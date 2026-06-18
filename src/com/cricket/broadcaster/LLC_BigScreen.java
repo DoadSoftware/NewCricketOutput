@@ -486,8 +486,8 @@ public class LLC_BigScreen extends Scene{
 							for(BowlingCard boc : inn.getBowlingCard()) {
 								if(boc.getPlayerId() == stat.getPlayer_id()) {
 									stat.setWickets(stat.getWickets() + boc.getWickets());
-									stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
-									stat.setBalls_bowled(stat.getBalls_bowled() + (boc.getOvers()*6 + boc.getBalls()));
+									stat.setRuns_conceded(stat.getRunsConceded() + boc.getRuns());
+									stat.setBalls_bowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
 									stat.setDotbowled(stat.getDotbowled() + boc.getDots());
 									if(boc.getWickets() < 5 && boc.getWickets() >= 3) {
 										stat.setPlus_3(stat.getPlus_3() + 1);
@@ -555,8 +555,8 @@ public class LLC_BigScreen extends Scene{
 						if(boc.getPlayerId() == stat.getPlayer_id()) {
 							player_found = true;
 							stat.setWickets(stat.getWickets() + boc.getWickets());
-							stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
-							stat.setBalls_bowled(stat.getBalls_bowled() + (boc.getOvers()*6 + boc.getBalls()));
+							stat.setRuns_conceded(stat.getRunsConceded() + boc.getRuns());
+							stat.setBalls_bowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
 							stat.setDotbowled(stat.getDotbowled() + boc.getDots());
 							//System.out.println(boc.getWickets());
 							if(boc.getWickets() >= 3 && boc.getWickets() < 5) {
@@ -1633,10 +1633,10 @@ public class LLC_BigScreen extends Scene{
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue2 " + stats.getWickets() + ";");
 
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead3 " + "AVERAGE" + ";");
-				if(stats.getRuns_conceded() == 0) {
+				if(stats.getRunsConceded() == 0) {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + "-" + ";");
 				}else {
-					average = stats.getRuns_conceded()/stats.getWickets();
+					average = stats.getRunsConceded()/stats.getWickets();
 					DecimalFormat df_bo = new DecimalFormat("0.00");
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + df_bo.format(average) + ";");
 				}
@@ -1658,10 +1658,10 @@ public class LLC_BigScreen extends Scene{
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + stats.getWickets() + ";");
 
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead4 " + "AVERAGE" + ";");
-				if(stats.getRuns_conceded() == 0) {
+				if(stats.getRunsConceded() == 0) {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + "-" + ";");
 				}else {
-					average = stats.getRuns_conceded()/stats.getWickets();
+					average = stats.getRunsConceded()/stats.getWickets();
 					DecimalFormat df_bo = new DecimalFormat("0.00");
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + df_bo.format(average) + ";");
 				}
@@ -1674,10 +1674,10 @@ public class LLC_BigScreen extends Scene{
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue2 " + stats.getWickets() + ";");
 
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead3 " + "AVERAGE" + ";");
-				if(stats.getRuns_conceded() == 0) {
+				if(stats.getRunsConceded() == 0) {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + "-" + ";");
 				}else {
-					average = stats.getRuns_conceded()/stats.getWickets();
+					average = stats.getRunsConceded()/stats.getWickets();
 					DecimalFormat df_bo = new DecimalFormat("0.00");
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + df_bo.format(average) + ";");
 				}

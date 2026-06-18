@@ -2998,10 +2998,10 @@ public class ICPL extends Scene{
 				print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row2$RowAnimation$StatValue*GEOM*TEXT SET " + stats.getWickets() + "\0");
 				
 				print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatHead*GEOM*TEXT SET " + "ECONOMY" + "\0");
-				if(stats.getBalls_bowled() == 0 || stats.getRuns_conceded() == 0) {
+				if(stats.getBallsBowled() == 0 || stats.getRunsConceded() == 0) {
 					print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + "-" + "\0");
 				}else {
-					economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+					economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 					economy_rate = economy_rate *6 ;
 					DecimalFormat df_b = new DecimalFormat("0.00");
 					print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + df_b.format(economy_rate) + "\0");
@@ -3085,18 +3085,18 @@ public class ICPL extends Scene{
 					
 					DecimalFormat df_s = new DecimalFormat("0.00");
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead3" + " SET " + "S/R" + "\0");
-					if(stats.getWickets() == 0 || stats.getBalls_bowled() == 0) {
+					if(stats.getWickets() == 0 || stats.getBallsBowled() == 0) {
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "-" + "\0");
 					}else {
-						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + df_s.format(stats.getBalls_bowled()/stats.getWickets()) + "\0");
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + df_s.format(stats.getBallsBowled()/stats.getWickets()) + "\0");
 					}
 					
-					economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+					economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 					economy_rate = economy_rate * 6;
 					DecimalFormat df_b = new DecimalFormat("0.00");
 					
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead4" + " SET " + "ECONOMY" + "\0");
-					if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+					if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + "-" + "\0");
 					}else {
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + df_b.format(economy_rate) + "\0");

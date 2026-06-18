@@ -1715,7 +1715,7 @@ public class RSWS extends Scene{
 					switch (infobar.getLast_bottom_right_bottom_section().toUpperCase()) {
 					case CricketUtil.OVER:
 						processAnimation(print_writer, "Scorebug$AllSections$Section4All$Thisover_Out", "START", broadcaster);
-//						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
+//						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
 //							processAnimation(print_writer, "Scorebug$AllSections$Section4All$Thisover_Out", "START", broadcaster);
 //						}else {
 //							processAnimation(print_writer, "Section5$BowlingEndOut", "START", broadcaster);
@@ -2509,8 +2509,8 @@ public class RSWS extends Scene{
 				which_side =(which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG") ? 1 : 2;
 
 				for(Statistics stats : statistics) {
-					if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+					if(stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 							this.status = CricketUtil.SUCCESSFUL;
 							populateLTPlayerProfile(print_writer, valueToProcess.split(",")[0],valueToProcess.split(",")[2], 
@@ -2527,8 +2527,8 @@ public class RSWS extends Scene{
 				this.status = "";
 				which_side =(which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG") ? 1 : 2;
 				for(Statistics stats : statistics) {
-					if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+					if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 							this.status = CricketUtil.SUCCESSFUL;
 							populateLTPlayerProfileBat(print_writer,valueToProcess.split(",")[0],
@@ -2546,8 +2546,8 @@ public class RSWS extends Scene{
 				if(which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG") {
 					which_side = 1;
 					for(Statistics stats : statistics) {
-						if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								this.status = CricketUtil.SUCCESSFUL;
 								populatePlayerProfile(print_writer,data.split(",")[0],Integer.valueOf(data.split(",")[1]),
@@ -2558,8 +2558,8 @@ public class RSWS extends Scene{
 				}else {
 					which_side = 2;
 					for(Statistics stats : statistics) {
-						if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							//stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match);
 							//stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
 							
@@ -2581,8 +2581,8 @@ public class RSWS extends Scene{
 				if(which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG") {
 					which_side = 1;
 					for(Statistics stats : statistics) {
-						if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 							//stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
@@ -2594,8 +2594,8 @@ public class RSWS extends Scene{
 				}else {
 					which_side = 2;
 					for(Statistics stats : statistics) {
-						if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 							//stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
@@ -2915,7 +2915,7 @@ public class RSWS extends Scene{
 					switch(infobar.getLast_bottom_right_section().toUpperCase()){
 					case CricketUtil.OVER:
 						animationProcess(print_writer, "Section5_Out", "START", broadcaster, 1);
-//						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
+//						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
 //							processAnimation(print_writer, "Scorebug$AllSections$Section4All$Thisover_Out", "START", broadcaster);
 //						}else {
 //							processAnimation(print_writer, "Section5$BowlingEndOut", "START", broadcaster);
@@ -2932,7 +2932,7 @@ public class RSWS extends Scene{
 					switch(infobar.getBottom_right_section().toUpperCase()){
 					case CricketUtil.OVER:
 						animationProcess(print_writer, "Section5_In", "START", broadcaster, 1);
-//						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
+//						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
 //							processAnimation(print_writer, "Scorebug$AllSections$Section4All$Thisover_Out", "START", broadcaster);
 //						}else {
 //							processAnimation(print_writer, "Section5$BowlingEndOut", "START", broadcaster);
@@ -2949,7 +2949,7 @@ public class RSWS extends Scene{
 					switch(infobar.getBottom_right_section().toUpperCase()){
 					case CricketUtil.OVER:
 						animationProcess(print_writer, "Section5_In", "START", broadcaster, 1);
-//						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
+//						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
 //							processAnimation(print_writer, "Scorebug$AllSections$Section4All$Thisover_Out", "START", broadcaster);
 //						}else {
 //							processAnimation(print_writer, "Section5$BowlingEndOut", "START", broadcaster);
@@ -7138,12 +7138,12 @@ public class RSWS extends Scene{
 										inn.getBattingCard().get(b-1).getPlayer().getTicker_name() + "\0");
 								
 								for(Statistics st : stats) {
-									if(st.getPlayer_id()==inn.getBattingCard().get(b-1).getPlayerId() && st.getStats_type_id() == 3) {
-										if(st.getBalls_faced() == 0 || st.getRuns()== 0) {
+									if(st.getPlayerID()==inn.getBattingCard().get(b-1).getPlayerId() && st.getStatsTypeId() == 3) {
+										if(st.getBallsFaced() == 0 || st.getRuns()== 0) {
 											print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStrikeRate" + row_id + " SET " + "-" + "\0");
 										}else {
 											strike_rate = st.getRuns() * 100;
-											strike_rate = strike_rate/st.getBalls_faced();
+											strike_rate = strike_rate/st.getBallsFaced();
 											DecimalFormat df = new DecimalFormat("0.0");
 											
 											print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStrikeRate" + row_id + " SET " + df.format(strike_rate) + "\0");
@@ -7350,7 +7350,7 @@ public class RSWS extends Scene{
 						+ "*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + ";");
 			}
 			
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			
 			
 			if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
@@ -7520,12 +7520,12 @@ public class RSWS extends Scene{
 					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DataAllGrp$Side" + whichside + "$Player_Profile$DataGrp$Stats_Grp$3$Stats$StatValue"
 							+ "*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getFifties() + "/" + stats.getHundreds() + ";");
 					
-					if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+					if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DataAllGrp$Side" + whichside + "$Player_Profile$DataGrp$Stats_Grp$4$Stats$StatValue"
 								+ "*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "-" + ";");
 					}else {
 						strike_rate = stats.getRuns() * 100;
-						strike_rate = strike_rate/stats.getBalls_faced();
+						strike_rate = strike_rate/stats.getBallsFaced();
 						DecimalFormat df = new DecimalFormat("0.0");
 						
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DataAllGrp$Side" + whichside + "$Player_Profile$DataGrp$Stats_Grp$4$Stats$StatValue"
@@ -7542,12 +7542,12 @@ public class RSWS extends Scene{
 					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DataAllGrp$Side" + whichside + "$Player_Profile$DataGrp$Stats_Grp$3$Stats$StatValue"
 							+ "*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getFifties() + "/" + stats.getHundreds() + ";");
 					
-					if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+					if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DataAllGrp$Side" + whichside + "$Player_Profile$DataGrp$Stats_Grp$4$Stats$StatValue"
 								+ "*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "-" + ";");
 					}else {
 						strike_rate = stats.getRuns() * 100;
-						strike_rate = strike_rate/stats.getBalls_faced();
+						strike_rate = strike_rate/stats.getBallsFaced();
 						DecimalFormat df = new DecimalFormat("0.0");
 						
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DataAllGrp$Side" + whichside + "$Player_Profile$DataGrp$Stats_Grp$4$Stats$StatValue"
@@ -7584,7 +7584,7 @@ public class RSWS extends Scene{
 						+ "*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + ";");
 			}
 			
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			
 			if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 				if(config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
@@ -7749,13 +7749,13 @@ public class RSWS extends Scene{
 					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DataAllGrp$Side" + whichside + "$Player_Profile$DataGrp$Stats_Grp$2$Stats$StatValue"
 							+ "*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getWickets() + ";");
 					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DataAllGrp$Side" + whichside + "$Player_Profile$DataGrp$Stats_Grp$3$Stats$StatValue"
-							+ "*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getPlus_3() + "/" + stats.getPlus_5() + ";");
+							+ "*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getPlus3() + "/" + stats.getPlus5() + ";");
 					
-					if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+					if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DataAllGrp$Side" + whichside + "$Player_Profile$DataGrp$Stats_Grp$4$Stats$StatValue"
 								+ "*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "-" + ";");
 					}else {
-						economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+						economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 						economy_rate = economy_rate * 6;
 						DecimalFormat df = new DecimalFormat("0.00");
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DataAllGrp$Side" + whichside + "$Player_Profile$DataGrp$Stats_Grp$4$Stats$StatValue"
@@ -7770,13 +7770,13 @@ public class RSWS extends Scene{
 					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DataAllGrp$Side" + whichside + "$Player_Profile$DataGrp$Stats_Grp$2$Stats$StatValue"
 							+ "*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getWickets() + ";");
 					print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DataAllGrp$Side" + whichside + "$Player_Profile$DataGrp$Stats_Grp$3$Stats$StatValue"
-							+ "*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getPlus_3() + "/" + stats.getPlus_5() + ";");
+							+ "*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getPlus3() + "/" + stats.getPlus5() + ";");
 					
-					if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+					if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DataAllGrp$Side" + whichside + "$Player_Profile$DataGrp$Stats_Grp$4$Stats$StatValue"
 								+ "*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "-" + ";");
 					}else {
-						economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+						economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 						economy_rate = economy_rate * 6;
 						DecimalFormat df = new DecimalFormat("0.00");
 						print_writer.println("LAYER3*EVEREST*TREEVIEW*Main$DataAllGrp$Side" + whichside + "$Player_Profile$DataGrp$Stats_Grp$4$Stats$StatValue"
@@ -8255,7 +8255,7 @@ public class RSWS extends Scene{
 						+ "$TopLine$Series*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + ";");
 			}
 			
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$LogoAll$LogoGrp$Side" + whichside + "$Logo*TEXTURE1 SET TEXTURE_PATH " + logo_path + 
 						match.getSetup().getHomeTeam().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
@@ -8387,33 +8387,33 @@ public class RSWS extends Scene{
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat2"
 						+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getWickets() + ";");
 				
-				if(stats.getRuns_conceded() == 0 || stats.getWickets() == 0) {
+				if(stats.getRunsConceded() == 0 || stats.getWickets() == 0) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat3"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "-" + ";");
 				}else {
-					average = stats.getRuns_conceded()/stats.getWickets();
+					average = stats.getRunsConceded()/stats.getWickets();
 					DecimalFormat df_bo = new DecimalFormat("0.00");
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat3"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + df_bo.format(average) + ";");
 				}
 				
-				if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+				if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat4"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "-" + ";");
 				}else {
-					economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+					economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 					economy_rate = economy_rate * 6;
 					DecimalFormat df_bo = new DecimalFormat("0.00");
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat4"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + df_bo.format(economy_rate) + ";");
 				}
 				
-				if(stats.getBest_figures().equalsIgnoreCase("0")) {
+				if(stats.getBestFigures().equalsIgnoreCase("0")) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat5"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "-" + ";");
 				}else {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat5"
-							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getBest_figures() + ";");
+							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getBestFigures() + ";");
 				}
 				
 			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.ODI) || 
@@ -8424,33 +8424,33 @@ public class RSWS extends Scene{
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat2"
 						+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getWickets() + ";");
 				
-				if(stats.getRuns_conceded() == 0 || stats.getWickets() == 0) {
+				if(stats.getRunsConceded() == 0 || stats.getWickets() == 0) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat3"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "-" + ";");
 				}else {
-					average = stats.getRuns_conceded()/stats.getWickets();
+					average = stats.getRunsConceded()/stats.getWickets();
 					DecimalFormat df_bo = new DecimalFormat("0.00");
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat3"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + df_bo.format(average) + ";");
 				}
 				
-				if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+				if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat4"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "-" + ";");
 				}else {
-					economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+					economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 					economy_rate = economy_rate * 6;
 					DecimalFormat df_bo = new DecimalFormat("0.00");
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat4"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + df_bo.format(economy_rate) + ";");
 				}
 				
-				if(stats.getBest_figures().equalsIgnoreCase("0")) {
+				if(stats.getBestFigures().equalsIgnoreCase("0")) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat5"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "-" + ";");
 				}else {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat5"
-							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getBest_figures() + ";");
+							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getBestFigures() + ";");
 				}
 				
 			}
@@ -8499,7 +8499,7 @@ public class RSWS extends Scene{
 						+ "$TopLine$Series*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + ";");
 			}
 		
-		Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+		Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 		if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 
 			print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$LogoAll$LogoGrp$Side" + whichside + "$Logo*TEXTURE1 SET TEXTURE_PATH " + logo_path + 
@@ -8639,29 +8639,29 @@ public class RSWS extends Scene{
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat3"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "-" + ";");
 				}else {
-					dismissal_count = (stats.getInnings() - stats.getNot_out());
+					dismissal_count = (stats.getInnings() - stats.getNotOut());
 					avg = (stats.getRuns()/(double)dismissal_count);
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat3"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + df_avg.format(avg) + ";");
 				}
 				
-				if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+				if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat4"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "-" + ";");
 				}else {
 					strike_rate = stats.getRuns() * 100;
-					strike_rate = strike_rate/stats.getBalls_faced();
+					strike_rate = strike_rate/stats.getBallsFaced();
 					DecimalFormat df = new DecimalFormat("0.0");
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat4"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + df.format(strike_rate) + ";");
 				}
 				
-				if(stats.getBest_score().equalsIgnoreCase("0")) {
+				if(stats.getBestScore().equalsIgnoreCase("0")) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat5"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "-" + ";");
 				}else {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat5"
-							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getBest_score() + ";");
+							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getBestScore() + ";");
 				}
 				
 			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.ODI) || 
@@ -8678,29 +8678,29 @@ public class RSWS extends Scene{
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat3"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "-" + ";");
 				}else {
-					dismissal_count = (stats.getInnings() - stats.getNot_out());
+					dismissal_count = (stats.getInnings() - stats.getNotOut());
 					avg = (stats.getRuns()/(double)dismissal_count);
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat3"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + df_avg.format(avg) + ";");
 				}
 				
-				if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+				if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat4"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "-" + ";");
 				}else {
 					strike_rate = stats.getRuns() * 100;
-					strike_rate = strike_rate/stats.getBalls_faced();
+					strike_rate = strike_rate/stats.getBallsFaced();
 					DecimalFormat df = new DecimalFormat("0.0");
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat4"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + df.format(strike_rate) + ";");
 				}
 				
-				if(stats.getBest_score().equalsIgnoreCase("0")) {
+				if(stats.getBestScore().equalsIgnoreCase("0")) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat5"
 							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + "-" + ";");
 				}else {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main$RESTALL_GRP$DATA_ALLGrp$Side" + whichside + "$PlayerCareer$Data$Stats$Stat5"
-							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getBest_score() + ";");
+							+ "$Data*GEOMETRY*TEXT_UTF8 SET TEXT_UTF8 " + stats.getBestScore() + ";");
 				}
 			}
 			break;	
@@ -10004,7 +10004,7 @@ public class RSWS extends Scene{
 //						}else {
 //							processAnimation(print_writer, "ALL_SECTION$Section5$ThisOverIn", "SHOW 0.0", broadcaster);
 //							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tBowlingEnd" + " SET " + 
-//									"THIS OVER : " + CricketFunctions.processThisOverRunsCount(infobar.getPlayer_id(),match.getEventFile().getEvents()) + "\0");
+//									"THIS OVER : " + CricketFunctions.processThisOverRunsCount(infobar.getPlayerID(),match.getEventFile().getEvents()) + "\0");
 //							processAnimation(print_writer, "ALL_SECTION$Section5$BowlingEndIn", "SHOW 0.360", broadcaster);
 //						}
 					}
@@ -16883,8 +16883,8 @@ public class RSWS extends Scene{
 			FFChangeOnGraphic(print_writer, which_graphic_on_screen, "IN",0);
 			TimeUnit.MILLISECONDS.sleep(1000);
 			for(Statistics stats : statistics) {
-				if(stats.getPlayer_id() == Integer.valueOf(data.split(",")[1])) {
-					stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+				if(stats.getPlayerID() == Integer.valueOf(data.split(",")[1])) {
+					stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 					stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 					//stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
 					
@@ -16905,8 +16905,8 @@ public class RSWS extends Scene{
 			FFChangeOnGraphic(print_writer, which_graphic_on_screen, "IN",0);
 			TimeUnit.MILLISECONDS.sleep(1000);
 			for(Statistics stats : statistics) {
-				if(stats.getPlayer_id() == Integer.valueOf(data.split(",")[1])) {
-					stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+				if(stats.getPlayerID() == Integer.valueOf(data.split(",")[1])) {
+					stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 					stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 					//stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
 					if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(data.split(",")[2])) {
@@ -17080,8 +17080,8 @@ public class RSWS extends Scene{
 			ChangeOnGraphic(print_writer, which_graphic_on_screen, "IN",0);
 			TimeUnit.MILLISECONDS.sleep(1000);
 			for(Statistics stats : statistics) {
-				if(stats.getPlayer_id().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
-					stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+				if(stats.getPlayerID().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
+					stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 					if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(data.split(",")[2])) {
 						this.status = CricketUtil.SUCCESSFUL;
 						populateLTPlayerProfile(print_writer, data.split(",")[0], data.split(",")[2],
@@ -17097,9 +17097,9 @@ public class RSWS extends Scene{
 			ChangeOnGraphic(print_writer, which_graphic_on_screen, "IN",0);
 			TimeUnit.MILLISECONDS.sleep(1000);
 			for(Statistics stats : statistics) {
-				if(stats.getPlayer_id() == Integer.valueOf(data.split(",")[1])) {
+				if(stats.getPlayerID() == Integer.valueOf(data.split(",")[1])) {
 					
-					stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+					stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 					
 					stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 					//stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);

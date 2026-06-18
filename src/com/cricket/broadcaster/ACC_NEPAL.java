@@ -494,8 +494,8 @@ public class ACC_NEPAL extends Scene{
 				
 				case "POPULATE-FF-PLAYERPROFILE": case "POPULATE-FF-PLAYERPROFILEBALL":
 					for(Statistics stats : cricketService.getAllStats()) {
-						if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match);
 //							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
 							
@@ -510,8 +510,8 @@ public class ACC_NEPAL extends Scene{
 					break;
 				case "POPULATE-FF-PLAYERPROFILE_BUKHATIR":
 					for(Statistics stats : cricketService.getAllStats()) {
-						if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match);
 //							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
@@ -727,8 +727,8 @@ public class ACC_NEPAL extends Scene{
 					break;	
 				case "POPULATE-L3-PLAYERPROFILE_BUKHATIR":
 					for(Statistics stats : cricketService.getAllStats()) {
-						if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							
 //							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match);
 //							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
@@ -742,8 +742,8 @@ public class ACC_NEPAL extends Scene{
 				case "POPULATE-L3-PLAYERPROFILE": case "POPULATE-L3-PLAYERPROFILEBAT":
 					//System.out.println("HELLO");
 					for(Statistics stats : cricketService.getAllStats()) {
-						if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							
 //							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match);
 //							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
@@ -4052,7 +4052,7 @@ public class ACC_NEPAL extends Scene{
 			} else {
 				this.status = CricketUtil.SUCCESSFUL;
 			double strike_rate = 0 , economy_rate=0;
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			
 			if(Profile.equalsIgnoreCase(CricketUtil.ODI)) {
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tCareerHead " + Profile + " CAREER" + ";");
@@ -4117,11 +4117,11 @@ public class ACC_NEPAL extends Scene{
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue02 " + stats.getRuns()+ ";");
 				
 				strike_rate = stats.getRuns() * 100;
-				strike_rate = strike_rate/stats.getBalls_faced();
+				strike_rate = strike_rate/stats.getBallsFaced();
 				DecimalFormat df = new DecimalFormat("0.0");
 				
 				//print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFoursHead " + "S/R" + ";");
-				if(stats.getRuns()== 0 && stats.getBalls_faced() == 0) {
+				if(stats.getRuns()== 0 && stats.getBallsFaced() == 0) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFoursValue " + "-" +";");
 				}else {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFoursValue " + df.format(strike_rate) +";");
@@ -4139,14 +4139,14 @@ public class ACC_NEPAL extends Scene{
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue02 " + "-" + ";");
 				}
 				
-				if(stats.getBalls_bowled() != 0) {
-					economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+				if(stats.getBallsBowled() != 0) {
+					economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 				}
 				economy_rate = economy_rate * 6;
 				DecimalFormat df_b = new DecimalFormat("0.00");
 				
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFoursHead "+"ECONOMY"+";");
-				if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+				if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFoursValue "+ "-" +";");
 				}else {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFoursValue "+ df_b.format(economy_rate) +";");
@@ -4182,7 +4182,7 @@ public class ACC_NEPAL extends Scene{
 				this.status = "ERROR: Match is null";
 			} else {
 			double strike_rate=0, average = 0, economy_rate = 0;
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			if(Profile.equalsIgnoreCase(CricketUtil.ODI)) {
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tSubHeader " + Profile + " CAREER" + ";");
 			}else if(Profile.equalsIgnoreCase(CricketUtil.DT20)){
@@ -4211,11 +4211,11 @@ public class ACC_NEPAL extends Scene{
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue1 " + stats.getRuns() + ";");
 				
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateHead2 " + "S/R" + ";");
-				if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+				if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue2 " + "-" +";");
 				}else {
 					strike_rate = stats.getRuns() * 100;
-					strike_rate = strike_rate/stats.getBalls_faced();
+					strike_rate = strike_rate/stats.getBallsFaced();
 					DecimalFormat df = new DecimalFormat("0.0");
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue2 " + df.format(strike_rate)+";");
 				}
@@ -4229,10 +4229,10 @@ public class ACC_NEPAL extends Scene{
 				}
 				
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateHead4 " + "BEST" +";");
-				if(stats.getBest_score() == null) {
+				if(stats.getBestScore() == null) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue4 " + "-" + ";");
 				}else {
-					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue4 " + stats.getBest_score() + ";");
+					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue4 " + stats.getBestScore() + ";");
 				}
 				
 				break;
@@ -4247,27 +4247,27 @@ public class ACC_NEPAL extends Scene{
 				}
 
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateHead2 "+ "AVERAGE"+";");
-				if(stats.getRuns_conceded() == 0 || stats.getWickets() == 0) {
+				if(stats.getRunsConceded() == 0 || stats.getWickets() == 0) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue2 "+ "-" +";");
 				}else {
-					average = stats.getRuns_conceded()/stats.getWickets();
+					average = stats.getRunsConceded()/stats.getWickets();
 					DecimalFormat df_bo = new DecimalFormat("0.00");
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue2 "+ df_bo.format(average) +";");
 				}
 				
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateHead3 "+"ECON."+";");
-				if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+				if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue3 "+ "-" +";");
 				}else {
-					economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+					economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 					economy_rate = economy_rate * 6;
 					DecimalFormat df_b = new DecimalFormat("0.00");
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue3 "+ df_b.format(economy_rate) +";");
 				}
 				
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateHead4 " + "BEST" +";");
-				if(stats.getBest_figures() != null && !stats.getBest_figures().equalsIgnoreCase("0")) {
-					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue4 " + stats.getBest_figures() + ";");
+				if(stats.getBestFigures() != null && !stats.getBestFigures().equalsIgnoreCase("0")) {
+					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue4 " + stats.getBestFigures() + ";");
 				}else {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue4 " + "-" + ";");
 				}
@@ -9365,7 +9365,7 @@ public class ACC_NEPAL extends Scene{
 						selectedMatchType.equalsIgnoreCase("OD") && stat.getStats_type().getStatsShortName().equalsIgnoreCase(selectedMatchType))) {
 					for(Inning inn : match.getMatch().getInning()) {
 						for(BattingCard bc : inn.getBattingCard()) {
-							if(bc.getPlayerId() == stat.getPlayer_id()) {
+							if(bc.getPlayerId() == stat.getPlayerID()) {
 								player_found = true;
 								if(bc.getBatsmanInningStarted() != null && bc.getBatsmanInningStarted().equalsIgnoreCase(CricketUtil.YES)) {
 									stat.setInnings(stat.getInnings() + 1);
@@ -9373,7 +9373,7 @@ public class ACC_NEPAL extends Scene{
 								stat.setRuns(stat.getRuns() + bc.getRuns());
 								stat.setFours(stat.getFours() + bc.getFours());
 								stat.setSixes(stat.getSixes() + bc.getSixes());
-								stat.setBalls_faced(stat.getBalls_faced() + bc.getBalls());
+								stat.setBallsFaced(stat.getBallsFaced() + bc.getBalls());
 								
 								if(bc.getRuns() < 50 && bc.getRuns() >= 30) {
 									stat.setThirties(stat.getThirties() + 1);
@@ -9387,16 +9387,16 @@ public class ACC_NEPAL extends Scene{
 						}
 						if(inn.getBowlingCard() != null && inn.getBowlingCard().size()>0) {
 							for(BowlingCard boc : inn.getBowlingCard()) {
-								if(boc.getPlayerId() == stat.getPlayer_id()) {
+								if(boc.getPlayerId() == stat.getPlayerID()) {
 									stat.setWickets(stat.getWickets() + boc.getWickets());
-									stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
-									stat.setBalls_bowled(stat.getBalls_bowled() + (boc.getOvers()*6 + boc.getBalls()));
-									stat.setDotbowled(stat.getDotbowled() + boc.getDots());
+									stat.setRunsConceded(stat.getRunsConceded() + boc.getRuns());
+									stat.setBallsBowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
+									stat.setDotBowled(stat.getDotBowled() + boc.getDots());
 									if(boc.getWickets() < 5 && boc.getWickets() >= 3) {
-										stat.setPlus_3(stat.getPlus_3() + 1);
+										stat.setPlus3(stat.getPlus3() + 1);
 									}	
 									else if(boc.getWickets() >= 5){
-										stat.setPlus_5(stat.getPlus_5() + 1);
+										stat.setPlus5(stat.getPlus5() + 1);
 									}
 								}
 							}							
@@ -9404,12 +9404,12 @@ public class ACC_NEPAL extends Scene{
 					}
 					player_found = false;
 					for(Player hs : match.getSetup().getHomeSquad()) {
-						if(stat.getPlayer_id() == hs.getPlayerId()) {
+						if(stat.getPlayerID() == hs.getPlayerId()) {
 							player_found = true;
 						}
 					}
 					for(Player as : match.getSetup().getAwaySquad()) {
-						if(stat.getPlayer_id() == as.getPlayerId()) {
+						if(stat.getPlayerID() == as.getPlayerId()) {
 							player_found = true;
 						}
 					}
@@ -9430,7 +9430,7 @@ public class ACC_NEPAL extends Scene{
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(1).getTotalFours());
 			for(Inning inn : match.getMatch().getInning()) {
 				for(BattingCard bc : inn.getBattingCard()) {
-					if(bc.getPlayerId() == stat.getPlayer_id()) {
+					if(bc.getPlayerId() == stat.getPlayerID()) {
 						player_found = true;
 						if(bc.getBatsmanInningStarted() == null) {
 						}
@@ -9441,7 +9441,7 @@ public class ACC_NEPAL extends Scene{
 						stat.setRuns(stat.getRuns() + bc.getRuns());
 						stat.setFours(stat.getFours() + bc.getFours());
 						stat.setSixes(stat.getSixes() + bc.getSixes());
-						stat.setBalls_faced(stat.getBalls_faced() + bc.getBalls());
+						stat.setBallsFaced(stat.getBallsFaced() + bc.getBalls());
 				
 						if(bc.getRuns() < 50 && bc.getRuns() >= 30) {
 							stat.setThirties(stat.getThirties() + 1);
@@ -9454,17 +9454,17 @@ public class ACC_NEPAL extends Scene{
 				}
 				if(inn.getBowlingCard() != null && inn.getBowlingCard().size()>0) {
 					for(BowlingCard boc : inn.getBowlingCard()) {
-						if(boc.getPlayerId() == stat.getPlayer_id()) {
+						if(boc.getPlayerId() == stat.getPlayerID()) {
 							player_found = true;
 							stat.setWickets(stat.getWickets() + boc.getWickets());
-							stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
-							stat.setBalls_bowled(stat.getBalls_bowled() + (boc.getOvers()*6 + boc.getBalls()));
-							stat.setDotbowled(stat.getDotbowled() + boc.getDots());
+							stat.setRunsConceded(stat.getRunsConceded() + boc.getRuns());
+							stat.setBallsBowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
+							stat.setDotBowled(stat.getDotBowled() + boc.getDots());
 							//System.out.println(boc.getWickets());
 							if(boc.getWickets() >= 3 && boc.getWickets() < 5) {
-								stat.setPlus_3(stat.getPlus_3() + 1);
+								stat.setPlus3(stat.getPlus3() + 1);
 							}else if(boc.getWickets() >= 5){
-								stat.setPlus_5(stat.getPlus_5() + 1);
+								stat.setPlus5(stat.getPlus5() + 1);
 							}
 						}
 					}							
@@ -9472,12 +9472,12 @@ public class ACC_NEPAL extends Scene{
 			}
 			player_found = false;
 			for(Player hs : match.getSetup().getHomeSquad()) {
-				if(stat.getPlayer_id() == hs.getPlayerId()) {
+				if(stat.getPlayerID() == hs.getPlayerId()) {
 					player_found = true;
 				}
 			}
 			for(Player as : match.getSetup().getAwaySquad()) {
-				if(stat.getPlayer_id() == as.getPlayerId()) {
+				if(stat.getPlayerID() == as.getPlayerId()) {
 					player_found = true;
 				}
 			}

@@ -2132,8 +2132,8 @@ public class PUNJAB_T20 extends Scene{
 				if (valueToProcess.split(",")[2].toUpperCase().equalsIgnoreCase("PT20CAREER")) {
 					for (Statistics stats : cricketService.getAllStats()) {
 						stats.setStats_type(cricketService.getStatsType(9));
-						if (stats.getStats_type_id() == 9) {
-							if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
+						if (stats.getStatsTypeId() == 9) {
+							if (stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
 //								stats = CricketFunctions.updateH2h(stats, head_to_head, match);
 //								stats = CricketFunctions.updateMatchData(stats, match);
 //								stats = CricketFunctions.updateTournamentDataWithStatsPunjab(stats, tournament_matches, match);
@@ -2157,8 +2157,8 @@ public class PUNJAB_T20 extends Scene{
 				} else if (valueToProcess.split(",")[2].toUpperCase().equalsIgnoreCase("PT20SEASON1")) {
 					for (Statistics stats : cricketService.getAllStats()) {
 						stats.setStats_type(cricketService.getStatsType(9));
-						if (stats.getStats_type_id() == 9) {
-							if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
+						if (stats.getStatsTypeId() == 9) {
+							if (stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
 								switch (whatToProcess.toUpperCase()) {
 								case "POPULATE-L3-THISSERIES":
 									populateThisSeriesBat(print_writer,valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),valueToProcess.split(",")[2],
@@ -2196,8 +2196,8 @@ public class PUNJAB_T20 extends Scene{
 				if (valueToProcess.split(",")[2].toUpperCase().equalsIgnoreCase("PT20CAREER")) {
 					for (Statistics stats : cricketService.getAllStats()) {
 						stats.setStats_type(cricketService.getStatsType(9));
-						if (stats.getStats_type_id() == 9) {
-							if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
+						if (stats.getStatsTypeId() == 9) {
+							if (stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
 //								stats = CricketFunctions.updateH2h(stats, head_to_head, match);
 //								stats = CricketFunctions.updateMatchData(stats, match);
 //								stats = CricketFunctions.updateTournamentDataWithStatsPunjab(stats, tournament_matches, match);
@@ -2226,8 +2226,8 @@ public class PUNJAB_T20 extends Scene{
 				} else if (valueToProcess.split(",")[2].toUpperCase().equalsIgnoreCase("PT20SEASON1")) {
 					for (Statistics stats : cricketService.getAllStats()) {
 						stats.setStats_type(cricketService.getStatsType(9));
-						if (stats.getStats_type_id() == 9) {
-							if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
+						if (stats.getStatsTypeId() == 9) {
+							if (stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
 								switch (whatToProcess.toUpperCase()) {
 								case "POPULATE-FF-THISSERIES":
 									populateFFThisSeriesBat(print_writer, valueToProcess.split(",")[0],
@@ -2272,8 +2272,8 @@ public class PUNJAB_T20 extends Scene{
 				break;
 			case "POPULATE-L3-PLAYERPROFILE":
 				for(Statistics stats : cricketService.getAllStats()) {
-					if(stats.getPlayer_id().intValue()== Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+					if(stats.getPlayerID().intValue()== Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 
@@ -2287,15 +2287,15 @@ public class PUNJAB_T20 extends Scene{
 			case "POPULATE-L3-PLAYERPROFILEBAT":
 				
 				for(Statistics stats : cricketService.getAllStats()) {
-					if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+					if(stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
 						if(valueToProcess.split(",")[2].equalsIgnoreCase("PUNS1")) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								populateLTPlayerProfileBat(print_writer,valueToProcess.split(",")[0],
 										valueToProcess.split(",")[2],valueToProcess.split(",")[3],stats,match, broadcaster);
 							}
 						}else {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
@@ -2308,16 +2308,16 @@ public class PUNJAB_T20 extends Scene{
 				break;
 			case "POPULATE-FF-PLAYERPROFILE":
 				for(Statistics stats : cricketService.getAllStats()) {
-					if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
+					if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
 						if(valueToProcess.split(",")[2].equalsIgnoreCase("PUNS1")) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								populatePlayerProfile(print_writer,valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),
 										valueToProcess.split(",")[2],valueToProcess.split(",")[3],
 										stats,cricketService.getAllPlayer(),match, broadcaster, config);
 							}
 						}else {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
@@ -2331,16 +2331,16 @@ public class PUNJAB_T20 extends Scene{
 				break;
 			case "POPULATE-FF-PLAYERPROFILEBALL":
 				for(Statistics stats : cricketService.getAllStats()) {
-					if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+					if(stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
 						if(valueToProcess.split(",")[2].equalsIgnoreCase("PUNS1")) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								populatePlayerProfileBall(print_writer,valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),
 										valueToProcess.split(",")[2],valueToProcess.split(",")[3],
 										stats,cricketService.getAllPlayer(),match, broadcaster, config);
 							}
 						}else {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
@@ -5750,7 +5750,7 @@ public class PUNJAB_T20 extends Scene{
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$RowAll$Row2$RowAnimation$RowOmo*FUNCTION*Omo*vis_con SET " + omo_num + " \0");
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$RowAll$Row3$RowAnimation$RowOmo*FUNCTION*Omo*vis_con SET " + omo_num + " \0");
 
-				Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+				Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 				
 				if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 					if(config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
@@ -5833,12 +5833,12 @@ public class PUNJAB_T20 extends Scene{
 						"$StatGrpAll$StatValue*GEOM*TEXT SET " + stats.getRuns() + "\0");
 				
 				strike_rate = stats.getRuns() * 100;
-				strike_rate = strike_rate/stats.getBalls_faced();
+				strike_rate = strike_rate/stats.getBallsFaced();
 				DecimalFormat df = new DecimalFormat("0.0");
 				
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$RowAll$Row3$RowAnimation$RowOmo" + cont_name + 
 						"$StatGrpAll$StatHead*GEOM*TEXT SET " + "STRIKE RATE" + "\0");
-				if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+				if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$RowAll$Row3$RowAnimation$RowOmo" + cont_name + 
 							"$StatGrpAll$StatValue*GEOM*TEXT SET " + "-" + "\0");
 				}else {
@@ -5885,7 +5885,7 @@ public class PUNJAB_T20 extends Scene{
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$Career*GEOM*TEXT SET " + "THIS SERIES" + "\0");
 			}
 			
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$HandAndAge$HowOut*ACTIVE SET " + "0" + "\0");
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$SocialMedia*ACTIVE SET " + "0" + "\0");
@@ -5975,7 +5975,7 @@ public class PUNJAB_T20 extends Scene{
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$RowAll$Row3$RowAnimation$RowOmo" + cont_name + 
 					"$StatGrpAll$StatHead*GEOM*TEXT SET " + "ECONOMY" + "\0");
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$RowAll$Row3$RowAnimation$RowOmo" + cont_name + 
-					"$StatGrpAll$StatValue*GEOM*TEXT SET " + CricketFunctions.getEconomy(stats.getRuns_conceded(), stats.getBalls_bowled(), 2, slashOrDash) + "\0");
+					"$StatGrpAll$StatValue*GEOM*TEXT SET " + CricketFunctions.getEconomy(stats.getRunsConceded(), stats.getBallsBowled(), 2, slashOrDash) + "\0");
 			
 			print_writer.println("-1 RENDERER PREVIEW SCENE*" + viz_scene + " C:/Temp/Preview.png In 3.543 In$DataIn 1.700 \0");
 		} 
@@ -6067,7 +6067,7 @@ public class PUNJAB_T20 extends Scene{
 			
 			
 
-		Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+		Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 		if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tTeamRefName" + " SET " + logo_path + match.getSetup().getHomeTeam().getTeamName4().toUpperCase() + "\0");
 
@@ -6102,15 +6102,15 @@ public class PUNJAB_T20 extends Scene{
 			
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead3" + " SET " + "ECON" + "\0");
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + 
-					CricketFunctions.getEconomy(stats.getRuns_conceded(), stats.getBalls_bowled(), 2, "-") + "\0");
+					CricketFunctions.getEconomy(stats.getRunsConceded(), stats.getBallsBowled(), 2, "-") + "\0");
 
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead4" + " SET " + "BEST" + "\0");
 			
-			if(stats.getBest_figures().equalsIgnoreCase("0")) {
+			if(stats.getBestFigures().equalsIgnoreCase("0")) {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + "-" + "\0");
 			}else {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
-						stats.getBest_figures() + "\0");
+						stats.getBestFigures() + "\0");
 			}
 			
 			break;	
@@ -6146,7 +6146,7 @@ public class PUNJAB_T20 extends Scene{
 			
 			
 
-		Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+		Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 		if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tTeamRefName" + " SET " + logo_path + match.getSetup().getHomeTeam().getTeamName4().toUpperCase() + "\0");
 
@@ -6179,10 +6179,10 @@ public class PUNJAB_T20 extends Scene{
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue2" + " SET " + stats.getRuns() + "\0");
 			
 			strike_rate = stats.getRuns() * 100;
-			strike_rate = strike_rate/stats.getBalls_faced();
+			strike_rate = strike_rate/stats.getBallsFaced();
 			DecimalFormat df = new DecimalFormat("0.0");
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead3" + " SET " + "S/R" + "\0");
-			if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+			if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "-" + "\0");
 
 			}else {
@@ -6190,10 +6190,10 @@ public class PUNJAB_T20 extends Scene{
 			}
 			
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead4" + " SET " + "BEST" + "\0");
-			if(stats.getBest_score().equalsIgnoreCase("0")) {
+			if(stats.getBestScore().equalsIgnoreCase("0")) {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + "-" + "\0");
 			}else {
-				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBest_score() + "\0");
+				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBestScore() + "\0");
 			}
 			
 			break;	
@@ -8520,20 +8520,20 @@ public class PUNJAB_T20 extends Scene{
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue1" + " SET " + stats.getMatches() + "\0");
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue2" + " SET " + stats.getRuns() + "\0");
 						
-						if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+						if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "-" + "\0");
 						}else {
 							strike_rate = stats.getRuns() * 100;
-							strike_rate = strike_rate/stats.getBalls_faced();
+							strike_rate = strike_rate/stats.getBallsFaced();
 							DecimalFormat df = new DecimalFormat("0.0");
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + df.format(strike_rate) + "\0");
 						}
-						if(stats.getBest_score() == null) {
+						if(stats.getBestScore() == null) {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
 									"-" + "\0");
 						}else {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
-									stats.getBest_score() + "\0");
+									stats.getBestScore() + "\0");
 						}
 						break;
 					case "PT20SEASON1":
@@ -8541,20 +8541,20 @@ public class PUNJAB_T20 extends Scene{
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue1" + " SET " + stats.getMatches() + "\0");
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue2" + " SET " + stats.getRuns() + "\0");
 						
-						if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+						if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "-" + "\0");
 						}else {
 							strike_rate = stats.getRuns() * 100;
-							strike_rate = strike_rate/stats.getBalls_faced();
+							strike_rate = strike_rate/stats.getBallsFaced();
 							DecimalFormat df = new DecimalFormat("0.0");
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + df.format(strike_rate) + "\0");
 						}
-						if(stats.getBest_score() == null) {
+						if(stats.getBestScore() == null) {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
 									"-" + "\0");
 						}else {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
-									stats.getBest_score() + "\0");
+									stats.getBestScore() + "\0");
 						}
 						break;
 					case "THISSERIES":
@@ -8660,17 +8660,17 @@ public class PUNJAB_T20 extends Scene{
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Grp$PositionY$LT02$All$Out$ScoreGrp$noname$Balls*GEOM*TEXT SET " + "SHER-E-PUNJAB T20 CAREER" + "\0");
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue1" + " SET " + stats.getMatches() + "\0");
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue2" + " SET " + stats.getWickets() + "\0");
-					if(stats.getBalls_bowled() == 0 || stats.getRuns_conceded() == 0) {
+					if(stats.getBallsBowled() == 0 || stats.getRunsConceded() == 0) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "-" + "\0");
 					}else {
-						economy_rate = (stats.getRuns_conceded()*1.00) /stats.getBalls_bowled();
+						economy_rate = (stats.getRunsConceded()*1.00) /stats.getBallsBowled();
 						economy_rate = economy_rate * 6;
 						DecimalFormat df = new DecimalFormat("0.00");
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + df.format(economy_rate) + "\0");
 					}
-					if(stats.getBest_figures() != null) {
+					if(stats.getBestFigures() != null) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
-								stats.getBest_figures() + "\0");
+								stats.getBestFigures() + "\0");
 					}else {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
 								"-" + "\0");
@@ -8680,9 +8680,9 @@ public class PUNJAB_T20 extends Scene{
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Grp$PositionY$LT02$All$Out$ScoreGrp$noname$Balls*GEOM*TEXT SET " + "SHER-E-PUNJAB SEASON 1" + "\0");
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue1" + " SET " + stats.getMatches() + "\0");
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue2" + " SET " + stats.getWickets() + "\0");
-					if(stats.getBest_figures() != null) {
+					if(stats.getBestFigures() != null) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
-								stats.getBest_figures() + "\0");
+								stats.getBestFigures() + "\0");
 					}else {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
 								"-" + "\0");
@@ -11422,12 +11422,12 @@ public class PUNJAB_T20 extends Scene{
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$RowAll$Row2$RowAnimation$RowOmo" + cont_name + 
 								"$StatGrpAll$StatValue*GEOM*TEXT SET " + stats.getRuns() + "\0");
 						
-						if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+						if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$RowAll$Row3$RowAnimation$RowOmo" + cont_name + 
 									"$StatGrpAll$StatValue*GEOM*TEXT SET " + "-" + "\0");
 						}else {
 							strike_rate = stats.getRuns() * 100;
-							strike_rate = strike_rate/stats.getBalls_faced();
+							strike_rate = strike_rate/stats.getBallsFaced();
 							DecimalFormat df = new DecimalFormat("0.0");
 							
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$RowAll$Row3$RowAnimation$RowOmo" + cont_name + 
@@ -11441,12 +11441,12 @@ public class PUNJAB_T20 extends Scene{
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$RowAll$Row2$RowAnimation$RowOmo" + cont_name + 
 								"$StatGrpAll$StatValue*GEOM*TEXT SET " + stats.getRuns() + "\0");
 						
-						if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+						if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$RowAll$Row3$RowAnimation$RowOmo" + cont_name + 
 									"$StatGrpAll$StatValue*GEOM*TEXT SET " + "-" + "\0");
 						}else {
 							strike_rate = stats.getRuns() * 100;
-							strike_rate = strike_rate/stats.getBalls_faced();
+							strike_rate = strike_rate/stats.getBallsFaced();
 							DecimalFormat df = new DecimalFormat("0.0");
 							
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$RowAll$Row3$RowAnimation$RowOmo" + cont_name + 
@@ -11579,11 +11579,11 @@ public class PUNJAB_T20 extends Scene{
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$RowAll$Row2$RowAnimation$RowOmo" + cont_name + 
 								"$StatGrpAll$StatValue*GEOM*TEXT SET " + stats.getWickets() + "\0");
 						
-						if(stats.getBalls_bowled() == 0 || stats.getRuns_conceded() == 0) {
+						if(stats.getBallsBowled() == 0 || stats.getRunsConceded() == 0) {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$RowAll$Row3$RowAnimation$RowOmo" + cont_name + 
 									"$StatGrpAll$StatValue*GEOM*TEXT SET " + "-" + "\0");
 						}else {
-							economy_rate = (stats.getRuns_conceded() * 1.00) / stats.getBalls_bowled();
+							economy_rate = (stats.getRunsConceded() * 1.00) / stats.getBallsBowled();
 							economy_rate = economy_rate * 6;
 							DecimalFormat df_b = new DecimalFormat("0.00");
 							
@@ -11598,11 +11598,11 @@ public class PUNJAB_T20 extends Scene{
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$RowAll$Row2$RowAnimation$RowOmo" + cont_name + 
 								"$StatGrpAll$StatValue*GEOM*TEXT SET " + stats.getWickets() + "\0");
 						
-						if(stats.getBalls_bowled() == 0 || stats.getRuns_conceded() == 0) {
+						if(stats.getBallsBowled() == 0 || stats.getRunsConceded() == 0) {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$PlayerProfile$Data$ProfileData$RowAll$Row3$RowAnimation$RowOmo" + cont_name + 
 									"$StatGrpAll$StatValue*GEOM*TEXT SET " + "-" + "\0");
 						}else {
-							economy_rate = (stats.getRuns_conceded() * 1.00) / stats.getBalls_bowled();
+							economy_rate = (stats.getRunsConceded() * 1.00) / stats.getBallsBowled();
 							economy_rate = economy_rate * 6;
 							DecimalFormat df_b = new DecimalFormat("0.00");
 							

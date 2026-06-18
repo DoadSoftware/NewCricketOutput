@@ -3204,6 +3204,7 @@
   				<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK_AR')}">
   				<c:if test="${(session_selected_broadcaster != 'T20_MUMBAI_AR')}">
   				<c:if test="${(session_selected_broadcaster != 'BARODA_AR')}">
+  				<c:if test="${(session_selected_broadcaster != 'MP_AR')}">
   				<c:if test="${(session_selected_broadcaster != 'ACC_NEPAL')}">
   				<c:if test="${(session_selected_broadcaster != 'ICC_CWCU19')}">
   				<c:if test="${(session_selected_broadcaster != 'RPL')}">
@@ -3310,6 +3311,7 @@
   				</c:if>
   				</c:if>
   				</c:if>
+  				</c:if>
 			  	</c:if>
 			  	</c:if>
 			  	</c:if>
@@ -3399,6 +3401,7 @@
 			  	<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'T20_MUMBAI_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'BARODA_AR')}">
+			  	<c:if test="${(session_selected_broadcaster != 'MP_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ACC_NEPAL')}">
 			  	<c:if test="${(session_selected_broadcaster != 'EVEREST_BENGAL_T20')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ICC_CWCU19')}">
@@ -3545,6 +3548,7 @@
 			  	</c:if>
 			  	</c:if>
 			  	</c:if>
+			  	</c:if>
 			  	<div class="left">
 			  	
 			  	<c:if test="${(session_selected_broadcaster == 'APL') || (session_selected_broadcaster == 'PUNJAB_T20')}">
@@ -3625,6 +3629,7 @@
 			  	<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'T20_MUMBAI_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'BARODA_AR')}">
+			  	<c:if test="${(session_selected_broadcaster != 'MP_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ACC_NEPAL')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ICC_CWCU19')}">
 			  	<c:if test="${(session_selected_broadcaster != 'RPL')}">
@@ -3674,6 +3679,7 @@
 			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="this_series_stats_graphic_btn" id="this_series_stats_graphic_btn" onclick="processUserSelection(this)"> This Series Stats </button> -->
 			  	</div>
+			  	</c:if>
 			  	</c:if>
 			  	</c:if>
 			  	</c:if>
@@ -3762,6 +3768,7 @@
 			  	<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'T20_MUMBAI_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'BARODA_AR')}">
+			  	<c:if test="${(session_selected_broadcaster != 'MP_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ACC_NEPAL')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ICC_CWCU19')}">
 			  	<c:if test="${(session_selected_broadcaster != 'RPL')}">
@@ -3810,6 +3817,7 @@
 				</c:if>
 				</c:if>
 				</c:if>
+			  	</c:if>
 			  	</c:if>
 			  	</c:if>
 			  	</c:if>
@@ -3902,6 +3910,7 @@
 			  	<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'T20_MUMBAI_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'BARODA_AR')}">
+			  	<c:if test="${(session_selected_broadcaster != 'MP_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ACC_NEPAL')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ICC_CWCU19')}">
 			  	<c:if test="${(session_selected_broadcaster != 'RPL')}">
@@ -3985,6 +3994,7 @@
 			  	</c:if>
 			  	</c:if>
 			  	</c:if>
+			  	</c:if>
 			  	<div class="left">
 				
 				<c:if test="${(session_selected_broadcaster == 'APL') || (session_selected_broadcaster == 'PUNJAB_T20')}">
@@ -4024,6 +4034,7 @@
 			  	<c:if test="${(session_selected_broadcaster != 'FAIR_BREAK_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'T20_MUMBAI_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'BARODA_AR')}">
+			  	<c:if test="${(session_selected_broadcaster != 'MP_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ACC_NEPAL')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ICC_CWCU19')}">
 			  	<c:if test="${(session_selected_broadcaster != 'RPL')}">
@@ -4049,6 +4060,7 @@
 			    </c:if>
 			    </c:if>
 			    </c:if>
+			  	</c:if>
 			  	</c:if>
 			  	</c:if>
 			  	</c:if>

@@ -710,7 +710,7 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 							}
 
 							stats = statistics.stream().filter(st -> st.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[0]).intValue() && 
-									statsType.getStatsId() == st.getStats_type_id()).findAny().orElse(null);
+									statsType.getStatsId() == st.getStatsTypeId()).findAny().orElse(null);
 							if(stats == null) {
 								this.status = "NODATABASE";
 							}
@@ -727,7 +727,7 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 							}
 
 							stats = statistics.stream().filter(st -> st.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[0]).intValue() && 
-									statsType.getStatsId() == st.getStats_type_id()).findAny().orElse(null);
+									statsType.getStatsId() == st.getStatsTypeId()).findAny().orElse(null);
 							if(stats == null) {
 								this.status = "NODATABASE";
 							}
@@ -752,7 +752,7 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 							}
 							
 							stats = statistics.stream().filter(st -> st.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[0]).intValue() && 
-									statsType.getStatsId() == st.getStats_type_id()).findAny().orElse(null);
+									statsType.getStatsId() == st.getStatsTypeId()).findAny().orElse(null);
 							if(stats == null) {
 								this.status = "NODATABASE";
 							}
@@ -2275,8 +2275,8 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 							for(BowlingCard boc : inn.getBowlingCard()) {
 								if(boc.getPlayerId() == stat.getPlayer_id()) {
 									stat.setWickets(stat.getWickets() + boc.getWickets());
-									stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
-									stat.setBalls_bowled(stat.getBalls_bowled() + (boc.getOvers()*6 + boc.getBalls()));
+									stat.setRuns_conceded(stat.getRunsConceded() + boc.getRuns());
+									stat.setBalls_bowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
 									stat.setDotbowled(stat.getDotbowled() + boc.getDots());
 									if(boc.getWickets() < 5 && boc.getWickets() >= 3) {
 										stat.setPlus_3(stat.getPlus_3() + 1);
@@ -2344,8 +2344,8 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 						if(boc.getPlayerId() == stat.getPlayer_id()) {
 							player_found = true;
 							stat.setWickets(stat.getWickets() + boc.getWickets());
-							stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
-							stat.setBalls_bowled(stat.getBalls_bowled() + (boc.getOvers()*6 + boc.getBalls()));
+							stat.setRuns_conceded(stat.getRunsConceded() + boc.getRuns());
+							stat.setBalls_bowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
 							stat.setDotbowled(stat.getDotbowled() + boc.getDots());
 							//System.out.println(boc.getWickets());
 							if(boc.getWickets() >= 3 && boc.getWickets() < 5) {
@@ -2590,9 +2590,9 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 			for(BattingCard bc : inning.getBattingCard()) {
 				row++;
 				
-				stat = statistics.stream().filter(st -> st.getPlayer_id() == bc.getPlayerId() && st.getStats_type_id() == 3).findAny().orElse(null);				
+				stat = statistics.stream().filter(st -> st.getPlayer_id() == bc.getPlayerId() && st.getStatsTypeId() == 3).findAny().orElse(null);				
 				if(stat != null) {
-					stat.setStats_type(cricketService.getStatsType(stat.getStats_type_id()));
+					stat.setStats_type(cricketService.getStatsType(stat.getStatsTypeId()));
 					if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("IT20")) {
 						stat = CricketFunctions.updateTournamentWithH2h(stat, head_to_head, match, CricketUtil.FULL);
 						stat = CricketFunctions.updateStatisticsWithMatchData(stat, match, CricketUtil.FULL);
@@ -4650,10 +4650,10 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue2 " + stats.getWickets() + ";");
 
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead3 " + "AVERAGE" + ";");
-				if(stats.getRuns_conceded() == 0) {
+				if(stats.getRunsConceded() == 0) {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + "-" + ";");
 				}else {
-					average = stats.getRuns_conceded()/stats.getWickets();
+					average = stats.getRunsConceded()/stats.getWickets();
 					DecimalFormat df_bo = new DecimalFormat("0.00");
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + df_bo.format(average) + ";");
 				}
@@ -4675,10 +4675,10 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + stats.getWickets() + ";");
 
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead4 " + "AVERAGE" + ";");
-				if(stats.getRuns_conceded() == 0) {
+				if(stats.getRunsConceded() == 0) {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + "-" + ";");
 				}else {
-					average = stats.getRuns_conceded()/stats.getWickets();
+					average = stats.getRunsConceded()/stats.getWickets();
 					DecimalFormat df_bo = new DecimalFormat("0.00");
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + df_bo.format(average) + ";");
 				}
@@ -4691,10 +4691,10 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue2 " + stats.getWickets() + ";");
 
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead3 " + "AVERAGE" + ";");
-				if(stats.getRuns_conceded() == 0) {
+				if(stats.getRunsConceded() == 0) {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + "-" + ";");
 				}else {
-					average = stats.getRuns_conceded()/stats.getWickets();
+					average = stats.getRunsConceded()/stats.getWickets();
 					DecimalFormat df_bo = new DecimalFormat("0.00");
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + df_bo.format(average) + ";");
 				}
@@ -5102,7 +5102,7 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 				CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$Profile$Data$StatsGrp$2$Dehighlight"
 						+ "$txt_StatValue*GEOM*TEXT SET " + stats.getWickets() + "\0", print_writers);
 				CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$Profile$Data$StatsGrp$3$Dehighlight"
-						+ "$txt_StatValue*GEOM*TEXT SET " + CricketFunctions.getEconomy(stats.getRuns_conceded(), stats.getBalls_bowled(), 1, "-") + "\0", print_writers);
+						+ "$txt_StatValue*GEOM*TEXT SET " + CricketFunctions.getEconomy(stats.getRunsConceded(), stats.getBallsBowled(), 1, "-") + "\0", print_writers);
 				if(stats.getBest_figures().equalsIgnoreCase("0")) {
 					CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$Profile$Data$StatsGrp$4$Dehighlight"
 							+ "$txt_StatValue*GEOM*TEXT SET -\0", print_writers);
@@ -8035,9 +8035,9 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 		for(Player plyr : player) {
 			row ++;
 			
-			stat = statistics.stream().filter(st -> st.getPlayer_id() == plyr.getPlayerId() && st.getStats_type_id() == 3).findAny().orElse(null);				
+			stat = statistics.stream().filter(st -> st.getPlayer_id() == plyr.getPlayerId() && st.getStatsTypeId() == 3).findAny().orElse(null);				
 			if(stat != null) {
-				stat.setStats_type(cricketService.getStatsType(stat.getStats_type_id()));
+				stat.setStats_type(cricketService.getStatsType(stat.getStatsTypeId()));
 				if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("IT20")) {
 					stat = CricketFunctions.updateTournamentWithH2h(stat, head_to_head, match, CricketUtil.FULL);
 					stat = CricketFunctions.updateStatisticsWithMatchData(stat, match, CricketUtil.FULL);
@@ -8091,8 +8091,8 @@ public class ICC_BIGSCREEN_DOAD_VIZ_SCORING extends Scene{
 				break;
 			case "ECONOMY":
 				CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$LineUp$PlayersAll$" + row + 
-						"$DataAll$Stat$txt_StatValue*GEOM*TEXT SET " + (stat != null ? CricketFunctions.getEconomy(stat.getRuns_conceded(), 
-								stat.getBalls_bowled(), 2, "-"):"-") + "\0", print_writers);	
+						"$DataAll$Stat$txt_StatValue*GEOM*TEXT SET " + (stat != null ? CricketFunctions.getEconomy(stat.getRunsConceded(), 
+								stat.getBallsBowled(), 2, "-"):"-") + "\0", print_writers);	
 				break;
 			}
 			

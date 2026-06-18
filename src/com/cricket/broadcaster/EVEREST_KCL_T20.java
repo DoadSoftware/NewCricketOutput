@@ -729,8 +729,8 @@ public class EVEREST_KCL_T20 extends Scene{
 				break;
 			case "POPULATE-FF-PLAYERPROFILE":
 				for(Statistics stats : cricketService.getAllStats()) {
-					if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+					if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
@@ -2412,7 +2412,7 @@ public class EVEREST_KCL_T20 extends Scene{
 			} else {
 			//System.out.println("Fours = " + stats.getTournament_fours() + " Sixes = " + stats.getTournament_sixes());
 			double strike_rate = 0 , economy_rate=0;
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			
 			print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tTeamName " + "PLAYER PROFILE" + ";");
 			print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgLogo " + logo_path + "TLogo" + 
@@ -2453,11 +2453,11 @@ public class EVEREST_KCL_T20 extends Scene{
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue2 " + stats.getRuns()+ ";");
 				
 				strike_rate = stats.getRuns() * 100;
-				strike_rate = strike_rate/stats.getBalls_faced();
+				strike_rate = strike_rate/stats.getBallsFaced();
 				DecimalFormat df = new DecimalFormat("0.0");
 				
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead3 "+"STRIKE RATE"+";");
-				if(stats.getRuns()== 0 && stats.getBalls_faced() == 0) {
+				if(stats.getRuns()== 0 && stats.getBallsFaced() == 0) {
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + "-" +";");
 				}else {
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + df.format(strike_rate) +";");
@@ -2472,11 +2472,11 @@ public class EVEREST_KCL_T20 extends Scene{
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead2 "+"WICKETS"+";");
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue2 "+stats.getWickets() + ";");
 				
-				economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+				economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 				DecimalFormat df_b = new DecimalFormat("0.00");
 				
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead3 "+"ECONOMY"+";");
-				if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+				if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 "+ "-" +";");
 				}else {
 					print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 "+ df_b.format(economy_rate) +";");

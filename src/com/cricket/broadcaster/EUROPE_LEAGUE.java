@@ -1725,8 +1725,8 @@ public class EUROPE_LEAGUE extends Scene {
 				if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG") {
 					which_side = 1;
 					for(Statistics stats : statistics) {
-						if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								this.status = CricketUtil.SUCCESSFUL;
 								populateLTPlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
@@ -1736,18 +1736,18 @@ public class EUROPE_LEAGUE extends Scene {
 						}
 					}
 //					for (Statistics stats : statistics) {
-//						if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
+//						if (stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
 //								.intValue()) {
 //							if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
 //									|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //								populateLTPlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
 //										valueToProcess.split(",")[2], valueToProcess.split(",")[3], stats, match,
 //										CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",
 //												false, tournament_matches, cricketService, match, null),
 //										cricketService, broadcaster, 1);
 //							} else {
-//								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
 //										match);
 //								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
@@ -1764,8 +1764,8 @@ public class EUROPE_LEAGUE extends Scene {
 				} else {
 					which_side = 2;
 					for(Statistics stats : statistics) {
-						if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								this.status = CricketUtil.SUCCESSFUL;
 								populateLTPlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
@@ -1775,19 +1775,19 @@ public class EUROPE_LEAGUE extends Scene {
 						}
 					}
 //					for (Statistics stats : statistics) {
-//						// System.out.println("player id = " + stats.getPlayer_id());
-//						if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
+//						// System.out.println("player id = " + stats.getPlayerID());
+//						if (stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
 //								.intValue()) {
 //							if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
 //									|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //								populateLTPlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
 //										valueToProcess.split(",")[2], valueToProcess.split(",")[3], stats, match,
 //										CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",
 //												false, tournament_matches, cricketService, match, null),
 //										cricketService, broadcaster, 2);
 //							} else {
-//								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
 //										match);
 //								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
@@ -1818,8 +1818,8 @@ public class EUROPE_LEAGUE extends Scene {
 				if (which_graphic_on_screen == "" || which_graphic_on_screen == "SCOREBUG") {
 					which_side = 1;
 					for(Statistics stats : statistics) {
-						if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								this.status = CricketUtil.SUCCESSFUL;
 								populateLTPlayerProfileBat(print_writer.get(0), valueToProcess.split(",")[0],
@@ -1829,18 +1829,18 @@ public class EUROPE_LEAGUE extends Scene {
 						}
 					}
 //					for (Statistics stats : statistics) {
-//						if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
+//						if (stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
 //								.intValue()) {
 //							if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
 //									|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //								populateLTPlayerProfileBat(print_writer.get(0), valueToProcess.split(",")[0],
 //										valueToProcess.split(",")[2], valueToProcess.split(",")[3], stats, match,
 //										CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",
 //												false, tournament_matches, cricketService, match, null),
 //										cricketService, broadcaster, 1);
 //							} else {
-//								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
 //										match);
 //								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
@@ -1857,8 +1857,8 @@ public class EUROPE_LEAGUE extends Scene {
 				} else {
 					which_side = 2;
 					for(Statistics stats : statistics) {
-						if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								this.status = CricketUtil.SUCCESSFUL;
 								populateLTPlayerProfileBat(print_writer.get(0), valueToProcess.split(",")[0],
@@ -1868,18 +1868,18 @@ public class EUROPE_LEAGUE extends Scene {
 						}
 					}
 //					for (Statistics stats : statistics) {
-//						if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
+//						if (stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
 //								.intValue()) {
 //							if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
 //									|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //								populateLTPlayerProfileBat(print_writer.get(0), valueToProcess.split(",")[0],
 //										valueToProcess.split(",")[2], valueToProcess.split(",")[3], stats, match,
 //										CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA",
 //												false, tournament_matches, cricketService, match, null),
 //										cricketService, broadcaster, 2);
 //							} else {
-//								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
 //										match);
 //								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
@@ -1917,8 +1917,8 @@ public class EUROPE_LEAGUE extends Scene {
 						|| which_graphic_on_screen == "TEAM_SQUAD") {
 					which_side = 1;
 					for(Statistics stats : statistics) {
-						if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								this.status = CricketUtil.SUCCESSFUL;
 								populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
@@ -1929,11 +1929,11 @@ public class EUROPE_LEAGUE extends Scene {
 						}
 					}
 //					for (Statistics stats : statistics) {
-//						if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
+//						if (stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
 //								.intValue()) {
 //							if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
 //									|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //								populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
 //										Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
 //										valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(),
@@ -1941,7 +1941,7 @@ public class EUROPE_LEAGUE extends Scene {
 //												false, tournament_matches, cricketService, match, null),
 //										cricketService, match, broadcaster, 1, config);
 //							} else {
-//								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
 //										match);
 //								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
@@ -1962,8 +1962,8 @@ public class EUROPE_LEAGUE extends Scene {
 				} else {
 					which_side = 2;
 					for(Statistics stats : statistics) {
-						if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								this.status = CricketUtil.SUCCESSFUL;
 								populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
@@ -1974,11 +1974,11 @@ public class EUROPE_LEAGUE extends Scene {
 						}
 					}
 //					for (Statistics stats : statistics) {
-//						if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
+//						if (stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
 //								.intValue()) {
 //							if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
 //									|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //								populatePlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
 //										Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
 //										valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(),
@@ -1986,7 +1986,7 @@ public class EUROPE_LEAGUE extends Scene {
 //												false, tournament_matches, cricketService, match, null),
 //										cricketService, match, broadcaster, 2, config);
 //							} else {
-//								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
 //										match);
 //								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
@@ -2024,8 +2024,8 @@ public class EUROPE_LEAGUE extends Scene {
 						|| which_graphic_on_screen == "TEAM_SQUAD") {
 					which_side = 1;
 					for(Statistics stats : statistics) {
-						if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								this.status = CricketUtil.SUCCESSFUL;
 								populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
@@ -2036,11 +2036,11 @@ public class EUROPE_LEAGUE extends Scene {
 						}
 					}
 //					for (Statistics stats : statistics) {
-//						if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
+//						if (stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
 //								.intValue()) {
 //							if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
 //									|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //								populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
 //										Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
 //										valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(),
@@ -2048,7 +2048,7 @@ public class EUROPE_LEAGUE extends Scene {
 //												false, tournament_matches, cricketService, match, null),
 //										cricketService, match, broadcaster, 1, config);
 //							} else {
-//								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
 //										match);
 //								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
@@ -2068,8 +2068,8 @@ public class EUROPE_LEAGUE extends Scene {
 				} else {
 					which_side = 2;
 					for(Statistics stats : statistics) {
-						if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
 								this.status = CricketUtil.SUCCESSFUL;
 								populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
@@ -2084,11 +2084,11 @@ public class EUROPE_LEAGUE extends Scene {
 					
 					
 //					for (Statistics stats : statistics) {
-//						if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
+//						if (stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1])
 //								.intValue()) {
 //							if (valueToProcess.split(",")[2].equalsIgnoreCase("LLC_ALL")
 //									|| valueToProcess.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //								populatePlayerProfileBall(print_writer.get(0), valueToProcess.split(",")[0],
 //										Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
 //										valueToProcess.split(",")[3], stats, cricketService.getAllPlayer(),
@@ -2096,7 +2096,7 @@ public class EUROPE_LEAGUE extends Scene {
 //												false, tournament_matches, cricketService, match, null),
 //										cricketService, match, broadcaster, 2, config);
 //							} else {
-//								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches,
 //										match);
 //								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
@@ -2493,8 +2493,8 @@ public class EUROPE_LEAGUE extends Scene {
 				break;
 			case "POPULATE-BAT_BALL_STATS":
 				for (Statistics stats : statistics) {
-					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+					if (stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						System.out.println("valueToProcess.split(\",\")[3] : " + valueToProcess.split(",")[3]);
@@ -6571,7 +6571,7 @@ public class EUROPE_LEAGUE extends Scene {
 				if (stat.getStats_type().getStatsShortName().equalsIgnoreCase("PR")) {
 					for (Inning inn : match.getMatch().getInning()) {
 						for (BattingCard bc : inn.getBattingCard()) {
-							if (bc.getPlayerId() == stat.getPlayer_id()) {
+							if (bc.getPlayerId() == stat.getPlayerID()) {
 								player_found = true;
 								if (bc.getBatsmanInningStarted() != null
 										&& bc.getBatsmanInningStarted().equalsIgnoreCase(CricketUtil.YES)) {
@@ -6580,7 +6580,7 @@ public class EUROPE_LEAGUE extends Scene {
 								stat.setRuns(stat.getRuns() + bc.getRuns());
 								stat.setFours(stat.getFours() + bc.getFours());
 								stat.setSixes(stat.getSixes() + bc.getSixes());
-								stat.setBalls_faced(stat.getBalls_faced() + bc.getBalls());
+								stat.setBallsFaced(stat.getBallsFaced() + bc.getBalls());
 
 								if (bc.getRuns() < 50 && bc.getRuns() >= 30) {
 									stat.setThirties(stat.getThirties() + 1);
@@ -6594,16 +6594,16 @@ public class EUROPE_LEAGUE extends Scene {
 						}
 						if (inn.getBowlingCard() != null && inn.getBowlingCard().size() > 0) {
 							for (BowlingCard boc : inn.getBowlingCard()) {
-								if (boc.getPlayerId() == stat.getPlayer_id()) {
+								if (boc.getPlayerId() == stat.getPlayerID()) {
 									stat.setWickets(stat.getWickets() + boc.getWickets());
-									stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
-									stat.setBalls_bowled(
-											stat.getBalls_bowled() + (boc.getOvers() * 6 + boc.getBalls()));
-									stat.setDotbowled(stat.getDotbowled() + boc.getDots());
+									stat.setRunsConceded(stat.getRunsConceded() + boc.getRuns());
+									stat.setBallsBowled(
+											stat.getBallsBowled() + (boc.getOvers() * 6 + boc.getBalls()));
+									stat.setDotBowled(stat.getDotBowled() + boc.getDots());
 									if (boc.getWickets() < 5 && boc.getWickets() >= 3) {
-										stat.setPlus_3(stat.getPlus_3() + 1);
+										stat.setPlus3(stat.getPlus3() + 1);
 									} else if (boc.getWickets() >= 5) {
-										stat.setPlus_5(stat.getPlus_5() + 1);
+										stat.setPlus5(stat.getPlus5() + 1);
 									}
 								}
 							}
@@ -6611,12 +6611,12 @@ public class EUROPE_LEAGUE extends Scene {
 					}
 					player_found = false;
 					for (Player hs : match.getSetup().getHomeSquad()) {
-						if (stat.getPlayer_id() == hs.getPlayerId()) {
+						if (stat.getPlayerID() == hs.getPlayerId()) {
 							player_found = true;
 						}
 					}
 					for (Player as : match.getSetup().getAwaySquad()) {
-						if (stat.getPlayer_id() == as.getPlayerId()) {
+						if (stat.getPlayerID() == as.getPlayerId()) {
 							player_found = true;
 						}
 					}
@@ -6637,7 +6637,7 @@ public class EUROPE_LEAGUE extends Scene {
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(1).getTotalFours());
 			for (Inning inn : match.getMatch().getInning()) {
 				for (BattingCard bc : inn.getBattingCard()) {
-					if (bc.getPlayerId() == stat.getPlayer_id()) {
+					if (bc.getPlayerId() == stat.getPlayerID()) {
 						player_found = true;
 						if (bc.getBatsmanInningStarted() == null) {
 						} else if (bc.getBatsmanInningStarted().equalsIgnoreCase(CricketUtil.YES)) {
@@ -6647,7 +6647,7 @@ public class EUROPE_LEAGUE extends Scene {
 						stat.setRuns(stat.getRuns() + bc.getRuns());
 						stat.setFours(stat.getFours() + bc.getFours());
 						stat.setSixes(stat.getSixes() + bc.getSixes());
-						stat.setBalls_faced(stat.getBalls_faced() + bc.getBalls());
+						stat.setBallsFaced(stat.getBallsFaced() + bc.getBalls());
 
 						if (bc.getRuns() < 50 && bc.getRuns() >= 30) {
 							stat.setThirties(stat.getThirties() + 1);
@@ -6660,17 +6660,17 @@ public class EUROPE_LEAGUE extends Scene {
 				}
 				if (inn.getBowlingCard() != null && inn.getBowlingCard().size() > 0) {
 					for (BowlingCard boc : inn.getBowlingCard()) {
-						if (boc.getPlayerId() == stat.getPlayer_id()) {
+						if (boc.getPlayerId() == stat.getPlayerID()) {
 							player_found = true;
 							stat.setWickets(stat.getWickets() + boc.getWickets());
-							stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
-							stat.setBalls_bowled(stat.getBalls_bowled() + (boc.getOvers() * 6 + boc.getBalls()));
-							stat.setDotbowled(stat.getDotbowled() + boc.getDots());
+							stat.setRunsConceded(stat.getRunsConceded() + boc.getRuns());
+							stat.setBallsBowled(stat.getBallsBowled() + (boc.getOvers() * 6 + boc.getBalls()));
+							stat.setDotBowled(stat.getDotBowled() + boc.getDots());
 							// System.out.println(boc.getWickets());
 							if (boc.getWickets() >= 3 && boc.getWickets() < 5) {
-								stat.setPlus_3(stat.getPlus_3() + 1);
+								stat.setPlus3(stat.getPlus3() + 1);
 							} else if (boc.getWickets() >= 5) {
-								stat.setPlus_5(stat.getPlus_5() + 1);
+								stat.setPlus5(stat.getPlus5() + 1);
 							}
 						}
 					}
@@ -6678,12 +6678,12 @@ public class EUROPE_LEAGUE extends Scene {
 			}
 			player_found = false;
 			for (Player hs : match.getSetup().getHomeSquad()) {
-				if (stat.getPlayer_id() == hs.getPlayerId()) {
+				if (stat.getPlayerID() == hs.getPlayerId()) {
 					player_found = true;
 				}
 			}
 			for (Player as : match.getSetup().getAwaySquad()) {
-				if (stat.getPlayer_id() == as.getPlayerId()) {
+				if (stat.getPlayerID() == as.getPlayerId()) {
 					player_found = true;
 				}
 			}
@@ -13438,7 +13438,7 @@ public class EUROPE_LEAGUE extends Scene {
 						+ "$CareerOut$txt_Career*GEOM*TEXT SET " + Profile.toUpperCase() + " CAREER" + "\0");
 			}
 
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 
 			if (plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 				
@@ -13657,12 +13657,12 @@ public class EUROPE_LEAGUE extends Scene {
 			case CricketUtil.BATSMAN:
 				if (Profile.equalsIgnoreCase("LLC_ALL")) {
 					for (Statistics stat : cricketservice.getAllStats()) {
-						if (stat.getPlayer_id() == stats.getPlayer_id()) {
-							stat.setStats_type(cricketservice.getStatsType(stat.getStats_type_id()));
+						if (stat.getPlayerID() == stats.getPlayerID()) {
+							stat.setStats_type(cricketservice.getStatsType(stat.getStatsTypeId()));
 							if (stat.getStats_type().getStatsShortName().equalsIgnoreCase("LLCS1")) {
 								match_data = stat.getMatches();
 								run_data = stat.getRuns();
-								balls_data = stat.getBalls_faced();
+								balls_data = stat.getBallsFaced();
 							}
 						}
 					}
@@ -13690,13 +13690,13 @@ public class EUROPE_LEAGUE extends Scene {
 							+ "$DataOut$DataGrp$Group3$Out$In$SelectHighlight$Dehighlight$txt_StatHead*GEOM*TEXT SET "
 							+ "STRIKE RATE" + "\0");
 
-					if (stats.getBalls_faced() == 0 || stats.getRuns() == 0) {
+					if (stats.getBallsFaced() == 0 || stats.getRuns() == 0) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 								+ "$DataOut$DataGrp$Group3$Out$In$SelectHighlight$Dehighlight$img_Text1$txt_StatValue*GEOM*TEXT SET "
 								+ "-" + "\0");
 					} else {
 						strike_rate = stats.getRuns() * 100;
-						strike_rate = strike_rate / stats.getBalls_faced();
+						strike_rate = strike_rate / stats.getBallsFaced();
 						DecimalFormat df = new DecimalFormat("0.0");
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 								+ "$DataOut$DataGrp$Group3$Out$In$SelectHighlight$Dehighlight$img_Text1$txt_StatValue*GEOM*TEXT SET "
@@ -13704,7 +13704,7 @@ public class EUROPE_LEAGUE extends Scene {
 					}
 				} else if (Profile.equalsIgnoreCase("LLCS2")) {
 					for (int i = 0; i <= this_series.size() - 1; i++) {
-						if (this_series.get(i).getPlayerId() == stats.getPlayer_id()) {
+						if (this_series.get(i).getPlayerId() == stats.getPlayerID()) {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 									+ "$DataOut$DataGrp$Group1$Out$In$SelectHighlight$Dehighlight$txt_StatHead*GEOM*TEXT SET "
 									+ "MATCHES" + "\0");
@@ -13740,7 +13740,7 @@ public class EUROPE_LEAGUE extends Scene {
 					}
 				} else if (Profile.equalsIgnoreCase("LLC_ALL")) {
 					for (int i = 0; i <= this_series.size() - 1; i++) {
-						if (this_series.get(i).getPlayerId() == stats.getPlayer_id()) {
+						if (this_series.get(i).getPlayerId() == stats.getPlayerID()) {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 									+ "$DataOut$DataGrp$Group1$Out$In$SelectHighlight$Dehighlight$txt_StatHead*GEOM*TEXT SET "
 									+ "MATCHES" + "\0");
@@ -13835,7 +13835,7 @@ public class EUROPE_LEAGUE extends Scene {
 						+ "$CareerOut$txt_Career*GEOM*TEXT SET " + Profile.toUpperCase() + " CAREER" + "\0");
 			}
 
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 
 			if (plyer.get(plyr.getPlayerId() - 1).getBowlingStyle() != null) {
 				switch (plyer.get(plyr.getPlayerId() - 1).getBowlingStyle().toUpperCase()) {
@@ -14021,13 +14021,13 @@ public class EUROPE_LEAGUE extends Scene {
 			case CricketUtil.BOWLER:
 				if (Profile.equalsIgnoreCase("LLC_ALL")) {
 					for (Statistics stat : cricketservice.getAllStats()) {
-						if (stat.getPlayer_id() == stats.getPlayer_id()) {
-							stat.setStats_type(cricketservice.getStatsType(stat.getStats_type_id()));
+						if (stat.getPlayerID() == stats.getPlayerID()) {
+							stat.setStats_type(cricketservice.getStatsType(stat.getStatsTypeId()));
 							if (stat.getStats_type().getStatsShortName().equalsIgnoreCase("LLCS1")) {
 								match_data = stat.getMatches();
 								wickets_data = stat.getWickets();
-								balls_bowled = stat.getBalls_bowled();
-								runs_conceded = stat.getRuns_conceded();
+								balls_bowled = stat.getBallsBowled();
+								runs_conceded = stat.getRunsConceded();
 							}
 						}
 					}
@@ -14055,12 +14055,12 @@ public class EUROPE_LEAGUE extends Scene {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 							+ "$DataOut$DataGrp$Group3$Out$In$SelectHighlight$Dehighlight$txt_StatHead*GEOM*TEXT SET "
 							+ "ECONOMY" + "\0");
-					if (stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+					if (stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 								+ "$DataOut$DataGrp$Group3$Out$In$SelectHighlight$Dehighlight$img_Text1$txt_StatValue*GEOM*TEXT SET "
 								+ "-" + "\0");
 					} else {
-						economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+						economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 						economy_rate = economy_rate * 6;
 						DecimalFormat df = new DecimalFormat("0.00");
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
@@ -14070,7 +14070,7 @@ public class EUROPE_LEAGUE extends Scene {
 
 				} else if (Profile.equalsIgnoreCase("LLCS2")) {
 					for (int i = 0; i <= this_series.size() - 1; i++) {
-						if (this_series.get(i).getPlayerId() == stats.getPlayer_id()) {
+						if (this_series.get(i).getPlayerId() == stats.getPlayerID()) {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 									+ "$DataOut$DataGrp$Group1$Out$In$SelectHighlight$Dehighlight$txt_StatHead*GEOM*TEXT SET "
 									+ "MATCHES" + "\0");
@@ -14106,7 +14106,7 @@ public class EUROPE_LEAGUE extends Scene {
 					}
 				} else if (Profile.equalsIgnoreCase("LLC_ALL")) {
 					for (int i = 0; i <= this_series.size() - 1; i++) {
-						if (this_series.get(i).getPlayerId() == stats.getPlayer_id()) {
+						if (this_series.get(i).getPlayerId() == stats.getPlayerID()) {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 									+ "$DataOut$DataGrp$Group1$Out$In$SelectHighlight$Dehighlight$txt_StatHead*GEOM*TEXT SET "
 									+ "MATCHES" + "\0");
@@ -15130,7 +15130,7 @@ public class EUROPE_LEAGUE extends Scene {
 						+ Profile.toUpperCase() + " CAREER" + "\0");
 			}
 
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			if (plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 				if (infobar.getLast_which_team() != null && !infobar.getLast_which_team().isEmpty()) {
 
@@ -15349,14 +15349,14 @@ public class EUROPE_LEAGUE extends Scene {
 			case CricketUtil.BOWLER:
 				if (Profile.equalsIgnoreCase("LLC_ALL")) {
 					for (Statistics stat : cricketservice.getAllStats()) {
-						if (stat.getPlayer_id() == stats.getPlayer_id()) {
-							stat.setStats_type(cricketservice.getStatsType(stat.getStats_type_id()));
+						if (stat.getPlayerID() == stats.getPlayerID()) {
+							stat.setStats_type(cricketservice.getStatsType(stat.getStatsTypeId()));
 							if (stat.getStats_type().getStatsShortName().equalsIgnoreCase("LLCS1")) {
 								match_data = stat.getMatches();
 								wickets_data = stat.getWickets();
-								balls_bowled = stat.getBalls_bowled();
-								runs_conceded = stat.getRuns_conceded();
-								best = stat.getBest_figures();
+								balls_bowled = stat.getBallsBowled();
+								runs_conceded = stat.getRunsConceded();
+								best = stat.getBestFigures();
 							}
 						}
 					}
@@ -15385,12 +15385,12 @@ public class EUROPE_LEAGUE extends Scene {
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 							+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$3$img_Text2$"
 							+ "txt_Data1A*GEOM*TEXT SET " + "ECONOMY" + "\0");
-					if (stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+					if (stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$3$img_Text2"
 								+ "$txt_Data2A*GEOM*TEXT SET " + "-" + "\0");
 					} else {
-						economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+						economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 						economy_rate = economy_rate * 6;
 						DecimalFormat df_bo = new DecimalFormat("0.00");
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
@@ -15402,31 +15402,31 @@ public class EUROPE_LEAGUE extends Scene {
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 							+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$4$img_Text2$txt_Data1A*GEOM*TEXT SET "
 							+ "BOWL S/R" + "\0");
-					if (stats.getWickets() == 0 || stats.getBalls_bowled() == 0) {
+					if (stats.getWickets() == 0 || stats.getBallsBowled() == 0) {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$4$img_Text2$txt_Data2A*GEOM*TEXT SET "
 								+ "-" + "\0");
 					} else {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$4$img_Text2$txt_Data2A*GEOM*TEXT SET "
-								+ df_s.format(stats.getBalls_bowled() / stats.getWickets()) + "\0");
+								+ df_s.format(stats.getBallsBowled() / stats.getWickets()) + "\0");
 					}
 
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 							+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$5$img_Text2$txt_Data1A*GEOM*TEXT SET "
 							+ "BEST" + "\0");
-					if (stats.getBest_figures().equalsIgnoreCase("0")) {
+					if (stats.getBestFigures().equalsIgnoreCase("0")) {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$5$img_Text2$txt_Data2A*GEOM*TEXT SET "
 								+ "-" + "\0");
 					} else {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$5$img_Text2$txt_Data2A*GEOM*TEXT SET "
-								+ stats.getBest_figures() + "\0");
+								+ stats.getBestFigures() + "\0");
 					}
 				} else if (Profile.equalsIgnoreCase("LLCS2")) {
 					for (int i = 0; i <= this_series.size() - 1; i++) {
-						if (this_series.get(i).getPlayerId() == stats.getPlayer_id()) {
+						if (this_series.get(i).getPlayerId() == stats.getPlayerID()) {
 							print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 									+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$1$img_Text2$"
 									+ "txt_Data1A*GEOM*TEXT SET " + "MATCHES" + "\0");
@@ -15480,7 +15480,7 @@ public class EUROPE_LEAGUE extends Scene {
 									+ "img_Text2$txt_Data1A*GEOM*TEXT SET " + "BEST" + "\0");
 
 							for (int j = 0; j <= top_bowler_beststats.size() - 1; j++) {
-								if (top_bowler_beststats.get(j).getPlayerId() == stats.getPlayer_id()) {
+								if (top_bowler_beststats.get(j).getPlayerId() == stats.getPlayerID()) {
 									if (k == 0) {
 										k += 1;
 										if (top_bowler_beststats.get(j).getBestEquation() % 1000 > 0) {
@@ -15497,7 +15497,7 @@ public class EUROPE_LEAGUE extends Scene {
 										}
 										break;
 									}
-								} else if (top_bowler_beststats.get(j).getPlayerId() != stats.getPlayer_id()) {
+								} else if (top_bowler_beststats.get(j).getPlayerId() != stats.getPlayerID()) {
 									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side
 											+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$5$img_Text2$txt_Data2A*GEOM*TEXT SET "
 											+ "-" + "\0");
@@ -15507,7 +15507,7 @@ public class EUROPE_LEAGUE extends Scene {
 					}
 				} else if (Profile.equalsIgnoreCase("LLC_ALL")) {
 					for (int i = 0; i <= this_series.size() - 1; i++) {
-						if (this_series.get(i).getPlayerId() == stats.getPlayer_id()) {
+						if (this_series.get(i).getPlayerId() == stats.getPlayerID()) {
 							print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 									+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$1$img_Text2$"
 									+ "txt_Data1A*GEOM*TEXT SET " + "MATCHES" + "\0");
@@ -15566,7 +15566,7 @@ public class EUROPE_LEAGUE extends Scene {
 
 							if (best.equalsIgnoreCase("0")) {
 								for (int j = 0; j <= top_bowler_beststats.size() - 1; j++) {
-									if (top_bowler_beststats.get(j).getPlayerId() == stats.getPlayer_id()) {
+									if (top_bowler_beststats.get(j).getPlayerId() == stats.getPlayerID()) {
 										if (k == 0) {
 											k += 1;
 											print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
@@ -15591,7 +15591,7 @@ public class EUROPE_LEAGUE extends Scene {
 											}
 											break;
 										}
-									} else if (top_bowler_beststats.get(j).getPlayerId() != stats.getPlayer_id()) {
+									} else if (top_bowler_beststats.get(j).getPlayerId() != stats.getPlayerID()) {
 										if (best.equalsIgnoreCase("0")) {
 											print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 													+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$"
@@ -15602,7 +15602,7 @@ public class EUROPE_LEAGUE extends Scene {
 								}
 							} else {
 								for (int j = 0; j <= top_bowler_beststats.size() - 1; j++) {
-									if (top_bowler_beststats.get(j).getPlayerId() == stats.getPlayer_id()) {
+									if (top_bowler_beststats.get(j).getPlayerId() == stats.getPlayerID()) {
 										if (k == 0) {
 											k += 1;
 											print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
@@ -15699,7 +15699,7 @@ public class EUROPE_LEAGUE extends Scene {
 											}
 											break;
 										}
-									} else if (top_bowler_beststats.get(j).getPlayerId() != stats.getPlayer_id()) {
+									} else if (top_bowler_beststats.get(j).getPlayerId() != stats.getPlayerID()) {
 										if (best.equalsIgnoreCase("0")) {
 											print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 													+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$"
@@ -15772,7 +15772,7 @@ public class EUROPE_LEAGUE extends Scene {
 						+ Profile.toUpperCase() + " CAREER" + "\0");
 			}
 
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			if (plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 				if (infobar.getLast_which_team() != null && !infobar.getLast_which_team().isEmpty()) {
 
@@ -15992,15 +15992,15 @@ public class EUROPE_LEAGUE extends Scene {
 			case CricketUtil.BATSMAN:
 				if (Profile.equalsIgnoreCase("LLC_ALL")) {
 					for (Statistics stat : cricketservice.getAllStats()) {
-						if (stat.getPlayer_id() == stats.getPlayer_id()) {
-							stat.setStats_type(cricketservice.getStatsType(stat.getStats_type_id()));
+						if (stat.getPlayerID() == stats.getPlayerID()) {
+							stat.setStats_type(cricketservice.getStatsType(stat.getStatsTypeId()));
 							if (stat.getStats_type().getStatsShortName().equalsIgnoreCase("LLCS1")) {
 								match_data = stat.getMatches();
 								run_data = stat.getRuns();
-								balls_data = stat.getBalls_faced();
+								balls_data = stat.getBallsFaced();
 								fifty_data = stat.getFifties();
 								hundreds_data = stat.getHundreds();
-								best = stat.getBest_score();
+								best = stat.getBestScore();
 							}
 						}
 					}
@@ -16029,13 +16029,13 @@ public class EUROPE_LEAGUE extends Scene {
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 							+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$3$img_Text2$txt_Data1A*GEOM*TEXT SET "
 							+ "S/R" + "\0");
-					if (stats.getBalls_faced() == 0 || stats.getRuns() == 0) {
+					if (stats.getBallsFaced() == 0 || stats.getRuns() == 0) {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$3$img_Text2$txt_Data2A*GEOM*TEXT SET "
 								+ "-" + "\0");
 					} else {
 						strike_rate = stats.getRuns() * 100;
-						strike_rate = strike_rate / stats.getBalls_faced();
+						strike_rate = strike_rate / stats.getBallsFaced();
 						DecimalFormat df = new DecimalFormat("0.0");
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$3$img_Text2$txt_Data2A*GEOM*TEXT SET "
@@ -16052,18 +16052,18 @@ public class EUROPE_LEAGUE extends Scene {
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 							+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$5$img_Text2$txt_Data1A*GEOM*TEXT SET "
 							+ "BEST" + "\0");
-					if (stats.getBest_score().equalsIgnoreCase("0")) {
+					if (stats.getBestScore().equalsIgnoreCase("0")) {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$5$img_Text2$txt_Data2A*GEOM*TEXT SET "
 								+ "-" + "\0");
 					} else {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$5$img_Text2$txt_Data2A*GEOM*TEXT SET "
-								+ stats.getBest_score() + "\0");
+								+ stats.getBestScore() + "\0");
 					}
 				} else if (Profile.equalsIgnoreCase("LLCS2")) {
 					for (int i = 0; i <= this_series.size() - 1; i++) {
-						if (this_series.get(i).getPlayerId() == stats.getPlayer_id()) {
+						if (this_series.get(i).getPlayerId() == stats.getPlayerID()) {
 
 							print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 									+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$1$"
@@ -16108,7 +16108,7 @@ public class EUROPE_LEAGUE extends Scene {
 									+ "img_Text2$txt_Data1A*GEOM*TEXT SET " + "BEST" + "\0");
 
 							for (int j = 0; j <= top_batsman_beststats.size() - 1; j++) {
-								if (top_batsman_beststats.get(j).getPlayerId() == stats.getPlayer_id()) {
+								if (top_batsman_beststats.get(j).getPlayerId() == stats.getPlayerID()) {
 									if (k == 0) {
 										k += 1;
 										if (top_batsman_beststats.get(j).getBestEquation() % 2 == 0) {
@@ -16135,7 +16135,7 @@ public class EUROPE_LEAGUE extends Scene {
 					}
 				} else if (Profile.equalsIgnoreCase("LLC_ALL")) {
 					for (int i = 0; i <= this_series.size() - 1; i++) {
-						if (this_series.get(i).getPlayerId() == stats.getPlayer_id()) {
+						if (this_series.get(i).getPlayerId() == stats.getPlayerID()) {
 
 							print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 									+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$1$"
@@ -16191,7 +16191,7 @@ public class EUROPE_LEAGUE extends Scene {
 							}
 
 							for (int j = 0; j <= top_batsman_beststats.size() - 1; j++) {
-								if (top_batsman_beststats.get(j).getPlayerId() == stats.getPlayer_id()) {
+								if (top_batsman_beststats.get(j).getPlayerId() == stats.getPlayerID()) {
 									if (k == 0) {
 										k += 1;
 										if (top_batsman_beststats.get(j).getBestEquation() % 2 == 0) {
@@ -31296,8 +31296,8 @@ public class EUROPE_LEAGUE extends Scene {
 			FFChangeOnGraphic(print_writer, graphic_OnScreen, which_graphic_on_screen, "IN", 0);
 			TimeUnit.MILLISECONDS.sleep(3000);
 			for(Statistics stats : statistics) {
-				if(stats.getPlayer_id().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
-					stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+				if(stats.getPlayerID().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
+					stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 					System.out.println(stats.getStats_type());
 					if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(data.split(",")[2])) {
 						System.out.println(stats.getStats_type().getStatsShortName());
@@ -31309,18 +31309,18 @@ public class EUROPE_LEAGUE extends Scene {
 				}
 			}
 //			for (Statistics stats : statistics) {
-//				if (stats.getPlayer_id().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
+//				if (stats.getPlayerID().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
 //
 //					if (data.split(",")[2].equalsIgnoreCase("LLC_ALL")
 //							|| data.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //						populatePlayerProfile(print_writer, data.split(",")[0], Integer.valueOf(data.split(",")[1]),
 //								data.split(",")[2], data.split(",")[3], stats, cricketService.getAllPlayer(),
 //								CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA", false,
 //										tournament_matches, cricketService, match, null),
 //								cricketService, match, broadcaster, 1, config);
 //					} else {
-//						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match);
 //						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
 //
@@ -31346,8 +31346,8 @@ public class EUROPE_LEAGUE extends Scene {
 			FFChangeOnGraphic(print_writer, graphic_OnScreen, which_graphic_on_screen, "IN", 0);
 			TimeUnit.MILLISECONDS.sleep(3000);
 			for(Statistics stats : statistics) {
-				if(stats.getPlayer_id().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
-					stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+				if(stats.getPlayerID().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
+					stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 					if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(data.split(",")[2])) {
 						this.status = CricketUtil.SUCCESSFUL;
 						populatePlayerProfileBall(print_writer, data.split(",")[0],
@@ -31359,17 +31359,17 @@ public class EUROPE_LEAGUE extends Scene {
 			
 			
 //			for (Statistics stats : statistics) {
-//				if (stats.getPlayer_id().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
+//				if (stats.getPlayerID().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
 //					if (data.split(",")[2].equalsIgnoreCase("LLC_ALL")
 //							|| data.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //						populatePlayerProfileBall(print_writer, data.split(",")[0], Integer.valueOf(data.split(",")[1]),
 //								data.split(",")[2], data.split(",")[3], stats, cricketService.getAllPlayer(),
 //								CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA", false,
 //										tournament_matches, cricketService, match, null),
 //								cricketService, match, broadcaster, 1, config);
 //					} else {
-//						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match);
 //						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
 //
@@ -31691,8 +31691,8 @@ public class EUROPE_LEAGUE extends Scene {
 			ChangeOnGraphic(print_writer, which_graphic_on_screen, "IN", 0, infobar.getWhich_team());
 			TimeUnit.MILLISECONDS.sleep(3000);
 			for(Statistics stats : statistics) {
-				if(stats.getPlayer_id().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
-					stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+				if(stats.getPlayerID().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
+					stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 					if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(data.split(",")[2])) {
 						this.status = CricketUtil.SUCCESSFUL;
 						populateLTPlayerProfile(print_writer, data.split(",")[0], data.split(",")[2],
@@ -31704,17 +31704,17 @@ public class EUROPE_LEAGUE extends Scene {
 			
 			
 //			for (Statistics stats : statistics) {
-//				if (stats.getPlayer_id().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
+//				if (stats.getPlayerID().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
 //					if (data.split(",")[2].equalsIgnoreCase("LLC_ALL")
 //							|| data.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //						populateLTPlayerProfile(print_writer, data.split(",")[0], data.split(",")[2],
 //								data.split(",")[3], stats, match,
 //								CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA", false,
 //										tournament_matches, cricketService, match, null),
 //								cricketService, broadcaster, 1);
 //					} else {
-//						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match);
 //						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
 //
@@ -31737,8 +31737,8 @@ public class EUROPE_LEAGUE extends Scene {
 			ChangeOnGraphic(print_writer, which_graphic_on_screen, "IN", 0, infobar.getWhich_team());
 			TimeUnit.MILLISECONDS.sleep(3000);
 			for(Statistics stats : statistics) {
-				if(stats.getPlayer_id().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
-					stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+				if(stats.getPlayerID().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
+					stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 					if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(data.split(",")[2])) {
 						this.status = CricketUtil.SUCCESSFUL;
 						populateLTPlayerProfileBat(print_writer, data.split(",")[0], data.split(",")[2],
@@ -31751,17 +31751,17 @@ public class EUROPE_LEAGUE extends Scene {
 			
 			
 //			for (Statistics stats : statistics) {
-//				if (stats.getPlayer_id().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
+//				if (stats.getPlayerID().intValue() == Integer.valueOf(data.split(",")[1]).intValue()) {
 //					if (data.split(",")[2].equalsIgnoreCase("LLC_ALL")
 //							|| data.split(",")[2].equalsIgnoreCase("LLCS2")) {
-//						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //						populateLTPlayerProfileBat(print_writer, data.split(",")[0], data.split(",")[2],
 //								data.split(",")[3], stats, match,
 //								CricketFunctions.extractTournamentStats("COMBINED_PAST_CURRENT_MATCH_DATA", false,
 //										tournament_matches, cricketService, match, null),
 //								cricketService, broadcaster, 1);
 //					} else {
-//						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+//						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 //						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match);
 //						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match);
 //
@@ -34726,7 +34726,7 @@ public class EUROPE_LEAGUE extends Scene {
 	public void populateInfobarPlayerStats(Infobar infobar, boolean is_this_updating, PrintWriter printWriter,
 			int teamId, int playerId, String playerType, String Profile, MatchAllData match, Statistics stats,
 			String broadcaster) {
-		Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+		Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 		if (plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 			System.out.println("HOME : " + plyr.getFirstname());
 		} else {

@@ -4208,9 +4208,9 @@ public class KERALA_T20 extends Scene {
 							for (BowlingCard boc : inn.getBowlingCard()) {
 								if (boc.getPlayerId() == stat.getPlayer_id()) {
 									stat.setWickets(stat.getWickets() + boc.getWickets());
-									stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
+									stat.setRuns_conceded(stat.getRunsConceded() + boc.getRuns());
 									stat.setBalls_bowled(
-											stat.getBalls_bowled() + (boc.getOvers() * 6 + boc.getBalls()));
+											stat.getBallsBowled() + (boc.getOvers() * 6 + boc.getBalls()));
 									stat.setDotbowled(stat.getDotbowled() + boc.getDots());
 									if (boc.getWickets() < 5 && boc.getWickets() >= 3) {
 										stat.setPlus_3(stat.getPlus_3() + 1);
@@ -4275,8 +4275,8 @@ public class KERALA_T20 extends Scene {
 						if (boc.getPlayerId() == stat.getPlayer_id()) {
 							player_found = true;
 							stat.setWickets(stat.getWickets() + boc.getWickets());
-							stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
-							stat.setBalls_bowled(stat.getBalls_bowled() + (boc.getOvers() * 6 + boc.getBalls()));
+							stat.setRuns_conceded(stat.getRunsConceded() + boc.getRuns());
+							stat.setBalls_bowled(stat.getBallsBowled() + (boc.getOvers() * 6 + boc.getBalls()));
 							stat.setDotbowled(stat.getDotbowled() + boc.getDots());
 							// System.out.println(boc.getWickets());
 							if (boc.getWickets() >= 3 && boc.getWickets() < 5) {
@@ -12978,8 +12978,8 @@ public class KERALA_T20 extends Scene {
 							if (stat.getStats_type().getStatsShortName().equalsIgnoreCase("LLCS1")) {
 								match_data = stat.getMatches();
 								wickets_data = stat.getWickets();
-								balls_bowled = stat.getBalls_bowled();
-								runs_conceded = stat.getRuns_conceded();
+								balls_bowled = stat.getBallsBowled();
+								runs_conceded = stat.getRunsConceded();
 							}
 						}
 					}
@@ -13009,12 +13009,12 @@ public class KERALA_T20 extends Scene {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 							+ "$DataOut$DataGrp$Group3$Out$In$SelectHighlight$Dehighlight$txt_StatHead*GEOM*TEXT SET "
 							+ "ECONOMY" + "\0");
-					if (stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+					if (stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 								+ "$DataOut$DataGrp$Group3$Out$In$SelectHighlight$Dehighlight$img_Text1$txt_StatValue*GEOM*TEXT SET "
 								+ "-" + "\0");
 					} else {
-						economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+						economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 						economy_rate = economy_rate * 6;
 						DecimalFormat df = new DecimalFormat("0.00");
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
@@ -14308,8 +14308,8 @@ public class KERALA_T20 extends Scene {
 							if (stat.getStats_type().getStatsShortName().equalsIgnoreCase("LLCS1")) {
 								match_data = stat.getMatches();
 								wickets_data = stat.getWickets();
-								balls_bowled = stat.getBalls_bowled();
-								runs_conceded = stat.getRuns_conceded();
+								balls_bowled = stat.getBallsBowled();
+								runs_conceded = stat.getRunsConceded();
 								best = stat.getBest_figures();
 							}
 						}
@@ -14340,12 +14340,12 @@ public class KERALA_T20 extends Scene {
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 							+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$3$img_Text2$"
 							+ "txt_Data1A*GEOM*TEXT SET " + "ECONOMY" + "\0");
-					if (stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+					if (stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$3$img_Text2"
 								+ "$txt_Data2A*GEOM*TEXT SET " + "-" + "\0");
 					} else {
-						economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+						economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 						economy_rate = economy_rate * 6;
 						DecimalFormat df_bo = new DecimalFormat("0.00");
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
@@ -14357,14 +14357,14 @@ public class KERALA_T20 extends Scene {
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 							+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$4$img_Text2$txt_Data1A*GEOM*TEXT SET "
 							+ "STRIKE RATE" + "\0");
-					if (stats.getWickets() == 0 || stats.getBalls_bowled() == 0) {
+					if (stats.getWickets() == 0 || stats.getBallsBowled() == 0) {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$4$img_Text2$txt_Data2A*GEOM*TEXT SET "
 								+ "-" + "\0");
 					} else {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$img_Text2$RestData$Data$4$img_Text2$txt_Data2A*GEOM*TEXT SET "
-								+ df_s.format(stats.getBalls_bowled() / stats.getWickets()) + "\0");
+								+ df_s.format(stats.getBallsBowled() / stats.getWickets()) + "\0");
 					}
 
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside

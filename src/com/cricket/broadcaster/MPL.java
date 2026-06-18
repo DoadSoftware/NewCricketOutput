@@ -1495,7 +1495,7 @@ public class MPL extends Scene {
 				if (valueToProcess.split(",")[3].equalsIgnoreCase("MPLCAREER")) {
 					for (Statistics stats : cricketService.getAllStats()) {
 						stats.setStats_type(cricketService.getStatsType(9));
-						if (stats.getStats_type_id() == 9) {
+						if (stats.getStatsTypeId() == 9) {
 							if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
 //								stats_best = stats.getBest_score();
 //								stats = CricketFunctions.updateH2h(stats, head_to_head, match);
@@ -1514,7 +1514,7 @@ public class MPL extends Scene {
 				} else if (valueToProcess.split(",")[3].equalsIgnoreCase("MPLSEASON1")) {
 					for (Statistics stats : cricketService.getAllStats()) {
 						stats.setStats_type(cricketService.getStatsType(9));
-						if (stats.getStats_type_id() == 9) {
+						if (stats.getStatsTypeId() == 9) {
 							if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
 
 								populateThisSeriesBat(print_writer.get(0), valueToProcess.split(",")[0],
@@ -1541,7 +1541,7 @@ public class MPL extends Scene {
 				if (valueToProcess.split(",")[3].equalsIgnoreCase("MPLCAREER")) {
 					for (Statistics stats : cricketService.getAllStats()) {
 						stats.setStats_type(cricketService.getStatsType(9));
-						if (stats.getStats_type_id() == 9) {
+						if (stats.getStatsTypeId() == 9) {
 							if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
 //								stats_bestfig = stats.getBest_figures();
 //								stats = CricketFunctions.updateH2h(stats, head_to_head, match);
@@ -1561,7 +1561,7 @@ public class MPL extends Scene {
 				} else if (valueToProcess.split(",")[3].equalsIgnoreCase("MPLSEASON1")) {
 					for (Statistics stats : cricketService.getAllStats()) {
 						stats.setStats_type(cricketService.getStatsType(9));
-						if (stats.getStats_type_id() == 9) {
+						if (stats.getStatsTypeId() == 9) {
 							if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
 
 								populateThisSeriesBowl(print_writer.get(0), valueToProcess.split(",")[0],
@@ -1589,7 +1589,7 @@ public class MPL extends Scene {
 				if (valueToProcess.split(",")[3].equalsIgnoreCase("MPLCAREER")) {
 					for (Statistics stats : cricketService.getAllStats()) {
 						stats.setStats_type(cricketService.getStatsType(9));
-						if (stats.getStats_type_id() == 9) {
+						if (stats.getStatsTypeId() == 9) {
 							if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
 //								stats = CricketFunctions.updateH2h(stats, head_to_head, match);
 //								stats = CricketFunctions.updateMatchData(stats, match);
@@ -1608,7 +1608,7 @@ public class MPL extends Scene {
 				} else if (valueToProcess.split(",")[3].equalsIgnoreCase("MPLSEASON1")) {
 					for (Statistics stats : cricketService.getAllStats()) {
 						stats.setStats_type(cricketService.getStatsType(9));
-						if (stats.getStats_type_id() == 9) {
+						if (stats.getStatsTypeId() == 9) {
 							if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
 
 								populateFFThisSeries(print_writer.get(0), valueToProcess.split(",")[0],
@@ -1636,7 +1636,7 @@ public class MPL extends Scene {
 					// System.out.println("player id = " + stats.getPlayer_id());
 					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
 						// System.out.println("Match Found");
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentWithH2h(stats, head_to_head, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						System.out.println("1." + stats.getBalls_bowled() + " 2." + stats.getRuns_conceded());
@@ -1653,7 +1653,7 @@ public class MPL extends Scene {
 
 				for (Statistics stats : cricketService.getAllStats()) {
 					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentWithH2h(stats, head_to_head, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 
@@ -1669,7 +1669,7 @@ public class MPL extends Scene {
 			case "POPULATE-FF-PLAYERPROFILE":
 				for (Statistics stats : cricketService.getAllStats()) {
 					if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentWithH2h(stats, head_to_head, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 
@@ -1687,7 +1687,7 @@ public class MPL extends Scene {
 			case "POPULATE-FF-PLAYERPROFILEBALL":
 				for (Statistics stats : cricketService.getAllStats()) {
 					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentWithH2h(stats, head_to_head, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						if (stats.getStats_type().getStatsShortName()
@@ -1972,7 +1972,7 @@ public class MPL extends Scene {
 			case "POPULATE-BAT_BALL_STATS":
 				for (Statistics stats : statistics) {
 					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						System.out.println("valueToProcess.split(\",\")[3] : " + valueToProcess.split(",")[3]);
@@ -7355,7 +7355,7 @@ public class MPL extends Scene {
 
 								for (Statistics st : stats) {
 									if (st.getPlayer_id() == inn.getBattingCard().get(b - 1).getPlayerId()
-											&& st.getStats_type_id() == 3) {
+											&& st.getStatsTypeId() == 3) {
 										if (st.getBalls_faced() == 0 || st.getRuns() == 0) {
 											print_writer
 													.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "

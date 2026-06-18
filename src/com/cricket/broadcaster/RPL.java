@@ -1682,7 +1682,7 @@ public class RPL extends Scene{
 					switch (infobar.getLast_bottom_right_bottom_section().toUpperCase()) {
 					case CricketUtil.OVER:
 						processAnimation(print_writer, "Scorebug$AllSections$Section4All$Thisover_Out", "START", broadcaster);
-//						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
+//						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
 //							processAnimation(print_writer, "Scorebug$AllSections$Section4All$Thisover_Out", "START", broadcaster);
 //						}else {
 //							processAnimation(print_writer, "Section5$BowlingEndOut", "START", broadcaster);
@@ -2522,10 +2522,10 @@ public class RPL extends Scene{
 				break;
 			case "POPULATE-L3-PLAYERPROFILE":
 				for(Statistics stats : statistics) {
-					//System.out.println("player id = " + stats.getPlayer_id());
-					if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
+					//System.out.println("player id = " + stats.getPlayerID());
+					if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
 						//System.out.println("Match Found");
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						
@@ -2539,11 +2539,11 @@ public class RPL extends Scene{
 			case "POPULATE-L3-PLAYERPROFILEBAT":
 				
 				for(Statistics stats : statistics) {
-					if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
+					if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
 						
 						System.out.println("PLAYER ID : " + Integer.valueOf(valueToProcess.split(",")[1]));
 						
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
@@ -2557,8 +2557,8 @@ public class RPL extends Scene{
 				break;
 			case "POPULATE-FF-PLAYERPROFILE":					
 				for(Statistics stats : statistics) {
-					if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+					if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						
@@ -2572,8 +2572,8 @@ public class RPL extends Scene{
 				break;
 			case "POPULATE-FF-PLAYERPROFILEBALL":
 				for(Statistics stats : statistics) {
-					if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+					if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
@@ -2754,7 +2754,7 @@ public class RPL extends Scene{
 				
 //				switch(infobar.getBottom_right_bottom_section().toUpperCase()){
 //				case CricketUtil.OVER:
-//					if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
+//					if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
 //						processAnimation(print_writer, "Section5$ThisOverIn", "START", broadcaster);
 //					}else {
 //						processAnimation(print_writer, "Section5$BowlingEndIn", "START", broadcaster);
@@ -3023,7 +3023,7 @@ public class RPL extends Scene{
 					switch(infobar.getLast_bottom_right_bottom_section().toUpperCase()){
 					case CricketUtil.OVER:
 						processAnimation(print_writer, "Scorebug$AllSections$Section4All$Thisover_Out", "START", broadcaster);
-//						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
+//						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
 //							processAnimation(print_writer, "Scorebug$AllSections$Section4All$Thisover_Out", "START", broadcaster);
 //						}else {
 //							processAnimation(print_writer, "Section5$BowlingEndOut", "START", broadcaster);
@@ -3043,7 +3043,7 @@ public class RPL extends Scene{
 					switch(infobar.getBottom_right_bottom_section().toUpperCase()){
 					case CricketUtil.OVER:
 						processAnimation(print_writer, "Scorebug$AllSections$Section4All$Thisover_In", "START", broadcaster);
-//						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
+//						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
 //							processAnimation(print_writer, "Scorebug$AllSections$Section4All$Thisover_Out", "START", broadcaster);
 //						}else {
 //							processAnimation(print_writer, "Section5$BowlingEndOut", "START", broadcaster);
@@ -3063,7 +3063,7 @@ public class RPL extends Scene{
 					switch(infobar.getBottom_right_bottom_section().toUpperCase()){
 					case CricketUtil.OVER:
 						processAnimation(print_writer, "Scorebug$AllSections$Section4All$Thisover_In", "START", broadcaster);
-//						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
+//						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
 //							processAnimation(print_writer, "Scorebug$AllSections$Section4All$Thisover_Out", "START", broadcaster);
 //						}else {
 //							processAnimation(print_writer, "Section5$BowlingEndOut", "START", broadcaster);
@@ -4028,7 +4028,7 @@ public class RPL extends Scene{
 				if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("PR")) {
 					for(Inning inn : match.getMatch().getInning()) {
 						for(BattingCard bc : inn.getBattingCard()) {
-							if(bc.getPlayerId() == stat.getPlayer_id()) {
+							if(bc.getPlayerId() == stat.getPlayerID()) {
 								player_found = true;
 								if(bc.getBatsmanInningStarted() != null && bc.getBatsmanInningStarted().equalsIgnoreCase(CricketUtil.YES)) {
 									stat.setInnings(stat.getInnings() + 1);
@@ -4036,7 +4036,7 @@ public class RPL extends Scene{
 								stat.setRuns(stat.getRuns() + bc.getRuns());
 								stat.setFours(stat.getFours() + bc.getFours());
 								stat.setSixes(stat.getSixes() + bc.getSixes());
-								stat.setBalls_faced(stat.getBalls_faced() + bc.getBalls());
+								stat.setBallsFaced(stat.getBallsFaced() + bc.getBalls());
 								
 								if(bc.getRuns() < 50 && bc.getRuns() >= 30) {
 									stat.setThirties(stat.getThirties() + 1);
@@ -4050,16 +4050,16 @@ public class RPL extends Scene{
 						}
 						if(inn.getBowlingCard() != null && inn.getBowlingCard().size()>0) {
 							for(BowlingCard boc : inn.getBowlingCard()) {
-								if(boc.getPlayerId() == stat.getPlayer_id()) {
+								if(boc.getPlayerId() == stat.getPlayerID()) {
 									stat.setWickets(stat.getWickets() + boc.getWickets());
-									stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
-									stat.setBalls_bowled(stat.getBalls_bowled() + (boc.getOvers()*6 + boc.getBalls()));
-									stat.setDotbowled(stat.getDotbowled() + boc.getDots());
+									stat.setRunsConceded(stat.getRunsConceded() + boc.getRuns());
+									stat.setBallsBowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
+									stat.setDotBowled(stat.getDotBowled() + boc.getDots());
 									if(boc.getWickets() < 5 && boc.getWickets() >= 3) {
-										stat.setPlus_3(stat.getPlus_3() + 1);
+										stat.setPlus3(stat.getPlus3() + 1);
 									}	
 									else if(boc.getWickets() >= 5){
-										stat.setPlus_5(stat.getPlus_5() + 1);
+										stat.setPlus5(stat.getPlus5() + 1);
 									}
 								}
 							}							
@@ -4067,12 +4067,12 @@ public class RPL extends Scene{
 					}
 					player_found = false;
 					for(Player hs : match.getSetup().getHomeSquad()) {
-						if(stat.getPlayer_id() == hs.getPlayerId()) {
+						if(stat.getPlayerID() == hs.getPlayerId()) {
 							player_found = true;
 						}
 					}
 					for(Player as : match.getSetup().getAwaySquad()) {
-						if(stat.getPlayer_id() == as.getPlayerId()) {
+						if(stat.getPlayerID() == as.getPlayerId()) {
 							player_found = true;
 						}
 					}
@@ -4094,7 +4094,7 @@ public class RPL extends Scene{
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(1).getTotalFours());
 			for(Inning inn : match.getMatch().getInning()) {
 				for(BattingCard bc : inn.getBattingCard()) {
-					if(bc.getPlayerId() == stat.getPlayer_id()) {
+					if(bc.getPlayerId() == stat.getPlayerID()) {
 						player_found = true;
 						if(bc.getBatsmanInningStarted() == null) {
 						}
@@ -4105,7 +4105,7 @@ public class RPL extends Scene{
 						stat.setRuns(stat.getRuns() + bc.getRuns());
 						stat.setFours(stat.getFours() + bc.getFours());
 						stat.setSixes(stat.getSixes() + bc.getSixes());
-						stat.setBalls_faced(stat.getBalls_faced() + bc.getBalls());
+						stat.setBallsFaced(stat.getBallsFaced() + bc.getBalls());
 				
 						if(bc.getRuns() < 50 && bc.getRuns() >= 30) {
 							stat.setThirties(stat.getThirties() + 1);
@@ -4118,17 +4118,17 @@ public class RPL extends Scene{
 				}
 				if(inn.getBowlingCard() != null && inn.getBowlingCard().size()>0) {
 					for(BowlingCard boc : inn.getBowlingCard()) {
-						if(boc.getPlayerId() == stat.getPlayer_id()) {
+						if(boc.getPlayerId() == stat.getPlayerID()) {
 							player_found = true;
 							stat.setWickets(stat.getWickets() + boc.getWickets());
-							stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
-							stat.setBalls_bowled(stat.getBalls_bowled() + (boc.getOvers()*6 + boc.getBalls()));
-							stat.setDotbowled(stat.getDotbowled() + boc.getDots());
+							stat.setRunsConceded(stat.getRunsConceded() + boc.getRuns());
+							stat.setBallsBowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
+							stat.setDotBowled(stat.getDotBowled() + boc.getDots());
 							//System.out.println(boc.getWickets());
 							if(boc.getWickets() >= 3 && boc.getWickets() < 5) {
-								stat.setPlus_3(stat.getPlus_3() + 1);
+								stat.setPlus3(stat.getPlus3() + 1);
 							}else if(boc.getWickets() >= 5){
-								stat.setPlus_5(stat.getPlus_5() + 1);
+								stat.setPlus5(stat.getPlus5() + 1);
 							}
 						}
 					}							
@@ -4136,12 +4136,12 @@ public class RPL extends Scene{
 			}
 			player_found = false;
 			for(Player hs : match.getSetup().getHomeSquad()) {
-				if(stat.getPlayer_id() == hs.getPlayerId()) {
+				if(stat.getPlayerID() == hs.getPlayerId()) {
 					player_found = true;
 				}
 			}
 			for(Player as : match.getSetup().getAwaySquad()) {
-				if(stat.getPlayer_id() == as.getPlayerId()) {
+				if(stat.getPlayerID() == as.getPlayerId()) {
 					player_found = true;
 				}
 			}
@@ -7051,12 +7051,12 @@ public class RPL extends Scene{
 										inn.getBattingCard().get(b-1).getPlayer().getTicker_name() + "\0");
 								
 								for(Statistics st : stats) {
-									if(st.getPlayer_id()==inn.getBattingCard().get(b-1).getPlayerId() && st.getStats_type_id() == 3) {
-										if(st.getBalls_faced() == 0 || st.getRuns()== 0) {
+									if(st.getPlayerID()==inn.getBattingCard().get(b-1).getPlayerId() && st.getStatsTypeId() == 3) {
+										if(st.getBallsFaced() == 0 || st.getRuns()== 0) {
 											print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStrikeRate" + row_id + " SET " + "-" + "\0");
 										}else {
 											strike_rate = st.getRuns() * 100;
-											strike_rate = strike_rate/st.getBalls_faced();
+											strike_rate = strike_rate/st.getBallsFaced();
 											DecimalFormat df = new DecimalFormat("0.0");
 											
 											print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStrikeRate" + row_id + " SET " + df.format(strike_rate) + "\0");
@@ -7233,7 +7233,7 @@ public class RPL extends Scene{
 						+ "SubHeaderText$txt_SubHeader*GEOM*TEXT SET " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" +" \0");
 			}
 			
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			
 			
 			if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
@@ -7357,12 +7357,12 @@ public class RPL extends Scene{
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row3$Out$In$PlayerProfileGrp"
 							+ "$Data$txt_StatValue*GEOM*TEXT SET " + stats.getFifties() + "/" + stats.getHundreds() +" \0");
 					
-					if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+					if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row4$Out$In$PlayerProfileGrp"
 								+ "$Data$txt_StatValue*GEOM*TEXT SET " + "-" +" \0");
 					}else {
 						strike_rate = stats.getRuns() * 100;
-						strike_rate = strike_rate/stats.getBalls_faced();
+						strike_rate = strike_rate/stats.getBallsFaced();
 						DecimalFormat df = new DecimalFormat("0.0");
 						
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row4$Out$In$PlayerProfileGrp"
@@ -7379,12 +7379,12 @@ public class RPL extends Scene{
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row3$Out$In$PlayerProfileGrp"
 							+ "$Data$txt_StatValue*GEOM*TEXT SET " + stats.getFifties() + "/" + stats.getHundreds() +" \0");
 					
-					if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+					if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row4$Out$In$PlayerProfileGrp"
 								+ "$Data$txt_StatValue*GEOM*TEXT SET " + "-" +" \0");
 					}else {
 						strike_rate = stats.getRuns() * 100;
-						strike_rate = strike_rate/stats.getBalls_faced();
+						strike_rate = strike_rate/stats.getBallsFaced();
 						DecimalFormat df = new DecimalFormat("0.0");
 						
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row4$Out$In$PlayerProfileGrp"
@@ -7424,7 +7424,7 @@ public class RPL extends Scene{
 						+ "SubHeaderText$txt_SubHeader*GEOM*TEXT SET " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" +" \0");
 			}
 			
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			
 			if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 
@@ -7548,13 +7548,13 @@ public class RPL extends Scene{
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row2$Out$In$PlayerProfileGrp"
 							+ "$Data$txt_StatValue*GEOM*TEXT SET " + stats.getWickets() +" \0");
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row3$Out$In$PlayerProfileGrp"
-							+ "$Data$txt_StatValue*GEOM*TEXT SET " + stats.getPlus_3() + "/" + stats.getPlus_5() +" \0");
+							+ "$Data$txt_StatValue*GEOM*TEXT SET " + stats.getPlus3() + "/" + stats.getPlus5() +" \0");
 					
-					if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+					if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row4$Out$In$PlayerProfileGrp"
 								+ "$Data$txt_StatValue*GEOM*TEXT SET " + "-" +" \0");
 					}else {
-						economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+						economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 						economy_rate = economy_rate * 6;
 						DecimalFormat df = new DecimalFormat("0.00");
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row4$Out$In$PlayerProfileGrp"
@@ -7569,13 +7569,13 @@ public class RPL extends Scene{
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row2$Out$In$PlayerProfileGrp"
 							+ "$Data$txt_StatValue*GEOM*TEXT SET " + stats.getWickets() +" \0");
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row3$Out$In$PlayerProfileGrp"
-							+ "$Data$txt_StatValue*GEOM*TEXT SET " + stats.getPlus_3() + "/" + stats.getPlus_5() +" \0");
+							+ "$Data$txt_StatValue*GEOM*TEXT SET " + stats.getPlus3() + "/" + stats.getPlus5() +" \0");
 					
-					if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+					if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row4$Out$In$PlayerProfileGrp"
 								+ "$Data$txt_StatValue*GEOM*TEXT SET " + "-" +" \0");
 					}else {
-						economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+						economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 						economy_rate = economy_rate * 6;
 						DecimalFormat df = new DecimalFormat("0.00");
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$PlayerProfile$ProfileActive$All$AllPos$AllDataGrp$DataAll$Side1$DataGrp$Row4$Out$In$PlayerProfileGrp"
@@ -8042,7 +8042,7 @@ public class RPL extends Scene{
 					stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" +" \0");
 			}
 			
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$Rest_Base_ALL$DataBase_Logo_Grp$DataBand$LogoGRP$Logo"
@@ -8074,14 +8074,14 @@ public class RPL extends Scene{
 						+ "$Text*GEOM*TEXT SET " + stats.getWickets() +" \0");
 				
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead3"
-						+ "$Text*GEOM*TEXT SET " + stats.getPlus_3() + "/" + stats.getPlus_5() +" \0");
+						+ "$Text*GEOM*TEXT SET " + stats.getPlus3() + "/" + stats.getPlus5() +" \0");
 				
 				
-				if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+				if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 					print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead4"
 							+ "$Text*GEOM*TEXT SET " + "-" +" \0");
 				}else {
-					economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+					economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 					economy_rate = economy_rate * 6;
 					DecimalFormat df_bo = new DecimalFormat("0.00");
 					print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead4"
@@ -8096,14 +8096,14 @@ public class RPL extends Scene{
 						+ "$Text*GEOM*TEXT SET " + stats.getWickets() +" \0");
 				
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead3"
-						+ "$Text*GEOM*TEXT SET " + stats.getPlus_3() + "/" + stats.getPlus_5() +" \0");
+						+ "$Text*GEOM*TEXT SET " + stats.getPlus3() + "/" + stats.getPlus5() +" \0");
 				
 				
-				if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+				if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 					print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead4"
 							+ "$Text*GEOM*TEXT SET " + "-" +" \0");
 				}else {
-					economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+					economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 					economy_rate = economy_rate * 6;
 					DecimalFormat df_bo = new DecimalFormat("0.00");
 					print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead4"
@@ -8139,7 +8139,7 @@ public class RPL extends Scene{
 					stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" +" \0");
 			}
 		
-		Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+		Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 		if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 
 			print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$Rest_Base_ALL$DataBase_Logo_Grp$DataBand$LogoGRP$Logo"
@@ -8173,12 +8173,12 @@ public class RPL extends Scene{
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead3"
 						+ "$Text*GEOM*TEXT SET " + stats.getFifties() + "/" + stats.getHundreds() +" \0");
 				
-				if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+				if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 					print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead4"
 							+ "$Text*GEOM*TEXT SET " + "-" +" \0");
 				}else {
 					strike_rate = stats.getRuns() * 100;
-					strike_rate = strike_rate/stats.getBalls_faced();
+					strike_rate = strike_rate/stats.getBallsFaced();
 					DecimalFormat df = new DecimalFormat("0.0");
 					print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead4"
 							+ "$Text*GEOM*TEXT SET " + df.format(strike_rate) +" \0");
@@ -8195,12 +8195,12 @@ public class RPL extends Scene{
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead3"
 						+ "$Text*GEOM*TEXT SET " + stats.getFifties() + "/" + stats.getHundreds() +" \0");
 				
-				if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+				if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 					print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead4"
 							+ "$Text*GEOM*TEXT SET " + "-" +" \0");
 				}else {
 					strike_rate = stats.getRuns() * 100;
-					strike_rate = strike_rate/stats.getBalls_faced();
+					strike_rate = strike_rate/stats.getBallsFaced();
 					DecimalFormat df = new DecimalFormat("0.0");
 					print_writer.println("-1 RENDERER*TREE*$Main$All$Lt_Position$PalyerCareer$DataAll$SubDataGrp$Row2$RowAnim$1$StatHeadHrp$StatHead4"
 							+ "$Text*GEOM*TEXT SET " + df.format(strike_rate) +" \0");
@@ -9379,7 +9379,7 @@ public class RPL extends Scene{
 //						}else {
 //							processAnimation(print_writer, "ALL_SECTION$Section5$ThisOverIn", "SHOW 0.0", broadcaster);
 //							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tBowlingEnd" + " SET " + 
-//									"THIS OVER : " + CricketFunctions.processThisOverRunsCount(infobar.getPlayer_id(),match.getEventFile().getEvents()) + "\0");
+//									"THIS OVER : " + CricketFunctions.processThisOverRunsCount(infobar.getPlayerID(),match.getEventFile().getEvents()) + "\0");
 //							processAnimation(print_writer, "ALL_SECTION$Section5$BowlingEndIn", "SHOW 0.360", broadcaster);
 //						}
 					}

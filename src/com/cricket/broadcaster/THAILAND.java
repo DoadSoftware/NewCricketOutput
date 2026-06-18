@@ -302,8 +302,8 @@ public class THAILAND extends Scene{
 					
 				case "POPULATE-FF-PLAYERPROFILE":
 					for(Statistics stats : cricketService.getAllStats()) {
-						if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
@@ -315,8 +315,8 @@ public class THAILAND extends Scene{
 					break;
 				case "POPULATE-FF-PLAYERPROFILE_BUKHATIR":
 					for(Statistics stats : cricketService.getAllStats()) {
-						if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
@@ -498,8 +498,8 @@ public class THAILAND extends Scene{
 					break;	
 				case "POPULATE-L3-PLAYERPROFILE_BUKHATIR":
 					for(Statistics stats : cricketService.getAllStats()) {
-						if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							
 							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
@@ -512,8 +512,8 @@ public class THAILAND extends Scene{
 					break;
 				case "POPULATE-L3-PLAYERPROFILE":
 					for(Statistics stats : cricketService.getAllStats()) {
-						if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							
 							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
@@ -3173,7 +3173,7 @@ public class THAILAND extends Scene{
 			this.status = CricketUtil.SUCCESSFUL;
 			System.out.println("Fours = " + stats.getTournament_fours() + " Sixes = " + stats.getTournament_sixes());
 			double strike_rate = 0 , economy_rate=0;
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			
 			print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tTeamFirstName " + match.getSetup().getMatchIdent().toUpperCase() + ";");
 			print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tTeamLastName " + match.getSetup().getMatchIdent().toUpperCase() + ";");
@@ -3229,11 +3229,11 @@ public class THAILAND extends Scene{
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue02 " + stats.getRuns()+ ";");
 				
 				strike_rate = stats.getRuns() * 100;
-				strike_rate = strike_rate/stats.getBalls_faced();
+				strike_rate = strike_rate/stats.getBallsFaced();
 				DecimalFormat df = new DecimalFormat("0.0");
 				
 				//print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFoursHead " + "S/R" + ";");
-				if(stats.getRuns()== 0 && stats.getBalls_faced() == 0) {
+				if(stats.getRuns()== 0 && stats.getBallsFaced() == 0) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFoursValue " + "-" +";");
 				}else {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFoursValue " + df.format(strike_rate) +";");
@@ -3247,11 +3247,11 @@ public class THAILAND extends Scene{
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead02 "+"WICKETS"+";");
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue02 "+stats.getWickets() + ";");
 				
-				economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+				economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 				DecimalFormat df_b = new DecimalFormat("0.00");
 				
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFoursHead "+"ECONOMY"+";");
-				if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+				if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFoursValue "+ "-" +";");
 				}else {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFoursValue "+ df_b.format(economy_rate) +";");
@@ -3290,7 +3290,7 @@ public class THAILAND extends Scene{
 				System.out.println("hello");
 				System.out.println("Fours = " + stats.getTournament_fours() + " Sixes = " + stats.getTournament_sixes());
 			double average = 0, economy_rate = 0;
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTLogo " + logo_path + "TLogo" + 
 					CricketUtil.PNG_EXTENSION + ";");
 			if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
@@ -3315,7 +3315,7 @@ public class THAILAND extends Scene{
 					if(stats.getRuns() < 0) {
 						print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue2 " + "-" + ";");
 					}else {
-						double out = (stats.getInnings() - stats.getNot_out());
+						double out = (stats.getInnings() - stats.getNotOut());
 						average = stats.getRuns()/out;
 						DecimalFormat df = new DecimalFormat("0.00");
 						print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue2 " + df.format(average) + ";");
@@ -3325,7 +3325,7 @@ public class THAILAND extends Scene{
 					if(stats.getRuns() < 0) {
 						print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue2 " + "-" + ";");
 					}else {
-						double out = (stats.getInnings() - stats.getNot_out());
+						double out = (stats.getInnings() - stats.getNotOut());
 						average = stats.getRuns()/out;
 						DecimalFormat df = new DecimalFormat("0.00");
 						print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue2 " + df.format(average) + ";");
@@ -3342,10 +3342,10 @@ public class THAILAND extends Scene{
 				}
 				
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateHead4 " + "BEST" +";");
-				if(stats.getBest_score() == null) {
+				if(stats.getBestScore() == null) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue4 " + "-" + ";");
 				}else {
-					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue4 " + stats.getBest_score() + ";");
+					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue4 " + stats.getBestScore() + ";");
 				}
 				
 				
@@ -3367,28 +3367,28 @@ public class THAILAND extends Scene{
 //				}
 				
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateHead2 "+ "AVERAGE"+";");
-				if(stats.getRuns_conceded() == 0) {
+				if(stats.getRunsConceded() == 0) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue2 "+ "-" +";");
 				}else {
-					average = stats.getRuns_conceded()/stats.getWickets();
+					average = stats.getRunsConceded()/stats.getWickets();
 					DecimalFormat df_bo = new DecimalFormat("0.00");
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue2 "+ df_bo.format(average) +";");
 				}
 				
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateHead3 "+"ECON."+";");
-				if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+				if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue3 "+ "-" +";");
 				}else {
-					economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+					economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 					DecimalFormat df_b = new DecimalFormat("0.00");
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue3 "+ df_b.format(economy_rate) +";");
 				}
 				
 				print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateHead4 " + "BEST" +";");
-				if(stats.getBest_figures() == null) {
+				if(stats.getBestFigures() == null) {
 					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue4 " + "-" + ";");
 				}else {
-					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue4 " + stats.getBest_figures() + ";");
+					print_writer.println("LAYER2*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStateValue4 " + stats.getBestFigures() + ";");
 				}
 				
 				break;

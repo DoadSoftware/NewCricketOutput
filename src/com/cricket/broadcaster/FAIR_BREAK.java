@@ -2442,10 +2442,10 @@ public class FAIR_BREAK extends Scene{
 			case "POPULATE-L3-PLAYERPROFILE":
 				//System.out.println("valueToProcess = " + valueToProcess);
 				for(Statistics stats : cricketService.getAllStats()) {
-					//System.out.println("player id = " + stats.getPlayer_id());
-					if(stats.getPlayer_id().intValue()== Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+					//System.out.println("player id = " + stats.getPlayerID());
+					if(stats.getPlayerID().intValue()== Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
 						//System.out.println("Match Found");
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						
@@ -2459,8 +2459,8 @@ public class FAIR_BREAK extends Scene{
 			case "POPULATE-L3-PLAYERPROFILEBAT":
 				
 				for(Statistics stats : cricketService.getAllStats()) {
-					if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+					if(stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
@@ -2472,8 +2472,8 @@ public class FAIR_BREAK extends Scene{
 				break;
 			case "POPULATE-FF-PLAYERPROFILE":					
 				for(Statistics stats : cricketService.getAllStats()) {
-					if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+					if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						
@@ -2487,8 +2487,8 @@ public class FAIR_BREAK extends Scene{
 				break;
 			case "POPULATE-FF-PLAYERPROFILEBALL":
 				for(Statistics stats : cricketService.getAllStats()) {
-					if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-						stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+					if(stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
@@ -2953,7 +2953,7 @@ public class FAIR_BREAK extends Scene{
 					processAnimation(print_writer, "ALL_SECTION$Section5In", "START", broadcaster);
 					switch(infobar.getBottom_right_bottom_section().toUpperCase()){
 					case CricketUtil.OVER:
-						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
+						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
 							processAnimation(print_writer, "Section5$ThisOverIn", "START", broadcaster);
 						}else {
 							processAnimation(print_writer, "Section5$BowlingEndIn", "START", broadcaster);
@@ -2978,7 +2978,7 @@ public class FAIR_BREAK extends Scene{
 
 					switch(infobar.getLast_bottom_right_bottom_section().toUpperCase()){
 					case CricketUtil.OVER:
-						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
+						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
 							processAnimation(print_writer, "Section5$ThisOverOut", "START", broadcaster);
 						}else {
 							processAnimation(print_writer, "Section5$BowlingEndOut", "START", broadcaster);
@@ -3000,7 +3000,7 @@ public class FAIR_BREAK extends Scene{
 					processAnimation(print_writer, "ALL_SECTION$Section5In", "START", broadcaster);
 					switch(infobar.getBottom_right_bottom_section().toUpperCase()){
 					case CricketUtil.OVER:
-						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
+						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
 							processAnimation(print_writer, "Section5$ThisOverIn", "START", broadcaster);
 						}else {
 							processAnimation(print_writer, "Section5$BowlingEndIn", "START", broadcaster);
@@ -3622,7 +3622,7 @@ public class FAIR_BREAK extends Scene{
 				if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("PR")) {
 					for(Inning inn : match.getMatch().getInning()) {
 						for(BattingCard bc : inn.getBattingCard()) {
-							if(bc.getPlayerId() == stat.getPlayer_id()) {
+							if(bc.getPlayerId() == stat.getPlayerID()) {
 								player_found = true;
 								if(bc.getBatsmanInningStarted() != null && bc.getBatsmanInningStarted().equalsIgnoreCase(CricketUtil.YES)) {
 									stat.setInnings(stat.getInnings() + 1);
@@ -3644,10 +3644,10 @@ public class FAIR_BREAK extends Scene{
 						}
 						if(inn.getBowlingCard() != null && inn.getBowlingCard().size()>0) {
 							for(BowlingCard boc : inn.getBowlingCard()) {
-								if(boc.getPlayerId() == stat.getPlayer_id()) {
+								if(boc.getPlayerId() == stat.getPlayerID()) {
 									stat.setWickets(stat.getWickets() + boc.getWickets());
-									stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
-									stat.setBalls_bowled(stat.getBalls_bowled() + (boc.getOvers()*6 + boc.getBalls()));
+									stat.setRuns_conceded(stat.getRunsConceded() + boc.getRuns());
+									stat.setBalls_bowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
 									stat.setDotbowled(stat.getDotbowled() + boc.getDots());
 									if(boc.getWickets() < 5 && boc.getWickets() >= 3) {
 										stat.setPlus_3(stat.getPlus_3() + 1);
@@ -3661,12 +3661,12 @@ public class FAIR_BREAK extends Scene{
 					}
 					player_found = false;
 					for(Player hs : match.getSetup().getHomeSquad()) {
-						if(stat.getPlayer_id() == hs.getPlayerId()) {
+						if(stat.getPlayerID() == hs.getPlayerId()) {
 							player_found = true;
 						}
 					}
 					for(Player as : match.getSetup().getAwaySquad()) {
-						if(stat.getPlayer_id() == as.getPlayerId()) {
+						if(stat.getPlayerID() == as.getPlayerId()) {
 							player_found = true;
 						}
 					}
@@ -3688,7 +3688,7 @@ public class FAIR_BREAK extends Scene{
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(1).getTotalFours());
 			for(Inning inn : match.getMatch().getInning()) {
 				for(BattingCard bc : inn.getBattingCard()) {
-					if(bc.getPlayerId() == stat.getPlayer_id()) {
+					if(bc.getPlayerId() == stat.getPlayerID()) {
 						player_found = true;
 						if(bc.getBatsmanInningStarted() == null) {
 						}
@@ -3712,11 +3712,11 @@ public class FAIR_BREAK extends Scene{
 				}
 				if(inn.getBowlingCard() != null && inn.getBowlingCard().size()>0) {
 					for(BowlingCard boc : inn.getBowlingCard()) {
-						if(boc.getPlayerId() == stat.getPlayer_id()) {
+						if(boc.getPlayerId() == stat.getPlayerID()) {
 							player_found = true;
 							stat.setWickets(stat.getWickets() + boc.getWickets());
-							stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
-							stat.setBalls_bowled(stat.getBalls_bowled() + (boc.getOvers()*6 + boc.getBalls()));
+							stat.setRuns_conceded(stat.getRunsConceded() + boc.getRuns());
+							stat.setBalls_bowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
 							stat.setDotbowled(stat.getDotbowled() + boc.getDots());
 							//System.out.println(boc.getWickets());
 							if(boc.getWickets() >= 3 && boc.getWickets() < 5) {
@@ -3730,12 +3730,12 @@ public class FAIR_BREAK extends Scene{
 			}
 			player_found = false;
 			for(Player hs : match.getSetup().getHomeSquad()) {
-				if(stat.getPlayer_id() == hs.getPlayerId()) {
+				if(stat.getPlayerID() == hs.getPlayerId()) {
 					player_found = true;
 				}
 			}
 			for(Player as : match.getSetup().getAwaySquad()) {
-				if(stat.getPlayer_id() == as.getPlayerId()) {
+				if(stat.getPlayerID() == as.getPlayerId()) {
 					player_found = true;
 				}
 			}
@@ -6437,7 +6437,7 @@ public class FAIR_BREAK extends Scene{
 										inn.getBattingCard().get(b-1).getPlayer().getTicker_name() + "\0");
 								
 								for(Statistics st : stats) {
-									if(st.getPlayer_id()==inn.getBattingCard().get(b-1).getPlayerId() && st.getStats_type_id() == 3) {
+									if(st.getPlayerID()==inn.getBattingCard().get(b-1).getPlayerId() && st.getStatsTypeId() == 3) {
 										if(st.getBalls_faced() == 0 || st.getRuns()== 0) {
 											print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStrikeRate" + row_id + " SET " + "-" + "\0");
 										}else {
@@ -6671,7 +6671,7 @@ public class FAIR_BREAK extends Scene{
 						stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + "\0");
 			}
 			
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			
 			if(plyr.getInstagramHandle() == null && plyr.getTwitterHandle() == null) {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$AllDataGrp$Data$SocialMedia*ACTIVE SET 0 \0");
@@ -6855,7 +6855,7 @@ public class FAIR_BREAK extends Scene{
 						stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + "\0");
 			}
 			
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			
 			if(plyr.getInstagramHandle() == null && plyr.getTwitterHandle() == null) {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$AllDataGrp$Data$SocialMedia*ACTIVE SET 0 \0");
@@ -6979,12 +6979,12 @@ public class FAIR_BREAK extends Scene{
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead2" + " SET " + "WICKETS" + "\0");
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue2" + " SET " + stats.getWickets() + "\0");
 					
-					if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+					if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead3" + " SET " + "ECONOMY" + "\0");
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "-" + "\0");
 						
 					}else {
-						economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+						economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 						economy_rate = economy_rate * 6;
 						DecimalFormat df = new DecimalFormat("0.00");
 						
@@ -7000,12 +7000,12 @@ public class FAIR_BREAK extends Scene{
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead2" + " SET " + "WICKETS" + "\0");
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue2" + " SET " + stats.getWickets() + "\0");
 					
-					if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+					if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead3" + " SET " + "ECONOMY" + "\0");
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "-" + "\0");
 						
 					}else {
-						economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+						economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 						economy_rate = economy_rate * 6;
 						DecimalFormat df = new DecimalFormat("0.00");
 						
@@ -7469,7 +7469,7 @@ public class FAIR_BREAK extends Scene{
 				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + "\0");
 			}
 			
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 
 				print_writer.println("-1 RENDERER*TREE*$Main$All_Grp$PositionY$All$LogoGrp$TeamLogo1*TEXTURE*IMAGE SET " + logo_path +
@@ -7534,10 +7534,10 @@ public class FAIR_BREAK extends Scene{
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue2" + " SET " + stats.getWickets() + "\0");
 				}
 				
-				if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+				if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "-" + "\0");
 				}else {
-					economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+					economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 					economy_rate = economy_rate * 6;
 					DecimalFormat df_bo = new DecimalFormat("0.00");
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + df_bo.format(economy_rate) + "\0");
@@ -7562,10 +7562,10 @@ public class FAIR_BREAK extends Scene{
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue2" + " SET " + stats.getWickets() + "\0");
 				}
 				
-				if(stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+				if(stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "-" + "\0");
 				}else {
-					economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+					economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 					economy_rate = economy_rate * 6;
 					DecimalFormat df_bo = new DecimalFormat("0.00");
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + df_bo.format(economy_rate) + "\0");
@@ -7604,7 +7604,7 @@ public class FAIR_BREAK extends Scene{
 					stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + "\0");
 		}
 		
-		Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+		Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 		if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 
 			print_writer.println("-1 RENDERER*TREE*$Main$All_Grp$PositionY$All$LogoGrp$TeamLogo1*TEXTURE*IMAGE SET " + logo_path +
@@ -8683,9 +8683,9 @@ public class FAIR_BREAK extends Scene{
 							infobar.setPlayer_id(boc.getPlayerId());
 						}
 					}
-					String[] this_over = CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",");
+					String[] this_over = CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",");
 					
-					if(Integer.valueOf(CricketFunctions.processThisOverRunsCount(infobar.getPlayer_id(),match.getEventFile().getEvents())) > 0 || inn.getTotalBalls() > 0) {
+					if(Integer.valueOf(CricketFunctions.processThisOverRunsCount(infobar.getPlayerID(),match.getEventFile().getEvents())) > 0 || inn.getTotalBalls() > 0) {
 						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section2-3-4-5$Section4_5_All$Sectio4_5$Section5$ThisOver$ThisOver$THISOVER*FUNCTION*Omo*vis_con SET " + 
 											this_over.length + " \0");
 					}else {
@@ -8719,7 +8719,7 @@ public class FAIR_BREAK extends Scene{
 						}else {
 							processAnimation(print_writer, "ALL_SECTION$Section5$ThisOverIn", "SHOW 0.0", broadcaster);
 							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tBowlingEnd" + " SET " + 
-									"THIS OVER : " + CricketFunctions.processThisOverRunsCount(infobar.getPlayer_id(),match.getEventFile().getEvents()) + "\0");
+									"THIS OVER : " + CricketFunctions.processThisOverRunsCount(infobar.getPlayerID(),match.getEventFile().getEvents()) + "\0");
 							processAnimation(print_writer, "ALL_SECTION$Section5$BowlingEndIn", "SHOW 0.360", broadcaster);
 						}
 					}

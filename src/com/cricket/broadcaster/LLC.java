@@ -1358,8 +1358,8 @@ public class LLC extends Scene {
 								totalRuns = totalRuns+s.getRuns();
 								totalBallsFaced = totalBallsFaced+s.getBalls_faced();
 								totalWickets = totalWickets+s.getWickets();
-								totalBallsBowled = totalBallsBowled+s.getBalls_bowled();
-								totalRunsConceeded = totalRunsConceeded+s.getRuns_conceded();
+								totalBallsBowled = totalBallsBowled+s.getBallsBowled();
+								totalRunsConceeded = totalRunsConceeded+s.getRunsConceded();
 								if(s.getBest_figures().contains("-")) {
 									if(bestFigWickets < Integer.valueOf(s.getBest_figures().split("-")[0])) {
 										bestFigWickets = Integer.valueOf(s.getBest_figures().split("-")[0]);
@@ -1455,8 +1455,8 @@ public class LLC extends Scene {
 								totalRuns = totalRuns+s.getRuns();
 								totalBallsFaced = totalBallsFaced+s.getBalls_faced();
 								totalWickets = totalWickets+s.getWickets();
-								totalBallsBowled = totalBallsBowled+s.getBalls_bowled();
-								totalRunsConceeded = totalRunsConceeded+s.getRuns_conceded();
+								totalBallsBowled = totalBallsBowled+s.getBallsBowled();
+								totalRunsConceeded = totalRunsConceeded+s.getRunsConceded();
 								if(s.getBest_figures().contains("-")) {
 									if(bestFigWickets < Integer.valueOf(s.getBest_figures().split("-")[0])) {
 										bestFigWickets = Integer.valueOf(s.getBest_figures().split("-")[0]);
@@ -5702,9 +5702,9 @@ public class LLC extends Scene {
 							for (BowlingCard boc : inn.getBowlingCard()) {
 								if (boc.getPlayerId() == stat.getPlayer_id()) {
 									stat.setWickets(stat.getWickets() + boc.getWickets());
-									stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
+									stat.setRuns_conceded(stat.getRunsConceded() + boc.getRuns());
 									stat.setBalls_bowled(
-											stat.getBalls_bowled() + (boc.getOvers() * 6 + boc.getBalls()));
+											stat.getBallsBowled() + (boc.getOvers() * 6 + boc.getBalls()));
 									stat.setDotbowled(stat.getDotbowled() + boc.getDots());
 									if (boc.getWickets() < 5 && boc.getWickets() >= 3) {
 										stat.setPlus_3(stat.getPlus_3() + 1);
@@ -5769,8 +5769,8 @@ public class LLC extends Scene {
 						if (boc.getPlayerId() == stat.getPlayer_id()) {
 							player_found = true;
 							stat.setWickets(stat.getWickets() + boc.getWickets());
-							stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
-							stat.setBalls_bowled(stat.getBalls_bowled() + (boc.getOvers() * 6 + boc.getBalls()));
+							stat.setRuns_conceded(stat.getRunsConceded() + boc.getRuns());
+							stat.setBalls_bowled(stat.getBallsBowled() + (boc.getOvers() * 6 + boc.getBalls()));
 							stat.setDotbowled(stat.getDotbowled() + boc.getDots());
 							// System.out.println(boc.getWickets());
 							if (boc.getWickets() >= 3 && boc.getWickets() < 5) {
@@ -11775,14 +11775,14 @@ public class LLC extends Scene {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 						+ "$DataOut$DataGrp$Group3$Out$In$SelectHighlight$Dehighlight$txt_StatHead*GEOM*TEXT SET "
 						+ "ECONOMY" + "\0");
-				if (stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+				if (stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 							+ "$DataOut$DataGrp$Group3$Out$In$SelectHighlight$Dehighlight$txt_StatValue*GEOM*TEXT SET "
 							+ "-" + "\0");
 				} else {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 							+ "$DataOut$DataGrp$Group3$Out$In$SelectHighlight$Dehighlight$txt_StatValue*GEOM*TEXT SET "
-							+ CricketFunctions.getEconomy(stats.getRuns_conceded(), stats.getBalls_bowled(), 2, "-") + "\0");
+							+ CricketFunctions.getEconomy(stats.getRunsConceded(), stats.getBallsBowled(), 2, "-") + "\0");
 				}
 				break;
 			}
@@ -12736,28 +12736,28 @@ public class LLC extends Scene {
 				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 						+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$RestData$Data$3$"
 						+ "txt_Data1A*GEOM*TEXT SET " + "ECONOMY" + "\0");
-				if (stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+				if (stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 							+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$RestData$Data$3"
 							+ "$txt_Data2A*GEOM*TEXT SET " + "-" + "\0");
 				} else {
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 							+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$RestData$Data$3"
-							+ "$txt_Data2A*GEOM*TEXT SET " + CricketFunctions.getEconomy(stats.getRuns_conceded(), stats.getBalls_bowled(), 2, "-") + "\0");
+							+ "$txt_Data2A*GEOM*TEXT SET " + CricketFunctions.getEconomy(stats.getRunsConceded(), stats.getBallsBowled(), 2, "-") + "\0");
 				}
 
 				DecimalFormat df_s = new DecimalFormat("0.00");
 				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 						+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$RestData$Data$4$txt_Data1A*GEOM*TEXT SET "
 						+ "BOWL S/R" + "\0");
-				if (stats.getWickets() == 0 || stats.getBalls_bowled() == 0) {
+				if (stats.getWickets() == 0 || stats.getBallsBowled() == 0) {
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 							+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$RestData$Data$4$txt_Data2A*GEOM*TEXT SET "
 							+ "-" + "\0");
 				} else {
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 							+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$RestData$Data$4$txt_Data2A*GEOM*TEXT SET "
-							+ df_s.format(stats.getBalls_bowled() / stats.getWickets()) + "\0");
+							+ df_s.format(stats.getBallsBowled() / stats.getWickets()) + "\0");
 				}
 
 				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
@@ -23799,28 +23799,28 @@ public class LLC extends Scene {
 							+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$RestData$Data$3$txt_Data1A*GEOM*TEXT SET "
 							+ "ECON." + "\0");
 
-					if (stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+					if (stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$RestData$Data$3$txt_Data2A*GEOM*TEXT SET "
 								+ "-" + "\0");
 					} else {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$RestData$Data$3$txt_Data2A*GEOM*TEXT SET "
-								+ CricketFunctions.getEconomy(stats.getRuns_conceded(), stats.getBalls_bowled(), 2, "-") + "\0");
+								+ CricketFunctions.getEconomy(stats.getRunsConceded(), stats.getBallsBowled(), 2, "-") + "\0");
 					}
 
 					DecimalFormat df_s = new DecimalFormat("0.00");
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side
 							+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$RestData$Data$4$txt_Data1A*GEOM*TEXT SET "
 							+ "STRIKE RATE" + "\0");
-					if (stats.getWickets() == 0 || stats.getBalls_bowled() == 0) {
+					if (stats.getWickets() == 0 || stats.getBallsBowled() == 0) {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$RestData$Data$4$txt_Data2A*GEOM*TEXT SET "
 								+ "-" + "\0");
 					} else {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side
 								+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$RestData$Data$4$txt_Data2A*GEOM*TEXT SET "
-								+ df_s.format(stats.getBalls_bowled()/ stats.getWickets())+ "\0");
+								+ df_s.format(stats.getBallsBowled()/ stats.getWickets())+ "\0");
 					}
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side
 							+ "$Select$PlayerProfile$BottomGrp$RestDataGrp$RestData$Data$5$txt_Data1A*GEOM*TEXT SET "
@@ -24287,14 +24287,14 @@ public class LLC extends Scene {
 							"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$DataOut$DataGrp$Group3$Out$In$SelectHighlight$Dehighlight$txt_StatHead*GEOM*TEXT SET "
 									+ "ECONOMY" + "\0");
 
-					if (stats.getBalls_bowled() == 0 || stats.getRuns_conceded() == 0) {
+					if (stats.getBallsBowled() == 0 || stats.getRunsConceded() == 0) {
 						print_writer.println(
 								"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$DataOut$DataGrp$Group3$Out$In$SelectHighlight$Dehighlight$txt_StatValue*GEOM*TEXT SET "
 										+ "-" + "\0");
 					} else {
 						print_writer.println(
 								"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$DataOut$DataGrp$Group3$Out$In$SelectHighlight$Dehighlight$txt_StatValue*GEOM*TEXT SET "
-										+ CricketFunctions.getEconomy(stats.getRuns_conceded(), stats.getBalls_bowled(), 2, "-") + "\0");
+										+ CricketFunctions.getEconomy(stats.getRunsConceded(), stats.getBallsBowled(), 2, "-") + "\0");
 					}
 					break;
 				}

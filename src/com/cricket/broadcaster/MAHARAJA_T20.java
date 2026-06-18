@@ -742,15 +742,15 @@ public class MAHARAJA_T20 extends Scene{
 										stats.setRuns(statsSeason1.getRuns());
 										stats.setBalls_faced(statsSeason1.getBalls_faced());
 										stats.setWickets(statsSeason1.getWickets());
-										stats.setRuns_conceded(statsSeason1.getRuns_conceded());
-										stats.setBalls_bowled(statsSeason1.getBalls_bowled());
+										stats.setRuns_conceded(statsSeason1.getRunsConceded());
+										stats.setBalls_bowled(statsSeason1.getBallsBowled());
 									}else if(statsSeason1 != null && statsSeason2 != null && count == 2){
 										stats.setMatches(statsSeason1.getMatches()+statsSeason2.getMatches());
 										stats.setRuns(statsSeason1.getRuns()+statsSeason2.getRuns());
 										stats.setBalls_faced(statsSeason1.getBalls_faced()+statsSeason2.getBalls_faced());
 										stats.setWickets(statsSeason1.getWickets()+statsSeason2.getWickets());
-										stats.setRuns_conceded(statsSeason1.getRuns_conceded()+statsSeason2.getRuns_conceded());
-										stats.setBalls_bowled(statsSeason1.getBalls_bowled()+statsSeason2.getBalls_bowled());
+										stats.setRuns_conceded(statsSeason1.getRunsConceded()+statsSeason2.getRunsConceded());
+										stats.setBalls_bowled(statsSeason1.getBallsBowled()+statsSeason2.getBallsBowled());
 									}
 									
 									if(statsSeason1 == null && count == 1 || statsSeason1 != null && statsSeason2 != null && count == 2) {
@@ -813,8 +813,8 @@ public class MAHARAJA_T20 extends Scene{
 										stats.setRuns(statsSeason2LT.getRuns());
 										stats.setBalls_faced(statsSeason2LT.getBalls_faced());
 										stats.setWickets(statsSeason2LT.getWickets());
-										stats.setRuns_conceded(statsSeason2LT.getRuns_conceded());
-										stats.setBalls_bowled(statsSeason2LT.getBalls_bowled());
+										stats.setRuns_conceded(statsSeason2LT.getRunsConceded());
+										stats.setBalls_bowled(statsSeason2LT.getBallsBowled());
 										stats.setBest_score(statsSeason2LT.getBest_score());
 										stats.setBest_figures(statsSeason2LT.getBest_figures());
 									}else if(statsSeason1LT != null && statsSeason2LT != null && countLT == 2){
@@ -824,8 +824,8 @@ public class MAHARAJA_T20 extends Scene{
 										stats.setRuns(statsSeason1LT.getRuns()+statsSeason2LT.getRuns());
 										stats.setBalls_faced(statsSeason1LT.getBalls_faced()+statsSeason2LT.getBalls_faced());
 										stats.setWickets(statsSeason1LT.getWickets()+statsSeason2LT.getWickets());
-										stats.setRuns_conceded(statsSeason1LT.getRuns_conceded()+statsSeason2LT.getRuns_conceded());
-										stats.setBalls_bowled(statsSeason1LT.getBalls_bowled()+statsSeason2LT.getBalls_bowled());
+										stats.setRuns_conceded(statsSeason1LT.getRunsConceded()+statsSeason2LT.getRunsConceded());
+										stats.setBalls_bowled(statsSeason1LT.getBallsBowled()+statsSeason2LT.getBallsBowled());
 										if(statsSeason1LT.getBest_score().contains("*")) {
 											bestSeason1 = Integer.valueOf(statsSeason1LT.getBest_score().replace("*", ""));
 											season1Notout = true;
@@ -5331,7 +5331,7 @@ public class MAHARAJA_T20 extends Scene{
 				print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row2$RowAnimation$StatValue*GEOM*TEXT SET " + stats.getWickets() + "\0");
 				
 				print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatHead*GEOM*TEXT SET " + "ECONOMY" + "\0");
-				print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + CricketFunctions.getEconomy(stats.getRuns_conceded(), stats.getBalls_bowled(), 2, slashOrDash) + "\0");
+				print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + CricketFunctions.getEconomy(stats.getRunsConceded(), stats.getBallsBowled(), 2, slashOrDash) + "\0");
 				break;
 			}
 			if(CricketFunctions.isImpactPlayer(match.getEventFile().getEvents(), 1, playerId).equalsIgnoreCase(CricketUtil.YES)) {
@@ -5445,7 +5445,7 @@ public class MAHARAJA_T20 extends Scene{
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + stats.getBest_figures() + "\0");
 						}
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead4" + " SET " + "ECONOMY" + "\0");
-						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + CricketFunctions.getEconomy(stats.getRuns_conceded(), stats.getBalls_bowled(), 2, slashOrDash) + "\0");
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + CricketFunctions.getEconomy(stats.getRunsConceded(), stats.getBallsBowled(), 2, slashOrDash) + "\0");
 					
 					break;
 				}
@@ -11708,10 +11708,10 @@ public class MAHARAJA_T20 extends Scene{
 
 						print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatHead*GEOM*TEXT SET " + "ECONOMY" + "\0");
 
-						if(stats.getBalls_bowled() == 0 || stats.getRuns_conceded() == 0) {
+						if(stats.getBallsBowled() == 0 || stats.getRunsConceded() == 0) {
 							print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + "-" + "\0");
 						}else {
-							economy_rate = (stats.getRuns_conceded()*1.00) /stats.getBalls_bowled();
+							economy_rate = (stats.getRunsConceded()*1.00) /stats.getBallsBowled();
 							economy_rate = economy_rate * 6;
 							print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + df.format(economy_rate) + "\0");
 						}
@@ -11751,10 +11751,10 @@ public class MAHARAJA_T20 extends Scene{
 
 						print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatHead*GEOM*TEXT SET " + "ECONOMY" + "\0");
 
-						if(stats.getBalls_bowled() == 0 || stats.getRuns_conceded() == 0) {
+						if(stats.getBallsBowled() == 0 || stats.getRunsConceded() == 0) {
 							print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + "-" + "\0");
 						}else {
-							economy_rate = (stats.getRuns_conceded()*1.00) /stats.getBalls_bowled();
+							economy_rate = (stats.getRunsConceded()*1.00) /stats.getBallsBowled();
 							economy_rate = economy_rate * 6;
 							print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + df.format(economy_rate) + "\0");
 						}
@@ -11903,10 +11903,10 @@ public class MAHARAJA_T20 extends Scene{
 						
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead3" + " SET " + "ECON" + "\0");
 
-						if(stats.getBalls_bowled() == 0 || stats.getRuns_conceded() == 0) {
+						if(stats.getBallsBowled() == 0 || stats.getRunsConceded() == 0) {
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "-" + "\0");
 						}else {
-							economy_rate = (stats.getRuns_conceded()*1.00) /stats.getBalls_bowled();
+							economy_rate = (stats.getRunsConceded()*1.00) /stats.getBallsBowled();
 							economy_rate = economy_rate * 6;
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + df.format(economy_rate) + "\0");
 						}
@@ -11999,10 +11999,10 @@ public class MAHARAJA_T20 extends Scene{
 						
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue1" + " SET " + stats.getMatches() + "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue2" + " SET " + stats.getWickets() + "\0");
-						if(stats.getBalls_bowled() == 0 || stats.getRuns_conceded() == 0) {
+						if(stats.getBallsBowled() == 0 || stats.getRunsConceded() == 0) {
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "-" + "\0");
 						}else {
-							economy_rate = (stats.getRuns_conceded()*1.00) /stats.getBalls_bowled();
+							economy_rate = (stats.getRunsConceded()*1.00) /stats.getBallsBowled();
 							economy_rate = economy_rate * 6;
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + df.format(economy_rate) + "\0");
 						}

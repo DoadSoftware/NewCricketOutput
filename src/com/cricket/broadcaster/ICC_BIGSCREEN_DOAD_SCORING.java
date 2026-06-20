@@ -531,7 +531,7 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 								valueToProcess.split(",")[3],CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, head_to_head,cricketService, match, 
 								past_tournament_stats), null,cricketService,match, session_selected_broadcaster,config);
 					}else {
-						stats = statistics.stream().filter(st -> st.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()).findAny().orElse(null);
+						stats = statistics.stream().filter(st -> st.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()).findAny().orElse(null);
 						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase("ODI")) {
 							stats = CricketFunctions.updateH2h(stats, head_to_head, match, CricketUtil.FULL);
@@ -1563,7 +1563,7 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 				if(stat.getStats_type().getStatsShortName().equalsIgnoreCase("PR")) {
 					for(Inning inn : match.getMatch().getInning()) {
 						for(BattingCard bc : inn.getBattingCard()) {
-							if(bc.getPlayerId() == stat.getPlayer_id()) {
+							if(bc.getPlayerId() == stat.getPlayerID()) {
 								player_found = true;
 								if(bc.getBatsmanInningStarted() != null && bc.getBatsmanInningStarted().equalsIgnoreCase(CricketUtil.YES)) {
 									stat.setInnings(stat.getInnings() + 1);
@@ -1571,7 +1571,7 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 								stat.setRuns(stat.getRuns() + bc.getRuns());
 								stat.setFours(stat.getFours() + bc.getFours());
 								stat.setSixes(stat.getSixes() + bc.getSixes());
-								stat.setBalls_faced(stat.getBalls_faced() + bc.getBalls());
+								stat.setBallsFaced(stat.getBallsFaced() + bc.getBalls());
 								
 								if(bc.getRuns() < 50 && bc.getRuns() >= 30) {
 									stat.setThirties(stat.getThirties() + 1);
@@ -1585,16 +1585,16 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 						}
 						if(inn.getBowlingCard() != null && inn.getBowlingCard().size()>0) {
 							for(BowlingCard boc : inn.getBowlingCard()) {
-								if(boc.getPlayerId() == stat.getPlayer_id()) {
+								if(boc.getPlayerId() == stat.getPlayerID()) {
 									stat.setWickets(stat.getWickets() + boc.getWickets());
-									stat.setRuns_conceded(stat.getRunsConceded() + boc.getRuns());
-									stat.setBalls_bowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
-									stat.setDotbowled(stat.getDotbowled() + boc.getDots());
+									stat.setRunsConceded(stat.getRunsConceded() + boc.getRuns());
+									stat.setBallsBowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
+									stat.setDotBowled(stat.getDotBowled() + boc.getDots());
 									if(boc.getWickets() < 5 && boc.getWickets() >= 3) {
-										stat.setPlus_3(stat.getPlus_3() + 1);
+										stat.setPlus3(stat.getPlus3() + 1);
 									}	
 									else if(boc.getWickets() >= 5){
-										stat.setPlus_5(stat.getPlus_5() + 1);
+										stat.setPlus5(stat.getPlus5() + 1);
 									}
 								}
 							}							
@@ -1602,12 +1602,12 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 					}
 					player_found = false;
 					for(Player hs : match.getSetup().getHomeSquad()) {
-						if(stat.getPlayer_id() == hs.getPlayerId()) {
+						if(stat.getPlayerID() == hs.getPlayerId()) {
 							player_found = true;
 						}
 					}
 					for(Player as : match.getSetup().getAwaySquad()) {
-						if(stat.getPlayer_id() == as.getPlayerId()) {
+						if(stat.getPlayerID() == as.getPlayerId()) {
 							player_found = true;
 						}
 					}
@@ -1629,7 +1629,7 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(1).getTotalFours());
 			for(Inning inn : match.getMatch().getInning()) {
 				for(BattingCard bc : inn.getBattingCard()) {
-					if(bc.getPlayerId() == stat.getPlayer_id()) {
+					if(bc.getPlayerId() == stat.getPlayerID()) {
 						player_found = true;
 						if(bc.getBatsmanInningStarted() == null) {
 						}
@@ -1640,7 +1640,7 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 						stat.setRuns(stat.getRuns() + bc.getRuns());
 						stat.setFours(stat.getFours() + bc.getFours());
 						stat.setSixes(stat.getSixes() + bc.getSixes());
-						stat.setBalls_faced(stat.getBalls_faced() + bc.getBalls());
+						stat.setBallsFaced(stat.getBallsFaced() + bc.getBalls());
 				
 						if(bc.getRuns() < 50 && bc.getRuns() >= 30) {
 							stat.setThirties(stat.getThirties() + 1);
@@ -1653,17 +1653,17 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 				}
 				if(inn.getBowlingCard() != null && inn.getBowlingCard().size()>0) {
 					for(BowlingCard boc : inn.getBowlingCard()) {
-						if(boc.getPlayerId() == stat.getPlayer_id()) {
+						if(boc.getPlayerId() == stat.getPlayerID()) {
 							player_found = true;
 							stat.setWickets(stat.getWickets() + boc.getWickets());
-							stat.setRuns_conceded(stat.getRunsConceded() + boc.getRuns());
-							stat.setBalls_bowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
-							stat.setDotbowled(stat.getDotbowled() + boc.getDots());
+							stat.setRunsConceded(stat.getRunsConceded() + boc.getRuns());
+							stat.setBallsBowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
+							stat.setDotBowled(stat.getDotBowled() + boc.getDots());
 							//System.out.println(boc.getWickets());
 							if(boc.getWickets() >= 3 && boc.getWickets() < 5) {
-								stat.setPlus_3(stat.getPlus_3() + 1);
+								stat.setPlus3(stat.getPlus3() + 1);
 							}else if(boc.getWickets() >= 5){
-								stat.setPlus_5(stat.getPlus_5() + 1);
+								stat.setPlus5(stat.getPlus5() + 1);
 							}
 						}
 					}							
@@ -1671,12 +1671,12 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 			}
 			player_found = false;
 			for(Player hs : match.getSetup().getHomeSquad()) {
-				if(stat.getPlayer_id() == hs.getPlayerId()) {
+				if(stat.getPlayerID() == hs.getPlayerId()) {
 					player_found = true;
 				}
 			}
 			for(Player as : match.getSetup().getAwaySquad()) {
-				if(stat.getPlayer_id() == as.getPlayerId()) {
+				if(stat.getPlayerID() == as.getPlayerId()) {
 					player_found = true;
 				}
 			}
@@ -3783,7 +3783,7 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 					}
 				}
 			}
-		Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+		Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 		
 		
 		if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
@@ -3832,10 +3832,10 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 				}
 				
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead4 " + "BEST" + ";");
-				if(stats.getBest_figures().equalsIgnoreCase("0")) {
+				if(stats.getBestFigures().equalsIgnoreCase("0")) {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + "-" + ";");
 				}else {
-					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + stats.getBest_figures() + ";");
+					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + stats.getBestFigures() + ";");
 				}
 			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.TEST)) {
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead1 " + "MATCHES" + ";");
@@ -3873,10 +3873,10 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 				}
 				
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatHead4 " + "BEST" + ";");
-				if(stats.getBest_figures().equalsIgnoreCase("0")) {
+				if(stats.getBestFigures().equalsIgnoreCase("0")) {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + "-" + ";");
 				}else {
-					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + stats.getBest_figures() + ";");
+					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + stats.getBestFigures() + ";");
 				}
 			}
 			
@@ -4032,16 +4032,16 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 			}else {
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue1 " + stats.getMatches() + ";");
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue2 " + stats.getRuns() + ";");
-				if(stats.getBest_score().equalsIgnoreCase("0")) {
+				if(stats.getBestScore().equalsIgnoreCase("0")) {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + "-" + ";");
 				}else {
-					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + stats.getBest_score() + ";");
+					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + stats.getBestScore() + ";");
 				}
-				if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+				if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + "-" + ";");
 				}else {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + 
-							CricketFunctions.generateStrikeRate(stats.getRuns(), stats.getBalls_faced(), 0) + ";");
+							CricketFunctions.generateStrikeRate(stats.getRuns(), stats.getBallsFaced(), 0) + ";");
 				}
 			}
 			break;
@@ -4092,10 +4092,10 @@ public class ICC_BIGSCREEN_DOAD_SCORING extends Scene{
 			}else {
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue1 " + stats.getMatches() + ";");
 				print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue2 " + stats.getWickets() + ";");
-				if(stats.getBest_figures().equalsIgnoreCase("0")) {
+				if(stats.getBestFigures().equalsIgnoreCase("0")) {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + "-" + ";");
 				}else {
-					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + stats.getBest_figures() + ";");
+					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue3 " + stats.getBestFigures() + ";");
 				}
 				if(stats.getBallsBowled() == 0 && stats.getRunsConceded()== 0) {
 					print_writer.println("LAYER" + current_layer + "*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tStatValue4 " + "-" + ";");

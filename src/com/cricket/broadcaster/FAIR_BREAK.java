@@ -2953,7 +2953,7 @@ public class FAIR_BREAK extends Scene{
 					processAnimation(print_writer, "ALL_SECTION$Section5In", "START", broadcaster);
 					switch(infobar.getBottom_right_bottom_section().toUpperCase()){
 					case CricketUtil.OVER:
-						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
+						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
 							processAnimation(print_writer, "Section5$ThisOverIn", "START", broadcaster);
 						}else {
 							processAnimation(print_writer, "Section5$BowlingEndIn", "START", broadcaster);
@@ -2978,7 +2978,7 @@ public class FAIR_BREAK extends Scene{
 
 					switch(infobar.getLast_bottom_right_bottom_section().toUpperCase()){
 					case CricketUtil.OVER:
-						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
+						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
 							processAnimation(print_writer, "Section5$ThisOverOut", "START", broadcaster);
 						}else {
 							processAnimation(print_writer, "Section5$BowlingEndOut", "START", broadcaster);
@@ -3000,7 +3000,7 @@ public class FAIR_BREAK extends Scene{
 					processAnimation(print_writer, "ALL_SECTION$Section5In", "START", broadcaster);
 					switch(infobar.getBottom_right_bottom_section().toUpperCase()){
 					case CricketUtil.OVER:
-						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
+						if(CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",").length <= 9) {
 							processAnimation(print_writer, "Section5$ThisOverIn", "START", broadcaster);
 						}else {
 							processAnimation(print_writer, "Section5$BowlingEndIn", "START", broadcaster);
@@ -3630,7 +3630,7 @@ public class FAIR_BREAK extends Scene{
 								stat.setRuns(stat.getRuns() + bc.getRuns());
 								stat.setFours(stat.getFours() + bc.getFours());
 								stat.setSixes(stat.getSixes() + bc.getSixes());
-								stat.setBalls_faced(stat.getBalls_faced() + bc.getBalls());
+								stat.setBallsFaced(stat.getBallsFaced() + bc.getBalls());
 								
 								if(bc.getRuns() < 50 && bc.getRuns() >= 30) {
 									stat.setThirties(stat.getThirties() + 1);
@@ -3646,14 +3646,14 @@ public class FAIR_BREAK extends Scene{
 							for(BowlingCard boc : inn.getBowlingCard()) {
 								if(boc.getPlayerId() == stat.getPlayerID()) {
 									stat.setWickets(stat.getWickets() + boc.getWickets());
-									stat.setRuns_conceded(stat.getRunsConceded() + boc.getRuns());
-									stat.setBalls_bowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
-									stat.setDotbowled(stat.getDotbowled() + boc.getDots());
+									stat.setRunsConceded(stat.getRunsConceded() + boc.getRuns());
+									stat.setBallsBowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
+									stat.setDotBowled(stat.getDotBowled() + boc.getDots());
 									if(boc.getWickets() < 5 && boc.getWickets() >= 3) {
-										stat.setPlus_3(stat.getPlus_3() + 1);
+										stat.setPlus3(stat.getPlus3() + 1);
 									}	
 									else if(boc.getWickets() >= 5){
-										stat.setPlus_5(stat.getPlus_5() + 1);
+										stat.setPlus5(stat.getPlus5() + 1);
 									}
 								}
 							}							
@@ -3699,7 +3699,7 @@ public class FAIR_BREAK extends Scene{
 						stat.setRuns(stat.getRuns() + bc.getRuns());
 						stat.setFours(stat.getFours() + bc.getFours());
 						stat.setSixes(stat.getSixes() + bc.getSixes());
-						stat.setBalls_faced(stat.getBalls_faced() + bc.getBalls());
+						stat.setBallsFaced(stat.getBallsFaced() + bc.getBalls());
 				
 						if(bc.getRuns() < 50 && bc.getRuns() >= 30) {
 							stat.setThirties(stat.getThirties() + 1);
@@ -3715,14 +3715,14 @@ public class FAIR_BREAK extends Scene{
 						if(boc.getPlayerId() == stat.getPlayerID()) {
 							player_found = true;
 							stat.setWickets(stat.getWickets() + boc.getWickets());
-							stat.setRuns_conceded(stat.getRunsConceded() + boc.getRuns());
-							stat.setBalls_bowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
-							stat.setDotbowled(stat.getDotbowled() + boc.getDots());
+							stat.setRunsConceded(stat.getRunsConceded() + boc.getRuns());
+							stat.setBallsBowled(stat.getBallsBowled() + (boc.getOvers()*6 + boc.getBalls()));
+							stat.setDotBowled(stat.getDotBowled() + boc.getDots());
 							//System.out.println(boc.getWickets());
 							if(boc.getWickets() >= 3 && boc.getWickets() < 5) {
-								stat.setPlus_3(stat.getPlus_3() + 1);
+								stat.setPlus3(stat.getPlus3() + 1);
 							}else if(boc.getWickets() >= 5){
-								stat.setPlus_5(stat.getPlus_5() + 1);
+								stat.setPlus5(stat.getPlus5() + 1);
 							}
 						}
 					}							
@@ -6438,11 +6438,11 @@ public class FAIR_BREAK extends Scene{
 								
 								for(Statistics st : stats) {
 									if(st.getPlayerID()==inn.getBattingCard().get(b-1).getPlayerId() && st.getStatsTypeId() == 3) {
-										if(st.getBalls_faced() == 0 || st.getRuns()== 0) {
+										if(st.getBallsFaced() == 0 || st.getRuns()== 0) {
 											print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStrikeRate" + row_id + " SET " + "-" + "\0");
 										}else {
 											strike_rate = st.getRuns() * 100;
-											strike_rate = strike_rate/st.getBalls_faced();
+											strike_rate = strike_rate/st.getBallsFaced();
 											DecimalFormat df = new DecimalFormat("0.0");
 											
 											print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStrikeRate" + row_id + " SET " + df.format(strike_rate) + "\0");
@@ -6795,13 +6795,13 @@ public class FAIR_BREAK extends Scene{
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead2" + " SET " + "RUNS" + "\0");
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue2" + " SET " + stats.getRuns() + "\0");
 					
-					if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+					if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead3" + " SET " + "50s" + "\0");
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + stats.getFifties() + "\0");
 						
 					}else {
 						strike_rate = stats.getRuns() * 100;
-						strike_rate = strike_rate/stats.getBalls_faced();
+						strike_rate = strike_rate/stats.getBallsFaced();
 						DecimalFormat df = new DecimalFormat("0.0");
 						
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead3" + " SET " + "STRIKE RATE" + "\0");
@@ -6816,13 +6816,13 @@ public class FAIR_BREAK extends Scene{
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead2" + " SET " + "RUNS" + "\0");
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue2" + " SET " + stats.getRuns() + "\0");
 					
-					if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+					if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead3" + " SET " + "50s" + "\0");
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + stats.getFifties() + "\0");
 						
 					}else {
 						strike_rate = stats.getRuns() * 100;
-						strike_rate = strike_rate/stats.getBalls_faced();
+						strike_rate = strike_rate/stats.getBallsFaced();
 						DecimalFormat df = new DecimalFormat("0.0");
 						
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead3" + " SET " + "STRIKE RATE" + "\0");
@@ -7543,10 +7543,10 @@ public class FAIR_BREAK extends Scene{
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + df_bo.format(economy_rate) + "\0");
 				}
 				
-				if(stats.getBest_figures().equalsIgnoreCase("0")) {
+				if(stats.getBestFigures().equalsIgnoreCase("0")) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + "-" + "\0");
 				}else {
-					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBest_figures() + "\0");
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBestFigures() + "\0");
 				}
 				
 			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.ODI)) {
@@ -7571,10 +7571,10 @@ public class FAIR_BREAK extends Scene{
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + df_bo.format(economy_rate) + "\0");
 				}
 				
-				if(stats.getBest_figures().equalsIgnoreCase("0")) {
+				if(stats.getBestFigures().equalsIgnoreCase("0")) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + "-" + "\0");
 				}else {
-					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBest_figures() + "\0");
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBestFigures() + "\0");
 				}
 			}
 			
@@ -7669,21 +7669,21 @@ public class FAIR_BREAK extends Scene{
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue2" + " SET " + stats.getRuns() + "\0");
 				}
 				
-				if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+				if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "50s" + "\0");
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + stats.getFifties() + "\0");
 				}else {
 					strike_rate = stats.getRuns() * 100;
-					strike_rate = strike_rate/stats.getBalls_faced();
+					strike_rate = strike_rate/stats.getBallsFaced();
 					DecimalFormat df = new DecimalFormat("0.0");
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "S/R" + "\0");
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + df.format(strike_rate) + "\0");
 				}
 				
-				if(stats.getBest_score().equalsIgnoreCase("0")) {
+				if(stats.getBestScore().equalsIgnoreCase("0")) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + "-" + "\0");
 				}else {
-					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBest_score() + "\0");
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBestScore() + "\0");
 				}
 				
 			}else if(stats.getStats_type().getStatsShortName().toUpperCase().equalsIgnoreCase(CricketUtil.ODI)) {
@@ -7699,19 +7699,19 @@ public class FAIR_BREAK extends Scene{
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue2" + " SET " + stats.getRuns() + "\0");
 				}
 				
-				if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+				if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "-" + "\0");
 				}else {
 					strike_rate = stats.getRuns() * 100;
-					strike_rate = strike_rate/stats.getBalls_faced();
+					strike_rate = strike_rate/stats.getBallsFaced();
 					DecimalFormat df = new DecimalFormat("0.0");
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + df.format(strike_rate) + "\0");
 				}
 				
-				if(stats.getBest_score().equalsIgnoreCase("0")) {
+				if(stats.getBestScore().equalsIgnoreCase("0")) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + "-" + "\0");
 				}else {
-					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBest_score() + "\0");
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBestScore() + "\0");
 				}
 			}
 			break;	
@@ -8683,9 +8683,9 @@ public class FAIR_BREAK extends Scene{
 							infobar.setPlayer_id(boc.getPlayerId());
 						}
 					}
-					String[] this_over = CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayerID(),",", match.getEventFile().getEvents(),0).split(",");
+					String[] this_over = CricketFunctions.getEventsText(CricketUtil.OVER,infobar.getPlayer_id(),",", match.getEventFile().getEvents(),0).split(",");
 					
-					if(Integer.valueOf(CricketFunctions.processThisOverRunsCount(infobar.getPlayerID(),match.getEventFile().getEvents())) > 0 || inn.getTotalBalls() > 0) {
+					if(Integer.valueOf(CricketFunctions.processThisOverRunsCount(infobar.getPlayer_id(),match.getEventFile().getEvents())) > 0 || inn.getTotalBalls() > 0) {
 						print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$AllSection$Section2-3-4-5$Section4_5_All$Sectio4_5$Section5$ThisOver$ThisOver$THISOVER*FUNCTION*Omo*vis_con SET " + 
 											this_over.length + " \0");
 					}else {
@@ -8719,7 +8719,7 @@ public class FAIR_BREAK extends Scene{
 						}else {
 							processAnimation(print_writer, "ALL_SECTION$Section5$ThisOverIn", "SHOW 0.0", broadcaster);
 							print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tBowlingEnd" + " SET " + 
-									"THIS OVER : " + CricketFunctions.processThisOverRunsCount(infobar.getPlayerID(),match.getEventFile().getEvents()) + "\0");
+									"THIS OVER : " + CricketFunctions.processThisOverRunsCount(infobar.getPlayer_id(),match.getEventFile().getEvents()) + "\0");
 							processAnimation(print_writer, "ALL_SECTION$Section5$BowlingEndIn", "SHOW 0.360", broadcaster);
 						}
 					}

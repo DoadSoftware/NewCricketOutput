@@ -1496,8 +1496,8 @@ public class MPL extends Scene {
 					for (Statistics stats : cricketService.getAllStats()) {
 						stats.setStats_type(cricketService.getStatsType(9));
 						if (stats.getStatsTypeId() == 9) {
-							if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-//								stats_best = stats.getBest_score();
+							if (stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+//								stats_best = stats.getBestScore();
 //								stats = CricketFunctions.updateH2h(stats, head_to_head, match);
 //								stats = CricketFunctions.updateMatchData(stats, match);
 								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
@@ -1515,7 +1515,7 @@ public class MPL extends Scene {
 					for (Statistics stats : cricketService.getAllStats()) {
 						stats.setStats_type(cricketService.getStatsType(9));
 						if (stats.getStatsTypeId() == 9) {
-							if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							if (stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
 
 								populateThisSeriesBat(print_writer.get(0), valueToProcess.split(",")[0],
 										Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
@@ -1542,8 +1542,8 @@ public class MPL extends Scene {
 					for (Statistics stats : cricketService.getAllStats()) {
 						stats.setStats_type(cricketService.getStatsType(9));
 						if (stats.getStatsTypeId() == 9) {
-							if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-//								stats_bestfig = stats.getBest_figures();
+							if (stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+//								stats_bestfig = stats.getBestFigures();
 //								stats = CricketFunctions.updateH2h(stats, head_to_head, match);
 //								stats = CricketFunctions.updateMatchData(stats, match);
 								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
@@ -1562,7 +1562,7 @@ public class MPL extends Scene {
 					for (Statistics stats : cricketService.getAllStats()) {
 						stats.setStats_type(cricketService.getStatsType(9));
 						if (stats.getStatsTypeId() == 9) {
-							if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							if (stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
 
 								populateThisSeriesBowl(print_writer.get(0), valueToProcess.split(",")[0],
 										Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
@@ -1590,7 +1590,7 @@ public class MPL extends Scene {
 					for (Statistics stats : cricketService.getAllStats()) {
 						stats.setStats_type(cricketService.getStatsType(9));
 						if (stats.getStatsTypeId() == 9) {
-							if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							if (stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
 //								stats = CricketFunctions.updateH2h(stats, head_to_head, match);
 //								stats = CricketFunctions.updateMatchData(stats, match);
 								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
@@ -1609,7 +1609,7 @@ public class MPL extends Scene {
 					for (Statistics stats : cricketService.getAllStats()) {
 						stats.setStats_type(cricketService.getStatsType(9));
 						if (stats.getStatsTypeId() == 9) {
-							if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							if (stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
 
 								populateFFThisSeries(print_writer.get(0), valueToProcess.split(",")[0],
 										Integer.valueOf(valueToProcess.split(",")[1]), valueToProcess.split(",")[2],
@@ -1633,13 +1633,12 @@ public class MPL extends Scene {
 			case "POPULATE-L3-PLAYERPROFILE":
 				// System.out.println("valueToProcess = " + valueToProcess);
 				for (Statistics stats : cricketService.getAllStats()) {
-					// System.out.println("player id = " + stats.getPlayer_id());
-					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+					// System.out.println("player id = " + stats.getPlayerID());
+					if (stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
 						// System.out.println("Match Found");
 						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentWithH2h(stats, head_to_head, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
-						System.out.println("1." + stats.getBalls_bowled() + " 2." + stats.getRuns_conceded());
 						if (stats.getStats_type().getStatsShortName()
 								.equalsIgnoreCase(valueToProcess.split(",")[2])) {
 							populateLTPlayerProfile(print_writer.get(0), valueToProcess.split(",")[0],
@@ -1652,7 +1651,7 @@ public class MPL extends Scene {
 			case "POPULATE-L3-PLAYERPROFILEBAT":
 
 				for (Statistics stats : cricketService.getAllStats()) {
-					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+					if (stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
 						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentWithH2h(stats, head_to_head, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
@@ -1668,7 +1667,7 @@ public class MPL extends Scene {
 				break;
 			case "POPULATE-FF-PLAYERPROFILE":
 				for (Statistics stats : cricketService.getAllStats()) {
-					if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
+					if (stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
 						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentWithH2h(stats, head_to_head, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
@@ -1686,7 +1685,7 @@ public class MPL extends Scene {
 				break;
 			case "POPULATE-FF-PLAYERPROFILEBALL":
 				for (Statistics stats : cricketService.getAllStats()) {
-					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+					if (stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
 						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentWithH2h(stats, head_to_head, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
@@ -1971,7 +1970,7 @@ public class MPL extends Scene {
 				break;
 			case "POPULATE-BAT_BALL_STATS":
 				for (Statistics stats : statistics) {
-					if (stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+					if (stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
 						stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 						stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 						stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
@@ -3411,7 +3410,7 @@ public class MPL extends Scene {
 				if (stat.getStats_type().getStatsShortName().equalsIgnoreCase("PR")) {
 					for (Inning inn : match.getMatch().getInning()) {
 						for (BattingCard bc : inn.getBattingCard()) {
-							if (bc.getPlayerId() == stat.getPlayer_id()) {
+							if (bc.getPlayerId() == stat.getPlayerID()) {
 								player_found = true;
 								if (bc.getBatsmanInningStarted() != null
 										&& bc.getBatsmanInningStarted().equalsIgnoreCase(CricketUtil.YES)) {
@@ -3420,7 +3419,7 @@ public class MPL extends Scene {
 								stat.setRuns(stat.getRuns() + bc.getRuns());
 								stat.setFours(stat.getFours() + bc.getFours());
 								stat.setSixes(stat.getSixes() + bc.getSixes());
-								stat.setBalls_faced(stat.getBalls_faced() + bc.getBalls());
+								stat.setBallsFaced(stat.getBallsFaced() + bc.getBalls());
 
 								if (bc.getRuns() < 50 && bc.getRuns() >= 30) {
 									stat.setThirties(stat.getThirties() + 1);
@@ -3434,16 +3433,16 @@ public class MPL extends Scene {
 						}
 						if (inn.getBowlingCard() != null && inn.getBowlingCard().size() > 0) {
 							for (BowlingCard boc : inn.getBowlingCard()) {
-								if (boc.getPlayerId() == stat.getPlayer_id()) {
+								if (boc.getPlayerId() == stat.getPlayerID()) {
 									stat.setWickets(stat.getWickets() + boc.getWickets());
-									stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
-									stat.setBalls_bowled(
-											stat.getBalls_bowled() + (boc.getOvers() * 6 + boc.getBalls()));
-									stat.setDotbowled(stat.getDotbowled() + boc.getDots());
+									stat.setRunsConceded(stat.getRunsConceded() + boc.getRuns());
+									stat.setBallsBowled(
+											stat.getBallsBowled() + (boc.getOvers() * 6 + boc.getBalls()));
+									stat.setDotBowled(stat.getDotBowled() + boc.getDots());
 									if (boc.getWickets() < 5 && boc.getWickets() >= 3) {
-										stat.setPlus_3(stat.getPlus_3() + 1);
+										stat.setPlus3(stat.getPlus3() + 1);
 									} else if (boc.getWickets() >= 5) {
-										stat.setPlus_5(stat.getPlus_5() + 1);
+										stat.setPlus5(stat.getPlus5() + 1);
 									}
 								}
 							}
@@ -3451,12 +3450,12 @@ public class MPL extends Scene {
 					}
 					player_found = false;
 					for (Player hs : match.getSetup().getHomeSquad()) {
-						if (stat.getPlayer_id() == hs.getPlayerId()) {
+						if (stat.getPlayerID() == hs.getPlayerId()) {
 							player_found = true;
 						}
 					}
 					for (Player as : match.getSetup().getAwaySquad()) {
-						if (stat.getPlayer_id() == as.getPlayerId()) {
+						if (stat.getPlayerID() == as.getPlayerId()) {
 							player_found = true;
 						}
 					}
@@ -3477,7 +3476,7 @@ public class MPL extends Scene {
 			stat.setTournament_fours(stat.getTournament_fours() + match.getMatch().getInning().get(1).getTotalFours());
 			for (Inning inn : match.getMatch().getInning()) {
 				for (BattingCard bc : inn.getBattingCard()) {
-					if (bc.getPlayerId() == stat.getPlayer_id()) {
+					if (bc.getPlayerId() == stat.getPlayerID()) {
 						player_found = true;
 						if (bc.getBatsmanInningStarted() == null) {
 						} else if (bc.getBatsmanInningStarted().equalsIgnoreCase(CricketUtil.YES)) {
@@ -3487,7 +3486,7 @@ public class MPL extends Scene {
 						stat.setRuns(stat.getRuns() + bc.getRuns());
 						stat.setFours(stat.getFours() + bc.getFours());
 						stat.setSixes(stat.getSixes() + bc.getSixes());
-						stat.setBalls_faced(stat.getBalls_faced() + bc.getBalls());
+						stat.setBallsFaced(stat.getBallsFaced() + bc.getBalls());
 
 						if (bc.getRuns() < 50 && bc.getRuns() >= 30) {
 							stat.setThirties(stat.getThirties() + 1);
@@ -3500,17 +3499,17 @@ public class MPL extends Scene {
 				}
 				if (inn.getBowlingCard() != null && inn.getBowlingCard().size() > 0) {
 					for (BowlingCard boc : inn.getBowlingCard()) {
-						if (boc.getPlayerId() == stat.getPlayer_id()) {
+						if (boc.getPlayerId() == stat.getPlayerID()) {
 							player_found = true;
 							stat.setWickets(stat.getWickets() + boc.getWickets());
-							stat.setRuns_conceded(stat.getRuns_conceded() + boc.getRuns());
-							stat.setBalls_bowled(stat.getBalls_bowled() + (boc.getOvers() * 6 + boc.getBalls()));
-							stat.setDotbowled(stat.getDotbowled() + boc.getDots());
+							stat.setRunsConceded(stat.getRunsConceded() + boc.getRuns());
+							stat.setBallsBowled(stat.getBallsBowled() + (boc.getOvers() * 6 + boc.getBalls()));
+							stat.setDotBowled(stat.getDotBowled() + boc.getDots());
 							// System.out.println(boc.getWickets());
 							if (boc.getWickets() >= 3 && boc.getWickets() < 5) {
-								stat.setPlus_3(stat.getPlus_3() + 1);
+								stat.setPlus3(stat.getPlus3() + 1);
 							} else if (boc.getWickets() >= 5) {
-								stat.setPlus_5(stat.getPlus_5() + 1);
+								stat.setPlus5(stat.getPlus5() + 1);
 							}
 						}
 					}
@@ -3518,12 +3517,12 @@ public class MPL extends Scene {
 			}
 			player_found = false;
 			for (Player hs : match.getSetup().getHomeSquad()) {
-				if (stat.getPlayer_id() == hs.getPlayerId()) {
+				if (stat.getPlayerID() == hs.getPlayerId()) {
 					player_found = true;
 				}
 			}
 			for (Player as : match.getSetup().getAwaySquad()) {
-				if (stat.getPlayer_id() == as.getPlayerId()) {
+				if (stat.getPlayerID() == as.getPlayerId()) {
 					player_found = true;
 				}
 			}
@@ -7354,15 +7353,15 @@ public class MPL extends Scene {
 										+ inn.getBattingCard().get(b - 1).getPlayer().getTicker_name() + "\0");
 
 								for (Statistics st : stats) {
-									if (st.getPlayer_id() == inn.getBattingCard().get(b - 1).getPlayerId()
+									if (st.getPlayerID() == inn.getBattingCard().get(b - 1).getPlayerId()
 											&& st.getStatsTypeId() == 3) {
-										if (st.getBalls_faced() == 0 || st.getRuns() == 0) {
+										if (st.getBallsFaced() == 0 || st.getRuns() == 0) {
 											print_writer
 													.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 															+ "tStrikeRate" + row_id + " SET " + "-" + "\0");
 										} else {
 											strike_rate = st.getRuns() * 100;
-											strike_rate = strike_rate / st.getBalls_faced();
+											strike_rate = strike_rate / st.getBallsFaced();
 											DecimalFormat df = new DecimalFormat("0.0");
 
 											print_writer
@@ -7549,7 +7548,7 @@ public class MPL extends Scene {
 			print_writer.println(
 					"-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$MPL_BG$AllDesign$FairBreakLogo$fair_break*ACTIVE SET 0 \0");
 
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 
 			if (plyr.getInstagramHandle() == null && plyr.getTwitterHandle() == null) {
 				print_writer.println(
@@ -7734,7 +7733,7 @@ public class MPL extends Scene {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 							+ "tStatValue2" + " SET " + stats.getRuns() + "\0");
 
-					if (stats.getBalls_faced() == 0 || stats.getRuns() == 0) {
+					if (stats.getBallsFaced() == 0 || stats.getRuns() == 0) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 								+ "tStatHead3" + " SET " + "50s" + "\0");
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
@@ -7742,7 +7741,7 @@ public class MPL extends Scene {
 
 					} else {
 						strike_rate = stats.getRuns() * 100;
-						strike_rate = strike_rate / stats.getBalls_faced();
+						strike_rate = strike_rate / stats.getBallsFaced();
 						DecimalFormat df = new DecimalFormat("0.0");
 
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
@@ -7765,7 +7764,7 @@ public class MPL extends Scene {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 							+ "tStatValue2" + " SET " + stats.getRuns() + "\0");
 
-					if (stats.getBalls_faced() == 0 || stats.getRuns() == 0) {
+					if (stats.getBallsFaced() == 0 || stats.getRuns() == 0) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 								+ "tStatHead3" + " SET " + "50s" + "\0");
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
@@ -7773,7 +7772,7 @@ public class MPL extends Scene {
 
 					} else {
 						strike_rate = stats.getRuns() * 100;
-						strike_rate = strike_rate / stats.getBalls_faced();
+						strike_rate = strike_rate / stats.getBallsFaced();
 						DecimalFormat df = new DecimalFormat("0.0");
 
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
@@ -7818,7 +7817,7 @@ public class MPL extends Scene {
 			print_writer.println(
 					"-1 RENDERER*BACK_LAYER*TREE*$Main$AllGrp$All$MPL_BG$AllDesign$FairBreakLogo$fair_break*ACTIVE SET 0 \0");
 
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 
 			if (plyr.getInstagramHandle() == null && plyr.getTwitterHandle() == null) {
 				print_writer.println(
@@ -8001,14 +8000,14 @@ public class MPL extends Scene {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 							+ "tStatValue2" + " SET " + stats.getWickets() + "\0");
 
-					if (stats.getRuns_conceded() == 0 && stats.getBalls_bowled() == 0) {
+					if (stats.getRunsConceded() == 0 && stats.getBallsBowled() == 0) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 								+ "tStatHead3" + " SET " + "ECONOMY" + "\0");
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 								+ "tStatValue3" + " SET " + "-" + "\0");
 
 					} else {
-						economy_rate = stats.getRuns_conceded() / stats.getBalls_bowled();
+						economy_rate = stats.getRunsConceded() / stats.getBallsBowled();
 						economy_rate = economy_rate * 6;
 						DecimalFormat df = new DecimalFormat("0.00");
 
@@ -8036,7 +8035,7 @@ public class MPL extends Scene {
 							+ "tStatHead3" + " SET " + "ECONOMY" + "\0");
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 							+ "tStatValue3" + " SET "
-							+ CricketFunctions.getEconomy(stats.getRuns_conceded(), stats.getBalls_bowled(), 2, "-")
+							+ CricketFunctions.getEconomy(stats.getRunsConceded(), stats.getBallsBowled(), 2, "-")
 							+ "\0");
 				}
 				break;
@@ -8675,7 +8674,7 @@ public class MPL extends Scene {
 						+ stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + "\0");
 			}
 
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			if (plyr.getSurname() != null) {
 				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tPlayerFirstName"
 						+ " SET " + plyr.getFirstname() + "\0");
@@ -8726,15 +8725,15 @@ public class MPL extends Scene {
 
 				print_writer
 						.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET "
-								+ CricketFunctions.getEconomy(stats.getRuns_conceded(), stats.getBalls_bowled(), 2, "-")
+								+ CricketFunctions.getEconomy(stats.getRunsConceded(), stats.getBallsBowled(), 2, "-")
 								+ "\0");
 
-				if (stats.getBest_figures().equalsIgnoreCase("0")) {
+				if (stats.getBestFigures().equalsIgnoreCase("0")) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4"
 							+ " SET " + "-" + "\0");
 				} else {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4"
-							+ " SET " + stats.getBest_figures() + "\0");
+							+ " SET " + stats.getBestFigures() + "\0");
 				}
 				break;
 			}
@@ -8768,7 +8767,7 @@ public class MPL extends Scene {
 						+ stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + "\0");
 			}
 
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 
 			if (plyr.getSurname() != null) {
 				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tPlayerFirstName"
@@ -8816,14 +8815,14 @@ public class MPL extends Scene {
 							+ " SET " + stats.getRuns() + "\0");
 				}
 
-				if (stats.getBalls_faced() == 0 || stats.getRuns() == 0) {
+				if (stats.getBallsFaced() == 0 || stats.getRuns() == 0) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3"
 							+ " SET " + "50s" + "\0");
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3"
 							+ " SET " + stats.getFifties() + "\0");
 				} else {
 					strike_rate = stats.getRuns() * 100;
-					strike_rate = strike_rate / stats.getBalls_faced();
+					strike_rate = strike_rate / stats.getBallsFaced();
 					DecimalFormat df = new DecimalFormat("0.0");
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3"
 							+ " SET " + "S/R" + "\0");
@@ -8831,12 +8830,12 @@ public class MPL extends Scene {
 							+ " SET " + df.format(strike_rate) + "\0");
 				}
 
-				if (stats.getBest_score().equalsIgnoreCase("0")) {
+				if (stats.getBestScore().equalsIgnoreCase("0")) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4"
 							+ " SET " + "-" + "\0");
 				} else {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4"
-							+ " SET " + stats.getBest_score() + "\0");
+							+ " SET " + stats.getBestScore() + "\0");
 				}
 				break;
 			}
@@ -17893,12 +17892,12 @@ public class MPL extends Scene {
 
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 									+ "tStatHead3" + " SET " + "STRIKE RATE" + "\0");
-							if (stats.getBalls_faced() == 0 || stats.getRuns() == 0) {
+							if (stats.getBallsFaced() == 0 || stats.getRuns() == 0) {
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 										+ "tStatValue3" + " SET " + "-" + "\0");
 							} else {
 								strike_rate = stats.getRuns() * 100;
-								strike_rate = strike_rate / stats.getBalls_faced();
+								strike_rate = strike_rate / stats.getBallsFaced();
 								DecimalFormat df = new DecimalFormat("0.0");
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 										+ "tStatValue3" + " SET " + df.format(strike_rate) + "\0");
@@ -17907,12 +17906,12 @@ public class MPL extends Scene {
 							String best = "0";
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 									+ "tStatHead4" + " SET " + "BEST" + "\0");
-							if(stats.getBest_score() == null) {
+							if(stats.getBestScore() == null) {
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 										+ "tStatValue4" + " SET " + "-" + "\0");
 							}else {
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
-										+ "tStatValue4" + " SET " + stats.getBest_score() + "\0");
+										+ "tStatValue4" + " SET " + stats.getBestScore() + "\0");
 							}
 //							for (int j = 0; j <= top_batsman_beststats.size() - 1; j++) {
 //								if (top_batsman_beststats.get(j).getPlayerId() == Playerid) {
@@ -17970,12 +17969,12 @@ public class MPL extends Scene {
 
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 									+ "tStatHead3" + " SET " + "STRIKE RATE" + "\0");
-							if (stats.getBalls_faced() == 0 || stats.getRuns() == 0) {
+							if (stats.getBallsFaced() == 0 || stats.getRuns() == 0) {
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 										+ "tStatValue3" + " SET " + "-" + "\0");
 							} else {
 								strike_rate = stats.getRuns() * 100;
-								strike_rate = strike_rate / stats.getBalls_faced();
+								strike_rate = strike_rate / stats.getBallsFaced();
 								DecimalFormat df = new DecimalFormat("0.0");
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 										+ "tStatValue3" + " SET " + df.format(strike_rate) + "\0");
@@ -17984,10 +17983,10 @@ public class MPL extends Scene {
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 									+ "tStatHead4" + " SET " + "BEST" + "\0");
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
-									+ "tStatValue4" + " SET " + stats.getBest_score() + "\0");
+									+ "tStatValue4" + " SET " + stats.getBestScore() + "\0");
 
-							System.out.println("id = " + stats.getPlayer_id() + " runs = " + stats.getRuns()
-									+ " best = " + stats.getBest_score());
+							System.out.println("id = " + stats.getPlayerID() + " runs = " + stats.getRuns()
+									+ " best = " + stats.getBestScore());
 							break;
 						case "THISSERIES":
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead"
@@ -18123,11 +18122,11 @@ public class MPL extends Scene {
 
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 									+ "tStatHead3" + " SET " + "ECONOMY" + "\0");
-							if (stats.getBalls_bowled() == 0 || stats.getRuns_conceded() == 0) {
+							if (stats.getBallsBowled() == 0 || stats.getRunsConceded() == 0) {
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 										+ "tStatValue3" + " SET " + "-" + "\0");
 							} else {
-								economy_rate = (stats.getRuns_conceded() * 1.00) / stats.getBalls_bowled();
+								economy_rate = (stats.getRunsConceded() * 1.00) / stats.getBallsBowled();
 								economy_rate = economy_rate * 6;
 								DecimalFormat df = new DecimalFormat("0.00");
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
@@ -18189,11 +18188,11 @@ public class MPL extends Scene {
 
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 									+ "tStatHead3" + " SET " + "ECONOMY" + "\0");
-							if (stats.getBalls_bowled() == 0 || stats.getRuns_conceded() == 0) {
+							if (stats.getBallsBowled() == 0 || stats.getRunsConceded() == 0) {
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 										+ "tStatValue3" + " SET " + "-" + "\0");
 							} else {
-								economy_rate = (stats.getRuns_conceded() * 1.00) / stats.getBalls_bowled();
+								economy_rate = (stats.getRunsConceded() * 1.00) / stats.getBallsBowled();
 								economy_rate = economy_rate * 6;
 								DecimalFormat df = new DecimalFormat("0.00");
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
@@ -18203,7 +18202,7 @@ public class MPL extends Scene {
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 									+ "tStatHead4" + " SET " + "BEST" + "\0");
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
-									+ "tStatValue4" + " SET " + stats.getBest_figures() + "\0");
+									+ "tStatValue4" + " SET " + stats.getBestFigures() + "\0");
 							break;
 						case "THISSERIES":
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead"
@@ -18510,13 +18509,13 @@ public class MPL extends Scene {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 									+ "tStatHead3" + " SET " + "STRIKE RATE" + "\0");
 
-							if (stats.getBalls_faced() == 0 || stats.getRuns() == 0) {
+							if (stats.getBallsFaced() == 0 || stats.getRuns() == 0) {
 								print_writer
 										.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 												+ "tStatValue3" + " SET " + "-" + "\0");
 							} else {
 								strike_rate = stats.getRuns() * 100;
-								strike_rate = strike_rate / stats.getBalls_faced();
+								strike_rate = strike_rate / stats.getBallsFaced();
 								DecimalFormat df = new DecimalFormat("0.0");
 
 								print_writer
@@ -18542,13 +18541,13 @@ public class MPL extends Scene {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 									+ "tStatHead3" + " SET " + "STRIKE RATE" + "\0");
 
-							if (stats.getBalls_faced() == 0 || stats.getRuns() == 0) {
+							if (stats.getBallsFaced() == 0 || stats.getRuns() == 0) {
 								print_writer
 										.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 												+ "tStatValue3" + " SET " + "-" + "\0");
 							} else {
 								strike_rate = stats.getRuns() * 100;
-								strike_rate = strike_rate / stats.getBalls_faced();
+								strike_rate = strike_rate / stats.getBallsFaced();
 								DecimalFormat df = new DecimalFormat("0.0");
 
 								print_writer
@@ -18628,12 +18627,12 @@ public class MPL extends Scene {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 									+ "tStatHead3" + " SET " + "ECONOMY" + "\0");
 
-							if (stats.getBalls_bowled() == 0 || stats.getRuns_conceded() == 0) {
+							if (stats.getBallsBowled() == 0 || stats.getRunsConceded() == 0) {
 								print_writer
 										.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 												+ "tStatValue3" + " SET " + "-" + "\0");
 							} else {
-								economy_rate = (stats.getRuns_conceded() * 1.00) / stats.getBalls_bowled();
+								economy_rate = (stats.getRunsConceded() * 1.00) / stats.getBallsBowled();
 								economy_rate = economy_rate * 6;
 								DecimalFormat df_b = new DecimalFormat("0.00");
 								print_writer
@@ -18658,12 +18657,12 @@ public class MPL extends Scene {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 									+ "tStatHead3" + " SET " + "ECONOMY" + "\0");
 
-							if (stats.getBalls_bowled() == 0 || stats.getRuns_conceded() == 0) {
+							if (stats.getBallsBowled() == 0 || stats.getRunsConceded() == 0) {
 								print_writer
 										.println("-1 RENDERER*BACK_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 												+ "tStatValue3" + " SET " + "-" + "\0");
 							} else {
-								economy_rate = (stats.getRuns_conceded() * 1.00) / stats.getBalls_bowled();
+								economy_rate = (stats.getRunsConceded() * 1.00) / stats.getBallsBowled();
 								economy_rate = economy_rate * 6;
 								DecimalFormat df_b = new DecimalFormat("0.00");
 								print_writer
@@ -19853,7 +19852,7 @@ public class MPL extends Scene {
 	public void populateInfobarPlayerStats(Infobar infobar, boolean is_this_updating, PrintWriter printWriter,
 			int teamId, int playerId, String playerType, String Profile, MatchAllData match, Statistics stats,
 			String broadcaster) {
-		Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+		Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 		if (plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 			System.out.println("HOME : " + plyr.getFirstname());
 		} else {

@@ -479,8 +479,8 @@ public class LCT extends Scene{
 					break;
 				case "POPULATE-L3-PLAYERPROFILE":
 					for(Statistics stats : statistics) {
-						if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[2])) {
@@ -493,8 +493,8 @@ public class LCT extends Scene{
 					break;
 				case "POPULATE-FF-PLAYERPROFILE":
 						for(Statistics stats : statistics) {
-							if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+							if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 								stats = CricketFunctions.updateTournamentDataWithStats(stats, tournament_matches, match, CricketUtil.FULL);
 								stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, CricketUtil.FULL);
 								if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[3])) {
@@ -1060,8 +1060,8 @@ public class LCT extends Scene{
 					AnimateOutGraphics(print_writer, "FFPLAYERPROFILE");
 					TimeUnit.MILLISECONDS.sleep(2000);
 					for(Statistics stats : session_statistics) {
-						if(stats.getPlayer_id() == player_id) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						if(stats.getPlayerID() == player_id) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							stats = CricketFunctions.updateTournamentDataWithStats(stats, type_of_profile, tournament_matches, match);
 							stats = CricketFunctions.updateStatisticsWithMatchData(stats, match, type_of_profile);
 							if(stats.getStats_type().getStats_short_name().equalsIgnoreCase(stats_type)) {
@@ -3034,7 +3034,7 @@ public class LCT extends Scene{
 			print_writer.println("-1 RENDERER*TREE*$Main$All$NameGrp$MaxSize$FirstName*GEOM*TEXT SET " + " " + "\0");
 			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgSponsor" + " SET " + "IMAGE*/Default/LCT_2023/Logos/"  + "" + "\0");
 	
-			Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+			Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 			if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgTeamBadge" + " SET " + "IMAGE*/Default/LCT_2023/Logos/" 
 						+ match.getSetup().getHomeTeam().getTeamName3().toUpperCase() + "\0");
@@ -3069,11 +3069,11 @@ public class LCT extends Scene{
 				
 				print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatHead*GEOM*TEXT SET " + "STRIKE RATE" + "\0");
 	
-				if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+				if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 					print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + "-" + "\0");
 				}else {
 					strike_rate = stats.getRuns() * 100;
-					strike_rate = strike_rate/stats.getBalls_faced();
+					strike_rate = strike_rate/stats.getBallsFaced();
 					DecimalFormat df = new DecimalFormat("0.0");
 					print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + df.format(strike_rate) + "\0");
 				}
@@ -3127,7 +3127,7 @@ public class LCT extends Scene{
 				print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$All_Name$SubHead*GEOM*TEXT SET " + " " + "\0");
 				print_writer.println("-1 RENDERER*TREE*$Main$All$Sponsor$Sponsor*ACTIVE SET 0 \0");	
 	
-				Player plyr = getPlayerFromMatchData(stats.getPlayer_id(), match);
+				Player plyr = getPlayerFromMatchData(stats.getPlayerID(), match);
 				if(plyr.getTeamId() == match.getSetup().getHomeTeamId()) {
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgHomeTeamLogo" + " SET " + "IMAGE*/Default/LCT_2023/Logos/" 
 							+ match.getSetup().getHomeTeam().getTeamName3().toUpperCase() + "\0");
@@ -3156,10 +3156,10 @@ public class LCT extends Scene{
 					}
 					
 					strike_rate = stats.getRuns() * 100;
-					strike_rate = strike_rate/stats.getBalls_faced();
+					strike_rate = strike_rate/stats.getBallsFaced();
 					DecimalFormat df = new DecimalFormat("0.0");
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead4" + " SET " + "S/R" + "\0");
-					if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+					if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + "-" + "\0");
 					}else {
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + df.format(strike_rate) + "\0");

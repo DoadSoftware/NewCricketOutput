@@ -696,8 +696,8 @@ public class MAHARAJA_T20 extends Scene{
 					break;
 				case "POPULATE-L3-PLAYERPROFILE": case "POPULATE-L3-PLAYERPROFILEBAT":					
 						for(Statistics stats : statistics) {
-							if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-								stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+							if(stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+								stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 								if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[3])){
 //									stats = CricketFunctions.updateH2h(stats, head_to_head, match);
 //									stats = CricketFunctions.updateMatchData(stats, match);
@@ -709,9 +709,9 @@ public class MAHARAJA_T20 extends Scene{
 					break;
 				case "POPULATE-FF-PLAYERPROFILE": case "POPULATE-FF-PLAYERPROFILEBALL":
 					 for(Statistics stats : statistics) {
-						 System.out.println(stats.getPlayer_id());
-						if(stats.getPlayer_id().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
-							stats.setStats_type(cricketService.getStatsType(stats.getStats_type_id()));
+						 System.out.println(stats.getPlayerID());
+						if(stats.getPlayerID().intValue() == Integer.valueOf(valueToProcess.split(",")[1]).intValue()) {
+							stats.setStats_type(cricketService.getStatsType(stats.getStatsTypeId()));
 							if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[3])){
 //								stats = CricketFunctions.updateH2h(stats, head_to_head, match);
 //								stats = CricketFunctions.updateMatchData(stats, match);
@@ -727,30 +727,30 @@ public class MAHARAJA_T20 extends Scene{
 					int count = 0;
 					if (valueToProcess.split(",")[3].toUpperCase().equalsIgnoreCase("maharajacareer")) {
 						for (Statistics stats : cricketService.getAllStats()) {
-							if(stats.getStats_type_id() == 11 || stats.getStats_type_id() == 12) {
-								if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-									if(stats.getStats_type_id() == 11) {
+							if(stats.getStatsTypeId() == 11 || stats.getStatsTypeId() == 12) {
+								if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+									if(stats.getStatsTypeId() == 11) {
 										count++;
 										statsSeason1 = stats;
 									}
-									if(stats.getStats_type_id() == 12) {
+									if(stats.getStatsTypeId() == 12) {
 										count++;
 										statsSeason2 = stats;
 									}
 									if(statsSeason1 == null && count == 1) {
 										stats.setMatches(statsSeason1.getMatches());
 										stats.setRuns(statsSeason1.getRuns());
-										stats.setBalls_faced(statsSeason1.getBalls_faced());
+										stats.setBallsFaced(statsSeason1.getBallsFaced());
 										stats.setWickets(statsSeason1.getWickets());
-										stats.setRuns_conceded(statsSeason1.getRunsConceded());
-										stats.setBalls_bowled(statsSeason1.getBallsBowled());
+										stats.setRunsConceded(statsSeason1.getRunsConceded());
+										stats.setBallsBowled(statsSeason1.getBallsBowled());
 									}else if(statsSeason1 != null && statsSeason2 != null && count == 2){
 										stats.setMatches(statsSeason1.getMatches()+statsSeason2.getMatches());
 										stats.setRuns(statsSeason1.getRuns()+statsSeason2.getRuns());
-										stats.setBalls_faced(statsSeason1.getBalls_faced()+statsSeason2.getBalls_faced());
+										stats.setBallsFaced(statsSeason1.getBallsFaced()+statsSeason2.getBallsFaced());
 										stats.setWickets(statsSeason1.getWickets()+statsSeason2.getWickets());
-										stats.setRuns_conceded(statsSeason1.getRunsConceded()+statsSeason2.getRunsConceded());
-										stats.setBalls_bowled(statsSeason1.getBallsBowled()+statsSeason2.getBallsBowled());
+										stats.setRunsConceded(statsSeason1.getRunsConceded()+statsSeason2.getRunsConceded());
+										stats.setBallsBowled(statsSeason1.getBallsBowled()+statsSeason2.getBallsBowled());
 									}
 									
 									if(statsSeason1 == null && count == 1 || statsSeason1 != null && statsSeason2 != null && count == 2) {
@@ -766,8 +766,8 @@ public class MAHARAJA_T20 extends Scene{
 					}else if(valueToProcess.split(",")[3].toUpperCase().equalsIgnoreCase("maharajaseason2")) {
 						for (Statistics stats : cricketService.getAllStats()) {
 							stats.setStats_type(cricketService.getStatsType(12));
-							if (stats.getStats_type_id() == 12) {
-								if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							if (stats.getStatsTypeId() == 12) {
+								if (stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
 									populateThisSeries(print_writer,valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),valueToProcess.split(",")[2], valueToProcess.split(",")[3],
 											CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, head_to_head,cricketService, match, past_tournament_stats)
 											,match, broadcaster,stats,cricketService, config);
@@ -777,8 +777,8 @@ public class MAHARAJA_T20 extends Scene{
 					} else if (valueToProcess.split(",")[3].toUpperCase().equalsIgnoreCase("maharajaseason1")) {
 						for (Statistics stats : cricketService.getAllStats()) {
 							stats.setStats_type(cricketService.getStatsType(11));
-							if (stats.getStats_type_id() == 11) {
-								if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							if (stats.getStatsTypeId() == 11) {
+								if (stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
 									populateThisSeries(print_writer,valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),valueToProcess.split(",")[2], valueToProcess.split(",")[3],
 											CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, head_to_head,cricketService, match, past_tournament_stats)
 											,match, broadcaster,stats,cricketService, config);
@@ -797,13 +797,13 @@ public class MAHARAJA_T20 extends Scene{
 					System.out.println("VALUE "+valueToProcess.split(",")[3]);
 					if (valueToProcess.split(",")[3].equalsIgnoreCase("maharajacareer")) {
 						for (Statistics stats : cricketService.getAllStats()) {
-							if(stats.getStats_type_id() == 11 || stats.getStats_type_id() == 12) {
-								if(stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
-									if(stats.getStats_type_id() == 11) {
+							if(stats.getStatsTypeId() == 11 || stats.getStatsTypeId() == 12) {
+								if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
+									if(stats.getStatsTypeId() == 11) {
 										countLT++;
 										statsSeason1LT = stats;
 									}
-									if(stats.getStats_type_id() == 12) {
+									if(stats.getStatsTypeId() == 12) {
 										countLT++;
 										statsSeason2LT = stats;
 									}
@@ -811,59 +811,59 @@ public class MAHARAJA_T20 extends Scene{
 									if(statsSeason1LT == null && countLT == 1) {
 										stats.setMatches(statsSeason2LT.getMatches());
 										stats.setRuns(statsSeason2LT.getRuns());
-										stats.setBalls_faced(statsSeason2LT.getBalls_faced());
+										stats.setBallsFaced(statsSeason2LT.getBallsFaced());
 										stats.setWickets(statsSeason2LT.getWickets());
-										stats.setRuns_conceded(statsSeason2LT.getRunsConceded());
-										stats.setBalls_bowled(statsSeason2LT.getBallsBowled());
-										stats.setBest_score(statsSeason2LT.getBest_score());
-										stats.setBest_figures(statsSeason2LT.getBest_figures());
+										stats.setRunsConceded(statsSeason2LT.getRunsConceded());
+										stats.setBallsBowled(statsSeason2LT.getBallsBowled());
+										stats.setBestScore(statsSeason2LT.getBestScore());
+										stats.setBestFigures(statsSeason2LT.getBestFigures());
 									}else if(statsSeason1LT != null && statsSeason2LT != null && countLT == 2){
 										int bestSeason1 = 0, bestSeason2 = 0, bestFigSeason1wkt = 0, bestFigSeason2wkt = 0, bestFigSeason1Runs = 0,bestFigSeason2Runs = 0;
 										boolean season1Notout = false, season2Notout = false;
 										stats.setMatches(statsSeason1LT.getMatches()+statsSeason2LT.getMatches());
 										stats.setRuns(statsSeason1LT.getRuns()+statsSeason2LT.getRuns());
-										stats.setBalls_faced(statsSeason1LT.getBalls_faced()+statsSeason2LT.getBalls_faced());
+										stats.setBallsFaced(statsSeason1LT.getBallsFaced()+statsSeason2LT.getBallsFaced());
 										stats.setWickets(statsSeason1LT.getWickets()+statsSeason2LT.getWickets());
-										stats.setRuns_conceded(statsSeason1LT.getRunsConceded()+statsSeason2LT.getRunsConceded());
-										stats.setBalls_bowled(statsSeason1LT.getBallsBowled()+statsSeason2LT.getBallsBowled());
-										if(statsSeason1LT.getBest_score().contains("*")) {
-											bestSeason1 = Integer.valueOf(statsSeason1LT.getBest_score().replace("*", ""));
+										stats.setRunsConceded(statsSeason1LT.getRunsConceded()+statsSeason2LT.getRunsConceded());
+										stats.setBallsBowled(statsSeason1LT.getBallsBowled()+statsSeason2LT.getBallsBowled());
+										if(statsSeason1LT.getBestScore().contains("*")) {
+											bestSeason1 = Integer.valueOf(statsSeason1LT.getBestScore().replace("*", ""));
 											season1Notout = true;
 										}else {
-											bestSeason1 = Integer.valueOf(statsSeason1LT.getBest_score());
+											bestSeason1 = Integer.valueOf(statsSeason1LT.getBestScore());
 										}
-										if(statsSeason2LT.getBest_score().contains("*")) {
-											bestSeason2 = Integer.valueOf(statsSeason2LT.getBest_score().replace("*", ""));
+										if(statsSeason2LT.getBestScore().contains("*")) {
+											bestSeason2 = Integer.valueOf(statsSeason2LT.getBestScore().replace("*", ""));
 											season2Notout = true;
 										}else {
-											bestSeason2 = Integer.valueOf(statsSeason2LT.getBest_score());
+											bestSeason2 = Integer.valueOf(statsSeason2LT.getBestScore());
 										}
 										
-										if(statsSeason1LT.getBest_figures().contains("-")) {
-											bestFigSeason1wkt = Integer.valueOf(statsSeason1LT.getBest_figures().split("-")[0]);
-											bestFigSeason1Runs = Integer.valueOf(statsSeason1LT.getBest_figures().split("-")[1]);
+										if(statsSeason1LT.getBestFigures().contains("-")) {
+											bestFigSeason1wkt = Integer.valueOf(statsSeason1LT.getBestFigures().split("-")[0]);
+											bestFigSeason1Runs = Integer.valueOf(statsSeason1LT.getBestFigures().split("-")[1]);
 										}
-										if(statsSeason2LT.getBest_figures().contains("-")) {
-											bestFigSeason2wkt = Integer.valueOf(statsSeason2LT.getBest_figures().split("-")[0]);
-											bestFigSeason2Runs = Integer.valueOf(statsSeason2LT.getBest_figures().split("-")[1]);
+										if(statsSeason2LT.getBestFigures().contains("-")) {
+											bestFigSeason2wkt = Integer.valueOf(statsSeason2LT.getBestFigures().split("-")[0]);
+											bestFigSeason2Runs = Integer.valueOf(statsSeason2LT.getBestFigures().split("-")[1]);
 										}
 										if(bestFigSeason1wkt>bestFigSeason2wkt) {
-											stats.setBest_figures((bestFigSeason1wkt+"-"+bestFigSeason1Runs));
+											stats.setBestFigures((bestFigSeason1wkt+"-"+bestFigSeason1Runs));
 										}else {
-											stats.setBest_figures((bestFigSeason2wkt+"-"+bestFigSeason2Runs));
+											stats.setBestFigures((bestFigSeason2wkt+"-"+bestFigSeason2Runs));
 										}
 										
 										if(bestSeason1>bestSeason2) {
 											if(season1Notout) {
-												stats.setBest_score(bestSeason1+"*");
+												stats.setBestScore(bestSeason1+"*");
 											}else {
-												stats.setBest_score(String.valueOf(bestSeason1));
+												stats.setBestScore(String.valueOf(bestSeason1));
 											}
 										}else {
 											if(season2Notout) {
-												stats.setBest_score(bestSeason2+"*");
+												stats.setBestScore(bestSeason2+"*");
 											}else {
-												stats.setBest_score(String.valueOf(bestSeason2));
+												stats.setBestScore(String.valueOf(bestSeason2));
 											}
 										}
 									}
@@ -881,8 +881,8 @@ public class MAHARAJA_T20 extends Scene{
 					}else if(valueToProcess.split(",")[3].equalsIgnoreCase("maharajaseason2")) {
 						for (Statistics stats : cricketService.getAllStats()) {
 							stats.setStats_type(cricketService.getStatsType(12));
-							if (stats.getStats_type_id() == 12) {
-								if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							if (stats.getStatsTypeId() == 12) {
+								if (stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
 									populateLTThisSeries(print_writer,valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),valueToProcess.split(",")[2],valueToProcess.split(",")[3],
 											CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, head_to_head,cricketService, match, past_tournament_stats)
 											,match, broadcaster, stats, cricketService);
@@ -894,8 +894,8 @@ public class MAHARAJA_T20 extends Scene{
 						System.out.println("HELLO");
 						for (Statistics stats : cricketService.getAllStats()) {
 							stats.setStats_type(cricketService.getStatsType(11));
-							if (stats.getStats_type_id() == 11) {
-								if (stats.getPlayer_id() == Integer.valueOf(valueToProcess.split(",")[1])) {
+							if (stats.getStatsTypeId() == 11) {
+								if (stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
 									populateLTThisSeries(print_writer,valueToProcess.split(",")[0],Integer.valueOf(valueToProcess.split(",")[1]),valueToProcess.split(",")[2],valueToProcess.split(",")[3],
 											CricketFunctions.extractTournamentData("CURRENT_MATCH_DATA", false, head_to_head,cricketService, match, past_tournament_stats)
 											,match, broadcaster, stats, cricketService);
@@ -5301,13 +5301,13 @@ public class MAHARAJA_T20 extends Scene{
 				
 				if(Value.equalsIgnoreCase("SR")) {
 					print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatHead*GEOM*TEXT SET " + "STRIKE RATE" + "\0");
-					if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+					if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 						print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + "-" + "\0");
 					}else {
 						strike_rate = stats.getRuns() * 100;
-						strike_rate = strike_rate/stats.getBalls_faced();
+						strike_rate = strike_rate/stats.getBallsFaced();
 						DecimalFormat df = new DecimalFormat("0.0");
-						print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + CricketFunctions.generateStrikeRate(stats.getRuns(), stats.getBalls_faced(), 0) + "\0");
+						print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + CricketFunctions.generateStrikeRate(stats.getRuns(), stats.getBallsFaced(), 0) + "\0");
 					}
 				}else if(Value.equalsIgnoreCase("AVG")) {
 					
@@ -5316,7 +5316,7 @@ public class MAHARAJA_T20 extends Scene{
 					if(stats.getRuns()== 0) {
 						print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + "-" + "\0");
 					}else {
-						dismissal_count = (stats.getInnings() - stats.getNot_out());
+						dismissal_count = (stats.getInnings() - stats.getNotOut());
 						avg = (stats.getRuns()/(double)dismissal_count);
 						print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + df_avg.format(avg) + "\0");
 					}
@@ -5412,13 +5412,13 @@ public class MAHARAJA_T20 extends Scene{
 						
 						if(Value.equalsIgnoreCase("SR")) {
 							strike_rate = stats.getRuns() * 100;
-							strike_rate = strike_rate/stats.getBalls_faced();
+							strike_rate = strike_rate/stats.getBallsFaced();
 							DecimalFormat df = new DecimalFormat("0.0");
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead4" + " SET " + "STRIKE RATE" + "\0");
-							if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+							if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + "-" + "\0");
 							}else {
-								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + CricketFunctions.generateStrikeRate(stats.getRuns(), stats.getBalls_faced(), 0) + "\0");
+								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + CricketFunctions.generateStrikeRate(stats.getRuns(), stats.getBallsFaced(), 0) + "\0");
 							}
 						}else if(Value.equalsIgnoreCase("AVG")) {
 							DecimalFormat df_avg = new DecimalFormat("#.00");
@@ -5426,7 +5426,7 @@ public class MAHARAJA_T20 extends Scene{
 							if(stats.getRuns()== 0) {
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + "-" + "\0");
 							}else {
-								dismissal_count = (stats.getInnings() - stats.getNot_out());
+								dismissal_count = (stats.getInnings() - stats.getNotOut());
 								avg = (stats.getRuns()/(double)dismissal_count);
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + df_avg.format(avg) + "\0");
 							}
@@ -5439,10 +5439,10 @@ public class MAHARAJA_T20 extends Scene{
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue2" + " SET " + stats.getWickets() + "\0");
 						
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead3" + " SET " + "BEST" + "\0");
-						if(stats.getBest_figures() == "0") {
+						if(stats.getBestFigures() == "0") {
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "-" + "\0");
 						}else {
-							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + stats.getBest_figures() + "\0");
+							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + stats.getBestFigures() + "\0");
 						}
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead4" + " SET " + "ECONOMY" + "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + CricketFunctions.getEconomy(stats.getRunsConceded(), stats.getBallsBowled(), 2, slashOrDash) + "\0");
@@ -8458,24 +8458,24 @@ public class MAHARAJA_T20 extends Scene{
 											inn.getBattingCard().get(b-1).getPlayer().getTicker_name() + "\0");
 									
 									for(Statistics st : stats) {
-										if(st.getPlayer_id()==inn.getBattingCard().get(b-1).getPlayerId() && st.getStats_type_id() == 2) {
-											if(st.getBalls_faced() == 0 || st.getRuns()== 0) {
+										if(st.getPlayerID()==inn.getBattingCard().get(b-1).getPlayerId() && st.getStatsTypeId() == 2) {
+											if(st.getBallsFaced() == 0 || st.getRuns()== 0) {
 												print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStrikeRate" + row_id + " SET " + "-" + "\0");
 											}else {
 												strike_rate = st.getRuns() * 100;
-												strike_rate = strike_rate/st.getBalls_faced();
+												strike_rate = strike_rate/st.getBallsFaced();
 												DecimalFormat df = new DecimalFormat("0.0");
-												print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStrikeRate" + row_id + " SET " + CricketFunctions.generateStrikeRate(st.getRuns(), st.getBalls_faced(), 0) + "\0");
+												print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStrikeRate" + row_id + " SET " + CricketFunctions.generateStrikeRate(st.getRuns(), st.getBallsFaced(), 0) + "\0");
 											}
 										}
 									}
 //									for(Statistics st : stats) {
-//										if(st.getPlayer_id()==inn.getBattingCard().get(b-1).getPlayerId() && st.getStats_type_id() == 8) {
-//											if(st.getBalls_faced() == 0 || st.getRuns()== 0) {
+//										if(st.getPlayerID()==inn.getBattingCard().get(b-1).getPlayerId() && st.getStatsTypeId() == 8) {
+//											if(st.getBallsFaced() == 0 || st.getRuns()== 0) {
 //												print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStrikeRate" + row_id + " SET " + "-" + "\0");
 //											}else {
 //												strike_rate = st.getRuns() * 100;
-//												strike_rate = strike_rate/st.getBalls_faced();
+//												strike_rate = strike_rate/st.getBallsFaced();
 //												DecimalFormat df = new DecimalFormat("0.0");
 //												
 //												print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStrikeRate" + row_id + " SET " + df.format(strike_rate) + "\0");
@@ -11686,16 +11686,16 @@ public class MAHARAJA_T20 extends Scene{
 						print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row2$RowAnimation$StatHead*GEOM*TEXT SET " + "RUNS" + "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row2$RowAnimation$StatValue*GEOM*TEXT SET " + stats.getRuns() + "\0");
 
-						if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+						if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 							print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatHead*GEOM*TEXT SET " + "STRIKE RATE" + "\0");
 							print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + "-" + "\0");
 
 						}else {
 							strike_rate = stats.getRuns() * 100;
-							strike_rate = strike_rate/stats.getBalls_faced();
+							strike_rate = strike_rate/stats.getBallsFaced();
 							
 							print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatHead*GEOM*TEXT SET " + "STRIKE RATE" + "\0");
-							print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + CricketFunctions.generateStrikeRate(stats.getRuns(), stats.getBalls_faced(), 0) + "\0");
+							print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + CricketFunctions.generateStrikeRate(stats.getRuns(), stats.getBallsFaced(), 0) + "\0");
 						}
 						 
 						break;
@@ -11729,16 +11729,16 @@ public class MAHARAJA_T20 extends Scene{
 						print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row2$RowAnimation$StatHead*GEOM*TEXT SET " + "RUNS" + "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row2$RowAnimation$StatValue*GEOM*TEXT SET " + stats.getRuns() + "\0");
 
-						if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+						if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 							print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatHead*GEOM*TEXT SET " + "STRIKE RATE" + "\0");
 							print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + "-" + "\0");
 
 						}else {
 							strike_rate = stats.getRuns() * 100;
-							strike_rate = strike_rate/stats.getBalls_faced();
+							strike_rate = strike_rate/stats.getBallsFaced();
 							
 							print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatHead*GEOM*TEXT SET " + "STRIKE RATE" + "\0");
-							print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + CricketFunctions.generateStrikeRate(stats.getRuns(), stats.getBalls_faced(), 0) + "\0");
+							print_writer.println("-1 RENDERER*TREE*$Main$All$DataAll$Row3$RowAnimation$StatValue*GEOM*TEXT SET " + CricketFunctions.generateStrikeRate(stats.getRuns(), stats.getBallsFaced(), 0) + "\0");
 						}
 						 
 						break;
@@ -11879,15 +11879,15 @@ public class MAHARAJA_T20 extends Scene{
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue2" + " SET " + stats.getRuns() + "\0");
 						
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead3" + " SET " + "STRIKE RATE" + "\0");
-						if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+						if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "-" + "\0");
 						}else {
-							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " +CricketFunctions.generateStrikeRate(stats.getRuns(), stats.getBalls_faced(), 0)+ "\0");
+							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " +CricketFunctions.generateStrikeRate(stats.getRuns(), stats.getBallsFaced(), 0)+ "\0");
 						}
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead4" + " SET " + "BEST" + "\0");
-						if(stats.getBest_score() != null) {
+						if(stats.getBestScore() != null) {
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
-									stats.getBest_score() + "\0");
+									stats.getBestScore() + "\0");
 						}else {
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
 									"-" + "\0");
@@ -11911,8 +11911,8 @@ public class MAHARAJA_T20 extends Scene{
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + df.format(economy_rate) + "\0");
 						}
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead4" + " SET " + "BEST" + "\0");
-						if(stats.getBest_figures() != null) {
-							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBest_figures() + "\0");
+						if(stats.getBestFigures() != null) {
+							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBestFigures() + "\0");
 						}else {
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + "-" + "\0");
 						}
@@ -11932,10 +11932,10 @@ public class MAHARAJA_T20 extends Scene{
 
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead3" + " SET " + "STRIKE RATE" + "\0");
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatHead4" + " SET " + "BEST" + "\0");
-						if(stats.getBalls_faced() == 0 || stats.getRuns()== 0) {
+						if(stats.getBallsFaced() == 0 || stats.getRuns()== 0) {
 							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " + "-" + "\0");
 						}else {
-							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " +CricketFunctions.generateStrikeRate(stats.getRuns(), stats.getBalls_faced(), 0)+ "\0");
+							print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue3" + " SET " +CricketFunctions.generateStrikeRate(stats.getRuns(), stats.getBallsFaced(), 0)+ "\0");
 						}
 						playerFound = false;
 						for(int j=0;j<= top_batsman_beststats.size()-1;j++) {
@@ -11945,31 +11945,31 @@ public class MAHARAJA_T20 extends Scene{
 									playerFound = true;
 									k += 1;
 									if(top_batsman_beststats.get(j).getBestEquation() % 2 == 0) {
-										if(stats.getBest_score().contains("*")) {
-											if(Integer.valueOf(stats.getBest_score().replace("*", ""))>(top_batsman_beststats.get(j).getBestEquation()/2)) {
-												print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBest_score() + "\0");
+										if(stats.getBestScore().contains("*")) {
+											if(Integer.valueOf(stats.getBestScore().replace("*", ""))>(top_batsman_beststats.get(j).getBestEquation()/2)) {
+												print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBestScore() + "\0");
 											}else {
 												print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + top_batsman_beststats.get(j).getBestEquation()/2 + "\0");
 											}
 										}else {
-											if(Integer.valueOf(stats.getBest_score())>(top_batsman_beststats.get(j).getBestEquation()/2)) {
-												print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBest_score() + "\0");
+											if(Integer.valueOf(stats.getBestScore())>(top_batsman_beststats.get(j).getBestEquation()/2)) {
+												print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBestScore() + "\0");
 											}else {
 												print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + top_batsman_beststats.get(j).getBestEquation()/2 + "\0");
 											}
 										}
 									}else {
-										if(stats.getBest_score().contains("*")) {
-											if(Integer.valueOf(stats.getBest_score().replace("*", ""))>(top_batsman_beststats.get(j).getBestEquation()/2)) {
-												print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBest_score()+ "\0");
+										if(stats.getBestScore().contains("*")) {
+											if(Integer.valueOf(stats.getBestScore().replace("*", ""))>(top_batsman_beststats.get(j).getBestEquation()/2)) {
+												print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBestScore()+ "\0");
 											}else {
 												print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
 														(top_batsman_beststats.get(j).getBestEquation()-1)/2 + "*" + "\0");
 											}
 										}else {
-											if(Integer.valueOf(stats.getBest_score())>(top_batsman_beststats.get(j).getBestEquation()/2)) {
+											if(Integer.valueOf(stats.getBestScore())>(top_batsman_beststats.get(j).getBestEquation()/2)) {
 												print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
-														stats.getBest_score() + "\0");
+														stats.getBestScore() + "\0");
 											}else {
 												print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
 														(top_batsman_beststats.get(j).getBestEquation()-1) / 2 + "*" + "\0");
@@ -11983,8 +11983,8 @@ public class MAHARAJA_T20 extends Scene{
 							}
 						}
 						if(playerFound == false) {
-							if(stats.getBest_score() != null) {
-								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBest_score() + "\0");
+							if(stats.getBestScore() != null) {
+								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBestScore() + "\0");
 							}else {
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + "-" + "\0");
 							}
@@ -12014,14 +12014,14 @@ public class MAHARAJA_T20 extends Scene{
 									k += 1;
 									if(top_bowler_beststats.get(j).getBestEquation() > 0) {
 										if(top_bowler_beststats.get(j).getBestEquation() % 1000 >= 0) {
-											if(stats.getBest_figures().contains("-")) {
-												if(Integer.valueOf(stats.getBest_figures().split("-")[0])>((top_bowler_beststats.get(j).getBestEquation() / 1000) +1)){
-													print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBest_figures().split("-")[0]+"-" +stats.getBest_figures().split("-")[1]+ "\0");
-												}else if(Integer.valueOf(stats.getBest_figures().split("-")[1]) == (1000 - (top_bowler_beststats.get(j).getBestEquation() % 1000))) {
-													System.out.println(stats.getBest_figures().split("-")[1]+" : "+(1000 - (top_bowler_beststats.get(j).getBestEquation() % 1000)));
-													if(Integer.valueOf(stats.getBest_figures().split("-")[1]) > (1000 - (top_bowler_beststats.get(j).getBestEquation() % 1000))) {
+											if(stats.getBestFigures().contains("-")) {
+												if(Integer.valueOf(stats.getBestFigures().split("-")[0])>((top_bowler_beststats.get(j).getBestEquation() / 1000) +1)){
+													print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBestFigures().split("-")[0]+"-" +stats.getBestFigures().split("-")[1]+ "\0");
+												}else if(Integer.valueOf(stats.getBestFigures().split("-")[1]) == (1000 - (top_bowler_beststats.get(j).getBestEquation() % 1000))) {
+													System.out.println(stats.getBestFigures().split("-")[1]+" : "+(1000 - (top_bowler_beststats.get(j).getBestEquation() % 1000)));
+													if(Integer.valueOf(stats.getBestFigures().split("-")[1]) > (1000 - (top_bowler_beststats.get(j).getBestEquation() % 1000))) {
 														print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
-																stats.getBest_figures().split("-")[0]+"-"+stats.getBest_figures().split("-")[1] + "\0");
+																stats.getBestFigures().split("-")[0]+"-"+stats.getBestFigures().split("-")[1] + "\0");
 													}else {
 														print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
 																((top_bowler_beststats.get(j).getBestEquation() / 1000) +1) + "-" + (1000 - (top_bowler_beststats.get(j).getBestEquation() % 1000)) + "\0");
@@ -12037,13 +12037,13 @@ public class MAHARAJA_T20 extends Scene{
 											
 										}
 										else if(top_bowler_beststats.get(j).getBestEquation() % 1000 < 0) {
-											if(stats.getBest_figures().contains("-")) {
-												if(Integer.valueOf(stats.getBest_figures().split("-")[0])>((top_bowler_beststats.get(j).getBestEquation() / 1000))){
-													print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBest_figures().split("-")[0]+"-"+stats.getBest_figures().split("-")[1] + "\0");
-												}else if(Integer.valueOf(stats.getBest_figures().split("-")[0]) == ((top_bowler_beststats.get(j).getBestEquation() / 1000))) {
-													if(Integer.valueOf(stats.getBest_figures().split("-")[1]) > Math.abs(top_bowler_beststats.get(j).getBestEquation())) {
+											if(stats.getBestFigures().contains("-")) {
+												if(Integer.valueOf(stats.getBestFigures().split("-")[0])>((top_bowler_beststats.get(j).getBestEquation() / 1000))){
+													print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBestFigures().split("-")[0]+"-"+stats.getBestFigures().split("-")[1] + "\0");
+												}else if(Integer.valueOf(stats.getBestFigures().split("-")[0]) == ((top_bowler_beststats.get(j).getBestEquation() / 1000))) {
+													if(Integer.valueOf(stats.getBestFigures().split("-")[1]) > Math.abs(top_bowler_beststats.get(j).getBestEquation())) {
 														print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
-																stats.getBest_figures().split("-")[0]+"-"+stats.getBest_figures().split("-")[1] + "\0");
+																stats.getBestFigures().split("-")[0]+"-"+stats.getBestFigures().split("-")[1] + "\0");
 													}else {
 														print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + 
 																((top_bowler_beststats.get(j).getBestEquation() / 1000) +1) + "-" + Math.abs(top_bowler_beststats.get(j).getBestEquation()) + "\0");
@@ -12058,7 +12058,7 @@ public class MAHARAJA_T20 extends Scene{
 											}
 										}
 									}else {
-										print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBest_figures().split("-")[0]+"-" +stats.getBest_figures().split("-")[1]+ "\0");
+										print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBestFigures().split("-")[0]+"-" +stats.getBestFigures().split("-")[1]+ "\0");
 									}
 									break;
 								}
@@ -12066,8 +12066,8 @@ public class MAHARAJA_T20 extends Scene{
 							}
 						}
 						if(playerFound == false) {
-							if(stats.getBest_figures() != null) {
-								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBest_figures() + "\0");
+							if(stats.getBestFigures() != null) {
+								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + stats.getBestFigures() + "\0");
 							}else {
 								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tStatValue4" + " SET " + "-" + "\0");
 							}

@@ -3648,7 +3648,7 @@ function processUserSelection(whichInput) {
 		case 'ballsince_graphic_btn': case 'nextbat_graphic_btn': case 'playingxi_change_on1': case 'playingxi_change_on2': case 'playingxi_change_on3':
 		case 'populate_playingxi_subs5_btn': case 'populate_playerprofile_bs_btn': case 'populate_playerprofileball_bs_btn': case 'phaseWise_Comp_graphic_btn':
 		case 'leaderboard_change_on1': case 'leaderboard_change_on2': case 'leaderboard_change_on3': case 'leaderboard_change_on4': case 'leaderboard_change_on5':
-		case "populate_bugToss_btn":case "populate_FOW_btn": case 'clip_graphic_btn': case 'populate_runrate_btn':
+		case "populate_bugToss_btn":case "populate_FOW_btn": case 'clip_graphic_btn': case 'populate_runrate_btn': case 'LastXBalls_graphic_btn':
 		case 'decision_graphic_btn': case 'populate_Decision_btn': case 'matchId_graphic_btn': case 'Fall_of_Wickets_graphic_btn': case 'Info_graphic_btn': case 'target_bs_graphic_btn': case 'comparison_bs_graphic_btn':
 		case 'projected_bs_score_graphic_btn': case 'boundaries_bs_score_graphic_btn': case 'populate_free_bs__btn': case 'equation_bs_graphic_btn': case 'populate_playermile_bs_btn':
 		case 'populate_start_bs_btn': case 'populate_countdown_bs_btn': case 'populate_howout_bs__btn': case 'populate_bowlerfig_btn': case 'quickhowout_bs_graphic_btn':
@@ -6139,7 +6139,7 @@ function processCricketProcedures(whatToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				
 				case 'EVEREST_AR_VR':
-					valueToProcess = 'C:/Everest_VR_AR/MattScenes/Boundaries.sum';
+					valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
 					break;
 				
 			}
@@ -12716,7 +12716,7 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-LASTXBALLS_VR':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'EVEREST_AR_VR':
-					valueToProcess = 'C:/Everest_VR_AR/MattScenes/EquationNew.sum' + ',' + document.getElementById('which_keypress').value + ',' + 
+					valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum' + ',' + document.getElementById('which_keypress').value + ',' + 
 						$('#selectLastxBalls').val();
 					break;
 

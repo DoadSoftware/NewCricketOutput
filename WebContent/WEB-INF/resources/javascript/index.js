@@ -226,21 +226,21 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'ArrowLeft':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20': case 'APL': case 'DOAD_LLC':
+						case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20': case 'APL': case 'DOAD_LLC': case 'AFGHANISTAN_T20':
 							processCricketProcedures('ANIMATE-SHRINK_IN');
 							break;
 					}
 					break;
 				case 'ArrowRight':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20': case 'APL': case 'DOAD_LLC':
+						case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20': case 'APL': case 'DOAD_LLC': case 'AFGHANISTAN_T20':
 							processCricketProcedures('ANIMATE-SHRINK_OUT');
 							break;
 					}
 					break;
 				case 'ArrowUp':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20': case 'APL': case 'ARUNACHAL': case 'DOAD_LLC':
+						case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20': case 'APL': case 'ARUNACHAL': case 'DOAD_LLC': case 'AFGHANISTAN_T20':
 							processCricketProcedures('TICKER_LT_OUT');
 							break;
 						case 'MPL':
@@ -251,7 +251,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'ArrowDown'://Arrow Down
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20': case 'APL': case 'ARUNACHAL': case 'DOAD_LLC':
+						case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20': case 'APL': case 'ARUNACHAL': case 'DOAD_LLC': case 'AFGHANISTAN_T20':
 							processCricketProcedures('TICKER_LT_IN');
 							break;
 						case 'MPL':
@@ -261,7 +261,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'PageUp'://PageUp FF Out Ticker In
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ACC': case 'MAHARAJA_T20': case 'USPL': case 'MPL':
+						case 'ACC': case 'MAHARAJA_T20': case 'USPL': case 'MPL': case 'AFGHANISTAN_T20':
 							processCricketProcedures('ANIMATE-SHRINK_OUT');
 							break;
 						case 'RPL': case 'RSWS':
@@ -271,7 +271,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'PageDown'://PageDown - FF in Ticker Out
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ACC': case 'MAHARAJA_T20': case 'USPL': case 'MPL':
+						case 'ACC': case 'MAHARAJA_T20': case 'USPL': case 'MPL': case 'AFGHANISTAN_T20':
 							processCricketProcedures('ANIMATE-SHRINK_IN');
 							break;
 						case 'RPL': case 'RSWS':
@@ -362,6 +362,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'Shift_F12'://Ident Data
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'PUNJAB_T20': case 'APL': case 'ACC': case 'MAHARAJA_T20': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
+						case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -374,7 +375,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC': case 'KERALA_T20':
 						case 'FAIR_BREAK': case 'MPL': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'NEPAL_T20':
-						case 'ICPL': case 'LCT': case 'PPL':
+						case 'ICPL': case 'LCT': case 'PPL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -387,7 +388,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'KERALA_T20':
 						case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'NEPAL_T20':
 						case 'BUKHATIR': case 'THAILAND': case 'BIG_SCREEN': case 'ICPL': case 'LCT': case 'KOLKATA_T20': case 'PPL':
-						case 'ARUNACHAL': case 'EVEREST_KCL':
+						case 'ARUNACHAL': case 'EVEREST_KCL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -403,7 +404,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Alt_9': //
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'APL': case 'PPL': case 'MAHARAJA_T20': case 'KERALA_T20':
+						case 'APL': case 'PPL': case 'MAHARAJA_T20': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -413,7 +414,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Alt_0': //
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'APL': case 'PPL': case 'MAHARAJA_T20': case 'KERALA_T20':
+						case 'APL': case 'PPL': case 'MAHARAJA_T20': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -423,7 +424,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Control_4':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'APL': case 'PPL': case 'MAHARAJA_T20':
+						case 'APL': case 'PPL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -433,7 +434,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Alt_5':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'APL': case 'PPL': case 'MAHARAJA_T20':
+						case 'APL': case 'PPL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -482,7 +483,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							addItemsToList('INFOBAR-RIGHT-OPTIONS', null);
 							break;
-						case 'ACC': case 'MAHARAJA_T20':
+						case 'ACC': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -501,7 +502,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							addItemsToList('INFOBAR-BOTTOMRIGHT-OPTIONS', null);
 							break;
-						case 'ACC': case 'MAHARAJA_T20':
+						case 'ACC': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -512,7 +513,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'Alt_1'://INFOBAR_BOTTOM_LEFT
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'BUKHATIR': case 'THAILAND':
-						case 'ICPL': case 'LCT': case 'ARUNACHAL':
+						case 'ICPL': case 'LCT': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -574,7 +575,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case '['://"[" INFOBAR_POWERPLAY
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL':
-						case 'ICPL': case 'LCT': case 'KERALA_T20':
+						case 'ICPL': case 'LCT': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -613,7 +614,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND':
-						case 'ICPL': case 'LCT': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+						case 'ICPL': case 'LCT': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -627,7 +628,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'KERALA_T20': // case 'PPL':
 							processCricketProcedures('POPULATE-FREEHITDIRECTOR');
 							break;
-						case 'RSWS': case 'USPL': case 'MAHARAJA_T20':
+						case 'RSWS': case 'USPL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('ANIMATE-FREEHIT_DIRECTOR');
 							break;
 						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
@@ -644,7 +645,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'KERALA_T20': //case 'PPL':
 							processCricketProcedures('POPULATE-SIXDIRECTOR');
 							break;
-						case 'RSWS': case 'USPL': case 'MAHARAJA_T20':
+						case 'RSWS': case 'USPL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('ANIMATE-SIX_DIRECTOR');
 							break;
 						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
@@ -658,7 +659,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'KERALA_T20': //case 'PPL':
 							processCricketProcedures('POPULATE-FOURDIRECTOR');
 							break;
-						case 'RSWS': case 'USPL': case 'MAHARAJA_T20':
+						case 'RSWS': case 'USPL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('ANIMATE-FOUR_DIRECTOR');
 							break;
 						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
@@ -678,7 +679,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Alt_e': //powerplay director
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'MAHARAJA_T20': 
+						case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('ANIMATE-IN-POWERPLAY_DIRECTOR');
 							break;
 						case 'APL': case 'PPL': case 'KERALA_T20': case 'DOAD_LLC': case 'MPL':
@@ -699,7 +700,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'KERALA_T20': //case 'PPL':
 							processCricketProcedures('POPULATE-WICKETDIRECTOR');
 							break;
-						case 'RSWS': case 'USPL': case 'MAHARAJA_T20':
+						case 'RSWS': case 'USPL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('ANIMATE-WICKET_DIRECTOR');
 							break;
 						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
@@ -716,7 +717,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': //case 'PPL':
 							processCricketProcedures('POPULATE-ONAHATTRICKDIRECTOR');
 							break;
-						case 'MAHARAJA_T20':
+						case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('ANIMATE-HATTRICK_DIRECTOR');
 							break;
 					}
@@ -725,6 +726,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'KERALA_T20':
 						case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': //case 'PPL':
+							case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-HATTRICKDIRECTOR');
 							break;
 					}
@@ -732,7 +734,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				//----------------------------------------------------------------------------------------------------------------------------------------------------------------	
 				case 'Alt_Shift_F6':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'MAHARAJA_T20':
+						case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-LT-WEATHER');
 							break;
 					}
@@ -740,7 +742,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'F1'://F1 - Scorecard
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS':
-						case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+						case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-FF-SCORECARD');
 							break;
 						case 'ICC_BIG_SCREEN': 
@@ -772,7 +774,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'Shift_F1': //Shift+F1 MINI_BATTING_CARD
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'PUNJAB_T20': case 'APL': case 'PPL':
-						case 'RPL': case 'USPL': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'KERALA_T20':
+						case 'RPL': case 'USPL': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-MINI-BATTINGCARD');
 							break;
 						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
@@ -788,7 +790,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'Alt_F1': //Alt+F1 BAT_GRIFF
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'USPL': case 'RPL': case 'ICPL':
-						case 'LCT': case 'NEPAL_T20': case 'PUNJAB_T20': case 'APL': case 'KERALA_T20':
+						case 'LCT': case 'NEPAL_T20': case 'PUNJAB_T20': case 'APL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -809,7 +811,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL':
-						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-FF-BOWLINGCARD');
 							break;
 
@@ -836,7 +838,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'Shift_F2'://Shift+F2 MINI_BOWLING_CARD
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'PUNJAB_T20': case 'APL': case 'RPL': case 'USPL': case 'PPL':
-						case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'KERALA_T20':
+						case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-MINI-BOWLINGCARD');
 							break;
 						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
@@ -850,7 +852,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'Alt_F2'://Alt+F2 BALL_GRIFF
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'USPL': case 'RPL': case 'ICPL':
-						case 'LCT': case 'NEPAL_T20': case 'PUNJAB_T20': case 'APL': case 'PPL': case 'KERALA_T20':
+						case 'LCT': case 'NEPAL_T20': case 'PUNJAB_T20': case 'APL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -888,7 +890,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							processCricketProcedures('EXCEL_LT_GRAPHICS_OPTION');
 							break;
-						case 'APL': case 'MAHARAJA_T20': case 'PPL':
+						case 'APL': case 'MAHARAJA_T20': case 'PPL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -939,7 +941,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'NEPAL_T20': case 'LCT': case 'BUKHATIR': case 'ACC': case 'MAHARAJA_T20': case 'THAILAND': case 'ASSAM':
 								case 'ACC_NEPAL': case 'GPCL': case 'APL': case 'PUNJAB_T20': case 'RSWS': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'MPL':
-								case 'PPL':  case 'ARUNACHAL':
+								case 'PPL':  case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 									processCricketProcedures('POPULATE-FF-MATCHSUMMARY');
 									break;
 								case 'FAIR_BREAK': case 'RPL': case 'USPL': case 'DOAD_LLC': case 'KERALA_T20':
@@ -957,7 +959,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'USPL': case 'NEPAL_T20':
 						case 'BUKHATIR': case 'THAILAND': case 'ICPL': case 'LCT': case 'PPL': 
-						case 'ARUNACHAL':
+						case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-FF-PARTNERSHIP');
 							break;
 						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
@@ -976,7 +978,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Shift_K': //Shift+K CURR_PARTNERSHIP
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': 
+						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL':
 						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL':
 							processCricketProcedures('POPULATE-LT-PARTNERSHIP');
@@ -996,7 +998,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL':
-						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-MANHATTAN');
 							break;
 					}
@@ -1006,7 +1008,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'NEPAL_T20':
 						case 'BUKHATIR': case 'THAILAND': case 'ICPL': case 'LCT': case 'PPL': case 'KERALA_T20':
-						case 'ACC_NEPAL': case 'ARUNACHAL':
+						case 'ACC_NEPAL': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-WORM');
 							break;
 					}
@@ -1022,7 +1024,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL':
-						case 'LCT': case 'NEPAL_T20': case 'PPL':  case 'ARUNACHAL': case 'KERALA_T20':
+						case 'LCT': case 'NEPAL_T20': case 'PPL':  case 'ARUNACHAL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-FF-DOUBLETEAMS');
 							break;
 						/*case 'KERALA_T20':
@@ -1042,7 +1044,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 
 				case 'Alt_Shift_R':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'PUNJAB_T20': case 'APL': case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20':
+						case 'PUNJAB_T20': case 'APL': case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1056,7 +1058,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'LCT': case 'NEPAL_T20': case 'MPL': case 'KERALA_T20': case 'ARUNACHAL':
 							processCricketProcedures('POPULATE-FF-TEAMS_LOGO');
 							break;
-						case 'PPL': case 'MAHARAJA_T20':
+						case 'PPL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1067,7 +1069,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 
 				case 'F3': //F3 TEAMS_FIXTURES
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ACC': case 'MAHARAJA_T20':
+						case 'ACC': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1083,7 +1085,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Alt_z'://Alt+z TEAMS_SQUAD
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ACC': case 'MAHARAJA_T20': case 'KERALA_T20': case 'APL':
+						case 'ACC': case 'MAHARAJA_T20': case 'KERALA_T20': case 'APL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1094,7 +1096,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 
 				case 'Shift_F11'://Shift+F11 PREVIOUS_MATCH_SUMMARY
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20':
+						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 						case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'KERALA_T20':
 						case 'BUKHATIR': case 'THAILAND': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL':
 							$("#captions_div").hide();
@@ -1116,7 +1118,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Shift_T': //Shift+T PLAYING_XI
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20':
+						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 						case 'DOAD_LLC': case 'RPL': case 'RSWS': case 'USPL': case 'LCT': case 'NEPAL_T20': case 'KERALA_T20':
 						case 'BUKHATIR': case 'THAILAND': case 'FAIR_BREAK': case 'MPL': case 'ICPL': case 'PPL': case 'ARUNACHAL':
 							$("#captions_div").hide();
@@ -1149,7 +1151,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Control_d'://Ctrl+D FF_PP_BAT
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20':
+						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 						case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'EVEREST_PUNJAB_T20': case 'LCT': case 'NEPAL_T20':
 						case 'EVEREST_APL_T20': case 'RPL': case 'RSWS': case 'USPL': case 'ICPL': case 'EVEREST_MPL_T20':
 						case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20': case 'KERALA_T20': case 'EVEREST_KCL_T20': case 'EVEREST_KCL':
@@ -1172,7 +1174,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Control_e'://Ctrl+E FF_PP_BALL
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20':
+						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 						case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'NEPAL_T20': case 'EVEREST_MPL_T20':
 						case 'EVEREST_PUNJAB_T20': case 'EVEREST_BENGAL_T20': case 'PPL': case 'KERALA_T20':
 							$("#captions_div").hide();
@@ -1195,7 +1197,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 
 				case 'F5'://F5 - BatThisMatch
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20':
+						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 						case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'ICPL':
 						case 'BUKHATIR': case 'THAILAND': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20':
 						 case 'ARUNACHAL':
@@ -1220,7 +1222,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Control_F5': //Ctrl+F5 BATSMAN_STYLE
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
+						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC': case 'AFGHANISTAN_T20':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL':
 						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': 
 							$("#captions_div").hide();
@@ -1236,6 +1238,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND':
 						case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+						case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1250,7 +1253,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND':
 						case 'BIG_SCREEN': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20':
-						 case 'ARUNACHAL':
+						 case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1274,7 +1277,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL':
-						case 'BIG_SCREEN': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL': case 'KERALA_T20':
+						case 'BIG_SCREEN': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-HOWOUT_QUICK');
 							break;
 						/*case 'KERALA_T20':
@@ -1309,7 +1312,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL':
-						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1323,6 +1326,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC': case 'ARUNACHAL':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20':
+						case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1352,7 +1356,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Alt_Shift_C':
 					switch ($('#selected_broadcaster').val().toUpperCase()){
-						case 'APL': case 'PPL': case 'MAHARAJA_T20':
+						case 'APL': case 'PPL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 						$("#captions_div").hide();
 						$("#cancel_match_setup_btn").hide();
 						$("#expiry_message").hide();
@@ -1373,7 +1377,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							addItemsToList('NAMESUPER_PLAYER-OPTIONS', null);
 							//addItemsToList('POPULATE-PLAYER', null);
 							break;
-						case 'MAHARAJA_T20':
+						case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1393,7 +1397,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL':
-						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1412,7 +1416,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL':
-						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1432,6 +1436,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND':
 						case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+						case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1446,7 +1451,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'FAIR_BREAK': case 'MPL': case 'EVEREST_PUNJAB_T20': case 'LCT': case 'EVEREST_APL_T20': case 'RPL':
 						case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL': case 'NEPAL_T20': case 'EVEREST_MPL_T20':
 						case 'EVEREST_EVEREST_T20': case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20': case 'KERALA_T20':
-						case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':
+						case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1485,6 +1490,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC': case 'KERALA_T20': case 'ARUNACHAL':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'PPL':
+						case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1516,7 +1522,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'FAIR_BREAK': case 'MPL': case 'EVEREST_PUNJAB_T20': case 'EVEREST_APL_T20': case 'RPL': case 'RSWS':
 						case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'EVEREST_MPL_T20':
 						case 'EVEREST_EVEREST_T20': case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20': case 'KERALA_T20':
-						case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':case "SPL":
+						case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':case "SPL": case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1532,7 +1538,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Control_Shift_U':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'MAHARAJA_T20': case 'DOAD_LLC':case 'KERALA_T20':
+						case 'MAHARAJA_T20': case 'DOAD_LLC':case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1557,7 +1563,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'FAIR_BREAK': case 'MPL': case 'EVEREST_PUNJAB_T20': case 'EVEREST_APL_T20': case 'RPL': case 'USPL':
 						case 'BUKHATIR': case 'THAILAND': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'EVEREST_MPL_T20': case 'ARUNACHAL':
 						case 'EVEREST_EVEREST_T20': case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20': case 'RSWS': case 'EVEREST_KCL_T20': case 'EVEREST_KCL':
-						case "SPL":
+						case "SPL": case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1572,7 +1578,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'FAIR_BREAK': case 'MPL': case 'EVEREST_PUNJAB_T20': case 'BUKHATIR': case 'THAILAND': case 'NEPAL_T20':
 						case 'EVEREST_APL_T20': case 'RPL': case 'USPL': case 'ICPL': case 'LCT': case 'EVEREST_MPL_T20':
 						case 'EVEREST_EVEREST_T20': case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20': case 'RSWS': case 'KERALA_T20':
-						case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':case "SPL":
+						case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':case "SPL": case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1596,6 +1602,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'FAIR_BREAK': case 'MPL': case 'EVEREST_PUNJAB_T20': case 'EVEREST_APL_T20': case 'RPL': case 'USPL':case "SPL":
 						case 'BUKHATIR': case 'THAILAND': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'EVEREST_MPL_T20': case 'KERALA_T20':
 						case 'EVEREST_EVEREST_T20': case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20': case 'RSWS': case 'EVEREST_KCL_T20': case 'EVEREST_KCL':
+						case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1632,7 +1639,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							processCricketProcedures('POPULATE-BUG_PARTNERSHIP');
 							break;
 						case 'APL': case 'PUNJAB_T20': case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'EVEREST_PUNJAB_T20': case 'ACC': case 'MAHARAJA_T20':
-						case 'RSWS': case 'USPL': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20':case 'EVEREST_LEGENDS_90':
+						case 'RSWS': case 'USPL': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20':case 'EVEREST_LEGENDS_90': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-BUGPARTNERSHIP');
 							break;
 
@@ -1643,7 +1650,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'APL': case 'PUNJAB_T20': case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'EVEREST_PUNJAB_T20':
 						case 'EVEREST_APL_T20': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'EVEREST_MPL_T20':
 						case 'EVEREST_EVEREST_T20': case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20': case 'KERALA_T20':
-						case 'EVEREST_KCL_T20': case 'EVEREST_KCL':case "SPL":
+						case 'EVEREST_KCL_T20': case 'EVEREST_KCL':case "SPL": case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1665,7 +1672,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'FAIR_BREAK': case 'MPL': case 'EVEREST_PUNJAB_T20': case 'EVEREST_APL_T20': case 'LCT': case 'DOAD_LLC':
 						case 'RPL': case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL': case 'NEPAL_T20': case 'EVEREST_MPL_T20':
 						case 'EVEREST_EVEREST_T20': case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20': case 'RSWS': case 'EVEREST_KCL_T20':
-						case 'EVEREST_KCL': case 'ARUNACHAL':case "SPL":
+						case 'EVEREST_KCL': case 'ARUNACHAL':case "SPL": case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-BUG_POWERPLAY');
 							break;
 					}
@@ -1676,7 +1683,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'FAIR_BREAK': case 'MPL': case 'EVEREST_PUNJAB_T20': case 'NEPAL_T20': case 'KERALA_T20':
 						case 'EVEREST_APL_T20': case 'USPL': case 'EVEREST_MPL_T20': case 'EVEREST_EVEREST_T20': 
 						case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20': case 'RSWS': case 'EVEREST_KCL_T20':
-						case 'EVEREST_KCL': case 'ARUNACHAL':case "SPL":
+						case 'EVEREST_KCL': case 'ARUNACHAL':case "SPL": case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-LT-BUG_HIGHLIGHT');
 							break;
 						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
@@ -1706,7 +1713,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'ICC_CWCU19': case 'USPL': case 'BUKHATIR': case 'THAILAND':
 						case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'EVEREST_BENGAL_T20':  case 'RSWS': 
-						 case 'ARUNACHAL':case 'EVEREST_LEGENDS_90':case "SPL":
+						 case 'ARUNACHAL':case 'EVEREST_LEGENDS_90':case "SPL": case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-L3-BUG-TOSS');
 							break;
 						case 'PPL':
@@ -1757,7 +1764,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL':
-						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1774,6 +1781,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'b':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'DOAD_LLC': case 'FAIR_BREAK': case 'ACC': case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20':
+						case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-NEXT_TO_BAT');
 							break;
 						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
@@ -1783,7 +1791,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'd'://D - Target	
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'APL': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
+						case 'APL': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC': case 'AFGHANISTAN_T20':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'USPL': case 'BIG_SCREEN': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'PPL':
 						case 'RSWS': case 'KERALA_T20': case 'ARUNACHAL':case 'BUKHATIR':
 							if (document.getElementById('which_keypress').value == 0) {
@@ -1820,7 +1828,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'RPL':
 						case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'BIG_SCREEN': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'RSWS': case 'KERALA_T20':
-						 case 'ARUNACHAL':
+						 case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							addItemsToList('POPULATE-EQUATION', null);
 							break;
 						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
@@ -1832,7 +1840,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'ICPL':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'BIG_SCREEN':
-						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL':
+						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							session_match.match.inning.forEach(function(inn, index, arr1) {
 								if (inn.inningNumber == 1 && inn.isCurrentInning == 'YES') {
 									processCricketProcedures('POPULATE-LT-PROJECTED');
@@ -1871,6 +1879,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND':
 						case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+						case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-L3-TEAMSUMMARY');
 							break;
 					}
@@ -1879,7 +1888,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL':
-						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL': case 'KERALA_T20':
+						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-L3-FALLOFWICKET');
 							break;
 						/*case 'KERALA_T20':
@@ -1899,7 +1908,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Control_F3'://Ctrl+F3 COMPARISON
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20':
+						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND':
 						case 'BIG_SCREEN': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
 							session_match.match.inning.forEach(function(inn, index, arr1) {
@@ -1937,6 +1946,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'RPL':
 						case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+						case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1948,7 +1958,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'Control_f'://Ctrl+f THIS_SERIES_BALL
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'USPL': case 'PUNJAB_T20': case 'APL': case 'MAHARAJA_T20': case 'MPL': case 'PPL': case 'KERALA_T20': case 'ACC_NEPAL':
-						case 'DOAD_LLC':  case 'ARUNACHAL':
+						case 'DOAD_LLC':  case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1970,7 +1980,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'Shift_P'://Shift+P FF_THIS_SERIES
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'RPL':
-						case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': 
+						case 'USPL': case 'BUKHATIR': case 'THAILAND': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1990,6 +2000,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'Shift_Q'://Shift+Q FF_THIS_SERIES_BALL
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'USPL': case 'MAHARAJA_T20': case 'MPL': case 'APL': case 'PPL': case 'KERALA_T20': case 'ACC_NEPAL': case 'DOAD_LLC':
+						case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2007,7 +2018,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'Control_Shift_B'://Next-To-Bat
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'ACC': case 'MAHARAJA_T20': 
-						case 'USPL': case 'PPL': case 'KERALA_T20':
+						case 'USPL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-NEXT_TO_BAT');
 							break;
 					}
@@ -2021,7 +2032,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Control_b'://Ctrl+B BATSMAN_IN_AT
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ACC': case 'BIG_SCREEN': case 'ICPL': case 'LCT': //case 'MAHARAJA_T20':
+						case 'ACC': case 'BIG_SCREEN': case 'ICPL': case 'LCT': //case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2037,7 +2048,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'THAILAND':
 						case 'EVEREST_PUNJAB_T20': case 'EVEREST_APL_T20': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'EVEREST_MPL_T20':
 						case 'EVEREST_EVEREST_T20': case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20': case 'KERALA_T20':
-						case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':case 'SPL':
+						case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':case 'SPL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2076,7 +2087,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
 							processCricketProcedures('POPULATE-ICC_IMAGELOOP');
 							break;
-						case 'MAHARAJA_T20': case 'DOAD_LLC': case 'DOAD_LLC': case 'KERALA_T20':
+						case 'MAHARAJA_T20': case 'DOAD_LLC': case 'DOAD_LLC': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2105,7 +2116,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'Control_Shift_L'://LT_MATCH_PROMO
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'FAIR_BREAK': case 'MPL': case 'ACC': case 'MAHARAJA_T20': case 'USPL': case 'RSWS': case 'RPL':
-						case 'BUKHATIR': case 'THAILAND': case 'PPL': case 'ARUNACHAL': case 'DOAD_LLC':case 'KERALA_T20':
+						case 'BUKHATIR': case 'THAILAND': case 'PPL': case 'ARUNACHAL': case 'DOAD_LLC':case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2118,6 +2129,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'FAIR_BREAK': case 'MPL': case 'ACC': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL':
 						case 'BUKHATIR': case 'THAILAND': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': case 'DOAD_LLC':
+						case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2143,7 +2155,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'Control_Shift_D'://DOUBLE_MATCH_ID
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'FAIR_BREAK': case 'MPL': case 'PUNJAB_T20': case 'APL': case 'ACC': case 'MAHARAJA_T20': case 'RPL': case 'USPL':
-						case 'BUKHATIR': case 'THAILAND': case 'LCT': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+						case 'BUKHATIR': case 'THAILAND': case 'LCT': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2202,7 +2214,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'EVEREST_PUNJAB_T20': case 'EVEREST_APL_T20': case 'RPL': case 'RSWS': case 'USPL':
 						case 'NEPAL_T20': case 'BUKHATIR': case 'THAILAND': case 'EVEREST_BENGAL_T20': case 'PPL':
-						case 'EVEREST_PPL_T20': case 'KERALA_T20': case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':
+						case 'EVEREST_PPL_T20': case 'KERALA_T20': case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-FF-MATCHID');
 							break;
 						case 'EVEREST_MPL_T20':
@@ -2225,7 +2237,8 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'Control_Shift_M'://N - Lt-MATCHID
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC': case 'ARUNACHAL':
-						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20':
+						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': 
+						case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-LT-MATCHID');
 							break;
 						case 'EVEREST_PUNJAB_T20': case 'EVEREST_APL_T20': case 'EVEREST_MPL_T20': case 'EVEREST_EVEREST_T20':
@@ -2258,7 +2271,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS': case 'USPL': case 'THAILAND': case 'ICPL':
-						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL': //case 'KERALA_T20':
+						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL': case 'AFGHANISTAN_T20': //case 'KERALA_T20':
 							processCricketProcedures('POPULATE-POINTS_TABLE');
 							break;
 						case 'KERALA_T20':
@@ -2287,7 +2300,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							addItemsToList('LT_POINTSTABLE-OPTIONS', null);
 							break;
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'PUNJAB_T20': case 'USPL': case 'DOAD_LLC':
-						case 'ICPL': case 'LCT': case 'APL': case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20':
+						case 'ICPL': case 'LCT': case 'APL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20': case 'PPL': case 'KERALA_T20':
 							processCricketProcedures('POPULATE-LTPOINTS_TABLE');
 							break;
 					}
@@ -2345,7 +2358,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'RPL': case 'THAILAND': case 'LCT':
 							processCricketProcedures('POPULATE-FOUR');
 							break;
-						case 'MAHARAJA_T20': case 'DOAD_LLC': case 'KERALA_T20':
+						case 'MAHARAJA_T20': case 'DOAD_LLC': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-FIELD_PLOTTER_USPL');
 							break;
 						case 'ACC_NEPAL':
@@ -2361,7 +2374,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'ACC_NEPAL': case 'RPL': case 'THAILAND': case 'LCT':
 							processCricketProcedures('POPULATE-SIX');
 							break;
-						case 'MAHARAJA_T20': case 'DOAD_LLC':
+						case 'MAHARAJA_T20': case 'DOAD_LLC': case 'AFGHANISTAN_T20':
 							processCricketProcedures('ANIMATE-OUT-PLOTTER');
 							break;
 					}
@@ -2373,7 +2386,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							break;
 						case 'EVEREST_PUNJAB_T20': case 'EVEREST_APL_T20': case 'EVEREST_MPL_T20':
 						case 'EVEREST_EVEREST_T20': case 'EVEREST_BENGAL_T20': case 'EVEREST_PPL_T20': case 'MAHARAJA_T20':
-						case 'EVEREST_KCL_T20': case 'KERALA_T20': case 'EVEREST_KCL': case 'APL':
+						case 'EVEREST_KCL_T20': case 'KERALA_T20': case 'EVEREST_KCL': case 'APL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2489,7 +2502,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'Alt_Shift_O'://LT_POINTERS
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'ACC': case 'MAHARAJA_T20': case 'USPL': case 'PUNJAB_T20': case 'APL': case 'PPL': 
-						case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'MPL': case 'KERALA_T20':
+						case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'MPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2499,7 +2512,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Control_i'://Ctrl+I INNING_BUILDER
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20':
+						case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2516,7 +2529,8 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Control_Shift_A'://DLS TARGET
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'BUKHATIR': case 'THAILAND': case 'ARUNACHAL': case 'DOAD_LLC':
+						case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'BUKHATIR': case 'THAILAND': case 'ARUNACHAL': case 'DOAD_LLC': 
+						case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2528,7 +2542,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				console.log('HELLO DOAD');
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20': case 'DOAD_LLC':
-						case 'NEPAL_T20': case 'PPL': case 'KERALA_T20':
+						case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2568,7 +2582,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Control_Shift_O'://LT_LINE_UP
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'DOAD_LLC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'KERALA_T20':
+						case 'DOAD_LLC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2634,7 +2648,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'APL': case 'PPL':
 							processCricketProcedures('POPULATE-FF-TOP_PERFORMER');
 							break;
-						case 'MAHARAJA_T20': case 'DOAD_LLC':case 'KERALA_T20':
+						case 'MAHARAJA_T20': case 'DOAD_LLC':case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2646,7 +2660,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Control_Shift_K'://PLAYSOFF
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'RPL': case 'MPL': case 'PUNJAB_T20': case 'APL': case 'MAHARAJA_T20': case 'PPL':
+						case 'RPL': case 'MPL': case 'PUNJAB_T20': case 'APL': case 'MAHARAJA_T20': case 'PPL': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-PLAYOFFS');
 							break;
 
@@ -2654,14 +2668,14 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Control_Shift_H':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'MAHARAJA_T20': case 'KERALA_T20':
+						case 'MAHARAJA_T20': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-PHASE-COMPARISON');
 							break;
 					}
 					break;
 				case 'Control_h'://PHASE (POWERPLAY SUMMARY)
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'FAIR_BREAK': case 'MPL': case 'ACC': case 'MAHARAJA_T20': case 'APL': case 'PPL': case 'KERALA_T20':
+						case 'FAIR_BREAK': case 'MPL': case 'ACC': case 'MAHARAJA_T20': case 'APL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-PHASE');
 							break;
 					}
@@ -2677,7 +2691,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Alt_F5'://Alt+F5 RICHIES_CAPTION
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ACC': case 'MAHARAJA_T20':
+						case 'ACC': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-RICHEIS');
 							break;
 					}
@@ -2699,7 +2713,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Alt_n':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'MPL': case 'PUNJAB_T20': case 'APL': case 'MAHARAJA_T20': case 'PPL':
+						case 'MPL': case 'PUNJAB_T20': case 'APL': case 'MAHARAJA_T20': case 'PPL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2711,7 +2725,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Alt_m': // Milestone
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'MPL': case 'PUNJAB_T20': case 'APL': case 'MAHARAJA_T20': case 'PPL':
+						case 'MPL': case 'PUNJAB_T20': case 'APL': case 'MAHARAJA_T20': case 'PPL': case 'AFGHANISTAN_T20':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -4633,7 +4647,7 @@ function processUserSelection(whichInput) {
 						} else if (document.getElementById('which_keypress').value == 2) {
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'NEPAL_T20': case 'DOAD_LLC': case 'LCT': case 'BUKHATIR': case 'ACC': case 'MAHARAJA_T20': case 'THAILAND': case 'ASSAM':
-								case 'ACC_NEPAL': case 'GPCL': case 'APL': case 'PUNJAB_T20': case 'RSWS': case 'PPL': case 'ARUNACHAL':
+								case 'ACC_NEPAL': case 'GPCL': case 'APL': case 'PUNJAB_T20': case 'RSWS': case 'PPL': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 									processCricketProcedures('POPULATE-FF-MATCHSUMMARY');
 									break;
 								case 'FAIR_BREAK': case 'RPL': case 'USPL': case 'KERALA_T20':
@@ -5167,7 +5181,7 @@ function processUserSelection(whichInput) {
 							$("#expiry_message").hide();
 							addItemsToList('LT_POINTSTABLE-OPTIONS', null);
 							break;
-						case 'MAHARAJA_T20': case 'RPL': case 'DOAD_LLC': case 'USPL': case 'APL': case 'PPL': case 'KERALA_T20':
+						case 'MAHARAJA_T20': case 'RPL': case 'DOAD_LLC': case 'USPL': case 'APL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-LTPOINTS_TABLE');
 							break;
 					}
@@ -5269,7 +5283,7 @@ function processUserSelection(whichInput) {
 		case 'select_broadcaster':
 			switch ($('#select_broadcaster :selected').val().toUpperCase()) {
 				case 'DOAD_VIZ': case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'DOAD_LLC': case 'ICPL': case 'LCT':
-				case 'FAIR_BREAK': case 'MPL': case 'APL': case 'PUNJAB_T20': case 'RPL': case 'PPL': case 'KERALA_T20':
+				case 'FAIR_BREAK': case 'MPL': case 'APL': case 'PUNJAB_T20': case 'RPL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 					$('#vizPortNumber').attr('value', '6100');
 					$('label[for=vizScene], input#vizScene').hide();
 					$('label[for=which_scene], select#which_scene').show();
@@ -5295,7 +5309,7 @@ function processUserSelection(whichInput) {
 								case 'DOAD_LLC': case 'KERALA_T20':
 									document.getElementById('selected_which_scene').value = '/Default/ScoreBug';
 									break;
-								case 'MAHARAJA_T20':
+								case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 									document.getElementById('selected_which_scene').value = '/Default/MaharajaT20_2024/ScoreBug';
 									break;
 								case 'ACC':
@@ -5802,7 +5816,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'MPL':
 					valueToProcess = '/Default/MPL/LtSubstitution' + ',' + $('#selectPlayerIn').val() + ',' + $('#selectPlayerOut').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Lt_Subs_Image' + ',' + $('#selectPlayerIn').val() + ',' + $('#selectPlayerOut').val();
 					break;
 				case 'KERALA_T20':
@@ -5926,7 +5940,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/LtNameSuper' + ',' + $('#selectxOvers').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtNameSuper' + ',' + $('#selectxOvers').val();
 					break;
 				case 'DOAD_LLC': case 'USPL': case 'KERALA_T20':
@@ -6847,7 +6861,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Lt_NextToBat';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Lt_NextToBat';
 					break;
 			}
@@ -6951,7 +6965,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectpartnership').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectpartnership').val();
 					break;
 				case 'APL':
@@ -7075,7 +7089,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value;
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'FAIR_BREAK':
@@ -7100,7 +7114,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Griff' + ',' + $('#selectInning option:selected').val() + ',' + $('#selectStatsType option:selected').val() + ',' + $('#selectPlayers option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					//valueToProcess = '/Default/MaharajaT20_2024/Griff' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' + $('#selectPlayers option:selected').val();
 					valueToProcess = '/Default/MaharajaT20_2024/MiniGriff' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' + $('#selectPlayers option:selected').val();
 					break;
@@ -7145,7 +7159,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Griff' + ',' + $('#selectInning option:selected').val() + ',' + $('#selectStatsType option:selected').val() + ',' + $('#selectPlayers option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/MiniGriff' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' +
 						$('#selectPlayers option:selected').val();
 
@@ -7217,7 +7231,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Bugs_DoubleLine';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Bugs_DoubleLine';
 					break;
 			}
@@ -7430,7 +7444,7 @@ function processCricketProcedures(whatToProcess) {
 			break;
 		case 'POPULATE-LT-WEATHER':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LT_Weather';
 					break;
 			}
@@ -7476,7 +7490,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/ACC/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
 					//alert(valueToProcess);
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
 					//alert(valueToProcess);
 					break;
@@ -7526,7 +7540,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Mini_Batting' + ',' + document.getElementById('which_keypress').value;
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Mini_Batting' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'FAIR_BREAK':
@@ -7569,7 +7583,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Mini_Bowling' + ',' + document.getElementById('which_keypress').value;
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Mini_Bowling' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'FAIR_BREAK':
@@ -7605,7 +7619,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/ACC/PlayerManhattan' + ',' + document.getElementById('which_keypress').value + ',' +
 						$('#selectPlayerData option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/PlayerManhattan' + ',' + document.getElementById('which_keypress').value + ',' +
 						$('#selectPlayerData option:selected').val();
 					break;
@@ -7713,7 +7727,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'FAIR_BREAK':
@@ -7778,7 +7792,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Partnership';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Partnership';
 					break;
 				case 'FAIR_BREAK':
@@ -7843,7 +7857,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/PartnershipAll' + ',' + document.getElementById('which_keypress').value;
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'FAIR_BREAK':
@@ -7884,7 +7898,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'DOAD_LLC': 
 					valueToProcess = '/Default/LT_All' + ',' + $('#selectTeam option:selected').val() + ',' + $('#selectIconData option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Lt_PlayingXi' + ',' + $('#selectTeam option:selected').val() + ',' + $('#selectIconData option:selected').val();
 					break;
 			}
@@ -7957,7 +7971,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value;
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'FAIR_BREAK':
@@ -7990,7 +8004,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value;
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'FAIR_BREAK':
@@ -8054,7 +8068,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Lt_PowerPlay';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Lt_PowerPlay';
 					break;
 				case 'FAIR_BREAK':
@@ -8147,7 +8161,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value;
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'FAIR_BREAK':
@@ -8268,7 +8282,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/BatBallSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'FAIR_BREAK':
@@ -8332,7 +8346,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/BatBallSummary' + ',' + $('#selectTeam1 option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/BatBallSummary' + ',' + $('#selectTeam1 option:selected').val();
 					break;
 				case 'FAIR_BREAK':
@@ -8391,7 +8405,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/MatchIdent_Double' + ',' + $('#selectTieID option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/MatchIdent_Double' + ',' + $('#selectTieID option:selected').val();
 					break;
 				case 'FAIR_BREAK':
@@ -8524,7 +8538,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Bugs_DoubleLine';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Bugs_DoubleLine';
 					break;
 				case 'FAIR_BREAK':
@@ -8564,7 +8578,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Groups';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Teams'+","+$('#selectOptions option:selected').val();
 					break;
 				case 'FAIR_BREAK':
@@ -8596,7 +8610,7 @@ function processCricketProcedures(whatToProcess) {
 			break;
 		case 'POPULATE-BAT-POPUP': case 'POPULATE-BOWL-POPUP':
 			switch ($('#selected_broadcaster').val().toUpperCase()){
-				case "MAHARAJA_T20":
+				case "MAHARAJA_T20": case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/POP_Player' + ',' + document.getElementById('which_keypress').value + ',' +
 					$('#selectpopup option:selected').val() + ',' + $('#selectPlayers option:selected').val();
 					break;
@@ -8697,7 +8711,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/ACC/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value + ',' +
 						$('#selectStatType option:selected').val() + ',' + $('#selectHowoutPlayers option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value + ',' +
 						$('#selectStatType option:selected').val() + ',' + $('#selectHowoutPlayers option:selected').val();
 					break;
@@ -8816,7 +8830,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/ACC/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' +
 						$('#selectPlayers option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' +
 						$('#selectPlayers option:selected').val();
 					break;
@@ -8939,7 +8953,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/ACC/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' +
 						$('#selectPlayers option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Bugs_DoubleLine' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatsType option:selected').val() + ',' +
 						$('#selectPlayers option:selected').val();
 					break;
@@ -9023,7 +9037,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/ACC/LtHowOut' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatType option:selected').val() + ',' +
 						$('#selectHowoutPlayers option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtHowOut' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectStatType option:selected').val() + ',' +
 						$('#selectHowoutPlayers option:selected').val();
 					break;
@@ -9100,7 +9114,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/LtHowOut';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtHowOut';
 					break;
 				case 'ICPL':
@@ -9146,7 +9160,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/LtHowOut';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtHowOut';
 					break;
 				case 'ICPL':
@@ -9162,7 +9176,7 @@ function processCricketProcedures(whatToProcess) {
 			break;
 		case 'POPULATE-POWERPLAY':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'MAHARAJA_T20': case 'ACC': case 'ICPL': case 'LCT':
+				case 'MAHARAJA_T20': case 'ACC': case 'ICPL': case 'LCT': case 'AFGHANISTAN_T20':
 					valueToProcess = $('#selectpowerplay option:selected').val();
 					break;
 			}
@@ -9275,7 +9289,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/ACC/LtPlayerStats' + ',' + document.getElementById('which_keypress').value + ',' + 'Batsman' + ',' +
 						$('#selectPlayers option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtPlayerStats' + ',' + document.getElementById('which_keypress').value + ',' + 'Batsman' + ',' +
 						$('#selectPlayers option:selected').val();
 					break;
@@ -9395,7 +9409,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/ACC/Lt_BowlerBowlingDetails' + ',' + document.getElementById('which_keypress').value + ',' + 'Bowler' + ',' +
 						$('#selectPlayers option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Lt_BowlerBowlingDetails' + ',' + document.getElementById('which_keypress').value + ',' + 'Bowler' + ',' +
 						$('#selectPlayers option:selected').val();
 					break;
@@ -9426,7 +9440,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ARUNACHAL':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Cric2022/Scenes/Playing_XI_Both.sum';
 					break;	
-				case 'ACC': case 'MAHARAJA_T20': case 'ICPL': case 'LCT':
+				case 'ACC': case 'MAHARAJA_T20': case 'ICPL': case 'LCT': case 'AFGHANISTAN_T20':
 					valueToProcess = $('#squadScene').val() + ',' + $('#selectSquad option:selected').val();
 					break;
 			}
@@ -9439,7 +9453,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Lt_Pointers' + ',' + $('#selectPointers option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Lt_Pointers' + ',' + $('#selectPointers option:selected').val();
 					break;
 				case 'USPL':
@@ -9488,7 +9502,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/FF_PIC_Pointer' + ',' + $('#selectPointers option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/FF_PIC_Pointer' + ',' + $('#selectPointers option:selected').val();
 					break;
 			}
@@ -9505,7 +9519,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ASSAM': case 'ACC_NEPAL': case 'BUKHATIR': case 'THAILAND': case 'EVEREST_NEPAL_T20': case 'EVEREST_PUNJAB_T20':
 				case 'EVEREST_APL_T20': case 'GPCL': case 'APL': case 'PUNJAB_T20': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'DOAD_LLC':
 				case 'RPL': case 'ACC': case 'MAHARAJA_T20': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20': case 'PPL':  case 'EVEREST_PPL_T20':
-				case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':
+				case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 					valueToProcess = $('#bugdbScene').val() + ',' + $('#selectBugdb option:selected').val();
 					break;
 				case  "EVEREST_LEGENDS_90":
@@ -9671,7 +9685,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/LtNameSuper' + ',' + $('#selectNameSuper option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtNameSuper' + ',' + $('#selectNameSuper option:selected').val();
 					break;
 				case 'ICPL':
@@ -9696,7 +9710,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'PPL':
 					valueToProcess = '/Default/BCL/LT_NameSuper' + ',' + 'CAPTAIN' + ',' + $('#selectPlayer option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtNameSuper' + ',' + 'CAPTAIN' + ',' + $('#selectPlayer option:selected').val();
 					break;
 			}
@@ -9799,7 +9813,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/ACC/LtNameSuper' + ',' + $('#selectTeam option:selected').val() + ',' +
 						$('#selectCaptainWicketKeeper option:selected').val() + ',' + $('#selectPlayer option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					/*valueToProcess = '/Default/MaharajaT20_2024/LtNameSuper' + ',' + $('#selectTeam option:selected').val() + ',' + 
 						$('#selectCaptainWicketKeeper option:selected').val() + ',' + $('#selectPlayer option:selected').val() ;*/
 					valueToProcess = '/Default/MaharajaT20_2024/LtNameSuper' + ',' + 
@@ -9923,7 +9937,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/LeaderBoard' + ',' + $('#selectleaderboardType option:selected').val() + ',' + $('#selectTop5player option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LeaderBoard' + ',' + $('#selectleaderboardType option:selected').val() + ',' + $('#selectTop5player option:selected').val();
 					break;
 				case 'ICPL':
@@ -9963,7 +9977,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'EVEREST_KCL':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_KCL/Scenes/FF_Row_Col.sum' + ',' + $('#selectmoststatsType option:selected').val() + ',' + $('#selectType option:selected').val();
 					break;		
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LeaderBoard' + ',' + $('#selectmoststatsType option:selected').val() + ',' + $('#selectType option:selected').val() + ',' + $('#selectTop5player option:selected').val();
 					break;
 				case 'EVEREST_MPL_T20':
@@ -10001,7 +10015,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'EVEREST_KCL':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_KCL/Scenes/FF_Row_Col.sum' + ',' + $('#selectmoststatsType option:selected').val() + ',' + $('#selectType option:selected').val();
 					break;		
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LeaderBoard' + ',' + $('#selectmoststatsType option:selected').val() + ',' + $('#selectType option:selected').val();
 					break;
 				case 'KERALA_T20':
@@ -10046,7 +10060,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/FF_Row_Columm' + ',' + $('#selectffstatsType option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/FF_Row_Columm' + ',' + $('#selectffstatsType option:selected').val();
 					break;
 				case 'ICPL':
@@ -10128,7 +10142,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'PPL':
 					valueToProcess = '/Default/BCL/MiniBatting' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerName option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Mini_Batting' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerName option:selected').val();
 					break;
 			}
@@ -10229,7 +10243,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/ACC/PlayerProfile' + ',' + $('#selectPlayerName option:selected').val() + ',' + 'batsman' + ',' +
 						$('#selectProfile option:selected').val() + ',' + $('#selectTypeValue option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/PlayerProfile' + ',' + $('#selectPlayerName option:selected').val() + ',' + 'batsman' + ',' +
 						$('#selectProfile option:selected').val() + ',' + $('#selectTypeValue option:selected').val();
 					break;
@@ -10249,7 +10263,7 @@ function processCricketProcedures(whatToProcess) {
 			break;
 		case 'POPULATE-PHASE-COMPARISON':
 			switch ($('#selected_broadcaster').val().toUpperCase()){
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtPhaseScoreComparison'+ ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'KERALA_T20':
@@ -10268,7 +10282,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/LtPhaseScoreComparison';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Lt_PhaseScore' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'APL':
@@ -10354,7 +10368,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/ACC/PlayerProfile' + ',' + $('#selectPlayerName option:selected').val() + ',' + 'bowler' + ',' +
 						$('#selectProfile option:selected').val() + ',' + 'Value';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/PlayerProfile' + ',' + $('#selectPlayerName option:selected').val() + ',' + 'bowler' + ',' +
 						$('#selectProfile option:selected').val() + ',' + 'Value';
 					break;
@@ -10374,7 +10388,7 @@ function processCricketProcedures(whatToProcess) {
 			break;
 		case 'POPULATE-INFOBAR-LAST_X_BALLS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'APL': case 'MAHARAJA_T20':
+				case 'APL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = $('#lastxballs').val();
 					break;
 				case 'PPL':
@@ -10384,7 +10398,7 @@ function processCricketProcedures(whatToProcess) {
 			break;
 		case 'POPULATE-COMMENTATORS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'APL': case 'MAHARAJA_T20': case 'KERALA_T20':
+				case 'APL': case 'MAHARAJA_T20': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = $('#selectInfoBarComm1 option:selected').val() + ',' + $('#selectInfoBarComm2 option:selected').val() + ',' + $('#selectInfoBarComm3 option:selected').val();
 					break;
 				case 'PPL':
@@ -10397,7 +10411,7 @@ function processCricketProcedures(whatToProcess) {
 			break;
 		case 'POPULATE-INFOBAR-FREE_TEXT':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'APL': case 'MAHARAJA_T20':
+				case 'APL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = $('#selectFreeText').val();
 					break;
 				case 'PPL':
@@ -10408,7 +10422,7 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-INFOBAR-TOP':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'GPCL': case 'APL': case 'PUNJAB_T20': case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'ACC': case 'ICPL': case 'LCT': case 'MAHARAJA_T20':
-				case 'NEPAL_T20': case 'DOAD_LLC': case 'USPL': case 'PPL': case 'KERALA_T20':
+				case 'NEPAL_T20': case 'DOAD_LLC': case 'USPL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = $('#selectTopStat option:selected').val();
 					break;
 			}
@@ -10438,7 +10452,7 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-INFOBAR-RIGHT':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'GPCL': case 'APL': case 'PUNJAB_T20': case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'ACC': case 'MAHARAJA_T20':
-				case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'DOAD_LLC': case 'PPL': case 'KERALA_T20':
+				case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'DOAD_LLC': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = $('#selectRightStat option:selected').val();
 					break;
 			}
@@ -10453,7 +10467,7 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-INFOBAR-BOTTOMLEFT':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'ACC': case 'MAHARAJA_T20': case 'ASSAM': case 'THAILAND': case 'ICPL': case 'LCT': case 'ACC_NEPAL':
-				case 'ARUNACHAL':
+				case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 					valueToProcess = $('#selectBottomLeftStat option:selected').val();
 					break;
 			}
@@ -10525,7 +10539,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/ScoreBug' + ',' + $('#selectTopLeftStats option:selected').val() + ',' + $('#selectSection4 option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/ScoreBug' + ',' + $('#selectTopLeftStats option:selected').val() + ',' + $('#selectSection4 option:selected').val();
 					break;
 				case 'EVEREST_KCL':
@@ -10602,7 +10616,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/ScoreBug' + ',' + $('#selectIdent option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/ScoreBug' + ',' + $('#selectIdent option:selected').val();
 					break;
 				case 'ICPL':
@@ -10626,14 +10640,16 @@ function processCricketProcedures(whatToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND':
 				case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'KERALA_T20': case 'ARUNACHAL':
-				case 'RPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL':
+				case 'RPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': 
+				case 'AFGHANISTAN_T20':
 					valueToProcess = $('#selectBottomRightStat option:selected').val();
 					break;
 			}
 			break;
 		case 'POPULATE-INFOBAR_IDENT_DATA':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'PUNJAB_T20': case 'APL': case 'ACC': case 'MAHARAJA_T20': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
+				case 'PUNJAB_T20': case 'APL': case 'ACC': case 'MAHARAJA_T20': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20': 
+				case 'AFGHANISTAN_T20':
 					valueToProcess = $('#selectIdentData option:selected').val();
 					break;
 			}
@@ -10642,7 +10658,7 @@ function processCricketProcedures(whatToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND':
 				case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': 
-				case 'PUNJAB_T20': case 'RPL': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+				case 'PUNJAB_T20': case 'RPL': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 					valueToProcess = $('#selectdirector option:selected').val();
 					break;
 			}
@@ -10706,7 +10722,8 @@ function processCricketProcedures(whatToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND':
 				case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'KERALA_T20': case 'ARUNACHAL':
-				case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL':
+				case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': 
+				case 'AFGHANISTAN_T20':
 					valueToProcess = $('#selectPrompt option:selected').val();
 					break;
 			}
@@ -10824,7 +10841,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'DOAD_LLC': case 'KERALA_T20':
 					valueToProcess = '/Default/FieldPlotter_LLC';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/FieldPlotter';
 					break;	
 			}
@@ -10925,7 +10942,7 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-INFOBAR-BOTTOM':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'ACC': case 'MAHARAJA_T20': case 'ASSAM': case 'THAILAND': case 'ICPL': case 'LCT': case 'ACC_NEPAL':
-				case 'RSWS': case 'USPL': case 'ARUNACHAL':
+				case 'RSWS': case 'USPL': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 					valueToProcess = $('#selectBottomStat option:selected').val();
 					break;
 			}
@@ -10936,7 +10953,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Fixtures' + ',' + $('#selectFixtureGroup option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Fixtures' + ',' + $('#selectFixtureGroup option:selected').val();
 					break;
 			}
@@ -10946,7 +10963,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Squad' + ',' + $('#selectFixtureTeam option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Squad' + ',' + $('#selectFixtureTeam option:selected').val();
 					break;
 				case 'KERALA_T20':
@@ -10962,7 +10979,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/SingleTeamFixtures' + ',' + $('#selectFixtureTeam option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Fixtures' + ',' + $('#selectFixtureTeam option:selected').val();
 					break;
 			}
@@ -11138,7 +11155,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/MatchIdent';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/MatchIdent';
 					break;
 				case 'ICPL':
@@ -11206,7 +11223,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Lt_MatchID';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Lt_MatchID';
 					break;
 				case 'ICPL':
@@ -11246,7 +11263,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/TeamLineUp_Image' + ',' + $('#selectPlayingXI option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/TeamLineUp_Image' + ',' + $('#selectPlayingXI option:selected').val();
 					break;
 				case 'ICPL':
@@ -11324,7 +11341,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/TeamLineUp_Image' + ',' + $('#selectPlayingXI option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/TeamLineUp_Image' + ',' + $('#selectPlayingXI option:selected').val();
 					break;
 				case 'ICPL':
@@ -11395,7 +11412,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Lt_Target';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Lt_Target';
 					break;
 				case 'ICPL':
@@ -11432,7 +11449,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Bug_Target';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Bug_Target';
 					break;
 				case 'ICPL':
@@ -11531,7 +11548,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Lt_ProjectedScore';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Lt_ProjectedScore';
 					break;
 				case 'ICPL':
@@ -11592,7 +11609,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Lt_ProjectedScore';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Lt_ProjectedScore';
 					break;
 				case 'ICPL':
@@ -11653,7 +11670,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Lt_BatingSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Lt_BatingSummary' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'ICPL':
@@ -11715,7 +11732,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Lt_BatingSummary' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerData option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Lt_BatingSummary' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerData option:selected').val();
 					break;
 				case 'ICPL':
@@ -11732,7 +11749,7 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-L3-BOWLERSUMMARY':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
-				case 'APL': case 'PUNJAB_T20': case 'RPL': case 'PPL': case 'ARUNACHAL':
+				case 'APL': case 'PUNJAB_T20': case 'RPL': case 'PPL': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 					valueToProcess = $('#playersummaryScene').val() + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerData option:selected').val();
 					break;
 			}
@@ -11819,7 +11836,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/ACC/Lt_BatingSummary' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerData option:selected').val();
 					//alert(valueToProcess);
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Lt_BatingSummary' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectPlayerData option:selected').val();
 					//alert(valueToProcess);
 					break;
@@ -12553,7 +12570,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/ACC/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3Profile option:selected').val() + ',' +
 						$('#selectTypeValue option:selected').val() + ',' + 'Batsman';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + 'Batsman' + ',' +
 						$('#selectl3Profile option:selected').val() + ',' + $('#selectTypeValue option:selected').val() + ',' + document.getElementById('which_keypress').value;
 					break;
@@ -12673,7 +12690,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/ACC/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3Profile option:selected').val() + ',' +
 						'Value' + ',' + 'Bowler';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + 'bowler' + ',' +
 						$('#selectl3Profile option:selected').val() + ',' + 'Value' + ',' + document.getElementById('which_keypress').value;
 
@@ -12736,7 +12753,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'PPL':
 					valueToProcess = '/Default/BCL/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + 'Bowler' + ',' + $('#selectl3TypeOfProfile option:selected').val();
 					break;
 				case 'MPL':
@@ -12799,7 +12816,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtPlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + 'Batsman' + ',' + $('#selectl3TypeOfProfile option:selected').val();
 					break;
 				case 'ICPL':
@@ -12821,7 +12838,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'USPL':
 					valueToProcess = '/Default/FullFrames' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + 'Bowler';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/PlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + 'Bowler' + ',' + $('#selectl3TypeOfProfile option:selected').val();
 					break;
 				case 'EVEREST_MPL_T20':
@@ -12924,7 +12941,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/PlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + $('#selectl3TypeOfProfile option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/PlayerProfile' + ',' + $('#selectl3PlayerName option:selected').val() + ',' + 'Batsman' + ',' + $('#selectl3TypeOfProfile option:selected').val();
 					break;
 				case 'ICPL':
@@ -13004,7 +13021,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/MatchIdent' + ',' + $('#selectMatchPromo option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/MatchIdent' + ',' + $('#selectMatchPromo option:selected').val();
 					break;
 				case 'ICPL':
@@ -13062,7 +13079,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Lt_MatchID' + ',' + $('#selectMatchPromo option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Lt_MatchID' + ',' + $('#selectMatchPromo option:selected').val();
 					break;
 				case 'ICPL':
@@ -13120,7 +13137,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/LtFOW' + ',' + document.getElementById('which_keypress').value;
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtFOW' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'ICPL':
@@ -13181,7 +13198,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Lt_30_50_Splits' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectSplitValue option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Lt_30_50_Splits' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectSplitValue option:selected').val();
 					break;
 				case 'ICPL':
@@ -13270,7 +13287,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/ACC/TeamLineup_Both';
 					//alert(valueToProcess);
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/DoubleTeamLineUp';
 					//alert(valueToProcess);
 					break;
@@ -13329,7 +13346,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/LtComparison';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtComparison';
 					break;
 				case 'ICPL':
@@ -13349,7 +13366,7 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-L3-NEXT_TO_BAT':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'THAILAND': case 'ICPL': case 'LCT':
-				case 'FAIR_BREAK': case 'MPL': case 'APL': case 'PUNJAB_T20': case 'PPL': case 'ARUNACHAL':
+				case 'FAIR_BREAK': case 'MPL': case 'APL': case 'PUNJAB_T20': case 'PPL': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 					valueToProcess = $('#nexttobatScene').val();
 					break;
 			}
@@ -13373,7 +13390,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/Punjab_Cup_2023/Milestone' + ',' + document.getElementById('which_keypress').value + ',' + 'Bowler' +
 						',' + $('#selectlandmarkPlayers option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Landmark' + ',' + document.getElementById('which_keypress').value + ',' + 'Bowler' +
 						',' + $('#selectlandmarkPlayers option:selected').val();
 					break;
@@ -13398,7 +13415,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/Punjab_Cup_2023/Milestone' + ',' + document.getElementById('which_keypress').value + ',' + 'Batsman' +
 						',' + $('#selectlandmarkPlayers option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Landmark' + ',' + document.getElementById('which_keypress').value + ',' + 'Batsman' +
 						',' + $('#selectlandmarkPlayers option:selected').val();
 					break;
@@ -13407,7 +13424,7 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-FF-POSITION_LANDMARK':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'THAILAND': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
-				case 'APL': case 'PUNJAB_T20': case 'PPL': case 'ARUNACHAL':
+				case 'APL': case 'PUNJAB_T20': case 'PPL': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 					valueToProcess = $('#positionlandmarkScene').val() + ',' + $('#selectPositionLandmarkInning option:selected').val() + ',' + $('#selectpositionlandmark option:selected').val();
 					break;
 				case 'FAIR_BREAK_AR':
@@ -13464,7 +13481,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/LtTimeSince';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtTimeSince';
 					break;
 				case 'ICPL':
@@ -13481,7 +13498,7 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-L3-BATSMAN_THIS_MATCH':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'DOAD-VIZ-MULTI': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL':
-				case 'LCT': case 'APL': case 'PUNJAB_T20': case 'FAIR_BREAK': case 'MPL': case 'PPL': case 'ARUNACHAL':
+				case 'LCT': case 'APL': case 'PUNJAB_T20': case 'FAIR_BREAK': case 'MPL': case 'PPL': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 					valueToProcess = $('#batsmanthismatchScene').val() + ',' + $('#selectPositionLandmarkInning option:selected').val() + ',' +
 						$('#selectpositionlandmark option:selected').val();
 					break;
@@ -13490,7 +13507,7 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-L3-BOWLER_THIS_MATCH':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'LCT':
-				case 'FAIR_BREAK': case 'MPL': case 'APL': case 'PUNJAB_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+				case 'FAIR_BREAK': case 'MPL': case 'APL': case 'PUNJAB_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 					valueToProcess = $('#bowlerthismatchScene').val() + ',' + $('#selectbowlerthismatchInning option:selected').val() + ',' + $('#selectbowlerthismatch option:selected').val();
 					break;
 			}
@@ -13536,7 +13553,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'PPL':
 					valueToProcess = '/Default/BCL/Playoffs';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Playoffs';
 					break;
 			}
@@ -13595,7 +13612,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/BatBallSummary';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/BatBallSummary';
 					break;
 				case 'ICPL':
@@ -13661,7 +13678,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/PointsTable_Mini' + ',' + $('#selectPointsGroup option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/PointsTable_Mini';
 					break;
 				case 'ICPL':
@@ -13757,7 +13774,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/FF_Row_Columm';
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/FF_Row_Columm';
 					break;
 				case 'ICPL':
@@ -13828,7 +13845,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/LtTimeSince' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectbowler option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtTimeSince' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectbowler option:selected').val();
 					break;
 				case 'ICPL':
@@ -13901,7 +13918,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/LtTimeSince' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectpositionlandmark option:selected').val();
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/LtTimeSince' + ',' + document.getElementById('which_keypress').value + ',' + $('#selectpositionlandmark option:selected').val();
 					break;
 				case 'ICPL':
@@ -13962,7 +13979,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Manhattan_50' + ',' + document.getElementById('which_keypress').value;
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Manhattan' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'ICPL':
@@ -14016,7 +14033,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/BarComparison' + ',' + document.getElementById('which_keypress').value;
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/BarComparison' + ',' + document.getElementById('which_keypress').value;
 					break;
 			}
@@ -14086,7 +14103,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ACC':
 					valueToProcess = '/Default/ACC/Worm' + ',' + document.getElementById('which_keypress').value;
 					break;
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					valueToProcess = '/Default/MaharajaT20_2024/Worm' + ',' + document.getElementById('which_keypress').value;
 					break;
 				case 'ICPL':
@@ -16426,7 +16443,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 		case 'POPULATE-PLAYERS':
 
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'MAHARAJA_T20':
+				case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 					$('#selectPlayers').empty();
 						session_match.match.inning.forEach(function(inn, index, arr) {
 							if (inn.inningNumber == document.getElementById('which_keypress').value) {
@@ -17108,7 +17125,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						} else {
 							document.getElementById('bugdbScene').value = '/Default/ACC/Bugs_DoubleLine';
 						}
-					} else if ($('#selected_broadcaster').val().toUpperCase() == 'MAHARAJA_T20') {
+					} else if ($('#selected_broadcaster').val().toUpperCase() == 'MAHARAJA_T20' || 
+								$('#selected_broadcaster').val().toUpperCase() == 'AFGHANISTAN_T20') {
 						if (bug.text2 == '') {
 							document.getElementById('bugdbScene').value = '/Default/MaharajaT20_2024/Bugs';
 						} else {
@@ -21003,7 +21021,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'EVEREST_NEPAL_T20': case 'DOAD_LLC': case 'APL': case 'PUNJAB_T20': case 'EVEREST_PUNJAB_T20': case 'ACC': case 'MAHARAJA_T20':
-				case 'EVEREST_APL_T20': case 'FAIR_BREAK': case 'MPL': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20': 
+				case 'EVEREST_APL_T20': case 'FAIR_BREAK': case 'MPL': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20': case 'AFGHANISTAN_T20':
 				case 'PPL': case 'EVEREST_PPL_T20': case 'KERALA_T20': case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case "EVEREST_LEGENDS_90": case "SPL":
 					$('#select_graphic_options_div').empty();
 					//alert('Hello1');
@@ -21089,6 +21107,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 								case 'EVEREST_NEPAL_T20': case "EVEREST_LEGENDS_90": case "SPL":case 'DOAD_LLC': case 'APL': case 'ACC': case 'MAHARAJA_T20':
 								case 'PUNJAB_T20': case 'EVEREST_PUNJAB_T20': case 'EVEREST_APL_T20': case 'FAIR_BREAK': case 'MPL': case 'EVEREST_MPL_T20':
 								case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20': case 'KERALA_T20': case 'EVEREST_KCL_T20': case 'EVEREST_KCL': 
+								case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.id = 'selectpartnership';
 									select.name = select.id;
@@ -21155,8 +21174,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'DOAD-VIZ-MULTI': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL':
-				case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
-				 case 'ARUNACHAL':
+				case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20': 
+				 case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -21188,7 +21207,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 									break;
 								case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'DOAD-VIZ-MULTI': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
-								case 'APL': case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
+								case 'APL': case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectPlayers';
@@ -21434,7 +21453,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'DOAD-VIZ-MULTI': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL':
 				case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
-				 case 'ARUNACHAL':
+				 case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -21467,7 +21486,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									break;
 
 								case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'DOAD-VIZ-MULTI': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
-								case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
+								case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectPlayers';
@@ -21649,7 +21668,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 
 				case 'NEPAL_T20': case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'PUNJAB_T20': case 'APL': case 'ACC': case 'MAHARAJA_T20': 
-				case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
+				case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 
 					$('#select_graphic_options_div').empty();
 
@@ -21692,7 +21711,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 					switch (whatToProcess) {
 						case 'INNING_BUILDER-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'NEPAL_T20': case 'ACC': case 'MAHARAJA_T20':
+								case 'NEPAL_T20': case 'ACC': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectPlayerData';
@@ -21896,7 +21915,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'DOAD-VIZ-MULTI': case 'ASSAM': case "EVEREST_LEGENDS_90": case "SPL":case 'EVEREST_NEPAL_T20': case 'THAILAND': case 'DOAD_LLC':
 				case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'EVEREST_PUNJAB_T20': case 'MAHARAJA_T20': case 'EVEREST_APL_T20':
 				case 'RPL': case 'RSWS': case 'USPL': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20': case 'KERALA_T20': case 'EVEREST_KCL_T20':
-				case 'EVEREST_KCL':  case 'ARUNACHAL':
+				case 'EVEREST_KCL':  case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 				 
 					$('#select_graphic_options_div').empty();
 
@@ -21918,7 +21937,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						case 'BALL_GRIFF-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'DOAD_EVEREST': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
-								case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'USPL': case 'PPL': case 'KERALA_T20':
+								case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'USPL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectStatsType';
@@ -21947,7 +21966,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						case 'BAT_GRIFF-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'DOAD_EVEREST': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
-								case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'USPL': case 'PPL': case 'KERALA_T20':
+								case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'USPL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectStatsType';
@@ -21979,7 +21998,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 								case 'DOAD_LLC': case 'KERALA_T20': case 'ARUNACHAL':case "EVEREST_LEGENDS_90": case "SPL":
 								case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'EVEREST_PUNJAB_T20': case 'MAHARAJA_T20':
 								case 'EVEREST_APL_T20': case 'RPL': case 'RSWS': case 'USPL': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20':
-								case 'EVEREST_KCL_T20': case 'EVEREST_KCL': 
+								case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectStatsType';
@@ -22010,7 +22029,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 								case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'DOAD-VIZ-MULTI': case 'ASSAM': case 'EVEREST_NEPAL_T20': case 'THAILAND':
 								case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'EVEREST_PUNJAB_T20':
 								case 'MAHARAJA_T20': case 'EVEREST_APL_T20': case 'RPL': case 'RSWS': case 'USPL': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20': case 'PPL':
-								 case 'EVEREST_PPL_T20': case 'KERALA_T20': case 'EVEREST_KCL_T20': case 'EVEREST_KCL':  case 'ARUNACHAL':case "EVEREST_LEGENDS_90": case "SPL":
+								 case 'EVEREST_PPL_T20': case 'KERALA_T20': case 'EVEREST_KCL_T20': case 'EVEREST_KCL':  case 'ARUNACHAL':case "EVEREST_LEGENDS_90": case "SPL": 
+								 case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectStatsType';
@@ -22061,7 +22081,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									break;
 
 								case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20':
-								case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
+								case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.id = 'selectSplitValue';
 									select.name = select.id;
@@ -22263,7 +22283,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'EVEREST_NEPAL_T20': case 'THAILAND': case 'DOAD_LLC': case 'ICPL':
 				case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'EVEREST_PUNJAB_T20': case 'MAHARAJA_T20': case 'EVEREST_APL_T20':
 				case 'RPL': case 'RSWS': case 'USPL': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20': case 'KERALA_T20': case 'EVEREST_KCL_T20':
-				case 'EVEREST_KCL':  case 'ARUNACHAL':case "EVEREST_LEGENDS_90": case "SPL":
+				case 'EVEREST_KCL':  case 'ARUNACHAL':case "EVEREST_LEGENDS_90": case "SPL": case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -22286,7 +22306,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 								case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'EVEREST_NEPAL_T20': case 'THAILAND': case 'DOAD_LLC': case 'ICPL':
 								case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'EVEREST_PUNJAB_T20': case 'MAHARAJA_T20': case 'EVEREST_APL_T20':
 								case 'RPL': case 'RSWS': case 'USPL': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20': case 'KERALA_T20': case 'EVEREST_KCL_T20':
-								case 'EVEREST_KCL':  case 'ARUNACHAL':case "EVEREST_LEGENDS_90": case "SPL":
+								case 'EVEREST_KCL':  case 'ARUNACHAL':case "EVEREST_LEGENDS_90": case "SPL": case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.id = 'selectStatType';
 									select.name = select.id;
@@ -22336,7 +22356,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'KERALA_T20':
 								case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL':
-								case 'ARUNACHAL':
+								case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 									
 									select = document.createElement('select');
 									select.style = 'width:100px';
@@ -22364,7 +22384,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'KERALA_T20':
 								case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL':
-								case 'ARUNACHAL':
+								case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.id = 'selectStatType';
 									select.name = select.id;
@@ -22439,7 +22459,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'KERALA_T20':
 								case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL':
-								 case 'ARUNACHAL':
+								 case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.id = 'selectStatType';
 									select.name = select.id;
@@ -22559,7 +22579,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
 				case 'FAIR_BREAK_AR': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'KERALA_T20':
-				case 'ICC_BIG_SCREEN': case 'PPL': case 'ARUNACHAL': case 'ICC_BIGSCREEN_DOAD_SCORING':case 'EVEREST_LEGENDS_90': case 'EVEREST_MPL_T20':
+				case 'ICC_BIG_SCREEN': case 'PPL': case 'ARUNACHAL': case 'ICC_BIGSCREEN_DOAD_SCORING':case 'EVEREST_LEGENDS_90': case 'EVEREST_MPL_T20': case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -22580,7 +22600,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							//alert('hi');
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'RSWS':
-								case 'USPL': case 'KERALA_T20':
+								case 'USPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 									//alert('DOAD_LLC');
 									select = document.createElement('select');
 									select.id = 'selectpowerplay';
@@ -22641,7 +22661,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							break;
 						case 'IDENT_HEAD_DATA-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'ACC': case 'MAHARAJA_T20': case 'RSWS': case 'USPL': case 'KERALA_T20':
+								case 'ACC': case 'MAHARAJA_T20': case 'RSWS': case 'USPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 									session_match.match.inning.forEach(function(inn, index, arr) {
 										if (inn.isCurrentInning == 'YES') {
 											if (inn.inningNumber == 1) {
@@ -22904,7 +22924,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									row.insertCell(cellCount).appendChild(select);
 									cellCount = cellCount + 1;
 									break;
-								case 'ACC': case 'MAHARAJA_T20': case 'ICPL': case 'LCT':
+								case 'ACC': case 'MAHARAJA_T20': case 'ICPL': case 'LCT': case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.id = 'selectdirector';
 									select.name = select.id;
@@ -22947,7 +22967,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						case 'MATCH-PROMO_ANIMATION-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'FAIR_BREAK_AR':
-								case 'APL': case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
+								case 'APL': case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectMatchPromo';
@@ -22986,7 +23006,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									cellCount = cellCount + 1;
 									break;
 								case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'FAIR_BREAK_AR':
-								case 'APL': case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
+								case 'APL': case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectMatchPromo';
@@ -23008,7 +23028,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						case 'LTMATCH-PROMO-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'APL':
-								case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':case 'EVEREST_LEGENDS_90': case 'EVEREST_MPL_T20':
+								case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':case 'EVEREST_LEGENDS_90': case 'EVEREST_MPL_T20': 
+								case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectMatchPromo';
@@ -23069,7 +23090,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 									document.getElementById('select_graphic_options_div').style.display = '';
 									break;
-								case 'ACC': case 'MAHARAJA_T20': case 'ICPL': case 'LCT':
+								case 'ACC': case 'MAHARAJA_T20': case 'ICPL': case 'LCT': case 'AFGHANISTAN_T20':
 									option.name = 'populate_powerplay_btn';
 									option.value = 'Populate PowerPlay';
 									option.id = option.name;
@@ -24855,7 +24876,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 				case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'EVEREST_PUNJAB_T20': case 'MAHARAJA_T20': case 'EVEREST_APL_T20':
 				case 'RPL': case 'RSWS': case 'USPL': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20': case 'ICC_BIG_SCREEN': case 'PPL': case 'EVEREST_PPL_T20': case 'RSWS':
 				case 'EVEREST_KCL_T20': case 'EVEREST_KCL':  case 'ARUNACHAL': case 'ICC_BIGSCREEN_DOAD_SCORING':case "EVEREST_LEGENDS_90": case "SPL": case 'EVEREST_MPL_T20':
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'EVEREST_AR_VR':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'EVEREST_AR_VR': case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -26056,7 +26077,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						case 'MOST_LEADERBOARD-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'EVEREST_NEPAL_T20': case 'EVEREST_PUNJAB_T20': case 'EVEREST_APL_T20': case 'MAHARAJA_T20':
-								 case 'EVEREST_PPL_T20': case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case "EVEREST_LEGENDS_90": case "SPL":
+								 case 'EVEREST_PPL_T20': case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case "EVEREST_LEGENDS_90": case "SPL": 
+								 case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.style = 'width:130px';
@@ -26202,7 +26224,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'EVEREST_NEPAL_T20': case 'EVEREST_PUNJAB_T20': case 'EVEREST_APL_T20': case 'MAHARAJA_T20': case 'EVEREST_MPL_T20':
 								case 'EVEREST_BENGAL_T20': case 'EVEREST_PPL_T20': case 'EVEREST_KCL_T20': case 'KERALA_T20': case 'EVEREST_KCL': case 'APL':
-								case "EVEREST_LEGENDS_90": case "SPL":
+								case "EVEREST_LEGENDS_90": case "SPL": case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.style = 'width:130px';
 									select.id = 'selectmoststatsType';
@@ -26281,7 +26303,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						case 'FF_STATS-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'ICPL': case 'LCT': case 'APL': case 'PUNJAB_T20': case 'DOAD_LLC': case 'PPL':
-								 case 'KERALA_T20':
+								 case 'KERALA_T20': case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectffstatsType';
@@ -26447,7 +26469,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 								case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'BUKHATIR': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'FAIR_BREAK': case 'MPL':
 								case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'EVEREST_PUNJAB_T20': case 'EVEREST_APL_T20': case 'RPL':
 								case 'RSWS': case 'USPL': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20': case 'KERALA_T20':
-								case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':case "EVEREST_LEGENDS_90": case "SPL":
+								case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':case "EVEREST_LEGENDS_90": case "SPL": case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectleaderboardType';
@@ -26634,7 +26656,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									row.insertCell(cellCount).appendChild(select);
 									cellCount = cellCount + 1;
 									break;
-								case 'FAIR_BREAK': case 'MPL': case 'ACC': case 'MAHARAJA_T20': case 'RPL':
+								case 'FAIR_BREAK': case 'MPL': case 'ACC': case 'MAHARAJA_T20': case 'RPL': case 'AFGHANISTAN_T20':
 								case 'KERALA_T20':
 									select = document.createElement('select');
 									select.id = 'selectTieID';
@@ -26707,7 +26729,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									cellCount = cellCount + 1;
 									break;
 								case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'APL':
-								case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
+								case 'PUNJAB_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectTeam1';
@@ -26813,7 +26835,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 								case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'EVEREST_NEPAL_T20': case 'THAILAND': case 'DOAD_LLC': case 'KERALA_T20':
 								case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'EVEREST_PUNJAB_T20': case 'MAHARAJA_T20':
 								case 'EVEREST_APL_T20': case 'RPL': case 'RSWS': case 'USPL': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20':
-								case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':case "EVEREST_LEGENDS_90": case "SPL":
+								case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':case "EVEREST_LEGENDS_90": case "SPL": case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.style = 'width:130px';
 									select.id = 'selectNameSuper';
@@ -26874,7 +26896,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							break;
 						case 'LINE_UP-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'NEPAL_T20': case 'DOAD_LLC': case 'MAHARAJA_T20': case 'KERALA_T20':
+								case 'NEPAL_T20': case 'DOAD_LLC': case 'MAHARAJA_T20': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.id = 'selectTeam';
 									select.name = select.id;
@@ -26943,7 +26965,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 						case 'IMPACT_PLAYER-OPTIONS':
 							switch($('#selected_broadcaster').val().toUpperCase()){
-								case 'MAHARAJA_T20': case 'DOAD_LLC': case 'KERALA_T20':
+								case 'MAHARAJA_T20': case 'DOAD_LLC': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.id = 'selectTeamImpact';
 									select.name = select.id;
@@ -27103,7 +27125,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 								case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'EVEREST_NEPAL_T20': case 'THAILAND': case 'ICPL':
 								case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'EVEREST_PUNJAB_T20': case 'MAHARAJA_T20':
 								case 'EVEREST_APL_T20': case 'RPL': case 'RSWS': case 'USPL': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20': case 'PPL':
-								case 'EVEREST_PPL_T20': case 'EVEREST_KCL_T20': case 'KERALA_T20': case 'EVEREST_KCL': case 'ARUNACHAL':
+								case 'EVEREST_PPL_T20': case 'EVEREST_KCL_T20': case 'KERALA_T20': case 'EVEREST_KCL': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 								case "EVEREST_LEGENDS_90": case "SPL":
 									/*if ($('#selected_broadcaster').val().toUpperCase() != 'EVEREST_MPL_T20') {
 										select = document.createElement('select');
@@ -27296,7 +27318,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							break;
 						case 'CAPTAIN-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'APL': case 'PPL': case 'MAHARAJA_T20':
+								case 'APL': case 'PPL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.style = 'width:100px';
 									select.id = 'selectPlayer';
@@ -27589,7 +27611,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									}
 									break;
 
-								case 'MAHARAJA_T20': case 'PPL': case 'RSWS': case 'KERALA_T20': case 'ACC_NEPAL': case 'MPL': case 'ARUNACHAL':
+								case 'MAHARAJA_T20': case 'PPL': case 'RSWS': case 'KERALA_T20': case 'ACC_NEPAL': case 'MPL': case 'ARUNACHAL': 
+								case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.style.width = '100px';
@@ -27656,7 +27679,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							break;
 						case 'BATSMAN_VS_ALLBOWLERS-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'APL': case 'MAHARAJA_T20': case 'PPL':
+								case 'APL': case 'MAHARAJA_T20': case 'PPL': case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.id = 'selectPlayerName';
 									select.name = select.id;
@@ -27797,7 +27820,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
                         
                          case 'DOUBLEEPLAYERPROFILEEVEREST-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'ACC': case 'MAHARAJA_T20':  case 'EVEREST_AR_VR':
+								case 'ACC': case 'MAHARAJA_T20':  case 'EVEREST_AR_VR': case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.id = 'selectPlayerName1';
 									select.name = select.id;
@@ -28383,7 +28406,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							break;
 						case 'PLAYERPROFILEEVEREST-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'ACC': case 'MAHARAJA_T20':  case 'EVEREST_AR_VR':
+								case 'ACC': case 'MAHARAJA_T20':  case 'EVEREST_AR_VR': case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.id = 'selectPlayerName';
 									select.name = select.id;
@@ -28917,7 +28940,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							
 						case 'PLAYERPROFILEBALL-OPTIONS': case 'PLAYERPROFILEEVERESTBALL-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'ACC': case 'MAHARAJA_T20': case 'EVEREST_AR_VR':
+								case 'ACC': case 'MAHARAJA_T20': case 'EVEREST_AR_VR': case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectPlayerName';
@@ -29518,7 +29541,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									cellCount = cellCount + 1;
 
 									break;
-								case 'PUNJAB_T20': case 'APL': case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20': case 'DOAD_LLC':
+								case 'PUNJAB_T20': case 'APL': case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20': case 'DOAD_LLC': 
+								case 'AFGHANISTAN_T20':
 									switch (whatToProcess) {
 										case 'FF_THISSERIES-STATS-OPTIONS':
 											select = document.createElement('select');
@@ -29665,6 +29689,22 @@ function addItemsToList(whatToProcess, dataToProcess) {
 											option.text = '	Maharaja Season 2';
 											select.appendChild(option);
 											break;
+										case 'AFGHANISTAN_T20':
+											option = document.createElement('option');
+											option.value = 'afghanistancareer';
+											option.text = 'afghanistan Career';
+											select.appendChild(option);
+
+											option = document.createElement('option');
+											option.value = 'afghanistanseason1';
+											option.text = 'afghanistan Season 1';
+											select.appendChild(option);
+
+											option = document.createElement('option');
+											option.value = 'afghanistanseason2';
+											option.text = 'afghanistan Season 2';
+											select.appendChild(option);
+											break;
 										case 'PUNJAB_T20':
 											option = document.createElement('option');
 											option.value = 'pt20Career';
@@ -29805,7 +29845,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'KERALA_T20':
 								case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'USPL': case 'PPL':
-								case 'ARUNACHAL':	
+								case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 									switch (whatToProcess) {
 										case 'THISSERIES-STATS-OPTIONS':
 											select = document.createElement('select');
@@ -29941,6 +29981,34 @@ function addItemsToList(whatToProcess, dataToProcess) {
 											option = document.createElement('option');
 											option.value = 'career';
 											option.text = 'LLC Career';
+											select.appendChild(option);
+
+											row.insertCell(cellCount).appendChild(select);
+											cellCount = cellCount + 1;
+											break;
+										case 'AFGHANISTAN_T20':
+											select = document.createElement('select');
+											select.id = 'selectl3TypeOfProfile';
+											select.name = select.id;
+											
+											option = document.createElement('option');
+											option.value = 'afghanistancareer';
+											option.text = 'afghanistan Career';
+											select.appendChild(option);
+
+											option = document.createElement('option');
+											option.value = 'afghanistanseason1';
+											option.text = '	afghanistan Season 1';
+											select.appendChild(option);
+
+											option = document.createElement('option');
+											option.value = 'afghanistanseason2';
+											option.text = 'afghanistan Season 2';
+											select.appendChild(option);
+
+											option = document.createElement('option');
+											option.value = 'ThisSeries';
+											option.text = 'This Series';
 											select.appendChild(option);
 
 											row.insertCell(cellCount).appendChild(select);
@@ -30145,7 +30213,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									row.insertCell(cellCount).appendChild(select);
 									cellCount = cellCount + 1
 									break;
-								case 'ACC': case 'MAHARAJA_T20':
+								case 'ACC': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectl3PlayerName';
@@ -30224,6 +30292,11 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									option = document.createElement('option');
 									option.value = 'MAHARAJA_T20_ALL';
 									option.text = 'MahaRaja T20 All Season';
+									select.appendChild(option);
+									
+									option = document.createElement('option');
+									option.value = 'AFGHANISTAN_T20_ALL';
+									option.text = 'Afghanistan T20 All Season';
 									select.appendChild(option);
 
 									option = document.createElement('option');
@@ -30577,7 +30650,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 
 								case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'LCT': 
-								case 'MAHARAJA_T20': case 'PUNJAB_T20': case 'RSWS': case 'ARUNACHAL':
+								case 'MAHARAJA_T20': case 'PUNJAB_T20': case 'RSWS': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectl3PlayerName';
@@ -31120,7 +31193,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									row.insertCell(cellCount).appendChild(select);
 									cellCount = cellCount + 1
 									break;
-								case 'ACC': case 'MAHARAJA_T20':
+								case 'ACC': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectl3PlayerName';
@@ -31665,7 +31738,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						case 'LT_POINTERS-OPTIONS': case 'FF_POINTERS-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'ACC': case 'MAHARAJA_T20': case 'USPL': case 'PUNJAB_T20': case 'APL': case 'PPL': case 'MPL':
-								case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'KERALA_T20': case 'EVEREST_MPL_T20':
+								case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'KERALA_T20': case 'EVEREST_MPL_T20': case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.style = 'width:130px';
 									select.id = 'selectPointers';
@@ -31710,7 +31783,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 								case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'EVEREST_NEPAL_T20': case 'THAILAND': case 'DOAD_LLC': case 'KERALA_T20':
 								case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'EVEREST_PUNJAB_T20': case 'MAHARAJA_T20':
 								case 'EVEREST_APL_T20': case 'RPL': case 'USPL': case 'RSWS': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20': case 'PPL': case 'EVEREST_PPL_T20':
-								case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':case "EVEREST_LEGENDS_90": case "SPL":
+								case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'ARUNACHAL':case "EVEREST_LEGENDS_90": case "SPL": case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.style = 'width:130px';
 									select.id = 'selectBugdb';
@@ -31732,7 +31805,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 												case 'BUKHATIR': case 'ASSAM': case 'THAILAND': case 'ACC_NEPAL': case 'ARUNACHAL': case "EVEREST_LEGENDS_90":
 												case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'EVEREST_NEPAL_T20': case 'ICPL': case 'LCT': case 'APL': case 'PUNJAB_T20':
 												case 'EVEREST_PUNJAB_T20': case 'MAHARAJA_T20': case 'EVEREST_APL_T20': case 'USPL': case 'EVEREST_MPL_T20': case 'PPL':
-												case 'EVEREST_BENGAL_T20': case 'EVEREST_PPL_T20': case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'DOAD_LLC':
+												case 'EVEREST_BENGAL_T20': case 'EVEREST_PPL_T20': case 'EVEREST_KCL_T20': case 'EVEREST_KCL': case 'DOAD_LLC': 
+												case 'AFGHANISTAN_T20':
 													select.setAttribute('onchange', "processUserSelection(this)");
 
 													select = document.createElement('input');
@@ -32488,7 +32562,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 		case 'INFOBAR-RIGHT-OPTIONS': case 'LASTXOVERS-OPTIONS': case 'INFOBAR-MIDDLE-OPTIONS': case 'TICKER_BOWLERSTATS-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'APL': case 'PUNJAB_T20': case 'ACC': case 'NEPAL_T20': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK':
-				case 'MPL': case 'GPCL': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
+				case 'MPL': case 'GPCL': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20': 
+				case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -33259,7 +33334,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 										}
 									});
 									break;
-								case 'ACC': case 'ICPL': case 'LCT': case 'MAHARAJA_T20':
+								case 'ACC': case 'ICPL': case 'LCT': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 									session_match.match.inning.forEach(function(inn, index, arr) {
 										if (inn.isCurrentInning == 'YES') {
 											if (inn.inningNumber == 1) {
@@ -33509,7 +33584,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'GPCL': case 'ACC': case 'BUKHATIR': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': 
 				case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
-				case 'ARUNACHAL':	
+				case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -33772,7 +33847,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									});
 									break;
 								case 'GPCL': case 'ACC': case 'BUKHATIR': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'ICPL': case 'LCT':
-								case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'PPL': case 'ARUNACHAL':
+								case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'PPL': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 									session_match.match.inning.forEach(function(inn, index, arr) {
 										if (inn.isCurrentInning == 'YES') {
 											if (inn.inningNumber == 1) {
@@ -34041,7 +34116,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'ICPL': case 'LCT':
-				case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'PPL': case 'ARUNACHAL':
+				case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'PPL': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 
 					$('#select_graphic_options_div').empty();
 
@@ -34142,7 +34217,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									});
 									break;
 
-								case 'ACC': case 'ICPL': case 'LCT': case 'MAHARAJA_T20':
+								case 'ACC': case 'ICPL': case 'LCT': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 									session_match.match.inning.forEach(function(inn, index, arr) {
 										if (inn.isCurrentInning == 'YES') {
 											if (inn.inningNumber == 1) {
@@ -34533,7 +34608,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'LCT': 
 				case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': 
-				case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+				case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -35099,7 +35174,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									});
 									break;
 
-								case 'ACC': case 'ICPL': case 'LCT': case 'MAHARAJA_T20':
+								case 'ACC': case 'ICPL': case 'LCT': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 									session_match.match.inning.forEach(function(inn, index, arr) {
 										if (inn.isCurrentInning == 'YES') {
 
@@ -36467,7 +36542,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 					break;
 
-				case 'ACC': case 'ICPL': case 'LCT': case 'MAHARAJA_T20': case 'EVEREST_KCL':
+				case 'ACC': case 'ICPL': case 'LCT': case 'MAHARAJA_T20': case 'EVEREST_KCL': case 'AFGHANISTAN_T20':
 
 					$('#select_graphic_options_div').empty();
 
@@ -36652,7 +36727,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 					break;
 
-				case 'ACC': case 'ICPL': case 'LCT': case 'MAHARAJA_T20':
+				case 'ACC': case 'ICPL': case 'LCT': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 
 					$('#select_graphic_options_div').empty();
 
@@ -36754,7 +36829,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			break;
 		case 'LT_POINTSTABLE-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'ACC': case 'MAHARAJA_T20': case 'KERALA_T20':
+				case 'ACC': case 'MAHARAJA_T20': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -36954,7 +37029,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 		case 'FIXTURES-OPTIONS': case 'TEAM_FIXTURES-OPTIONS': case 'TEAM_SQUAD-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'ACC': case 'MAHARAJA_T20': case 'KERALA_T20': case 'APL':
+				case 'ACC': case 'MAHARAJA_T20': case 'KERALA_T20': case 'APL': case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -37265,7 +37340,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 		
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
-				case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+				case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 
 					$('#select_graphic_options_div').empty();
 
@@ -37365,7 +37440,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			break;
 		case"TEAMS_LOGO-OPTIONS":
 		switch ($('#selected_broadcaster').val().toUpperCase()) {
-			case 'PPL': case 'MAHARAJA_T20':
+			case 'PPL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 				 $('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -37489,7 +37564,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 		case 'PLAYINGXI-OPTIONS': case 'PLAYINGXI_SEQUENCE-OPTIONS': case 'PLAYINGXI_PHOTOS-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
-				case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+				case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': 
+				case 'AFGHANISTAN_T20':
 
 					$('#select_graphic_options_div').empty();
 
@@ -37826,7 +37902,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 		case 'LT-PLAYINGXI-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
-				case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL':
+				case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 
 					$('#select_graphic_options_div').empty();
 
@@ -37913,7 +37989,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			break;
 		case 'SQUAD-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'BUKHATIR': case 'ACC': case 'THAILAND': case 'ICPL': case 'LCT': case 'MAHARAJA_T20': case 'ARUNACHAL':
+				case 'BUKHATIR': case 'ACC': case 'THAILAND': case 'ICPL': case 'LCT': case 'MAHARAJA_T20': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 
 					$('#select_graphic_options_div').empty();
 
@@ -37977,7 +38053,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							row.insertCell(cellCount).appendChild(select);
 							cellCount = cellCount + 1;
 							break;
-						case 'MAHARAJA_T20':
+						case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							select = document.createElement('input');
 							select.type = "text";
 							select.id = 'squadScene';
@@ -38038,7 +38114,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
 				case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
-				case 'ARUNACHAL':
+				case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -38084,7 +38160,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20':
 								case 'RPL': case 'RSWS': case 'USPL': case 'BUKHATIR': case 'ASSAM': case 'THAILAND': case 'ACC_NEPAL': case 'PPL': case 'KERALA_T20':
-								case 'ARUNACHAL':	
+								case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 									//select.setAttribute('onchange',"processUserSelection(this)");
 
 									select = document.createElement('select');
@@ -38369,7 +38445,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
 				case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
-				case 'ARUNACHAL': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ARUNACHAL': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -38403,7 +38479,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									break;
 
 								case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
-								case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
+								case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20': 
+								case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectbowler';
@@ -38470,7 +38547,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ACC_NEPAL': case 'KERALA_T20':
 				case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL':
-				case 'ARUNACHAL': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'EVEREST_AR_VR': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ARUNACHAL': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'EVEREST_AR_VR': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -38503,7 +38580,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 									break;
 								case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
-								case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
+								case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20': 
+								case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');
 									select.id = 'selectpositionlandmark';
@@ -38569,8 +38647,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC':
-				case 'ICPL': case 'LCT': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20':
-				case 'ARUNACHAL':
+				case 'ICPL': case 'LCT': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20': 
+				case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -38615,7 +38693,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						case 'BOWLERDETAILS-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'APL': 
-								case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20':
+								case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 									select.setAttribute('onchange', "processUserSelection(this)");
 
 									select = document.createElement('select');
@@ -38983,7 +39061,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
 				case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
-				case 'ARUNACHAL': case 'FAIR_BREAK_AR': case 'EVEREST_AR_VR':
+				case 'ARUNACHAL': case 'FAIR_BREAK_AR': case 'EVEREST_AR_VR': case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -39006,7 +39084,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						case 'BOWLERSUMMARY-OPTIONS': case 'BOWLERMILE-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'BUKHATIR': case 'ASSAM': case 'THAILAND': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'ACC': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20':
-								case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'ARUNACHAL': case 'FAIR_BREAK_AR': case 'EVEREST_AR_VR':
+								case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'ARUNACHAL': case 'FAIR_BREAK_AR': case 'EVEREST_AR_VR': case 'AFGHANISTAN_T20':
 									select = document.createElement('select');
 									select.id = 'selectPlayerData';
 									select.name = select.id;
@@ -39200,7 +39278,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'THAILAND': case 'ICPL': case 'LCT': case 'MAHARAJA_T20':
-				case 'APL': case 'PUNJAB_T20': case 'MPL': case 'PPL': case 'ARUNACHAL':
+				case 'APL': case 'PUNJAB_T20': case 'MPL': case 'PPL': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 
 					$('#select_graphic_options_div').empty();
 
@@ -39224,7 +39302,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'BUKHATIR': case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'THAILAND':
 								case 'ICPL': case 'LCT': case 'APL': case 'PUNJAB_T20': case 'MPL': case 'PPL':
-								case 'ARUNACHAL':
+								case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 									//select.setAttribute('onchange',"processUserSelection(this)");
 
 									select = document.createElement('select');
@@ -39314,7 +39392,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'THAILAND': case 'ICPL': case 'LCT': case 'MAHARAJA_T20':
-				case 'APL': case 'PUNJAB_T20': case 'MPL': case 'PPL': case 'ARUNACHAL':
+				case 'APL': case 'PUNJAB_T20': case 'MPL': case 'PPL': case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 
 					$('#select_graphic_options_div').empty();
 
@@ -39338,7 +39416,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'BUKHATIR': case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'THAILAND':
 								case 'ICPL': case 'LCT': case 'APL': case 'PUNJAB_T20': case 'MPL': case 'PPL':
-								case 'ARUNACHAL':
+								case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 									//select.setAttribute('onchange',"processUserSelection(this)");
 
 									select = document.createElement('select');
@@ -39484,7 +39562,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 					document.getElementById('select_graphic_options_div').style.display = '';
 					break;
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'MAHARAJA_T20': case 'NEPAL_T20': case 'THAILAND':
-				case 'ICPL': case 'LCT': case 'APL': case 'PUNJAB_T20': case 'MPL': case 'PPL': case 'ARUNACHAL':
+				case 'ICPL': case 'LCT': case 'APL': case 'PUNJAB_T20': case 'MPL': case 'PPL': case 'ARUNACHAL': 
+				case 'AFGHANISTAN_T20':
 				
 					$('#select_graphic_options_div').empty();
 
@@ -39528,7 +39607,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 						case 'POSITION_LANDMARK-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'MAHARAJA_T20':
+								case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 									select.setAttribute('onchange', "processUserSelection(this)");
 									//alert('hi');
 									select = document.createElement('select');

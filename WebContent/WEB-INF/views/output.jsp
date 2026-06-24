@@ -640,7 +640,7 @@
 					<label id="load_pitchMap" class="col-sm-4 col-form-label text-left" style="font-weight: bolder;">PITCH MAP - F7</label>
   				</c:if>
   				
-  				<c:if test="${(session_selected_broadcaster == 'MAHARAJA_T20')}">
+  				<c:if test="${(session_selected_broadcaster == 'MAHARAJA_T20' || session_selected_broadcaster == 'AFGHANISTAN_T20')}">
 	  				<button style="background-color:#bcb88a;color:#000000;margin:3px;" class="btn btn-sm" type="button"
 						name="field_plotter_icc_graphic_btn" id="field_plotter_icc_graphic_btn" onclick="processUserSelection(this)"> Plotter </button>
 					<br>
@@ -3200,6 +3200,7 @@
   				<c:if test="${(session_selected_broadcaster != 'DOAD_AR')}">
   				<c:if test="${(session_selected_broadcaster != ' ')}">
   				<c:if test="${(session_selected_broadcaster != 'MAHARAJA_T20')}">
+  				<c:if test="${(session_selected_broadcaster != 'AFGHANISTAN_T20')}">
   				<c:if test="${(session_selected_broadcaster != 'PLOTTER')}">
   				<c:if test="${(session_selected_broadcaster != 'ACC')}">
   				<c:if test="${(session_selected_broadcaster != 'ICPL')}">
@@ -3292,6 +3293,7 @@
 	  			<button style="background-color:#6a33f7;color:#FEFEFE;margin:3px" class="btn btn-sm" type="button"
 			  		name="pointstable_graphic_btn" id="pointstable_graphic_btn" onclick="processUserSelection(this)"> Points Table (P)</button>		
 			  	</div>
+			  	</c:if>
 			  	</c:if>
 			  	</c:if>
 			  	</c:if>
@@ -3397,6 +3399,7 @@
 			  	<c:if test="${(session_selected_broadcaster != 'DOAD_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != ' ')}">
 			  	<c:if test="${(session_selected_broadcaster != 'MAHARAJA_T20')}">
+			  	<c:if test="${(session_selected_broadcaster != 'AFGHANISTAN_T20')}">
 			  	<c:if test="${(session_selected_broadcaster != 'PLOTTER')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ACC')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ICPL')}">
@@ -3554,6 +3557,7 @@
 			  	</c:if>
 			  	</c:if>
 			  	</c:if>
+			  	</c:if>
 			  	<div class="left">
 			  	
 			  	<c:if test="${(session_selected_broadcaster == 'APL') || (session_selected_broadcaster == 'PUNJAB_T20')}">
@@ -3624,6 +3628,7 @@
 			  	<c:if test="${(session_selected_broadcaster != 'ICC_BIG_SCREEN')}">
 			  	<c:if test="${(session_selected_broadcaster != 'DOAD_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != 'MAHARAJA_T20')}">
+			  	<c:if test="${(session_selected_broadcaster != 'AFGHANISTAN_T20')}">
 			  	<c:if test="${(session_selected_broadcaster != 'PLOTTER')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ACC')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ICPL')}">
@@ -3720,6 +3725,7 @@
 			  	</c:if>
 			  	</c:if>
 			  	</c:if>
+			  	</c:if>
 				</c:if>	
 				</c:if>
 				</c:if>
@@ -3764,6 +3770,7 @@
 			  	<c:if test="${(session_selected_broadcaster != 'DOAD_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != ' ')}">
 			  	<c:if test="${(session_selected_broadcaster != 'MAHARAJA_T20')}">
+			  	<c:if test="${(session_selected_broadcaster != 'AFGHANISTAN_T20')}">
 			  	<c:if test="${(session_selected_broadcaster != 'PLOTTER')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ACC')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ICPL')}">
@@ -3816,6 +3823,7 @@
 				  		name="BallGriff_graphic_btn" id="BallGriff_graphic_btn" onclick="processUserSelection(this)"> Ball Griff ()</button>
 				  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 				  		name="inningbuilder_graphic_btn" id="inningbuilder_graphic_btn" onclick="processUserSelection(this)"> Inning Builder (Ctrl+I)</button>	
+				</c:if>
 				</c:if>
 				</c:if>
 				</c:if>
@@ -3906,6 +3914,7 @@
 			  	<c:if test="${(session_selected_broadcaster != 'DOAD_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != ' ')}">
 			  	<c:if test="${(session_selected_broadcaster != 'MAHARAJA_T20')}">
+			  	<c:if test="${(session_selected_broadcaster != 'AFGHANISTAN_T20')}">
 			  	<c:if test="${(session_selected_broadcaster != 'PLOTTER')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ACC')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ICPL')}">
@@ -4000,6 +4009,7 @@
 			  	</c:if>
 			  	</c:if>
 			  	</c:if>
+			  	</c:if>
 			  	<div class="left">
 				
 				<c:if test="${(session_selected_broadcaster == 'APL') || (session_selected_broadcaster == 'PUNJAB_T20')}">
@@ -4030,6 +4040,7 @@
 			  	<c:if test="${(session_selected_broadcaster != 'DOAD_AR')}">
 			  	<c:if test="${(session_selected_broadcaster != ' ')}">
 			  	<c:if test="${(session_selected_broadcaster != 'MAHARAJA_T20')}">
+			  	<c:if test="${(session_selected_broadcaster != 'AFGHANISTAN_T20')}">
 			  	<c:if test="${(session_selected_broadcaster != 'PLOTTER')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ACC')}">
 			  	<c:if test="${(session_selected_broadcaster != 'ICPL')}">
@@ -4058,9 +4069,8 @@
 			  	<!--  <button style="background-color:#40e0d0;color:#000000;" class="btn btn-sm" type="button"
 			  		name="lt_manhattan_graphic_btn" id="lt_manhattan_graphic_btn" onclick="processUserSelection(this)">Lt Manhattan</button>-->
 			  		
-			  	
-
 			  </div>
+			    </c:if>
 			    </c:if>
 			    </c:if>
 			    </c:if>

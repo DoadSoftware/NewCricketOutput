@@ -25,11 +25,11 @@
         <dependency>
             <groupId>com.cricket</groupId>
             <artifactId>NewCricketLibrary</artifactId>
-            <version>4.15</version>
+            <version>4.22</version>
         </dependency>
 
 		<dependency>
-		    <groupId>org.webjars</groupId>
+		    <groupId>org.webjars</groupId> 
 		    <artifactId>select2</artifactId>
 		    <version>4.0.13</version>
 		</dependency>

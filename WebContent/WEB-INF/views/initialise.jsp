@@ -250,7 +250,7 @@
 			      <select id="select_broadcaster" name="select_broadcaster" class="browser-default custom-select custom-select-sm"
 			      		onchange="processUserSelection(this)">
 			      		<option value=" "> </option>
-			      		
+			      		<option value="AFGHANISTAN_T20">AFG T20</option>
 			      		<option value="ICC_BIGSCREEN_DOAD_VIZ_SCORING">ICC BIG SCREEN DOAD VIZ</option>
 			      		<option value="KERALA_T20">MHPL T20</option>
 			      		<option value="PLOTTER">DOAD PT</option>

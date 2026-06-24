@@ -55,19 +55,19 @@ import com.cricket.util.CricketFunctions;
 import com.cricket.util.CricketUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class MAHARAJA_T20 extends Scene{
+public class AFGHANISTAN_T20 extends Scene{
 
-	public String broadcaster = "MAHARAJA_T20";
+	public String broadcaster = "AFGHANISTAN_T20";
 	public Infobar infobar = new Infobar();
 	public String which_graphics_onscreen = "";
 	private String slashOrDash = "-";
 	public String status;
 	public String director;
 	public int lb_count=1;
-	private String logo_path = "IMAGE*/Default/MaharajaT20_2024/TeamBadges/";
-	private String sponsor_path = "IMAGE*/Default/MaharajaT20_2024/Sponsors/";
-	private String photo_path = "C:\\\\Images\\\\MAHARAJA_T20\\\\Photos\\\\";
-	private String local_photo_path = "\\\\c\\\\Images\\\\MAHARAJA_T20\\\\Photos\\\\";
+	private String logo_path = "IMAGE*/Default/AfghanitanT20_2024/TeamBadges/";
+	private String sponsor_path = "IMAGE*/Default/AfghanitanT20_2024/Sponsors/";
+	private String photo_path = "C:\\\\Images\\\\AFGHANISTAN_T20\\\\Photos\\\\";
+	private String local_photo_path = "\\\\c\\\\Images\\\\AFGHANISTAN_T20\\\\Photos\\\\";
 	private int lastXBalls = 0;
 	public String diectoryPath = "";
 	private String infobarFreeText = "", commentatorsID;
@@ -93,10 +93,10 @@ public class MAHARAJA_T20 extends Scene{
 		this.status = status;
 	}
 
-	public MAHARAJA_T20() {
+	public AFGHANISTAN_T20() {
 		super();
 	}
-	public MAHARAJA_T20(String scene_path, String which_Layer) {
+	public AFGHANISTAN_T20(String scene_path, String which_Layer) {
 		super(scene_path, which_Layer);
 	}
 	
@@ -119,7 +119,7 @@ public class MAHARAJA_T20 extends Scene{
 		String status = "";
 		
 		switch(which_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			switch(SceneType.toUpperCase()) {
 			case "FF":
 				if(!infobar.isInfobar_down()) {
@@ -353,7 +353,7 @@ public class MAHARAJA_T20 extends Scene{
 			}
 			switch(whatToProcess.toUpperCase()) {
 			case "LOAD_MANUAL_XML_SCENE":
-				scenes.set(2, new Scene("/Default/MAHARAJA_T20/" + valueToProcess.replace(".xml", ""),"MIDDLE_LAYER"));
+				scenes.set(2, new Scene("/Default/AFGHANISTAN_T20/" + valueToProcess.replace(".xml", ""),"MIDDLE_LAYER"));
 				//scenes.get(1).scene_load(print_writer,broadcaster);
 				break;
 			case "CHANGE_ON-IMPACT":
@@ -723,7 +723,7 @@ public class MAHARAJA_T20 extends Scene{
 				case "POPULATE-FF-THISSERIES": case "POPULATE-FF-THISSERIES_BALL":
 					Statistics statsSeason1 = null, statsSeason2 = null;
 					int count = 0;
-					if (valueToProcess.split(",")[3].toUpperCase().equalsIgnoreCase("maharajacareer")) {
+					if (valueToProcess.split(",")[3].toUpperCase().equalsIgnoreCase("Afghanitancareer")) {
 						for (Statistics stats : cricketService.getAllStats()) {
 							if(stats.getStatsTypeId() == 11 || stats.getStatsTypeId() == 12) {
 								if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
@@ -761,7 +761,7 @@ public class MAHARAJA_T20 extends Scene{
 								}
 							}
 						}
-					}else if(valueToProcess.split(",")[3].toUpperCase().equalsIgnoreCase("maharajaseason2")) {
+					}else if(valueToProcess.split(",")[3].toUpperCase().equalsIgnoreCase("Afghanitanseason2")) {
 						for (Statistics stats : cricketService.getAllStats()) {
 							stats.setStats_type(cricketService.getStatsType(12));
 							if (stats.getStatsTypeId() == 12) {
@@ -772,7 +772,7 @@ public class MAHARAJA_T20 extends Scene{
 								}
 							}
 						}
-					} else if (valueToProcess.split(",")[3].toUpperCase().equalsIgnoreCase("maharajaseason1")) {
+					} else if (valueToProcess.split(",")[3].toUpperCase().equalsIgnoreCase("Afghanitanseason1")) {
 						for (Statistics stats : cricketService.getAllStats()) {
 							stats.setStats_type(cricketService.getStatsType(11));
 							if (stats.getStatsTypeId() == 11) {
@@ -793,7 +793,7 @@ public class MAHARAJA_T20 extends Scene{
 					Statistics statsSeason1LT = null, statsSeason2LT = null;
 					int countLT = 0;
 					System.out.println("VALUE "+valueToProcess.split(",")[3]);
-					if (valueToProcess.split(",")[3].equalsIgnoreCase("maharajacareer")) {
+					if (valueToProcess.split(",")[3].equalsIgnoreCase("Afghanitancareer")) {
 						for (Statistics stats : cricketService.getAllStats()) {
 							if(stats.getStatsTypeId() == 11 || stats.getStatsTypeId() == 12) {
 								if(stats.getPlayerID() == Integer.valueOf(valueToProcess.split(",")[1])) {
@@ -876,7 +876,7 @@ public class MAHARAJA_T20 extends Scene{
 								}
 							}
 						}
-					}else if(valueToProcess.split(",")[3].equalsIgnoreCase("maharajaseason2")) {
+					}else if(valueToProcess.split(",")[3].equalsIgnoreCase("Afghanitanseason2")) {
 						for (Statistics stats : cricketService.getAllStats()) {
 							stats.setStats_type(cricketService.getStatsType(12));
 							if (stats.getStatsTypeId() == 12) {
@@ -888,7 +888,7 @@ public class MAHARAJA_T20 extends Scene{
 								}
 							}
 						}
-					} else if (valueToProcess.split(",")[3].equalsIgnoreCase("maharajaseason1")) {
+					} else if (valueToProcess.split(",")[3].equalsIgnoreCase("Afghanitanseason1")) {
 						System.out.println("HELLO");
 						for (Statistics stats : cricketService.getAllStats()) {
 							stats.setStats_type(cricketService.getStatsType(11));
@@ -1820,7 +1820,7 @@ public class MAHARAJA_T20 extends Scene{
                
                print_writer.println("-1 RENDERER*UPDATE SET 1\0");
                
-               print_writer.println("-1 RENDERER*FRONT_LAYER SET_OBJECT SCENE*/Default/MaharajaT20_2024/ScoreBug\0");
+               print_writer.println("-1 RENDERER*FRONT_LAYER SET_OBJECT SCENE*/Default/AfghanitanT20_2024/ScoreBug\0");
            	
                print_writer.println("-1 RENDERER*FRONT_LAYER INITIALIZE\0");
                print_writer.println("-1 RENDERER*FRONT_LAYER*SCENE_DATA INITIALIZE\0");
@@ -2455,7 +2455,7 @@ public class MAHARAJA_T20 extends Scene{
 	{
 		int row_id = 0, omo_num = 0;
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			
 			String cont_name= "",stillToBatImpactName = "";
 			boolean impactInThisInning = false, isReplacePlayerStillToBat = false, isImpactPlayerStillToBat = false, impactPlayerDataFilled = false;
@@ -2714,7 +2714,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateMiniBattingcard(PrintWriter print_writer, String viz_scene, int whichInning, MatchAllData match, String session_selected_broadcaster) throws InterruptedException {
 		
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 				int row_id = 0, omo_num = 0,batting_size=0;
 				String cont_name= "";
 				boolean impactInThisInning = false;
@@ -2820,7 +2820,7 @@ public class MAHARAJA_T20 extends Scene{
 	{
 		int row_id = 0,len=0; 
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			boolean impactInThisInning = false;
 			print_writer.println("-1 RENDERER*TREE*$Main$All$PartnershipAll*ACTIVE SET 0"+"\0");
 			
@@ -2976,7 +2976,7 @@ public class MAHARAJA_T20 extends Scene{
 	}
 	public void populateMiniBowlingcard(PrintWriter print_writer, String viz_scene, int whichInning, MatchAllData match, String session_selected_broadcaster) throws InterruptedException {
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -3055,7 +3055,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populatePartnership(PrintWriter print_writer, String viz_scene,int whichInning,MatchAllData match, CricketService cricketService, String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -3359,7 +3359,7 @@ public class MAHARAJA_T20 extends Scene{
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
 		
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -3624,7 +3624,7 @@ public class MAHARAJA_T20 extends Scene{
 	{
 		System.out.println("HEADER : "+headerData);
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tTeamName" + " SET " + " " + "\0");
 			print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tTeamName" + " SET " + headerData.toUpperCase() + "\0");
 			
@@ -3712,7 +3712,7 @@ public class MAHARAJA_T20 extends Scene{
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
 		
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			
 			int row_id=0;
 			String newDate = "",match_name="";
@@ -3773,7 +3773,7 @@ public class MAHARAJA_T20 extends Scene{
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
 		
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			
 			int row_id=0;
 			String newDate = "",match_name="";
@@ -3850,7 +3850,7 @@ public class MAHARAJA_T20 extends Scene{
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
 		
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			
 			int row_id=0,A_row_id=0,B_row_id=0;
 			
@@ -4056,7 +4056,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateBugDismissal(PrintWriter print_writer,String viz_scene, int whichInning, String statsType, int playerId, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -4191,7 +4191,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateBug(PrintWriter print_writer,String viz_scene, int whichInning, String statsType, int playerId, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -4254,7 +4254,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateBugBowler(PrintWriter print_writer,String viz_scene, int whichInning, String statsType, int playerId, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -4310,7 +4310,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateBugPowerPLay(PrintWriter print_writer, String viz_scene,int whichInning,MatchAllData match, String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -4342,7 +4342,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateBugToss(PrintWriter print_writer,String viz_scene, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				this.status = "ERROR: Match is null";
 			} else if (match.getMatch().getInning() == null) {
@@ -4542,7 +4542,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateBugsDB(PrintWriter print_writer,String viz_scene, Bugs bug ,MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -4658,7 +4658,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populatePointers(PrintWriter print_writer,String viz_scene, Pointers Pt ,MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -4708,7 +4708,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateFFPointers(PrintWriter print_writer,String viz_scene, Pointers Pt ,MatchAllData match, String session_selected_broadcaster, Configuration config) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -4722,7 +4722,7 @@ public class MAHARAJA_T20 extends Scene{
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "003-Image" + " SET " + photo_path 
 								+ Pt.getTeam() + "\\\\\\" + Pt.getPlayer() + CricketUtil.PNG_EXTENSION + "\0");
 					}else {
-						if(!new File("\\\\"+config.getPrimaryIpAddress()+"\\c\\Images\\MAHARAJA_T20\\Photos\\" + Pt.getTeam() + "\\" + Pt.getPlayer() + CricketUtil.PNG_EXTENSION).exists()) {
+						if(!new File("\\\\"+config.getPrimaryIpAddress()+"\\c\\Images\\AFGHANISTAN_T20\\Photos\\" + Pt.getTeam() + "\\" + Pt.getPlayer() + CricketUtil.PNG_EXTENSION).exists()) {
 							this.status = CricketUtil.UNSUCCESSFUL;
 						}
 						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "003-Image" + " SET " + "\\\\\\\\"+config.getPrimaryIpAddress()+local_photo_path  
@@ -4779,7 +4779,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateHowout(PrintWriter print_writer,String viz_scene, int whichInning, String statsType, int playerId, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -4865,7 +4865,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateQuickHowout(PrintWriter print_writer,String viz_scene, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -4941,7 +4941,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateHowoutWithoutFielder(PrintWriter print_writer,String viz_scene, int whichInning, String statsType, int playerId, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -4989,7 +4989,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateBatsmanstats(PrintWriter print_writer,String viz_scene, int whichInning, String statsType, int playerId, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -5068,7 +5068,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateBowlerstats(PrintWriter print_writer,String viz_scene, int whichInning, String statsType, int playerId,List<Team> team, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -5155,7 +5155,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateNameSuper(PrintWriter print_writer,String viz_scene, NameSuper ns ,MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -5195,7 +5195,7 @@ public class MAHARAJA_T20 extends Scene{
 			MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -5260,7 +5260,7 @@ public class MAHARAJA_T20 extends Scene{
 		double strike_rate = 0,avg = 0;
 		int dismissal_count=0;		
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -5365,7 +5365,7 @@ public class MAHARAJA_T20 extends Scene{
 		double strike_rate = 0,avg = 0;
 		int dismissal_count=0;
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -5461,8 +5461,8 @@ public class MAHARAJA_T20 extends Scene{
 					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + stats.getStats_type().getStatsShortName().toUpperCase() + " CAREER" + "\0");
 				}
 				
-				if(Profile.equalsIgnoreCase("MAHARAJA_T20_ALL")) {
-					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + "MAHARAJA TROPHY CAREER" + "\0");
+				if(Profile.equalsIgnoreCase("AFGHANISTAN_T20_ALL")) {
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + "AFGHANISTAN TROPHY CAREER" + "\0");
 				}
 				print_writer.println("-1 RENDERER PREVIEW SCENE*" + viz_scene + " C:/Temp/Preview.png In 3.500 \0");
 				TimeUnit.MILLISECONDS.sleep(1000);
@@ -5502,7 +5502,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateDoubleteams(PrintWriter print_writer,String viz_scene, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -5616,7 +5616,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateSquad(PrintWriter print_writer,String viz_scene, int TeamId,MatchAllData match, String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -5780,7 +5780,7 @@ public class MAHARAJA_T20 extends Scene{
 		
 		
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			switch(infobar.getIdent_section().toUpperCase()) {
 			case "TOSS":
 				if(match.getSetup().getTossWinningTeam() == match.getSetup().getHomeTeamId()) {
@@ -5859,7 +5859,7 @@ public class MAHARAJA_T20 extends Scene{
 	public Infobar populateInfobar(Infobar infobar, PrintWriter print_writer, MatchAllData match, CricketService cricketService, String broadcaster, String session_directoryPath) throws InterruptedException 
 	{
 		switch (broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -5958,7 +5958,7 @@ public class MAHARAJA_T20 extends Scene{
 	{
 		
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			for(Inning inn : match.getMatch().getInning()) {
 				if (inn.getIsCurrentInning().toUpperCase().equalsIgnoreCase(CricketUtil.YES)) {
 					if(is_this_updating == false) {
@@ -6001,7 +6001,7 @@ public class MAHARAJA_T20 extends Scene{
 	public Infobar processInfobarPowerplay(Infobar infobar, PrintWriter print_writer, String which_broadcaster, MatchAllData match) {
 		
 		switch(which_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if(match.getSetup().getMatchType().equalsIgnoreCase(CricketUtil.SUPER_OVER) && match.getSetup().getMaxOvers() == 1){
 				print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*PowerPlayIn SHOW 0.0 \0");
 				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tPowerPlay" + " SET " + "" + "\0");
@@ -6047,7 +6047,7 @@ public class MAHARAJA_T20 extends Scene{
 			}
 		}
 		switch (broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 	
 			if(is_this_updating == false) {
 				if(infobar.getLast_middle_section() != null && !infobar.getLast_middle_section().trim().isEmpty()) {
@@ -7111,7 +7111,7 @@ public class MAHARAJA_T20 extends Scene{
 			}
 		}
 		switch (broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if(is_this_updating == false) {
 				if(infobar.getLast_bottom_right_section() != null && !infobar.getLast_bottom_right_section().trim().isEmpty()) {
 					switch (infobar.getLast_bottom_right_section().toUpperCase()) {
@@ -7284,7 +7284,7 @@ public class MAHARAJA_T20 extends Scene{
 	}
 	public void populateInfobarDirector(PrintWriter print_writer,String Dir_value,String session_selected_broadcaster) {
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			switch (Dir_value.toUpperCase()) {
 			case "FOURS":
 				print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*FoursIn START \0");
@@ -7315,7 +7315,7 @@ public class MAHARAJA_T20 extends Scene{
 	}
 	public void populateInfobarPowerPlay(PrintWriter print_writer,String Dir_value,MatchAllData match,String session_selected_broadcaster) {
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			switch (Dir_value.toUpperCase()) {
 			case "POWERPLAY":
 				if(!CricketFunctions.processPowerPlay(CricketUtil.MINI,match).isEmpty()) {
@@ -7335,7 +7335,7 @@ public class MAHARAJA_T20 extends Scene{
 			MatchAllData match, String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -7427,7 +7427,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateLtMatchPromo(PrintWriter print_writer,String viz_sence_path, int match_number ,List<Team> team,List<Fixture> fix,MatchAllData match, String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -7508,7 +7508,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populatePlayOff(PrintWriter print_writer,String viz_sence_path, CricketService cricketService,MatchAllData match, String session_selected_broadcaster) throws InterruptedException, ParseException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -7679,7 +7679,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateMatchId(PrintWriter print_writer,String viz_scene, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -7712,7 +7712,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateLTMatchId(PrintWriter print_writer,String viz_scene,List<VariousText> varioustext,MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -7766,7 +7766,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populatePlayingXI(PrintWriter print_writer,String viz_scene, int TeamId,   MatchAllData match, String session_selected_broadcaster, Configuration config) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -8022,7 +8022,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateProjectedScore(PrintWriter print_writer,String viz_scene, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -8061,7 +8061,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateTarget(PrintWriter print_writer,String viz_scene, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -8139,7 +8139,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateBugTarget(PrintWriter print_writer,String viz_scene, MatchAllData match, String session_selected_broadcaster)
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -8166,7 +8166,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateTeamSummary(PrintWriter print_writer, String viz_scene, int whichInning, MatchAllData match, String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -8218,7 +8218,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateLtBattingSummary(PrintWriter print_writer, String viz_scene,int whichInning, int PlayerId, MatchAllData match, String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "MAHARAJA_T20":
+			case "AFGHANISTAN_T20":
 				if (match == null) {
 					System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 				} else if (match.getMatch().getInning() == null) {
@@ -8274,7 +8274,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateLtBatsmanThisMatch(PrintWriter print_writer, String viz_scene,int whichInning, int PlayerId, MatchAllData match, String session_selected_broadcaster) 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "MAHARAJA_T20":
+			case "AFGHANISTAN_T20":
 				if (match == null) {
 					System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 				} else if (match.getMatch().getInning() == null) {
@@ -8325,7 +8325,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateLtBowlerThisMatch(PrintWriter print_writer, String viz_scene,int whichInning, int PlayerId, MatchAllData match, String session_selected_broadcaster) 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "MAHARAJA_T20":
+			case "AFGHANISTAN_T20":
 				if (match == null) {
 					System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 				} else if (match.getMatch().getInning() == null) {
@@ -8362,7 +8362,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateLtBowlerSummary(PrintWriter print_writer, String viz_scene,int whichInning, int PlayerId, MatchAllData match, String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "MAHARAJA_T20":
+			case "AFGHANISTAN_T20":
 				if (match == null) {
 					System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 				} else if (match.getMatch().getInning() == null) {
@@ -8431,7 +8431,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateLtNextToBat(PrintWriter print_writer, String viz_scene,List<Player> plyr,List<Statistics> stats, MatchAllData match, String session_selected_broadcaster, Configuration config) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -8507,7 +8507,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateLtBowlerDetails(PrintWriter print_writer, String viz_scene,int whichInning, int PlayerId, MatchAllData match, String session_selected_broadcaster) 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "MAHARAJA_T20":
+			case "AFGHANISTAN_T20":
 				if (match == null) {
 					System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 				} else if (match.getMatch().getInning() == null) {
@@ -8548,7 +8548,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateFallofWicket(PrintWriter print_writer,String viz_scene,int whichInning, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -8609,7 +8609,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateSplit(PrintWriter print_writer,String viz_scene,int whichInning,int splitValue, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -8676,7 +8676,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateComparision(PrintWriter print_writer,String viz_scene, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -8879,7 +8879,7 @@ public class MAHARAJA_T20 extends Scene{
 			print_writer.println("-1 RENDERER*TREE*$Main$All$BG_In$SponsorAll$Sponsor*ACTIVE SET 1 \0");
 		
 			switch (session_selected_broadcaster.toUpperCase()) {
-			case "MAHARAJA_T20":
+			case "AFGHANISTAN_T20":
 				switch(StatType.toUpperCase()) {
 				case "MOST_RUNS":
 					
@@ -9075,7 +9075,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateLandMark(PrintWriter print_writer,String viz_scene, int whichInning, String statType, int playerId, MatchAllData match, String session_selected_broadcaster, Configuration config)
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -9509,7 +9509,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateFFLandMark(PrintWriter print_writer,String viz_scene, int whichInning, int playerId, MatchAllData match, String session_selected_broadcaster, Configuration config) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -9573,7 +9573,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateLtEquation(PrintWriter print_writer,String viz_scene, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {	
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -9744,7 +9744,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populatePointsTable(PrintWriter print_writer,String viz_sence_path,List<LeagueTeam> point_table,List<Team> teams,List<VariousText> variousText, String session_selected_broadcaster,MatchAllData match) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			int row_id=0,omo_num=0;
 			DecimalFormat df = new DecimalFormat("0.000");
 			print_writer.println("-1 RENDERER*TREE*$Main$All$PartnershipAll*ACTIVE SET 0"+"\0");
@@ -9882,7 +9882,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateBowlerStyle(PrintWriter print_writer,String viz_scene, int whichInning, int playerId,List<Player> plyr, List<Team> team, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -9989,7 +9989,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populatePreviousSummary(PrintWriter print_writer, String viz_scene, int match_number,MatchAllData mtch,List<Fixture> fix, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -10209,7 +10209,7 @@ public class MAHARAJA_T20 extends Scene{
 	{
 		//System.out.println("TopStats " + TopStats);
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			switch(TopStats.toUpperCase()) {
 			case "CRR":
 				for(Inning inn : match.getMatch().getInning()) {
@@ -10424,7 +10424,7 @@ public class MAHARAJA_T20 extends Scene{
 	{
 		//System.out.println("TopStats " + BottomRightStats);
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			boolean isVisited = true;
 			if(is_this_updating == false) {
 				if(infobar.getBottom_right_bottom_section() != null && infobar.getBottom_right_bottom_section().trim().isEmpty()) {
@@ -10601,7 +10601,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateBatsmanStyle(PrintWriter print_writer,String viz_scene, int whichInning, int playerId, List<Player> plyr, List<Team> team, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -11068,7 +11068,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateManhattan(PrintWriter print_writer,String viz_scene, int whichInning, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -11158,7 +11158,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateWorm(PrintWriter print_writer,String viz_scene, int whichInning, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -11319,7 +11319,7 @@ public class MAHARAJA_T20 extends Scene{
 	{
 		int row_no = 0;
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			
 			int omo_num = 0;
 			String cont_name = "";
@@ -11401,7 +11401,7 @@ public class MAHARAJA_T20 extends Scene{
 			MatchAllData match ,String session_selected_broadcaster, Configuration config) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			this.status = CricketUtil.SUCCESSFUL;
 			int omo_num = 0,runs = 0;
 			int bat_row_no = 0;
@@ -11520,7 +11520,7 @@ public class MAHARAJA_T20 extends Scene{
 			MatchAllData match ,String session_selected_broadcaster,Configuration config) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			boolean playerFound = false;
 			int count = 0, row_id = 0;
 			String MatchName = "";
@@ -11631,7 +11631,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateThisSeries(PrintWriter print_writer, String viz_scene,int Playerid,String TypeofProfile,String thisSeriesOrAllSeason,List<Tournament> this_series,
 			MatchAllData match, String session_selected_broadcaster, Statistics stats,CricketService cricketService, Configuration config) throws InterruptedException {
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -11669,11 +11669,11 @@ public class MAHARAJA_T20 extends Scene{
 					print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Impact*ACTIVE SET 0 " + "\0");
 				}
 				switch (thisSeriesOrAllSeason.toUpperCase()) {
-				case "MAHARAJASEASON1": case "MAHARAJASEASON2":
-					if(thisSeriesOrAllSeason.equalsIgnoreCase("MAHARAJASEASON1")) {
-						print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Bottom_Info*GEOM*TEXT SET " + "MAHARAJA TROPHY 2022" + "\0");
-					}else if(thisSeriesOrAllSeason.equalsIgnoreCase("MAHARAJASEASON2")) {
-						print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Bottom_Info*GEOM*TEXT SET " + "MAHARAJA TROPHY 2023" + "\0");
+				case "AFGHANISTANSEASON1": case "AFGHANISTANSEASON2":
+					if(thisSeriesOrAllSeason.equalsIgnoreCase("AFGHANISTANSEASON1")) {
+						print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Bottom_Info*GEOM*TEXT SET " + "AFGHANISTAN TROPHY 2022" + "\0");
+					}else if(thisSeriesOrAllSeason.equalsIgnoreCase("AFGHANISTANSEASON2")) {
+						print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Bottom_Info*GEOM*TEXT SET " + "AFGHANISTAN TROPHY 2023" + "\0");
 					}
 					switch(TypeofProfile.toUpperCase()) {
 					case CricketUtil.BATSMAN:
@@ -11716,8 +11716,8 @@ public class MAHARAJA_T20 extends Scene{
 						break;
 					}
 					break;
-				case "MAHARAJACAREER":
-					print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Bottom_Info*GEOM*TEXT SET " + "MAHARAJA TROPHY CAREER" + "\0");
+				case "AFGHANISTANCAREER":
+					print_writer.println("-1 RENDERER*TREE*$Main$All$BottomInfo$Bottom_Info*GEOM*TEXT SET " + "Afghanitan TROPHY CAREER" + "\0");
 					switch(TypeofProfile.toUpperCase()) {
 					case CricketUtil.BATSMAN:
 						
@@ -11820,7 +11820,7 @@ public class MAHARAJA_T20 extends Scene{
 			MatchAllData match, String session_selected_broadcaster, Statistics stats, CricketService cricketService) throws InterruptedException {
 		
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -11863,11 +11863,11 @@ public class MAHARAJA_T20 extends Scene{
 				}
 				System.out.println(whichSeason);
 				switch (whichSeason.toUpperCase()) {
-				case "MAHARAJASEASON1": case "MAHARAJASEASON2":
-					if(whichSeason.equalsIgnoreCase("MAHARAJASEASON1")) {
-						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + "MAHARAJA TROPHY 2022" + "\0");
-					}else if(whichSeason.equalsIgnoreCase("MAHARAJASEASON2")) {
-						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + "MAHARAJA TROPHY 2023" + "\0");
+				case "AFGHANISTANSEASON1": case "AFGHANISTANSEASON2":
+					if(whichSeason.equalsIgnoreCase("AFGHANISTANSEASON1")) {
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + "AFGHANISTAN TROPHY 2022" + "\0");
+					}else if(whichSeason.equalsIgnoreCase("AFGHANISTANSEASON2")) {
+						print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + "Afghanitan TROPHY 2023" + "\0");
 					}
 					switch(TypeofProfile.toUpperCase()) {
 					case CricketUtil.BATSMAN:
@@ -11918,8 +11918,8 @@ public class MAHARAJA_T20 extends Scene{
 						break;
 					}
 					break;
-				case "MAHARAJACAREER":
-					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + "MAHARAJA TROPHY CAREER" + "\0");
+				case "AFGHANISTANCAREER":
+					print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "tSubHead" + " SET " + "AFGHANISTAN TROPHY CAREER" + "\0");
 					switch(TypeofProfile.toUpperCase()) {
 					case CricketUtil.BATSMAN:
 						
@@ -12169,7 +12169,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateDuckWorthLewis(PrintWriter print_writer,String viz_scene,String balls,MatchAllData match,String session_selected_broadcaster) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "MAHARAJA_T20":
+			case "AFGHANISTAN_T20":
 				Document htmlFile = null; 
 					
 				print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgTeamBadge" + " SET " + logo_path + 
@@ -12222,7 +12222,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateDuckWorthLewisEquation(PrintWriter print_writer,String viz_scene,String balls,MatchAllData match,String session_selected_broadcaster, String session_directoryPath) throws InterruptedException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-			case "MAHARAJA_T20":
+			case "AFGHANISTAN_T20":
 				int runs = 0,total_runs=0;
 				String ahead_behind = "";
 				Document htmlFile = null;
@@ -12365,7 +12365,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateRicheis(PrintWriter print_writer,String viz_scene, int whichInning, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -12583,7 +12583,7 @@ public class MAHARAJA_T20 extends Scene{
 	public void populateLtPhaseByScore(PrintWriter print_writer,String viz_scene, int inning_number, MatchAllData match, String session_selected_broadcaster) throws InterruptedException
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			if (match == null) {
 				System.out.println("ERROR: populateScorecard -> Match is null"); // DJ change all 'this.status' to 'system printout'
 			} else if (match.getMatch().getInning() == null) {
@@ -12881,7 +12881,7 @@ public class MAHARAJA_T20 extends Scene{
 		String status = "";
 		
 		switch(which_broadcaster.toUpperCase()) {
-		case "MAHARAJA_T20":
+		case "AFGHANISTAN_T20":
 			switch(which_director.toUpperCase()) {
 			case "FOURS":
 				print_writer.println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*FoursOut START \0");

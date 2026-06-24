@@ -77,7 +77,7 @@ public class Scene {
 		switch (broadcaster.toUpperCase()) {
 		case "DOAD_VIZ": case "GPCL": case "ACC": case "DOAD-VIZ-MULTI": case "NEPAL_T20": case "DOAD_LLC": case "ICPL": case "LCT": 
 		case "FAIR_BREAK":case "MPL": case "APL": case "MAHARAJA_T20": case "RPL": case "USPL": case "ICC_CWCU19": case "KOLKATA_T20":
-		case "PPL": case "KERALA_T20": case "ICC_BIGSCREEN_DOAD_VIZ_SCORING":
+		case "PPL": case "KERALA_T20": case "ICC_BIGSCREEN_DOAD_VIZ_SCORING": case "AFGHANISTAN_T20":
 			switch(this.which_layer.toUpperCase()) {
 			case "FRONT_LAYER":
 				print_writer.println("-1 RENDERER*FRONT_LAYER SET_OBJECT SCENE*" + this.scene_path + "\0");

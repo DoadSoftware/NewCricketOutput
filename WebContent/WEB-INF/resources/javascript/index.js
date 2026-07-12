@@ -3669,7 +3669,7 @@ function processUserSelection(whichInput) {
 		case 'populate_LTpartnership_btn': case 'populate_speed_btn': case 'default_ar_score_graphic_btn': case 'defaultout_ar_score_graphic_btn': case 'target_drone_score_graphic_btn':
 		case 'boundaries_vr_score_graphic_btn': case 'comparison_ar_score_graphic_btn': case 'lastwicket_ar_graphic_btn': case 'comparison_drone_score_graphic_btn': case 'comparison_vr_score_graphic_btn': case 'target_ar_score_graphic_btn': case 'matchId_ar_score_graphic_btn': case 'equation_drone_score_graphic_btn':
 		case 'projected_ar_score_graphic_btn': case 'equationintargetimage_ar_score_graphic_btn': case 'projected_vr_score_graphic_btn': case 'populate_freetext_ar_btn': case 'populate_thisover_vr_btn': case 'matchId_animation_score_graphic_btn': case 'equation_ar_score_graphic_btn': case 'matchId_vr_score_graphic_btn':
-		case 'thisover_ar_graphic_btn':case"populate_Teams_Options_btn": case 'populate_teamceleb_ar_btn': case 'target_vr_score_graphic_btn': case 'countdown_graphic_btn': case 'fallofwicket_graphic_btn': case 'previous_over_graphic_btn':
+		case 'thisover_ar_graphic_btn':case"populate_Teams_Options_btn": case 'populate_teamceleb_ar_btn': case 'target_vr_score_graphic_btn': case 'countdown_graphic_btn': case 'fallofwicket_graphic_btn': case 'previous_over_graphic_btn': case 'matchId_arr_score_graphic_btn':
 		case 'thispart_ar_graphic_btn': case 'Next_ar_graphic_btn': case "toss_ar_graphic_btn": case "boundaries_ar_score_graphic_btn": case 'tosscoin_ar_graphic_btn': case 'equation_vr_score_graphic_btn': case 'targetimage_ar_score_graphic_btn':
         case'equationimage_ar_score_graphic_btn': case 'populate_lastthirtyball_ar_btn': case'lastboundary_ar_score_graphic_btn': case 'fow_ar_score_graphic_btn':
         case 'res_ar_score_graphic_btn': case 'populate_lastthirtyball_dronefar_btn': case 'populate_lastthirtyball_dronenear_btn':
@@ -4259,6 +4259,9 @@ function processUserSelection(whichInput) {
 				 case 'matchId_vr_score_graphic_btn':	
 				    processCricketProcedures('POPULATE-MATCHID_VR');
 					break;
+				case 'matchId_arr_score_graphic_btn':
+					processCricketProcedures('POPULATE-MATCHID_ARR');
+					break;	
 				case 'populate_countContinue_btn':
 					processCricketProcedures('CONTINUE-COUNT_AR');
 					break;
@@ -6311,6 +6314,19 @@ function processCricketProcedures(whatToProcess) {
 					break;	
 			}
 			break;
+				
+		case 'POPULATE-MATCHID_ARR':
+			switch ($('#selected_broadcaster').val().toUpperCase()) {
+				case 'EVEREST_AR_VR':
+					//valueToProcess = 'C:/Everest_VR_AR/MattScenes/MatchID.sum';
+					valueToProcess = 'C:/Everest_VR_2026/MattScenes/AR_Match id.sum';
+					break;
+				case 'BARODA_AR': case 'MP_AR':
+					//valueToProcess = 'C:/Everest_VR_AR/MattScenes/MatchID.sum';
+					valueToProcess = 'C:/Everest_VR_2026/MattScenes/MatchID02.sum';
+					break;	
+			}
+			break;	
 		case 'POPULATE-MATCH_ANIMATION_AR':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'DOAD_AR':
@@ -13432,9 +13448,9 @@ function processCricketProcedures(whatToProcess) {
 						document.getElementById('which_keypress').value + ',' + $('#selectpositionlandmark option:selected').val();
 					break;	
 				case 'EVEREST_AR_VR':
-				   valueToProcess = 'C:/Everest_VR_AR/Scenes/IN AT.sum' + ',' + 
-						document.getElementById('which_keypress').value + ',' + $('#selectpositionlandmark option:selected').val();
-				   break;	
+					valueToProcess = 'C:/Everest_VR_2026/MattScenes/IN_At.sum'	+ ',' + 
+									document.getElementById('which_keypress').value + ',' + $('#selectpositionlandmark option:selected').val();
+					break;	
 			}
 			break;
 		case 'POPULATE-LT-EQUATION':
@@ -15112,7 +15128,7 @@ function processCricketProcedures(whatToProcess) {
 			    case 'POPULATE-TARGET_AR': case 'POPULATE-TARGETIMAGE_AR': case 'POPULATE-TARGET_VR': case 'POPULATE-PROJECTED_AR': case 'POPULATE-LASTBOUNDARY_AR': case 'POPULATE-MATCHID_AR': case 'POPULATE-FREE_TEXT_AR':
 				case 'POPULATE-MATCH_ANIMATION_AR': case 'POPULATE-EQUATION_ARINTARGET': case 'POPULATE-EQUATION_AR': case 'POPULATE-EQUATION_DRONE': case 'POPULATE-LASTTHIRTY_DRONEF': case 'POPULATE-LASTTHIRTY_AR':  case 'POPULATE-EQUATION_VR': case 'POPULATE-THISOVER_AR': case 'POPULATE-TEAMCELEB_AR': case 'POPULATE-PLAYERCELEB': case 'POPULATE-COUNT_AR': case 'POPULATE-THISOVER_VR': case 'POPULATE-FOW_AR':
 				case 'POPULATE-THISPART_AR': case 'POPULATE-NEXT_AR': case 'POPULATE-TOSS_AR': case 'POPULATE-RUNRATE': case 'POPULATE-MATCHID_VR': case 'POPULATE-COUNTDOWN_AR': case 'POPULATE-PROJECTED_VR':
-				case 'POPULATE-EQUATIONIMAGE_AR': case 'POPULATE-RUN_VR': case 'POPULATE-RES_AR': case 'POPULATE-LASTTHIRTY_DRONEN':
+				case 'POPULATE-EQUATIONIMAGE_AR': case 'POPULATE-RUN_VR': case 'POPULATE-RES_AR': case 'POPULATE-LASTTHIRTY_DRONEN': case 'POPULATE-MATCHID_ARR':  
 			 case 'POPULATE-EVERESTPLAYERPROFILEBAT': case 'POPULATE-FF-PLAYERPROFILEBALLL': case 'POPULATE-DOUBLEEVERESTPLAYERPROFILEBAT':
 				case 'POPULATE-FALLOFWIKETS_VR': case 'POPULATE-LASTWICKET_VR':	 case 'POPULATE-LASTOVER_VR':
 				
@@ -15525,6 +15541,9 @@ function processCricketProcedures(whatToProcess) {
 							case 'POPULATE-MATCHID_VR':	
 							    processCricketProcedures('ANIMATE-IN-MATCHID_VR');
 							 	break;
+							case 'POPULATE-MATCHID_VR':	
+							    processCricketProcedures('ANIMATE-IN-MATCHID_ARR');
+							 	break;	
 							case 'POPULATE-PROJECTED_AR':
 								processCricketProcedures('ANIMATE-IN-PROJECTED_AR');
 								break;

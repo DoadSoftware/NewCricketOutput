@@ -40,9 +40,9 @@ public class EVEREST_APL_T20 extends Scene{
 	public String status;
 	public String slashOrDash = "-";
 	//public String logo_path_ns = "C:\\\\Images\\\\APL\\\\Logos\\\\";
-	public String photo_path = "C:\\Images\\APL\\Photos\\";
-	private String local_photo_path = "c\\Images\\APL\\Photos\\";
-	public String logo_path = "C:\\Images\\APL\\Logos\\";
+	public String photo_path = "C:\\Images\\PPL\\Photos\\";
+	private String local_photo_path = "c\\Images\\PPL\\Photos\\";
+	public String logo_path = "C:\\Images\\PPL\\Logos\\";
 	//public String base_path = "C:\\EVEREST_APL2023\\Textures\\Color01.png";
 	public Infobar infobar = new Infobar(); 
 	public String which_graphic_on_screen = "";

@@ -1174,12 +1174,13 @@
                 <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="comparison_vr_score_graphic_btn" id="comparison_vr_score_graphic_btn" onclick="processUserSelection(this)"> Comparison VR </button>
 			  	
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="freetext_ar_graphic_btn" id="freetext_ar_graphic_btn" onclick="processUserSelection(this)"> Free Text </button>
+			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="freetext_ar_graphic_btn" id="freetext_ar_graphic_btn" onclick="processUserSelection(this)"> Free Text </button> -->
 			  	
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="target_vr_score_graphic_btn" id="target_vr_score_graphic_btn" onclick="processUserSelection(this)"> Target VR </button>
-			  	
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="thisover_vr_graphic_btn" id="thisover_vr_graphic_btn" onclick="processUserSelection(this)"> This Over </button>
 			  <!--  <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="thisover_vr_graphic_btn" id="thisover_vr_graphic_btn" onclick="processUserSelection(this)"> This Over </button>
 			<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
@@ -1190,26 +1191,26 @@
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  	name="matchId_vr_score_graphic_btn" id="matchId_vr_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button>
 			  	
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button" 
-			            name="bug_toss_graphic_btn" id="bug_toss_graphic_btn" onclick="processUserSelection(this)"> Bug-Toss </button>
+			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button" 
+			            name="bug_toss_graphic_btn" id="bug_toss_graphic_btn" onclick="processUserSelection(this)"> Bug-Toss </button> -->
 			        
 			  	
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="lastboundary_ar_score_graphic_btn" id="lastboundary_ar_score_graphic_btn" onclick="processUserSelection(this)"> Ball Since last Boundary </button>
+			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="lastboundary_ar_score_graphic_btn" id="lastboundary_ar_score_graphic_btn" onclick="processUserSelection(this)"> Ball Since last Boundary </button> -->
 			  		
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="rate_vr_score_graphic_btn" id="rate_vr_score_graphic_btn" onclick="processUserSelection(this)"> Run rate + CRR </button>
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="LastXBalls_graphic_btn" id="LastXBalls_graphic_btn" onclick="processUserSelection(this)"> Last X Balls </button>				
+			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="LastXBalls_graphic_btn" id="LastXBalls_graphic_btn" onclick="processUserSelection(this)"> Last X Balls </button>	 -->			
 				 	
 				 	
-				<hr style="margin:15px 0; border:1px solid #ccc;">
+				<!-- <hr style="margin:15px 0; border:1px solid #ccc;">
 					<p style="font-weight:bold; color:#2E008B; margin-bottom:8px;">AR Graphic Buttons</p> 	
 				 <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 				  		name="positionlandmark_graphic_btn" id="positionlandmark_graphic_btn" onclick="processUserSelection(this)"> Batsman In AT</button>	
 				 	
 				 <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="matchId_arr_score_graphic_btn" id="matchId_arr_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident (AR) </button>
+			  		name="matchId_arr_score_graphic_btn" id="matchId_arr_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident (AR) </button> -->
 				 	
 				 				
 			  	</c:if>

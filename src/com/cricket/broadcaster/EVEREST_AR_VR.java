@@ -2650,6 +2650,65 @@ public class EVEREST_AR_VR extends Scene{
 		}
 	}
 	
+	/*
+	 * public void populateFreeTextAR(PrintWriter print_writer,MatchAllData
+	 * match,String data,String session_selected_broadcaster) throws
+	 * InterruptedException, IOException { switch
+	 * (session_selected_broadcaster.toUpperCase()) { case "EVEREST_AR_VR": case
+	 * "BARODA_AR": case "MP_AR": String text1_to_return = "",text2_to_return = "";
+	 * 
+	 * // switch (data) { // case "NO_LOGO": // print_writer.
+	 * println("LAYER1*EVEREST*TREEVIEW*Main$Logo*CONTAINER SET ACTIVE 0;"); //
+	 * print_writer.
+	 * println("LAYER3*EVEREST*TREEVIEW*Main$Logo*CONTAINER SET ACTIVE 0;"); //
+	 * break; // // default: // print_writer.
+	 * println("LAYER1*EVEREST*TREEVIEW*Main$Logo*CONTAINER SET ACTIVE 1;"); //
+	 * print_writer.
+	 * println("LAYER3*EVEREST*TREEVIEW*Main$Logo*CONTAINER SET ACTIVE 1;"); // //
+	 * print_writer.
+	 * println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " +
+	 * logo_path + // data.toUpperCase() + ".png" +";"); // print_writer.
+	 * println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " +
+	 * logo_path + // data.toUpperCase() + ".png" +";"); // break; // }
+	 * print_writer.
+	 * println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Gfx_Selector 7;"
+	 * );
+	 * 
+	 * print_writer.
+	 * println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Logo " +
+	 * logo_pathtg + data.toUpperCase() + ".png" +";"); print_writer.
+	 * println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Logo " +
+	 * logo_pathtg + data.toUpperCase() + ".png" +";");
+	 * 
+	 * BufferedReader br = new BufferedReader(new
+	 * FileReader(CricketUtil.CRICKET_DIRECTORY + CricketUtil.AR_FREE_TXT));
+	 * 
+	 * String line1 = br.readLine(); String line2 = br.readLine();
+	 * 
+	 * br.close();
+	 * 
+	 * if (line1 != null) { print_writer.
+	 * println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header " +
+	 * line1.toUpperCase() + ";"); print_writer.
+	 * println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header " +
+	 * line1.toUpperCase() + ";"); } else { print_writer.
+	 * println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header ;");
+	 * print_writer.
+	 * println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header ;");
+	 * System.out.println("File is empty"); }
+	 * 
+	 * if (line2 != null) { print_writer.
+	 * println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header2 " +
+	 * line2.toUpperCase() + ";"); print_writer.
+	 * println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header2 " +
+	 * line2.toUpperCase() + ";"); } else { print_writer.
+	 * println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header2 ;");
+	 * print_writer.
+	 * println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header2 ;");
+	 * System.out.println("Only 1 line in file"); } this.status =
+	 * CricketUtil.SUCCESSFUL; break; } }
+	 */
+	
 	public void populateFreeTextAR(PrintWriter print_writer,MatchAllData match,String data,String session_selected_broadcaster) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
@@ -2672,11 +2731,11 @@ public class EVEREST_AR_VR extends Scene{
 //						data.toUpperCase() + ".png" +";");
 //				break;
 //			}
-			print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Gfx_Selector 7;");
+		//	print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Gfx_Selector 7;");
 			
-			print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Logo " + logo_pathtg + 
+			print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " + logo_path + 
 					data.toUpperCase() + ".png" +";");
-			print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Logo " + logo_pathtg + 
+			print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgTeam " + logo_path + 
 					data.toUpperCase() + ".png" +";");
 			
 			BufferedReader br = new BufferedReader(new FileReader(CricketUtil.CRICKET_DIRECTORY + CricketUtil.AR_FREE_TXT));
@@ -2687,20 +2746,20 @@ public class EVEREST_AR_VR extends Scene{
 			br.close();
 
 			if (line1 != null) {
-			    print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header " + line1.toUpperCase() + ";");
-			    print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header " + line1.toUpperCase() + ";");
+			    print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader " + line1.toUpperCase() + ";");
+			    print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader " + line1.toUpperCase() + ";");
 			} else {
-			    print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header ;");
-			    print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header ;");
+			    print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader ;");
+			    print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader ;");
 			    System.out.println("File is empty");
 			}
 
 			if (line2 != null) {
-			    print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header2 " + line2.toUpperCase() + ";");
-			    print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header2 " + line2.toUpperCase() + ";");
+			    print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader2 " + line2.toUpperCase() + ";");
+			    print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader2 " + line2.toUpperCase() + ";");
 			} else {
-			    print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header2 ;");
-			    print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header2 ;");
+			    print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader2 ;");
+			    print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader2 ;");
 			    System.out.println("Only 1 line in file");
 			}
 			this.status = CricketUtil.SUCCESSFUL;

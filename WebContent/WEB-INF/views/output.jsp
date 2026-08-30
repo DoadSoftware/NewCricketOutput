@@ -1195,13 +1195,16 @@
 			            name="bug_toss_graphic_btn" id="bug_toss_graphic_btn" onclick="processUserSelection(this)"> Bug-Toss </button> -->
 			        
 			  	
-			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="lastboundary_ar_score_graphic_btn" id="lastboundary_ar_score_graphic_btn" onclick="processUserSelection(this)"> Ball Since last Boundary </button> -->
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="lastboundary_ar_score_graphic_btn" id="lastboundary_ar_score_graphic_btn" onclick="processUserSelection(this)"> Ball Since last Boundary </button>
+			  		
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="phase_Wise_vr_score_graphic_btn" id="phase_Wise_vr_score_graphic_btn" onclick="processUserSelection(this)"> Phase Wise </button>
 			  		
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="rate_vr_score_graphic_btn" id="rate_vr_score_graphic_btn" onclick="processUserSelection(this)"> Run rate + CRR </button>
-			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="LastXBalls_graphic_btn" id="LastXBalls_graphic_btn" onclick="processUserSelection(this)"> Last X Balls </button>	 -->			
+			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="LastXBalls_graphic_btn" id="LastXBalls_graphic_btn" onclick="processUserSelection(this)"> Last X Balls </button>			
 				 	
 				 	
 				<!-- <hr style="margin:15px 0; border:1px solid #ccc;">

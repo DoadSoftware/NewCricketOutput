@@ -3013,7 +3013,7 @@ function processUserSelection(whichInput) {
 		case 'split_db_graphic_btn': case '': case 'LT_Excel_graphic_btn': case 'freetext_ar_graphic_btn': case 'lastthirtyball_ar_score_graphic_btn': case 'thisover_vr_graphic_btn':
 		case 'teamcelebration_ar_graphic_btn': case 'playercelebration_ar_graphic_btn':case'FF_Excel_keyPlayer_graphic_btn': case 'lastthirtyball_dronefar_score_graphic_btn':
 		case 'match_promo_animation_graphic_btn': case 'Batmile_ar_graphic_btn': case 'PlayerProfilebat_ar_graphic_btn': case 'Ballmile_ar_graphic_btn': case 'Opener_ar_graphic_btn': case 'lastthirtyball_dronenear_score_graphic_btn':
-		case 'count_ar_score_graphic_btn': case 'runrate_ar_score_graphic_btn':
+		case 'count_ar_score_graphic_btn': case 'runrate_ar_score_graphic_btn': 
 			$("#captions_div").hide();
 			$("#cancel_match_setup_btn").hide();
 			$("#expiry_message").hide();
@@ -3672,11 +3672,11 @@ function processUserSelection(whichInput) {
 		case 'thisover_ar_graphic_btn':case"populate_Teams_Options_btn": case 'populate_teamceleb_ar_btn': case 'target_vr_score_graphic_btn': case 'countdown_graphic_btn': case 'fallofwicket_graphic_btn': case 'previous_over_graphic_btn': case 'matchId_arr_score_graphic_btn':
 		case 'thispart_ar_graphic_btn': case 'Next_ar_graphic_btn': case "toss_ar_graphic_btn": case "boundaries_ar_score_graphic_btn": case 'tosscoin_ar_graphic_btn': case 'equation_vr_score_graphic_btn': case 'targetimage_ar_score_graphic_btn':
         case'equationimage_ar_score_graphic_btn': case 'populate_lastthirtyball_ar_btn': case'lastboundary_ar_score_graphic_btn': case 'fow_ar_score_graphic_btn':
-        case 'res_ar_score_graphic_btn': case 'populate_lastthirtyball_dronefar_btn': case 'populate_lastthirtyball_dronenear_btn': case 'phase_Wise_vr_score_graphic_btn':
+        case 'res_ar_score_graphic_btn': case 'populate_lastthirtyball_dronefar_btn': case 'populate_lastthirtyball_dronenear_btn': case 'phase_Wise_vr_score_graphic_btn': case 'fow_ar_score_graphic_btnn':
+
         case'equationimage_ar_score_graphic_btn': case 'rate_vr_score_graphic_btn': case 'populate_ball_buzzer_btn': case 'populate_bat_buzzer_btn':
 		case 'infobar_last_btn': case 'populate_infobar_last_btn': case 'populate_dls_btn': case 'populate_dls_equation_btn': case 'matchstatus_graphic_btn':
 		case 'schedule_btn': case 'last_year_standing_btn': case 'ltmatchid_graphic_btn': case 'final_match_summary_graphic_btn': case 'ff_rows_captains_btn':
-
 		case 'populate_pointer_btn': case 'populate_all_match_btn': case 'populate_matchid_btn': case 'populate_bug_partnership_btn':
 		case 'Sixdirector_graphic_btn': case 'Fourdirector_graphic_btn': case 'Wicketdirector_graphic_btn': case 'Freehitdirector_graphic_btn': case 'onahattrickdirector_graphic_btn':
 		case 'hattrickdirector_graphic_btn': case 'populate_high_btn': case 'populate_ffmatchident_btn': case 'rules_graphic_btn': case 'populate_ffrules_btn':
@@ -4247,8 +4247,8 @@ function processUserSelection(whichInput) {
 				case 'matchId_ar_score_graphic_btn':
 					processCricketProcedures('POPULATE-MATCHID_AR');
 					break;
-				case 'fow_ar_score_graphic_btn':
-					processCricketProcedures('POPULATE-FOW_AR');
+				case 'fow_ar_score_graphic_btnn':
+					processCricketProcedures('POPULATE-FOW_ARR');
 					break;
 				case 'res_ar_score_graphic_btn':
 					 processCricketProcedures('POPULATE-RES_AR');
@@ -6285,17 +6285,10 @@ function processCricketProcedures(whatToProcess) {
 					break;
 				}
 			break;
-			case 'POPULATE-FOW_AR':
-			switch ($('#selected_broadcaster').val().toUpperCase()) {
-
-				case 'ICPL_AR':
-					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_NPL_2024/MattScenes/FOW.sum';
-					break;
-				case 'EVEREST_AR_VR': case 'BARODA_AR': case 'MP_AR':
-						valueToProcess = 'C:/Everest_VR_AR/MattScenes/Comparison.sum';
-					 //valueToProcess = 'C:/Everest_VR_2026/MattScenes/FOW.sum';
-					break;	
-				}
+			case 'POPULATE-FOW_ARR':
+				//alert("coming here");
+				valueToProcess = 'C:/Everest_VR_AR/MattScenes/FOW.sum';
+			
 			break;
 			case 'POPULATE-RES_AR':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
@@ -15128,7 +15121,8 @@ function processCricketProcedures(whatToProcess) {
 
 				case 'POPULATE-BOUNDARIES_VRR': case 'POPULATE-DEFAULT_AR': case 'POPULATE-DEFAULTOUT_AR': case 'POPULATE-COMPARISON_DRONE': case 'POPULATE-COMPARISON_AR':  case 'POPULATE-COMPARISON_VR': case 'POPULATE-TARGET_DRONE':
 			    case 'POPULATE-TARGET_AR': case 'POPULATE-TARGETIMAGE_AR': case 'POPULATE-TARGET_VR': case 'POPULATE-PROJECTED_AR': case 'POPULATE-LASTBOUNDARY_AR': case 'POPULATE-MATCHID_AR': case 'POPULATE-FREE_TEXT_AR':
-				case 'POPULATE-MATCH_ANIMATION_AR': case 'POPULATE-EQUATION_ARINTARGET': case 'POPULATE-EQUATION_AR': case 'POPULATE-EQUATION_DRONE': case 'POPULATE-LASTTHIRTY_DRONEF': case 'POPULATE-LASTTHIRTY_AR':  case 'POPULATE-EQUATION_VR': case 'POPULATE-THISOVER_AR': case 'POPULATE-TEAMCELEB_AR': case 'POPULATE-PLAYERCELEB': case 'POPULATE-COUNT_AR': case 'POPULATE-THISOVER_VR': case 'POPULATE-FOW_AR':
+				case 'POPULATE-MATCH_ANIMATION_AR': case 'POPULATE-EQUATION_ARINTARGET': case 'POPULATE-EQUATION_AR': case 'POPULATE-EQUATION_DRONE': case 'POPULATE-LASTTHIRTY_DRONEF': case 'POPULATE-LASTTHIRTY_AR':  case 'POPULATE-EQUATION_VR': 
+				case 'POPULATE-THISOVER_AR': case 'POPULATE-TEAMCELEB_AR': case 'POPULATE-PLAYERCELEB': case 'POPULATE-COUNT_AR': case 'POPULATE-THISOVER_VR': case 'POPULATE-FOW_ARR':
 				case 'POPULATE-THISPART_AR': case 'POPULATE-NEXT_AR': case 'POPULATE-TOSS_AR': case 'POPULATE-RUNRATE': case 'POPULATE-MATCHID_VR': case 'POPULATE-COUNTDOWN_AR': case 'POPULATE-PROJECTED_VR':
 				case 'POPULATE-EQUATIONIMAGE_AR': case 'POPULATE-RUN_VR': case 'POPULATE-RES_AR': case 'POPULATE-LASTTHIRTY_DRONEN': case 'POPULATE-MATCHID_ARR':  
 			 case 'POPULATE-EVERESTPLAYERPROFILEBAT': case 'POPULATE-FF-PLAYERPROFILEBALLL': case 'POPULATE-DOUBLEEVERESTPLAYERPROFILEBAT':
@@ -15534,8 +15528,8 @@ function processCricketProcedures(whatToProcess) {
 							case 'POPULATE-LASTBOUNDARY_AR':
 								processCricketProcedures('ANIMATE-IN-LASTBOUNDARY_AR');
 								break;
-							case 'POPULATE-FOW_AR':	
-								processCricketProcedures('ANIMATE-IN-FOW_AR');
+							case 'POPULATE-FOW_ARR':	
+								processCricketProcedures('ANIMATE-IN-FOW_ARR');
 								break;	
 							case 'POPULATE-RES_AR':	
 								processCricketProcedures('ANIMATE-IN-RES_AR');

@@ -1181,11 +1181,10 @@
 			  		name="target_vr_score_graphic_btn" id="target_vr_score_graphic_btn" onclick="processUserSelection(this)"> Target VR </button>
 			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="thisover_vr_graphic_btn" id="thisover_vr_graphic_btn" onclick="processUserSelection(this)"> This Over </button> -->
-			  <!--  <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="thisover_vr_graphic_btn" id="thisover_vr_graphic_btn" onclick="processUserSelection(this)"> This Over </button>
-			<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="fow_ar_score_graphic_btn" id="fow_ar_score_graphic_btn" onclick="processUserSelection(this)"> FallOfWicket </button>  -->
-			  		
+			  	 <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="fow_ar_score_graphic_btnn" id="fow_ar_score_graphic_btnn" onclick="processUserSelection(this)"> Fow </button>	
 			    <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="equation_ar_score_graphic_btn" id="equation_ar_score_graphic_btn" onclick="processUserSelection(this)"> Equation </button> 
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"

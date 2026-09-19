@@ -1182,9 +1182,12 @@ public class EVEREST_AR_VR extends Scene{
 			String titl = "20", oneToSixfRRR = "",sevenToFifteenRRR="",sixteenToTweentyRRR="",val = "";
 			
 			if(inning == 1) {
-				if(Integer.valueOf(matchAllData.getSetup().getReducedOvers()) > 0) {
-					titl = String.valueOf(matchAllData.getSetup().getReducedOvers());
+				if(matchAllData.getSetup().getReducedOvers() != null && !matchAllData.getSetup().getReducedOvers().isEmpty()) {
+					if(Integer.valueOf(matchAllData.getSetup().getReducedOvers()) > 0) {
+						titl = String.valueOf(matchAllData.getSetup().getReducedOvers());
+					}
 				}
+				
 			}else if(inning == 2) {
 				if(matchAllData.getSetup().getReducedOvers() != null && !matchAllData.getSetup().getReducedOvers().isEmpty()) {
 					if(Integer.valueOf(matchAllData.getSetup().getReducedOvers()) > 0) {

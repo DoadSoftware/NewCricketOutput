@@ -81,6 +81,7 @@ public class EVEREST_AR_VR extends Scene{
 	private String base_path_mh1 = "C:\\Everest_VR_AR\\Textures\\Base_Texture";
 	private String base_path_mh2 = "C:\\Everest_VR_AR\\Textures\\Base_Texture";
 	private String base_path_mh3 = "C:\\Everest_VR_AR\\Textures\\Base_Texture";
+	private String base_path11 = "C:\\Everest_VR_AR\\Textures\\Base1\\";
 	//private String base_path2 = "C:\\Everest_SPL_VR\\SPL_Base2\\";
 	
 	private String base_path_tg1 = "C:\\Everest_VR_2026\\Textures\\TG20\\Base 1\\";
@@ -1901,14 +1902,17 @@ public class EVEREST_AR_VR extends Scene{
 								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgHomeTeam " + logo_path + inn.getBowling_team().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");
 								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET lgAwayTeam " + logo_path + inn.getBatting_team().getTeamBadge() + CricketUtil.PNG_EXTENSION + ";");  
 							
-								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Team1Base1 " + base_path_mh1 +
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Team1Base1 " + base_path11 + inn.getBowling_team().getTeamBadge() +
+										CricketUtil.PNG_EXTENSION + ";");
+								
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Team2Base1 " + base_path11 + inn.getBatting_team().getTeamBadge() +
 										CricketUtil.PNG_EXTENSION + ";");
 //								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET HOME_TEXT1 " + text_path1 + inn.getBowling_team().getTeamBadge() + 
 //										CricketUtil.PNG_EXTENSION + ";");
 								
 								
-								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Team2Base1 " + base_path_mh1 +
-										CricketUtil.PNG_EXTENSION + ";");
+//								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Team2Base1 " + base_path_mh1 +
+//										CricketUtil.PNG_EXTENSION + ";");
 //								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET AWAY_TEXT1 " + text_path1 + inn.getBatting_team().getTeamBadge() + 
 //										CricketUtil.PNG_EXTENSION + ";");
 								

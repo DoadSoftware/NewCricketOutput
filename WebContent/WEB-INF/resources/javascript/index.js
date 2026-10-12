@@ -2986,10 +2986,9 @@ function processUserSelection(whichInput) {
 		case 'bug_dismissal_graphic_btn': case 'split_graphic_btn': case 'bug_db_graphic_btn': case 'infobar_top_graphic_btn': case 'bugbowler_graphic_btn': case 'powerplay_graphic_btn':
 		case 'howoutwithoutfielder_graphic_btn': case 'ltbowlerdetails_graphic_btn': case 'ltnexttobat_graphic_btn': case 'bowlersummary_graphic_btn': case 'landmark_graphic_btn':
 		case 'positionlandmark_graphic_btn': case 'ar_partnership_graphic_btn': case 'batsmanthismatch_graphic_btn': case 'bowlerthismatch_graphic_btn': case 'bowlerstyle_graphic_btn': case 'ltmatch_promo_graphic_btn':
-		case 'infobar_right_graphic_btn': case 'Wicket_graphic_btn': case 'Review_graphic_btn':case "highestScore_graphic_btn": case "BestFigures_graphic_btn":
+		case 'infobar_right_graphic_btn': case 'Wicket_graphic_btn': case 'Review_graphic_btn':case "highestScore_graphic_btn": case "BestFigures_graphic_btn": case 'ar_matchStatus_graphic_btn':
 		case 'this_series_stats_graphic_btn': case 'this_series_stats_ball_graphic_btn': case 'ffthis_series_stats_graphic_btn': case 'ffthis_series_balls_stats_graphic_btn':
-		case 'ff-stats_graphic_btn': case 'squad_graphic_btn': case "Griff_graphic_btn":
-		case 'BallGriff_graphic_btn': case 'playoff_graphic_btn': case 'session_graphic_btn': case 'batsmanstats_both_graphic_btn': case 'l3playerprofileBat_graphic_btn':
+		case 'ff-stats_graphic_btn': case 'squad_graphic_btn': case "Griff_graphic_btn": case 'ar_thisSession_graphic_btn':		case 'BallGriff_graphic_btn': case 'playoff_graphic_btn': case 'session_graphic_btn': case 'batsmanstats_both_graphic_btn': case 'l3playerprofileBat_graphic_btn':
 		case 'lt_lineup_graphic_btn': case 'l3playerprofile_graphic_btn': case 'l3playerprofilebukhatir_graphic_btn': case 'playerprofilebukhatir_graphic_btn': case 'most_graphic_btn':
 		case 'inningbuilder_graphic_btn': case 'most_leader_graphic_btn': case 'all_match_graphic_btn':
 		case 'multi_partnership_graphic_btn': case 'FF_Play_graphic_btn': //case 'bug_powerplay_graphic_btn': //case 'bug_partnership_graphic_btn': case 'bug_highlight_graphic_btn':
@@ -3349,7 +3348,12 @@ function processUserSelection(whichInput) {
 				case 'ar_partnership_graphic_btn':
 					processCricketProcedures('POPULATE-AR_PARTNERSHIP');
 					break;	
-
+				case 'ar_thisSession_graphic_btn':
+					processCricketProcedures('POPULATE-AR_THIS_SESSION');
+					break;
+				case 'ar_matchStatus_graphic_btn':
+					processCricketProcedures('POPULATE-AR_MATCH_STATUS');
+					break;
 				case 'playerprofileeverest_graphic_btn':
 					addItemsToList('PLAYERPROFILEEVEREST-OPTIONS', session_match);
 					//addItemsToList('POPULATE-PROFILE',null);
@@ -6232,9 +6236,6 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-PROJECTED_VR':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				
-				case 'BARODA_AR': case 'MP_AR':
-					valueToProcess = 'C:/Everest_VR_2026/MattScenes/ProjectedScore.sum';
-					break;	
 				case 'EVEREST_AR_VR': case 'BARODA_AR': case 'MP_AR':
 					valueToProcess = 'C:/Everest_VR_AR/MattScenes/ProjectedScores.sum';
 					//valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
@@ -6261,6 +6262,20 @@ function processCricketProcedures(whatToProcess) {
 					break;
 				}
 			break;	
+		case 'POPULATE-AR_MATCH_STATUS':
+			switch ($('#selected_broadcaster').val().toUpperCase()) {
+				case 'EVEREST_AR_VR':
+					valueToProcess = 'C:/Everest_VR_AR/Scenes/AI/match_status.sum';
+				break;
+			}
+			break;
+		case 'POPULATE-AR_THIS_SESSION':
+			switch ($('#selected_broadcaster').val().toUpperCase()) {
+				case 'EVEREST_AR_VR':
+					valueToProcess = 'C:/Everest_VR_AR/Scenes/AI/This_session.sum';
+				break;
+			}
+			break;
 		case 'POPULATE-MATCHID_AR':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'DOAD_AR':
@@ -11783,7 +11798,7 @@ function processCricketProcedures(whatToProcess) {
 						+ ',' + $('#selectPlayerData option:selected').val();
 					break;
 				case 'EVEREST_AR_VR':
-				   valueToProcess = 'C:/Everest_VR_AR/Scenes/Player_MileStone.sum' + ',' + document.getElementById('which_keypress').value
+				   valueToProcess = 'C:/Everest_VR_AR/Scenes/AI/Player_MileStone.sum' + ',' + document.getElementById('which_keypress').value
 						+ ',' + $('#selectPlayerData option:selected').val();
 			      break;		
 			}
@@ -11812,7 +11827,7 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-L3-BOWLERDETAILS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'EVEREST_AR_VR':
-				   valueToProcess = 'C:/Everest_VR_AR/MattScenes/PlayerMilestone.sum' + ',' + document.getElementById('which_keypress').value
+				   valueToProcess = 'C:/Everest_VR_AR/Scenes/AI/Player_MileStone.sum' + ',' + document.getElementById('which_keypress').value
 						+ ',' + $('#selectPlayerData option:selected').val();
 			      break;
 				case 'FAIR_BREAK_AR':
@@ -15136,7 +15151,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'POPULATE-THISOVER_AR': case 'POPULATE-TEAMCELEB_AR': case 'POPULATE-PLAYERCELEB': case 'POPULATE-COUNT_AR': case 'POPULATE-THISOVER_VR': case 'POPULATE-FOW_ARR':
 				case 'POPULATE-THISPART_AR': case 'POPULATE-NEXT_AR': case 'POPULATE-TOSS_AR': case 'POPULATE-RUNRATE': case 'POPULATE-MATCHID_VR': case 'POPULATE-COUNTDOWN_AR': case 'POPULATE-PROJECTED_VR':
 				case 'POPULATE-EQUATIONIMAGE_AR': case 'POPULATE-RUN_VR': case 'POPULATE-RES_AR': case 'POPULATE-LASTTHIRTY_DRONEN': case 'POPULATE-MATCHID_ARR':  case 'POPULATE-AR_PARTNERSHIP':
-
+					case 'POPULATE-AR_MATCH_STATUS': case 'POPULATE-AR_THIS_SESSION':
 			 case 'POPULATE-EVERESTPLAYERPROFILEBAT': case 'POPULATE-FF-PLAYERPROFILEBALLL': case 'POPULATE-DOUBLEEVERESTPLAYERPROFILEBAT':
 				case 'POPULATE-FALLOFWIKETS_VR': case 'POPULATE-LASTWICKET_VR':	 case 'POPULATE-LASTOVER_VR': case 'POPULATE-PHASE_VR':
 				
@@ -15551,6 +15566,12 @@ function processCricketProcedures(whatToProcess) {
 							 	break;	
 							case 'POPULATE-AR_PARTNERSHIP':
 								processCricketProcedures('ANIMATE-IN-AR_PARTNERSHIP');
+								break;
+							case 'POPULATE-AR_THIS_SESSION':
+								processCricketProcedures('ANIMATE-IN-AR_THIS_SESSION');
+								break;
+							case 'POPULATE-AR_MATCH_STATUS':
+								processCricketProcedures('ANIMATE-IN-AR_MATCH_STATUS');
 								break;
 							case 'POPULATE-PROJECTED_AR':
 								processCricketProcedures('ANIMATE-IN-PROJECTED_AR');
@@ -23958,7 +23979,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 		case 'PLAYERMILE_BS-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'BIG_SCREEN': case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING':
+				case 'BIG_SCREEN': case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'EVEREST_AR_VR':
 
 					$('#select_graphic_options_div').empty();
 

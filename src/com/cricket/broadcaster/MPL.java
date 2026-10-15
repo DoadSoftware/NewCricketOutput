@@ -9476,19 +9476,15 @@ public class MPL extends Scene {
 			PrintWriter print_writer, MatchAllData match, String session_selected_broadcaster)
 			throws InterruptedException {
 		if (is_this_updating == false) {
-			print_writer
-					.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Ident$IdentTeamGrp1$txt_TeamName*GEOM*TEXT SET "
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Ident$IdentTeamGrp1$txt_TeamName*GEOM*TEXT SET "
 							+ match.getSetup().getHomeTeam().getTeamName1() + "\0");
-			print_writer
-					.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Ident$IdentTeamGrp2$txt_TeamName*GEOM*TEXT SET "
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Ident$IdentTeamGrp2$txt_TeamName*GEOM*TEXT SET "
 							+ match.getSetup().getAwayTeam().getTeamName1() + "\0");
 
-			print_writer.println(
-					"-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Ident$IdentBadges$HomeBadge$LogoIn$LLC_LogoGrp$img_Badges*TEXTURE*IMAGE SET "
-							+ logo_path + match.getSetup().getHomeTeam().getTeamBadge() + " \0");
-			print_writer.println(
-					"-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Ident$IdentBadges$AwayBadge$LogoIn$LLC_LogoGrp$img_Badges*TEXTURE*IMAGE SET "
-							+ logo_path + match.getSetup().getAwayTeam().getTeamBadge() + " \0");
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Ident$IdentBadges$HomeBadge$LogoIn$LLC_LogoGrp$img_Badges"
+					+ "*TEXTURE*IMAGE SET "+ logo_path + match.getSetup().getHomeTeam().getTeamBadge() + " \0");
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Ident$IdentBadges$AwayBadge$LogoIn$LLC_LogoGrp$img_Badges"
+					+ "*TEXTURE*IMAGE SET " + logo_path + match.getSetup().getAwayTeam().getTeamBadge() + " \0");
 		}
 
 		switch (infobar.getIdent_section().toUpperCase()) {

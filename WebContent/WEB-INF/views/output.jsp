@@ -1210,8 +1210,8 @@
 			  		name="freetext_ar_graphic_btn" id="freetext_ar_graphic_btn" onclick="processUserSelection(this)"> Free Text </button> 
 			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="matchId_ar_score_graphic_btn" id="matchId_ar_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button> -->
-			  		<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="projected_vr_score_graphic_btn" id="projected_vr_score_graphic_btn" onclick="processUserSelection(this)"> Projected </button> -->
+			  		<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="projected_vr_score_graphic_btn" id="projected_vr_score_graphic_btn" onclick="processUserSelection(this)"> Projected </button>
 			  		
 			  		<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="target_vr_score_graphic_btn" id="target_vr_score_graphic_btn" onclick="processUserSelection(this)"> Target VR </button>

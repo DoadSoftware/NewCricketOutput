@@ -15966,12 +15966,7 @@ public class KERALA_T20 extends Scene {
 		if (is_this_updating == false) {
 			
 			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Ident$StartAnimation$LLC_LogoGrp$LLC_Logo*TEXTURE*IMAGE SET "
-					+ logo_path + "TLogo_Blue" + " \0");
-
-			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Base$IdentBlackBase$Img_HomeTeamBase1*TEXTURE*IMAGE SET "
-							+ base_path1 + match.getSetup().getHomeTeam().getTeamBadge() + " \0");
-			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Base$IdentBlackBase$Img_AwayTeamBase1*TEXTURE*IMAGE SET "
-							+ base_path1 + match.getSetup().getAwayTeam().getTeamBadge() + " \0");
+					+ logo_path + "TLogo" + " \0");
 			
 			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Ident$IdentTeamGrp1$img_HomeTeamText1$txt_TeamName*GEOM*TEXT SET "
 							+ match.getSetup().getHomeTeam().getTeamName1() + "\0");
@@ -15992,6 +15987,11 @@ public class KERALA_T20 extends Scene {
 							+ text_path1 + match.getSetup().getHomeTeam().getTeamBadge() + " \0");
 			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Ident$IdentTeamGrp2$img_AwayTeamText1*TEXTURE*IMAGE SET "
 							+ text_path1 + match.getSetup().getAwayTeam().getTeamBadge() + " \0");
+			
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Base$IdentBlackBase$Img_HomeTeamBase1*TEXTURE*IMAGE SET "
+							+ base_path1 + match.getSetup().getHomeTeam().getTeamBadge() + " \0");
+			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Base$IdentBlackBase$Img_AwayTeamBase1*TEXTURE*IMAGE SET "
+							+ base_path1 + match.getSetup().getAwayTeam().getTeamBadge() + " \0");
 		}
 
 		switch (infobar.getIdent_section().toUpperCase()) {
@@ -23505,7 +23505,7 @@ public class KERALA_T20 extends Scene {
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$HeaderAllGrp"
 							+ "$HeaderStyle1$txt_SubHeader*GEOM*TEXT SET "+ match.getSetup().getTournament().toUpperCase() + "\0");
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$LogoOut$TLogo*TEXTURE*IMAGE SET " 
-							+ logo_path+"TLogo_Blue"+ " \0");
+							+ logo_path+"TLogo"+ " \0");
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$TeamColourBase2$img_Badges*TEXTURE*IMAGE SET " 
 					+ logo_path+"TLogo"+ " \0");
 
@@ -24545,7 +24545,7 @@ public class KERALA_T20 extends Scene {
 				+ "$PointsTable$HeaderAllGrp$HeaderTextGrpOut$HeaderTextGrpIn$Header$HeaderStyle1"
 				+ "$txt_SubHeader*GEOM*TEXT SET " + match.getSetup().getTournament() + " - " + match.getSetup().getMatchIdent() + "\0");
 		print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + whichside
-				+ "$PointsTable$LogoGrp1$LogoOut$img_Badges*TEXTURE*IMAGE SET " + logo_path + "TLogo_Blue" + "\0");
+				+ "$PointsTable$LogoGrp1$LogoOut$img_Badges*TEXTURE*IMAGE SET " + logo_path + "TLogo" + "\0");
 
 //		print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + whichside + "$PointsTable$LogoGrp1$LogoOut$img_Badges*TEXTURE*IMAGE SET " 
 //				+ text_path2 + "GEN" + "\0");
@@ -25330,14 +25330,14 @@ public class KERALA_T20 extends Scene {
 				Date =  new SimpleDateFormat("dd-MM-yyyy").format(cal.getTime());
 			}
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Side1$LLC_LogoGrp$TLogo*TEXTURE*IMAGE SET " + 
-					logo_path + "TLogo_Blue" + "\0");
+					logo_path + "TLogo" + "\0");
 			
 			System.out.println("STADIUMssss = " + fix.get(0).getVenue());
 			
 			for(int i = 0; i <= fix.size()-1; i++) {
 				if(fix.get(i).getDate().equalsIgnoreCase(Date)) {
 					System.out.println("STADIUM = " + fix.get(i).getVenue());
-					if(fix.get(i).getVenue().equalsIgnoreCase("HOLKAR STADIUM, INDORE")) {
+//					if(fix.get(i).getVenue().equalsIgnoreCase("HOLKAR STADIUM, INDORE")) {
 						if(row_id == 1) {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$MatchId_Double$Logo$TeamBadgeGrp1$img_Badges*TEXTURE*IMAGE SET " + 
 									logo_path + team.get(fix.get(i).getHometeamid()-1).getTeamBadge() + "\0");
@@ -25450,7 +25450,7 @@ public class KERALA_T20 extends Scene {
 							}
 						}
 						row_id = row_id +1;
-					}
+//					}
 				}
 			}
 			if(day.toUpperCase().equalsIgnoreCase("DAY_AFTER_TOMORROW")) {
@@ -26978,7 +26978,7 @@ public class KERALA_T20 extends Scene {
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$WormGraphics$HeaderAllGrp$HeaderStyle1$txt_SubHeader*GEOM*TEXT SET "
 							+ match.getSetup().getTournament() + " - " + match.getSetup().getMatchIdent().toUpperCase() + "\0");
 			
-			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$WormGraphics$LogoOut$img_Badges*TEXTURE*IMAGE SET " + logo_path + "TLogo_Blue" + " \0");
+			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$WormGraphics$LogoOut$img_Badges*TEXTURE*IMAGE SET " + logo_path + "TLogo" + " \0");
 
 			for (int over = 1; over <= match.getSetup().getMaxOvers(); over++) {
 				over_id = over_id + 1;

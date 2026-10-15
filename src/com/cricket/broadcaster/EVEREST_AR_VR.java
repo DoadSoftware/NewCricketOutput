@@ -139,7 +139,15 @@ public class EVEREST_AR_VR extends Scene{
 		case "LASTBOUNDARY_AR":
 			populateLastBoundary(print_writer, match, config.getBroadcaster());
 			break;	
-			
+		case "AR_PARTNERSHIP":
+			populateARPartnership(print_writer, data.split(",")[0], match, config.getBroadcaster(), config);
+			break;
+		case "AR_MATCH_STATUS":
+			populateARMatchStatus(print_writer, data.split(",")[0], match, config.getBroadcaster(), config);
+			break;
+		case "AR_THIS_SESSION":
+			populateARThisSession(print_writer, data.split(",")[0], match, config.getBroadcaster(), config);
+			break;
 		case "COMPARISON_VR":
 			populateComparisonVR(true,print_writer, match, config.getBroadcaster());
 			break;
@@ -1750,8 +1758,15 @@ public class EVEREST_AR_VR extends Scene{
 //									CricketUtil.PNG_EXTENSION + ";");
 //							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Base1 " + text_path1 + inn.getBatting_team().getTeamBadge() + 
 //									CricketUtil.PNG_EXTENSION + ";");
-							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader " + "BOUNDARIES - " + 
-								(inn.getInningNumber() == 1 ? "1st INNS" : inn.getInningNumber() == 2 ? "1st INNS" : "2nd INNS") +";");
+							
+							if(match.getSetup().getMatchType().equalsIgnoreCase(CricketUtil.TEST)) {
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader " + "BOUNDARIES - " + 
+										(inn.getInningNumber() == 1 ? "1st INNS" : inn.getInningNumber() == 2 ? "1st INNS" : "2nd INNS") +";");
+							}else {
+								print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tHeader " + "BOUNDARIES" + ";");
+							}
+							
+							
 							//fours
 							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFourHead " + "FOURS" + ";");
 							print_writer.println("LAYER3*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET tFour " + inn.getTotalFours() + ";");
@@ -2640,7 +2655,7 @@ public class EVEREST_AR_VR extends Scene{
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
 			case "EVEREST_AR_VR": case "BARODA_AR": case "MP_AR":
-				int row_id = 0;
+				int row_id = 0, inningAvg = 0, notOutAvg = 0, runsAvg = 0,plyeridAvg = 0;
 				String strike_rate = "";
 				//header
 				print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET Header " + "NEXT TO BAT" +";");
@@ -2671,15 +2686,18 @@ public class EVEREST_AR_VR extends Scene{
 									for(Statistics st:cricketService.getAllStats())
 									{
 										if(st.getPlayerID() == inn.getBattingCard().get(b - 1).getPlayerId()) {
-											
+											plyeridAvg = inn.getBattingCard().get(b - 1).getPlayerId();
 											if(match.getSetup().getMatchType().equalsIgnoreCase(CricketUtil.TEST)) {
 												if(st.getStatsTypeId() == 1) {
-													
+													inningAvg = st.getInnings();
+													notOutAvg = st.getNotOut();
+													runsAvg = st.getRuns();
 													if(CricketFunctions.getAverage(st.getInnings(), st.getNotOut(), st.getRuns(), 2, "-").equalsIgnoreCase("0.00")) {
 														strike_rate = " --";
 													}else {
 														strike_rate = CricketFunctions.getAverage(st.getInnings(), st.getNotOut(), st.getRuns(), 2, "-");
 													}
+													System.out.println("strike_rate--------------------------------------------------------------"+ strike_rate);
 												}
 											}else {
 												if(st.getStatsTypeId() == 3) {					
@@ -2693,6 +2711,26 @@ public class EVEREST_AR_VR extends Scene{
 										}
 									}
 									
+									for (Inning innn : match.getMatch().getInning()) {
+										for(BattingCard bc : innn.getBattingCard()) {
+											if(bc.getPlayerId() == plyeridAvg) {
+												if(!bc.getStatus().equalsIgnoreCase(CricketUtil.STILL_TO_BAT)) {
+													inningAvg = inningAvg + 1;
+													if(!bc.getStatus().equalsIgnoreCase(CricketUtil.OUT)) {
+														notOutAvg = notOutAvg + 1;
+													}
+												}
+												runsAvg = runsAvg + bc.getRuns();
+											}
+										}
+									}
+									
+									if(CricketFunctions.getAverage(inningAvg, notOutAvg, runsAvg, 2, "-").equalsIgnoreCase("0.00")) {
+										strike_rate = " --";
+									}else {
+										strike_rate = CricketFunctions.getAverage(inningAvg, notOutAvg, runsAvg, 2, "-");
+									}
+										System.out.println("strike_rate with curr inning--------------------------------------------------------------"+ strike_rate);
 									print_writer.println("LAYER1*EVEREST*TREEVIEW*Main*FUNCTION*TAG_CONTROL SET txt_Info" + row_id + "A " + b + ";");
 									
 									if(match.getSetup().getMatchType().equalsIgnoreCase(CricketUtil.TEST)) {

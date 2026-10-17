@@ -652,7 +652,7 @@ public class KERALA_T20 extends Scene {
 
 		if(sponsor.toUpperCase().equalsIgnoreCase("WITH_SPONSOR")) {
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+which_side+
-					"$LeaderBoard$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+					"$LeaderBoard$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 		}else {
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+which_side+
 					"$LeaderBoard$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
@@ -7304,7 +7304,7 @@ public class KERALA_T20 extends Scene {
 			
 			if(sponsor.toUpperCase().equalsIgnoreCase("WITH_SPONSOR")) {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+whichside+
-						"$MatchSummary$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+						"$MatchSummary$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 			}else {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+whichside+
 						"$MatchSummary$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
@@ -7794,7 +7794,7 @@ public class KERALA_T20 extends Scene {
 			
 			if(sponsor.toUpperCase().equalsIgnoreCase("WITHSPONSOR")) {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+whichside+
-						"$PartnershipBars$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+						"$PartnershipBars$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 			}else {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+whichside+
 						"$PartnershipBars$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
@@ -8352,7 +8352,7 @@ public class KERALA_T20 extends Scene {
 					+ "$Select$Partnership$TopGrp$HeaderGrp$img_Text2$txt_Header1" + "*GEOM*TEXT SET "
 					+ "CURRENT PARTNERSHIP" + "\0");
 			if(sponsor.toUpperCase().equalsIgnoreCase("WITH_SPONSOR")) {
-				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$Partnership$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$Partnership$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 			}else {
 				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$Partnership$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 			}
@@ -8877,7 +8877,7 @@ public class KERALA_T20 extends Scene {
 				this.status = "ERROR: Bug's inning is null";
 			} else {
 				if(sponsor.toUpperCase().equalsIgnoreCase("WITHSPONSOR")) {
-					print_writer.println("-1 RENDERER*TREE*$Main$Bug_ALL$Single$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+					print_writer.println("-1 RENDERER*TREE*$Main$Bug_ALL$Single$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 				}else {
 					print_writer.println("-1 RENDERER*TREE*$Main$Bug_ALL$Single$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 				}
@@ -9085,7 +9085,7 @@ public class KERALA_T20 extends Scene {
 			this.status = "ERROR: Powerplay's inning is null";
 		} else {
 			print_writer.println("-1 RENDERER*TREE*$Main$Bug_ALL$Select*FUNCTION*Omo*vis_con SET 0 \0");
-			print_writer.println("-1 RENDERER*TREE*$Main$Bug_ALL$Select$Single$All$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+			print_writer.println("-1 RENDERER*TREE*$Main$Bug_ALL$Select$Single$All$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 			print_writer.println("-1 RENDERER*TREE*$Main$Bug_ALL$Select$Single$All$SelectSponsor$SponsorGrp$Sponsor*TEXTURE*IMAGE SET " + sponsers_path + "Aditya" + "\0");
 			
 			print_writer.println(
@@ -10648,7 +10648,7 @@ public class KERALA_T20 extends Scene {
 						+ "$Select*FUNCTION*Omo*vis_con SET 0\0");
 				
 				if(sponsor.toUpperCase().equalsIgnoreCase("WITH_SPONSOR")) {
-					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$PlayerStatsImage$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$PlayerStatsImage$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 				}else {
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$PlayerStatsImage$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 				}
@@ -10663,7 +10663,7 @@ public class KERALA_T20 extends Scene {
 						+ "$Select*FUNCTION*Omo*vis_con SET 0 \0");
 				
 				if(sponsor.toUpperCase().equalsIgnoreCase("WITH_SPONSOR")) {
-					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$PlayerStats$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$PlayerStats$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 				}else {
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$PlayerStats$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 				}
@@ -10991,7 +10991,7 @@ public class KERALA_T20 extends Scene {
 						+ "$Select*FUNCTION*Omo*vis_con SET 0 \0");
 				
 				if(sponsor.toUpperCase().equalsIgnoreCase("WITH_SPONSOR")) {
-					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$BowlerBowlingDetailsImage$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$BowlerBowlingDetailsImage$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 				}else {
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$BowlerBowlingDetailsImage$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 				}
@@ -11006,7 +11006,7 @@ public class KERALA_T20 extends Scene {
 						+ "$Select*FUNCTION*Omo*vis_con SET 0 \0");
 				
 				if(sponsor.toUpperCase().equalsIgnoreCase("WITH_SPONSOR")) {
-					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$BowlerBowlingDetails$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$BowlerBowlingDetails$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 				}else {
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$BowlerBowlingDetails$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 				}
@@ -11879,7 +11879,7 @@ public class KERALA_T20 extends Scene {
 //
 //					if (ns.getSponsor().equalsIgnoreCase("Fancode")) {
 //						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
-//								+ "$Select$NameSuperSingle$Fancode$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+//								+ "$Select$NameSuperSingle$Fancode$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 //
 //					} else if (ns.getSponsor().equalsIgnoreCase("Dream11")) {
 //						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
@@ -12911,8 +12911,14 @@ public class KERALA_T20 extends Scene {
 
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 						+ "$NameHandGrp$NameGrp$txt_FirstName*GEOM*TEXT SET " + plyr.getFirstname() + "\0");
-				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
-						+ "$NameHandGrp$NameGrp$txt_LastName*GEOM*TEXT SET " + plyr.getSurname() + "\0");
+				if(plyr.getSurname() != null) {
+					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
+							+ "$NameHandGrp$NameGrp$txt_LastName*GEOM*TEXT SET " + plyr.getSurname() + "\0");
+				}else {
+					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
+							+ "$NameHandGrp$NameGrp$txt_LastName*GEOM*TEXT SET \0");
+				}
+				
 
 				if (plyer.get(plyr.getPlayerId() - 1).getBowlingStyle() != null) {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
@@ -15228,7 +15234,7 @@ public class KERALA_T20 extends Scene {
 
 			int row_id = 0;
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1" +
-						"$LineUpBoth$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+						"$LineUpBoth$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 				
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$LineUpBoth"
 						+ "$SelectSponsor$Sponsor$LogoOut$Spon*TEXTURE*IMAGE SET " + sponsers_path + "Adani"+ "\0");
@@ -17596,7 +17602,7 @@ public class KERALA_T20 extends Scene {
 			break;
 		case "TOURNAMENT":
 			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section2$StatGRP$Toss$txt_Header*GEOM*TEXT SET "
-							+ "MPL" + "\0");
+							+ "STCL" + "\0");
 			print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section2$StatGRP$Toss$Datagrp$txt_Data1*GEOM*TEXT SET "
 					+ "2026" + "\0");
 			break;	
@@ -18976,7 +18982,7 @@ public class KERALA_T20 extends Scene {
 			// 1.500", "LLC", 3);
 			
 			
-			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$BaseGrp$WhiteBaseGrp$SelectSponsor*FUNCTION*Omo*vis_con SET " + "1" + " \0");
+			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$BaseGrp$WhiteBaseGrp$SelectSponsor*FUNCTION*Omo*vis_con SET " + "0" + " \0");
 			
 			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$BaseGrp$WhiteBaseGrp$SelectSponsor$SponsorGrp$Dream11*TEXTURE*IMAGE SET " +	
 			 sponsers_path + "Adani"+ "\0");
@@ -20965,7 +20971,7 @@ public class KERALA_T20 extends Scene {
 					+ "$Select$ProjectedScore$BottomGrp$RestDataGrp$img_Text2$txt_Data1*GEOM*TEXT SET "
 					+ "PROJECTED SCORES" + " \0");
 			if(sponsor.toUpperCase().equalsIgnoreCase("WITHSPONSOR")) {
-				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside +"$ProjectedScore$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside +"$ProjectedScore$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 			}else {
 				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside +"$ProjectedScore$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 			}
@@ -22358,7 +22364,7 @@ public class KERALA_T20 extends Scene {
 			this.status = "ERROR: inning is null";
 		} else {
 			if(sponsor.toUpperCase().equalsIgnoreCase("WITH_SPONSOR")) {
-				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$FOW$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$FOW$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 			}else {
 				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$FOW$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 
@@ -22934,7 +22940,7 @@ public class KERALA_T20 extends Scene {
 					.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1*FUNCTION*Omo*vis_con SET 5 \0");
 			if(sponsor.toUpperCase().equalsIgnoreCase("WITHSPONSOR")) {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1"+
-						"$CurrentPartnership$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+						"$CurrentPartnership$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 			}else {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1"+
 						"$CurrentPartnership$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
@@ -23274,7 +23280,7 @@ public class KERALA_T20 extends Scene {
 				Collections.sort(tournament,new CricketFunctions.BatsmenMostRunComparator());
 				print_writer.println(
 						"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$LeaderBoard"
-								+ "$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+								+ "$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 				print_writer.println(
 						"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$LeaderBoard$LeaderBoardDataOut$LeaderBoarData"
 								+ "$Stat_Head$SelectDataType*FUNCTION*Omo*vis_con SET 2 \0");
@@ -23493,7 +23499,7 @@ public class KERALA_T20 extends Scene {
 			String cout_name = "";
 			if(sponsor.toUpperCase().equalsIgnoreCase("WITH_SPONSOR")) {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+which_side+
-						"$LeaderBoard$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+						"$LeaderBoard$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 			}else {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+which_side+
 						"$LeaderBoard$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
@@ -23950,7 +23956,7 @@ public class KERALA_T20 extends Scene {
 				break;
 			case "MOST_FOURS":
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard"
-						+ "$SelectSponsor*FUNCTION*Omo*vis_con SET " + (sponsor.equalsIgnoreCase("without_Sponsor") ? "0" : "1") + "\0");
+						+ "$SelectSponsor*FUNCTION*Omo*vis_con SET " + (sponsor.equalsIgnoreCase("without_Sponsor") ? "0" : "0") + "\0");
 //				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard"
 //						+ "$SelectSponsor$Sponsor$LogoOut$Spon1*ACTIVE SET 0\0");
 				print_writer.println(
@@ -24101,7 +24107,7 @@ public class KERALA_T20 extends Scene {
 			case "MOST_SIXES":
 				
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard"
-						+ "$SelectSponsor*FUNCTION*Omo*vis_con SET " + (sponsor.equalsIgnoreCase("without_Sponsor") ? "0" : "1") + "\0");
+						+ "$SelectSponsor*FUNCTION*Omo*vis_con SET " + (sponsor.equalsIgnoreCase("without_Sponsor") ? "0" : "0") + "\0");
 //				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard"
 //						+ "$SelectSponsor$Sponsor$LogoOut$Spon1*ACTIVE SET 0\0");
 				print_writer.println(
@@ -25156,7 +25162,7 @@ public class KERALA_T20 extends Scene {
 			}
 			infobar.setWhich_team(team.get(plyr.get(playerId - 1).getTeamId() - 1).getTeamName4());
 //			print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
-//					+ "$Select$NameSuperSingle$Fancode$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+//					+ "$Select$NameSuperSingle$Fancode$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 //			print_writer.println("-1 RENDERER*TREE*$LT$All$BaseAll$Side" + whichside
 //					+ "$Select$OneTeamOption02$LT$Base1$img_Base1*TEXTURE*IMAGE SET " + base_path1
 //					+ "TLogo" + " \0");
@@ -25480,7 +25486,7 @@ public class KERALA_T20 extends Scene {
 			
 			if(sponsor.toUpperCase().equalsIgnoreCase("WITH_SPONSOR")) {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+which_side+
-						"$MatchSummary$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+						"$MatchSummary$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 			}else {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+which_side+
 						"$MatchSummary$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
@@ -30000,7 +30006,7 @@ public class KERALA_T20 extends Scene {
 		print_writer.println("-1 RENDERER*TREE*$LT$All$BaseAll$Side2$Select*FUNCTION*Omo*vis_con SET 4 \0");
 		print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side2$Select*FUNCTION*Omo*vis_con SET 4 \0");
 		if(sponsor.toUpperCase().equalsIgnoreCase("WITH_SPONSOR")) {
-			print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$LineUp$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 1 \0");
+			print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$LineUp$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 		}else {
 			print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + which_side +"$LineUp$BottomGrp$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
 
@@ -36215,7 +36221,7 @@ public class KERALA_T20 extends Scene {
 				infobar_director_on_screen = "";
 			}else {
 				print_writer.get(0).println(
-						"-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section2$FreeHitSponsor$SelectSponsor*FUNCTION*Omo*vis_con SET 1\0");
+						"-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section2$FreeHitSponsor$SelectSponsor*FUNCTION*Omo*vis_con SET 0\0");
 //				print_writer.get(0).println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$FreeHitIn START \0");
 				print_writer.get(0).println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Section2$FreeHitIn START \0");
 				infobar_director_on_screen = "FREEHIT";

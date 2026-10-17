@@ -5475,7 +5475,7 @@ public class KERALA_T20 extends Scene {
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
 										+ which_side
 										+ "$Battingcard$BatExtraData$BatPerformerGrp$AllPerformerData$StrikeRateGrp$img_Text1$txt_StatValue"
-										+ "*GEOM*TEXT SET " + bc.getStrikeRate() + "\0");
+										+ "*GEOM*TEXT SET " + (bc.getStrikeRate() != null ? bc.getStrikeRate() : "-") + "\0");
 
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
 										+ which_side
@@ -6585,7 +6585,7 @@ public class KERALA_T20 extends Scene {
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
 										+ which_side
 										+ "$BowlingCard$BallExtraData$BallPerformerGrp$AllPerformerData$StrikeRateGrp$img_Text1$txt_StatValue"
-										+ "*GEOM*TEXT SET " + boc.getEconomyRate() + "\0");
+										+ "*GEOM*TEXT SET " + (boc.getEconomyRate() != null ? boc.getEconomyRate()  : "-") + "\0");
 
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
 										+ which_side
@@ -8642,7 +8642,7 @@ public class KERALA_T20 extends Scene {
 								} else {
 									print_writer.println(
 											"-1 RENDERER*TREE*$Main$Bug_ALL$Select$Double$All$DataGrpAll$img_Text1$PlayerNameGrp$Info03*GEOM*TEXT SET "
-													+ "STRIKE RATE: " + bc.getStrikeRate() + "\0");
+													+ "STRIKE RATE: " +  (bc.getStrikeRate() != null ? bc.getStrikeRate() : "-") + "\0");
 									print_writer.println(
 											"-1 RENDERER*TREE*$Main$Bug_ALL$Select$Double$All$DataGrpAll$img_Text1$PlayerNameGrp$group$Info04*GEOM*TEXT SET "
 													+ bc.getRuns() + " (" + bc.getBalls() + ")" + "\0");
@@ -9005,7 +9005,7 @@ public class KERALA_T20 extends Scene {
 												+ "4s: " + bc.getFours() + " 6s: " + bc.getSixes() + "\0");
 								print_writer.println(
 										"-1 RENDERER*TREE*$Main$Bug_ALL$Select$Double$All$DataGrpAll$img_Text1$PlayerNameGrp$group$Info05*GEOM*TEXT SET "
-												+ "STRIKE RATE: " + bc.getStrikeRate() + "\0");
+												+ "STRIKE RATE: " +  (bc.getStrikeRate() != null ? bc.getStrikeRate() : "-") + "\0");
 							}
 						}
 						break;
@@ -10480,7 +10480,7 @@ public class KERALA_T20 extends Scene {
 										+ "FOURS: " + bc.getFours() + "   SIXES: " + bc.getSixes() + "\0");
 								print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 										+ "$Select$BatsmanOutImage$BottomGrp$RestDataGrp$img_Text2$txt_Data2*GEOM*TEXT SET "
-										+ "STRIKE RATE: " + bc.getStrikeRate() + "\0");
+										+ "STRIKE RATE: " +  (bc.getStrikeRate() != null ? bc.getStrikeRate() : "-") + "\0");
 
 //								print_writer.println("-1 RENDERER*TREE*$Main$All$Out$PlayerNameGrp$TeamName*GEOM*TEXT SET " + "4s: " + bc.getFours() + " 6s: " + bc.getSixes() + "\0");								
 
@@ -10596,7 +10596,7 @@ public class KERALA_T20 extends Scene {
 										+ "FOURS: " + bc.getFours() + "   SIXES: " + bc.getSixes() + "\0");
 								print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 										+ "$Select$BatsmanOut$BottomGrp$RestDataGrp$img_Text2$txt_Data2*GEOM*TEXT SET "
-										+ "STRIKE RATE: " + bc.getStrikeRate() + "\0");
+										+ "STRIKE RATE: " +  (bc.getStrikeRate() != null ? bc.getStrikeRate() : "-") + "\0");
 
 //								print_writer.println("-1 RENDERER*TREE*$Main$All$Out$PlayerNameGrp$TeamName*GEOM*TEXT SET " + "4s: " + bc.getFours() + " 6s: " + bc.getSixes() + "\0");								
 
@@ -10830,7 +10830,7 @@ public class KERALA_T20 extends Scene {
 											+ "STRIKE RATE" + "\0");
 									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 											+ "$Select$PlayerStatsImage$BottomGrp$RestDataGrp$img_Text2$RestData$Data$4$img_Text2$txt_Data2A*GEOM*TEXT SET "
-											+ bc.getStrikeRate() + "\0");
+											+  (bc.getStrikeRate() != null ? bc.getStrikeRate() : "-") + "\0");
 								}else {
 									print_writer.println(
 											"-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside + "$Select$PlayerStats$TopGrp$img_Text2*TEXTURE*IMAGE SET "
@@ -10956,7 +10956,7 @@ public class KERALA_T20 extends Scene {
 											+ "STRIKE RATE" + "\0");
 									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 											+ "$Select$PlayerStats$BottomGrp$RestDataGrp$img_Text2$RestData$Data$4$img_Text2$txt_Data2A*GEOM*TEXT SET "
-											+ bc.getStrikeRate() + "\0");
+											+  (bc.getStrikeRate() != null ? bc.getStrikeRate() : "-") + "\0");
 								}
 							}
 						}
@@ -11169,7 +11169,7 @@ public class KERALA_T20 extends Scene {
 											+ boc.getWickets() + "\0");
 									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 											+ "$Select$BowlerBowlingDetailsImage$BottomGrp$RestDataGrp$img_Text2$RestData$Data$5$img_Text2$txt_Data2A*GEOM*TEXT SET "
-											+ boc.getEconomyRate() + "\0");
+											+  (boc.getEconomyRate() != null ? boc.getEconomyRate()  : "-") + "\0");
 
 								}
 							}
@@ -11294,7 +11294,7 @@ public class KERALA_T20 extends Scene {
 											+ boc.getWickets() + "\0");
 									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 											+ "$Select$BowlerBowlingDetails$BottomGrp$RestDataGrp$img_Text2$RestData$Data$5$img_Text2$txt_Data2A*GEOM*TEXT SET "
-											+ boc.getEconomyRate() + "\0");
+											+  (boc.getEconomyRate() != null ? boc.getEconomyRate()  : "-") + "\0");
 
 								}
 							}
@@ -20677,7 +20677,7 @@ public class KERALA_T20 extends Scene {
 											+ "STRIKE RATE" + "\0");
 							print_writer.println(
 									"-1 RENDERER*TREE*$Main$All$DataAll$ROW1$All_StatsVal$StatValues_GRP$StatValue2$StatValue1B*GEOM*TEXT SET "
-											+ bc.getStrikeRate() + "\0");
+											+  (bc.getStrikeRate() != null ? bc.getStrikeRate() : "-") + "\0");
 							print_writer.println(
 									"-1 RENDERER*TREE*$Main$All$DataAll$ROW1$All_StatsVal$StatValues_GRP$StatValue3$StatValue1B*GEOM*TEXT SET "
 											+ "FOURS" + "\0");
@@ -20747,7 +20747,7 @@ public class KERALA_T20 extends Scene {
 											+ boc.getWickets() + "\0");
 							print_writer.println(
 									"-1 RENDERER*TREE*$Main$All$DataAll$ROW1$All_StatsVal$StatValues_GRP$StatValue3$StatValue1B*GEOM*TEXT SET "
-											+ boc.getEconomyRate() + "\0");
+											+  (boc.getEconomyRate() != null ? boc.getEconomyRate()  : "-") + "\0");
 						}
 					}
 				}
@@ -20793,7 +20793,7 @@ public class KERALA_T20 extends Scene {
 											+ boc.getWickets() + "\0");
 							print_writer.println(
 									"-1 RENDERER*TREE*$Main$All$DataAll$ROW1$All_StatsVal$StatValues_GRP$StatValue3$StatValue1B*GEOM*TEXT SET "
-											+ boc.getEconomyRate() + "\0");
+											+  (boc.getEconomyRate() != null ? boc.getEconomyRate()  : "-") + "\0");
 						}
 					}
 					break;

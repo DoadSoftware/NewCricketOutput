@@ -3674,14 +3674,16 @@ function processUserSelection(whichInput) {
 		case 'decision_graphic_btn': case 'populate_Decision_btn': case 'matchId_graphic_btn': case 'Fall_of_Wickets_graphic_btn': case 'Info_graphic_btn': case 'target_bs_graphic_btn': case 'comparison_bs_graphic_btn':
 		case 'projected_bs_score_graphic_btn': case 'boundaries_bs_score_graphic_btn': case 'populate_free_bs__btn': case 'equation_bs_graphic_btn': case 'populate_playermile_bs_btn':
 		case 'populate_start_bs_btn': case 'populate_countdown_bs_btn': case 'populate_howout_bs__btn': case 'populate_bowlerfig_btn': case 'quickhowout_bs_graphic_btn':
-		case 'populate_LTpartnership_btn': case 'populate_speed_btn': case 'default_ar_score_graphic_btn': case 'defaultout_ar_score_graphic_btn': case 'target_drone_score_graphic_btn':
+		case 'populate_LTpartnership_btn': case 'populate_speed_btn': case 'default_ar_score_graphic_btn': case 'defaultout_ar_score_graphic_btn': case 'target_drone_score_graphic_btn': 
+		case 'equation_AR_graphic_btn':
 		case 'boundaries_vr_score_graphic_btn': case 'comparison_ar_score_graphic_btn': case 'lastwicket_ar_graphic_btn': case 'comparison_drone_score_graphic_btn': case 'comparison_vr_score_graphic_btn': case 'target_ar_score_graphic_btn': case 'matchId_ar_score_graphic_btn': case 'equation_drone_score_graphic_btn':
 		case 'projected_ar_score_graphic_btn': case 'equationintargetimage_ar_score_graphic_btn': case 'projected_vr_score_graphic_btn': case 'populate_freetext_ar_btn': case 'populate_thisover_vr_btn': case 'matchId_animation_score_graphic_btn': case 'equation_ar_score_graphic_btn': case 'matchId_vr_score_graphic_btn':
 		case 'thisover_ar_graphic_btn':case"populate_Teams_Options_btn": case 'populate_teamceleb_ar_btn': case 'target_vr_score_graphic_btn': case 'countdown_graphic_btn': case 'fallofwicket_graphic_btn': case 'previous_over_graphic_btn': case 'matchId_arr_score_graphic_btn':
 		case 'thispart_ar_graphic_btn': case 'Next_ar_graphic_btn': case "toss_ar_graphic_btn": case "boundaries_ar_score_graphic_btn": case 'tosscoin_ar_graphic_btn': case 'equation_vr_score_graphic_btn': case 'targetimage_ar_score_graphic_btn':
         case'equationimage_ar_score_graphic_btn': case 'populate_lastthirtyball_ar_btn': case'lastboundary_ar_score_graphic_btn': case 'fow_ar_score_graphic_btn':
         case 'res_ar_score_graphic_btn': case 'populate_lastthirtyball_dronefar_btn': case 'populate_lastthirtyball_dronenear_btn': case 'phase_Wise_vr_score_graphic_btn': case 'fow_ar_score_graphic_btnn':
-
+		case 'lastboundary_vr_graphic_btn': case 'comparison_AR_graphic_btn': case 'projected_AR_graphic_btn': case 'target_AR_graphic_btn':
+			
         case'equationimage_ar_score_graphic_btn': case 'rate_vr_score_graphic_btn': case 'populate_ball_buzzer_btn': case 'populate_bat_buzzer_btn':
 		case 'infobar_last_btn': case 'populate_infobar_last_btn': case 'populate_dls_btn': case 'populate_dls_equation_btn': case 'matchstatus_graphic_btn':
 		case 'schedule_btn': case 'last_year_standing_btn': case 'ltmatchid_graphic_btn': case 'final_match_summary_graphic_btn': case 'ff_rows_captains_btn':
@@ -4147,6 +4149,9 @@ function processUserSelection(whichInput) {
 				case 'equation_ar_score_graphic_btn':
 					processCricketProcedures('POPULATE-EQUATION_AR');
 					break;
+				case 'equation_AR_graphic_btn':
+					processCricketProcedures('POPULATE-NEW_EQUATION_AR');
+					break;
 				case 'previous_over_graphic_btn':
 					processCricketProcedures('POPULATE-LASTOVER_VR');
 					break;		
@@ -4225,6 +4230,9 @@ function processUserSelection(whichInput) {
 				case 'comparison_vr_score_graphic_btn':
 				      processCricketProcedures('POPULATE-COMPARISON_VR');
 					break;
+				case 'comparison_AR_graphic_btn':
+					processCricketProcedures('POPULATE-MATCHIS_COMPARISON_AR');
+					break;
 				case 'target_ar_score_graphic_btn':
 					processCricketProcedures('POPULATE-TARGET_AR');
 					break;
@@ -4239,6 +4247,9 @@ function processUserSelection(whichInput) {
 					break;
 				case 'target_vr_score_graphic_btn':
 					processCricketProcedures('POPULATE-TARGET_VR');
+					break;
+				case 'target_AR_graphic_btn':
+					processCricketProcedures('POPULATE-NEW_TARGET_AR');
 					break;
 				case 'rate_vr_score_graphic_btn':
 					processCricketProcedures('POPULATE-RUN_VR');
@@ -4263,6 +4274,9 @@ function processUserSelection(whichInput) {
 					 break;
 				case'lastboundary_ar_score_graphic_btn':
 					processCricketProcedures('POPULATE-LASTBOUNDARY_AR');
+					break;
+				case 'lastboundary_vr_graphic_btn':
+					processCricketProcedures('POPULATE-SINCE_LASTBOUNDARY_VR');
 					break;
 				case 'phase_Wise_vr_score_graphic_btn':
 					processCricketProcedures('POPULATE-PHASE_VR');
@@ -4295,6 +4309,18 @@ function processUserSelection(whichInput) {
 						console.log(inn.inningNumber + ' - ' + inn.isCurrentInning);
 						if (inn.inningNumber == 1 && inn.isCurrentInning == 'YES') {
 							processCricketProcedures('POPULATE-PROJECTED_VR');
+						}
+						else if (inn.inningNumber == 2 && inn.isCurrentInning == 'YES') {
+							alert('It Work only for Inning 1')
+						}
+					});
+					break;
+				
+				case 'projected_AR_graphic_btn':
+					session_match.match.inning.forEach(function(inn, index, arr1) {
+						console.log(inn.inningNumber + ' - ' + inn.isCurrentInning);
+						if (inn.inningNumber == 1 && inn.isCurrentInning == 'YES') {
+							processCricketProcedures('POPULATE-CURRENT_PROJECTED_AR');
 						}
 						else if (inn.inningNumber == 2 && inn.isCurrentInning == 'YES') {
 							alert('It Work only for Inning 1')
@@ -6045,7 +6071,14 @@ function processCricketProcedures(whatToProcess) {
 					break;	
 			}
 			break;
-		case 'POPULATE-COMPARISON_AR':
+		case 'POPULATE-MATCHIS_COMPARISON_AR':
+			switch ($('#selected_broadcaster').val().toUpperCase()) {
+				case 'EVEREST_AR_VR':
+					 valueToProcess = 'C:/Everest_VR_AR/Scenes/AI/MatchID_Comparison.sum';
+					break;	
+			}
+			break;
+		case 'POPULATE-COMPARISON_AR': 
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'DOAD_AR':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_LLC_Franchise_2023/Matt_Scenes/Comparison.sum';
@@ -6164,6 +6197,14 @@ function processCricketProcedures(whatToProcess) {
 				
 			}
 			break;
+		case 'POPULATE-NEW_TARGET_AR':
+			switch ($('#selected_broadcaster').val().toUpperCase()) {
+				case 'EVEREST_AR_VR':
+					valueToProcess = 'C:/Everest_VR_AR/Scenes/AI/TargetPlayerPhoto.sum'; 
+					//valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
+					break;	
+			}
+			break;
 		case 'POPULATE-RUN_VR':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'EVEREST_AR_VR':
@@ -6242,6 +6283,15 @@ function processCricketProcedures(whatToProcess) {
 					break;		
 			}
 			break;
+		case 'POPULATE-CURRENT_PROJECTED_AR':
+			switch ($('#selected_broadcaster').val().toUpperCase()) {
+				
+				case 'EVEREST_AR_VR':
+					valueToProcess = 'C:/Everest_VR_AR/Scenes/AI/ProjectedScores.sum';
+					//valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
+					break;		
+			}
+			break;
 		case 'POPULATE-COUNT_AR':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'DOAD_AR':
@@ -6295,14 +6345,20 @@ function processCricketProcedures(whatToProcess) {
 					break;
 			}
 			break;
-			
+			case 'POPULATE-SINCE_LASTBOUNDARY_VR':
+				switch ($('#selected_broadcaster').val().toUpperCase()) {
+					case 'EVEREST_AR_VR': 
+					valueToProcess = 'C:/Everest_VR_AR/MattScenes/FreeText.sum';
+					break;	
+					}
+				break;
 			case 'POPULATE-LASTBOUNDARY_AR':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'ICPL_AR':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_NPL_2024/MattScenes/BALLS SINCE LAST.sum';
 					break;
 				case 'EVEREST_AR_VR': 
-					valueToProcess = 'C:/Everest_VR_AR/MattScenes/BallSince.sum';
+					valueToProcess = 'C:/Everest_VR_AR/MattScenes/FreeText.sum';
 					//valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
 					break;	
 				 case 'BARODA_AR': case 'MP_AR':
@@ -6413,6 +6469,13 @@ function processCricketProcedures(whatToProcess) {
 				case 'FAIR_BREAK_AR':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_AR/Scenes/AR_Partnership.sum';
 					break;
+			}
+			break;
+		case 'POPULATE-NEW_EQUATION_AR':
+			switch ($('#selected_broadcaster').val().toUpperCase()) {
+				case 'EVEREST_AR_VR':
+					valueToProcess = 'C:/Everest_VR_AR/Scenes/AI/TargetWithPhoto.sum'; 
+						break;
 			}
 			break;
 		case 'POPULATE-EQUATION_AR':
@@ -15144,17 +15207,17 @@ function processCricketProcedures(whatToProcess) {
 				case 'POPULATE-DECISION': case 'POPULATE-OUT_NOT_DECISION': case 'POPULATE-MATCH_IDENT': case 'POPULATE-INFO': case 'POPULATE-TARGET_BS': case 'POPULATE-COMPARISON_BS':
 				case 'POPULATE-PROJECTED_BS': case 'POPULATE-BOUNDARIES_BS': case 'POPULATE-FREE_BS': case 'POPULATE-EQUATION_BS': case 'POPULATE-HOWOUT_BS':
 				case 'POPULATE-BOWLERFIG_BS': case 'POPULATE-QUICKHOWOUT_BS': case 'POPULATE-SCHEDULE': case 'POPULATE-LAST_YEAR_STANDING': case 'POPULATE-FF_ROWS_CAPTAINS':
-
+				case 'POPULATE-MATCHIS_COMPARISON_AR':
 				case 'POPULATE-BOUNDARIES_VRR': case 'POPULATE-DEFAULT_AR': case 'POPULATE-DEFAULTOUT_AR': case 'POPULATE-COMPARISON_DRONE': case 'POPULATE-COMPARISON_AR':  case 'POPULATE-COMPARISON_VR': case 'POPULATE-TARGET_DRONE':
 			    case 'POPULATE-TARGET_AR': case 'POPULATE-TARGETIMAGE_AR': case 'POPULATE-TARGET_VR': case 'POPULATE-PROJECTED_AR': case 'POPULATE-LASTBOUNDARY_AR': case 'POPULATE-MATCHID_AR': case 'POPULATE-FREE_TEXT_AR':
 				case 'POPULATE-MATCH_ANIMATION_AR': case 'POPULATE-EQUATION_ARINTARGET': case 'POPULATE-EQUATION_AR': case 'POPULATE-EQUATION_DRONE': case 'POPULATE-LASTTHIRTY_DRONEF': case 'POPULATE-LASTTHIRTY_AR':  case 'POPULATE-EQUATION_VR': 
 				case 'POPULATE-THISOVER_AR': case 'POPULATE-TEAMCELEB_AR': case 'POPULATE-PLAYERCELEB': case 'POPULATE-COUNT_AR': case 'POPULATE-THISOVER_VR': case 'POPULATE-FOW_ARR':
 				case 'POPULATE-THISPART_AR': case 'POPULATE-NEXT_AR': case 'POPULATE-TOSS_AR': case 'POPULATE-RUNRATE': case 'POPULATE-MATCHID_VR': case 'POPULATE-COUNTDOWN_AR': case 'POPULATE-PROJECTED_VR':
 				case 'POPULATE-EQUATIONIMAGE_AR': case 'POPULATE-RUN_VR': case 'POPULATE-RES_AR': case 'POPULATE-LASTTHIRTY_DRONEN': case 'POPULATE-MATCHID_ARR':  case 'POPULATE-AR_PARTNERSHIP':
-					case 'POPULATE-AR_MATCH_STATUS': case 'POPULATE-AR_THIS_SESSION':
+					case 'POPULATE-AR_MATCH_STATUS': case 'POPULATE-AR_THIS_SESSION': case 'POPULATE-SINCE_LASTBOUNDARY_VR': case 'POPULATE-CURRENT_PROJECTED_AR':
 			 case 'POPULATE-EVERESTPLAYERPROFILEBAT': case 'POPULATE-FF-PLAYERPROFILEBALLL': case 'POPULATE-DOUBLEEVERESTPLAYERPROFILEBAT':
 				case 'POPULATE-FALLOFWIKETS_VR': case 'POPULATE-LASTWICKET_VR':	 case 'POPULATE-LASTOVER_VR': case 'POPULATE-PHASE_VR':
-				
+				case 'POPULATE-NEW_EQUATION_AR': case 'POPULATE-NEW_TARGET_AR':
 				case 'POPULATE-L3-HOWOUT_BOTH': case 'POPULATE-MATCHSTATUS': case 'POPULATE-LT-THIS_SESSION': case 'POPULATE-THIS_SESSION': case 'POPULATE-L3-BATSMANSTATS_BOTH':
 				case 'POPULATE-DLS': case 'POPULATE-DLS-EQUATION': case 'POPULATE-LTMATCH_IDENT': case 'POPULATE-FINAL_MATCH_SUMMARY':
 				case 'POPULATE-FF_GRAPHICS': case 'POPULATE-FF_SUMMARY_GRAPHICS': case 'POPULATE-LT_GRAPHICS': case 'POPULATE-SUPER_OVER': case 'POPULATE-TOURNAMENT_RULES':
@@ -15486,6 +15549,9 @@ function processCricketProcedures(whatToProcess) {
 							case 'POPULATE-EQUATION_AR':
 								processCricketProcedures('ANIMATE-IN-EQUATION_AR');
 								break;
+							case 'POPULATE-NEW_EQUATION_AR':
+								processCricketProcedures('ANIMATE-IN-NEW_EQUATION_AR');
+								break;
 							case 'POPULATE-LASTOVER_VR':
 								processCricketProcedures('ANIMATE-IN-LASTOVER_VR');
 								break;		
@@ -15537,6 +15603,9 @@ function processCricketProcedures(whatToProcess) {
 							case 'POPULATE-RUNRATE_AR':
 								processCricketProcedures('ANIMATE-IN-RUNRATE_AR');
 								break;
+							case 'POPULATE-MATCHIS_COMPARISON_AR':
+								processCricketProcedures('ANIMATE-IN-MATCHIS_COMPARISON_AR');
+								break;
 							case 'POPULATE-COMPARISON_AR':
 								processCricketProcedures('ANIMATE-IN-COMPARISON_AR');
 								break;
@@ -15554,6 +15623,9 @@ function processCricketProcedures(whatToProcess) {
 								break;
 							case 'POPULATE-LASTBOUNDARY_AR':
 								processCricketProcedures('ANIMATE-IN-LASTBOUNDARY_AR');
+								break;
+							case 'POPULATE-SINCE_LASTBOUNDARY_VR':
+								processCricketProcedures('ANIMATE-IN-SINCE_LASTBOUNDARY_VR');
 								break;
 							case 'POPULATE-FOW_ARR':	
 								processCricketProcedures('ANIMATE-IN-FOW_ARR');
@@ -15582,6 +15654,9 @@ function processCricketProcedures(whatToProcess) {
 							case 'POPULATE-PROJECTED_VR':
 								processCricketProcedures('ANIMATE-IN-PROJECTED_VR');
 								break;	
+							case 'POPULATE-CURRENT_PROJECTED_AR':
+								processCricketProcedures('ANIMATE-IN-CURRENT_PROJECTED_AR');
+								break;
 							/*case 'POPULATE-MATCHID_VR':
 							    processCricketProcedures('ANIMATE-IN-PROJECTED_VR');
 								break;*/
@@ -15599,6 +15674,9 @@ function processCricketProcedures(whatToProcess) {
 								break;	
 							case 'POPULATE-TARGET_VR':
 								processCricketProcedures('ANIMATE-IN-TARGET_VR');
+								break;
+							case 'POPULATE-NEW_TARGET_AR':
+								processCricketProcedures('ANIMATE-IN-NEW_TARGET_AR');
 								break;
 							case 'POPULATE-RUN_VR':
 								processCricketProcedures('ANIMATE-IN-RUN_VR');

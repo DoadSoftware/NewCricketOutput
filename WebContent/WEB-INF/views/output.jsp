@@ -1169,7 +1169,19 @@
                 <p style="font-weight:bold; color:#2E008B; margin-bottom:8px;">AR Graphic Buttons</p>
                 
                 <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="equation_AR_graphic_btn" id="equation_AR_graphic_btn" onclick="processUserSelection(this)"> Equation </button>
+			  		
+			  		<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="target_AR_graphic_btn" id="target_AR_graphic_btn" onclick="processUserSelection(this)"> Target AR </button>
+                
+                 <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="comparison_AR_graphic_btn" id="comparison_AR_graphic_btn" onclick="processUserSelection(this)"> Comparison AR </button>
+                
+                <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="matchId_vr_score_graphic_btn" id="matchId_vr_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button>
+			  		
+			  		<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="projected_AR_graphic_btn" id="projected_AR_graphic_btn" onclick="processUserSelection(this)"> Projected </button>
                 
                 <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="Next_ar_graphic_btn" id="Next_ar_graphic_btn" onclick="processUserSelection(this)"> Next TO Bat </button>
@@ -1215,7 +1227,12 @@
 			  		
 			  		<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="target_vr_score_graphic_btn" id="target_vr_score_graphic_btn" onclick="processUserSelection(this)"> Target VR </button>
-			  	
+			  		
+			  		<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="lastboundary_vr_graphic_btn" id="lastboundary_vr_graphic_btn" onclick="processUserSelection(this)"> Ball Since last Boundary </button>	
+			  		
+			  		<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="lastboundary_ar_score_graphic_btn" id="lastboundary_ar_score_graphic_btn" onclick="processUserSelection(this)"> Ball Since last Boundary </button>	 -->
 			  	
 			  	
                 <!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"

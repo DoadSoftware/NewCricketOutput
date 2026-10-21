@@ -21399,7 +21399,7 @@ public class KERALA_T20 extends Scene {
 					+ outPlayer.getSurname() + "\0");
 		}else {
 			print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$ImpactPlayer$BottomGrp" + data + "$Player2$Data1*GEOM*TEXT SET "
-					+ outPlayer.getSurname() + "\0");
+					+ outPlayer.getFirstname() + "\0");
 			print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$ImpactPlayer$BottomGrp" + data + "$Player2$Data2*GEOM*TEXT SET "
 					+ "" + "\0");
 		}
@@ -21411,7 +21411,7 @@ public class KERALA_T20 extends Scene {
 					+ inPlayer.getSurname() + "\0");
 		}else {
 			print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$ImpactPlayer$BottomGrp" + data + "$Player1$Data1*GEOM*TEXT SET "
-					+ inPlayer.getSurname() + "\0");
+					+ inPlayer.getFirstname() + "\0");
 			print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$ImpactPlayer$BottomGrp" + data + "$Player1$Data2*GEOM*TEXT SET "
 					+ "" + "\0");
 		}
@@ -24537,7 +24537,7 @@ public class KERALA_T20 extends Scene {
 
 		
 		print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + whichside
-				+ "$PointsTable$SponsorGrp1*ACTIVE SET " + (grp.equalsIgnoreCase("without_sponsor") ? "0" : "1") + "\0");
+				+ "$PointsTable$SponsorGrp1*ACTIVE SET " + (grp.equalsIgnoreCase("without_sponsor") ? "0" : "0") + "\0");
 		
 //		print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + whichside
 //				+ "$PointsTable$PointsDataOut$PointsTale$PointsTableAll$PointsRows$Row5*ACTIVE SET 0\0");
@@ -36214,14 +36214,18 @@ public class KERALA_T20 extends Scene {
 		case "POPULATE-FREEHITDIRECTOR":
 			if(infobar_director_on_screen.equalsIgnoreCase("FREEHIT")) {
 //				print_writer.get(0).println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$FreeHitOut START \0");
+				print_writer.get(0).println(
+						"-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section2$FreeHitSponsor$SelectSponsor*ACTIVE SET 0\0");
 				print_writer.get(0).println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Section2$FreeHitOut START \0");
 				TimeUnit.MILLISECONDS.sleep(1000);
-				print_writer.get(0).println(
-						"-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section2$FreeHitSponsor$SelectSponsor*FUNCTION*Omo*vis_con SET 0\0");
+//				print_writer.get(0).println(
+//						"-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section2$FreeHitSponsor$SelectSponsor*FUNCTION*Omo*vis_con SET 0\0");
 				infobar_director_on_screen = "";
 			}else {
 				print_writer.get(0).println(
-						"-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section2$FreeHitSponsor$SelectSponsor*FUNCTION*Omo*vis_con SET 0\0");
+						"-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section2$FreeHitSponsor$SelectSponsor*ACTIVE SET 0\0");
+//				print_writer.get(0).println(
+//						"-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section2$FreeHitSponsor$SelectSponsor*FUNCTION*Omo*vis_con SET 0\0");
 //				print_writer.get(0).println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*EventAnimation$FreeHitIn START \0");
 				print_writer.get(0).println("-1 RENDERER*FRONT_LAYER*STAGE*DIRECTOR*Section2$FreeHitIn START \0");
 				infobar_director_on_screen = "FREEHIT";

@@ -13716,7 +13716,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = '/Default/FullFrames';
 					break;
 				case 'KERALA_T20':
-					valueToProcess = '/Default/FullFrames' + ',' + $('#selectSpons option:selected').val();
+					valueToProcess = '/Default/FullFrames' + ',' + $('#selectSpons option:selected').val() + ',' + $('#selectGroup option:selected').val();
 					break;	
 				case 'USPL':
 					valueToProcess = '/Default/FullFrames';
@@ -37063,6 +37063,24 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			option = document.createElement('option');
 			option.value = 'without_Sponsor';
 			option.text = 'WITHOUT SPONSOR';
+			select.appendChild(option);
+			
+			row.insertCell(cellCount).appendChild(select);
+			cellCount = cellCount + 1;
+			
+			select = document.createElement('select');
+			select.style = 'width:100px';
+			select.id = 'selectGroup';
+			select.name = select.id;
+
+			option = document.createElement('option');
+			option.value = 'GroupA_LeagueTable';
+			option.text = 'Group A';
+			select.appendChild(option);
+
+			option = document.createElement('option');
+			option.value = 'GroupB_LeagueTable';
+			option.text = 'Group B';
 			select.appendChild(option);
 			
 			row.insertCell(cellCount).appendChild(select);

@@ -96,8 +96,8 @@ public class KERALA_T20 extends Scene {
 	public String icon_path = "IMAGE*/Default/Essentials/Icons/";
 	public String team_color_path = "IMAGE*/Default/Essentials/Team";
 	public String Toutline_color_path = "IMAGE*/Default/Essentials/TeamLogo/";
-	public String photo_path = "C:\\\\Images\\\\SPL\\\\Photos\\\\" + IndexController.cat + "\\\\";
-	private String local_photo_path = "\\\\c\\\\Images\\\\SPL\\\\Photos\\\\" + IndexController.cat + "\\\\";
+	public String photo_path = "C:\\\\Images\\\\STCL\\\\Photos\\\\" + IndexController.cat + "\\\\";
+	private String local_photo_path = "\\\\c\\\\Images\\\\STCL\\\\Photos\\\\" + IndexController.cat + "\\\\";
 	public String icons_path = "C:\\\\Images\\\\NEPAL_T20\\\\Icons\\\\";
 	public String sponsers_path = "IMAGE*/Default/Essentials/Spnsor/";
 	public String last_speed = "", which_team = "", last_which_team = "";
@@ -113,14 +113,17 @@ public class KERALA_T20 extends Scene {
 	public String which_director_on_screen = "", infobar_director_on_screen = "";
 	public int previous_bowler_performer_id = 0;
 	public int bowler_performer_id = 0;
-	public String text = "", basePath = "";
+	public String text = "", basePath = "", today_sixes, previous_sixes="", today_fours="",  previous_fours=""  ;
 	boolean isThisOverLimitExceed = false;
 	
 	public Player player;
 	public int previous_batter_performer_id = 0;
 	public List<HeadToHeadPlayer> head_to_head;
+	public List<String> this_data_str = new ArrayList<String>();
+	public List<HeadToHeadPlayer> headToHead;
 	public List<Player> Players;
 	public static List<Tournament> LeaderBoard = new ArrayList<Tournament>();
+	public Tournament past_tournament_boundaries = new Tournament();
 	public int batter_performer_id = 0;
 	public StatsType statsType;
 	public Statistics stat;
@@ -539,6 +542,8 @@ public class KERALA_T20 extends Scene {
 		case "ANIMATE-IN-BUG": case "ANIMATE-IN-BUG-DB": case "ANIMATE-IN-BUG-DISMISSAL": case "ANIMATE-IN-BUG-BOWLER": case "ANIMATE-IN-BUGTARGET":
 		case "ANIMATE-IN-BUGPARTNERSHIP": case "ANIMATE-IN-PLOTTER_ICC": case "ANIMATE-IN-BUG-TOSS": case "ANIMATE-IN-BUG_POWERPLAY":
 		case "ANIMATE-IN-BUG_HIGHLIGHT": case "ANIMATE-IN-MULTI_PARTNERSHIP": case "ANIMATE-IN-DIMENSION":
+			
+		 case "ANIMATE-IN-SIX": case "ANIMATE-IN-FOUR_COUNT":
 
 		case "ANIMATE-IN-BUG_BAT_SPEED": case "ANIMATE-IN-BUG_BAT_POWER": case "ANIMATE-IN-BUG_BAT_IMPACT": case "ANIMATE-IN-BUG_BAT_TWIST":
 
@@ -617,7 +622,7 @@ public class KERALA_T20 extends Scene {
 
 			// POP-UP
 		case "POPULATE-MINI-BATTINGCARD": case "POPULATE-MINI-BOWLINGCARD": case "POPULATE-FF-BATGRIFF": case "POPULATE-FF-BALLGRIFF":
-		case "POPULATE-LTPOINTS_TABLE":case "POPULATE-BAT-POPUP":case "POPULATE-BOWL-POPUP":
+		case "POPULATE-LTPOINTS_TABLE":case "POPULATE-BAT-POPUP":case "POPULATE-BOWL-POPUP": case "POPULATE-SIX": case "POPULATE-FOUR_COUNT":
 
 			// LT'S
 		case "POPULATE-IMPACT": case "POPULATE-PHASE": case "POPULATE-PHASE-COMPARISON":
@@ -714,6 +719,14 @@ public class KERALA_T20 extends Scene {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$LeaderBoard$LeaderBoardDataOut$LeaderBoarData"
 						+ "$TopScorerPlayerGrps$Row" + row_no+ "$Out$In$TopScoreDataAll$TopScorerSelection*FUNCTION*Omo*vis_con SET "+ "1" + "\0");	
 				
+				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
+						+ which_side + "$LeaderBoard$ImageGrp$SelectImage$img_PlayerShadow*TEXTURE*IMAGE SET " + photo_path
+					    + "Blank"+ CricketUtil.PNG_EXTENSION + " \0");
+					
+					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side
+						+ "$LeaderBoard$ImageGrp$SelectImage$img_Player*TEXTURE*IMAGE SET " + photo_path
+						+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
+					
 				if(board.getLogo()== null) {
 					if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
@@ -1297,6 +1310,12 @@ public class KERALA_T20 extends Scene {
 		case "LTPOINTSTABLE":
 			print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Out START \0");
 			break;
+		case "SIX_COUNTER":
+			print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Out START \0");
+			break;
+		case "FOUR_COUNTER":
+			print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Out START \0");
+			break;
 		case "BUG-DISMISSAL": case "BUG": case "BUGBOWLER": case "BUG-DB": case "BUG-TOSS": case "BUGPARTNERSHIP":
 		case "BUG_POWERPLAY": case "BUG_HIGHLIGHT": case "MULTI_PARTNERSHIP": case "BUG_BAT_SPEED":
 		case "BUG_BAT_POWER": case "BUG_BAT_IMPACT": case "BUG_BAT_TWIST":
@@ -1771,6 +1790,57 @@ public class KERALA_T20 extends Scene {
 				which_graphic_on_screen = "BAT-POPUP";
 			}
 			break;
+		case "ANIMATE-IN-FOUR_COUNT":
+			 print_writer.println("-1 RENDERER*STAGE*DIRECTOR*In START \0");
+				TimeUnit.MILLISECONDS.sleep(1300);
+				if(!this_data_str.get(this_data_str.size()-2).split(",")[1].
+						equalsIgnoreCase(this_data_str.get(this_data_str.size()-1).split(",")[1])) {
+					 print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Change_Counter$Hundreds START \0");
+					 print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Change_Counter$Tens START \0");
+					 print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Change_Counter$Units START \0");
+				}
+				else if(!this_data_str.get(this_data_str.size()-2).split(",")[2].
+						equalsIgnoreCase(this_data_str.get(this_data_str.size()-1).split(",")[2])) {
+					 print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Change_Counter$Tens START \0");
+					 print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Change_Counter$Units START \0");
+				}
+				else if(!this_data_str.get(this_data_str.size()-2).split(",")[3].
+						equalsIgnoreCase(this_data_str.get(this_data_str.size()-1).split(",")[3])) {
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Change_Counter$Units START \0");
+				}
+				which_graphic_on_screen = "FOUR_COUNTER";
+				TimeUnit.MILLISECONDS.sleep(2000);
+				print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_1$txt_Unit*GEOM*TEXT SET " + this_data_str.get(1).split(",")[3] + "\0");
+				print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_1$txt_Ten*GEOM*TEXT SET " + this_data_str.get(1).split(",")[2] + "\0");
+				print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_1$txt_Hundread*GEOM*TEXT SET " + this_data_str.get(1).split(",")[1] + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Change_Counter SHOW 0.0 \0");
+			break;
+			
+		 case "ANIMATE-IN-SIX": 
+			 print_writer.println("-1 RENDERER*STAGE*DIRECTOR*In START \0");
+				TimeUnit.MILLISECONDS.sleep(1300);
+				if(!this_data_str.get(this_data_str.size()-2).split(",")[1].
+						equalsIgnoreCase(this_data_str.get(this_data_str.size()-1).split(",")[1])) {
+					 print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Change_Counter$Hundreds START \0");
+					 print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Change_Counter$Tens START \0");
+					 print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Change_Counter$Units START \0");
+				}
+				else if(!this_data_str.get(this_data_str.size()-2).split(",")[2].
+						equalsIgnoreCase(this_data_str.get(this_data_str.size()-1).split(",")[2])) {
+					 print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Change_Counter$Tens START \0");
+					 print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Change_Counter$Units START \0");
+				}
+				else if(!this_data_str.get(this_data_str.size()-2).split(",")[3].
+						equalsIgnoreCase(this_data_str.get(this_data_str.size()-1).split(",")[3])) {
+					print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Change_Counter$Units START \0");
+				}
+				which_graphic_on_screen = "SIX_COUNTER";
+				TimeUnit.MILLISECONDS.sleep(2000);
+				print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_1$txt_Unit*GEOM*TEXT SET " + this_data_str.get(1).split(",")[3] + "\0");
+				print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_1$txt_Ten*GEOM*TEXT SET " + this_data_str.get(1).split(",")[2] + "\0");
+				print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_1$txt_Hundread*GEOM*TEXT SET " + this_data_str.get(1).split(",")[1] + "\0");
+				print_writer.println("-1 RENDERER*STAGE*DIRECTOR*Change_Counter SHOW 0.0 \0");
+				break;
 		case "ANIMATE-MINI-BATTINGCARD":
 			AnimateInGraphics(print_writer, "MINI_BATTINGCARD");
 			which_graphic_on_screen = "MINI_BATTINGCARD";
@@ -3136,6 +3206,14 @@ public class KERALA_T20 extends Scene {
 			AnimateOutGraphics(print_writer, "MINI_BATTINGCARD");
 			which_graphic_on_screen = "";
 			resetInfobarAnimation(print_writer,"BUGS");
+			break;
+		case "SIX_COUNTER":
+			AnimateOutGraphics(print_writer, "SIX_COUNTER");
+			which_graphic_on_screen = "";
+			break;
+		case "FOUR_COUNTER":
+			AnimateOutGraphics(print_writer, "FOUR_COUNTER");
+			which_graphic_on_screen = "";
 			break;
 		case "MINI_BOWLINGCARD":
 			AnimateOutGraphics(print_writer, "MINI_BOWLINGCARD");
@@ -5485,6 +5563,18 @@ public class KERALA_T20 extends Scene {
 										+ which_side
 										+ "$Battingcard$BatExtraData$BatPerformerGrp$AllPerformerData$BottomStatGrp$img_Text2$txt_StatValue"
 										+ "*GEOM*TEXT SET " + bc.getFours() + "/" + bc.getSixes() + "\0");
+								
+								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
+										+ which_side
+										+ "$Battingcard$BatExtraData$BatPerformerGrp$PlayerImageGrpOut$"
+										+ "PlayerImageGrpIn$img_PlayerShadow*TEXTURE*IMAGE SET " + photo_path
+										+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
+								print_writer.println(
+										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side
+												+ "$Battingcard$BatExtraData$BatPerformerGrp$PlayerImageGrpOut$"
+												+ "PlayerImageGrpIn$img_Player*TEXTURE*IMAGE SET " + photo_path
+												+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
+								
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
 											+ which_side
@@ -5540,7 +5630,16 @@ public class KERALA_T20 extends Scene {
 										+ "$BowlingCard$HeaderAllGrp$HeaderTextGrpOut$HeaderTextGrpIn"
 										+ "$Header$HeaderStyle1$txt_Text2*GEOM*TEXT SET "
 										+inn.getBatting_team().getTeamName3() + "\0");
-									
+								
+								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
+										+ which_side + "$Battingcard$BatExtraData$BatPartnershipGrp$"
+										+ "PartnershipPlayer1$PlayerImageGrpOut$PlayerImageGrpIn$img_PlayerShadow*TEXTURE*IMAGE SET "
+										+ photo_path + "Blank" + CricketUtil.PNG_EXTENSION + " \0");
+
+								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
+										+ which_side + "$Battingcard$BatExtraData$BatPartnershipGrp$"
+										+ "PartnershipPlayer1$PlayerImageGrpOut$PlayerImageGrpIn$img_Player*TEXTURE*IMAGE SET "
+										+ photo_path +"Blank" + CricketUtil.PNG_EXTENSION + " \0");
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
 											+ which_side + "$Battingcard$BatExtraData$BatPartnershipGrp$"
@@ -5569,9 +5668,18 @@ public class KERALA_T20 extends Scene {
 											+ bc.getPlayer().getPhoto() + CricketUtil.PNG_EXTENSION + " \0");
 								}
 							}
-
+							
 							if (bc.getPlayerId() == inn.getPartnerships().get(inn.getPartnerships().size() - 1)
 									.getSecondBatterNo()) {
+								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
+										+ which_side + "$Battingcard$BatExtraData$BatPartnershipGrp$"
+										+ "PartnershipPlayer2$PlayerImageGrpOut$PlayerImageGrpIn$img_PlayerShadow*TEXTURE*IMAGE SET "
+										+ photo_path +"Blank" + CricketUtil.PNG_EXTENSION + " \0");
+
+								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
+										+ which_side + "$Battingcard$BatExtraData$BatPartnershipGrp$"
+										+ "PartnershipPlayer2$PlayerImageGrpOut$PlayerImageGrpIn$img_Player*TEXTURE*IMAGE SET "
+										+ photo_path + "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
 											+ which_side + "$Battingcard$BatExtraData$BatPartnershipGrp$"
@@ -6595,6 +6703,16 @@ public class KERALA_T20 extends Scene {
 										+ which_side
 										+ "$BowlingCard$BallExtraData$BallPerformerGrp$AllPerformerData$BottomStatGrp$img_Text2$txt_StatValue"
 										+ "*GEOM*TEXT SET " + " " + "\0");
+								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
+										+ which_side
+										+ "$BowlingCard$BallExtraData$BallPerformerGrp$PlayerImageGrpOut$"
+										+ "PlayerImageGrpIn$img_PlayerShadow*TEXTURE*IMAGE SET " + photo_path
+										+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
+								print_writer.println(
+										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side
+												+ "$BowlingCard$BallExtraData$BallPerformerGrp$PlayerImageGrpOut$"
+												+ "PlayerImageGrpIn$img_Player*TEXTURE*IMAGE SET " + photo_path
+												+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
 											+ which_side
@@ -6700,6 +6818,100 @@ public class KERALA_T20 extends Scene {
 				TimeUnit.MILLISECONDS.sleep(100);
 				break;
 			}
+		}
+	}
+	
+	public void populatetournamentFoursCount(PrintWriter print_writer, String viz_scene,List<MatchAllData> tourn_matches,MatchAllData match, String broadcaster) throws InterruptedException, CloneNotSupportedException {
+		System.out.println("coming here");
+		switch (broadcaster.toUpperCase()) {
+		case "KERALA_T20":
+			this_data_str = new ArrayList<String>();
+			today_fours = String.valueOf(CricketFunctions.extracttournamentFoursAndSixesData("CURRENT_MATCH_DATA", headToHead, match, null).getTournament_fours());
+			previous_fours = String.valueOf(past_tournament_boundaries.getTournament_fours());
+			
+			
+			System.out.println("today_fours = " + today_fours);
+			System.out.println("previous_fours = " + previous_fours);
+			
+			if(Integer.valueOf(today_fours) > 0 && match.getEventFile().getEvents().get(match.getEventFile().getEvents().size()-1).getEventType().equalsIgnoreCase(CricketUtil.FOUR)) {
+				if(match.getEventFile().getEvents().get(match.getEventFile().getEvents().size()-1).getEventWasABoundary() != null && 
+						match.getEventFile().getEvents().get(match.getEventFile().getEvents().size()-1).getEventWasABoundary().equalsIgnoreCase(CricketUtil.YES)) {
+					
+					today_sixes = String.valueOf(Integer.valueOf(today_fours));
+					System.out.println("today_fours-------------------------------------" + today_fours);
+					
+				}
+			}
+			
+			this_data_str.add(CricketFunctions.hundredsTensUnits(String.valueOf(Integer.valueOf(previous_fours) + Integer.valueOf(today_fours))));
+			String new_fours_value = String.valueOf((Integer.valueOf(previous_fours) + Integer.valueOf(today_fours) + 1));
+			this_data_str.add(CricketFunctions.hundredsTensUnits(new_fours_value));
+			
+			System.out.println(this_data_str.toString());
+			
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$band$HeaderAll*TEXTURE*IMAGE SET " + text1  + "Black" + "\0");
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$band$HeaderAll$txt_Header*GEOM*TEXT SET " + "TOURNAMENT FOURS" + "\0");
+			
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$base$img_base1*TEXTURE*IMAGE SET " + base1  + match.getSetup().getHomeTeam().getTeamBadge() + "\0");
+			
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_1$txt_Unit*GEOM*TEXT SET " + this_data_str.get(0).split(",")[3] + "\0");
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_1$txt_Ten*GEOM*TEXT SET " + this_data_str.get(0).split(",")[2] + "\0");
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_1$txt_Hundread*GEOM*TEXT SET " + this_data_str.get(0).split(",")[1] + "\0");
+			
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_2$txt_Hundread*GEOM*TEXT SET " + this_data_str.get(1).split(",")[1] + "\0");
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_2$txt_Ten*GEOM*TEXT SET " + this_data_str.get(1).split(",")[2] + "\0");
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_2$txt_Unit*GEOM*TEXT SET " + this_data_str.get(1).split(",")[3] + "\0");
+			
+			
+			print_writer.println("-1 RENDERER PREVIEW SCENE*" + viz_scene + " C:/Temp/Preview.tga In 1.500 \0");
+			TimeUnit.MILLISECONDS.sleep(200);
+			break;
+		}
+	}
+	
+	public void populatetournamentSix(PrintWriter print_writer, String viz_scene,List<MatchAllData> tourn_matches,MatchAllData match, String broadcaster) throws InterruptedException, CloneNotSupportedException {
+		switch (broadcaster.toUpperCase()) {
+		case "KERALA_T20":
+			this_data_str = new ArrayList<String>();
+			today_sixes = String.valueOf(CricketFunctions.extracttournamentFoursAndSixesData("CURRENT_MATCH_DATA", headToHead, match, null).getTournament_sixes());
+			previous_sixes = String.valueOf(past_tournament_boundaries.getTournament_sixes());
+			
+			
+			System.out.println("today_sixes = " + today_sixes);
+			System.out.println("previous_sixes = " + previous_sixes);
+			
+			if(Integer.valueOf(today_sixes) > 0 && match.getEventFile().getEvents().get(match.getEventFile().getEvents().size()-1).getEventType().equalsIgnoreCase(CricketUtil.SIX)) {
+				if(match.getEventFile().getEvents().get(match.getEventFile().getEvents().size()-1).getEventWasABoundary() != null && 
+						match.getEventFile().getEvents().get(match.getEventFile().getEvents().size()-1).getEventWasABoundary().equalsIgnoreCase(CricketUtil.YES)) {
+					
+					today_sixes = String.valueOf(Integer.valueOf(today_sixes));
+					System.out.println("today_sixes-------------------------------------" + today_sixes);
+				}
+			}
+			
+			this_data_str.add(CricketFunctions.hundredsTensUnits(String.valueOf(Integer.valueOf(previous_sixes) + Integer.valueOf(today_sixes))));
+			String new_six_value = String.valueOf((Integer.valueOf(previous_sixes) + Integer.valueOf(today_sixes) + 1));
+			this_data_str.add(CricketFunctions.hundredsTensUnits(new_six_value));
+			
+			System.out.println(this_data_str.toString());
+			
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$band$HeaderAll*TEXTURE*IMAGE SET " + text1  + "Black" + "\0");
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$band$HeaderAll$txt_Header*GEOM*TEXT SET " + "TOURNAMENT SIXES" + "\0");
+			
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$base$img_base1*TEXTURE*IMAGE SET " + base1  + match.getSetup().getHomeTeam().getTeamBadge() + "\0");
+			
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_1$txt_Unit*GEOM*TEXT SET " + this_data_str.get(0).split(",")[3] + "\0");
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_1$txt_Ten*GEOM*TEXT SET " + this_data_str.get(0).split(",")[2] + "\0");
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_1$txt_Hundread*GEOM*TEXT SET " + this_data_str.get(0).split(",")[1] + "\0");
+			
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_2$txt_Hundread*GEOM*TEXT SET " + this_data_str.get(1).split(",")[1] + "\0");
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_2$txt_Ten*GEOM*TEXT SET " + this_data_str.get(1).split(",")[2] + "\0");
+			print_writer.println("-1 RENDERER*TREE*$Main$All$POP_ALL$SixCounter$img_Text1$Side_2$txt_Unit*GEOM*TEXT SET " + this_data_str.get(1).split(",")[3] + "\0");
+			
+			
+			print_writer.println("-1 RENDERER PREVIEW SCENE*" + viz_scene + " C:/Temp/Preview.tga In 1.500 \0");
+			TimeUnit.MILLISECONDS.sleep(200);
+			break;
 		}
 	}
 	public void populateBowlPopUp(PrintWriter print_writer,String viz_scene, int whichInning, String strikeRateOrRuns, int playerId, int whichSide, MatchAllData match,CricketService cricketService, String session_selected_broadcaster, Configuration config) {
@@ -7467,6 +7679,13 @@ public class KERALA_T20 extends Scene {
 				}else {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + whichside + "$MatchSummary$TeamColourBase2*ACTIVE SET 1\0");
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + whichside + "$MatchSummary$CaptainAllGrp*ACTIVE SET 1\0");
+					
+					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + whichside
+							+ "$MatchSummary$CaptainAllGrp$CaptainGrp" + i
+							+ "$Out$In$img_PlayerShadow*TEXTURE*IMAGE SET " + photo_path + "Blank" + CricketUtil.PNG_EXTENSION + " \0");
+					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + whichside
+							+ "$MatchSummary$CaptainAllGrp$CaptainGrp" + i + "$Out$In$img_Player*TEXTURE*IMAGE SET "
+							+ photo_path + "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 					if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + whichside
 								+ "$MatchSummary$CaptainAllGrp$CaptainGrp" + i
@@ -8304,35 +8523,26 @@ public class KERALA_T20 extends Scene {
 							+ "$FooterOut$FooterIn$SelctFooterStyle$FooterGrp1$ExtrasGrp$txt_ExtrasValue*GEOM*TEXT SET "
 							+ inn.getTotalExtras() + "\0");
 					
+					String reduceOverData = "";
+					
 					if(inn.getInningNumber() == 1) {
 						if(match.getSetup().getReducedOvers() != null && !match.getSetup().getReducedOvers().isEmpty()){
-							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$FooterGrp$Side" + whichside
-									+ "$FooterOut$FooterIn$SelctFooterStyle$FooterGrp1$OversGrp$txt_OversValue*GEOM*TEXT SET "
-									+ CricketFunctions.OverBalls(inn.getTotalOvers(), inn.getTotalBalls()) + 
-									" (" + match.getSetup().getReducedOvers() + ")" + "\0");
+							reduceOverData = " (" + match.getSetup().getReducedOvers() + ")";
 						}
 					}else {
 						if(match.getSetup().getTargetOvers() != null && !match.getSetup().getTargetOvers().isEmpty()) {
-							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$FooterGrp$Side" + whichside
-									+ "$FooterOut$FooterIn$SelctFooterStyle$FooterGrp1$OversGrp$txt_OversValue*GEOM*TEXT SET "
-									+ CricketFunctions.OverBalls(inn.getTotalOvers(), inn.getTotalBalls()) + 
-									" (" + match.getSetup().getTargetOvers() + ")" + "\0");
+							reduceOverData = " (" + match.getSetup().getTargetOvers() + ")";
 						}
 					}
 					
+					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$FooterGrp$Side" + whichside
+							+ "$FooterOut$FooterIn$SelctFooterStyle$FooterGrp1$OversGrp$txt_OversValue*GEOM*TEXT SET "
+							+ CricketFunctions.OverBalls(inn.getTotalOvers(), inn.getTotalBalls()) + reduceOverData + "\0");
 					
-
-					if (inn.getTotalWickets() >= 10) {
-						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$FooterGrp$Side"
-								+ whichside
-								+ "$FooterOut$FooterIn$SelctFooterStyle$FooterGrp1$ScoreGrp$txt_TotalValue*GEOM*TEXT SET "
-								+ inn.getTotalRuns() + "\0");
-					} else {
-						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$FooterGrp$Side"
-								+ whichside
-								+ "$FooterOut$FooterIn$SelctFooterStyle$FooterGrp1$ScoreGrp$txt_TotalValue*GEOM*TEXT SET "
-								+ inn.getTotalRuns() + slashOrDash + String.valueOf(inn.getTotalWickets()) + "\0");
-					}
+					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$FooterGrp$Side"
+							+ whichside + "$FooterOut$FooterIn$SelctFooterStyle$FooterGrp1$ScoreGrp$txt_TotalValue*GEOM*TEXT SET "
+							+CricketFunctions.getTeamScore(inn, "-", false) + "\0");
+					
 				}
 			}
 		}
@@ -8747,6 +8957,16 @@ public class KERALA_T20 extends Scene {
 					if (inn.getInningNumber() == whichInning) {
 						for (BattingCard bc : inn.getBattingCard()) {
 							if (bc.getPlayerId() == inn.getPartnerships().get(which_part - 1).getFirstBatterNo()) {
+								
+								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
+										+ which_side + "$PartnershipBars$ParnershipBarsExtraData$PartnershipPlayer1$"
+										+ "img_PlayerShadow*TEXTURE*IMAGE SET "
+										+ photo_path +"Blank" + CricketUtil.PNG_EXTENSION + " \0");
+								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
+										+ which_side + "$PartnershipBars$ParnershipBarsExtraData$PartnershipPlayer1$"
+										+ "img_Player*TEXTURE*IMAGE SET "
+										+ photo_path +"Blank" + CricketUtil.PNG_EXTENSION + " \0");
+								
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
 											+ which_side + "$PartnershipBars$ParnershipBarsExtraData$PartnershipPlayer1$"
@@ -8778,6 +8998,16 @@ public class KERALA_T20 extends Scene {
 
 							if (bc.getPlayerId() == inn.getPartnerships().get(which_part - 1)
 									.getSecondBatterNo()) {
+								
+								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
+										+ which_side + "$PartnershipBars$ParnershipBarsExtraData$PartnershipPlayer2$"
+										+ "img_PlayerShadow*TEXTURE*IMAGE SET "
+										+ photo_path + "Blank" + CricketUtil.PNG_EXTENSION + " \0");
+
+								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
+										+ which_side + "$PartnershipBars$ParnershipBarsExtraData$PartnershipPlayer2$"
+										+ "img_Player*TEXTURE*IMAGE SET "
+										+ photo_path + "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"
 											+ which_side + "$PartnershipBars$ParnershipBarsExtraData$PartnershipPlayer2$"
@@ -9375,6 +9605,8 @@ public class KERALA_T20 extends Scene {
 								// lgTeamLogo " + logo_path + inn.getBatting_team().getTeamName1() +
 								// CricketUtil.PNG_EXTENSION + ";");
 								
+								print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
+										+ "$Select$BatsmanOutImage$TopGrp$HeaderGrp$img_Player*TEXTURE*IMAGE SET " + photo_path + "Blank" + CricketUtil.PNG_EXTENSION + "\0");
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									
 									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
@@ -9930,6 +10162,8 @@ public class KERALA_T20 extends Scene {
 									// lgTeamLogo " + logo_path + inn.getBatting_team().getTeamName1() +
 									// CricketUtil.PNG_EXTENSION + ";");
 									
+									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
+											+ "$Select$BatsmanOutImage$TopGrp$HeaderGrp$img_Player*TEXTURE*IMAGE SET " + photo_path + "Blank" + CricketUtil.PNG_EXTENSION + "\0");
 									if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 										
 										print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
@@ -10443,7 +10677,9 @@ public class KERALA_T20 extends Scene {
 						}
 						for (BattingCard bc : inn.getBattingCard()) {
 							if (bc.getPlayerId() == playerId) {
-
+								
+								print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
+										+ "$Select$BatsmanOutImage$TopGrp$HeaderGrp$img_Player*TEXTURE*IMAGE SET " + photo_path + "Blank" + CricketUtil.PNG_EXTENSION + "\0");
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									
 									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
@@ -10769,7 +11005,10 @@ public class KERALA_T20 extends Scene {
 //									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 //											+ "$Select$PlayerStats$BottomGrp$RestDataGrp$img_Text2$RestData$Data$4$img_Text2*TEXTURE*IMAGE SET "
 //											+ text_path2 + "TLogo" + " \0");
-
+									
+									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
+											+ "$Select$PlayerStatsImage$TopGrp$HeaderGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
+											+ "Blank" + CricketUtil.PNG_EXTENSION + "\0");
 									if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 										print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 												+ "$Select$PlayerStatsImage$TopGrp$HeaderGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
@@ -11120,6 +11359,9 @@ public class KERALA_T20 extends Scene {
 						case CricketUtil.BOWLER:
 							for (BowlingCard boc : inn.getBowlingCard()) {
 								if (boc.getPlayerId() == playerId) {
+									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
+											+ "$Select$BowlerBowlingDetailsImage$TopGrp$HeaderGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
+											+ "Blank" + CricketUtil.PNG_EXTENSION + "\0");
 									if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 										print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 												+ "$Select$BowlerBowlingDetailsImage$TopGrp$HeaderGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
@@ -11681,6 +11923,11 @@ public class KERALA_T20 extends Scene {
 						if (inn.getBattingCard().get(b - 1).getStatus().equalsIgnoreCase(CricketUtil.STILL_TO_BAT)) {
 							row_id = row_id + 1;
 							if (row_id <= 2) {
+								print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
+										+ "$Select$NextToBat$BottomGrp$RestDataGrp$img_Text2$Player" + row_id
+										+ "$img_Player*TEXTURE*IMAGE SET " + photo_path 
+										+ "Blank"
+										+ CricketUtil.PNG_EXTENSION + " \0");
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 											+ "$Select$NextToBat$BottomGrp$RestDataGrp$img_Text2$Player" + row_id
@@ -12032,7 +12279,10 @@ public class KERALA_T20 extends Scene {
 //					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 //							+ "$Select$NameSuperSingle$BottomGrp$RestDataGrp$img_Text2*TEXTURE*IMAGE SET "
 //							+ text_path2 + "TLogo" + " \0");
-
+					
+					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
+							+ "$Select$NameSuperSingleImage$TopGrp$HeaderGrp$img_Player*TEXTURE*IMAGE SET "
+							+ photo_path + "Blank" + CricketUtil.PNG_EXTENSION + "\0");
 					if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 								+ "$Select$NameSuperSingleImage$TopGrp$HeaderGrp$img_Player*TEXTURE*IMAGE SET "
@@ -12175,7 +12425,9 @@ public class KERALA_T20 extends Scene {
 //					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 //							+ "$Select$NameSuperSingle$BottomGrp$RestDataGrp$img_Text2*TEXTURE*IMAGE SET "
 //							+ text_path2 + "TLogo" + " \0");
-
+					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
+							+ "$Select$NameSuperSingleImage$TopGrp$HeaderGrp$img_Player*TEXTURE*IMAGE SET "
+							+ photo_path + "Blank" + CricketUtil.PNG_EXTENSION + "\0");
 					if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 						print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
 								+ "$Select$NameSuperSingleImage$TopGrp$HeaderGrp$img_Player*TEXTURE*IMAGE SET "
@@ -12398,6 +12650,15 @@ public class KERALA_T20 extends Scene {
 						+ "$Side1BadgeOut$img_Badges*TEXTURE*IMAGE SET " + logo_path
 						+ match.getSetup().getHomeTeam().getTeamBadge() + " \0");
 
+				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
+						+ "$ImageGrpOut$ImageGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
+						+ "Blank"
+						+ CricketUtil.PNG_EXTENSION + " \0");
+				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
+						+ "$ImageGrpOut$ImageGrp$img_PlayerShadow*TEXTURE*IMAGE SET " + photo_path
+						+ "Blank"
+						+ CricketUtil.PNG_EXTENSION + " \0");
+				
 				if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 							+ "$ImageGrpOut$ImageGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
@@ -12497,6 +12758,14 @@ public class KERALA_T20 extends Scene {
 				// print_writer.println("-1
 				// RENDERER*BACK_LAYER*TREE*$Main$All$Profile$HeaderGrp$txt_Age*GEOM*TEXT SET "
 				// + plyr.getAge() + " yrs" + "\0");
+				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
+						+ "$ImageGrpOut$ImageGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
+						+ "Blank"
+						+ CricketUtil.PNG_EXTENSION + " \0");
+				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
+						+ "$ImageGrpOut$ImageGrp$img_PlayerShadow*TEXTURE*IMAGE SET " + photo_path
+						+ "Blank"
+						+ CricketUtil.PNG_EXTENSION + " \0");
 				if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 							+ "$ImageGrpOut$ImageGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
@@ -12818,7 +13087,15 @@ public class KERALA_T20 extends Scene {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 						+ "$Side1BadgeOut$img_Badges*TEXTURE*IMAGE SET " + logo_path
 						+ match.getSetup().getHomeTeam().getTeamBadge() + " \0");
-
+				
+				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
+						+ "$ImageGrpOut$ImageGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
+						+ "Blank"
+						+ CricketUtil.PNG_EXTENSION + " \0");
+				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
+						+ "$ImageGrpOut$ImageGrp$img_PlayerShadow*TEXTURE*IMAGE SET " + photo_path
+						+ "Blank"
+						+ CricketUtil.PNG_EXTENSION + " \0");
 				if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 							+ "$ImageGrpOut$ImageGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
@@ -12876,7 +13153,15 @@ public class KERALA_T20 extends Scene {
 				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 						+ "$Side1BadgeOut$img_Badges*TEXTURE*IMAGE SET " + logo_path
 						+ match.getSetup().getAwayTeam().getTeamBadge() + " \0");
-
+				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
+						+ "$ImageGrpOut$ImageGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
+						+ "Blank"
+						+ CricketUtil.PNG_EXTENSION + " \0");
+				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
+						+ "$ImageGrpOut$ImageGrp$img_PlayerShadow*TEXTURE*IMAGE SET " + photo_path
+						+ "Blank"
+						+ CricketUtil.PNG_EXTENSION + " \0");
+				
 				if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side" + whichside
 							+ "$ImageGrpOut$ImageGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
@@ -17985,8 +18270,7 @@ public class KERALA_T20 extends Scene {
 				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText$txt_Head*GEOM*TEXT SET "
 								+ match.getSetup().getTournament() + "\0");
 			}else {
-				BufferedReader br = new BufferedReader(
-						new FileReader(file));
+				BufferedReader br = new BufferedReader(new FileReader(file));
 				
 				print_writer.println("-1 RENDERER*FRONT_LAYER*TREE*$Main$All$Section5$FreeText*TEXTURE*IMAGE SET "+ text_path2 + "TLogo\0");
 
@@ -18230,7 +18514,6 @@ public class KERALA_T20 extends Scene {
 									+ "*TEXTURE*IMAGE SET " + logo_path + TM.getTeamBadge() + "\0");
 				}
 			}
-			System.out.println("FIXTURE DTA +++"  + fix.get(match_number)); 
 			switch (config.getBroadcaster().toUpperCase()) {
 			case "KERALA_T20":
 				match_name = (config.getCategory().equalsIgnoreCase("MEN") ?  fix.get(match_number - 1).getMatchfilename().replace("M_", "") : 
@@ -19081,6 +19364,18 @@ public class KERALA_T20 extends Scene {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
 									+ "$MainGrp$CaptainGrp$NameRoleGrp" + "$img_Text1$txt_CaptainName*GEOM*TEXT SET "
 									+ match.getSetup().getHomeSquad().get(i - 1).getTicker_name() + "\0");
+							
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
+									+ "$MainGrp$CaptainGrp$LineUpImageDataOut$PlayerImageGrpOut"
+									+ "$PlayerImageGrpIn$img_PlayerShadow*TEXTURE*IMAGE SET " + photo_path
+									+ "Blank" + CricketUtil.PNG_EXTENSION
+									+ "\0");
+
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
+									+ "$MainGrp$CaptainGrp$PlayerImageGrpOut"
+									+ "$PlayerImageGrpIn$img_Player*TEXTURE*IMAGE SET " + photo_path
+									+ "Blank" + CricketUtil.PNG_EXTENSION
+									+ "\0");
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
 										+ "$MainGrp$CaptainGrp$LineUpImageDataOut$PlayerImageGrpOut"
@@ -19139,6 +19434,13 @@ public class KERALA_T20 extends Scene {
 									+ "$MainGrp$LineUpImageDataOut$PlayerImageGrp$Player" + row_id + "$Out"
 									+ "$In$ImageTeamData$NameGrp$txt_Name*GEOM*TEXT SET "
 									+ match.getSetup().getHomeSquad().get(i - 1).getTicker_name() + "\0");
+							
+							
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
+									+ "$MainGrp$LineUpImageDataOut$PlayerImageGrp$Player" + row_id + "$Out"
+									+ "$In$ImageTeamData$ImageGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
+									+ "Blank"
+									+ CricketUtil.PNG_EXTENSION + "\0");
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
 										+ "$MainGrp$LineUpImageDataOut$PlayerImageGrp$Player" + row_id + "$Out"
@@ -19172,6 +19474,18 @@ public class KERALA_T20 extends Scene {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
 									+ "$MainGrp$CaptainGrp$NameRoleGrp" + "$img_Text1$txt_CaptainName*GEOM*TEXT SET "
 									+ match.getSetup().getHomeSquad().get(i - 1).getTicker_name() + "\0");
+							
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
+									+ "$MainGrp$CaptainGrp$PlayerImageGrpOut"
+									+ "$PlayerImageGrpIn$img_PlayerShadow*TEXTURE*IMAGE SET " + photo_path
+									+ "Blank" + CricketUtil.PNG_EXTENSION
+									+ "\0");
+
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
+									+ "$MainGrp$CaptainGrp$PlayerImageGrpOut"
+									+ "$PlayerImageGrpIn$img_Player*TEXTURE*IMAGE SET " + photo_path
+									+ "Blank" + CricketUtil.PNG_EXTENSION
+									+ "\0");
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
 										+ "$MainGrp$CaptainGrp$PlayerImageGrpOut"
@@ -19414,6 +19728,12 @@ public class KERALA_T20 extends Scene {
 								+ "$MainGrp$LineUpImageDataOut$PlayerImageGrp$Player" + row_id + "$Out"
 								+ "$In$ImageTeamData$NameGrp$txt_Name*GEOM*TEXT SET "
 								+ match.getSetup().getHomeSquad().get(i - 1).getTicker_name() + "\0");
+						
+						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
+								+ "$MainGrp$LineUpImageDataOut$PlayerImageGrp$Player" + row_id + "$Out"
+								+ "$In$ImageTeamData$ImageGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
+								+ "Blank"
+								+ CricketUtil.PNG_EXTENSION + "\0");
 						if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
 									+ "$MainGrp$LineUpImageDataOut$PlayerImageGrp$Player" + row_id + "$Out"
@@ -19552,6 +19872,17 @@ public class KERALA_T20 extends Scene {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
 									+ "$MainGrp$CaptainGrp$NameRoleGrp" + "$img_Text1$txt_CaptainName*GEOM*TEXT SET "
 									+ match.getSetup().getAwaySquad().get(i - 1).getTicker_name() + "\0");
+							
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
+									+ "$MainGrp$CaptainGrp$PlayerImageGrpOut"
+									+ "$PlayerImageGrpIn$img_PlayerShadow*TEXTURE*IMAGE SET " + photo_path
+									+ "Blank" + CricketUtil.PNG_EXTENSION
+									+ "\0");
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
+									+ "$MainGrp$CaptainGrp$PlayerImageGrpOut"
+									+ "$PlayerImageGrpIn$img_Player*TEXTURE*IMAGE SET " + photo_path
+									+ "Blank" + CricketUtil.PNG_EXTENSION
+									+ "\0");
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
 										+ "$MainGrp$CaptainGrp$PlayerImageGrpOut"
@@ -19609,6 +19940,12 @@ public class KERALA_T20 extends Scene {
 									+ "$MainGrp$LineUpImageDataOut$PlayerImageGrp$Player" + row_id + "$Out"
 									+ "$In$ImageTeamData$NameGrp$txt_Name*GEOM*TEXT SET "
 									+ match.getSetup().getAwaySquad().get(i - 1).getTicker_name() + "\0");
+							
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
+									+ "$MainGrp$LineUpImageDataOut$PlayerImageGrp$Player" + row_id + "$Out"
+									+ "$In$ImageTeamData$ImageGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
+									+ "Blank"
+									+ CricketUtil.PNG_EXTENSION + "\0");
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
 										+ "$MainGrp$LineUpImageDataOut$PlayerImageGrp$Player" + row_id + "$Out"
@@ -19640,6 +19977,18 @@ public class KERALA_T20 extends Scene {
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
 									+ "$MainGrp$CaptainGrp$NameRoleGrp" + "$img_Text1$txt_CaptainName*GEOM*TEXT SET "
 									+ match.getSetup().getAwaySquad().get(i - 1).getTicker_name() + "\0");
+							
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
+									+ "$MainGrp$CaptainGrp$PlayerImageGrpOut"
+									+ "$PlayerImageGrpIn$img_PlayerShadow*TEXTURE*IMAGE SET " + photo_path
+									+ "Blank" + CricketUtil.PNG_EXTENSION
+									+ "\0");
+							
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
+									+ "$MainGrp$CaptainGrp$PlayerImageGrpOut"
+									+ "$PlayerImageGrpIn$img_Player*TEXTURE*IMAGE SET " + photo_path
+									+ "Blank" + CricketUtil.PNG_EXTENSION
+									+ "\0");
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
 										+ "$MainGrp$CaptainGrp$PlayerImageGrpOut"
@@ -19794,6 +20143,12 @@ public class KERALA_T20 extends Scene {
 										+ "$MainGrp$LineUpImageDataOut$PlayerImageGrp$Player" + row_id + "$Out"
 										+ "$In$ImageTeamData$NameGrp$txt_Name*GEOM*TEXT SET "
 										+ match.getSetup().getAwaySquad().get(i - 1).getTicker_name() + "\0");
+								
+								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
+										+ "$MainGrp$LineUpImageDataOut$PlayerImageGrp$Player" + row_id + "$Out"
+										+ "$In$ImageTeamData$ImageGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
+										+"Blank"
+										+ CricketUtil.PNG_EXTENSION + "\0");
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
 											+ "$MainGrp$LineUpImageDataOut$PlayerImageGrp$Player" + row_id + "$Out"
@@ -19915,6 +20270,12 @@ public class KERALA_T20 extends Scene {
 									+ "$MainGrp$LineUpImageDataOut$PlayerImageGrp$Player" + row_id + "$Out"
 									+ "$In$ImageTeamData$NameGrp$txt_Name*GEOM*TEXT SET "
 									+ match.getSetup().getAwaySquad().get(i - 1).getTicker_name() + "\0");
+							
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
+									+ "$MainGrp$LineUpImageDataOut$PlayerImageGrp$Player" + row_id + "$Out"
+									+ "$In$ImageTeamData$ImageGrp$img_Player*TEXTURE*IMAGE SET " + photo_path
+									+ "Blank"
+									+ CricketUtil.PNG_EXTENSION + "\0");
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$LineUpImage$Side" + which_side
 										+ "$MainGrp$LineUpImageDataOut$PlayerImageGrp$Player" + row_id + "$Out"
@@ -20169,6 +20530,12 @@ public class KERALA_T20 extends Scene {
 							"-1 RENDERER*BACK_LAYER*TREE*$Main$All$Teams$TeamGrp1$TeamDataAll1$Team1Out$Select_LineUpType$Type4$All11$PlayerGrp"
 									+ i + "$PlayerOut$ImageGrp$LogoBase$img_Base2*TEXTURE*IMAGE SET " + base_path2
 									+ match.getSetup().getHomeTeam().getTeamBadge() + " \0");
+					
+					print_writer.println(
+							"-1 RENDERER*BACK_LAYER*TREE*$Main$All$Teams$TeamGrp1$TeamDataAll1$Team1Out$Select_LineUpType$Type4$All11$PlayerGrp"
+									+ i + "$PlayerOut$ImageGrp$img_Player" + "*TEXTURE*IMAGE SET " + photo_path
+									+ "Blank"
+									+ CricketUtil.PNG_EXTENSION + " \0");
 					if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 						print_writer.println(
 								"-1 RENDERER*BACK_LAYER*TREE*$Main$All$Teams$TeamGrp1$TeamDataAll1$Team1Out$Select_LineUpType$Type4$All11$PlayerGrp"
@@ -20380,6 +20747,12 @@ public class KERALA_T20 extends Scene {
 							"-1 RENDERER*BACK_LAYER*TREE*$Main$All$Teams$TeamGrp1$TeamDataAll1$Team1Out$Select_LineUpType$Type4$All11$PlayerGrp"
 									+ i + "$PlayerOut$ImageGrp$LogoBase$img_Base2*TEXTURE*IMAGE SET " + base_path2
 									+ match.getSetup().getAwayTeam().getTeamBadge() + " \0");
+					
+					print_writer.println(
+							"-1 RENDERER*BACK_LAYER*TREE*$Main$All$Teams$TeamGrp1$TeamDataAll1$Team1Out$Select_LineUpType$Type4$All11$PlayerGrp"
+									+ i + "$PlayerOut$ImageGrp$img_Player" + "*TEXTURE*IMAGE SET " + photo_path
+									+ "Blank"
+									+ CricketUtil.PNG_EXTENSION + " \0");
 					if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 						print_writer.println(
 								"-1 RENDERER*BACK_LAYER*TREE*$Main$All$Teams$TeamGrp1$TeamDataAll1$Team1Out$Select_LineUpType$Type4$All11$PlayerGrp"
@@ -20847,6 +21220,9 @@ public class KERALA_T20 extends Scene {
 								print_writer.println(
 										"-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgTeamLogo"
 												+ " SET " + logo_path + inn.getBatting_team().getTeamBadge() + "\0");
+								
+								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
+										+ "lgImage" + " SET " + photo_path + "Blank" + ".png" + "\0");
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 											+ "lgImage" + " SET " + photo_path + inn.getBatting_team().getTeamName4()
@@ -20888,6 +21264,9 @@ public class KERALA_T20 extends Scene {
 								print_writer.println(
 										"-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON " + "lgTeamLogo"
 												+ " SET " + logo_path + inn.getBowling_team().getTeamBadge() + "\0");
+								print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
+										+ "lgImage" + " SET " + photo_path + "Blank" + ".png" + "\0");
+								
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									print_writer.println("-1 RENDERER*TREE*$Main*FUNCTION*ControlObject*in SET ON "
 											+ "lgImage" + " SET " + photo_path + inn.getBowling_team().getTeamName4()
@@ -20937,6 +21316,10 @@ public class KERALA_T20 extends Scene {
 								print_writer.println("-1 RENDERER*TREE*$Main$All$TeamBadge*TEXTURE*IMAGE SET "
 										+ logo_path + match.getSetup().getAwayTeam().getTeamBadge() + ".png" + "\0");
 							}
+							
+							print_writer.println(
+									"-1 RENDERER*TREE*$Main$All$All_Player_Pic$noname$Plaer_Pic$PlayerImage*TEXTURE*IMAGE SET "
+											+ photo_path + "Blank" + ".png" + "\0");
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println(
 										"-1 RENDERER*TREE*$Main$All$All_Player_Pic$noname$Plaer_Pic$PlayerImage*TEXTURE*IMAGE SET "
@@ -21454,7 +21837,8 @@ public class KERALA_T20 extends Scene {
 						"-1 RENDERER*TREE*$LT$All$BaseAll$Side1$Select$OneTeamOption02$Base2$img_Base2*TEXTURE*IMAGE SET "
 								+ base_path2 + match.getSetup().getHomeTeam().getTeamBadge() + " \0");
 			}
-			
+			print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$ImpactPlayer$BottomGrp" + data + "$Player1$img_Player*TEXTURE*IMAGE SET "
+					+ photo_path+ "Blank" + CricketUtil.PNG_EXTENSION + "\0");
 			
 			if(config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$ImpactPlayer$BottomGrp" + data + "$Player1$img_Player*TEXTURE*IMAGE SET "
@@ -21465,6 +21849,8 @@ public class KERALA_T20 extends Scene {
 						+"\\\\" + config.getPrimaryIpAddress() + "\\\\" + local_photo_path+ match.getSetup().getHomeTeam().getTeamName4()+ "\\\\" + inPlayer.getPhoto() + CricketUtil.PNG_EXTENSION + "\0");
 			}
 			
+			print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$ImpactPlayer$BottomGrp" + data + "$Player2$img_Player*TEXTURE*IMAGE SET "
+					+ photo_path+ "Blank" + CricketUtil.PNG_EXTENSION + "\0");
 			if(config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$ImpactPlayer$BottomGrp" + data + "$Player2$img_Player*TEXTURE*IMAGE SET "
 						+ photo_path+ match.getSetup().getHomeTeam().getTeamName4()+ "\\\\" + outPlayer.getPhoto() + CricketUtil.PNG_EXTENSION + "\0");
@@ -21514,6 +21900,8 @@ public class KERALA_T20 extends Scene {
 								+ base_path2 + match.getSetup().getAwayTeam().getTeamBadge() + " \0");
 			}
 			
+			print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$ImpactPlayer$BottomGrp" + data + "$Player1$img_Player*TEXTURE*IMAGE SET "
+					+ photo_path+ "Blank" + CricketUtil.PNG_EXTENSION + "\0");
 			if(config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$ImpactPlayer$BottomGrp" + data + "$Player1$img_Player*TEXTURE*IMAGE SET "
 						+ photo_path+ match.getSetup().getAwayTeam().getTeamName4()+ "\\\\" + inPlayer.getPhoto() + CricketUtil.PNG_EXTENSION + "\0");
@@ -21521,7 +21909,8 @@ public class KERALA_T20 extends Scene {
 				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$ImpactPlayer$BottomGrp" + data + "$Player1$img_Player*TEXTURE*IMAGE SET "
 						+"\\\\" + config.getPrimaryIpAddress() + "\\\\" + local_photo_path+ match.getSetup().getAwayTeam().getTeamName4()+ "\\\\" + inPlayer.getPhoto() + CricketUtil.PNG_EXTENSION + "\0");
 			}
-			
+			print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$ImpactPlayer$BottomGrp" + data + "$Player2$img_Player*TEXTURE*IMAGE SET "
+					+ photo_path+"Blank" + CricketUtil.PNG_EXTENSION + "\0");
 			if(config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$ImpactPlayer$BottomGrp" + data + "$Player2$img_Player*TEXTURE*IMAGE SET "
 						+ photo_path+ match.getSetup().getAwayTeam().getTeamName4()+ "\\\\" + outPlayer.getPhoto() + CricketUtil.PNG_EXTENSION + "\0");
@@ -21674,6 +22063,15 @@ public class KERALA_T20 extends Scene {
 							if(hs.getCaptainWicketKeeper() != null) {
 								if (hs.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.CAPTAIN)
 										|| hs.getCaptainWicketKeeper().equalsIgnoreCase("CAPTAIN_WICKET_KEEPER")) {
+									
+									print_writer.println(
+											"-1 RENDERER*BACK_LAYER*TREE*$Main$Target$ImageGrp$ImageGrpOut1$ImageGrp1$img_PlayerShadow"
+													+ "*TEXTURE*IMAGE SET " + photo_path
+													+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
+									print_writer.println(
+											"-1 RENDERER*BACK_LAYER*TREE*$Main$Target$ImageGrp$ImageGrpOut1$ImageGrp1$img_Player"
+													+ "*TEXTURE*IMAGE SET " + photo_path
+													+"Blank" + CricketUtil.PNG_EXTENSION + " \0");
 									if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 										print_writer.println(
 												"-1 RENDERER*BACK_LAYER*TREE*$Main$Target$ImageGrp$ImageGrpOut1$ImageGrp1$img_PlayerShadow"
@@ -21706,6 +22104,15 @@ public class KERALA_T20 extends Scene {
 							if(as.getCaptainWicketKeeper() != null) {
 								if (as.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.CAPTAIN)
 										|| as.getCaptainWicketKeeper().equalsIgnoreCase("CAPTAIN_WICKET_KEEPER")) {
+									
+									print_writer.println(
+											"-1 RENDERER*BACK_LAYER*TREE*$Main$Target$ImageGrp$ImageGrpOut2$ImageGrp2$img_PlayerShadow"
+													+ "*TEXTURE*IMAGE SET " + photo_path
+													+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
+									print_writer.println(
+											"-1 RENDERER*BACK_LAYER*TREE*$Main$Target$ImageGrp$ImageGrpOut2$ImageGrp2$img_Player"
+													+ "*TEXTURE*IMAGE SET " + photo_path
+													+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 									if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 										print_writer.println(
 												"-1 RENDERER*BACK_LAYER*TREE*$Main$Target$ImageGrp$ImageGrpOut2$ImageGrp2$img_PlayerShadow"
@@ -21739,6 +22146,15 @@ public class KERALA_T20 extends Scene {
 							if(hs.getCaptainWicketKeeper() != null) {
 								if (hs.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.CAPTAIN)
 										|| hs.getCaptainWicketKeeper().equalsIgnoreCase("CAPTAIN_WICKET_KEEPER")) {
+									
+									print_writer.println(
+											"-1 RENDERER*BACK_LAYER*TREE*$Main$Target$ImageGrp$ImageGrpOut2$ImageGrp2$img_PlayerShadow"
+													+ "*TEXTURE*IMAGE SET " + photo_path
+													+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
+									print_writer.println(
+											"-1 RENDERER*BACK_LAYER*TREE*$Main$Target$ImageGrp$ImageGrpOut2$ImageGrp2$img_Player"
+													+ "*TEXTURE*IMAGE SET " + photo_path
+													+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 									if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 										print_writer.println(
 												"-1 RENDERER*BACK_LAYER*TREE*$Main$Target$ImageGrp$ImageGrpOut2$ImageGrp2$img_PlayerShadow"
@@ -21771,6 +22187,15 @@ public class KERALA_T20 extends Scene {
 							if(as.getCaptainWicketKeeper() != null) {
 								if (as.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.CAPTAIN)
 										|| as.getCaptainWicketKeeper().equalsIgnoreCase("CAPTAIN_WICKET_KEEPER")) {
+									
+									print_writer.println(
+											"-1 RENDERER*BACK_LAYER*TREE*$Main$Target$ImageGrp$ImageGrpOut1$ImageGrp1$img_PlayerShadow"
+													+ "*TEXTURE*IMAGE SET " + photo_path
+													+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
+									print_writer.println(
+											"-1 RENDERER*BACK_LAYER*TREE*$Main$Target$ImageGrp$ImageGrpOut1$ImageGrp1$img_Player"
+													+ "*TEXTURE*IMAGE SET " + photo_path
+													+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 									if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 										print_writer.println(
 												"-1 RENDERER*BACK_LAYER*TREE*$Main$Target$ImageGrp$ImageGrpOut1$ImageGrp1$img_PlayerShadow"
@@ -23113,6 +23538,11 @@ public class KERALA_T20 extends Scene {
 										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$CurrentPartnership$CurrentPartnershipDataOut$CurrentPartnershipData$CurrentPartnershipDataGrp$"
 												+ "Row1$Out$In$PlayerGrp1$img_Text2$txt_Name1*GEOM*TEXT SET "
 												+ Left_Batsman + " \0");
+								
+								print_writer.println(
+										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$CurrentPartnership$CurrentPartnershipDataOut$CurrentPartnershipData$CurrentPartnershipPlayer1"
+												+ "$PlayerImageGrpOut$PlayerImageGrpIn$img_Player*TEXTURE*IMAGE SET "
+												+ photo_path + "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									print_writer.println(
 											"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$CurrentPartnership$CurrentPartnershipDataOut$CurrentPartnershipData$CurrentPartnershipPlayer1"
@@ -23161,6 +23591,11 @@ public class KERALA_T20 extends Scene {
 										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$CurrentPartnership$CurrentPartnershipDataOut$CurrentPartnershipData$CurrentPartnershipDataGrp$"
 												+ "Row1$Out$In$PlayerGrp2$img_Text2$txt_Name1*GEOM*TEXT SET "
 												+ Right_Batsman + " \0");
+								
+								print_writer.println(
+										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$CurrentPartnership$CurrentPartnershipDataOut$CurrentPartnershipData$CurrentPartnershipPlayer2"
+												+ "$PlayerImageGrpOut$PlayerImageGrpIn$img_Player*TEXTURE*IMAGE SET "
+												+ photo_path + "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									print_writer.println(
 											"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$CurrentPartnership$CurrentPartnershipDataOut$CurrentPartnershipData$CurrentPartnershipPlayer2"
@@ -23312,6 +23747,15 @@ public class KERALA_T20 extends Scene {
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$LeaderBoard$LeaderBoardDataOut$LeaderBoarData"
 										+ "$TopScorerPlayerGrps$Row" + row_no+ "$Out$In$TopScoreDataAll$TopScorerSelection*FUNCTION*Omo*vis_con SET "+ "1" + "\0");
 								
+								print_writer.println(
+										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
+												+ "$SelectImage$ImageAll$img_PlayerShadow*TEXTURE*IMAGE SET "
+												+ photo_path+ "Blank"+ CricketUtil.PNG_EXTENSION + " \0");
+								print_writer.println(
+										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
+												+ "$SelectImage$ImageAll$img_Player*TEXTURE*IMAGE SET " + photo_path
+												+ "Blank"
+												+ CricketUtil.PNG_EXTENSION + " \0");
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									print_writer.println(
 											"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
@@ -23414,6 +23858,15 @@ public class KERALA_T20 extends Scene {
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$LeaderBoard$LeaderBoardDataOut$LeaderBoarData"
 										+ "$TopScorerPlayerGrps$Row" + row_no+ "$Out$In$TopScoreDataAll$TopScorerSelection*FUNCTION*Omo*vis_con SET "+ "1" + "\0");
 								
+								print_writer.println(
+										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
+												+ "$SelectImage$ImageAll$img_PlayerShadow*TEXTURE*IMAGE SET "
+												+ photo_path+ "Blank"+ CricketUtil.PNG_EXTENSION + " \0");
+								print_writer.println(
+										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
+												+ "$SelectImage$ImageAll$img_Player*TEXTURE*IMAGE SET " + photo_path
+												+ "Blank"
+												+ CricketUtil.PNG_EXTENSION + " \0");
 								if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 									print_writer.println(
 											"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
@@ -23497,13 +23950,16 @@ public class KERALA_T20 extends Scene {
 			this.status = CricketUtil.SUCCESSFUL;
 			int row_no = 0, omo_num = 0;
 			String cout_name = "";
-			if(sponsor.toUpperCase().equalsIgnoreCase("WITH_SPONSOR")) {
-				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+which_side+
-						"$LeaderBoard$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
-			}else {
-				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+which_side+
-						"$LeaderBoard$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
-			}
+			
+			print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+which_side+
+					"$LeaderBoard$SelectSponsor$Select_Sponsor_Image*ACTIVE SET 0 \0");
+//			if(sponsor.toUpperCase().equalsIgnoreCase("WITH_SPONSOR")) {
+//				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+which_side+
+//						"$LeaderBoard$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
+//			}else {
+//				print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+which_side+
+//						"$LeaderBoard$SelectSponsor*FUNCTION*Omo*vis_con SET 0 \0");
+//			}
 			print_writer.println(
 					"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$CapAll"
 							+ "*FUNCTION*Omo*vis_con SET 0\0");
@@ -23550,7 +24006,7 @@ public class KERALA_T20 extends Scene {
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$LeaderBoardDataOut$LeaderBoarData"
 							+ "$Stat_Head$SelectDataType$txt_Stat1*GEOM*TEXT SET " + "FIGURE" + "\0");
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$LeaderBoardDataOut$LeaderBoarData"
-									+ "$Stat_Head$SelectDataType$txt_Stat2*GEOM*TEXT SET " + "BALLS" + "\0");
+									+ "$Stat_Head$SelectDataType$txt_Stat2*GEOM*TEXT SET " + "OVERS" + "\0");
 					
 					print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$HeaderAllGrp"
 									+ "$HeaderStyle1$txt_Text1*GEOM*TEXT SET " + "BEST" + "\0");
@@ -23577,6 +24033,11 @@ public class KERALA_T20 extends Scene {
 
 							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$ImageGrp$PlayerImageGrpOut$"
 									+ "PlayerImageGrpIn$SelectImage*FUNCTION*Omo*vis_con SET 0 \0");
+							
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$ImageGrp$PlayerImageGrpOut$"
+									+ "PlayerImageGrpIn$SelectImage$ImageAll$img_PlayerShadow*TEXTURE*IMAGE SET " + photo_path + "Blank" + CricketUtil.PNG_EXTENSION + " \0");
+							print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
+											+ "$SelectImage$ImageAll$img_Player*TEXTURE*IMAGE SET " + photo_path+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$ImageGrp$PlayerImageGrpOut$"
 										+ "PlayerImageGrpIn$SelectImage$ImageAll$img_PlayerShadow*TEXTURE*IMAGE SET " + photo_path + team.get(top_ten_beststats.get(i).getPlayer()
@@ -23633,7 +24094,7 @@ public class KERALA_T20 extends Scene {
 
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$LeaderBoardDataOut$LeaderBoarData"
 										+ "$TopScorerPlayerGrps$Row" + row_no+ "$Out$In$TopScoreDataAll$TopScorerSelection" + cout_name+ "TopScorerTextAll$SelectDataType$"
-										+ "txt_Stat2*GEOM*TEXT SET "+ top_ten_beststats.get(i).getBalls() + "\0");
+										+ "txt_Stat2*GEOM*TEXT SET "+ CricketFunctions.OverBalls(0, top_ten_beststats.get(i).getBalls()) + "\0");
 					}	
 				}
 				break;
@@ -23685,6 +24146,18 @@ public class KERALA_T20 extends Scene {
 							print_writer.println(
 									"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
 											+ "$SelectImage*FUNCTION*Omo*vis_con SET 0 \0");
+							
+							print_writer.println(
+									"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
+											+ "$SelectImage$ImageAll$img_PlayerShadow*TEXTURE*IMAGE SET "
+											+ photo_path
+											+ "Blank"
+											+ CricketUtil.PNG_EXTENSION + " \0");
+							print_writer.println(
+									"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
+											+ "$SelectImage$ImageAll$img_Player*TEXTURE*IMAGE SET " + photo_path
+											+ "Blank"
+											+ CricketUtil.PNG_EXTENSION + " \0");
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println(
 										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side"+ which_side +"$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
@@ -23842,6 +24315,18 @@ public class KERALA_T20 extends Scene {
 							print_writer.println(
 									"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
 											+ "$SelectImage*FUNCTION*Omo*vis_con SET 0 \0");
+							
+								print_writer.println(
+										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
+												+ "$SelectImage$ImageAll$img_PlayerShadow*TEXTURE*IMAGE SET "
+												+ photo_path
+												+ "Blank"
+												+ CricketUtil.PNG_EXTENSION + " \0");
+								print_writer.println(
+										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
+												+ "$SelectImage$ImageAll$img_Player*TEXTURE*IMAGE SET " + photo_path
+												+"Blank"
+												+ CricketUtil.PNG_EXTENSION + " \0");
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println(
 										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
@@ -23996,6 +24481,15 @@ public class KERALA_T20 extends Scene {
 							print_writer.println(
 									"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
 											+ "$SelectImage*FUNCTION*Omo*vis_con SET 0 \0");
+							
+							print_writer.println(
+									"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn" + photo_path
+											+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
+							print_writer.println(
+									"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
+											+ "$SelectImage$ImageAll$img_Player*TEXTURE*IMAGE SET " + photo_path
+											+ "Blank"
+											+ CricketUtil.PNG_EXTENSION + " \0");
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println(
 										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn" + photo_path
@@ -24150,6 +24644,17 @@ public class KERALA_T20 extends Scene {
 									"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
 											+ "$SelectImage*FUNCTION*Omo*vis_con SET 0 \0");
 							
+							print_writer.println(
+									"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
+											+ "$SelectImage$ImageAll$img_PlayerShadow*TEXTURE*IMAGE SET "
+											+ photo_path
+											+ "Blank"
+											+ CricketUtil.PNG_EXTENSION + " \0");
+							print_writer.println(
+									"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
+											+ "$SelectImage$ImageAll$img_Player*TEXTURE*IMAGE SET " + photo_path
+											+ "Blank"
+											+ CricketUtil.PNG_EXTENSION + " \0");
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println(
 										"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side" + which_side + "$LeaderBoard$ImageGrp$PlayerImageGrpOut$PlayerImageGrpIn"
@@ -25228,6 +25733,8 @@ public class KERALA_T20 extends Scene {
 						"-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside + "$Select$NameSuperSingleImage$BottomGrp$img_Text2*TEXTURE*IMAGE SET "
 								+ text_path2 + team.get(plyr.get(playerId - 1).getTeamId() - 1).getTeamBadge() + " \0");
 				
+				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
+						+ "$Select$NameSuperSingleImage$TopGrp$HeaderGrp$img_Player*TEXTURE*IMAGE SET " + photo_path + "Blank" + CricketUtil.PNG_EXTENSION + "\0");
 				if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 					
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
@@ -25624,6 +26131,13 @@ public class KERALA_T20 extends Scene {
 					}else {
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$MatchSummary$TeamColourBase2*ACTIVE SET 1\0");
 						print_writer.println("-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$MatchSummary$CaptainAllGrp*ACTIVE SET 1\0");
+						
+						print_writer.println(
+								"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$MatchSummary$CaptainAllGrp$CaptainGrp"
+										+ i + "$Out$In$img_Player*TEXTURE*IMAGE SET " + photo_path + "Blank" + CricketUtil.PNG_EXTENSION + " \0");
+						print_writer.println(
+								"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$MatchSummary$CaptainAllGrp$CaptainGrp"
+										+ i + "$Out$In$img_PlayerShadow*TEXTURE*IMAGE SET " + photo_path + "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 						if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 							print_writer.println(
 									"-1 RENDERER*BACK_LAYER*TREE*$Main$All_Fullframes$Side1$MatchSummary$CaptainAllGrp$CaptainGrp"
@@ -25997,6 +26511,8 @@ public class KERALA_T20 extends Scene {
 						"-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside + "$Select$NameSuperSingleImage$BottomGrp$img_Text2*TEXTURE*IMAGE SET "
 								+ text_path2 + team.get(plyr.get(playerId - 1).getTeamId() - 1).getTeamBadge() + " \0");
 				
+				print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
+						+ "$Select$NameSuperSingleImage$TopGrp$HeaderGrp$img_Player*TEXTURE*IMAGE SET " + photo_path + "Blank" + CricketUtil.PNG_EXTENSION + "\0");
 				if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 					
 					print_writer.println("-1 RENDERER*TREE*$LT$All$DataAll$Side" + whichside
@@ -26432,6 +26948,10 @@ public class KERALA_T20 extends Scene {
 			for (Player hs : match.getSetup().getHomeSquad()) {
 				if (hs.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.CAPTAIN)
 						|| hs.getCaptainWicketKeeper().equalsIgnoreCase("CAPTAIN_WICKET_KEEPER")) {
+					
+					print_writer.println(
+							"-1 RENDERER*BACK_LAYER*TREE*$Main$All$InningsSummary$InningsSummaryDataAll$Inning$CaptainGrp1$HighestScoreOut$img_Player*TEXTURE*IMAGE SET "
+									+ photo_path + "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 					if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 						print_writer.println(
 								"-1 RENDERER*BACK_LAYER*TREE*$Main$All$InningsSummary$InningsSummaryDataAll$Inning$CaptainGrp1$HighestScoreOut$img_Player*TEXTURE*IMAGE SET "
@@ -26450,6 +26970,10 @@ public class KERALA_T20 extends Scene {
 			for (Player as : match.getSetup().getAwaySquad()) {
 				if (as.getCaptainWicketKeeper().equalsIgnoreCase(CricketUtil.CAPTAIN)
 						|| as.getCaptainWicketKeeper().equalsIgnoreCase("CAPTAIN_WICKET_KEEPER")) {
+					
+					print_writer.println(
+							"-1 RENDERER*BACK_LAYER*TREE*$Main$All$InningsSummary$InningsSummaryDataAll$Inning$CaptainGrp2$HighestScoreOut$img_Player*TEXTURE*IMAGE SET "
+									+ photo_path + "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 					if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 						print_writer.println(
 								"-1 RENDERER*BACK_LAYER*TREE*$Main$All$InningsSummary$InningsSummaryDataAll$Inning$CaptainGrp2$HighestScoreOut$img_Player*TEXTURE*IMAGE SET "
@@ -28401,7 +28925,7 @@ public class KERALA_T20 extends Scene {
 			String cont_name = "",teamBadge="";
 			print_writer
 					.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$CareerOut$txt_Career*GEOM*TEXT SET "
-							+ "THIS SEASON" + "\0");
+							+ "THIS TOURNAMENT" + "\0");
 
 			print_writer
 			.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$BaseAllGrp$WhiteBaseGrpOut$WhiteBaseGrp$ProfileSponsor*ACTIVE SET 0\0");
@@ -28410,6 +28934,15 @@ public class KERALA_T20 extends Scene {
 				if (this_series.get(i).getPlayerId() == Playerid) {
 					if (this_series.get(i).getPlayer().getTeamId() == match.getSetup().getHomeTeamId()) {
 						teamBadge = match.getSetup().getHomeTeam().getTeamBadge();
+						
+						print_writer.println(
+								"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$ImageGrpOut$ImageGrp$img_Player*TEXTURE*IMAGE SET "
+										+ photo_path + "Blank"
+										+ CricketUtil.PNG_EXTENSION + " \0");
+						print_writer.println(
+								"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$ImageGrpOut$ImageGrp$img_PlayerShadow*TEXTURE*IMAGE SET "
+										+ photo_path + "Blank"
+										+ CricketUtil.PNG_EXTENSION + " \0");
 						if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 							print_writer.println(
 									"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$ImageGrpOut$ImageGrp$img_Player*TEXTURE*IMAGE SET "
@@ -28445,6 +28978,15 @@ public class KERALA_T20 extends Scene {
 						print_writer.println(
 								"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$Side1BadgeOut$img_Badges*TEXTURE*IMAGE SET "
 										+ logo_path + teamBadge + " \0");
+						
+						print_writer.println(
+								"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$ImageGrpOut$ImageGrp$img_Player*TEXTURE*IMAGE SET "
+										+ photo_path + "Blank"
+										+ CricketUtil.PNG_EXTENSION + " \0");
+						print_writer.println(
+								"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$ImageGrpOut$ImageGrp$img_PlayerShadow*TEXTURE*IMAGE SET "
+										+ photo_path + "Blank"
+										+ CricketUtil.PNG_EXTENSION + " \0");
 						if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 							print_writer.println(
 									"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$ImageGrpOut$ImageGrp$img_Player*TEXTURE*IMAGE SET "
@@ -28673,7 +29215,7 @@ public class KERALA_T20 extends Scene {
 			String cont_name = "",teamBadge="";
 			print_writer
 					.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$CareerOut$txt_Career*GEOM*TEXT SET "
-							+ "THIS SEASON" + "\0");
+							+ "THIS TOURNAMENT" + "\0");
 			print_writer
 			.println("-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$BaseAllGrp$WhiteBaseGrpOut$WhiteBaseGrp$ProfileSponsor*ACTIVE SET 0\0");
 
@@ -28681,6 +29223,15 @@ public class KERALA_T20 extends Scene {
 				if (this_series.get(i).getPlayerId() == Playerid) {
 					if (this_series.get(i).getPlayer().getTeamId() == match.getSetup().getHomeTeamId()) {
 						teamBadge = match.getSetup().getHomeTeam().getTeamBadge();
+						
+						print_writer.println(
+								"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$ImageGrpOut$ImageGrp$img_Player*TEXTURE*IMAGE SET "
+										+ photo_path + "Blank"
+										+ CricketUtil.PNG_EXTENSION + " \0");
+						print_writer.println(
+								"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$ImageGrpOut$ImageGrp$img_PlayerShadow*TEXTURE*IMAGE SET "
+										+ photo_path +"Blank"
+										+ CricketUtil.PNG_EXTENSION + " \0");
 						if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 							print_writer.println(
 									"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$ImageGrpOut$ImageGrp$img_Player*TEXTURE*IMAGE SET "
@@ -28715,6 +29266,15 @@ public class KERALA_T20 extends Scene {
 						print_writer.println(
 								"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$Side1BadgeOut$img_Badges*TEXTURE*IMAGE SET "
 										+ logo_path + teamBadge + " \0");
+						
+						print_writer.println(
+								"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$ImageGrpOut$ImageGrp$img_Player*TEXTURE*IMAGE SET "
+										+ photo_path + "Blank"
+										+ CricketUtil.PNG_EXTENSION + " \0");
+						print_writer.println(
+								"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$ImageGrpOut$ImageGrp$img_PlayerShadow*TEXTURE*IMAGE SET "
+										+ photo_path + "Blank"
+										+ CricketUtil.PNG_EXTENSION + " \0");
 						if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 							print_writer.println(
 									"-1 RENDERER*BACK_LAYER*TREE*$Main$PlayerProflie$Side1$ImageGrpOut$ImageGrp$img_Player*TEXTURE*IMAGE SET "
@@ -30121,6 +30681,11 @@ public class KERALA_T20 extends Scene {
 //											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$LineUp$BottomGrp$RestDataGrp$LineUp_ALL$Player"
 //													+ row_id + "$Dataall$img_Base1*TEXTURE*IMAGE SET " + base_path
 //													+ "1/" + "TLogo" + " \0");
+									
+									print_writer.println(
+											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$LineUp$BottomGrp$LineUp_ALL$Player"
+													+ row_id + "$Dataall$img_Player*TEXTURE*IMAGE SET " + photo_path
+													+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 									if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 										print_writer.println(
 												"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$LineUp$BottomGrp$LineUp_ALL$Player"
@@ -30238,6 +30803,11 @@ public class KERALA_T20 extends Scene {
 //											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$LineUp$BottomGrp$RestDataGrp$LineUp_ALL$Player"
 //													+ row_id + "$Dataall$img_Base1*TEXTURE*IMAGE SET " + base_path
 //													+ "1/" + "TLogo" + " \0");
+									
+									print_writer.println(
+											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$LineUp$BottomGrp$LineUp_ALL$Player"
+													+ row_id + "$Dataall$img_Player*TEXTURE*IMAGE SET " + photo_path
+													+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 									if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 										print_writer.println(
 												"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$LineUp$BottomGrp$LineUp_ALL$Player"
@@ -30355,6 +30925,12 @@ public class KERALA_T20 extends Scene {
 //											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$LineUp$BottomGrp$RestDataGrp$LineUp_ALL$Player"
 //													+ row_id + "$Dataall$img_Base1*TEXTURE*IMAGE SET " + base_path
 //													+ "1/" + "TLogo" + " \0");
+									
+									
+									print_writer.println(
+											"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$LineUp$BottomGrp$LineUp_ALL$Player"
+													+ row_id + "$Dataall$img_Player*TEXTURE*IMAGE SET " + photo_path
+													+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 									if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 										print_writer.println(
 												"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$LineUp$BottomGrp$LineUp_ALL$Player"
@@ -30474,6 +31050,10 @@ public class KERALA_T20 extends Scene {
 //												"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$LineUp$BottomGrp$RestDataGrp$LineUp_ALL$Player"
 //														+ row_id + "$Dataall$img_Base1*TEXTURE*IMAGE SET " + base_path
 //														+ "1/" + "TLogo" + " \0");
+										print_writer.println(
+												"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$LineUp$BottomGrp$LineUp_ALL$Player"
+														+ row_id + "$Dataall$img_Player*TEXTURE*IMAGE SET " + photo_path
+														+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 										if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 											print_writer.println(
 													"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$LineUp$BottomGrp$LineUp_ALL$Player"
@@ -30675,8 +31255,12 @@ public class KERALA_T20 extends Scene {
 								}
 							}
 						}
-
+						
 						if (bc.getStatus().equalsIgnoreCase(CricketUtil.STILL_TO_BAT)) {
+							print_writer.println(
+									"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$LineUp$BottomGrp$LineUp_ALL$Player"
+											+ row_id + "$Dataall$img_Player*TEXTURE*IMAGE SET " + photo_path
+											+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println(
 										"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$LineUp$BottomGrp$LineUp_ALL$Player"
@@ -30717,6 +31301,11 @@ public class KERALA_T20 extends Scene {
 
 						} else if (bc.getStatus().equalsIgnoreCase(CricketUtil.NOT_OUT)
 								|| bc.getStatus().equalsIgnoreCase(CricketUtil.OUT)) {
+							
+							print_writer.println(
+									"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$LineUp$BottomGrp$LineUp_ALL$Player"
+											+ row_id + "$Dataall$img_Player*TEXTURE*IMAGE SET " + photo_path
+											+ "Blank" + CricketUtil.PNG_EXTENSION + " \0");
 							if (config.getPrimaryIpAddress().equalsIgnoreCase("LOCALHOST")) {
 								print_writer.println(
 										"-1 RENDERER*TREE*$LT$All$DataAll$Side1$Select$LineUp$BottomGrp$LineUp_ALL$Player"
@@ -35100,7 +35689,7 @@ public class KERALA_T20 extends Scene {
 			break;
 		case "ANIMATE-MINI-BATTINGCARD": case "ANIMATE-MINI-BOWLINGCARD": case "ANIMATE-IN-BATGRIFF": case "ANIMATE-IN-BALLGRIFF":
 		case "ANIMATE-IN-BUG_BAT_SPEED": case "ANIMATE-IN-BUG_BAT_POWER": case "ANIMATE-IN-BUG_BAT_IMPACT": case "ANIMATE-IN-BUG_BAT_TWIST":
-		case "ANIMATE-IN-LTPOINTSTABLE":
+		case "ANIMATE-IN-LTPOINTSTABLE":  case "ANIMATE-IN-SIX":  case "ANIMATE-IN-FOUR_COUNT":
 			infobar.setInfobar_down(false);
 			infobar.setIs_ticker_shrink(false);
 			infobar.setIs_ticker_shrink(false);
@@ -35222,6 +35811,7 @@ public class KERALA_T20 extends Scene {
 		case "POPULATE-SIXDIRECTOR": case "POPULATE-FOURDIRECTOR": case "POPULATE-WICKETDIRECTOR": case "POPULATE-FREEHITDIRECTOR":
 		case "POPULATE-ONAHATTRICKDIRECTOR": case "POPULATE-HATTRICKDIRECTOR": case "POPULATE-BAT_BALL_STATS": case "POPULATE-WATERMARK_DIRECTOR":
 			break;
+		
 		case "POPULATE-L3-INFOBAR": case "POPULATE-INFOBAR-IDENT":
 			if (infobar.isInfobar_on_screen() == true) {
 				break;
@@ -35233,6 +35823,8 @@ public class KERALA_T20 extends Scene {
 		case "POPULATE-MINI-BATTINGCARD": case "POPULATE-MINI-BOWLINGCARD": case "POPULATE-FF-BATGRIFF": case "POPULATE-FF-BALLGRIFF":
 		case "POPULATE-LTPOINTS_TABLE":case "POPULATE-BAT-POPUP": case "POPULATE-BOWL-POPUP": case "POPULATE-FF-FIX_AND_RESULT":
 		case "POPULATE-STRIKERATE": case "POPULATE-ECONOMY": case "POPULATE-HIGH_LOW":
+			
+		case "POPULATE-SIX": case "POPULATE-FOUR_COUNT":
 
 		case "POPULATE-L3-BUG": case "POPULATE-BUG_POWERPLAY": case "POPULATE-LT-BUG_HIGHLIGHT": case "POPULATE-MULTI_PARTNERSHIP":
 		case "POPULATE-L3-BUG-DISMISSAL": case "POPULATE-L3-BUG-DB": case "POPULATE-L3-BUG-BOWLER": case "POPULATE-L3-BUGTARGET":
@@ -37515,6 +38107,14 @@ public class KERALA_T20 extends Scene {
 			populateBowlPopUp(print_writer.get(0), valueToProcess.split(",")[0], Integer.valueOf(valueToProcess.split(",")[1]), 
 					valueToProcess.split(",")[2],Integer.valueOf(valueToProcess.split(",")[3]), which_side, match,cricketService, broadcaster, config);
 			populateEverestPreview(print_writer.get(0), valueToProcess.split(",")[0], which_side, "BOWL-POPUP");
+			break;
+		case "POPULATE-SIX":
+			populatetournamentSix(print_writer.get(0), valueToProcess.split(",")[0],tournament_matches,match, broadcaster);
+//			System.out.println("Four = " + CricketFunctions.gettournamentFoursAndSixes(tournament_matches, match));
+			break;
+		case "POPULATE-FOUR_COUNT":
+			System.out.println("coming here");
+			populatetournamentFoursCount(print_writer.get(0), valueToProcess.split(",")[0],tournament_matches,match, broadcaster);
 			break;
 		case "POPULATE-MINI-BOWLINGCARD":
 			populateMiniBowlingcard(print_writer.get(0), valueToProcess.split(",")[0],

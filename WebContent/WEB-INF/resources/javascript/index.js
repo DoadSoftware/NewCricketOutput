@@ -609,6 +609,13 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case "7":
 					//processCricketProcedures('POPULATE-6POPUP');
+					console.log('hello1');
+					switch ($('#selected_broadcaster').val().toUpperCase()) {
+						case 'KERALA_T20':
+							processCricketProcedures('POPULATE-FOUR_COUNT');
+							console.log('hello1');
+							break;
+					}
 					break;
 				case '9'://9 Director
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
@@ -2353,6 +2360,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						processCricketProcedures('ANIMATE-OUT-IDENT');
 					}
 					break;
+
 				case '5'://THIS_MATCH_FOURS
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'RPL': case 'THAILAND': case 'LCT':
@@ -2371,7 +2379,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						break;	
 				case '6'://THIS_MATCH_SIXES
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ACC_NEPAL': case 'RPL': case 'THAILAND': case 'LCT':
+						case 'ACC_NEPAL': case 'RPL': case 'THAILAND': case 'LCT': case 'KERALA_T20':
 							processCricketProcedures('POPULATE-SIX');
 							break;
 						case 'MAHARAJA_T20': case 'DOAD_LLC': case 'AFGHANISTAN_T20':
@@ -3665,7 +3673,7 @@ function processUserSelection(whichInput) {
 		case 'ff_equation_graphic_btn': case 'populate_multi_partnership_btn': case 'four_graphic_btn': case 'six_graphic_btn': case 'populate_infobar_last_xOvers_btn':
 		case 'bug_powerplay_graphic_btn': case 'bug_partnership_graphic_btn': case 'bug_highlight_graphic_btn': case 'populate_l3seasonprofile_btn': case 'populate_bowlerspeed_btn':
 		case 'populate_inning_summary_btn': case 'populate_sponsor_btn': case 'lof_batting_graphic_btn': case 'populate_lof_scorecard__btn': case 'lof_bowling_graphic_btn': case 'populate_lof_bowlingcard__btn':
-		case 'populate_ltplayingxi_btn': case 'phase_graphic_btn': case 'player_of_tournament_graphic_btn': case 'drone_graphic_btn': case 'doubleId_graphic_btn':
+		case 'populate_ltplayingxi_btn': case 'phase_graphic_btn': case 'player_of_tournament_graphic_btn': case 'drone_graphic_btn': case 'doubleId_graphic_btn': case 'four_count_graphic_btn':
 		case 'populate_freeText_btn':case 'result_lt_graphic_btn':case "result_bug_graphic_btn": case 'populate_ffplay_btn': case 'bug_target_graphic_btn':
 		case 'ballsince_graphic_btn': case 'nextbat_graphic_btn': case 'playingxi_change_on1': case 'playingxi_change_on2': case 'playingxi_change_on3':
 		case 'populate_playingxi_subs5_btn': case 'populate_playerprofile_bs_btn': case 'populate_playerprofileball_bs_btn': case 'phaseWise_Comp_graphic_btn':
@@ -4438,6 +4446,10 @@ function processUserSelection(whichInput) {
 				case 'four_graphic_btn':
 					processCricketProcedures('POPULATE-FOUR');
 					break;
+				case 'four_count_graphic_btn':
+					processCricketProcedures('POPULATE-FOUR_COUNT');
+					break;
+										
 				case 'six_graphic_btn':
 					processCricketProcedures('POPULATE-SIX');
 					break;
@@ -6978,6 +6990,14 @@ function processCricketProcedures(whatToProcess) {
 					break;
 			}
 			break;
+		case 'POPULATE-FOUR_COUNT':
+			switch ($('#selected_broadcaster').val().toUpperCase()) {
+				case 'KERALA_T20':
+					valueToProcess = '/Default/SixCounter';
+					console.log(valueToProcess);
+					break
+			}
+			break;
 		case 'POPULATE-FOUR':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'THAILAND':
@@ -7015,6 +7035,10 @@ function processCricketProcedures(whatToProcess) {
 				case 'RPL':
 					valueToProcess = '/Default/Counter';
 					break;
+				case 'KERALA_T20':
+					valueToProcess = '/Default/SixCounter';
+					console.log(valueToProcess);
+					break
 			}
 			break;
 		case 'POPULATE-DOUBLE_ID':
@@ -15213,7 +15237,7 @@ function processCricketProcedures(whatToProcess) {
 
 				case 'POPULATE-HOWOUTWITHOUTFIELDER_QUICK': case 'POPULATE-LT-BUG_PARTNERSHIP': case 'POPULATE-MULTI_PARTNERSHIP': case 'POPULATE-THISOVER':
 				case 'POPULATE-FOUR': case 'POPULATE-SIX': case 'POPULATE-LT_SEASON': case 'POPULATE-LT_BOWLERSPEED': case 'POPULATE-BALLSINCE':
-				case 'POPULATE-INNING_SUMMARY_DATA': case 'POPULATE-PARTNERSHIP_LT':
+				case 'POPULATE-INNING_SUMMARY_DATA': case 'POPULATE-PARTNERSHIP_LT': case 'POPULATE-FOUR_COUNT':
 				case 'POPULATE-PHASE': case 'POPULATE-PHASE-COMPARISON': case 'POPULATE-DRONE_BUG': case 'POPULATE-DOUBLE_ID': 
 
 				case 'POPULATE-DECISION': case 'POPULATE-OUT_NOT_DECISION': case 'POPULATE-MATCH_IDENT': case 'POPULATE-INFO': case 'POPULATE-TARGET_BS': case 'POPULATE-COMPARISON_BS':
@@ -15773,6 +15797,9 @@ function processCricketProcedures(whatToProcess) {
 								break;
 							case 'POPULATE-FOUR':
 								processCricketProcedures('ANIMATE-IN-FOUR');
+								break;
+							case 'POPULATE-FOUR_COUNT':
+								processCricketProcedures('ANIMATE-IN-FOUR_COUNT');
 								break;
 							case 'POPULATE-SIX':
 								processCricketProcedures('ANIMATE-IN-SIX');

@@ -1166,7 +1166,7 @@
 			  	|| (session_selected_broadcaster == 'MP_AR')}" >
 			  	
 			  	 <hr style="margin:15px 0; border:1px solid #ccc;">
-                <p style="font-weight:bold; color:#2E008B; margin-bottom:8px;">AR Graphic Buttons</p>
+                <!-- <p style="font-weight:bold; color:#2E008B; margin-bottom:8px;">AR Graphic Buttons</p>
                 
                 <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="equation_AR_graphic_btn" id="equation_AR_graphic_btn" onclick="processUserSelection(this)"> Equation </button>
@@ -1205,9 +1205,16 @@
 			  		
 			  		<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="ar_thisSession_graphic_btn" id="ar_thisSession_graphic_btn" onclick="processUserSelection(this)"> This Session</button>
-			  		
+			  		 -->
 			  		 <hr style="margin:15px 0; border:1px solid #ccc;">
                 <p style="font-weight:bold; color:#2E008B; margin-bottom:8px;">VR Graphic Buttons</p>
+                
+                			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  	name="matchId_vr_score_graphic_btn" id="matchId_vr_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button>
+			  	
+			  	
+			  	  <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm mb-2" type="button" 
+			            name="bug_toss_graphic_btn" id="bug_toss_graphic_btn" onclick="processUserSelection(this)"> Bug-Toss </button>
                 	
                 <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="boundaries_vr_score_graphic_btn" id="boundaries_vr_score_graphic_btn" onclick="processUserSelection(this)"> Boundaries </button>
@@ -1218,8 +1225,8 @@
 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="equation_ar_score_graphic_btn" id="equation_ar_score_graphic_btn" onclick="processUserSelection(this)"> Equation </button>
 			  	
-			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
-			  		name="freetext_ar_graphic_btn" id="freetext_ar_graphic_btn" onclick="processUserSelection(this)"> Free Text </button> 
+			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="freetext_ar_graphic_btn" id="freetext_ar_graphic_btn" onclick="processUserSelection(this)"> Free Text </button>  -->
 			  	<!-- <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="matchId_ar_score_graphic_btn" id="matchId_ar_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button> -->
 			  		<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"

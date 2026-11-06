@@ -6143,8 +6143,8 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-COMPARISON_VR':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'EVEREST_AR_VR':
-					 valueToProcess = 'C:/Everest_VR_AR/MattScenes/Comparison.sum';
-					 //valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
+					// valueToProcess = 'C:/Everest_VR_AR/MattScenes/Comparison.sum';
+					 valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
 					break;
 				case 'BARODA_AR': case 'MP_AR':
 					// valueToProcess = 'C:/Everest_VR_AR/MattScenes/Comparison.sum';
@@ -6206,8 +6206,8 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'C:/Everest_VR_2026/MattScenes/Target.sum';
 					break;
 				case 'EVEREST_AR_VR':
-					valueToProcess = 'C:/Everest_VR_AR/MattScenes/EquationNew.sum'; 
-					//valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
+					//valueToProcess = 'C:/Everest_VR_AR/MattScenes/EquationNew.sum'; 
+					valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
 					break;	
 				
 			}
@@ -6215,8 +6215,8 @@ function processCricketProcedures(whatToProcess) {
 		case 'POPULATE-NEW_TARGET_AR': case 'POPULATE-CRR_RR_AR':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'EVEREST_AR_VR':
-					valueToProcess = 'C:/Everest_VR_AR/Scenes/AI/TargetPlayerPhoto.sum'; 
-					//valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
+					//valueToProcess = 'C:/Everest_VR_AR/Scenes/AI/TargetPlayerPhoto.sum'; 
+					valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
 					break;	
 			}
 			break;
@@ -6303,8 +6303,8 @@ function processCricketProcedures(whatToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				
 				case 'EVEREST_AR_VR': case 'BARODA_AR': case 'MP_AR':
-					valueToProcess = 'C:/Everest_VR_AR/MattScenes/ProjectedScores.sum';
-					//valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
+					//valueToProcess = 'C:/Everest_VR_AR/MattScenes/ProjectedScores.sum';
+					valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
 					break;		
 			}
 			break;
@@ -6312,7 +6312,8 @@ function processCricketProcedures(whatToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				
 				case 'EVEREST_AR_VR':
-					valueToProcess = 'C:/Everest_VR_AR/Scenes/AI/ProjectedScores.sum';
+					//valueToProcess = 'C:/Everest_VR_AR/Scenes/AI/ProjectedScores.sum';
+					valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
 					break;		
 			}
 			break;
@@ -6372,7 +6373,8 @@ function processCricketProcedures(whatToProcess) {
 			case 'POPULATE-SINCE_LASTBOUNDARY_VR':
 				switch ($('#selected_broadcaster').val().toUpperCase()) {
 					case 'EVEREST_AR_VR': 
-					valueToProcess = 'C:/Everest_VR_AR/MattScenes/FreeText.sum';
+				//	valueToProcess = 'C:/Everest_VR_AR/MattScenes/FreeText.sum';
+				valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
 					break;	
 					}
 				break;
@@ -6382,8 +6384,8 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_NPL_2024/MattScenes/BALLS SINCE LAST.sum';
 					break;
 				case 'EVEREST_AR_VR': 
-					valueToProcess = 'C:/Everest_VR_AR/MattScenes/FreeText.sum';
-					//valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
+					//valueToProcess = 'C:/Everest_VR_AR/MattScenes/FreeText.sum';
+					valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
 					break;	
 				 case 'BARODA_AR': case 'MP_AR':
 					//valueToProcess = 'C:/Everest_VR_AR/MattScenes/EquationNew.sum';
@@ -6407,8 +6409,8 @@ function processCricketProcedures(whatToProcess) {
 			case 'POPULATE-MATCHID_VR':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'EVEREST_AR_VR':
-					valueToProcess = 'C:/Everest_VR_AR/Scenes/AI/MatchID.sum';
-					//valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
+					//valueToProcess = 'C:/Everest_VR_AR/Scenes/AI/MatchID.sum';
+					valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
 					break;
 				case 'BARODA_AR': case 'MP_AR':
 					//valueToProcess = 'C:/Everest_VR_AR/MattScenes/MatchID.sum';
@@ -6520,8 +6522,8 @@ function processCricketProcedures(whatToProcess) {
 						valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_MT20/Scenes/Target_MT20.sum';
 						break;	
 				case 'EVEREST_AR_VR':
-					valueToProcess = 'C:/Everest_VR_AR/MattScenes/EquationNew.sum'; 
-						//valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
+					//valueToProcess = 'C:/Everest_VR_AR/MattScenes/EquationNew.sum'; 
+						valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
 						break;			
 				 case 'BARODA_AR': case 'MP_AR':
 					//valueToProcess = 'C:/Everest_VR_AR/MattScenes/EquationNew.sum';
@@ -6638,8 +6640,8 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'C:/Everest_VR_2026/MattScenes/Boundaries.sum';
 					break;
 				case 'EVEREST_AR_VR':
-					valueToProcess = 'C:/Everest_VR_AR/MattScenes/Boundaries.sum';
-					//valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
+					/*valueToProcess = 'C:/Everest_VR_AR/MattScenes/Boundaries.sum';*/
+					valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
 					break;
 			}
 			break;
@@ -8623,7 +8625,8 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'C:/Everest_VR_2026/MattScenes/MatchID02.sum' 	+ ","+ $('#selectLogos option:selected').val();
 					break;
 				case 'EVEREST_AR_VR':
-					valueToProcess = 'C:/Everest_VR_AR/Scenes/AI/TOSS_RESULT.sum' 	+ ","+ $('#selectLogos option:selected').val();
+				//	valueToProcess = 'C:/Everest_VR_AR/Scenes/AI/TOSS_RESULT.sum' 	+ ","+ $('#selectLogos option:selected').val();
+				valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum'+ ","+ $('#selectLogos option:selected').val();
 					break;
 				case 'ACC_NEPAL':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Cric2022/Scenes/Bug_DoubleLine.sum';

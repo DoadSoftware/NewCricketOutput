@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.cricket.archive.Archive;
 import com.cricket.broadcaster.APL;
 import com.cricket.broadcaster.EVEREST_APL_T20;
+import com.cricket.broadcaster.ILT20_BIGSCREEN;
 import com.cricket.broadcaster.EVEREST_AR_VR;
 import com.cricket.broadcaster.EVEREST_LEGENDS_90;
 import com.cricket.broadcaster.EVEREST_MPL_T20;
@@ -128,6 +129,7 @@ public class IndexController
 //	public static EVEREST_PPL_T20 everest_ppl_t20;
 //	public static EVEREST_KCL_T20 everest_kcl_t20;
 //	public static ICC_BIGSCREEN_DOAD_VIZ_SCORING icc_bigscreen_viz_doad;
+	public static ILT20_BIGSCREEN ILT20_BIGSCREEN;
 	public static String expiry_date = "2026-12-31";
 	public static String session_selected_second_broadcaster;
 	public static String current_date;
@@ -456,6 +458,10 @@ public class IndexController
 				session_selected_scenes.add(new Scene("/Default/gfx_BigScreen",which_layer)); // Front layer
 				session_selected_scenes.add(new Scene("","MIDDLE_LAYER"));
 				break;
+			case "ILT20_BIGSCREEN":
+				session_selected_scenes.add(new Scene("/Default/gfx_BigScreen",which_layer)); // Front layer
+				session_selected_scenes.add(new Scene("","MIDDLE_LAYER"));
+				break;
 			case "GPCL": case "ACC": case "DOAD_VIZ":case "DOAD-VIZ-MULTI": case "NEPAL_T20": case "DOAD_LLC": case "ICPL": case "LCT": case "FAIR_BREAK":
 			case "APL":	case "PUNJAB_T20": case "MAHARAJA_T20": case "RPL": case "USPL": case "ICC_CWCU19":case "MPL": case "KOLKATA_T20": case "PPL":
 			case "KERALA_T20": case "AFGHANISTAN_T20":
@@ -609,6 +615,11 @@ public class IndexController
 //					icc_bigscreen_viz_doad.infobar = new Infobar();
 					session_selected_scenes.get(0).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_broadcaster);
 //					icc_bigscreen_viz_doad.AnimateLogo(CricketFunctions.processPrintWriter(session_configuration), 1);
+					break;
+				case "ILT20_BIGSCREEN":
+					ILT20_BIGSCREEN = new ILT20_BIGSCREEN();
+					session_selected_scenes.get(0).scene_load(CricketFunctions.processPrintWriter(session_configuration).get(0), session_selected_broadcaster);
+					ILT20_BIGSCREEN.AnimateLogo(CricketFunctions.processPrintWriter(session_configuration), 1);
 					break;
 				case "BUKHATIR":
 //					this_bukhatir = new Bukhatir();
@@ -985,12 +996,10 @@ public class IndexController
 			case "MPL":
 				return (String) everest_mpl_t20.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, CricketFunctions.processPrintWriter(session_configuration).get(1), 
 						session_selected_scenes, valueToProcess, session_statistics, session_configuration,headToHead.getH2hPlayer(),past_tournament_stats);
-			case "ICC_BIGSCREEN_DOAD_VIZ_SCORING":
-//				return (String) icc_bigscreen_viz_doad.ProcessGraphicOption(whatToProcess, session_match, cricketService, CricketFunctions.processPrintWriter(session_configuration), 
-//						session_selected_scenes, valueToProcess, session_statistics, past_tournament_stats, headToHead.getH2hPlayer(),session_configuration,session_dls);	
-			}
+			case "ILT20_BIGSCREEN":
+				return (String) ILT20_BIGSCREEN.ProcessGraphicOption(whatToProcess, session_match, cricketService, CricketFunctions.processPrintWriter(session_configuration), 
+						session_selected_scenes, valueToProcess, session_statistics, past_tournament_stats, headToHead.getH2hPlayer(),session_configuration,session_dls);	
 			
-			switch (session_configuration.getBroadcaster()) {
 			case "ICC_BIGSCREEN_DOAD_VIZ_SCORING":
 //				return (String) icc_bigscreen_viz_doad.ProcessGraphicOption(whatToProcess, session_match, cricketService, CricketFunctions.processPrintWriter(session_configuration), 
 //						session_selected_scenes, valueToProcess, session_statistics, past_tournament_stats, headToHead.getH2hPlayer(),session_configuration,session_dls);	
@@ -1121,7 +1130,9 @@ public class IndexController
 			switch (session_selected_broadcaster) {
 			case "ICC_BIG_SCREEN":
 //				return new ObjectMapper().writeValueAsString(third_party_session_match).toString();
-			case "ICC_BIGSCREEN_DOAD_SCORING": case "ICC_BIGSCREEN_DOAD_VIZ_SCORING":
+			case "ICC_BIGSCREEN_DOAD_SCORING": case "ICC_BIGSCREEN_DOAD_VIZ_SCORING": 
+				return new ObjectMapper().writeValueAsString(session_match).toString();
+			case "ILT20_BIGSCREEN":
 				return new ObjectMapper().writeValueAsString(session_match).toString();
 			}
 		case "SCOREBUG_CHANGEON_GRAPHICS-OPTIONS": case "IMAGEDROPDOWN-ICC_GRAPHICS-OPTIONS": case "FANTASYDROPDOWN-ICC_GRAPHICS-OPTIONS":
@@ -1547,6 +1558,11 @@ public class IndexController
 //					session_icc_big_screen_doad_scoring.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, 
 //							CricketFunctions.processPrintWriter(session_configuration).get(0),cricketService,session_configuration);
 					break;
+					
+				case "ILT20_BIGSCREEN":
+					ILT20_BIGSCREEN.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, 
+							CricketFunctions.processPrintWriter(session_configuration),cricketService,session_configuration,session_dls);
+					break;
 				case "ICC_BIGSCREEN_DOAD_VIZ_SCORING":
 //					icc_bigscreen_viz_doad.updateInfobar(session_selected_scenes.get(0), session_match,show_speed, 
 //							CricketFunctions.processPrintWriter(session_configuration),cricketService,session_configuration,session_dls);
@@ -1701,6 +1717,11 @@ public class IndexController
 //				icc_bigscreen_viz_doad.ProcessGraphicOption(whatToProcess, session_match, cricketService, CricketFunctions.processPrintWriter(session_configuration), 
 //						session_selected_scenes, valueToProcess, session_statistics, past_tournament_stats, headToHead.getH2hPlayer(),session_configuration,session_dls);
 //				return new ObjectMapper().writeValueAsString(icc_bigscreen_viz_doad).toString();
+//			
+			case "ILT20_BIGSCREEN":
+				ILT20_BIGSCREEN.ProcessGraphicOption(whatToProcess, session_match, cricketService, CricketFunctions.processPrintWriter(session_configuration), 
+						session_selected_scenes, valueToProcess, session_statistics, past_tournament_stats, headToHead.getH2hPlayer(),session_configuration,session_dls);
+				return new ObjectMapper().writeValueAsString(ILT20_BIGSCREEN).toString();
 //			
 //			case "ICC_BIG_SCREEN":
 //				session_Icc_big_screen.ProcessGraphicOption(whatToProcess, session_match,cricketService, cricket_matches,third_party_session_match, 

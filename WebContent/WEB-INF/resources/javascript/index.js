@@ -394,7 +394,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							addItemsToList('INFOBAR-OPTIONS', null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-SCOREBUG_ICC');
 							break;
 						case 'EUROPE_LEAGUE':
@@ -549,7 +549,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'FAIR_BREAK': case 'RPL':
 							addItemsToList('INFOBAR-MIDDLE-OPTIONS', null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -638,7 +638,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'RSWS': case 'USPL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('ANIMATE-FREEHIT_DIRECTOR');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -655,7 +655,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'RSWS': case 'USPL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('ANIMATE-SIX_DIRECTOR');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-ICC_BALL-SPEED');
 							break;
 					}
@@ -669,7 +669,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'RSWS': case 'USPL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('ANIMATE-FOUR_DIRECTOR');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -710,7 +710,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'RSWS': case 'USPL': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('ANIMATE-WICKET_DIRECTOR');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -758,7 +758,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							processCricketProcedures('LINEUPLONG-ICC_GRAPHICS-OPTIONS');
 							break;
-						case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-LINEUPLONG_ICC');
 							break;
 						case 'PLOTTER':
@@ -784,7 +784,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'RPL': case 'USPL': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-MINI-BATTINGCARD');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -822,7 +822,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							processCricketProcedures('POPULATE-FF-BOWLINGCARD');
 							break;
 
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-EXTRAS_ICC');
 							break;
 						case 'PLOTTER':
@@ -848,7 +848,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'KERALA_T20': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-MINI-BOWLINGCARD');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -969,7 +969,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-FF-PARTNERSHIP');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-REVIEW_ICC');
 							break;
 						case 'DOAD_LLC':case 'KERALA_T20':
@@ -990,7 +990,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'LCT': case 'NEPAL_T20': case 'PPL': case 'ARUNACHAL':
 							processCricketProcedures('POPULATE-LT-PARTNERSHIP');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-PARTNERSHIP_ICC');
 							break;
 						case 'DOAD_LLC':case 'KERALA_T20': 
@@ -1040,7 +1040,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							addItemsToList('CURRENT-FF-DOUBLETEAMS-OPTIONS');
 							break;*/
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1082,7 +1082,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							processCricketProcedures('TEAM_FIXTURES_GRAPHICS-OPTIONS');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-INFOBAR_ICC');
 							break;
 						case 'PLOTTER':
@@ -1133,7 +1133,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							addItemsToList('PLAYINGXI-OPTIONS', null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-EQUATIONSHORT_ICC');
 							break;
 
@@ -1174,7 +1174,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							processCricketProcedures('PLAYERPROFILEBUKHATIR_GRAPHICS-OPTIONS');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-TARGET_WITH_IMG_ICC');
 							break;
 					}
@@ -1190,7 +1190,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							addItemsToList('PLAYERPROFILEBALL-OPTIONS', null);
 							//addItemsToList('POPULATE-PROFILE',null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1214,7 +1214,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							addItemsToList('BATSMANSTATS-OPTIONS', null);
 							addItemsToList('POPULATE-PLAYERSBAT', null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1267,7 +1267,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							addItemsToList('HOWOUT-OPTIONS', null);
 							addItemsToList('POPULATE-HOWOUT-PLAYERS', null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1293,7 +1293,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							addItemsToList('HOWOUT_QUICK-OPTIONS', null);
 							break;	*/
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-ICC_QUICKHOWOUT');
 							break;
 					}
@@ -1346,7 +1346,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							processCricketProcedures('PLAYERPROFILEBUKHATIR_GRAPHICS-OPTIONS');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1390,7 +1390,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							addItemsToList('NAMESUPER_PLAYER-OPTIONS', null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1411,7 +1411,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							addItemsToList('BOWLERSTATS-OPTIONS', null);
 							addItemsToList('POPULATE-PLAYERSBALL', null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1430,7 +1430,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							addItemsToList('BOWLERSTYLE-OPTIONS', null);
 							addItemsToList('POPULATE-BOWLERSTYLE', null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1464,7 +1464,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							processCricketProcedures('NAMESUPER_GRAPHICS-OPTIONS');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1484,7 +1484,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							processCricketProcedures('NAMESUPER_GRAPHICS_SINGLELINE-OPTIONS');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1504,7 +1504,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							addItemsToList('L3PLAYERPROFILE-OPTIONS', null);
 							//addItemsToList('POPULATE-L3PROFILE',null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1535,7 +1535,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							processCricketProcedures('BUG_DB_GRAPHICS-OPTIONS');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1598,7 +1598,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							processCricketProcedures('LONGLINEUP-ICC_GRAPHICS-OPTIONS');
 							break;
-						case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-LONGLINEUP_ICC');
 							break;
 					}
@@ -1616,7 +1616,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							addItemsToList('BUG_BOWLER-OPTIONS', null);
 							addItemsToList('POPULATE-BOWLER', null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-DUCK_ICC');
 							break;
 					}
@@ -1693,14 +1693,14 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'EVEREST_KCL': case 'ARUNACHAL':case "SPL": case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-LT-BUG_HIGHLIGHT');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-WIDE_ICC');
 							break;
 					}
 					break;
 				case 'l':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1735,7 +1735,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							addItemsToList('BUG-TOSS-OPTIONS', null);
 						break;	
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1745,7 +1745,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'j':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1755,7 +1755,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 't':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-TOSS_ICC');
 							break;
 						case 'PPL':
@@ -1777,7 +1777,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							addItemsToList('SPLIT-OPTIONS', null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1791,7 +1791,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-NEXT_TO_BAT');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-ICC_TEAM-BOUNDARY');
 							break;
 					}
@@ -1826,7 +1826,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'PUNJAB_T20': case 'EVEREST_BENGAL_T20':case"EVEREST_LEGENDS_90":
 							processCricketProcedures('POPULATE-L3-TARGET');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-TARGETFULL_ICC');
 							break;
 					}
@@ -1838,7 +1838,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						 case 'ARUNACHAL': case 'AFGHANISTAN_T20':
 							addItemsToList('POPULATE-EQUATION', null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-EQUATION_ICC');
 							break;
 					}
@@ -1870,7 +1870,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 								}
 							});
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							session_match.match.inning.forEach(function(inn, index, arr) {
 								if (inn.inningNumber == 1 && inn.isCurrentInning == 'YES') {
 									processCricketProcedures('POPULATE-PROJECTED_BS');
@@ -1905,7 +1905,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Shift_N'://Shift+F3 FALL_OF_WICKETS
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -1940,7 +1940,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 								}
 							});
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							if(document.getElementById('which_keypress').value == 1){
 								alert('ERROR : Current inning should be 2')
 							}else{
@@ -1976,7 +1976,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Control_F8'://Ctrl+f THIS_SERIES_BALL
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2091,7 +2091,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Shift_I'://Inning Summary
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-ICC_IMAGELOOP');
 							break;
 						case 'MAHARAJA_T20': case 'DOAD_LLC': case 'DOAD_LLC': case 'KERALA_T20': case 'AFGHANISTAN_T20':
@@ -2197,21 +2197,21 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 								});
 							}
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-TARGET_ICC');
 							break;
 					}
 					break;
 				case 'Shift_E':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-EQUATIONSHORT_ICC');
 							break;
 					}
 					break;
 				case 'n'://N - Lt-MATCHID
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-DECISION');
 							break;
 					}
@@ -2230,7 +2230,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'BIG_SCREEN': case 'ICPL': case 'LCT':
 							processCricketProcedures('POPULATE-MATCH_IDENT');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-MATCHID_ICC');
 							break;
 						/*case 'RPL':
@@ -2263,7 +2263,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'q'://Q - Generic-Lt
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2293,7 +2293,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							addItemsToList('BUKH_POINTSTABLE-OPTIONS', null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-ICC_MATCHSUMMARY');
 							break;
 					}
@@ -2325,21 +2325,21 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Control_j'://Generic-Lt
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-ICC_BALL-DISTANCE');
 							break;
 					}
 					break;
 				case 'Control_l'://Generic-Lt
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-COMPARISON_ICC');
 							break;
 					}
 					break;
 				case 'Control_p'://Generic-Lt
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							session_match.inning.forEach(function(inn, index, arr) {
 								if (inn.number == 1 && inn.status == 'running') {
 									processCricketProcedures('POPULATE-PROJECTED_BS');
@@ -2400,7 +2400,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							processCricketProcedures('MOST_GRAPHICS-OPTIONS');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-FREEHIT_ICC');
 							break;
 						case 'DOAD_LLC':
@@ -2410,7 +2410,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'o':
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': //O - Inning Builder
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN': //O - Inning Builder
 							processCricketProcedures('POPULATE-THIS_OVER_ICC');
 							break;
 						case 'APL': case 'PUNJAB_T20': case 'PPL': //ANIMATE_OUT_INFOBAR_TOP
@@ -2423,7 +2423,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'ACC_NEPAL': case 'BUKHATIR': case 'THAILAND': case 'ARUNACHAL': case 'PPL':
 							processCricketProcedures('POPULATE-MOSTWICKETS');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-FOUR_ICC');
 							break;
 						case 'DOAD_LLC':
@@ -2436,7 +2436,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'ACC_NEPAL': case 'BUKHATIR': case 'THAILAND': case 'ARUNACHAL': case 'PPL':
 							processCricketProcedures('POPULATE-MOSTFOURS');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-SIX_ICC');
 							break;
 						case 'DOAD_LLC':
@@ -2449,7 +2449,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'ACC_NEPAL': case 'BUKHATIR': case 'THAILAND': case 'ARUNACHAL': case 'PPL':
 							processCricketProcedures('POPULATE-MOSTSIXES');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-WICKET_ICC');
 							break;
 						case 'DOAD_LLC':
@@ -2527,7 +2527,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							addItemsToList('INNING_BUILDER-OPTIONS', null);
 							addItemsToList('POPULATE-PLAYERS_DATA', null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2616,7 +2616,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							addItemsToList('BATBUZZER-OPTIONS', null);
 							break;	
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							if(document.getElementById('which_keypress').value == 1){
 								alert('ERROR : Current inning should be 2')
 							}else{
@@ -2706,7 +2706,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Alt_F8'://Alt+F5 RICHIES_CAPTION
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -2741,7 +2741,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							addItemsToList('LANDMARK-OPTIONS', session_match);
 							addItemsToList('POPULATE-LANDMARK_BAT_PLAYERS', session_match);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-DLS');
 							break;
 					}
@@ -3524,7 +3524,7 @@ function processUserSelection(whichInput) {
 					break;
 				case 'bowlingcard_icc_graphic_btn':
 					switch ($('#selected_broadcaster').val().toUpperCase()){
-						case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").show();
 							$("#cancel_match_setup_btn").show();
 							$("#expiry_message").show();
@@ -3538,7 +3538,7 @@ function processUserSelection(whichInput) {
 					break;
 				case 'lineuplong_icc_graphic_btn':
 					switch ($('#selected_broadcaster').val().toUpperCase()){
-						case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").show();
 							$("#cancel_match_setup_btn").show();
 							$("#expiry_message").show();
@@ -3903,7 +3903,7 @@ function processUserSelection(whichInput) {
 					break;
 				case 'ball_speed_icc_graphic_btn':
 					switch ($('#selected_broadcaster').val().toUpperCase()){
-						case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -4044,7 +4044,7 @@ function processUserSelection(whichInput) {
 								}
 							});
 							break;
-						case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							session_match.match.inning.forEach(function(inn, index, arr) {
 								if (inn.inningNumber == 1 && inn.isCurrentInning == 'YES') {
 									processCricketProcedures('POPULATE-PROJECTED_BS');
@@ -6807,7 +6807,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/Player_FOW.sum' + ',' + $('#selecthowoutTeams option:selected').val() + ',' +
 						$('#selectl3PlayerName option:selected').val();
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = $('#selecthowoutTeams option:selected').val() + ',' + $('#selectl3PlayerName option:selected').val();
 					break;
 			}
@@ -6848,7 +6848,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/BowlersStats.sum' + ',' + $('#selectbowlerstatsiccTeams option:selected').val() + ',' +
 						$('#selectl3PlayerName option:selected').val();
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = $('#selectbowlerstatsiccTeams option:selected').val() + ',' + $('#selectl3PlayerName option:selected').val();
 					break;
 			}
@@ -6863,7 +6863,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/BowlersStats.sum' + ',' + $('#selecthowoutTeams option:selected').val() + ',' +
 						$('#selectl3PlayerName option:selected').val();
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = $('#selecthowoutTeams option:selected').val() + ',' + $('#selectl3PlayerName option:selected').val();
 					break;
 			}
@@ -6948,7 +6948,7 @@ function processCricketProcedures(whatToProcess) {
 			break;
 		case 'POPULATE-OUT_NOT_DECISION':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-			case 'BIG_SCREEN': case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+			case 'BIG_SCREEN': case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 				valueToProcess = $('#selectDecisionType').val();
 				break;
 			}
@@ -7533,7 +7533,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/MatchSummary.sum' + ','
 						+ document.getElementById('which_keypress').value;
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = document.getElementById('which_keypress').value;
 					break;
 			}
@@ -7548,7 +7548,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/Boundaries.sum' + ','
 						+ document.getElementById('which_keypress').value;
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = document.getElementById('which_keypress').value;
 					break;		
 			}
@@ -12100,7 +12100,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ICC_BIGSCREEN_DOAD_SCORING':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/BowlingCard.sum' + ',' + document.getElementById('which_keypress').value;
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = document.getElementById('which_keypress').value;
 					break;
 			}
@@ -12123,7 +12123,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ICC_BIGSCREEN_DOAD_SCORING':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/LineUpImages.sum' + ',' + document.getElementById('which_keypress').value;
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = document.getElementById('which_keypress').value;
 					break;
 			}
@@ -12134,7 +12134,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/LineUpImages.sum' + ',' + $('#selectbowlerstatsiccTeams option:selected').val();
 					//alert(valueToProcess);
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = $('#selectbowlerstatsiccTeams option:selected').val() + ',' + $('#selectData option:selected').val();
 					break;
 			}
@@ -12149,7 +12149,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/LineUp.sum' + ',' + $('#selectbowlerstatsiccTeams option:selected').val();
 					//alert(valueToProcess);
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = $('#selectbowlerstatsiccTeams option:selected').val();
 					break;
 			}
@@ -12184,7 +12184,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/TeamName.sum' + ',' + $('#selectbowlerstatsiccTeams option:selected').val();
 					//alert(valueToProcess);
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 				valueToProcess = $('#selectbowlerstatsiccTeams option:selected').val();
 					//alert(valueToProcess);
 					break;		
@@ -12208,7 +12208,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/PointsTable_4Teams.sum' + ',' + $('#selectData option:selected').val();
 					//alert(valueToProcess);
 					break;
-				case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/PointsTable_4Teams.sum' + ',' + $('#selectData option:selected').val();
 					//alert(valueToProcess);
 					break;	
@@ -12220,7 +12220,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/PhaseWiseScore.sum' + ',' + document.getElementById('which_keypress').value;
 					//alert(valueToProcess);
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = document.getElementById('which_keypress').value;
 					//alert(valueToProcess);
 					break;	
@@ -12338,7 +12338,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/FreeText_2Line.sum' + ',' + $('#text1').val() + ',' + $('#text2').val();
 					//alert(valueToProcess);
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = $('#text1').val() + ',' + $('#text2').val();
 					//alert(valueToProcess);
 					break;		
@@ -12356,7 +12356,7 @@ function processCricketProcedures(whatToProcess) {
 						+ ',' + $('#text1').val() + ',' + $('#text2').val();
 					//alert(valueToProcess);
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = $('#selectTeamFlag option:selected').val()
 						+ ',' + $('#text1').val() + ',' + $('#text2').val();
 					//alert(valueToProcess);
@@ -12371,7 +12371,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'ICC_BIGSCREEN_DOAD_SCORING':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/FreeText_1Line.sum' + ',' + $('#selectNameSuper option:selected').val();
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = $('#selectNameSuper option:selected').val();
 					break;		
 			}
@@ -12388,7 +12388,7 @@ function processCricketProcedures(whatToProcess) {
 						+ ',' + $('#data').val() + ',' + $('#humidity').val();
 					//alert(valueToProcess);
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = $('#runs').val() + ',' + $('#data').val() + ',' + $('#humidity').val();
 					//alert(valueToProcess);
 					break;
@@ -12429,7 +12429,7 @@ function processCricketProcedures(whatToProcess) {
 						+ ',' + $('#data').val() + ',' + $('#data2').val() + ',' + $('#selectl3PlayerName option:selected').val();
 					//alert(valueToProcess);
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = $('#selecthowoutTeams option:selected').val() + ',' + $('#runs').val() + ',' + $('#data').val() + ',' + $('#data2').val() 
 						+ ',' + $('#selectl3PlayerName option:selected').val();
 					//alert(valueToProcess);
@@ -12449,7 +12449,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/SixDistance.sum' + ',' + $('#runs').val();
 					//alert(valueToProcess);
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = $('#runs').val();
 					//alert(valueToProcess);
 					break;
@@ -12658,7 +12658,7 @@ function processCricketProcedures(whatToProcess) {
 			break;
 		case 'POPULATE-L3-PLAYERPROFILEBAT':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = $('#selectl3PlayerName option:selected').val() + ',' +
 						$('#selectl3Profile option:selected').val() + ',' + 'Batsman';
 					break;
@@ -12786,7 +12786,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Cric2022/Scenes/LT_PlayerProfile.sum' + ',' + $('#selectl3PlayerName option:selected').val() + ','
 						+ $('#selectl3Profile option:selected').val() + ',' + 'Bowler';
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = $('#selectl3PlayerName option:selected').val() + ',' +
 						$('#selectl3Profile option:selected').val() + ',' + 'Bowler';
 					break;	
@@ -13949,7 +13949,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/PlayerInro.sum' + ',' + document.getElementById('which_keypress').value
 						+ ',' + $('#selectbowler option:selected').val();
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess = document.getElementById('which_keypress').value + ',' + $('#selectbowler option:selected').val();
 					break;
 				case 'ARUNACHAL':
@@ -14020,7 +14020,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/PlayerInro.sum' + ',' + document.getElementById('which_keypress').value
 						+ ',' + $('#selectpositionlandmark option:selected').val();
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					valueToProcess =  document.getElementById('which_keypress').value + ',' + $('#selectpositionlandmark option:selected').val();
 					break;
 				case 'ARUNACHAL':
@@ -17555,7 +17555,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			$('#selectl3PlayerName').empty();
 
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					session_match.match.inning.forEach(function(inn, index, arr) {
 						if (inn.inningNumber == $('#selectbowlerstatsiccTeams option:selected').val()) {
 							inn.bowlingCard.forEach(function(boc, boc_index, bc_arr) {
@@ -19663,7 +19663,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 					document.getElementById('select_graphic_options_div').style.display = '';
 					break;
-				case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 
 					$('#select_graphic_options_div').empty();
 
@@ -20159,7 +20159,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			break;	
 		case 'FREETEXT2LINE-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'BIG_SCREEN': case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'BIG_SCREEN': case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 
 					$('#select_graphic_options_div').empty();
 
@@ -20223,7 +20223,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			break;
 		case 'SIX_DISTANCE-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'BIG_SCREEN': case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'BIG_SCREEN': case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 				case 'EVEREST_APL_T20':
 					$('#select_graphic_options_div').empty();
 
@@ -20984,7 +20984,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 		case 'OUT_NOT-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 
-				case 'BIG_SCREEN': case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'BIG_SCREEN': case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 
 					$('#select_graphic_options_div').empty();
 
@@ -21024,7 +21024,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 									cellCount = cellCount + 1;
 									break;
-								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 									select = document.createElement('select');
 									select.id = 'selectDecisionType';
 									select.name = select.id;
@@ -23514,7 +23514,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			break;
 		case 'WEATHER_ICC-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'BIG_SCREEN': case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'BIG_SCREEN': case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 
 					$('#select_graphic_options_div').empty();
 
@@ -23943,7 +23943,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			
 		case 'MILESTONE-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'BIG_SCREEN': case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'BIG_SCREEN': case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 
 					$('#select_graphic_options_div').empty();
 
@@ -23966,7 +23966,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 					select.name = select.id;
 
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							if (dataToProcess.match.inning[0].isCurrentInning.toUpperCase().includes('YES')) {
 								option = document.createElement('option');
 								option.value = dataToProcess.match.inning[0].battingTeamId;
@@ -24495,7 +24495,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			break;
 		case 'PLAYERPROFILE_OUT-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
-				case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+				case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 					header_text = document.createElement('h6');
 					header_text.innerHTML = 'Select Graphic Options';
 					document.getElementById('select_graphic_options_div').appendChild(header_text);
@@ -24539,7 +24539,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 								select.appendChild(option);
 							}
 							break;
-						case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+						case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 							if (dataToProcess.match.inning[0].isCurrentInning.toUpperCase().includes('YES')) {
 								option = document.createElement('option');
 								option.value = dataToProcess.match.inning[0].battingTeamId;
@@ -25063,7 +25063,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 				case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'EVEREST_PUNJAB_T20': case 'MAHARAJA_T20': case 'EVEREST_APL_T20':
 				case 'RPL': case 'RSWS': case 'USPL': case 'EVEREST_MPL_T20': case 'EVEREST_BENGAL_T20': case 'ICC_BIG_SCREEN': case 'PPL': case 'EVEREST_PPL_T20': case 'RSWS':
 				case 'EVEREST_KCL_T20': case 'EVEREST_KCL':  case 'ARUNACHAL': case 'ICC_BIGSCREEN_DOAD_SCORING':case "EVEREST_LEGENDS_90": case "SPL": case 'EVEREST_MPL_T20':
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'EVEREST_AR_VR': case 'AFGHANISTAN_T20':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN': case 'EVEREST_AR_VR': case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -25235,7 +25235,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							break;
 						case 'LINEUPIMAGE-ICC-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 									select = document.createElement('select');
 									select.id = 'selectbowlerstatsiccTeams';
 									select.name = select.id;
@@ -25273,7 +25273,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							break;
 						case 'LINEUP-ICC-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 									select = document.createElement('select');
 									select.id = 'selectbowlerstatsiccTeams';
 									select.name = select.id;
@@ -25365,7 +25365,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							break;
 						case 'TEAMGROUP-OPTIONS': case 'GROUP_POINTSTABLE-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 									select = document.createElement('select');
 									select.id = 'selectData';
 									select.name = select.id;
@@ -25438,7 +25438,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									row.insertCell(cellCount).appendChild(select);
 									cellCount = cellCount + 1;
 									break;
-								case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+								case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 									select = document.createElement('select');
 									select.id = 'selectbowlerstatsiccTeams';
 									select.name = select.id;
@@ -25462,7 +25462,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						
 						case 'ICCBOWLER-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 									select = document.createElement('select');
 									select.id = 'selectbowlerstatsiccTeams';
 									select.name = select.id;
@@ -25508,7 +25508,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							break;
 						case 'ICCBATSMAN-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 									select = document.createElement('select');
 									select.id = 'selecthowoutTeams';
 									select.name = select.id;
@@ -25540,7 +25540,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									cellCount = cellCount + 1;
 
 									switch ($('#selected_broadcaster').val().toUpperCase()) {
-										case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+										case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 											select = document.createElement('select');
 											select.id = 'selectl3PlayerName';
 											select.name = select.id;
@@ -25811,7 +25811,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							break;
 						case 'LINEUPIMAGE-ICC-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 									select = document.createElement('select');
 									select.id = 'selectbowlerstatsiccTeams';
 									select.name = select.id;
@@ -25940,7 +25940,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							break;
 						case 'TEAMNAME-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 									select = document.createElement('select');
 									select.id = 'selectbowlerstatsiccTeams';
 									select.name = select.id;
@@ -26052,7 +26052,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							
 						case 'ICCBOWLER-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 									select = document.createElement('select');
 									select.id = 'selectbowlerstatsiccTeams';
 									select.name = select.id;
@@ -27064,7 +27064,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							break;
 						case 'FREETEXT-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
-								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 									select = document.createElement('select');
 									select.style = 'width:130px';
 									select.id = 'selectNameSuper';
@@ -30592,7 +30592,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									row.insertCell(cellCount).appendChild(select);
 									cellCount = cellCount + 1
 									break;
-								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 									
 									select = document.createElement('select');
 									select.id = 'selecthowoutTeams1';
@@ -31296,7 +31296,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									row.insertCell(cellCount).appendChild(select);
 									cellCount = cellCount + 1
 									break;
-								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 									select = document.createElement('select');
 									select.id = 'selecthowoutTeams1';
 									select.name = select.id;
@@ -38650,7 +38650,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
 				case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL': case 'KERALA_T20':
-				case 'ARUNACHAL': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'AFGHANISTAN_T20':
+				case 'ARUNACHAL': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN': case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -38672,7 +38672,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						case 'BOWLERSTYLE-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'BUKHATIR': case 'ASSAM': case 'THAILAND': case 'ACC_NEPAL': case 'ARUNACHAL': case 'ICC_BIGSCREEN_DOAD_SCORING':
-								case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+								case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 	
 									select = document.createElement('select');
 									select.id = 'selectbowler';
@@ -38752,7 +38752,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ACC_NEPAL': case 'KERALA_T20':
 				case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'PPL':
-				case 'ARUNACHAL': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'EVEREST_AR_VR': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'AFGHANISTAN_T20':
+				case 'ARUNACHAL': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'EVEREST_AR_VR': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN': case 'AFGHANISTAN_T20':
 					$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
@@ -38774,7 +38774,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						case 'BATSMANSTYLE-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'BUKHATIR': case 'ASSAM': case 'THAILAND': case 'ACC_NEPAL': case 'ARUNACHAL': case 'ICC_BIGSCREEN_DOAD_SCORING':
-								case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
+								case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
 
 									select = document.createElement('select');
 									select.id = 'selectpositionlandmark';

@@ -1208,6 +1208,8 @@
 			  		 -->
 			  		 <hr style="margin:15px 0; border:1px solid #ccc;">
                 <p style="font-weight:bold; color:#2E008B; margin-bottom:8px;">VR Graphic Buttons</p>
+                 <button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
+			  		name="matchID_Test_vr_score_graphic_btn" id="matchID_Test_vr_score_graphic_btn" onclick="processUserSelection(this)"> Match ID Test </button>
                 
                 			  	<button style="background-color:#2E008B;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  	name="matchId_vr_score_graphic_btn" id="matchId_vr_score_graphic_btn" onclick="processUserSelection(this)"> Match Ident </button>

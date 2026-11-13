@@ -2756,6 +2756,11 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 }
 function processUserSelection(whichInput) {
 	switch ($(whichInput).attr('name')) {
+		
+		case 'matchID_Test_vr_score_graphic_btn':
+			processCricketProcedures('POPULATE_MATCH_ID_TEST');
+			break;
+		
 		case 'audioOnOrOff':
 			processCricketProcedures('TURN_ON_OR_OFF_AUDIO');
 		break;
@@ -5837,7 +5842,11 @@ function processUserSelection(whichInput) {
 }
 function processCricketProcedures(whatToProcess) {
 	var valueToProcess;
+	
 	switch (whatToProcess) {
+		case 'POPULATE_MATCH_ID_TEST':
+			 valueToProcess = 'C:/Everest_VR_2026/MattScenes/VR_All.sum';
+			break;
 		case 'TURN_ON_OR_OFF_AUDIO':
 			valueToProcess = $('#audioOnOrOff').is(":checked")
 			break;
@@ -14266,6 +14275,7 @@ function processCricketProcedures(whatToProcess) {
 		success: function(data) {
 			
 			switch (whatToProcess) {
+				
 				case 'HEAD_TO_HEAD_FILE':
 					alert(data.match.matchFileName + ' H2H FILE IS CREATED');
 					break;
@@ -14672,7 +14682,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'POPULATE-L3-THISSERIES': case "POPULATE-L3-THISSERIES_BALL":
 				case 'POPULATE-L3-NAMESUPER': case 'POPULATE-L3-NAMESUPER-PLAYER': case 'POPULATE-L3-CAPTAIN-PLAYER': case 'POPULATE-L3-NAMESUPER-SINGLE':
 				case 'POPULATE-BOWLER_STYLE': case 'POPULATE-BATSMAN_STYLE': case 'POPULATE-TORNAMENT_PLAYER': case 'POPULATE-BUZZER_PLAYER': case 'POPULATE-BALLBUZZER_PLAYER':
-
+				case 'POPULATE_MATCH_ID_TEST':
 					if(data.status == 'FF_AND_LT'){
 						alert('Graphics is already on screen')
 					}else if (confirm('Animate In?') == true) {
@@ -14680,6 +14690,9 @@ function processCricketProcedures(whatToProcess) {
 						//document.getElementById('select_graphic_options_div').style.display = '';
 						//$("#captions_div").show();
 						switch (whatToProcess) {
+							case 'POPULATE_MATCH_ID_TEST':
+								processCricketProcedures('ANIMATE-IN-MATCH-ID-TEST');
+								break;
 							case 'POPULATE-BALLBUZZER_PLAYER':
 								processCricketProcedures('ANIMATE-IN-BALLBUZZER_PLAYER');
 								break;

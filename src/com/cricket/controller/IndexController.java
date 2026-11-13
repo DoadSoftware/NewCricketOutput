@@ -860,7 +860,7 @@ public class IndexController
 
 			headToHead = CricketFunctions.extractHeadToHead(session_match, cricketService,session_MasterCricketDirectory);
 			past_tournament_stats = CricketFunctions.extractTournamentData("PAST_MATCHES_DATA", false, headToHead.getH2hPlayer(), cricketService, session_match, null);
-			this_kerala_t20. past_tournament_boundaries = CricketFunctions.extracttournamentFoursAndSixesData("PAST_MATCHES_DATA",headToHead.getH2hPlayer(),session_match,null);
+			//this_kerala_t20.past_tournament_boundaries = CricketFunctions.extracttournamentFoursAndSixesData("PAST_MATCHES_DATA",headToHead.getH2hPlayer(),session_match,null);
 			
 			switch(session_selected_broadcaster) {
 				case "ICC_BIG_SCREEN":

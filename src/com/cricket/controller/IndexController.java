@@ -459,8 +459,9 @@ public class IndexController
 				session_selected_scenes.add(new Scene("","MIDDLE_LAYER"));
 				break;
 			case "ILT20_BIGSCREEN":
-				session_selected_scenes.add(new Scene("/Default/gfx_BigScreen",which_layer)); // Front layer
+				session_selected_scenes.add(new Scene("/Default/BigScreen/gfx_BigScreen",which_layer)); // Front layer
 				session_selected_scenes.add(new Scene("","MIDDLE_LAYER"));
+				
 				break;
 			case "GPCL": case "ACC": case "DOAD_VIZ":case "DOAD-VIZ-MULTI": case "NEPAL_T20": case "DOAD_LLC": case "ICPL": case "LCT": case "FAIR_BREAK":
 			case "APL":	case "PUNJAB_T20": case "MAHARAJA_T20": case "RPL": case "USPL": case "ICC_CWCU19":case "MPL": case "KOLKATA_T20": case "PPL":

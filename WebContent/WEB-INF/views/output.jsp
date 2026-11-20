@@ -686,7 +686,7 @@
 			  		name="Promo_graphic_btn" id="Promo_graphic_btn" onclick="processUserSelection(this)"> Promo </button>	
   				</c:if>
   				<c:if test="${(session_selected_broadcaster == 'ICC_BIG_SCREEN') || (session_selected_broadcaster == 'ICC_BIGSCREEN_DOAD_SCORING') || 
-  								(session_selected_broadcaster == 'ICC_BIGSCREEN_DOAD_VIZ_SCORING')}">
+  								(session_selected_broadcaster == 'ICC_BIGSCREEN_DOAD_VIZ_SCORING') || (session_selected_broadcaster == 'ILT20_BIGSCREEN')}">
   				<!-- <button style="background-color:#f44336;color:#FEFEFE;" class="btn btn-sm" type="button"
 			  		name="animateoutscorebug_icc_graphic_btn" id="animateoutscorebug_icc_graphic_btn" onclick="processUserSelection(this)"> AnimateOut Scorebug </button>
   				<br><br>
@@ -4578,6 +4578,23 @@
             }
         }
     });
-</script>
+ </script>
+<!--  <script type="text/javascript">
+    $(function () {
+        if ($('#selected_broadcaster').val() === 'ILT20_BIGSCREEN') {
+            var clearBtn = document.getElementById('clearall_graphic_btn');
+            if (!clearBtn) return;
+
+            var all = $('#captions_div').find('*').toArray();
+            var start = all.indexOf(clearBtn);
+
+            for (var i = start + 1; i < all.length; i++) {
+                if (!$.contains(all[i], clearBtn)) {
+                    all[i].style.display = 'none';
+                }
+            }
+        }
+    });
+</script>  -->
 </body>
 </html>

@@ -967,7 +967,6 @@ public class IndexController
 		@RequestParam(value = "Category", required = false, defaultValue = "") String Category) 
 					throws Exception 
 	{
-		
 		switch (whatToProcess.toUpperCase()) {
 		case "GET-CONFIG-DATA":
 			session_configuration = (Configuration)JAXBContext.newInstance(Configuration.class).createUnmarshaller().unmarshal(
@@ -990,7 +989,7 @@ public class IndexController
 		    return new ObjectMapper().writeValueAsString(response).toString();
 		    
 		case "ANIMATE_IN_SPEED_SECOND_BROADCASTER":
-			switch (session_configuration.getSecondaryBroadcaster()) {
+			switch (session_configuration.getBroadcaster()) {
 			case "DOAD_LLC":
 //				return (String) session_llc_big_screen.ProcessGraphicOption(whatToProcess, session_match, cricketService, cricket_matches, 
 //						CricketFunctions.processPrintWriter(session_configuration).get(1), session_selected_scenes, valueToProcess, session_statistics);

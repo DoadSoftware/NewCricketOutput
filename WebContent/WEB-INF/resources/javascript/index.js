@@ -30731,8 +30731,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									select.name = select.id;
 									
 									option = document.createElement('option');
-									option.value = 'ILT20';
-									option.text = 'ILT20';
+									option.value = 'ILT20_CAREER';
+									option.text = 'ILT20 CAREER';
 									select.appendChild(option);
 
 									option = document.createElement('option');
@@ -30741,13 +30741,13 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									select.appendChild(option);
 
 									option = document.createElement('option');
-									option.value = 'T20';
+									option.value = 'DT20';
 									option.text = 'T20';
 									select.appendChild(option);
 
 									option = document.createElement('option');
 									option.value = 'ILT20_SEASON 4';
-									option.text = 'ILT20_SEASON 4';
+									option.text = 'ILT20 SEASON 4';
 									select.appendChild(option);
 
 									/*option = document.createElement('option');

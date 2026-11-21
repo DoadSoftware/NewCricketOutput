@@ -712,6 +712,8 @@ public class ILT20_BIGSCREEN extends Scene{
 					break;	
 				case "POPULATE-L3-PLAYERPROFILEBAT": case "POPULATE-L3-PLAYERPROFILE":
 					which_side = (!which_graphics_onscreen.isEmpty() ? 2 : 1);
+					System.out.println(which_graphics_onscreen);
+					System.out.println(which_side);
 					
 					this.status = "NODATABASE";
 					
@@ -750,12 +752,8 @@ public class ILT20_BIGSCREEN extends Scene{
 							break;
 						}
 						
-						if(stats.getStats_type().getStatsShortName().equalsIgnoreCase(valueToProcess.split(",")[1])) {
-							this.status = CricketUtil.SUCCESSFUL;
-							
-							populatePlayerProfileBat(print_writer, false, Integer.valueOf(valueToProcess.split(",")[0]), valueToProcess.split(",")[1], valueToProcess.split(",")[2], 
-									null, stats, cricketService, match, session_selected_broadcaster, config);
-						}
+						populatePlayerProfileBat(print_writer, false, Integer.valueOf(valueToProcess.split(",")[0]), valueToProcess.split(",")[1], 
+								valueToProcess.split(",")[2], null, stats, cricketService, match, session_selected_broadcaster, config);
 					}
 					break;
 				}
@@ -2988,11 +2986,23 @@ public class ILT20_BIGSCREEN extends Scene{
 			if(match.getMatch().getInning().get(0).getBattingCard() != null) {
 				Collections.sort(match.getMatch().getInning().get(0).getBattingCard(),new CricketFunctions.BatsmenScoreComparator());
 				for(BattingCard bc : match.getMatch().getInning().get(0).getBattingCard()) {
-					if(row >= 2) break;
-					if(bc.getRuns() > 0) {
+					if(bc.getStatus().equalsIgnoreCase(CricketUtil.NOT_OUT)) {
+						if(row >= 2) break;
 						row ++;
 						CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$DataAll$Main$Side" + which_side + "$InningsSummary$PlayerGrp"
 								+ "$" + row + "*ACTIVE SET 1\0", print_writers);
+						
+						if(row == 1 && bc.getOnStrike().equalsIgnoreCase(CricketUtil.YES)) {
+							CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$DataAll$Main$Side" + which_side + "$InningsSummary$PlayerGrp$OnStrike"
+									+ "*FUNCTION*Omo*vis_con SET 1\0", print_writers);
+						}else if(row == 2 && bc.getOnStrike().equalsIgnoreCase(CricketUtil.YES)) {
+							CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$DataAll$Main$Side" + which_side + "$InningsSummary$PlayerGrp$OnStrike"
+									+ "*FUNCTION*Omo*vis_con SET 2\0", print_writers);
+						}else {
+							CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$DataAll$Main$Side" + which_side + "$InningsSummary$PlayerGrp$OnStrike"
+									+ "*FUNCTION*Omo*vis_con SET 0\0", print_writers);
+						}
+						
 						
 						CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$DataAll$Main$Side" + which_side + "$InningsSummary$PlayerGrp$"
 								+ row +"$img_Flag*TEXTURE*IMAGE SET " + ILT20_FLAG + bc.getPlayer().getNationality() + "\0", print_writers);
@@ -3006,6 +3016,7 @@ public class ILT20_BIGSCREEN extends Scene{
 						CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$DataAll$Main$Side" + which_side + "$InningsSummary$PlayerGrp$"
 								+ row +"$Data$txt_Balls*GEOM*TEXT SET " + bc.getBalls() + "\0", print_writers);
 					}
+					
 				}
 //				if(row == 1) {
 //					CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$DataAll$Main$Side" + which_side + "$InningsSummary$PlayerGrp"
@@ -3097,9 +3108,24 @@ public class ILT20_BIGSCREEN extends Scene{
 					row =0;
 					Collections.sort(match.getMatch().getInning().get(i-1).getBattingCard(),new CricketFunctions.BatsmenScoreComparator());
 					for(BattingCard bc : match.getMatch().getInning().get(i-1).getBattingCard()) {
-						if(row >= 2) break;
-						if(bc.getRuns() > 0) {
+						if(bc.getStatus().equalsIgnoreCase(CricketUtil.NOT_OUT)) {
+							if(row >= 2) break;
 							row ++;
+							CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$DataAll$Main$Side" + which_side + "$InningsSummary$PlayerGrp"
+									+ "$" + row + "*ACTIVE SET 1\0", print_writers);
+							
+							if(row == 1 && bc.getOnStrike().equalsIgnoreCase(CricketUtil.YES)) {
+								CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$DataAll$Main$Side" + which_side + "$InningsSummary$PlayerGrp$OnStrike"
+										+ "*FUNCTION*Omo*vis_con SET 1\0", print_writers);
+							}else if(row == 2 && bc.getOnStrike().equalsIgnoreCase(CricketUtil.YES)) {
+								CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$DataAll$Main$Side" + which_side + "$InningsSummary$PlayerGrp$OnStrike"
+										+ "*FUNCTION*Omo*vis_con SET 2\0", print_writers);
+							}else {
+								CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$DataAll$Main$Side" + which_side + "$InningsSummary$PlayerGrp$OnStrike"
+										+ "*FUNCTION*Omo*vis_con SET 0\0", print_writers);
+							}
+							
+							
 							CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$DataAll$Main$Side" + which_side + "$InningsSummary$PlayerGrp"
 									+ "$" + row + "*ACTIVE SET 1\0", print_writers);
 							
@@ -3115,6 +3141,7 @@ public class ILT20_BIGSCREEN extends Scene{
 							CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$DataAll$Main$Side" + which_side + "$InningsSummary$PlayerGrp$"
 									+ row +"$Data$txt_Balls*GEOM*TEXT SET " + bc.getBalls() + "\0", print_writers);
 						}
+						
 					}
 				}else {
 					CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$DataAll$Main$Side" + which_side + "$InningsSummary$PlayerGrp"
@@ -3810,6 +3837,12 @@ public class ILT20_BIGSCREEN extends Scene{
 		CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Footer$Side" + which_side + "$select_FooterType"
 				+ "*FUNCTION*Omo*vis_con SET 1\0", print_writers);
 		
+		
+		//team name
+		CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$Ident$OutlineText$Team1"
+				+ "$txt_TeamName*GEOM*TEXT SET " + match.getSetup().getHomeTeam().getTeamName1() + "\0", print_writers);
+		CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$Ident$OutlineText$Team2"
+				+ "$txt_TeamName*GEOM*TEXT SET " + match.getSetup().getAwayTeam().getTeamName1() + "\0", print_writers);
 		//base
 		CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$select_Graphics$Ident$Base$Team1"
 				+ "$img_Base1*TEXTURE*IMAGE SET " + ILT20_BASE1 + match.getSetup().getHomeTeam().getTeamBadge() + "\0", print_writers);

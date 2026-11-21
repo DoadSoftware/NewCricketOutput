@@ -4579,7 +4579,7 @@
         }
     });
  </script>
-<!--  <script type="text/javascript">
+ <script type="text/javascript">
     $(function () {
         if ($('#selected_broadcaster').val() === 'ILT20_BIGSCREEN') {
             var clearBtn = document.getElementById('clearall_graphic_btn');
@@ -4595,6 +4595,6 @@
             }
         }
     });
-</script>  -->
+</script> 
 </body>
 </html>

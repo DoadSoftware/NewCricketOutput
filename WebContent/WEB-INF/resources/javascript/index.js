@@ -604,12 +604,18 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							break;
 					}
 					break;
-				case "0":
-					//processCricketProcedures('POPULATE-4POPUP');
+				case '0':
+					switch ($('#selected_broadcaster').val().toUpperCase()) {
+						case 'ILT20_BIGSCREEN':
+							processCricketProcedures('PLAY-STRATEGIC_TIME_OUT-CLOCK');
+							break;
+						default:
+							//processCricketProcedures('POPULATE-4POPUP');
+							break;
+					}
 					break;
-				case "7":
+				case '7':
 					//processCricketProcedures('POPULATE-6POPUP');
-					console.log('hello1');
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'KERALA_T20':
 							processCricketProcedures('POPULATE-FOUR_COUNT');

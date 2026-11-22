@@ -302,7 +302,7 @@ public class ILT20_BIGSCREEN extends Scene{
 		case "POPULATE-ICC_BOWLER-FIG": case "POPULATE-PARTNERSHIP_ICC": case "POPULATE-SIX_DISTANCE_ICC": case "POPULATE-GROUP_PTSTBLE_ICC": case "POPULATE-BUKH-POINTSTABLE":	
 		case "POPULATE-ICC_BATSMAN-STATS": case "POPULATE-ICC_BOWLER-STATS": case "POPULATE-DLS": case "POPULATE-PHASESCORE_ICC":case "POPULATE_ICC_PP1":case "POPULATE_ICC_PP2":case "POPULATE_ICC_PP3":
 		case "POPULATE-BATSMAN_STYLE": case "POPULATE-BOWLER_STYLE": case "POPULATE-SPEED": case "POPULATE-RESULTS": case "POPULATE-PHASE_COMPARISON_ICC":
-		case "POPULATE-STRATEGIC_TIME_OUT":
+		case "POPULATE-STRATEGIC_TIME_OUT": case "PLAY-STRATEGIC_TIME_OUT-CLOCK":
 			
 		case "POPULATE-L3-PLAYERPROFILEBAT": case "POPULATE-L3-PLAYERPROFILE": case "POPULATE-THIS_OVER_ICC":
 			
@@ -883,6 +883,9 @@ public class ILT20_BIGSCREEN extends Scene{
 				
 				which_graphics_onscreen = "PROJECTED_BS";
 				break;
+			case "PLAY-STRATEGIC_TIME_OUT-CLOCK":
+				processAnimation("FRONT", print_writer, "anim_Timer", "CONTINUE");
+				break;
 			case "ANIMATE-IN-STRATEGIC_TIME_OUT":
 				ChangeOn(print_writer, whatToProcess);
 				processAnimation("FRONT", print_writer, "anim_Timer", "START");
@@ -1369,7 +1372,7 @@ public class ILT20_BIGSCREEN extends Scene{
 				
 				which_graphics_onscreen = "RESULTS";
 				break;
-				
+			
 				
 				
 			case "CLEAR-ALL":
@@ -4850,10 +4853,7 @@ public class ILT20_BIGSCREEN extends Scene{
 				+ "*FUNCTION*Omo*vis_con SET 3\0", print_writers);
 		CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Footer$Side" + which_side + "$select_FooterType"
 				+ "*FUNCTION*Omo*vis_con SET 0\0", print_writers);
-		
-		CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$Profile$Data$PlayerInfo"
-				+ "$txt_Years*GEOM*TEXT SET \0", print_writers);
-		
+	
 //		CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$Ident$Teams$Team1"
 //				+ "$txt_CountryName*GEOM*TEXT SET " + match.getSetup().getHomeTeam().getTeamName4() + "\0", print_writers);
 		
@@ -5074,6 +5074,11 @@ public class ILT20_BIGSCREEN extends Scene{
 				}
 			}
 		}
+		
+		CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$Profile$Data$PlayerInfo"
+				+ "$txt_Age*GEOM*TEXT SET " + (plyr.getAge() != null ?plyr.getAge():"") + "\0", print_writers);
+		CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$Profile$Data$PlayerInfo"
+				+ "$txt_Years*GEOM*TEXT SET "+(plyr.getAge() != null ?"YEARS":"")+"\0", print_writers);
 
 		switch(TypeofProfile.toUpperCase()) {
 		case CricketUtil.BATSMAN:

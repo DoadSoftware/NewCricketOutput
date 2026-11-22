@@ -1390,13 +1390,20 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							addItemsToList('NAMESUPER_PLAYER-OPTIONS', null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
 							processCricketProcedures('PLAYERFREETEXT_GRAPHICS-OPTIONS');
 							//addItemsToList('MILESTONE-OPTIONS',null);
 							break;
+						case 'ILT20_BIGSCREEN':
+							$("#captions_div").hide();
+							$("#cancel_match_setup_btn").hide();
+							$("#expiry_message").hide();
+							//processCricketProcedures('PLAYERFREETEXT_GRAPHICS-OPTIONS');
+							addItemsToList('FRREETEXTGRAPHIC3LINE-OPTIONS',null);
+							break;	
 					}
 					break;
 
@@ -3689,6 +3696,7 @@ function processUserSelection(whichInput) {
 		case 'populate_start_bs_btn': case 'populate_countdown_bs_btn': case 'populate_howout_bs__btn': case 'populate_bowlerfig_btn': case 'quickhowout_bs_graphic_btn':
 		case 'populate_LTpartnership_btn': case 'populate_speed_btn': case 'default_ar_score_graphic_btn': case 'defaultout_ar_score_graphic_btn': case 'target_drone_score_graphic_btn': 
 		case 'equation_AR_graphic_btn':
+		case 'populate_freetext3line_btn':	
 		case 'boundaries_vr_score_graphic_btn': case 'comparison_ar_score_graphic_btn': case 'lastwicket_ar_graphic_btn': case 'comparison_drone_score_graphic_btn': case 'comparison_vr_score_graphic_btn': case 'target_ar_score_graphic_btn': case 'matchId_ar_score_graphic_btn': case 'equation_drone_score_graphic_btn':
 		case 'projected_ar_score_graphic_btn': case 'equationintargetimage_ar_score_graphic_btn': case 'projected_vr_score_graphic_btn': case 'populate_freetext_ar_btn': case 'populate_thisover_vr_btn': case 'matchId_animation_score_graphic_btn': case 'equation_ar_score_graphic_btn': case 'matchId_vr_score_graphic_btn':
 		case 'thisover_ar_graphic_btn':case"populate_Teams_Options_btn": case 'populate_teamceleb_ar_btn': case 'target_vr_score_graphic_btn': case 'countdown_graphic_btn': case 'fallofwicket_graphic_btn': case 'previous_over_graphic_btn': case 'matchId_arr_score_graphic_btn':
@@ -4513,6 +4521,9 @@ function processUserSelection(whichInput) {
 					break;
 				case 'populate_runrate_btn':
 				    processCricketProcedures('POPULATE-RUNRATE');
+					break;
+				case 'populate_freetext3line_btn':	
+					processCricketProcedures('POPULATE-FREETEXT_ICC');
 					break;
 				case 'tournament_batting_graphic_btn': 
 					processCricketProcedures('POPULATE-TOURNAMENT_BATTING');
@@ -12371,9 +12382,12 @@ function processCricketProcedures(whatToProcess) {
 				case 'ICC_BIGSCREEN_DOAD_SCORING':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/FreeText_1Line.sum' + ',' + $('#selectNameSuper option:selected').val();
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': 
 					valueToProcess = $('#selectNameSuper option:selected').val();
-					break;		
+					break;
+				case 'ILT20_BIGSCREEN':
+					valueToProcess = $('#line1').val() + ',' + $('#line2').val() + ',' + $('#line3').val();
+					break;				
 			}
 			break;
 		case 'POPULATE-WEATHER_ICC':
@@ -16307,6 +16321,61 @@ function addItemsToList(whatToProcess, dataToProcess) {
 	var cellCount = 0;
 
 	switch (whatToProcess) {
+		case 'FRREETEXTGRAPHIC3LINE-OPTIONS':
+		$('#select_graphic_options_div').empty();
+
+		header_text = document.createElement('h6');
+		header_text.innerHTML = 'Select Graphic Options';
+		document.getElementById('select_graphic_options_div').appendChild(header_text);
+
+		table = document.createElement('table');
+		table.setAttribute('class', 'table table-bordered');
+
+		tbody = document.createElement('tbody');
+
+		table.appendChild(tbody);
+		document.getElementById('select_graphic_options_div').appendChild(table);
+
+		row = tbody.insertRow(tbody.rows.length);
+		cellCount = 0;
+
+		// Three text boxes: line1, line2, line3
+		for (var i = 1; i <= 3; i++) {
+			var txt = document.createElement('input');
+			txt.type = 'text';
+			txt.id = 'line' + i;
+			txt.name = txt.id;
+			txt.placeholder = 'Line ' + i;
+			txt.setAttribute('class', 'form-control');
+
+			row.insertCell(cellCount).appendChild(txt);
+			cellCount = cellCount + 1;
+		}
+
+		option = document.createElement('input');
+		option.type = 'button';
+		option.name = 'populate_freetext3line_btn';
+		option.value = 'Populate';
+		option.id = option.name;
+		option.setAttribute('onclick', "processUserSelection(this)");
+
+		div = document.createElement('div');
+		div.append(option);
+
+		option = document.createElement('input');
+		option.type = 'button';
+		option.name = 'cancel_graphics_btn';
+		option.id = option.name;
+		option.value = 'Cancel';
+		option.setAttribute('onclick', 'processUserSelection(this)');
+
+		div.append(option);
+
+		row.insertCell(cellCount).appendChild(div);
+		cellCount = cellCount + 1;
+
+		document.getElementById('select_graphic_options_div').style.display = '';
+		break;	
 		case 'RUN_RATE-OPTION':
 		$('#select_graphic_options_div').empty();
 

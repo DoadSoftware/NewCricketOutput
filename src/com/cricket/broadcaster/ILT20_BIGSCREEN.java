@@ -557,11 +557,11 @@ public class ILT20_BIGSCREEN extends Scene{
 				case "POPULATE-FREETEXT_ICC":
 					previousData = valueToProcess;
 					which_side = (!which_graphics_onscreen.isEmpty() ? 2 : 1);
-					for(NameSuper ns : cricketService.getNameSupers()) {
-						  if(ns.getNamesuperId() == Integer.valueOf(valueToProcess.split(",")[0])) {
-							  populateFreeText(print_writer,false,ns , session_selected_broadcaster);
-						  }
-					}
+					String[] parts = valueToProcess.split(",", -1);   // -1 keeps trailing empty values
+					String l1 = parts.length > 0 ? parts[0] : "";
+					String l2 = parts.length > 1 ? parts[1] : "";
+					String l3 = parts.length > 2 ? parts[2] : "";
+					populateFreeText(print_writer, false, l1,l2,l3, session_selected_broadcaster);
 					break;	
 				case "POPULATE-MATCHID_ICC":
 					which_side = (!which_graphics_onscreen.isEmpty() ? 2 : 1);
@@ -1200,18 +1200,22 @@ public class ILT20_BIGSCREEN extends Scene{
 				which_graphics_onscreen = "LINE2FREE_ICC";
 				break;
 			case "ANIMATE-IN-FREETEXT_ICC":
+			{
 				ChangeOn(print_writer, whatToProcess);
 				TimeUnit.MILLISECONDS.sleep(3000);
 				which_side = 1;
-				for(NameSuper ns : cricketService.getNameSupers()) {
-					  if(ns.getNamesuperId() == Integer.valueOf(previousData.split(",")[0])) {
-						  populateFreeText(print_writer,false,ns , session_selected_broadcaster);
-					  }
-				}
+
+				String[] parts = valueToProcess.split(",", -1);
+				String l1 = parts.length > 0 ? parts[0] : "";
+				String l2 = parts.length > 1 ? parts[1] : "";
+				String l3 = parts.length > 2 ? parts[2] : "";
+
+				populateFreeText(print_writer, false, l1, l2, l3, session_selected_broadcaster);
 				CutBack(print_writer, whatToProcess);
-				
+
 				which_graphics_onscreen = "FREETEXT_ICC";
 				break;
+			}
 			case"ANIMATE-IN-MATCHID_WITH_IMG_ICC":
 				ChangeOn(print_writer, whatToProcess);
 				TimeUnit.MILLISECONDS.sleep(3000);
@@ -6163,7 +6167,7 @@ public class ILT20_BIGSCREEN extends Scene{
 		}
 	}
 	
-	public void populateFreeText(List<PrintWriter> print_writers,boolean is_this_updating, NameSuper ns, String session_selected_broadcaster) throws InterruptedException, IOException 
+	public void populateFreeText(List<PrintWriter> print_writers,boolean is_this_updating, String line1,String line2,String line3, String session_selected_broadcaster) throws InterruptedException, IOException 
 	{
 		switch (session_selected_broadcaster.toUpperCase()) {
 		case "ILT20_BIGSCREEN":
@@ -6171,18 +6175,58 @@ public class ILT20_BIGSCREEN extends Scene{
 			CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Header$Side" + which_side + "$select_HeaderStyle"
 					+ "*FUNCTION*Omo*vis_con SET 0\0", print_writers);
 			CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$select_Graphics"
-					+ "*FUNCTION*Omo*vis_con SET 17\0", print_writers);
+					+ "*FUNCTION*Omo*vis_con SET 14\0", print_writers);
 			CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Footer$Side" + which_side + "$select_FooterType"
 					+ "*FUNCTION*Omo*vis_con SET 0\0", print_writers);
 			
-			CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$FreeText$Flag"
-					+ "*ACTIVE SET 0\0", print_writers);
+			CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$BaseAll$Side" + which_side 
+					+ "$img_Base1*TEXTURE*IMAGE SET " + ILT20_BASE1 + "EVENT" + "\0", print_writers);
+			CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$BaseAll$Side" + which_side 
+					+ "$img_Base2*TEXTURE*IMAGE SET " + ILT20_BASE2 + "EVENT" + "\0", print_writers);
+			CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$BaseAll$Side" + which_side 
+					+ "$img_Base3*TEXTURE*IMAGE SET " + ILT20_BASE3 + "EVENT" + "\0", print_writers);
 			
-			CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$FreeText"
-					+ "$select_LineNumber*FUNCTION*Omo*vis_con SET 1\0", print_writers);
+			String base = "-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side
+					+ "$FreeText$Loop$select_LineNumber";
+
+			// null-safe, trimmed lines
+			line1 = (line1 == null) ? "" : line1.trim();
+			line2 = (line2 == null) ? "" : line2.trim();
+			line3 = (line3 == null) ? "" : line3.trim();
+			System.out.println("line1" + line1);
+			System.out.println("line2" + line2);
+			System.out.println("line3" + line3);
+
+			// 1 line filled -> 0, 2 lines -> 1, 3 lines -> 2
+			int omo_value = 0;
+			if (!line3.isEmpty()) {
+				omo_value = 2;
+			} else if (!line2.isEmpty()) {
+				omo_value = 1;
+			}
+
+			CricketFunctions.DoadWriteCommandToAllViz(base + "*FUNCTION*Omo*vis_con SET " + omo_value + "\0", print_writers);
+
+			switch (omo_value) {
+			case 0:
+				CricketFunctions.DoadWriteCommandToAllViz(base + "$SingleLIne$txt_Info*GEOM*TEXT SET " + line1 + "\0", print_writers);
+				break;
+
+			case 1:
+				CricketFunctions.DoadWriteCommandToAllViz(base + "$DoubleLine$TopInfo$txt_Info*GEOM*TEXT SET " + line1 + "\0", print_writers);
+				CricketFunctions.DoadWriteCommandToAllViz(base + "$DoubleLine$BottomInfo$txt_Info*GEOM*TEXT SET " + line2 + "\0", print_writers);
+				break;
+
+			case 2:
+				CricketFunctions.DoadWriteCommandToAllViz(base + "$ThreeLIne$TopInfo$txt_Info*GEOM*TEXT SET " + line1 + "\0", print_writers);
+				CricketFunctions.DoadWriteCommandToAllViz(base + "$ThreeLIne$MIddleInfo$txt_Info*GEOM*TEXT SET " + line2 + "\0", print_writers);
+				CricketFunctions.DoadWriteCommandToAllViz(base + "$ThreeLIne$BottomInfo$txt_Info*GEOM*TEXT SET " + line3 + "\0", print_writers);
+				break;
+			}
 			
-			CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$FreeText$select_LineNumber"
-					+ "$1$txt_Info*GEOM*TEXT SET " + ns.getFirstname() + "\0", print_writers);
+			
+//			CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$FreeText$select_LineNumber"
+//					+ "$1$txt_Info*GEOM*TEXT SET " + ns.getFirstname() + "\0", print_writers);
 			
 			break;
 		}

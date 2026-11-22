@@ -2625,11 +2625,18 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							addItemsToList('BATBUZZER-OPTIONS', null);
 							break;	
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': 
 							if(document.getElementById('which_keypress').value == 1){
 								alert('ERROR : Current inning should be 2')
 							}else{
 								processCricketProcedures('POPULATE-RUNRATE_ICC');
+							}
+							break;
+						case 'ILT20_BIGSCREEN':
+							if(document.getElementById('which_keypress').value == 1){
+								alert('ERROR : Current inning should be 2')
+							}else{
+								processCricketProcedures('POPULATE-RESULTS');
 							}
 							break;
 					}

@@ -4582,6 +4582,28 @@
  <script type="text/javascript">
     $(function () {
         if ($('#selected_broadcaster').val() === 'ILT20_BIGSCREEN') {
+            var $cap = $('#captions_div');
+
+            // 1. Hide every button except the ones you want to keep
+            $cap.find('button.btn')
+                .not('#headToHead_file, #clearall_graphic_btn, #animate_in_speed')
+                .hide();
+
+            // 2. Hide the section headings / separators
+            $cap.find('h4, hr, p').hide();
+
+            // 3. Hide leftover empty wrappers (e.g. "Mini's", "FullFrames", "ALL LT's", "Bat Speed", "ALL Bugs")
+            //    but never the wrapper that contains the speed box or Clear All
+            $cap.find('div.left').filter(function () {
+                return $(this).find('#speedtext, #clearall_graphic_btn').length === 0
+                    && $(this).find('button:visible').length === 0;
+            }).hide();
+        }
+    });
+</script>
+ <!-- <script type="text/javascript">
+    $(function () {
+        if ($('#selected_broadcaster').val() === 'ILT20_BIGSCREEN') {
             var clearBtn = document.getElementById('clearall_graphic_btn');
             if (!clearBtn) return;
 
@@ -4595,6 +4617,6 @@
             }
         }
     });
-</script> 
+</script>  -->
 </body>
 </html>

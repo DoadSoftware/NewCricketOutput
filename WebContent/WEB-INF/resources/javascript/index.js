@@ -627,6 +627,9 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							addItemsToList('DIRECTOR-OPTIONS', null);
 							break;
+						case 'ILT20_BIGSCREEN':
+							processCricketProcedures('POPULATE-STRATEGIC_TIME_OUT');
+							break;
 					}
 					break;
 				case 'i'://I freehit
@@ -2269,8 +2272,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'q'://Q - Generic-Lt
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -15303,7 +15305,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'POPULATE-HUNDRED_ICC': case 'POPULATE-FIFTY_ICC': case 'POPULATE-CATCH_ICC': case 'POPULATE-PHASESCORE_ICC':
 				case 'POPULATE-EQUATION_WITH_IMG_ICC': case 'POPULATE-MATCHID_WITH_IMG_ICC': case 'POPULATE-IMG_LINE2FREE_ICC':
 				case 'POPULATE-PROMO': case 'POPULATE-LT-WEATHER': case 'POPULATE-PHASE-COMPARISON': case 'POPULATE-MATCH_RESULT':
-				case 'POPULATE-FF-RULES':  case 'POPULATE-RUNRATE_AR': case 'POPULATE-SPEED': case 'POPULATE-SCOREBUG_EUROPE':
+				case 'POPULATE-FF-RULES':  case 'POPULATE-RUNRATE_AR': case 'POPULATE-SPEED': case 'POPULATE-SCOREBUG_EUROPE': case 'POPULATE-STRATEGIC_TIME_OUT':
 					//if (data.status.toUpperCase() == 'SUCCESSFUL') {
 					//if(data.status == 'UNSUCCESSFUL'){
 						//alert('Image is missing');
@@ -15508,6 +15510,9 @@ function processCricketProcedures(whatToProcess) {
 								break;
 							case 'POPULATE-MATCHID_ICC':
 								processCricketProcedures('ANIMATE-IN-MATCHID_ICC');
+								break;
+							case 'POPULATE-STRATEGIC_TIME_OUT':
+								processCricketProcedures('ANIMATE-IN-STRATEGIC_TIME_OUT');
 								break;
 							case 'POPULATE-PARTNERSHIP_ICC':
 								processCricketProcedures('ANIMATE-IN-PARTNERSHIP_ICC');
@@ -31449,7 +31454,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									row.insertCell(cellCount).appendChild(select);
 									cellCount = cellCount + 1
 									break;
-								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
+								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': 
 									select = document.createElement('select');
 									select.id = 'selecthowoutTeams1';
 									select.name = select.id;
@@ -31533,6 +31538,92 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									row.insertCell(cellCount).appendChild(select);
 									cellCount = cellCount + 1
 									break;
+									
+								case 'ILT20_BIGSCREEN':
+									select = document.createElement('select');
+									select.id = 'selecthowoutTeams1';
+									select.name = select.id;
+	
+									/*option = document.createElement('option');
+									option.value = dataToProcess.setup.homeTeam.teamId;
+									option.text = dataToProcess.setup.homeTeam.teamName4;
+									select.appendChild(option);
+	
+									option = document.createElement('option');
+									option.value = dataToProcess.setup.awayTeam.teamId;
+									option.text = dataToProcess.setup.awayTeam.teamName4;
+									select.appendChild(option);*/
+	
+									if(dataToProcess.match.inning[0].isCurrentInning.toUpperCase().includes('YES')){
+										option = document.createElement('option');
+										option.value = dataToProcess.match.inning[0].bowlingTeamId;
+										option.text = dataToProcess.match.inning[0].bowling_team.teamName4;
+										select.appendChild(option);
+										
+										option = document.createElement('option');
+										option.value = dataToProcess.match.inning[0].battingTeamId;
+										option.text = dataToProcess.match.inning[0].batting_team.teamName4;
+										select.appendChild(option);
+										
+									}else{
+										option = document.createElement('option');
+										option.value = dataToProcess.match.inning[1].bowlingTeamId;
+										option.text = dataToProcess.match.inning[1].bowling_team.teamName4;
+										select.appendChild(option);
+										
+										option = document.createElement('option');
+										option.value = dataToProcess.match.inning[1].battingTeamId;
+										option.text = dataToProcess.match.inning[1].batting_team.teamName4;
+										select.appendChild(option);
+									}
+	
+									select.setAttribute('onchange', "processUserSelection(this)");
+									row.insertCell(cellCount).appendChild(select);
+									cellCount = cellCount + 1;
+	
+									select = document.createElement('select');
+									select.id = 'selectl3PlayerName';
+									select.name = select.id;
+
+									select.setAttribute('onchange', "processUserSelection(this)");
+									row.insertCell(cellCount).appendChild(select);
+									cellCount = cellCount + 1;
+
+									select = document.createElement('select');
+									select.id = 'selectl3Profile';
+									select.name = select.id;
+
+									option = document.createElement('option');
+									option.value = 'ILT20_CAREER';
+									option.text = 'ILT20 CAREER';
+									select.appendChild(option);
+
+									option = document.createElement('option');
+									option.value = 'IT20';
+									option.text = 'T20I';
+									select.appendChild(option);
+
+									option = document.createElement('option');
+									option.value = 'DT20';
+									option.text = 'T20';
+									select.appendChild(option);
+
+									option = document.createElement('option');
+									option.value = 'ILT20_SEASON 4';
+									option.text = 'ILT20 SEASON 4';
+									select.appendChild(option);
+
+									/*option = document.createElement('option');
+									option.value = 'THISSERIES';
+									option.text = 'THIS SERIES';
+									select.appendChild(option);*/
+
+									select.setAttribute('onchange', "processUserSelection(this)");
+
+									row.insertCell(cellCount).appendChild(select);
+									cellCount = cellCount + 1
+									break;	
+									
 								case 'ACC': case 'MAHARAJA_T20': case 'AFGHANISTAN_T20':
 
 									select = document.createElement('select');

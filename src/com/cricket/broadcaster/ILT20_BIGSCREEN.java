@@ -3906,7 +3906,7 @@ public class ILT20_BIGSCREEN extends Scene{
 				+ "*FUNCTION*Omo*vis_con SET 0\0", print_writers);
 		
 		CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$Main$Side" + which_side + "$StrategicTimeOut$TopInfo"
-				+ "$txt_Info*GEOM*TEXT SET " + "STRATEGIC TIME OUT" + "\0", print_writers);
+				+ "$txt_Info*GEOM*TEXT SET " + "STRATEGIC TIMEOUT" + "\0", print_writers);
 		//base
 		CricketFunctions.DoadWriteCommandToAllViz("-1 RENDERER*FRONT_LAYER*TREE*$gfx_BigScreen$BaseAll$Side" + which_side 
 				+ "$img_Base1*TEXTURE*IMAGE SET " + ILT20_BASE1 + "EVENT" + "\0", print_writers);

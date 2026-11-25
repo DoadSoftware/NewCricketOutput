@@ -1411,7 +1411,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
 							//processCricketProcedures('PLAYERFREETEXT_GRAPHICS-OPTIONS');
-							addItemsToList('FRREETEXTGRAPHIC3LINE-OPTIONS',null);
+							processCricketProcedures('FRREETEXTGRAPHIC3LINE_GRAPHICS-OPTIONS',null);
 							break;	
 					}
 					break;
@@ -4538,7 +4538,7 @@ function processUserSelection(whichInput) {
 				    processCricketProcedures('POPULATE-RUNRATE');
 					break;
 				case 'populate_freetext3line_btn':	
-					processCricketProcedures('POPULATE-FREETEXT_ICC');
+					processCricketProcedures('POPULATE-FREETEXT3LINE_ICC');
 					break;
 				case 'tournament_batting_graphic_btn': 
 					processCricketProcedures('POPULATE-TOURNAMENT_BATTING');
@@ -12389,7 +12389,7 @@ function processCricketProcedures(whatToProcess) {
 					break;		
 			}
 			break;
-		case 'POPULATE-FREETEXT_ICC':
+		case 'POPULATE-FREETEXT3LINE_ICC':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'ICC_BIG_SCREEN':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/FreeText_1Lines.sum' + ',' + $('#selectNameSuper option:selected').val();
@@ -12401,7 +12401,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = $('#selectNameSuper option:selected').val();
 					break;
 				case 'ILT20_BIGSCREEN':
-					valueToProcess = $('#line1').val() + ',' + $('#line2').val() + ',' + $('#line3').val();
+					valueToProcess = $('#freetext_select').val();
 					break;				
 			}
 			break;
@@ -14366,6 +14366,9 @@ function processCricketProcedures(whatToProcess) {
 					addItemsToList('POPULATE-HOWOUT-ICC', data);
 					match_data = data;
 					break;
+				case 'FRREETEXTGRAPHIC3LINE_GRAPHICS-OPTIONS':
+					addItemsToList('FRREETEXTGRAPHIC3LINE-OPTIONS', data);
+					break;
 				case 'MILESTONE_GRAPHICS-OPTIONS':
 					addItemsToList('MILESTONE-OPTIONS', data);
 					addItemsToList('POPULATE-HOWOUT-ICC', data);
@@ -15306,7 +15309,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'POPULATE-THIS_PARTNERSHIP': case 'POPULATE-BUKH-POINTSTABLE': case 'POPULATE-FF-CAPTAINS':case "POPULATE-TIMEOUT_LT_RULES":
 				case 'POPULATE-FF_KEYPLAYER_GRAPHICS':case "POPULATE-POWERPLAY_LT_RULES": case 'POPULATE-DIMENSION':
 				case 'POPULATE-L3-POINTER': case 'POPULATE-INFOBAR_ICC': case 'POPULATE-SIX_DISTANCE_ICC': case 'POPULATE-SCOREBUG_ICC': case 'POPULATE-PARTNERSHIP_ICC':
-				case 'POPULATE-MATCHID_ICC': case 'POPULATE-FREEHIT_ICC': case 'POPULATE-SCOREBOARD_ICC': case 'POPULATE-BOUNDARY_ICC': case 'POPULATE-FREETEXT_ICC':
+				case 'POPULATE-MATCHID_ICC': case 'POPULATE-FREEHIT_ICC': case 'POPULATE-SCOREBOARD_ICC': case 'POPULATE-BOUNDARY_ICC': case 'POPULATE-FREETEXT3LINE_ICC':
 				case 'POPULATE-LINE2FREE_ICC': case 'POPULATE-EXTRAS_ICC': case 'POPULATE-TARGET_ICC': case 'POPULATE-EQUATION_ICC':
 				case 'POPULATE-RUNRATE_ICC': case 'POPULATE-TOSS_ICC': case 'POPULATE-ICC_BOWLER-STATS': case 'POPULATE-TEAMNAME_ICC': case 'POPULATE-COMPARISON_ICC': case 'POPULATE-PHASE_COMPARISON_ICC':
 				case 'POPULATE-FOUR_ICC': case 'POPULATE-SIX_ICC': case 'POPULATE-MILESTONE_ICC': case 'POPULATE-PLAYERFREETEXT_ICC': case 'POPULATE-ICC_BALL-SPEED':
@@ -15509,7 +15512,7 @@ function processCricketProcedures(whatToProcess) {
 							case 'POPULATE-LINE2FREE_ICC':
 								processCricketProcedures('ANIMATE-IN-LINE2FREE_ICC');
 								break;
-							case 'POPULATE-FREETEXT_ICC':
+							case 'POPULATE-FREETEXT3LINE_ICC':
 								processCricketProcedures('ANIMATE-IN-FREETEXT_ICC');
 								break;
 							case 'POPULATE-BOUNDARY_ICC':
@@ -16348,6 +16351,67 @@ function addItemsToList(whatToProcess, dataToProcess) {
 
 		table = document.createElement('table');
 		table.setAttribute('class', 'table table-bordered');
+		tbody = document.createElement('tbody');
+		table.appendChild(tbody);
+		document.getElementById('select_graphic_options_div').appendChild(table);
+
+		row = tbody.insertRow(tbody.rows.length);
+		cellCount = 0;
+
+		// Dropdown filled from FreeText.txt (whatToProcess = array of strings)
+		var select = document.createElement('select');
+		select.id = 'freetext_select';
+		select.name = select.id;
+		select.setAttribute('class', 'form-control');
+
+		var blank = document.createElement('option');
+		blank.value = '';
+		blank.text = 'Select Text';
+		select.appendChild(blank);
+
+		// read from dataToProcess, like the other cases
+		(dataToProcess || []).forEach(function (txt) {
+		    var opt = document.createElement('option');
+		    opt.value = String(txt).toUpperCase();
+		    opt.text = String(txt).toUpperCase();
+		    select.appendChild(opt);
+		});
+
+		row.insertCell(cellCount).appendChild(select);
+		cellCount = cellCount + 1;
+
+		option = document.createElement('input');
+		option.type = 'button';
+		option.name = 'populate_freetext3line_btn';
+		option.value = 'Populate';
+		option.id = option.name;
+		option.setAttribute('onclick', "processUserSelection(this)");
+
+		div = document.createElement('div');
+		div.append(option);
+
+		option = document.createElement('input');
+		option.type = 'button';
+		option.name = 'cancel_graphics_btn';
+		option.id = option.name;
+		option.value = 'Cancel';
+		option.setAttribute('onclick', 'processUserSelection(this)');
+		div.append(option);
+
+		row.insertCell(cellCount).appendChild(div);
+		cellCount = cellCount + 1;
+
+		document.getElementById('select_graphic_options_div').style.display = '';
+		break;
+		/*case 'FRREETEXTGRAPHIC3LINE-OPTIONS':
+		$('#select_graphic_options_div').empty();
+
+		header_text = document.createElement('h6');
+		header_text.innerHTML = 'Select Graphic Options';
+		document.getElementById('select_graphic_options_div').appendChild(header_text);
+
+		table = document.createElement('table');
+		table.setAttribute('class', 'table table-bordered');
 
 		tbody = document.createElement('tbody');
 
@@ -16393,7 +16457,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 		cellCount = cellCount + 1;
 
 		document.getElementById('select_graphic_options_div').style.display = '';
-		break;	
+		break;	*/
 		case 'RUN_RATE-OPTION':
 		$('#select_graphic_options_div').empty();
 

@@ -296,7 +296,7 @@ public class ILT20_BIGSCREEN extends Scene{
 		case "POPULATE-WICKET_ICC": case "POPULATE-LINEUPIMAGE_ICC": case "POPULATE-SIX_ICC": case "POPULATE-HAT_TRICK":case "POPULATE-HAT_TRICK_BALL": case "POPULATE-WEATHER_ICC":
 		case "POPULATE-FREEHIT_ICC": case "POPULATE-HUNDRED_ICC": case "POPULATE-FIFTY_ICC": case "POPULATE-CATCH_ICC": case "POPULATE-MATCHID_ICC": case"POPULATE-MATCHID_WITH_IMG_ICC": 
 		case"POPULATE-GROUP_ICC": case "POPULATE-REVIEW_ICC": case "POPULATE-ICC_INTRO-STATS": case "POPULATE-BOUNDARY_ICC": case "POPULATE-EXTRAS_ICC": case "POPULATE-LINE2FREE_ICC":
-		case "POPULATE-IMG_LINE2FREE_ICC": case "POPULATE-FREETEXT_ICC": case "POPULATE-ICC_TEAM-BOUNDARY": case "POPULATE-RUNRATE_ICC": case "POPULATE-COMPARISON_ICC": case "POPULATE-TOSS_ICC": 
+		case "POPULATE-IMG_LINE2FREE_ICC": case "POPULATE-FREETEXT3LINE_ICC": case "POPULATE-ICC_TEAM-BOUNDARY": case "POPULATE-RUNRATE_ICC": case "POPULATE-COMPARISON_ICC": case "POPULATE-TOSS_ICC": 
 		case "POPULATE-TEAMNAME_ICC": case "POPULATE-PLAYERFREETEXT_ICC": case "POPULATE-ICC_QUICKHOWOUT": case "POPULATE-BS_HOWOUT":	case "POPULATE-TARGETFULL_ICC": case "POPULATE-TARGET_ICC":
 		case "POPULATE-TARGET_WITH_IMG_ICC": case "POPULATE-EQUATION_ICC": case "POPULATE-EQUATIONSHORT_ICC": case "POPULATE-EQUATION_WITH_IMG_ICC": case "POPULATE-BS_BATSCORE": 
 		case "POPULATE-ICC_BOWLER-FIG": case "POPULATE-PARTNERSHIP_ICC": case "POPULATE-SIX_DISTANCE_ICC": case "POPULATE-GROUP_PTSTBLE_ICC": case "POPULATE-BUKH-POINTSTABLE":	
@@ -555,15 +555,24 @@ public class ILT20_BIGSCREEN extends Scene{
 					populateImgline2FreeText(print_writer,false,valueToProcess.split(",")[0],valueToProcess.split(",")[1],
 							valueToProcess.split(",")[2] ,cricketService.getTeams(),  session_selected_broadcaster);
 					break;
-				case "POPULATE-FREETEXT_ICC":
-					previousData = valueToProcess;
-					which_side = (!which_graphics_onscreen.isEmpty() ? 2 : 1);
-					String[] parts = valueToProcess.split(",", -1);   // -1 keeps trailing empty values
-					String l1 = parts.length > 0 ? parts[0] : "";
-					String l2 = parts.length > 1 ? parts[1] : "";
-					String l3 = parts.length > 2 ? parts[2] : "";
-					populateFreeText(print_writer, false, l1,l2,l3, session_selected_broadcaster);
-					break;	
+				case "POPULATE-FREETEXT3LINE_ICC":
+				{
+				    previousData = valueToProcess;
+				    which_side = (!which_graphics_onscreen.isEmpty() ? 2 : 1);
+
+				    String text = (valueToProcess == null) ? "" : valueToProcess.trim();
+				    String[] words = text.isEmpty() ? new String[0] : text.split("\\s+");
+
+				    String l1 = words.length > 0 ? words[0] : "";
+				    String l2 = words.length > 1 ? words[1] : "";
+				    // 3rd line takes the 3rd word and anything after it
+				    String l3 = words.length > 2
+				            ? String.join(" ", java.util.Arrays.copyOfRange(words, 2, words.length))
+				            : "";
+
+				    populateFreeText(print_writer, false, l1, l2, l3, session_selected_broadcaster);
+				    break;
+				}
 				case "POPULATE-MATCHID_ICC":
 					which_side = (!which_graphics_onscreen.isEmpty() ? 2 : 1);
 					populateMatchID(print_writer,match, session_selected_broadcaster);
@@ -1224,11 +1233,13 @@ public class ILT20_BIGSCREEN extends Scene{
 				TimeUnit.MILLISECONDS.sleep(3000);
 				which_side = 1;
 
-				String[] parts = previousData.split(",", -1);
-				String l1 = parts.length > 0 ? parts[0] : "";
-				String l2 = parts.length > 1 ? parts[1] : "";
-				String l3 = parts.length > 2 ? parts[2] : "";
-
+				String text = (previousData == null) ? "" : previousData.trim();
+			    String[] words = text.isEmpty() ? new String[0] : text.split("\\s+");
+				String l1 = words.length > 0 ? words[0] : "";
+				String l2 = words.length > 1 ? words[1] : "";
+				String l3 = words.length > 2 ? String.join(" ", 
+						java.util.Arrays.copyOfRange(words, 2, words.length)) : "";
+				
 				populateFreeText(print_writer, false, l1, l2, l3, session_selected_broadcaster);
 				CutBack(print_writer, whatToProcess);
 
@@ -6262,8 +6273,8 @@ public class ILT20_BIGSCREEN extends Scene{
 				break;
 
 			case 1:
-				CricketFunctions.DoadWriteCommandToAllViz(base + "$DoubleLine$TopInfo$txt_Info*GEOM*TEXT SET " + line1 + "\0", print_writers);
-				CricketFunctions.DoadWriteCommandToAllViz(base + "$DoubleLine$BottomInfo$txt_Info*GEOM*TEXT SET " + line2 + "\0", print_writers);
+				CricketFunctions.DoadWriteCommandToAllViz(base + "$DoubleLIne$TopInfo$txt_Info*GEOM*TEXT SET " + line1 + "\0", print_writers);
+				CricketFunctions.DoadWriteCommandToAllViz(base + "$DoubleLIne$BottomInfo$txt_Info*GEOM*TEXT SET " + line2 + "\0", print_writers);
 				break;
 
 			case 2:

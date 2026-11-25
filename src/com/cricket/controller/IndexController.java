@@ -1114,6 +1114,22 @@ public class IndexController
 			}
 			return new ObjectMapper().writeValueAsString(fileName).toString();
 			
+		case "FRREETEXTGRAPHIC3LINE_GRAPHICS-OPTIONS": 
+		{
+		    File freeTextFile = new File("C:\\Sports\\Cricket\\FreeText.txt");
+		    List<String> freeTextLines = new ArrayList<>();
+
+		    if (freeTextFile.exists()) {
+		        for (String l : Files.readAllLines(freeTextFile.toPath(), java.nio.charset.StandardCharsets.UTF_8)) {
+		            l = l.replace("\uFEFF", "").trim();   // remove BOM and spaces
+		            if (!l.isEmpty()) {
+		                freeTextLines.add(l.toUpperCase());
+		            }
+		        }
+		    }
+		    return new ObjectMapper().writeValueAsString(freeTextLines);
+		}
+			
 		case "L3PLAYERPROFILEBAT-OPTIONS": case "STATS-OPTIONS": 
 			return new ObjectMapper().writeValueAsString(CricketFunctions.processAllStats(cricketService)).toString();
 		case "COMMENTATORS_GRAPHICS_OPTIONS": case "COMMS_GRAPHICS_OPTIONS":

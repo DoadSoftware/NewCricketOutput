@@ -289,6 +289,9 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					case 'MPL':
 						processCricketProcedures('MISSION-CHANGE');
 					break;
+					case 'ILT20_BIGSCREEN':
+						processCricketProcedures('ANIMATE-PLAYING_XI-CHANGE-ON');
+						break;
 				}
 					break;	
 
@@ -1142,8 +1145,14 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 							$("#expiry_message").hide();
 							addItemsToList('PLAYINGXI-OPTIONS', null);
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': 
 							processCricketProcedures('POPULATE-EQUATIONSHORT_ICC');
+							break;
+						case 'ILT20_BIGSCREEN':
+							$("#captions_div").hide();
+							$("#cancel_match_setup_btn").hide();
+							$("#expiry_message").hide();
+							processCricketProcedures('FF-LINEUP-ILT_GRAPHICS-OPTIONS');
 							break;
 
 					}
@@ -2107,10 +2116,10 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					break;
 				case 'Shift_I'://Inning Summary
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': 
 							processCricketProcedures('POPULATE-ICC_IMAGELOOP');
 							break;
-						case 'MAHARAJA_T20': case 'DOAD_LLC': case 'DOAD_LLC': case 'KERALA_T20': case 'AFGHANISTAN_T20':
+						case 'MAHARAJA_T20': case 'DOAD_LLC': case 'DOAD_LLC': case 'KERALA_T20': case 'AFGHANISTAN_T20': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -3745,7 +3754,7 @@ function processUserSelection(whichInput) {
 		case 'populate_boundary_btn': case 'populate_freetext_icc_bs_btn': case 'populate_line2freetext_icc_bs_btn': case 'extras_icc_graphic_btn':
 		case 'populate_iccbatsman_btn': case 'target_icc_graphic_btn': case 'equation_icc_graphic_btn': case 'runrate_icc_graphic_btn': case 'teamBoundary_icc_graphic_btn':
 		case 'toss_icc_graphic_btn': case 'populate_iccbowler_btn': case 'populate_iccteamname_btn': case 'comp_icc_graphic_btn': case 'matchsummary_icc_graphic_btn':
-		case 'freehit_icc_graphic_btn': case 'populate_milestone_icc_bs_btn': case 'populate_playerfreetext_icc_bs_btn': case 'ball_speed_icc_graphic_btn':
+		case 'freehit_icc_graphic_btn': case 'populate_milestone_icc_bs_btn': case 'populate_playerfreetext_icc_bs_btn': case 'ball_speed_icc_graphic_btn': case 'populate_FF_lineup_ilt_btn':
 		case 'target_with_img_icc_bs_graphic_btn': case 'four_icc_graphic_btn': case 'six_icc_graphic_btn': case 'thisover_icc_graphic_btn': case 'populate_lineup_icc_btn':
 		case 'populate_lineupimage_icc_btn': case 'populate_iccbowlerfig_btn': case 'populate_playername_icc_btn': case 'changeon_teamname_icc_btn': case 'changeon_video_icc_btn':
 		case 'targetfull_icc_graphic_btn': case 'equationshort_icc_graphic_btn': case 'populate_wagon_btn': //case 'populate_review_icc_bs_btn':	
@@ -3881,6 +3890,9 @@ function processUserSelection(whichInput) {
 					break;
 				case 'populate_lineupimage_icc_btn':
 					processCricketProcedures('POPULATE-LINEUPIMAGE_ICC');
+					break;
+				case 'populate_FF_lineup_ilt_btn':
+					processCricketProcedures('POPULATE-FF_LINEUP_ILT');
 					break;
 				case 'populate_lineup_icc_btn':
 					processCricketProcedures('POPULATE-LINEUP_ICC');
@@ -5918,6 +5930,9 @@ function processCricketProcedures(whatToProcess) {
 				case 'ARUNACHAL':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_Cric2022/Scenes/LT_ImpactPlayer.sum' + ',' + $('#selectPlayerIn').val() + ',' + $('#selectPlayerOut').val();
 					break;	
+				case 'ILT20_BIGSCREEN':
+					valueToProcess =  $('#selectTeamImpact').val() + ',' + $('#selectPlayerIn').val() + ',' + $('#selectPlayerOut').val();
+					break;
 			}
 			break;
 		case 'POPULATE-LT_GRAPHICS':
@@ -12165,7 +12180,7 @@ function processCricketProcedures(whatToProcess) {
 					break;
 			}
 			break;
-		case 'POPULATE-LINEUP_ICC':
+		case 'POPULATE-LINEUP_ICC': case 'POPULATE-FF_LINEUP_ILT':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'ICC_BIG_SCREEN':
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/LineUp.sum' + ',' + $('#selectbowlerstatsiccTeams option:selected').val();
@@ -12175,7 +12190,7 @@ function processCricketProcedures(whatToProcess) {
 					valueToProcess = 'D:/DOAD_In_House_Everest/Everest_Cricket/Everest_ICC_ChampionsTrophy/Scenes/LineUp.sum' + ',' + $('#selectbowlerstatsiccTeams option:selected').val();
 					//alert(valueToProcess);
 					break;
-				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
+				case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN': 
 					valueToProcess = $('#selectbowlerstatsiccTeams option:selected').val();
 					break;
 			}
@@ -14476,6 +14491,10 @@ function processCricketProcedures(whatToProcess) {
 					addItemsToList('LINEUP-ICC-OPTIONS', data);
 					match_data = data;
 					break;
+				case 'FF-LINEUP-ILT_GRAPHICS-OPTIONS':
+					addItemsToList('FF-LINEUP-ILT-OPTIONS', data);
+					match_data = data;
+					break;
 				case 'PLAYERVIDEO-ICC_GRAPHICS-OPTIONS':
 					addItemsToList('PLAYERVIDEO-OPTIONS', data);
 					match_data = data;
@@ -14997,6 +15016,11 @@ function processCricketProcedures(whatToProcess) {
 						}
 					}
 					break;
+				case "CHANGE_ON-IMPACT":
+					if (confirm('Animate In?') == true) {
+						processCricketProcedures('ANIMATE-IN-IMPACT_CHANGE_ON');
+					}
+					break;
 				case 'POPULATE-IMPACT':
 					if(data.status == 'FF_AND_LT'){
 						alert('Graphics is already on screen');
@@ -15318,7 +15342,7 @@ function processCricketProcedures(whatToProcess) {
 				case 'POPULATE-ICC_IMAGE4_3': case 'POPULATE-ICC_IMAGE16_9': case 'POPULATE-ICC_IMAGELOOP': case 'POPULATE-WICKET_ICC': case 'POPULATE-WIDE_ICC': case 'POPULATE-DUCK_ICC':
 				case 'POPULATE-ICC_QUICKHOWOUT': case 'POPULATE-WEATHER_ICC': case 'POPULATE-ICC_BALL-DISTANCE': case 'POPULATE-GROUP_PTSTBLE_ICC':
 				case 'POPULATE-PLAYERNAME_ICC': case 'POPULATE-H2H_ICC': case 'POPULATE-GROUP_ICC':case "POPULATE-HIGHEST_SCORE":case "POPULATE-BEST_FIGURES":
-				case 'POPULATE-HUNDRED_ICC': case 'POPULATE-FIFTY_ICC': case 'POPULATE-CATCH_ICC': case 'POPULATE-PHASESCORE_ICC':
+				case 'POPULATE-HUNDRED_ICC': case 'POPULATE-FIFTY_ICC': case 'POPULATE-CATCH_ICC': case 'POPULATE-PHASESCORE_ICC': case 'POPULATE-FF_LINEUP_ILT':
 				case 'POPULATE-EQUATION_WITH_IMG_ICC': case 'POPULATE-MATCHID_WITH_IMG_ICC': case 'POPULATE-IMG_LINE2FREE_ICC':
 				case 'POPULATE-PROMO': case 'POPULATE-LT-WEATHER': case 'POPULATE-PHASE-COMPARISON': case 'POPULATE-MATCH_RESULT':
 				case 'POPULATE-FF-RULES':  case 'POPULATE-RUNRATE_AR': case 'POPULATE-SPEED': case 'POPULATE-SCOREBUG_EUROPE': case 'POPULATE-STRATEGIC_TIME_OUT':
@@ -15436,6 +15460,9 @@ function processCricketProcedures(whatToProcess) {
 								break;
 							case 'POPULATE-LINEUP_ICC':
 								processCricketProcedures('ANIMATE-IN-LINEUP_ICC');
+								break;
+							case 'POPULATE-FF_LINEUP_ILT':
+								processCricketProcedures('ANIMATE-IN-FF_LINEUP_ILT');
 								break;
 							case 'POPULATE-THIS_OVER_ICC':
 								processCricketProcedures('ANIMATE-IN-THIS_OVER_ICC');
@@ -25208,7 +25235,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 		case 'LINEUPIMAGE-ICC-OPTIONS': case 'ICCBOWLERFIG-OPTIONS': case 'LINEUPLONG-ICC-OPTIONS': case 'IMAGEDROPDOWN-OPTIONS': case 'PLAYERVIDEO-OPTIONS':
 		case 'LONGLINEUP-ICC-OPTIONS': case 'BOWLINGCARD-ICC-OPTIONS': case 'FANTASYDROPDOWN-OPTIONS':case 'LEADERBOARD_TEAM-OPTIONS':
 		case 'L3SEASONPROFILE-OPTIONS': case 'TICKERBOWLERPROFILE-OPTIONS': case 'NAMESUPER_SINGLELINE-OPTIONS':
-		case 'MOST_RUNS-LEADERBOARD-OPTIONS':
+		case 'MOST_RUNS-LEADERBOARD-OPTIONS': case 'FF-LINEUP-ILT-OPTIONS':
 			switch ($('#selected_broadcaster').val().toUpperCase()) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'EVEREST_NEPAL_T20': case 'THAILAND': case 'DOAD_LLC': case 'KERALA_T20':
 				case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'EVEREST_PUNJAB_T20': case 'MAHARAJA_T20': case 'EVEREST_APL_T20':
@@ -25422,6 +25449,30 @@ function addItemsToList(whatToProcess, dataToProcess) {
 									break;
 							}
 							break;
+						case 'FF-LINEUP-ILT-OPTIONS':
+							switch ($('#selected_broadcaster').val().toUpperCase()) {
+								case 'ILT20_BIGSCREEN':
+									select = document.createElement('select');
+									select.id = 'selectbowlerstatsiccTeams';
+									select.name = select.id;
+
+									option = document.createElement('option');
+									option.value = dataToProcess.setup.homeTeamId;
+									option.text = dataToProcess.setup.homeTeam.teamName1;
+									select.appendChild(option);
+
+									option = document.createElement('option');
+									option.value = dataToProcess.setup.awayTeamId;
+									option.text = dataToProcess.setup.awayTeam.teamName1;
+									select.appendChild(option);
+
+									select.setAttribute('onchange', "processUserSelection(this)");
+									row.insertCell(cellCount).appendChild(select);
+									cellCount = cellCount + 1;
+									break;
+								}
+							break;
+							
 						case 'LINEUP-ICC-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
@@ -32385,6 +32436,10 @@ function addItemsToList(whatToProcess, dataToProcess) {
 							break;
 						case 'LINEUP-ICC-OPTIONS':
 							option.name = 'populate_lineup_icc_btn';
+							option.value = 'Populate';
+							break;
+						case 'FF-LINEUP-ILT-OPTIONS':
+							option.name = 'populate_FF_lineup_ilt_btn';
 							option.value = 'Populate';
 							break;
 						case 'PLAYERVIDEO-OPTIONS':

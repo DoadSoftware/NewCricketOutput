@@ -870,7 +870,7 @@ public class IndexController
 			}
 			matchstats = CricketFunctions.getAllEvents(session_match ,session_selected_broadcaster, session_match.getEventFile().getEvents());
 
-			headToHead = CricketFunctions.extractHeadToHead(session_match, cricketService,session_MasterCricketDirectory);
+			headToHead = CricketFunctions.extractHeadToHead(session_match, cricketService, CricketUtil.CRICKET_DIRECTORY);
 			past_tournament_stats = CricketFunctions.extractTournamentData("PAST_MATCHES_DATA", false, headToHead.getH2hPlayer(), cricketService, session_match, null);
 			//this_kerala_t20.past_tournament_boundaries = CricketFunctions.extracttournamentFoursAndSixesData("PAST_MATCHES_DATA",headToHead.getH2hPlayer(),session_match,null);
 			
@@ -1037,7 +1037,7 @@ public class IndexController
 //			});
 //			
 //			cricket_matches = CricketFunctions.getTournamentMatches(files, cricketService);
-			headToHead = CricketFunctions.extractHeadToHead(session_match, cricketService, session_MasterCricketDirectory);
+			headToHead = CricketFunctions.extractHeadToHead(session_match, cricketService, CricketUtil.CRICKET_DIRECTORY);
 			session_statistics = cricketService.getAllStats();
 			session_team = cricketService.getTeams();
 			session_ground = cricketService.getGrounds();

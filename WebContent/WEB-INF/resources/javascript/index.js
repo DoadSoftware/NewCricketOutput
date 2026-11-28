@@ -978,10 +978,10 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'ACC': case 'MAHARAJA_T20':
 						case 'FAIR_BREAK': case 'MPL': case 'RPL': case 'USPL': case 'NEPAL_T20':
 						case 'BUKHATIR': case 'THAILAND': case 'ICPL': case 'LCT': case 'PPL': 
-						case 'ARUNACHAL': case 'AFGHANISTAN_T20':
+						case 'ARUNACHAL': case 'AFGHANISTAN_T20': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-FF-PARTNERSHIP');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': 
 							processCricketProcedures('POPULATE-REVIEW_ICC');
 							break;
 						case 'DOAD_LLC':case 'KERALA_T20':
@@ -1816,7 +1816,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 						case 'AFGHANISTAN_T20':
 							processCricketProcedures('POPULATE-NEXT_TO_BAT');
 							break;
-						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': case 'ILT20_BIGSCREEN':
+						case 'ICC_BIG_SCREEN': case 'ICC_BIGSCREEN_DOAD_SCORING': case 'ICC_BIGSCREEN_DOAD_VIZ_SCORING': 
 							processCricketProcedures('POPULATE-ICC_TEAM-BOUNDARY');
 							break;
 					}
@@ -2050,7 +2050,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 				case 'Control_Shift_B'://Next-To-Bat
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'DOAD_LLC': case 'FAIR_BREAK': case 'MPL': case 'ACC': case 'MAHARAJA_T20': 
-						case 'USPL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20':
+						case 'USPL': case 'PPL': case 'KERALA_T20': case 'AFGHANISTAN_T20': case 'ILT20_BIGSCREEN':
 							processCricketProcedures('POPULATE-NEXT_TO_BAT');
 							break;
 					}
@@ -2161,7 +2161,7 @@ function processUserSelectionData(whatToProcess, dataToProcess) {
 					switch ($('#selected_broadcaster').val().toUpperCase()) {
 						case 'APL': case 'PUNJAB_T20': case 'ACC_NEPAL': case 'FAIR_BREAK': case 'MPL': case 'ACC': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL':
 						case 'BUKHATIR': case 'THAILAND': case 'ICPL': case 'LCT': case 'NEPAL_T20': case 'PPL': case 'KERALA_T20': case 'ARUNACHAL': case 'DOAD_LLC':
-						case 'AFGHANISTAN_T20':
+						case 'AFGHANISTAN_T20': case 'ILT20_BIGSCREEN':
 							$("#captions_div").hide();
 							$("#cancel_match_setup_btn").hide();
 							$("#expiry_message").hide();
@@ -13225,6 +13225,9 @@ function processCricketProcedures(whatToProcess) {
 				case 'NEPAL_T20':
 					valueToProcess = '/Default/Nepal_T20/MatchId' + ',' + $('#selectMatchPromo option:selected').val();
 					break;
+				case 'ILT20_BIGSCREEN':
+					valueToProcess = $('#selectMatchPromo option:selected').val();
+					break;
 			}
 			break;
 		case 'POPULATE-L3MATCH_PROMO':
@@ -22945,7 +22948,8 @@ function addItemsToList(whatToProcess, dataToProcess) {
 				case 'BUKHATIR': case 'GPCL': case 'ACC': case 'NEPAL_T20': case 'ASSAM': case 'THAILAND': case 'DOAD_LLC': case 'ICPL': case 'LCT': case 'FAIR_BREAK': case 'MPL':
 				case 'FAIR_BREAK_AR': case 'ACC_NEPAL': case 'APL': case 'PUNJAB_T20': case 'MAHARAJA_T20': case 'RPL': case 'RSWS': case 'USPL': case 'KERALA_T20':
 				case 'ICC_BIG_SCREEN': case 'PPL': case 'ARUNACHAL': case 'ICC_BIGSCREEN_DOAD_SCORING':case 'EVEREST_LEGENDS_90': case 'EVEREST_MPL_T20': case 'AFGHANISTAN_T20':
-					$('#select_graphic_options_div').empty();
+				case 'ILT20_BIGSCREEN':
+				$('#select_graphic_options_div').empty();
 
 					header_text = document.createElement('h6');
 					header_text.innerHTML = 'Select Graphic Options';
@@ -23354,7 +23358,7 @@ function addItemsToList(whatToProcess, dataToProcess) {
 						case 'MATCH-PROMO-OPTIONS': case 'MATCH-OPTIONS':
 							switch ($('#selected_broadcaster').val().toUpperCase()) {
 								case 'BUKHATIR': case 'ASSAM': case 'THAILAND': case 'ACC_NEPAL': case 'ARUNACHAL':
-								case 'EVEREST_LEGENDS_90': case 'EVEREST_MPL_T20':
+								case 'EVEREST_LEGENDS_90': case 'EVEREST_MPL_T20': case 'ILT20_BIGSCREEN':
 									select = document.createElement('select');
 									select.id = 'selectMatchPromo';
 									select.name = select.id;
